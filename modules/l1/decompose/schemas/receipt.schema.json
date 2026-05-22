@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Decompose Receipt",
+  "description": "Extension fields for decompose-receipt.json. Extends receipt.base.schema.json.",
+  "type": "object",
+  "required": [
+    "wave_count",
+    "complexity_confirmed",
+    "reviewer_triggered",
+    "rollback_checkpoints"
+  ],
+  "properties": {
+    "wave_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of waves in the produced wave plan"
+    },
+    "complexity_confirmed": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High"],
+      "description": "Complexity level confirmed by Decompose (may differ from Recipe initial score if revised upward)"
+    },
+    "complexity_revised": {
+      "type": "boolean",
+      "description": "True when Decompose revised complexity upward from Recipe's initial score"
+    },
+    "complexity_revision_reason": {
+      "type": "string",
+      "description": "Required when complexity_revised = true. Explains why complexity was revised."
+    },
+    "reviewer_triggered": {
+      "type": "boolean",
+      "description": "True when wave plan was routed through Reviewer before Executor"
+    },
+    "reviewer_verdict": {
+      "type": "string",
+      "enum": ["ACCEPT", "REVISE", "REJECT"],
+      "description": "Reviewer verdict on the wave plan. Required when reviewer_triggered = true."
+    },
+    "rollback_checkpoints": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of rollback checkpoint targets declared across all waves. Wave 1 always has null rollback_to, so maximum = wave_count - 1."
+    },
+    "collapse_applied": {
+      "type": "boolean",
+      "description": "True when Low-complexity + collapse_eligible = true and waves were collapsed to single wave"
+    },
+    "wave_plan_path": {
+      "type": "string",
+      "description": "Path to the written wave plan file"
+    },
+    "verification_modes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Test", "Review", "Audit", "Measurement", "Observation", "Attestation", "Demonstration"]
+      },
+      "description": "List of verification modes assigned, one per wave"
+    }
+  },
+  "if": {
+    "properties": { "complexity_revised": { "const": true } }
+  },
+  "then": {
+    "required": ["complexity_revision_reason"]
+  }
+}

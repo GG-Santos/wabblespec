@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Specify Receipt Extension",
+  "description": "Extension fields for specify-receipt.json. Extends receipt.base.schema.json. All fields required on new receipts.",
+  "type": "object",
+  "required": [
+    "criteria_count",
+    "gwt_violations",
+    "open_questions_resolved",
+    "delta_class"
+  ],
+  "properties": {
+    "criteria_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total acceptance criteria written. Must be at least 1."
+    },
+    "gwt_violations": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Criteria that do not satisfy GWT or EARS format. Target is 0. Receipt is PARTIAL when non-zero."
+    },
+    "open_questions_resolved": {
+      "type": "boolean",
+      "description": "All open questions from scope.md and user intent have been resolved. Must be true before receipt is PASS."
+    },
+    "delta_class": {
+      "type": "string",
+      "enum": ["BREAKING", "ADDITIVE", "COSMETIC"],
+      "description": "Classification of the change this spec introduces. Determines Migrate activation and Archive version bump. BREAKING: removes or incompatibly changes existing behavior. ADDITIVE: new capability alongside existing behavior. COSMETIC: no behavior change."
+    },
+    "change_summary": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "One-line descriptions of each change. Required when delta_class is BREAKING. Optional for ADDITIVE/COSMETIC. Each item prefixed with its class: 'BREAKING: ...', 'ADDITIVE: ...', 'COSMETIC: ...'."
+    },
+    "affected_specs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to existing spec artifacts or capability areas affected by this change. Required when delta_class is BREAKING — used by Migrate and Provenance cascade. Empty array for net-new capabilities."
+    }
+  },
+  "if": {
+    "properties": { "delta_class": { "const": "BREAKING" } },
+    "required": ["delta_class"]
+  },
+  "then": {
+    "required": ["change_summary", "affected_specs"]
+  },
+  "$comment": "Migrate activation gate: delta_class == BREAKING triggers Migrate module. Archive version bump: BREAKING -> major, ADDITIVE -> minor, COSMETIC -> patch. Provenance cascade: affected_specs are marked NEEDS_REVERIFICATION when delta_class is BREAKING (Item 016)."
+}

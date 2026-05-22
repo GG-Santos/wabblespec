@@ -1,0 +1,13 @@
+# Rules for {{ skill_name }}
+# Events: all, bash, file, prompt, stop
+# Actions: warn, block
+rules:
+  - name: {{ rule_name }}
+    enabled: true
+    event: {{ event_name }}
+    action: {{ action }}
+    conditions:
+      - field: {{ field_name }}
+        operator: {{ operator }}
+        pattern: "{{ pattern }}"
+    message: "{{ message }}"

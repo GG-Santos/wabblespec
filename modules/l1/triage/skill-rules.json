@@ -1,0 +1,54 @@
+{
+  "module": "triage",
+  "layer": "L1",
+  "tier": 3,
+  "activators": [
+    "classify issue",
+    "route issue",
+    "bug report",
+    "error event",
+    "feedback action required",
+    "retro action item",
+    "/triage"
+  ],
+  "anti_activators": [
+    "issue already triaged and routed"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      "Memory triage drawer (FRESH)",
+      ".wabblespec/receipts/triage-receipt-<id>.json"
+    ],
+    "reads": [
+      "Memory (prior triage records for recurrence check)"
+    ],
+    "notifies": [
+      "Interview",
+      "Specify",
+      "Executor",
+      "Security gateway",
+      "Clean",
+      "Instinct",
+      "Synth"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Memory recurrence check required before classification \u2014 never skip",
+    "Security issues route to Security gateway immediately \u2014 before any other routing",
+    "Third+ recurrence triggers Synth proposal automatically",
+    "Triage does not fix issues \u2014 classify and route only",
+    "Every triage produces a Memory drawer and a receipt"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

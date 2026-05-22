@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Project Map Contract",
+  "description": "Contract schema for .wabblespec/plans/project-map.md. Markdown — Guard Layer 1 validates by field-name presence in the markdown body. Full JSON validation applies only if project-map is serialised as JSON. freshness_state and valid_until are required — a map without them cannot be used as a reference slice by ReferenceLoad.",
+  "type": "object",
+  "required": [
+    "explored_at",
+    "build_target",
+    "freshness_state",
+    "valid_until",
+    "entry_points",
+    "tech_stack",
+    "gaps"
+  ],
+  "properties": {
+    "explored_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when Explore wrote this map."
+    },
+    "build_target": {
+      "type": "string",
+      "description": "Build target from recipe.json. Must match a declared L3 platform module."
+    },
+    "freshness_state": {
+      "type": "string",
+      "enum": ["FRESH", "AGING", "STALE", "EXPIRED"],
+      "description": "FRESH: within valid_until window. AGING: 24–72h past explored_at. STALE: 72h+ elapsed or structural change detected (entry-points changed, new packages added). EXPIRED: entry-points or tech-stack changed in git — requires Explore re-run before any module may consume this map."
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp after which freshness_state transitions to AGING. Default: 24h from explored_at. High-churn projects may set this lower."
+    },
+    "entry_points": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Primary entry point file paths. At least one required — absence of an entry point means Explore did not complete."
+    },
+    "tech_stack": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["area", "technology", "confidence"],
+        "properties": {
+          "area": { "type": "string", "description": "Functional area (e.g. runtime, database, framework, build, test)." },
+          "technology": { "type": "string" },
+          "version": { "type": "string" },
+          "confidence": {
+            "type": "string",
+            "enum": ["exact", "inferred", "assumed"],
+            "description": "exact: read from manifest lock file. inferred: read from manifest without lock. assumed: no manifest evidence."
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Detected technologies. confidence field prevents downstream modules from trusting assumed stack entries."
+    },
+    "risk_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "risk_reason"],
+        "properties": {
+          "path": { "type": "string" },
+          "risk_reason": {
+            "type": "string",
+            "enum": ["high-churn", "edit-warning", "no-tests", "cross-cutting"],
+            "description": "high-churn: modified in >3 of last 30 commits. edit-warning: file has an explicit annotation warning against edits. no-tests: no test file references this path. cross-cutting: imported by >5 other modules."
+          },
+          "churn_count": { "type": "integer", "description": "Number of commits modifying this file in the last 30." },
+          "note": { "type": "string" }
+        }
+      },
+      "description": "Files warranting extra care before editing. Executor and Guard use this list to apply heightened receipt requirements to waves touching risk files."
+    },
+    "impact_slices": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["primary_paths", "reason"],
+        "properties": {
+          "primary_paths": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "description": "Ranked file paths for this slice. Index 0 is highest priority."
+          },
+          "test_paths": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Test files covering primary_paths in this slice."
+          },
+          "reason": { "type": "string", "description": "Why this slice is named — what question it answers." }
+        }
+      },
+      "description": "Named map slices keyed by slice name (e.g. 'entry-points', 'api-surface', 'test-coverage', 'risk', 'conventions'). ReferenceLoad consumes named slices instead of raw file trees. A module asking about 'api-surface' loads only that slice, not the full project-map."
+    },
+    "spec_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "artifact_type", "status"],
+        "properties": {
+          "path": { "type": "string" },
+          "artifact_type": { "type": "string" },
+          "status": { "type": "string", "enum": ["LOCKED", "DRAFT", "STALE", "UNKNOWN"] }
+        }
+      },
+      "description": "Spec artifacts found during traversal (task-cards, scope.md, receipts, wave plans)."
+    },
+    "conventions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Observed naming conventions, project structure patterns, and architectural patterns."
+    },
+    "git_state": {
+      "type": "object",
+      "properties": {
+        "active_branch": { "type": "string" },
+        "recent_changes": { "type": "array", "items": { "type": "string" }, "description": "Files modified in last N commits." },
+        "uncommitted_count": { "type": "integer" }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Areas Explore could not determine. At least one required — prevents false completeness claims. Each gap entry blocks any module from assuming coverage of that area without a new Explore run."
+    }
+  },
+  "$comment": "Guard Layer 1 validates markdown project-map.md by checking presence of: explored_at, build_target, freshness_state, valid_until, entry_points (>=1 item), Tech Stack section (>=1 row), Risk Files section, Impact Slices section (>=1 named slice), Gaps section (>=1 item). ReferenceLoad gate: freshness_state EXPIRED blocks all slice consumption — ReferenceLoad must trigger Explore re-run before loading. Executor gate: risk_files list feeds heightened wave-receipt requirements for waves touching listed paths. Schema: _shared/schemas/project-map.schema.json."
+}

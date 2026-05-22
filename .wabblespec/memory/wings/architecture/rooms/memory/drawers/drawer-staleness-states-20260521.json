@@ -1,0 +1,24 @@
+{
+  "id": "drawer-staleness-states-20260521",
+  "topic": "Drawer Staleness States and Transitions",
+  "wing": "architecture",
+  "room": "memory",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-21T09:15:00Z",
+  "last_verified": "2026-05-21T09:15:00Z",
+  "expires_at": null,
+  "source": "_shared/references/staleness-states.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "6 states: FRESH, AGING, STALE, EXPIRED, NEEDS_REVERIFICATION, SUPERSEDED. Activity thresholds (execution receipts since written_at): FRESH→AGING at 5, AGING→STALE at 10, STALE→EXPIRED at 20. EXPIRED: read blocked, STALENESS_VIOLATION raised — content never returned. NEEDS_REVERIFICATION: event-driven from Provenance on BREAKING upstream change, not threshold. SUPERSEDED: explicit only, requires superseded_by field. Any state returns to FRESH via documented re-verification with source confirmation.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-21T09:15:00Z",
+      "actor": "memory",
+      "note": "Session 3"
+    }
+  ]
+}

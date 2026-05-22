@@ -1,0 +1,53 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "task-card.md locked",
+    "specify receipt exists",
+    "/decompose command",
+    "break into waves",
+    "plan execution waves",
+    "wave breakdown"
+  ],
+  "anti_activators": [
+    "task-card.md not locked",
+    "specify-receipt.json missing"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Plan"
+  ],
+  "stages": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/plans/current-wave-plan.md",
+      ".wabblespec/receipts/decompose-receipt.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/task-card.md",
+      ".wabblespec/scope.md",
+      ".wabblespec/recipe.json"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "specify"
+  ],
+  "loading_gate": "stage",
+  "commands": [
+    "/decompose"
+  ],
+  "file_path_patterns": []
+}

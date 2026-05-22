@@ -1,0 +1,24 @@
+{
+  "id": "wabblespec-kill-criteria-20260521",
+  "topic": "WabbleSpec Kill Criteria",
+  "wing": "decisions",
+  "room": "kill-criteria",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-21T09:30:00Z",
+  "last_verified": "2026-05-21T09:30:00Z",
+  "expires_at": null,
+  "source": "BUILD-PLAN.md Kill Criteria",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Stop if any true after Phase 2: (1) Hook cannot reliably block deliberately skipped receipt. (2) 10-task before/after shows no reduction in false-completion rate. (3) GSD + simple checklist produces equivalent outcomes — WabbleSpec is theater. (4) Unassisted compliance with receipt chain below 70% in 10-wave session. (5) Phase 2 MVP requires over 12 modules before working end-to-end. (6) Cannot state in one sentence the specific failure mode GSD that receipt gate uniquely prevents.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-21T09:30:00Z",
+      "actor": "memory",
+      "note": "Session 3"
+    }
+  ]
+}

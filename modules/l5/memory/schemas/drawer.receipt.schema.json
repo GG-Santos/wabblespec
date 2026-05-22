@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Memory Write Receipt Extension",
+  "description": "Extends receipt.base.schema.json for memory write/read/transition operations.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" },
+    {
+      "type": "object",
+      "required": ["drawer_id", "operation", "topic", "staleness_after", "provenance_notified", "cascade_count"],
+      "properties": {
+        "drawer_id": {
+          "type": "string",
+          "description": "ID of the drawer affected."
+        },
+        "operation": {
+          "type": "string",
+          "enum": ["write", "update", "read", "transition", "archive"],
+          "description": "Operation performed."
+        },
+        "topic": {
+          "type": "string"
+        },
+        "staleness_before": {
+          "type": ["string", "null"],
+          "description": "null on first write."
+        },
+        "staleness_after": {
+          "type": "string",
+          "enum": ["FRESH", "AGING", "STALE", "EXPIRED", "NEEDS_REVERIFICATION", "SUPERSEDED"]
+        },
+        "provenance_notified": {
+          "type": "boolean",
+          "description": "Must be true for write and update operations."
+        },
+        "cascade_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of downstream specs flagged NEEDS_REVERIFICATION as a result."
+        }
+      }
+    }
+  ]
+}

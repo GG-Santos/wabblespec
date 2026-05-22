@@ -1,0 +1,30 @@
+{
+  "id": "hook-enforcement-pattern-20260519",
+  "topic": "Hook Enforcement Pattern",
+  "wing": "architecture",
+  "room": "hooks",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-19T09:15:00Z",
+  "last_verified": "2026-05-21T08:00:00Z",
+  "expires_at": null,
+  "source": "hooks/pre-tool-use-receipt-check.py",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "pre-tool-use hook intercepts Edit, Write, Bash, MultiEdit. Walks CWD upward to find .wabblespec root. Loads session/state.json. If enforcement_active=false exits 0. Checks required_receipts against .wabblespec/receipts/ — missing any exits 1 with BLOCKED message. Checks evidence_drawers for staleness_state==EXPIRED — exits 1 with STALENESS_VIOLATION. Both checks deterministic, no LLM involvement.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-19T09:15:00Z",
+      "actor": "memory",
+      "note": "Session 1"
+    },
+    {
+      "event": "ACCESSED",
+      "timestamp": "2026-05-21T08:00:00Z",
+      "actor": "memory",
+      "note": "Re-verified against hook source. FRESH confirmed."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Task Card Contract",
+  "description": "Contract schema for .wabblespec/plans/task-card.md. Task-card is markdown — this schema is a machine-readable reference contract for Guard Layer 1 prose validation and human authoring. Required sections and fields are listed here; Guard checks presence of each required field by name in the markdown frontmatter block.",
+  "type": "object",
+  "required": [
+    "goal",
+    "target",
+    "complexity",
+    "locked_at",
+    "change_class",
+    "non_goals",
+    "assumptions",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "goal": {
+      "type": "string",
+      "description": "One sentence. Falsifiable — true or false when the task is complete. No 'and' clauses."
+    },
+    "target": {
+      "type": "string",
+      "description": "Build target from recipe.json. Must match a declared platform module."
+    },
+    "complexity": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High"],
+      "description": "Complexity tier. Determines minimum criteria count: Low=2-4, Medium=4-8, High=8-12."
+    },
+    "locked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when task card was locked by user confirmation."
+    },
+    "change_class": {
+      "type": "string",
+      "enum": ["BREAKING", "ADDITIVE", "COSMETIC"],
+      "description": "Change classification. Must match delta_class in specify-receipt.json. Determines Migrate activation and Archive version bump."
+    },
+    "non_goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "At least one explicit non-goal. Transferred verbatim from scope.md."
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "At least one assumption. Transferred verbatim from scope.md."
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "given", "when", "then"],
+        "properties": {
+          "name": { "type": "string" },
+          "given": { "type": "string" },
+          "when": { "type": "string" },
+          "then": { "type": "string", "description": "Observable and testable outcome." }
+        }
+      },
+      "minItems": 1,
+      "description": "GWT or EARS criteria. Each 'then' must be verifiable. Low: 2-4, Medium: 4-8, High: 8-12."
+    }
+  },
+  "$comment": "Guard Layer 1 validates markdown task-card by checking presence of: goal, target, complexity, locked_at, change_class, Non-Goals section (>=1 item), Assumptions section (>=1 item), Acceptance Criteria section (>=1 criterion). Full JSON validation applies only if task-card is serialised as JSON. Markdown validation is prose-based per the Guard SKILL.md Layer 1 rules."
+}

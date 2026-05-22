@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Propose Receipt",
+  "description": "Extension fields for propose-receipt.json in .wabblespec/receipts/",
+  "type": "object",
+  "required": ["stage", "decision_point", "options_generated", "option_selected", "selection_method", "reviewer_triggered"],
+  "properties": {
+    "stage": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3", "P4"]
+    },
+    "decision_point": {
+      "type": "string"
+    },
+    "options_generated": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 4
+    },
+    "option_selected": {
+      "type": "integer"
+    },
+    "selection_method": {
+      "type": "string",
+      "enum": ["user", "reviewer", "auto-recommendation"]
+    },
+    "reviewer_triggered": {
+      "type": "boolean"
+    },
+    "options_document_path": {
+      "type": "string",
+      "description": "Path to the options document written"
+    }
+  }
+}

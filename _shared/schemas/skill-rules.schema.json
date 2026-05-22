@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec skill-rules.json",
+  "description": "Activation and authority declaration. One per module. Read at Gate 4 (Activation). No module activates without a valid skill-rules.json (I5).",
+  "type": "object",
+  "required": [
+    "module",
+    "layer",
+    "tier",
+    "activators",
+    "build_targets",
+    "phases",
+    "authority",
+    "verification_mode",
+    "receipt_required"
+  ],
+  "properties": {
+    "module": {
+      "type": "string",
+      "description": "Canonical module name. Must match framework.yaml id."
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "shared"]
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [1, 2, 3, 4, 5],
+      "description": "1=CRITICAL, 2=CORE, 3=SUPPORTING, 4=SPECIALIZED, 5=EXTENDED"
+    },
+    "activators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Patterns matched against session context, task shape, and request text. At least one required."
+    },
+    "anti_activators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Patterns that suppress activation even when activators match. Anti_activators take precedence."
+    },
+    "file_path_patterns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. File glob patterns that trigger activation when matched files are in scope."
+    },
+    "build_targets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Web", "API-Service", "Game", "Mobile", "Desktop", "CLI",
+          "IoT-Embedded", "Library-Package", "Extension-Plugin",
+          "Data-Pipeline", "AI-Agent", "ALL"
+        ]
+      },
+      "description": "Build targets this module applies to. [\"ALL\"] = applies regardless of target (I3)."
+    },
+    "runtime_lanes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Vendor-neutral capability descriptors. Never model names (I6). E.g. code-generation, analysis, synthesis, long-context."
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Research", "Plan", "Execute", "ALL"]
+      },
+      "description": "Phases this module participates in (I2)."
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["P1", "P2", "P3", "P4", "ALL"]
+      },
+      "description": "Spec stages this module activates in (I1)."
+    },
+    "authority": {
+      "type": "object",
+      "required": ["owns"],
+      "properties": {
+        "owns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Artifacts this module exclusively produces. No two modules own the same artifact in a session (I11)."
+        },
+        "reads": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Artifacts this module consumes but does not own."
+        }
+      }
+    },
+    "verification_mode": {
+      "type": "string",
+      "enum": ["Test", "Review", "Audit", "Measurement", "Observation", "Attestation", "Demonstration"],
+      "description": "Required. Verification mode for this module's output (I4). No module omits this."
+    },
+    "receipt_required": {
+      "type": "boolean",
+      "description": "true for all non-trivial modules. Only utility scripts may set false."
+    },
+    "collapse_eligible": {
+      "type": "boolean",
+      "default": false,
+      "description": "true only when Plan+Execute collapse is supported (I2). Must document conditions in gate_collapsing_conditions."
+    },
+    "gate_collapsing_conditions": {
+      "type": ["string", "null"],
+      "description": "Required when collapse_eligible=true. Null otherwise."
+    },
+    "requires_receipts_from": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Modules whose receipts must exist before this module executes. Enforced by pre-tool-use hook."
+    }
+  }
+}

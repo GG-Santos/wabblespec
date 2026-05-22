@@ -1,0 +1,24 @@
+{
+  "id": "memory-drawer-structure-20260521",
+  "topic": "Memory Drawer Storage Structure",
+  "wing": "architecture",
+  "room": "memory",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-21T09:00:00Z",
+  "last_verified": "2026-05-21T09:00:00Z",
+  "expires_at": null,
+  "source": "modules/l5/memory/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Drawers at .wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{id}.json. index.json is flat registry — MemorySearch reads this first, not individual files. closets/ holds archived EXPIRED/SUPERSEDED drawers as {id}-{timestamp}.json. Adapted from MemPalace hierarchy without ChromaDB dependency. No embeddings — full-text + topic query only. tracker.json reserved for L8 Instinct, not written by Memory.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-21T09:00:00Z",
+      "actor": "memory",
+      "note": "Session 3"
+    }
+  ]
+}

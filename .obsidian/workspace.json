@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "8abb6ee4dbc1f303",
+    "type": "split",
+    "children": [
+      {
+        "id": "9382e36cf20b6b6b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "831c33e40b1a3a8d",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "36ca22970055ea48",
+    "type": "split",
+    "children": [
+      {
+        "id": "95380d7b383c26a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ed140ab4195460a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "964a722fd278813b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "77d8dbbebe71c8b6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "69bcb491de739857",
+    "type": "split",
+    "children": [
+      {
+        "id": "95a4c98d5a2d9b2d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e89a9288642ac009",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "BUILD-PLAN.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for BUILD-PLAN"
+            }
+          },
+          {
+            "id": "32194231347ce14d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "BUILD-PLAN.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from BUILD-PLAN"
+            }
+          },
+          {
+            "id": "7d3f87a9eb94d208",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "1659c622bbd9a61e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "05809c5effc8f365",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "BUILD-PLAN.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of BUILD-PLAN"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "831c33e40b1a3a8d",
+  "lastOpenFiles": [
+    "spec-reference/planning/05-MODULE-IMPORTANCE.md",
+    "REFERENCE-INTEGRATION-MASTER-PLAN.md",
+    "BUILD-PLAN.md.tmp.34428.2d3e5a8bb05b",
+    "spec-reference/planning/04-SKILLS-FLOW.md",
+    "spec-reference/planning/03-CORE-FEATURES.md",
+    "spec-reference/planning/02-ARCHITECTURE.md",
+    "spec-reference/planning/01-INVARIANTS.md",
+    "spec-reference/planning/00-INDEX.md",
+    "spec-reference/WabbleSpec v6.1 — Aesthetic.md",
+    "BUILD-PLAN.md",
+    "spec-reference/WabbleSpec v6.1 — Delivery.md",
+    "spec-reference/WabbleSpec v6.1 — Design.md",
+    "spec-reference/WabbleSpec v6.1 — Core.md",
+    "spec-reference/WabbleSpec v6.1 — AI.md",
+    "BUILD-PLAN.md.tmp.19648.bac0df2ffa23",
+    "scripts/path-linter.py.tmp.19648.fb7b36b6b35b",
+    "framework.yaml.tmp.19648.1816672ac548",
+    "_shared/schemas/skill-rules.schema.json",
+    "_shared/schemas/receipt.base.schema.json",
+    "_shared/schemas/error-event.schema.json",
+    "_shared/references/staleness-states.md",
+    "_shared/references/invariants.md",
+    "_shared/references/error-taxonomy.md",
+    "_shared/schemas",
+    "_shared/references",
+    "_shared",
+    "shared/references/staleness-states.md",
+    "shared/references/error-taxonomy.md",
+    "shared/references/invariants.md",
+    "spec-reference/WabbleSpec v6.1 — Shared-Dev.md",
+    "spec-reference/WabbleSpec v6.1 — Security.md",
+    "spec-reference/WabbleSpec v6.1 — Platform.md",
+    "spec-reference/WabbleSpec v6.1 — Planning Index.md",
+    "spec-reference/WabbleSpec v6.1 — Memory.md",
+    "spec-reference/WabbleSpec v6.1 — Manual.md",
+    "spec-reference/WabbleSpec v6.1 — Expression.md"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "module": "apply",
+  "layer": "L1",
+  "tier": 1,
+  "activators": [
+    "execute wave",
+    "apply routing",
+    "gateway routing",
+    "/apply"
+  ],
+  "anti_activators": [
+    "planning phase only",
+    "no Guard PASS receipt for current wave"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      "project/repo/**/*"
+    ],
+    "reads": [
+      ".wabblespec/receipts/",
+      ".wabblespec/plans/",
+      "modules/l3/",
+      "modules/l4/"
+    ],
+    "forbidden_writes": [
+      ".wabblespec/"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Never writes to .wabblespec/ (I11)",
+    "Every delta (ADDITIVE/COSMETIC/BREAKING) is declared \u2014 no silent deviation",
+    "BREAKING delta halts wave \u2014 never proceeds",
+    "Context assembled with placement rules: constraints top, references middle, active task end",
+    "Only loads modules declared in current wave"
+  ],
+  "delta_types": [
+    "ADDITIVE",
+    "COSMETIC",
+    "BREAKING"
+  ],
+  "requires_receipts_from": [
+    "guard"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

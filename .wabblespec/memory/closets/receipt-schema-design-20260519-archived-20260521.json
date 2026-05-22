@@ -1,0 +1,46 @@
+{
+  "id": "receipt-schema-design-20260519",
+  "topic": "Receipt Schema Design",
+  "wing": "architecture",
+  "room": "receipt-schema",
+  "staleness_state": "SUPERSEDED",
+  "written_at": "2026-05-19T09:00:00Z",
+  "last_verified": null,
+  "expires_at": null,
+  "source": "_shared/schemas/receipt.base.schema.json",
+  "source_module": "memory",
+  "confidence": 0.855,
+  "evidence": "Receipt schema v1.0 defines 8 required fields: module, phase, wave, timestamp, checks_run[], checks_passed[], evidence[], status (PASS/FAIL/PARTIAL). Extended by individual modules with domain-specific fields. Validated against JSON Schema draft-07. All core modules recipe through archive consume this schema. Extension pattern: base fields required, module adds its own top-level keys.",
+  "superseded_by": "receipt-schema-design-20260521",
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-19T09:00:00Z",
+      "actor": "memory",
+      "note": "Session 1"
+    },
+    {
+      "event": "TRANSITION",
+      "timestamp": "2026-05-21T09:00:00Z",
+      "actor": "staleness-checker",
+      "from_state": "STALE",
+      "to_state": "EXPIRED",
+      "note": "20 execution receipts since written_at. Activity threshold crossed."
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:04:13.138623+00:00",
+      "actor": "dream",
+      "from_confidence": 0.95,
+      "to_confidence": 0.855,
+      "staleness_state": "EXPIRED"
+    },
+    {
+      "event": "ARCHIVED",
+      "timestamp": "2026-05-21T12:15:00Z",
+      "actor": "memory",
+      "note": "Dream gap-map CRITICAL finding actioned. Evidence outdated: schema now has 10 required fields (not 8). Superseded by receipt-schema-design-20260521."
+    }
+  ]
+}

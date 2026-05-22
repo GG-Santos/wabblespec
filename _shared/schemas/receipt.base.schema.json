@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Receipt Base",
+  "description": "Base receipt structure. All module receipts extend this. A phase without a receipt did not complete (I10).",
+  "type": "object",
+  "required": [
+    "module",
+    "phase",
+    "wave",
+    "timestamp",
+    "checks_run",
+    "checks_passed",
+    "evidence",
+    "status",
+    "not_tested",
+    "confidence"
+  ],
+  "properties": {
+    "module": {
+      "type": "string",
+      "description": "Canonical module name matching framework.yaml id"
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "shared"],
+      "description": "Layer this module belongs to"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["Research", "Plan", "Execute", "Collapsed"],
+      "description": "Phase this receipt covers. Collapsed = Plan+Execute ran together (I2 gate collapsing)"
+    },
+    "wave": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Wave number within the current execution. 0 = pre-execution setup"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when receipt was written"
+    },
+    "checks_run": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All checks attempted during verification"
+    },
+    "checks_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Subset of checks_run that passed. Enables PARTIAL status."
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Evidence items used. Paths, references, or drawer IDs. Empty array only if execution used no external evidence."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "FAIL", "PARTIAL"],
+      "description": "PASS = all checks passed. FAIL = blocking failure. PARTIAL = some checks passed, execution incomplete."
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Upstream receipts read before execution (I10 receipt chain)",
+      "items": {
+        "type": "object",
+        "required": ["module", "receipt_path", "staleness_state"],
+        "properties": {
+          "module": { "type": "string" },
+          "receipt_path": { "type": "string" },
+          "staleness_state": {
+            "type": "string",
+            "enum": ["FRESH", "AGING", "STALE", "EXPIRED", "NEEDS_REVERIFICATION", "SUPERSEDED"]
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Artifacts produced. Paths or named artifacts."
+    },
+    "not_tested": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required. Explicit list of what was not verified. Empty only when everything was verified. Implied completion is prohibited (I10)."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in output correctness. 1.0 = fully verified. Below 0.7 must be flagged."
+    },
+    "failure_reason": {
+      "type": "string",
+      "description": "Required when status = FAIL or PARTIAL. Human-readable failure description."
+    },
+    "revise_cycles": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "REVISE cycles consumed. Max 3 per gate (I4). At 3, Attestation required."
+    }
+  },
+  "if": {
+    "properties": { "status": { "enum": ["FAIL", "PARTIAL"] } }
+  },
+  "then": {
+    "required": ["failure_reason"]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "layer": "L6",
+  "excluded_types": [
+    "project/**",
+    "repo/**",
+    "**/*.json",
+    "**/*.yaml",
+    "**/*.yml",
+    ".wabblespec/receipts/**",
+    ".wabblespec/memory/wings/**"
+  ],
+  "passes": [
+    "register",
+    "redundancy",
+    "structure",
+    "spec-compliance"
+  ],
+  "invariants": [
+    "Polish never modifies excluded file types — abort with SPEC_VIOLATION if attempted",
+    "Polish diff is mandatory — no silent overwrites",
+    "Pass 4 spec violations are flagged only — they do not block Delivery",
+    "Polish does not change semantics — surface quality only",
+    "Polish skipped when active Homowabian register is ultra"
+  ],
+  "produces": [
+    "polish-receipt",
+    "polish-diff"
+  ],
+  "consumes": [
+    "_shared/schemas/receipt.base.schema.json",
+    ".wabblespec/meta.md"
+  ],
+  "depends_on": [
+    "homowabian"
+  ],
+  "loading_gate": "activation",
+  "commands": [
+    "/polish"
+  ],
+  "file_path_patterns": [],
+  "module": "polish",
+  "activators": [
+    "/polish",
+    "polish this",
+    "refine this artifact",
+    "clean up this doc",
+    "fix register violations",
+    "remove redundancy"
+  ],
+  "anti_activators": [],
+  "tier": 3,
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/polish-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

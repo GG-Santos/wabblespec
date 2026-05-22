@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "polish-receipt",
+  "description": "Receipt for a Polish module run. Extends receipt.base.schema.json.",
+  "allOf": [
+    { "$ref": "../../_shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "module": { "const": "polish" },
+    "artifact_path": {
+      "type": "string",
+      "description": "Path to the artifact that was polished"
+    },
+    "passes_run": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1, "maximum": 4 },
+      "description": "Which passes ran (1=register, 2=redundancy, 3=structure, 4=spec-compliance)"
+    },
+    "register_violations_fixed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "redundancies_removed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "structural_issues_fixed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "spec_violations_flagged": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Pass 4 findings — flagged only, not auto-corrected"
+    },
+    "diff_path": {
+      "type": "string",
+      "description": "Path to the mandatory polish diff file"
+    },
+    "excluded_type_abort": {
+      "type": "boolean",
+      "description": "True if Polish aborted due to excluded file type (SPEC_VIOLATION)"
+    }
+  },
+  "required": [
+    "module",
+    "artifact_path",
+    "passes_run",
+    "register_violations_fixed",
+    "redundancies_removed",
+    "structural_issues_fixed",
+    "spec_violations_flagged",
+    "diff_path"
+  ]
+}

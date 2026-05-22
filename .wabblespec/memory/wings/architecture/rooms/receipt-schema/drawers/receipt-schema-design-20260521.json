@@ -1,0 +1,24 @@
+{
+  "id": "receipt-schema-design-20260521",
+  "topic": "Receipt Schema Design",
+  "wing": "architecture",
+  "room": "receipt-schema",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-21T12:15:00Z",
+  "last_verified": "2026-05-21T12:15:00Z",
+  "expires_at": null,
+  "source": "_shared/schemas/receipt.base.schema.json",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Receipt schema v1.0 (JSON Schema draft-07) has 10 required fields: module, phase, wave, timestamp, checks_run[], checks_passed[], evidence[], status (PASS/FAIL/PARTIAL), not_tested[], confidence (0.0-1.0). Optional fields: layer (enum L0-L8/shared), inputs[] (upstream receipt chain per I10 — each entry has module/receipt_path/staleness_state), outputs[], failure_reason (required when status FAIL or PARTIAL), revise_cycles (integer 0-3, max 3 per I4). Extension pattern: modules add top-level keys alongside base fields. not_tested is the anti-theater field — must be explicit, empty only when everything was verified. Supersedes receipt-schema-design-20260519 which incorrectly stated 8 required fields.",
+  "superseded_by": null,
+  "contradicts": "receipt-schema-design-20260519",
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-21T12:15:00Z",
+      "actor": "memory",
+      "note": "Re-verified against _shared/schemas/receipt.base.schema.json. Dream gap-map CRITICAL finding actioned. Previous drawer had stale evidence (8 fields, not 10)."
+    }
+  ]
+}

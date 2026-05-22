@@ -1,0 +1,10 @@
+{
+  "target": "AI-Agent",
+  "detection_method": "file-signals",
+  "confidence": 0.85,
+  "complexity": "Low",
+  "secondary_targets": [],
+  "collapse_eligible": true,
+  "locked_at": "2026-05-21T10:00:00Z",
+  "session_id": "phase2-done-gate-20260521"
+}

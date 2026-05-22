@@ -1,0 +1,81 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Mobile platform only activates when Recipe has run and identified Mobile as primary target",
+    "Code signing strategy must be declared for both iOS and Android before Specify receipt",
+    "OS permission usage descriptions must be declared before any Executor wave begins",
+    "Offline behavior must be declared before Specify receipt",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/ios/**",
+    "**/android/**",
+    "**/*.dart",
+    "**/*.swift",
+    "**/*.kt",
+    "ios/**/*",
+    "android/**/*",
+    "pubspec.yaml",
+    "app.json",
+    "lib/**/*.dart",
+    "src/screens/**/*"
+  ],
+  "module": "mobile",
+  "activators": [
+    "mobile app",
+    "ios app",
+    "android app",
+    "react native",
+    "flutter app",
+    "native ios",
+    "native android",
+    "swiftui app",
+    "jetpack compose",
+    "capacitor app",
+    "expo app",
+    "cross-platform mobile"
+  ],
+  "anti_activators": [
+    "web-only index.html",
+    "server.ts",
+    "electron dependency in package.json",
+    "cli.py"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "MOBILE"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/mobile-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

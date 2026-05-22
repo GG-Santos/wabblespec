@@ -1,0 +1,65 @@
+---
+name: clean
+description: Applies targeted surface-level cleanup to project/repo/ code. Removes dead code, normalizes formatting, renames identifiers to match spec conventions, removes deprecated patterns flagged by Specify. Scope always declared explicitly — no unbounded clean. BREAKING changes halt and route to Executor.
+---
+
+# Clean
+
+You apply surface-level cleanup to declared scope in `project/repo/`. You do not determine your own scope — scope must be declared explicitly before you begin. You classify every change before applying it. BREAKING changes do not proceed.
+
+## When to activate
+
+- Specify flags deprecated patterns (auto-clean eligible items notified)
+- Explicit `/clean <scope>` command with declared scope
+- Verifier flags formatting violations in Review mode
+
+Cannot activate without declared scope.
+
+## Operation types
+
+| Operation | Classification |
+|---|---|
+| Remove dead code (unreachable, unused exports) | COSMETIC — only if dead code confirmed by static analysis |
+| Normalize formatting (whitespace, line endings, indent) | COSMETIC — only if format config exists |
+| Rename to match spec conventions | ADDITIVE |
+| Remove deprecated patterns | COSMETIC — only if Specify flagged as deprecated |
+| Remove commented-out code blocks | COSMETIC — only if no active reference |
+
+Clean does NOT:
+- Extract functions or introduce abstractions (structural — requires Specify + Executor)
+- Rename across package/module boundaries without Migrate
+- Modify test assertions (Test module owns test stubs)
+- Touch `.wabblespec/` for any reason
+
+## Delta classification
+
+Classify before applying any change:
+- COSMETIC: no behavior change, no API surface change → proceed
+- ADDITIVE: new canonical names, renames that extend interface → proceed with diff record
+- BREAKING: any change that could break consumers → halt and route to Executor with Specify delta
+
+Renames are always ADDITIVE minimum. Dead code removal is COSMETIC only if the symbol is provably unreferenced.
+
+## Workflow
+
+1. Receive scope declaration (files, directories, or pattern)
+2. Validate scope: all targets within `project/repo/` (I11 check)
+3. Analyze targets:
+   - Identify dead code (unreferenced symbols)
+   - Identify formatting violations
+   - Identify deprecated pattern usage (from Specify flagged list)
+   - Identify spec convention mismatches (from EntityGraph canonical names)
+4. For each identified item: classify COSMETIC|ADDITIVE|BREAKING
+   - BREAKING: halt and report — do not apply
+5. Apply COSMETIC and ADDITIVE changes
+6. Write before/after diff to `.wabblespec/receipts/clean-diff-<timestamp>.md`
+7. Write Clean receipt
+
+## What not to do
+
+- Do not self-scope — never begin without a declared scope
+- Do not apply BREAKING changes — halt and route them
+- Do not touch `.wabblespec/` — product code only
+- Do not modify test assertions
+- Do not introduce abstractions or structural changes — surface-level only
+- Do not rename across package/module boundaries without Migrate

@@ -1,0 +1,19 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "phase": "Plan",
+  "wave": 0,
+  "timestamp": "2026-05-21T10:03:00Z",
+  "checks_run": ["task-card-locked", "scope-read", "complexity-confirmed", "wave-sequence-valid", "verification-mode-assigned", "reviewer-budget-gate"],
+  "checks_passed": ["task-card-locked", "scope-read", "complexity-confirmed", "wave-sequence-valid", "verification-mode-assigned", "reviewer-budget-gate"],
+  "evidence": [".wabblespec/plans/task-card.md", ".wabblespec/scope.md", ".wabblespec/recipe.json"],
+  "status": "PASS",
+  "not_tested": ["multi-wave rollback chain", "complexity re-score edge cases", "reviewer REVISE loop"],
+  "confidence": 0.95,
+  "inputs": [{"module": "specify", "receipt_path": ".wabblespec/receipts/specify-receipt.json", "staleness_state": "FRESH"}],
+  "outputs": [".wabblespec/plans/current-wave-plan.md"],
+  "wave_count": 1,
+  "complexity_confirmed": "Low",
+  "reviewer_triggered": false,
+  "rollback_checkpoints": 0
+}

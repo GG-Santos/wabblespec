@@ -1,0 +1,33 @@
+# {{ matcher_title }}
+
+Matchers describe the fields and operators available to rules for
+`{{ skill_name }}`.
+
+## Fields
+
+{{ fields_table }}
+
+## Operators
+
+{{ operators_table }}
+
+## Rule Shape
+
+```yaml
+rules:
+  - name: {{ example_rule_name }}
+    enabled: true
+    event: {{ example_event }}
+    action: {{ example_action }}
+    conditions:
+      - field: {{ example_field }}
+        operator: {{ example_operator }}
+        pattern: "{{ example_pattern }}"
+    message: "{{ example_message }}"
+```
+
+## Failure Modes
+
+- Matching fields that do not exist in the target event.
+- Using broad regexes that block safe work.
+- Blocking without a recovery message.

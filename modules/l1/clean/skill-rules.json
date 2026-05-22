@@ -1,0 +1,52 @@
+{
+  "module": "clean",
+  "layer": "L1",
+  "tier": 3,
+  "activators": [
+    "remove dead code",
+    "normalize formatting",
+    "rename to spec conventions",
+    "remove deprecated patterns",
+    "cleanup code",
+    "/clean"
+  ],
+  "anti_activators": [
+    "no scope declared",
+    "structural refactor required",
+    "breaking change detected"
+  ],
+  "phases": [
+    "Execution"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      "project/repo/ (declared scope only)",
+      ".wabblespec/receipts/clean-diff-<timestamp>.md"
+    ],
+    "reads": [
+      ".wabblespec/receipts/specify-receipt.md",
+      ".wabblespec/receipts/entity-graph.json"
+    ],
+    "notifies": [
+      "Executor",
+      "Instinct"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Scope must be explicitly declared \u2014 no unbounded clean",
+    "All targets must be within project/repo/ \u2014 I11 boundary enforced",
+    "Every change classified COSMETIC|ADDITIVE|BREAKING before applying",
+    "BREAKING changes halt and route to Executor \u2014 never applied by Clean",
+    "Before/after diff written to receipt for every change applied",
+    "Clean never touches .wabblespec/ for any reason"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

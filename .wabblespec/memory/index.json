@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "drawers": [
+    {
+      "id": "receipt-schema-design-20260519",
+      "topic": "Receipt Schema Design",
+      "wing": "architecture",
+      "room": "receipt-schema",
+      "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260519.json",
+      "staleness_state": "SUPERSEDED",
+      "confidence": 0.3312,
+      "written_at": "2026-05-19T09:00:00Z"
+    },
+    {
+      "id": "receipt-schema-design-20260521",
+      "topic": "Receipt Schema Design",
+      "wing": "architecture",
+      "room": "receipt-schema",
+      "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260521.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-21T12:15:00Z"
+    },
+    {
+      "id": "hook-enforcement-pattern-20260519",
+      "topic": "Hook Enforcement Pattern",
+      "wing": "architecture",
+      "room": "hooks",
+      "path": "memory/wings/architecture/rooms/hooks/drawers/hook-enforcement-pattern-20260519.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-19T09:15:00Z"
+    },
+    {
+      "id": "phase-1-completion-20260519",
+      "topic": "Phase 1 Completion",
+      "wing": "decisions",
+      "room": "phases",
+      "path": "memory/wings/decisions/rooms/phases/drawers/phase-1-completion-20260519.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-19T10:00:00Z"
+    },
+    {
+      "id": "module-order-rationale-20260520",
+      "topic": "Phase 2 Module Order Rationale",
+      "wing": "decisions",
+      "room": "module-order",
+      "path": "memory/wings/decisions/rooms/module-order/drawers/module-order-rationale-20260520.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-20T09:00:00Z"
+    },
+    {
+      "id": "skill-factory-gaps-20260520",
+      "topic": "Skill Factory Gaps and WabbleSpec Templates",
+      "wing": "implementation",
+      "room": "skill-factory",
+      "path": "memory/wings/implementation/rooms/skill-factory/drawers/skill-factory-gaps-20260520.json",
+      "staleness_state": "FRESH",
+      "confidence": 0.9652,
+      "written_at": "2026-05-20T10:00:00Z"
+    },
+    {
+      "id": "guard-invariant-list-20260520",
+      "topic": "Guard Module Invariant Enforcement",
+      "wing": "implementation",
+      "room": "guard",
+      "path": "memory/wings/implementation/rooms/guard/drawers/guard-invariant-list-20260520.json",
+      "staleness_state": "FRESH",
+      "confidence": 0.9826,
+      "written_at": "2026-05-20T11:00:00Z"
+    },
+    {
+      "id": "verifier-check-types-20260520",
+      "topic": "Verifier Check Types",
+      "wing": "implementation",
+      "room": "verifier",
+      "path": "memory/wings/implementation/rooms/verifier/drawers/verifier-check-types-20260520.json",
+      "staleness_state": "FRESH",
+      "confidence": 0.9826,
+      "written_at": "2026-05-20T14:00:00Z"
+    },
+    {
+      "id": "memory-drawer-structure-20260521",
+      "topic": "Memory Drawer Storage Structure",
+      "wing": "architecture",
+      "room": "memory",
+      "path": "memory/wings/architecture/rooms/memory/drawers/memory-drawer-structure-20260521.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-21T09:00:00Z"
+    },
+    {
+      "id": "drawer-staleness-states-20260521",
+      "topic": "Drawer Staleness States and Transitions",
+      "wing": "architecture",
+      "room": "memory",
+      "path": "memory/wings/architecture/rooms/memory/drawers/drawer-staleness-states-20260521.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-21T09:15:00Z"
+    },
+    {
+      "id": "wabblespec-kill-criteria-20260521",
+      "topic": "WabbleSpec Kill Criteria",
+      "wing": "decisions",
+      "room": "kill-criteria",
+      "path": "memory/wings/decisions/rooms/kill-criteria/drawers/wabblespec-kill-criteria-20260521.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-21T09:30:00Z"
+    }
+  ]
+}

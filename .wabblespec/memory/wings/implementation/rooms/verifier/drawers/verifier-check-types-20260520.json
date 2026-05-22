@@ -1,0 +1,104 @@
+{
+  "id": "verifier-check-types-20260520",
+  "topic": "Verifier Check Types",
+  "wing": "implementation",
+  "room": "verifier",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-20T14:00:00Z",
+  "last_verified": null,
+  "expires_at": null,
+  "source": "modules/l2/verifier/SKILL.md",
+  "source_module": "memory",
+  "confidence": 0.9826,
+  "evidence": "Verifier runs checks declared in wave spec. Check types: syntax (file parseable), artifact-exists (required output present at declared path), schema-valid (JSON validates against named schema), path-consistent (path matches module authority in skill-rules.json). Produces machine-parseable receipt with checks_run[], checks_passed[], status PASS/FAIL/PARTIAL. PARTIAL when some checks pass, at least one fails. Consumes error-event.schema.json for failure records.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-20T14:00:00Z",
+      "actor": "memory",
+      "note": "Session 2"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:04:13.138623+00:00",
+      "actor": "dream",
+      "from_confidence": 0.95,
+      "to_confidence": 0.955,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:05:53.192677+00:00",
+      "actor": "dream",
+      "from_confidence": 0.955,
+      "to_confidence": 0.9595,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.330277+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9595,
+      "to_confidence": 0.9636,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.446762+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9636,
+      "to_confidence": 0.9672,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.599070+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9672,
+      "to_confidence": 0.9705,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.758030+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9705,
+      "to_confidence": 0.9735,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.916268+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9735,
+      "to_confidence": 0.9762,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.084579+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9762,
+      "to_confidence": 0.9786,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.253424+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9786,
+      "to_confidence": 0.9807,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.448839+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9807,
+      "to_confidence": 0.9826,
+      "staleness_state": "FRESH"
+    }
+  ]
+}

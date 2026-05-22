@@ -1,0 +1,51 @@
+{
+  "layer": "L6",
+  "invariants": [
+    "Document only activates after Archive receipt confirms task complete",
+    "Document only records verified facts — no speculation about future state",
+    "Document writes its own receipt confirming all declared deliverables are produced"
+  ],
+  "produces": [
+    "document-receipt"
+  ],
+  "consumes": [
+    "_shared/schemas/receipt.base.schema.json"
+  ],
+  "depends_on": [
+    "archive"
+  ],
+  "loading_gate": "activation",
+  "commands": [
+    "/document"
+  ],
+  "file_path_patterns": [],
+  "module": "document",
+  "activators": [
+    "document this",
+    "write documentation",
+    "update README",
+    "write changelog",
+    "generate docs",
+    "API docs"
+  ],
+  "anti_activators": [],
+  "tier": 3,
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/document-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

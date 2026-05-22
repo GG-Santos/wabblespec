@@ -1,0 +1,26 @@
+---
+description: {{ command_description_json }}
+argument-hint: {{ argument_hint }}
+required-capabilities: {{ required_capabilities_json }}
+---
+
+# {{ command_title }}
+
+{{ command_description }}
+
+## Input
+
+Read `$ARGUMENTS` as the user-provided target, flags, or scope. If required
+inputs are missing and cannot be inferred safely, ask one focused question.
+
+## Workflow
+
+{{ workflow_steps }}
+
+## Output Contract
+
+{{ output_contract }}
+
+## Failure Modes
+
+{{ failure_modes }}

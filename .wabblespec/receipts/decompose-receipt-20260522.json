@@ -1,0 +1,21 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "phase": "Decompose",
+  "wave": 0,
+  "timestamp": "2026-05-22T00:03:00Z",
+  "session_id": "e2e-validation-20260522",
+  "checks_run": ["waves-have-acceptance-criteria", "dependencies-declared", "wave-count-reasonable"],
+  "checks_passed": ["waves-have-acceptance-criteria", "dependencies-declared", "wave-count-reasonable"],
+  "evidence": [".wabblespec/receipts/specify-receipt-20260522.json"],
+  "status": "PASS",
+  "wave_count": 1,
+  "waves": [
+    {
+      "wave": 1,
+      "description": "Write SKILL.md and skill-rules.json for research-log",
+      "deliverables": ["modules/l6/research-log/SKILL.md", "modules/l6/research-log/skill-rules.json"],
+      "acceptance": "SKILL.md declares activation triggers, output contract, relationship to memory module. skill-rules.json has layer L6, depends_on memory."
+    }
+  ]
+}

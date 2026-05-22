@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Error Event",
+  "description": "Typed error emitted by modules. Orchestration routes by type, not by prose parsing.",
+  "type": "object",
+  "required": ["type", "module", "message", "timestamp", "recoverable"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "SOFT",
+        "HARD",
+        "DEPENDENCY",
+        "CONTEXT_EXHAUSTION",
+        "SPEC_VIOLATION",
+        "STALENESS_VIOLATION"
+      ],
+      "description": "Error type determines routing action. See routing table."
+    },
+    "module": {
+      "type": "string",
+      "description": "Module that emitted the error"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error description"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recoverable": {
+      "type": "boolean",
+      "description": "Whether execution can continue after this error"
+    },
+    "upstream_module": {
+      "type": "string",
+      "description": "For DEPENDENCY errors: which upstream module failed"
+    },
+    "artifact": {
+      "type": "string",
+      "description": "For SPEC_VIOLATION or STALENESS_VIOLATION: which artifact triggered the error"
+    },
+    "staleness_state": {
+      "type": "string",
+      "enum": ["FRESH", "AGING", "STALE", "EXPIRED", "NEEDS_REVERIFICATION", "SUPERSEDED"],
+      "description": "For STALENESS_VIOLATION: the staleness state of the offending evidence"
+    },
+    "routing": {
+      "type": "object",
+      "description": "Orchestration routing instructions. Derived from type — set automatically.",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["retry", "halt", "pause", "compress", "loop_back", "quarantine"]
+        },
+        "target": {
+          "type": "string",
+          "description": "Where to route: module name, checkpoint label, or spec stage"
+        }
+      }
+    }
+  },
+  "$comment": "Routing table: SOFT=retry, HARD=halt, DEPENDENCY=pause, CONTEXT_EXHAUSTION=compress, SPEC_VIOLATION=loop_back, STALENESS_VIOLATION=quarantine"
+}

@@ -1,0 +1,112 @@
+{
+  "id": "receipt-schema-design-20260519",
+  "topic": "Receipt Schema Design",
+  "wing": "architecture",
+  "room": "receipt-schema",
+  "staleness_state": "SUPERSEDED",
+  "written_at": "2026-05-19T09:00:00Z",
+  "last_verified": null,
+  "expires_at": null,
+  "source": "_shared/schemas/receipt.base.schema.json",
+  "source_module": "memory",
+  "confidence": 0.3312,
+  "evidence": "Receipt schema v1.0 defines 8 required fields: module, phase, wave, timestamp, checks_run[], checks_passed[], evidence[], status (PASS/FAIL/PARTIAL). Extended by individual modules with domain-specific fields. Validated against JSON Schema draft-07. All core modules recipe through archive consume this schema. Extension pattern: base fields required, module adds its own top-level keys.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-19T09:00:00Z",
+      "actor": "memory",
+      "note": "Session 1"
+    },
+    {
+      "event": "TRANSITION",
+      "timestamp": "2026-05-21T09:00:00Z",
+      "actor": "staleness-checker",
+      "from_state": "STALE",
+      "to_state": "EXPIRED",
+      "note": "20 execution receipts since written_at. Activity threshold crossed."
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:04:13.138623+00:00",
+      "actor": "dream",
+      "from_confidence": 0.95,
+      "to_confidence": 0.855,
+      "staleness_state": "EXPIRED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:05:53.192677+00:00",
+      "actor": "dream",
+      "from_confidence": 0.855,
+      "to_confidence": 0.7695,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.330277+00:00",
+      "actor": "dream",
+      "from_confidence": 0.7695,
+      "to_confidence": 0.6925,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.446762+00:00",
+      "actor": "dream",
+      "from_confidence": 0.6925,
+      "to_confidence": 0.6232,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.599070+00:00",
+      "actor": "dream",
+      "from_confidence": 0.6232,
+      "to_confidence": 0.5609,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.758030+00:00",
+      "actor": "dream",
+      "from_confidence": 0.5609,
+      "to_confidence": 0.5048,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.916268+00:00",
+      "actor": "dream",
+      "from_confidence": 0.5048,
+      "to_confidence": 0.4543,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.084579+00:00",
+      "actor": "dream",
+      "from_confidence": 0.4543,
+      "to_confidence": 0.4089,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.253424+00:00",
+      "actor": "dream",
+      "from_confidence": 0.4089,
+      "to_confidence": 0.368,
+      "staleness_state": "SUPERSEDED"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.448839+00:00",
+      "actor": "dream",
+      "from_confidence": 0.368,
+      "to_confidence": 0.3312,
+      "staleness_state": "SUPERSEDED"
+    }
+  ]
+}

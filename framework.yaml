@@ -1,0 +1,892 @@
+framework:
+  name: wabblespec
+  version: 1.0.0-build
+  description: Spec-driven, receipt-gated, hook-enforced framework for the complete software development lifecycle within a single agent runtime.
+
+quality_floor:
+  min_pattern_score: 4.0
+  required_gates: [quick_validate, lint_prompts]
+  adversarial_required_for_tags: [security, enforcement, receipt, gate]
+
+cascade_policy:
+  schema_change_triggers_revalidation: true
+  shared_reference_change_triggers_revalidation: false
+
+# ─────────────────────────────────────────────
+# SHARED ARTIFACTS
+# ─────────────────────────────────────────────
+shared:
+  schemas:
+    - path: _shared/schemas/receipt.base.schema.json
+      consumers: [recipe, specify, scope-frame, decompose, executor, verifier, guard, archive, reviewer, memory, memory-search, provenance, apply]
+      version: "1.0"
+    - path: _shared/schemas/error-event.schema.json
+      consumers: [guard, verifier, executor, reviewer]
+      version: "1.0"
+    - path: _shared/schemas/skill-rules.schema.json
+      consumers: []
+      version: "1.0"
+  references:
+    - path: _shared/references/invariants.md
+      consumers: [guard, verifier, executor, recipe, specify]
+    - path: _shared/references/error-taxonomy.md
+      consumers: [guard, verifier, executor, triage]
+    - path: _shared/references/staleness-states.md
+      consumers: [memory, memory-search, provenance, guard]
+
+# ─────────────────────────────────────────────
+# L0 — PRODUCT LAYER
+# ─────────────────────────────────────────────
+modules:
+
+  - id: recipe
+    path: modules/l0/recipe/
+    type: skill
+    layer: L0
+    tags: [entry-point, routing, detection, complexity]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: product
+    path: modules/l0/product/
+    type: skill
+    layer: L0
+    tags: [product, roadmap, planning]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: test
+    path: modules/l0/test/
+    type: skill
+    layer: L0
+    tags: [testing, verification, quality]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: clean
+    path: modules/l0/clean/
+    type: skill
+    layer: L0
+    tags: [cleanup, maintenance]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: triage
+    path: modules/l0/triage/
+    type: skill
+    layer: L0
+    tags: [error-handling, triage, routing]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/error-event.schema.json]
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: migrate
+    path: modules/l0/migrate/
+    type: skill
+    layer: L0
+    tags: [migration, upgrade]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+# ─────────────────────────────────────────────
+# L1 — SPEC CORE
+# ─────────────────────────────────────────────
+
+  - id: scope-frame
+    path: modules/l1/scope-frame/
+    type: skill
+    layer: L1
+    tags: [spec, scoping, boundary]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: specify
+    path: modules/l1/specify/
+    type: skill
+    layer: L1
+    tags: [spec, task-card, acceptance-criteria, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: interview
+    path: modules/l1/interview/
+    type: skill
+    layer: L1
+    tags: [clarification, ambiguity, requirements]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: explore
+    path: modules/l1/explore/
+    type: skill
+    layer: L1
+    tags: [research, codebase, discovery]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: decompose
+    path: modules/l1/decompose/
+    type: skill
+    layer: L1
+    tags: [waves, breakdown, planning, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [specify]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: propose
+    path: modules/l1/propose/
+    type: skill
+    layer: L1
+    tags: [options, tradeoffs, decision]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: reference-load
+    path: modules/l1/reference-load/
+    type: skill
+    layer: L1
+    tags: [research, reference, loading]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+# ─────────────────────────────────────────────
+# L2 — ORCHESTRATION
+# ─────────────────────────────────────────────
+
+  - id: executor
+    path: modules/l2/executor/
+    type: skill
+    layer: L2
+    tags: [execution, waves, implementation, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [decompose, guard]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: verifier
+    path: modules/l2/verifier/
+    type: skill
+    layer: L2
+    tags: [verification, checks, receipt, gate, enforcement]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, shared/schemas/error-event.schema.json]
+    depends_on: [executor]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: guard
+    path: modules/l2/guard/
+    type: skill
+    layer: L2
+    tags: [invariants, enforcement, gate, security]
+    produces_schemas: [shared/schemas/error-event.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: reviewer
+    path: modules/l2/reviewer/
+    type: skill
+    layer: L2
+    tags: [adversarial, review, quality, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: archive
+    path: modules/l2/archive/
+    type: skill
+    layer: L2
+    tags: [receipts, index, auditability, persistence]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: apply
+    path: modules/l2/apply/
+    type: skill
+    layer: L2
+    tags: [application, artifacts, delivery]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [executor, verifier]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: autopilot
+    path: modules/l2/autopilot/
+    type: skill
+    layer: L2
+    tags: [autonomy, orchestration, multi-wave]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [executor, verifier, guard]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: team-plan
+    path: modules/l2/team-plan/
+    type: skill
+    layer: L2
+    tags: [multi-agent, coordination, handoff]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [decompose, guard]
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: scaffold
+    path: modules/l2/scaffold/
+    type: skill
+    layer: L2
+    tags: [scaffolding, project-init, templates]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: rollback
+    path: modules/l2/rollback/
+    type: skill
+    layer: L2
+    tags: [rollback, checkpoints, recovery]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [guard]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+# ─────────────────────────────────────────────
+# L3 — PLATFORM PACKAGES
+# ─────────────────────────────────────────────
+
+  - id: platform-web
+    path: modules/l3/web/
+    type: skill
+    layer: L3
+    tags: [platform, web, frontend, browser]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: platform-api-service
+    path: modules/l3/api-service/
+    type: skill
+    layer: L3
+    tags: [platform, api, service, backend, rest, graphql]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: platform-cli
+    path: modules/l3/cli/
+    type: skill
+    layer: L3
+    tags: [platform, cli, terminal, command-line]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: platform-game
+    path: modules/l3/game/
+    type: skill
+    layer: L3
+    tags: [platform, game, gamedev]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-mobile
+    path: modules/l3/mobile/
+    type: skill
+    layer: L3
+    tags: [platform, mobile, ios, android]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-desktop
+    path: modules/l3/desktop/
+    type: skill
+    layer: L3
+    tags: [platform, desktop, electron, native]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-iot-embedded
+    path: modules/l3/iot-embedded/
+    type: skill
+    layer: L3
+    tags: [platform, iot, embedded, firmware]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-library-package
+    path: modules/l3/library-package/
+    type: skill
+    layer: L3
+    tags: [platform, library, package, sdk]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-extension-plugin
+    path: modules/l3/extension-plugin/
+    type: skill
+    layer: L3
+    tags: [platform, extension, plugin, addon]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-data-pipeline
+    path: modules/l3/data-pipeline/
+    type: skill
+    layer: L3
+    tags: [platform, data, pipeline, etl]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: platform-ai-agent
+    path: modules/l3/ai-agent/
+    type: skill
+    layer: L3
+    tags: [platform, ai, agent, llm]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+# ─────────────────────────────────────────────
+# L4 — CAPABILITY GATEWAYS
+# ─────────────────────────────────────────────
+
+  - id: gateway-security
+    path: modules/l4/security/
+    type: skill
+    layer: L4
+    tags: [security, threat-model, vulnerability, gate, enforcement]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: gateway-engineering
+    path: modules/l4/engineering/
+    type: skill
+    layer: L4
+    tags: [engineering, build, quality, standards]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: gateway-ai
+    path: modules/l4/ai/
+    type: skill
+    layer: L4
+    tags: [ai, llm, prompt-engineering, evaluation, safety]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: gateway-aesthetic
+    path: modules/l4/aesthetic/
+    type: skill
+    layer: L4
+    tags: [aesthetic, visual, brand, style]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: gateway-design
+    path: modules/l4/design/
+    type: skill
+    layer: L4
+    tags: [design, ux, ui, interaction]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: gateway-experience
+    path: modules/l4/experience/
+    type: skill
+    layer: L4
+    tags: [experience, accessibility, performance, delight]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+# ─────────────────────────────────────────────
+# L5 — MEMORY
+# ─────────────────────────────────────────────
+
+  - id: memory
+    path: modules/l5/memory/
+    type: skill
+    layer: L5
+    tags: [memory, storage, drawers, staleness, evidence]
+    produces_schemas: [_shared/schemas/drawer.schema.json]
+    consumes_schemas: [_shared/references/staleness-states.md]
+    depends_on: []
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: memory-search
+    path: modules/l5/memory-search/
+    type: skill
+    layer: L5
+    tags: [memory, search, retrieval, query]
+    produces_schemas: []
+    consumes_schemas: [_shared/schemas/drawer.schema.json]
+    depends_on: [memory]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: provenance
+    path: modules/l5/provenance/
+    type: skill
+    layer: L5
+    tags: [provenance, lineage, citations, cascade]
+    produces_schemas: []
+    consumes_schemas: [_shared/schemas/drawer.schema.json]
+    depends_on: [memory]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: entity-graph
+    path: modules/l5/entity-graph/
+    type: script
+    layer: L5
+    tags: [entities, graph, relationships, index]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search]
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: dream
+    path: modules/l5/dream/
+    type: script
+    layer: L5
+    tags: [consolidation, decay, ema, staleness, background]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search, provenance]
+    last_validated: "2026-05-21"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: memory-mine
+    path: modules/l5/memory-mine/
+    type: skill
+    layer: L5
+    tags: [mining, patterns, analysis]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search, dream]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: forget
+    path: modules/l5/forget/
+    type: skill
+    layer: L5
+    tags: [deletion, cleanup, privacy]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, provenance]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+# ─────────────────────────────────────────────
+# L6 — EXPRESSION
+# ─────────────────────────────────────────────
+
+  - id: homowabian
+    path: modules/l6/homowabian/
+    type: skill
+    layer: L6
+    tags: [voice, register, expression, tone]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: economy
+    path: modules/l6/economy/
+    type: skill
+    layer: L6
+    tags: [tokens, compression, density, context]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: document
+    path: modules/l6/document/
+    type: skill
+    layer: L6
+    tags: [documentation, onboarding, reference]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+  - id: polish
+    path: modules/l6/polish/
+    type: skill
+    layer: L6
+    tags: [polish, refinement, quality]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: research-log
+    path: modules/l6/research-log/
+    type: skill
+    layer: L6
+    tags: [research, logging, evidence]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory]
+    last_validated: "2026-05-22"
+    quality_floor_passed: false
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L7 — DELIVERY
+# ─────────────────────────────────────────────
+
+  - id: deploy
+    path: modules/l7/deploy/
+    type: skill
+    layer: L7
+    tags: [deployment, release, infra]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier, archive]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: package
+    path: modules/l7/package/
+    type: skill
+    layer: L7
+    tags: [packaging, distribution, bundle]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: release
+    path: modules/l7/release/
+    type: skill
+    layer: L7
+    tags: [release, versioning, changelog]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [package]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: monitor
+    path: modules/l7/monitor/
+    type: skill
+    layer: L7
+    tags: [monitoring, observability, alerts]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+# ─────────────────────────────────────────────
+# L8 — EVOLUTION
+# ─────────────────────────────────────────────
+
+  - id: instinct
+    path: modules/l8/instinct/
+    type: script
+    layer: L8
+    tags: [evolution, observation, patterns, ema]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [archive, memory]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: synth
+    path: modules/l8/synth/
+    type: skill
+    layer: L8
+    tags: [evolution, synthesis, proposals]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [instinct]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: blueprint
+    path: modules/l8/blueprint/
+    type: skill
+    layer: L8
+    tags: [evolution, spec, improvement]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [synth]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: factory
+    path: modules/l8/factory/
+    type: skill
+    layer: L8
+    tags: [evolution, generation, scaffolding]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [blueprint]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: augment
+    path: modules/l8/augment/
+    type: skill
+    layer: L8
+    tags: [evolution, improvement, patching]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [blueprint]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: benchmark
+    path: modules/l8/benchmark/
+    type: skill
+    layer: L8
+    tags: [evolution, benchmarking, evaluation]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [factory, augment]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: forge
+    path: modules/l8/forge/
+    type: skill
+    layer: L8
+    tags: [evolution, promotion, live-update]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [benchmark]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: retro
+    path: modules/l8/retro/
+    type: skill
+    layer: L8
+    tags: [evolution, retrospective, learning]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+  - id: feedback
+    path: modules/l8/feedback/
+    type: skill
+    layer: L8
+    tags: [evolution, feedback, input]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: deferred
+
+# ─────────────────────────────────────────────
+# SHARED DEV INFRASTRUCTURE
+# ─────────────────────────────────────────────
+
+  - id: shared-dev-languages
+    path: _shared/dev/languages/
+    type: skill
+    layer: shared
+    tags: [languages, conventions, standards]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: shared-dev-databases
+    path: _shared/dev/databases/
+    type: skill
+    layer: shared
+    tags: [databases, sql, nosql, orm]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned
+
+  - id: shared-dev-api-consumption
+    path: _shared/dev/api-consumption/
+    type: skill
+    layer: shared
+    tags: [api, http, rest, graphql, consumption]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: false
+    build_status: planned

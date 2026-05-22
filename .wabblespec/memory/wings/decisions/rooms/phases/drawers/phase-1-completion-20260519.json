@@ -1,0 +1,30 @@
+{
+  "id": "phase-1-completion-20260519",
+  "topic": "Phase 1 Completion",
+  "wing": "decisions",
+  "room": "phases",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-19T10:00:00Z",
+  "last_verified": "2026-05-21T08:00:00Z",
+  "expires_at": null,
+  "source": "BUILD-PLAN.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Phase 1 complete 2026-05-21. Artifacts: receipt.base.schema.json, pre-tool-use-receipt-check.py wired in .claude/settings.json, path-linter.py with 0 violations, init-wabblespec.py creating .wabblespec/ directory structure. Hook proof-of-concept passed: exits 1 on missing decompose receipt, exits 0 when present. Directory structure: receipts/, plans/, memory/, checkpoints/, archive/.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-19T10:00:00Z",
+      "actor": "memory",
+      "note": "Session 1"
+    },
+    {
+      "event": "ACCESSED",
+      "timestamp": "2026-05-21T08:00:00Z",
+      "actor": "memory",
+      "note": "Re-verified against BUILD-PLAN.md status."
+    }
+  ]
+}

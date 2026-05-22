@@ -1,0 +1,104 @@
+{
+  "id": "skill-factory-gaps-20260520",
+  "topic": "Skill Factory Gaps and WabbleSpec Templates",
+  "wing": "implementation",
+  "room": "skill-factory",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-20T10:00:00Z",
+  "last_verified": null,
+  "expires_at": null,
+  "source": "BUILD-PLAN.md Phase 0",
+  "source_module": "memory",
+  "confidence": 0.9652,
+  "evidence": "skill-factory Workshop mode produces SKILL.md + skill-rules.json + receipt-schema + references/. Phase 0 additions: WabbleSpec receipt scaffold template, skill-rules.json for framework modules, platform spec-template variants. file_path_patterns added as optional activation field to skill-rules.json schema (adapted from agent-rules pattern). Workshop mode verified to produce modules passing quick_validate, lint_prompts, syntax_check.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-20T10:00:00Z",
+      "actor": "memory",
+      "note": "Session 2"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:04:13.138623+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9,
+      "to_confidence": 0.91,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:05:53.192677+00:00",
+      "actor": "dream",
+      "from_confidence": 0.91,
+      "to_confidence": 0.919,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.330277+00:00",
+      "actor": "dream",
+      "from_confidence": 0.919,
+      "to_confidence": 0.9271,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.446762+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9271,
+      "to_confidence": 0.9344,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.599070+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9344,
+      "to_confidence": 0.941,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.758030+00:00",
+      "actor": "dream",
+      "from_confidence": 0.941,
+      "to_confidence": 0.9469,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:56.916268+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9469,
+      "to_confidence": 0.9522,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.084579+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9522,
+      "to_confidence": 0.957,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.253424+00:00",
+      "actor": "dream",
+      "from_confidence": 0.957,
+      "to_confidence": 0.9613,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-21T12:14:57.448839+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9613,
+      "to_confidence": 0.9652,
+      "staleness_state": "FRESH"
+    }
+  ]
+}

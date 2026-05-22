@@ -1,0 +1,19 @@
+{
+  "module": "recipe",
+  "layer": "L0",
+  "phase": "Research",
+  "wave": 0,
+  "timestamp": "2026-05-21T10:00:00Z",
+  "checks_run": ["existing-recipe-check", "signal-scan", "complexity-score"],
+  "checks_passed": ["existing-recipe-check", "signal-scan", "complexity-score"],
+  "evidence": [".claude/skills/", "framework.yaml", "modules/"],
+  "status": "PASS",
+  "not_tested": ["multi-target detection", "ambiguous target resolution path"],
+  "confidence": 0.85,
+  "inputs": [],
+  "outputs": [".wabblespec/recipe.json"],
+  "target": "AI-Agent",
+  "detection_method": "file-signals",
+  "complexity": "Low",
+  "collapse_eligible": true
+}

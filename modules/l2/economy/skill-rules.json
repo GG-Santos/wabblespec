@@ -1,0 +1,41 @@
+{
+  "layer": "L2",
+  "invariants": [
+    "Economy does not activate while I12 in invariants.md covers token density adequately",
+    "Token budgets are declared per-task, not globally"
+  ],
+  "produces": [],
+  "consumes": [],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": [],
+  "module": "economy",
+  "activators": [
+    "token budget",
+    "token density",
+    "economy",
+    "compress output"
+  ],
+  "anti_activators": [],
+  "tier": 1,
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/economy-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

@@ -1,0 +1,79 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "AI/Agent platform ALWAYS loads L4 AI gateway — not optional",
+    "Model pinning must be declared before Specify receipt",
+    "Eval suite must be declared before any Executor wave begins",
+    "Cost budget must be declared before Specify receipt",
+    "Safety boundaries must be declared before Specify receipt",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "mandatory_gateways": [
+    "modules/l4/ai"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "modules/l4/ai/SKILL.md",
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/agents/**",
+    "**/prompts/**",
+    "**/chains/**",
+    "**/evals/**",
+    "prompts/**/*",
+    "evals/**/*",
+    "agents/**/*",
+    "chains/**/*"
+  ],
+  "module": "ai-agent",
+  "activators": [
+    "ai agent",
+    "llm integration",
+    "autonomous agent",
+    "ai workflow",
+    "prompt engineering",
+    "rag pipeline",
+    "retrieval augmented generation",
+    "ai chatbot",
+    "ai assistant",
+    "llm pipeline",
+    "multi-agent system",
+    "agentic system",
+    "tool calling agent",
+    "function calling llm"
+  ],
+  "anti_activators": [],
+  "tier": 2,
+  "build_targets": [
+    "AI_AGENT"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/ai-agent-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

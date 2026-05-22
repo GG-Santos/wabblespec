@@ -1,0 +1,24 @@
+{
+  "id": "module-order-rationale-20260520",
+  "topic": "Phase 2 Module Order Rationale",
+  "wing": "decisions",
+  "room": "module-order",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-20T09:00:00Z",
+  "last_verified": null,
+  "expires_at": null,
+  "source": "BUILD-PLAN.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Phase 2 build order: Recipe, Specify, ScopeFrame, Decompose, Executor, Verifier, Guard, Archive, Reviewer. Guard built before Executor despite depends_on ordering because Executor depends_on guard — guard must exist first. Archive deferred until Verifier complete — consumes receipt. Reviewer last — adversarial gate requires all other modules proven. Each module evaled before next begins.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-20T09:00:00Z",
+      "actor": "memory",
+      "note": "Session 2"
+    }
+  ]
+}

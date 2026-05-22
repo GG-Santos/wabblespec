@@ -1,0 +1,39 @@
+{
+  "layer": "L6",
+  "invariants": [
+    "Register applies to module prose output only — receipts are always machine-format JSON regardless of register",
+    "Register is session-scoped — declared once in CLAUDE.md or settings, not per-wave"
+  ],
+  "produces": [],
+  "consumes": [],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [],
+  "module": "homowabian",
+  "activators": [
+    "homowabian",
+    "register",
+    "output mode",
+    "response mode"
+  ],
+  "anti_activators": [],
+  "tier": 3,
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/homowabian-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

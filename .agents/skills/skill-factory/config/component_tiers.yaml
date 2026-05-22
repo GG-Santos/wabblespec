@@ -1,0 +1,173 @@
+# ========================================================================
+# REFERENCE DOCUMENTATION — NOT LOADED BY CODE AT RUNTIME
+# Source of truth: scripts/component_generator.py (TIER_COMPONENTS, TIER_SIGNALS)
+# This file documents the tier definitions and their associated components.
+# ========================================================================
+#
+# Component Tier Definitions
+# --------------------------
+# Determines which components to generate based on skill complexity.
+# Skill Factory auto-selects the tier during intent analysis.
+
+tiers:
+  simple:
+    label: "Simple (Quick Utility)"
+    description: "Single-purpose skills that provide focused guidance"
+    signals:
+      - "Single task or transformation"
+      - "No multi-step workflows"
+      - "No external dependencies"
+      - "Fits in under 200 lines"
+    required:
+      - SKILL.md
+    optional:
+      - references/
+      - examples/
+
+  standard:
+    label: "Standard (Most Skills)"
+    description: "Skills with scripts, schemas, or reference docs"
+    signals:
+      - "Has deterministic computation to offload"
+      - "Needs structured input/output"
+      - "Multiple reference documents"
+      - "Benefits from eval/test cases"
+    required:
+      - SKILL.md
+      - skill-rules.json
+    optional:
+      - scripts/
+      - references/
+      - schemas/
+      - examples/
+      - evaluations/
+
+  advanced:
+    label: "Advanced (Multi-Step Workflow)"
+    description: "Skills with subagents, hooks, commands, or data processing"
+    signals:
+      - "Multi-step pipeline or workflow"
+      - "Needs parallel subagent execution"
+      - "Lifecycle hooks (pre/post tool use)"
+      - "Slash command entry points"
+      - "Large dataset lookups"
+    required:
+      - SKILL.md
+      - skill-rules.json
+      - agents/
+      - scripts/
+    optional:
+      - plugin/
+      - hooks/
+      - commands/
+      - mcp/
+      - schemas/
+      - references/
+      - data/
+      - rules/
+      - matchers/
+      - templates/
+      - evaluations/
+      - examples/
+
+  full:
+    label: "Full System (Complete Plugin Architecture)"
+    description: "All factory component types, including plugin, hooks, MCP, agents, and templates"
+    signals:
+      - "Complex domain with multiple subagents"
+      - "Needs lifecycle automation"
+      - "Policy/constraint enforcement via rules"
+      - "CSV databases queried by scripts"
+      - "Output templating"
+    required:
+      - SKILL.md
+      - skill-rules.json
+      - plugin/
+      - agents/
+      - commands/
+      - hooks/
+      - mcp/
+      - scripts/
+      - schemas/
+      - references/
+      - data/
+      - rules/
+      - matchers/
+      - evaluations/
+      - examples/
+      - templates/
+
+# Component descriptions (used in generation prompts)
+components:
+  SKILL.md:
+    purpose: "Core orchestration: process steps, routing, decision logic"
+    required: true
+    format: "Markdown with YAML frontmatter"
+
+  skill-rules.json:
+    purpose: "Activation patterns and triggers — progressive loading mechanism"
+    required: true
+    format: "JSON with activation_patterns and progressive_loading sections"
+
+  plugin/:
+    purpose: "Runtime-neutral plugin metadata and installability boundary"
+    format: "plugin.json plus plugin-level README"
+    source_pattern: "runtime-neutral plugin metadata; platform adapters may map to vendor-specific manifests"
+
+  agents/:
+    purpose: "Subagent role definitions and role packs for delegated work"
+    format: "Markdown files with YAML frontmatter (name, description, capabilities)"
+    source_pattern: "portable delegated-role prompt"
+
+  commands/:
+    purpose: "Slash command entry points and mode flags"
+    format: "Markdown files with YAML frontmatter (description, required-capabilities)"
+    source_pattern: "portable command contract"
+
+  hooks/:
+    purpose: "Runtime-neutral lifecycle automation for validation, warnings, and blocking decisions"
+    format: "lifecycle.json manifest + rules.yaml + README adapter notes"
+    source_pattern: "portable lifecycle rule manifest"
+
+  mcp/:
+    purpose: "Optional MCP server scaffold for external tools/resources/prompts"
+    format: "Python FastMCP stdio server, README, evaluation XML"
+    source_pattern: "portable MCP stdio scaffold"
+
+  scripts/:
+    purpose: "Deterministic computation offloaded from LLM context"
+    format: "Python scripts with argparse, stdin/stdout JSON protocol"
+
+  schemas/:
+    purpose: "JSON/YAML schemas for structured inputs and outputs"
+    format: "JSON Schema files"
+
+  references/:
+    purpose: "Domain knowledge loaded on demand"
+    format: "Markdown files, optionally with table of contents for 300+ lines"
+
+  data/:
+    purpose: "CSV databases and lookup tables, queryable via scripts"
+    format: "CSV/JSON files, never loaded wholesale into context"
+
+  rules/:
+    purpose: "Constraint definitions, policy logic, validation rules"
+    format: "YAML/JSON condition+operator rules"
+    source_pattern: "portable rule engine"
+
+  matchers/:
+    purpose: "Matcher field/operator documentation for hook rules"
+    format: "Markdown reference files"
+    source_pattern: "portable rule engine"
+
+  evaluations/:
+    purpose: "Eval cases, assertions, expected outputs, quality measurement"
+    format: "JSON with eval sets, assertions, and grading criteria"
+
+  examples/:
+    purpose: "Concrete usage demonstrations"
+    format: "Markdown files with input/output pairs"
+
+  templates/:
+    purpose: "Reusable factory templates consumed by scripts and generation modules"
+    format: "Jinja2 (.j2) or markdown templates for agents, hooks, MCP tools, and outputs"

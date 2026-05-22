@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(Get-ChildItem \"C:\\\\Vaults\\\\WabbleSpec v6.1\" -Depth 0)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "PowerShell(Get-ChildItem \"C:\\\\Vaults\\\\WabbleSpec v6.1\" | ForEach-Object { \"$\\($_.PSIsContainer\\) $\\($_.Name\\)\" })",
+      "PowerShell(Get-ChildItem \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.claude\\\\skills\\\\skill-factory\\\\templates\" -Recurse | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.claude\\\\skills\\\\skill-factory\\\\\",\"\"\\) })",
+      "PowerShell(python -c \"import ast; ast.parse\\(open\\('C:/Vaults/WabbleSpec v6.1/.claude/skills/skill-factory/scripts/lint_prompts.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python scripts/init-wabblespec.py .)",
+      "Bash(python scripts/path-linter.py)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"from pathlib import Path; Path\\('.wabblespec/receipts/decompose.json'\\).unlink\\(missing_ok=True\\); print\\('cleaned'\\)\")",
+      "Bash(python -m py_compile modules/l5/memory/scripts/staleness-checker.py)",
+      "Bash(python -m py_compile modules/l5/memory-search/scripts/search-index.py)",
+      "Bash(python -m py_compile hooks/pre-tool-use-receipt-check.py)",
+      "Bash(python modules/l5/memory/scripts/staleness-checker.py --dry-run)",
+      "Bash(python -m py_compile hooks/pre-tool-use-receipt-check.py modules/l5/memory/scripts/staleness-checker.py modules/l5/memory-search/scripts/search-index.py)",
+      "Bash(python hooks/pre-tool-use-receipt-check.py)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(python modules/l5/dream/scripts/dream.py --dry-run)",
+      "Bash(python modules/l5/dream/scripts/dream.py)",
+      "PowerShell(Move-Item *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Copy-Item *)",
+      "Bash(python scripts/fix-skill-rules-schema.py)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Kirsten\\\\Downloads\\\\mempalace-develop\" -Recurse -Force)",
+      "Bash(Select-Object -Property FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Out-String -Width 300)",
+      "mcp__plugin_mempalace_mempalace__mempalace_status",
+      "mcp__plugin_mempalace_mempalace__mempalace_search",
+      "Bash(python scripts/migrate-old-skill-rules.py --dry-run)",
+      "Bash(python scripts/migrate-old-skill-rules.py)",
+      "Bash(python -c \"import json,pathlib; files=[p for p in pathlib.Path\\('modules'\\).rglob\\('skill-rules.json'\\) if 'triggers' in json.loads\\(p.read_text\\(\\)\\) or 'receipts_required' in json.loads\\(p.read_text\\(\\)\\) or 'activation' in json.loads\\(p.read_text\\(\\)\\)]; print\\(f'Remaining old-format files: {len\\(files\\)}'\\); [print\\(f'  {p}'\\) for p in files]\")",
+      "Bash(python *)"
+    ]
+  }
+}

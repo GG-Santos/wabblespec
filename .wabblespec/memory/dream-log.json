@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "runs": [
+    {
+      "run_id": "dream-run-001",
+      "timestamp": "2026-05-21T12:04:13.138623+00:00",
+      "dry_run": false,
+      "drawers_processed": 10,
+      "ema_updates": 4,
+      "gap_findings": 2,
+      "findings_by_severity": {
+        "CRITICAL": 1,
+        "HIGH": 0,
+        "MEDIUM": 1
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-002",
+      "timestamp": "2026-05-21T12:05:53.192677+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-003",
+      "timestamp": "2026-05-21T12:14:56.330277+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-004",
+      "timestamp": "2026-05-21T12:14:56.446762+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-005",
+      "timestamp": "2026-05-21T12:14:56.599070+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-006",
+      "timestamp": "2026-05-21T12:14:56.758030+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-007",
+      "timestamp": "2026-05-21T12:14:56.916268+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-008",
+      "timestamp": "2026-05-21T12:14:57.084579+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-009",
+      "timestamp": "2026-05-21T12:14:57.253424+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-010",
+      "timestamp": "2026-05-21T12:14:57.448839+00:00",
+      "dry_run": false,
+      "drawers_processed": 11,
+      "ema_updates": 4,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    }
+  ]
+}

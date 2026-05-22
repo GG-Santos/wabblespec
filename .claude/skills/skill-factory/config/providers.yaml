@@ -1,0 +1,39 @@
+﻿# Runtime Adapter Configuration
+# -----------------------------
+# Vendor-free by default. Add external adapters locally when live model access
+# is needed. Override with SKILL_PROVIDER env var or --provider.
+
+providers:
+  offline:
+    display_name: Offline Deterministic Adapter
+    adapter: scripts.providers.fake_adapter.FakeProvider
+    default_model: offline-deterministic
+    capabilities:
+      - skill_trigger_detection
+
+# Auto-detection priority (first available wins).
+# Local default only; override with SKILL_PROVIDER or --provider.
+detection_order:
+  - offline
+
+# Eval pipeline configuration
+eval_pipeline:
+  trigger_evaluation:
+    provider: ${EVAL_PROVIDER:-auto}  # "auto" uses detection_order
+    timeout: 30
+    runs_per_query: 3
+    workers: 10
+    trigger_threshold: 0.5
+
+  description_improvement:
+    provider: ${IMPROVE_PROVIDER:-auto}
+    timeout: 300
+
+  cross_model_testing:
+    providers: ${CROSS_MODEL_PROVIDERS:-auto}
+    models_per_provider: 1
+
+# Fallback chain. Empty by default to avoid vendor preference; configure
+# locally if fallback across installed adapters is desired.
+fallback_chain:
+  offline: []

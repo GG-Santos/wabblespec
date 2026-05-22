@@ -1,0 +1,21 @@
+{
+  "version": "{{ registry_version }}",
+  "plugin": "{{ plugin_name }}",
+  "skill": "{{ skill_path }}",
+  "activation": "{{ activation_path }}",
+  "commands": {{ commands_json }},
+  "hooks": {
+    "manifest": "{{ hooks_manifest_path }}",
+    "scripts": {{ hook_scripts_json }},
+    "rules": "{{ hook_rules_path }}"
+  },
+  "mcp": {
+    "server": "{{ mcp_server_path }}",
+    "evaluation": "{{ mcp_evaluation_path }}",
+    "run": "{{ mcp_run_command }}"
+  },
+  "agents": {{ agents_json }},
+  "schemas": {{ schemas_json }},
+  "evaluations": {{ evaluations_json }},
+  "templates": {{ templates_json }}
+}
