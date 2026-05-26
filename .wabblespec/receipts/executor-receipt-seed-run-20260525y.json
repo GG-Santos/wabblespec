@@ -1,0 +1,20 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525y",
+  "session_id": "seed-pipeline-y",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/scaffold", "l1/explore"],
+  "files_written": [
+    "_shared/templates/scaffold/project-map-web.md",
+    "_shared/templates/scaffold/project-map-api-service.md",
+    "_shared/templates/scaffold/project-map-cli.md",
+    "_shared/templates/scaffold/project-map-mobile.md",
+    "_shared/templates/scaffold/project-map-desktop.md"
+  ],
+  "summary": "project-map.md starter templates for Web, API-Service, CLI, Mobile, and Desktop platforms. Each template includes all 7 required schema fields (explored_at, build_target, freshness_state, valid_until, entry_points, tech_stack, gaps), 5 standard impact slices (entry-points, api-surface, test-coverage, risk, conventions), Risk Files table, Spec Artifacts, and Conventions section. Scaffold uses these as the initial project-map.md after generation + Explore run.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T11:00:00Z"
+}

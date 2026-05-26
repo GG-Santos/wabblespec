@@ -1,0 +1,17 @@
+{
+  "id": "parseltongue-framing-decision-20260525",
+  "topic": "Parseltongue Framing as False-Refusal Prevention (not Jailbreak)",
+  "wing": "decisions",
+  "room": "g0dm0d3",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": ".wabblespec/plans/g0dm0d3-integration-plan.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "InferenceGuard is false-refusal prevention, NOT a jailbreak tool. Critical design decision. Trigger vocabulary restricted to SDLC-security terms — nothing from jailbreak vocabulary. Activated ONLY when gateway-security is active or task_type is security-typed. Blue protocol SUPPRESSES it (inference_guard: false in task card). This framing ensures the tool serves legitimate red-team simulation, CVE reproduction, and vulnerability analysis — contexts where the agent is ALREADY authorized to do the work, but a false refusal would incorrectly block it. Tier 3 jailbreak terms (nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay etc.) are permanently excluded from ALL tiers — they never trigger, regardless of context. The module does not expand what the agent is permitted to do.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,31 @@
+{
+  "module": "archive",
+  "layer": "L7",
+  "phase": "Deliver",
+  "wave": "post-execution",
+  "timestamp": "2026-05-24T01:06:00Z",
+  "session_id": "seed-run-20260524b",
+  "task": "Write _shared/scripts/quality-floor-check.py — module quality gate checker",
+  "version": "0.3.4",
+  "status": "PASS",
+  "receipts_aggregated": [
+    ".wabblespec/receipts/recipe-receipt-20260524b.json",
+    ".wabblespec/receipts/scopeframe-receipt-20260524b.json",
+    ".wabblespec/receipts/specify-receipt-20260524b.json",
+    ".wabblespec/receipts/decompose-receipt-20260524b.json",
+    ".wabblespec/receipts/executor-receipt-20260524b.json",
+    ".wabblespec/receipts/verifier-receipt-20260524b.json"
+  ],
+  "receipts_passing": 6,
+  "receipts_failing": 0,
+  "files_delivered": ["_shared/scripts/quality-floor-check.py"],
+  "findings_surfaced": [
+    "30 modules fail quality floor: 26 integration-era modules have pre-standard skill-rules.json (missing module/authority/tier/activators/verification_mode/receipt_required); 3 shared-dev-* have no files; 1 (ground) partial",
+    "19 modules fail lint_prompts: heading mismatch (## What I do vs ## What this skill does)",
+    "Next pipeline run: skill-rules.json normalization for the 26 integration-era modules"
+  ],
+  "side_effects": [],
+  "checks_run": ["all-receipts-pass", "no-breaking-changes", "findings-documented"],
+  "checks_passed": ["all-receipts-pass", "no-breaking-changes", "findings-documented"],
+  "not_tested": ["--write mode patching", "exit code 2 path"]
+}

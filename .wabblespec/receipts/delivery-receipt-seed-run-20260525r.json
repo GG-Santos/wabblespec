@@ -1,0 +1,28 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525r",
+  "session_id": "seed-pipeline-r",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.2",
+  "version_new": "0.5.3",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "L4 gateway acceptance tests: 6/6 gateways COMPLETE (security/engineering/ai/aesthetic/design/experience); all layers L1-L8 now have acceptance tests; 67/100 PASS receipts",
+  "acceptance_test_coverage": {
+    "L1": "24/24 COMPLETE",
+    "L2": "13/13 COMPLETE",
+    "L3": "11/11 COMPLETE",
+    "L4": "6/6 gateways COMPLETE",
+    "L5": "8/8 COMPLETE",
+    "L6": "12/12 COMPLETE",
+    "L7": "8/8 COMPLETE",
+    "L8": "9 modules (retro/feedback/factory expanded in run j)"
+  },
+  "total_receipts_accumulated": 67,
+  "l8_gate_progress": "67/100",
+  "archived_at": "2026-05-25T04:02:00Z"
+}

@@ -1,0 +1,49 @@
+{
+  "module": "verifier",
+  "layer": "L1",
+  "phase": "Verify",
+  "wave": 1,
+  "timestamp": "2026-05-24T01:05:00Z",
+  "session_id": "seed-run-20260524b",
+  "checks_run": [
+    "script-exists",
+    "runs-without-crash",
+    "correct-module-count",
+    "correct-exit-code-on-failures",
+    "failure-details-accurate",
+    "verbose-flag-works",
+    "single-module-flag-works"
+  ],
+  "checks_passed": [
+    "script-exists",
+    "runs-without-crash",
+    "correct-module-count",
+    "correct-exit-code-on-failures",
+    "failure-details-accurate",
+    "verbose-flag-works",
+    "single-module-flag-works"
+  ],
+  "status": "PASS",
+  "evidence": [
+    "Ran on live framework.yaml: 99 modules, 55 shared files processed without crash",
+    "Exit code 1 correctly returned (30 modules failing)",
+    "Spot-checked enhance: REQUIRED_FIELDS failure confirmed — skill-rules.json uses pre-standard schema (no module/authority/tier/activators/verification_mode/receipt_required fields)",
+    "shared-dev-* modules correctly fail all checks — no SKILL.md or skill-rules.json present",
+    "--module enhance --verbose confirmed per-check detail output works",
+    "Exit code 0 path: not tested this run (no clean-framework input available)"
+  ],
+  "findings": [
+    "30 modules fail quick_validate: 26 integration-era modules use pre-standard skill-rules.json schema; 3 shared-dev-* modules have no files at all; 1 (ground) has partial schema",
+    "19 modules fail lint_prompts: 16 integration-era modules use ## What I do instead of ## What this skill does",
+    "Root cause: quality-floor-gates.md schema was defined after the 26 integration modules were built — their skill-rules.json format predates the standard",
+    "Findings are real data, not script bugs"
+  ],
+  "spec_deviations": [],
+  "outputs": ["verifier-receipt-20260524b.json"],
+  "not_tested": [
+    "Exit code 0 path (all-passing framework)",
+    "Exit code 2 path (missing/malformed framework.yaml)",
+    "--update-yaml mode",
+    "--write mode"
+  ]
+}

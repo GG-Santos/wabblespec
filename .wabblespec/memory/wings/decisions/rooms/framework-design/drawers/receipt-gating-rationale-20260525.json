@@ -1,0 +1,17 @@
+{
+  "id": "receipt-gating-rationale-20260525",
+  "topic": "Receipt Gating and Implied Completion Prohibition (I10)",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/invariants.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "I10 (RECEIPTS ARE OPERATIONAL ARTIFACTS): every non-trivial execution writes a receipt. Implied completion prohibited — an agent cannot claim a task is done without a receipt. This prevents the false_completion failure mode (Instinct Pattern 1 precursor). Receipt is the only valid signal of completion. Receipt chain integrity enforced by Guard via required_receipts in state.json. InferenceGuard writes receipt on every execution including non-activations — because absence of activation is itself an operational fact, not a non-event. Module-build tasks cannot be marked complete without acceptance_verified: true in execution-receipt (Executor post-wave gate). Archive is the only module that may declare a task fully complete — it writes the delivery receipt. No module may signal Archive completion on behalf of another module.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,18 @@
+{
+  "receipt_type": "executor",
+  "task_id": "benchmark-executor-checkpoint-v1",
+  "session_id": "benchmark-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l8/benchmark"
+  ],
+  "files_written": [
+    ".wabblespec/experiments/fixtures/executor-pre-wave-checkpoint-elimination-v1/golden.json"
+  ],
+  "summary": "Benchmark PASS: rollback_intervention_rate=0.0, threshold=0.10, 3/3 held-out cases pass",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T21:05:52Z"
+}

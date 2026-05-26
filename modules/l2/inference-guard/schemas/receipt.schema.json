@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "wabblespec/inference-guard/receipt.schema.json",
+  "title": "InferenceGuard Receipt",
+  "description": "Receipt written by InferenceGuard on every execution — activation or non-activation. Required by I10.",
+  "type": "object",
+  "required": ["module", "activated"],
+  "additionalProperties": false,
+  "properties": {
+    "module": {
+      "type": "string",
+      "const": "inference-guard"
+    },
+    "activated": {
+      "type": "boolean",
+      "description": "True if InferenceGuard ran transforms on input. False on non-activation."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["gateway_inactive", "no_triggers", "suppressed"],
+      "description": "Required when activated is false. Explains why module did not activate."
+    },
+    "gateway_condition": {
+      "type": "string",
+      "description": "Which activation condition triggered: gateway-security or task_type match."
+    },
+    "task_type": {
+      "type": "string",
+      "description": "task_type from the task card at time of activation check."
+    },
+    "tier_applied": {
+      "type": "string",
+      "enum": ["light", "standard", "heavy"],
+      "description": "Trigger tier active for this execution."
+    },
+    "technique": {
+      "type": "string",
+      "enum": ["leetspeak", "unicode", "mixedcase", "random"],
+      "description": "Obfuscation technique applied."
+    },
+    "intensity": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Transform intensity applied."
+    },
+    "triggers_detected": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of trigger terms detected in input."
+    },
+    "trigger_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of trigger matches."
+    },
+    "transformations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["original", "transformed"],
+        "additionalProperties": false,
+        "properties": {
+          "original": { "type": "string" },
+          "transformed": { "type": "string" }
+        }
+      },
+      "description": "Ordered list of applied transforms."
+    },
+    "inference_refusal": {
+      "type": "boolean",
+      "description": "Set true if a PoC generation or transform attempt was refused or truncated. Used by Red protocol for inference_guard_summary."
+    },
+    "input_length_before": {
+      "type": "integer",
+      "description": "Character count of input before transforms."
+    },
+    "input_length_after": {
+      "type": "integer",
+      "description": "Character count of input after transforms."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of receipt write."
+    }
+  },
+  "if": {
+    "properties": { "activated": { "const": false } }
+  },
+  "then": {
+    "required": ["reason"]
+  },
+  "else": {
+    "required": ["gateway_condition", "tier_applied", "technique", "triggers_detected", "trigger_count", "transformations", "timestamp"]
+  }
+}

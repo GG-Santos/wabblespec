@@ -1,0 +1,14 @@
+{
+  "candidate_id": "recipe-collapse-assessment-v1",
+  "source_pattern": "Pattern 4: Complexity skew — Low dominates 86% of tagged sessions",
+  "affected_module": "recipe",
+  "behavior_change": "Recipe currently records complexity as a single string ('Low', 'Medium', 'High') and collapse_eligible as a single boolean. The combination of which modules were evaluated for collapse, which were eligible, and which actually collapsed vs. ran is not recorded anywhere in the receipt chain. This makes complexity-tier branching opaque: two sessions at different complexity levels could produce identical module executions and no signal would exist to detect the regression. The change adds a collapse_assessment field to recipe.json and the recipe receipt. For each module selected for this session, collapse_assessment records: module_id, the module's declared collapse_eligible value from its skill-rules.json, and the disposition: COLLAPSED (Low complexity + module is collapse_eligible) or ACTIVE (Medium/High complexity, or module is not collapse_eligible). This field is purely additive — no downstream module is required to read it. It enables future Instinct cycles to detect convergence between Low and Medium sessions (a signal that complexity tiering may have degraded).",
+  "evidence": [
+    ".wabblespec/memory/instinct-observations.md"
+  ],
+  "risk": "Additive-only change. collapse_assessment is derived from data recipe already computes during module selection (module set + each module's collapse_eligible field from skill-rules.json). No new file reads required. No downstream module depends on this field. Zero functional risk. The field adds token cost proportional to the number of activated modules (typically 4-8 entries).",
+  "rollback_condition": "If collapse_assessment is consistently wrong (disposition field disagrees with actual execution path) in more than 1 of 5 sessions after introduction, remove the field and investigate the module selection logic instead.",
+  "secondary_change": "recipe.json output contract gains collapse_assessment array. Recipe receipt gains collapse_assessment field. No skill-rules.json changes required.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "pending"
+}

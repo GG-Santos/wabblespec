@@ -1,0 +1,17 @@
+{
+  "id": "twelve-invariants-20260525",
+  "topic": "The 12 WabbleSpec Invariants",
+  "wing": "architecture",
+  "room": "invariants",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/invariants.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Key invariants for daily work: I1 (SPEC IS SINGLE SOURCE OF TRUTH — P2 blocked until P1 locked; P3 blocked until P2 locked). I4 (VERIFICATION IS EXPLICIT — every output passes declared gate; max 3 REVISE cycles; at 3 failures Attestation required). I6 (RUNTIME IS VENDOR-NEUTRAL — no model names anywhere; use capability descriptors only: code-generation, analysis, synthesis, long-context). I8 (SELF-IMPROVEMENT THROUGH EVIDENCE — Execution->Receipt->Instinct->Synth->Blueprint->Augment->Benchmark->Forge; no stage skips; self-promotion requires Attestation). I10 (RECEIPTS ARE OPERATIONAL ARTIFACTS — every non-trivial execution writes a receipt; implied completion prohibited). I11 (FRAMEWORK AND PRODUCT NEVER MIX — .wabblespec/ is framework space; project/repo/ is product space; never cross the boundary). Full table: _shared/references/invariants.md.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

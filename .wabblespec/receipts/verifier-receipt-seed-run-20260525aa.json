@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525aa",
+  "session_id": "seed-pipeline-aa",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "Both files written and present",
+      "result": "PASS",
+      "detail": "_shared/references/dependency-policy.md and _shared/references/version-policy.md confirmed written"
+    },
+    {
+      "id": "V-02",
+      "description": "dependency-policy.md covers all violation classes from dependency-standards.md and marks BLOCK vs. FLAG correctly",
+      "result": "PASS",
+      "detail": "Table covers: N-2 (FLAG), EOL runtime (BLOCK), lock file (BLOCK), unused dep (FLAG), CVE direct (BLOCK), CVE transitive (FLAG), private registry fallback (BLOCK)"
+    },
+    {
+      "id": "V-03",
+      "description": "Staged upgrade workflow enforces one-major-version-at-a-time rule",
+      "result": "PASS",
+      "detail": "Staged upgrade workflow documented with explicit rule: never jump more than one major version at a time; each jump is a separate commit"
+    },
+    {
+      "id": "V-04",
+      "description": "Security patch workflow references Deploy gateway CVE block",
+      "result": "PASS",
+      "detail": "Workflow states: 'Do not deploy to production with an unpatched known CVE. The Deploy gateway blocks this.'"
+    },
+    {
+      "id": "V-05",
+      "description": "version-policy.md BREAKING/ADDITIVE/NON_BREAKING taxonomy matches Archive delta_class field",
+      "result": "PASS",
+      "detail": "delta_class table matches Archive delivery receipt fields and Shift trigger conditions documented in Archive SKILL.md"
+    },
+    {
+      "id": "V-06",
+      "description": "BREAKING change classification table is exhaustive with always-BREAKING and context-dependent entries",
+      "result": "PASS",
+      "detail": "Always-BREAKING list covers 15+ concrete cases; context-dependent list covers 4 cases that require usage analysis"
+    },
+    {
+      "id": "V-07",
+      "description": "Changelog BREAKING CHANGE promotion rule cross-referenced correctly",
+      "result": "PASS",
+      "detail": "Rule states: 'BREAKING CHANGE always appears in Changed section with Breaking: prefix regardless of type. Never silently omitted.' Matches Changelog SKILL.md behavior"
+    },
+    {
+      "id": "V-08",
+      "description": "Conventional commit type to delta_class mapping covers all standard types",
+      "result": "PASS",
+      "detail": "All 10 standard commit types (feat/fix/refactor/perf/docs/test/chore/ci/build/security) mapped; ! suffix and BREAKING CHANGE footer override rules documented"
+    },
+    {
+      "id": "V-09",
+      "description": "Pre-release conventions and Deploy gateway pre-release block documented",
+      "result": "PASS",
+      "detail": "alpha/beta/rc suffixes defined; 'Pre-release versions must not be deployed to production. The Deploy gateway blocks pre-release tags from receiving Attestation.'"
+    },
+    {
+      "id": "V-10",
+      "description": "WabbleSpec seed pipeline versioning rules documented (pre-stabilization 0.x.y period)",
+      "result": "PASS",
+      "detail": "Seed pipeline delta_class to version component mapping documented with explanation of MAJOR reservation for post-stabilization"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T13:01:00Z"
+}

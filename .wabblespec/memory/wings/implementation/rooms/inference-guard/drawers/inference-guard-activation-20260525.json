@@ -1,0 +1,17 @@
+{
+  "id": "inference-guard-activation-20260525",
+  "topic": "InferenceGuard Activation and Tier System",
+  "wing": "implementation",
+  "room": "inference-guard",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l2/inference-guard/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "InferenceGuard (L2, NEW in 0.8.0) prevents false refusals for legitimate security-domain tasks. Activates when ALL: gateway-security active OR task_type in {security,pentest,red-team,vulnerability-analysis,threat-model,security-audit}; at least one trigger detected; inference_guard: false NOT in task card. Tier 1 (light, 12 terms): hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate. Tier 2 (standard, +21 terms, default for Red): malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer overflow/privilege escalation/authentication bypass/directory traversal. Tier 3 (heavy, +8, requires inference_guard_tier: heavy): weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud. Excluded (never triggers): nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act as/you are now/new identity. Receipt written on every execution including non-activation (I10). Uses _shared/scripts/inference-guard.py.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

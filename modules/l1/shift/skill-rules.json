@@ -1,0 +1,28 @@
+{
+  "module": "shift",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/shift", "classify change", "breaking change", "compatibility check", "change classification"],
+  "authority": {
+    "owns": [".wabblespec/receipts/shift-receipt-*.json", ".wabblespec/shift/compat-*.md", ".wabblespec/shift/diff-*.md"],
+    "reads": [
+      "modules/l1/shift/rules/change-classification.md",
+      "modules/l1/shift/rules/reverse-drift-triggers.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "trigger": {
+    "automatic": "Archive post-hook on BREAKING or ADDITIVE spec change",
+    "manual": "/shift command"
+  },
+  "invariants": [
+    { "id": "SHF-1", "rule": "BREAKING classification when any caller must change code", "severity": "BLOCKING" },
+    { "id": "SHF-2", "rule": "loop_back_required = true when BREAKING + downstream consumers exist", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/change-classification.md",
+    "rules/reverse-drift-triggers.md"
+  ],
+  "receipt_schema": "schemas/shift-receipt.schema.json"
+}

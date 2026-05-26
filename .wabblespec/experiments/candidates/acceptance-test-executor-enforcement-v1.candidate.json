@@ -1,0 +1,16 @@
+{
+  "candidate_id": "acceptance-test-executor-enforcement-v1",
+  "source_pattern": "Pattern 2: Recurring gap: Acceptance test layer completeness lag",
+  "affected_module": "executor",
+  "behavior_change": "Executor currently marks a module build task complete without checking whether tests/acceptance.md exists for the built module; it should block final wave completion with ACCEPTANCE_NOT_COVERED when the declared task type is module-build and the target module has no acceptance file.",
+  "evidence": [
+    ".wabblespec/receipts/executor-receipt-seed-run-20260524l.json",
+    ".wabblespec/receipts/executor-receipt-seed-run-20260524m.json",
+    ".wabblespec/receipts/executor-receipt-seed-run-20260524n.json",
+    ".wabblespec/receipts/executor-receipt-seed-run-20260525p.json"
+  ],
+  "risk": "Introducing ACCEPTANCE_NOT_COVERED into Executor's error routing requires Guard to be updated with the new error type; if Guard does not recognize it, the error will be mis-routed as HARD and halt the wave instead of looping back for acceptance test authorship. Risk is highest for legacy module builds already in flight when the change is applied.",
+  "rollback_condition": "Rollback if ACCEPTANCE_NOT_COVERED blocks more than 30% of module-build task completions in the first 10 task sessions, indicating that the acceptance-file-alongside-build discipline is not yet established and the gate creates more friction than it removes.",
+  "created_at": "2026-05-25T08:12:00+00:00",
+  "status": "pending"
+}

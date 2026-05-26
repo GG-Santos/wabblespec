@@ -1,0 +1,24 @@
+{
+  "id": "guard-mempalace-invariants-20260524",
+  "topic": "Guard Memory Backend Invariants",
+  "wing": "implementation",
+  "room": "guard",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-24T00:00:00Z",
+  "last_verified": "2026-05-24T00:00:00Z",
+  "expires_at": null,
+  "source": "modules/l2/guard/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Three Layer 3 invariants added when ChromaDB palace activated (Phase 1 memory evolution 2026-05-24). MEMPALACE_ENV: MEMPALACE_PALACE_PATH env var must be set before any Memory write — HARD abort if unset. CHROMADB_EXISTS: .wabblespec/memory/chroma.sqlite3 must exist before MemorySearch queries — HARD abort, print 'Run: python scripts/migrate-json-drawers.py'. CLOSET_INDEX_GATE: mempalace_closets ChromaDB collection must not be built until drawer count >= 50 — SPEC_VIOLATION if triggered early. Checked during Layer 3 invariant pass when Memory, MemorySearch, MemoryMine, or EntityGraph module is in wave plan.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [
+    {
+      "event": "WRITTEN",
+      "timestamp": "2026-05-24T00:00:00Z",
+      "actor": "memory",
+      "note": "Phase 1 memory evolution — ChromaDB activation"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "module": "provenance",
+  "layer": "L5",
+  "phase": "Test",
+  "timestamp": "2026-05-23T00:00:00Z",
+  "session_id": "cascade-test-20260523",
+  "operation": "cascade",
+  "trigger": {
+    "spec_path": ".wabblespec/plans/receipt-schema-spec-v1.md",
+    "change_class": "BREAKING",
+    "source_hash_current": null
+  },
+  "cascade_result": {
+    "hop_1_drawers_affected": ["receipt-schema-design-20260521"],
+    "hop_1_drawers_transitioned_to": "NEEDS_REVERIFICATION",
+    "hop_2_specs_affected": [],
+    "cascade_depth_reached": 1,
+    "cascade_depth_limit": 2
+  },
+  "checks_run": [
+    "change_class_check",
+    "cited_by_query",
+    "staleness_transition",
+    "ledger_append"
+  ],
+  "checks_passed": [
+    "change_class_check",
+    "cited_by_query",
+    "staleness_transition",
+    "ledger_append"
+  ],
+  "status": "PASS",
+  "not_tested": [
+    "hop_2 cascade — no specs in drawer cited_by at hop 2",
+    "source_hash comparison — source_hash was null (internal-computation origin)",
+    "contradiction resolution — no contradictions flagged"
+  ],
+  "confidence": 1.0,
+  "done_condition_met": "Item 016 — BREAKING source marks dependents NEEDS_REVERIFICATION on one test set. VERIFIED."
+}

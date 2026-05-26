@@ -1,0 +1,17 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-automation-scripts-3",
+  "session_id": "seed-run-automation-scripts-3",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [],
+  "summary": "",
+  "not_tested": [
+    "provenance-append cascade multi-hop",
+    "index-update quality section"
+  ],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T17:01:16Z"
+}

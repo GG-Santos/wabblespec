@@ -1,0 +1,16 @@
+{
+  "module": "proofread",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "polish_pipeline_step", "pre_delivery_gate", "/proofread"],
+  "authority": {
+    "owns": [".wabblespec/receipts/proofread-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["content_type_declared", "artifact_path_exists"],
+  "receipt_schema": "modules/l6/proofread/schemas/proofread-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": true
+}

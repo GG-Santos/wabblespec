@@ -1,0 +1,27 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524l",
+  "timestamp": "2026-05-24T13:00:00Z",
+  "status": "PASS",
+  "version_previous": "0.4.5",
+  "version_new": "0.4.6",
+  "files_written": [
+    "modules/l1/analyze/tests/acceptance.md",
+    "modules/l1/api/tests/acceptance.md",
+    "modules/l1/brainstorm/tests/acceptance.md",
+    "modules/l1/deps/tests/acceptance.md",
+    "modules/l1/enhance/tests/acceptance.md",
+    "modules/l1/flag/tests/acceptance.md",
+    "modules/l1/organize/tests/acceptance.md",
+    "modules/l1/perf/tests/acceptance.md",
+    "modules/l1/plan/tests/acceptance.md",
+    "modules/l1/sharpen/tests/acceptance.md",
+    "modules/l1/shift/tests/acceptance.md",
+    "modules/l1/sync/tests/acceptance.md"
+  ],
+  "files_count": 12,
+  "violation_count": 0,
+  "wave": 1,
+  "wave_description": "L1 acceptance tests batch 1 — 12 modules: analyze, api, brainstorm, deps, enhance, flag, organize, perf, plan, sharpen, shift, sync",
+  "notes": "Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, boundary/Do NOT scenarios, evidence handling, missing rules fallback, and receipt field validation."
+}

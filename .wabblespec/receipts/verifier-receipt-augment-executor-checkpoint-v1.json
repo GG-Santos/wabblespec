@@ -1,0 +1,54 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "augment-executor-checkpoint-v1",
+  "session_id": "augment-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "SKILL.md step 1 replaced with rollback-reference text, no pre-wave directory wri",
+      "detail": "SKILL.md step 1 replaced with rollback-reference text, no pre-wave directory write"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "skill-rules.json authority.owns removes .wabblespec/checkpoints/*, retains sessi",
+      "detail": "skill-rules.json authority.owns removes .wabblespec/checkpoints/*, retains session/checkpoints/*"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "tests/acceptance.md old checkpoint criterion replaced with two new GWT scenarios",
+      "detail": "tests/acceptance.md old checkpoint criterion replaced with two new GWT scenarios"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "augment directory contains no [FILL] markers",
+      "detail": "augment directory contains no [FILL] markers"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "fixtures.json 10 cases, split 7/3, golden 3 held-out all PASS, rate=0.0",
+      "detail": "fixtures.json 10 cases, split 7/3, golden 3 held-out all PASS, rate=0.0"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "fixture-split.py validate returns PASS",
+      "detail": "fixture-split.py validate returns PASS"
+    },
+    {
+      "id": "V-07",
+      "result": "PASS",
+      "description": "no writes to modules/ directory (I11 clean)",
+      "detail": "no writes to modules/ directory (I11 clean)"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T21:03:54Z"
+}

@@ -1,0 +1,37 @@
+{
+  "receipt_type": "executor",
+  "run_id": "seed-run-20260524c",
+  "status": "PASS",
+  "timestamp": "2026-05-23T17:00:47Z",
+  "task": "Quality floor fix batch — Wave 1/2/3",
+  "waves_completed": [
+    {
+      "wave": 1,
+      "description": "Patch quality-floor-check.py to skip layer:shared modules",
+      "outcome": "PASS"
+    },
+    {
+      "wave": 2,
+      "description": "Fix 16 SKILL.md headings: 'What this module does' -> 'What this skill does'",
+      "modules_fixed": ["enhance","sharpen","brainstorm","plan","adversary","grader","nexus","shift","sync","organize","flag","analyze","perf","deps","audit","api"],
+      "outcome": "PASS"
+    },
+    {
+      "wave": 3,
+      "description": "Normalize 27 skill-rules.json files to standard schema (Pattern A x16, Pattern B x10, Pattern C x1)",
+      "patterns": {
+        "A": ["enhance","sharpen","brainstorm","plan","adversary","grader","nexus","shift","sync","organize","flag","analyze","perf","deps","audit","api"],
+        "B": ["proofread","markdown","copy","writer","legal","translate","optimize","market","changelog","commit"],
+        "C": ["ground"]
+      },
+      "outcome": "PASS"
+    },
+    {
+      "wave": 4,
+      "description": "Fix quality-floor-check.py BOM handling: utf-8 -> utf-8-sig in load_skill()",
+      "outcome": "PASS"
+    }
+  ],
+  "modules_written": 0,
+  "receipts_prior_to_run": 12
+}

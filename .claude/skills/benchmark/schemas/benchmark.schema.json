@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "wabblespec/benchmark/benchmark.schema.json",
+  "title": "WabbleSpec Benchmark",
+  "description": "Schema for a WabbleSpec module improvement benchmark. Every benchmark must link to a real developer failure mode — abstract quality scores are insufficient.",
+  "type": "object",
+  "required": [
+    "benchmark_id",
+    "module_under_test",
+    "metric",
+    "developer_outcome",
+    "baseline",
+    "target",
+    "held_out_split",
+    "reproducible"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "benchmark_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique kebab-case identifier for this benchmark run."
+    },
+    "module_under_test": {
+      "type": "string",
+      "description": "The WabbleSpec module ID being evaluated (must match a module id in framework.yaml)."
+    },
+    "metric": {
+      "type": "object",
+      "required": ["name", "type", "unit"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short metric name (e.g. false-positive-rate, receipt-miss-rate)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["rate", "count", "latency_ms", "boolean"],
+          "description": "Metric type — prevents mixing incomparable metric classes across benchmarks."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement (e.g. percent, milliseconds, count)."
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["lower_is_better", "higher_is_better"],
+          "default": "lower_is_better"
+        }
+      }
+    },
+    "developer_outcome": {
+      "type": "string",
+      "enum": [
+        "false_completion",
+        "missed_test",
+        "stale_evidence",
+        "rework"
+      ],
+      "description": "The real developer failure mode this benchmark prevents. Required — a benchmark without a developer outcome link is not a valid WabbleSpec benchmark. false_completion: task marked done but was not; missed_test: test coverage gap; stale_evidence: outdated knowledge used; rework: output had to be redone due to module error."
+    },
+    "developer_outcome_evidence": {
+      "type": "string",
+      "description": "Pointer to one or more real receipts or execution logs where this failure mode occurred. Required when developer_outcome is set. Format: receipt path or receipt ID."
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["value", "measured_at", "receipt_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Baseline metric value before improvement."
+        },
+        "measured_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of baseline measurement."
+        },
+        "receipt_ref": {
+          "type": "string",
+          "description": "Path to the WabbleSpec receipt that produced this baseline measurement."
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["value", "rationale"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Target metric value for improvement to be considered valid."
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why this target value was chosen. Must reference developer outcome, not abstract quality preference."
+        }
+      }
+    },
+    "held_out_split": {
+      "type": "object",
+      "required": ["total_cases", "tuning_cases", "held_out_cases", "seed"],
+      "additionalProperties": false,
+      "description": "Separate held-out evaluation split, never used for tuning. Required to prevent overfitting (backend integrity lesson: 100% on tuned set, 98.4% on held-out).",
+      "properties": {
+        "total_cases": {
+          "type": "integer",
+          "minimum": 10,
+          "description": "Total number of evaluation cases."
+        },
+        "tuning_cases": {
+          "type": "integer",
+          "description": "Cases allowed for tuning/development. Never used to claim benchmark results."
+        },
+        "held_out_cases": {
+          "type": "integer",
+          "description": "Cases reserved for final evaluation only. This is the number reported."
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Random seed used for split. Required for reproducibility."
+        },
+        "split_method": {
+          "type": "string",
+          "enum": ["random", "temporal", "stratified"],
+          "default": "random"
+        }
+      }
+    },
+    "reproducible": {
+      "type": "object",
+      "required": ["fixtures_path", "run_command"],
+      "additionalProperties": false,
+      "description": "Reproducibility contract — benchmark must be runnable deterministically from a fixture set.",
+      "properties": {
+        "fixtures_path": {
+          "type": "string",
+          "description": "Path to the fixture set used for evaluation. Fixtures must be committed — no runtime data fetch."
+        },
+        "run_command": {
+          "type": "string",
+          "description": "Shell command to reproduce this benchmark exactly."
+        },
+        "expected_output_path": {
+          "type": "string",
+          "description": "Path to golden output file for comparison (codeflow golden test pattern)."
+        }
+      }
+    },
+    "rejection_criteria": {
+      "type": "array",
+      "description": "Explicit conditions under which this benchmark rejects a proposed module improvement.",
+      "items": {
+        "type": "object",
+        "required": ["condition", "verdict"],
+        "additionalProperties": false,
+        "properties": {
+          "condition": {
+            "type": "string",
+            "description": "Measurable condition (e.g. held_out metric regresses below baseline.value)."
+          },
+          "verdict": {
+            "type": "string",
+            "enum": ["REJECT", "WARN"],
+            "description": "REJECT: improvement cannot proceed. WARN: flag for human review."
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "control_arm": {
+      "type": "object",
+      "description": "Required when benchmarking probabilistic or stylistic behavior changes. Isolates the candidate's contribution from effects any terse instruction would produce. Omit for deterministic structural gate changes (file existence, schema field presence).",
+      "additionalProperties": false,
+      "required": ["arm_type", "arm_description", "arm_held_out_value", "honest_delta"],
+      "properties": {
+        "arm_type": {
+          "type": "string",
+          "enum": ["terse_instruction", "system_prompt", "minimal_spec"],
+          "description": "terse_instruction: compare against a simple brevity instruction; system_prompt: compare against a minimal system prompt; minimal_spec: compare against a one-sentence spec"
+        },
+        "arm_description": {
+          "type": "string",
+          "description": "What the control arm actually tested — enough detail to reproduce."
+        },
+        "arm_held_out_value": {
+          "type": "number",
+          "description": "The control arm's held-out metric value on the same fixture set."
+        },
+        "honest_delta": {
+          "type": "number",
+          "description": "candidate held_out_value minus arm_held_out_value. Positive = candidate outperforms control. Zero or negative = candidate adds no value beyond generic instruction."
+        }
+      }
+    },
+    "axes": {
+      "type": "array",
+      "description": "Named-axis decomposition for composite blueprints. Required when the benchmark metric is a composite score. Omit for atomic/deterministic modules. Each axis defines its weight and how the score was measured.",
+      "items": {
+        "type": "object",
+        "required": ["axis", "weight", "operationalization"],
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "type": "string",
+            "enum": ["spec-compliance", "receipt-completeness", "invariant-adherence", "verification-gate-pass", "language-precision"],
+            "description": "Named axis from the WabbleSpec standard scoring table."
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Points allocated to this axis out of 100 total."
+          },
+          "operationalization": {
+            "type": "string",
+            "description": "How this axis is measured for this specific module. Must reference concrete test fixtures or acceptance criteria."
+          },
+          "score_in_calibration_run": {
+            "type": "number",
+            "description": "Axis contribution score in the degradation analysis calibration run. Required when axis_calibration_run is true."
+          }
+        }
+      }
+    },
+    "axis_calibration_run": {
+      "type": "boolean",
+      "description": "True when a degradation analysis has been run per benchmark-discipline Rule 7. Required for composite benchmarks before blueprint gate acceptance."
+    },
+    "run_history": {
+      "type": "array",
+      "description": "Ordered list of benchmark runs. Each run records held-out metric only.",
+      "items": {
+        "type": "object",
+        "required": ["run_id", "run_at", "held_out_value", "verdict"],
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string"
+          },
+          "run_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "held_out_value": {
+            "type": "number",
+            "description": "Metric on held-out split only. Tuning-set values not recorded here."
+          },
+          "verdict": {
+            "type": "string",
+            "enum": ["PASS", "REJECT", "WARN"]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "candidate_id": "cold-start-coverage-recipe-gate-v1",
+  "source_pattern": "Pattern 1: Recurring gap: Cold-start coverage completeness",
+  "affected_module": "recipe",
+  "behavior_change": "Recipe currently activates modules without verifying that rules/cold-start.md exists for each selected module; it should emit MISSING_COLD_START and refuse to complete module selection when any selected module lacks that file.",
+  "evidence": [
+    ".wabblespec/receipts/executor-receipt-seed-run-20260524k.json",
+    ".wabblespec/receipts/verifier-receipt-seed-run-20260524k.json",
+    ".wabblespec/receipts/delivery-receipt-seed-run-20260524k.json"
+  ],
+  "risk": "Recipe currently never fails on missing cold-start files, so the new check will produce false positives for any module legitimately excluded from cold-start scope. Modules in L8 Experiment group or third-party plugins that intentionally omit cold-start.md would be blocked from activation until their status is clarified.",
+  "rollback_condition": "Rollback if MISSING_COLD_START fires on more than 5% of module activations in the first 20 real task sessions, indicating the cold-start file requirement is not yet universally met and the gate is too strict for current corpus completeness.",
+  "created_at": "2026-05-25T08:10:00+00:00",
+  "status": "pending"
+}

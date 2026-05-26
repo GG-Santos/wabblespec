@@ -1,0 +1,25 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-automation-scripts",
+  "session_id": "seed-run-automation-scripts",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 0,
+  "version_previous": "0.9.0",
+  "version_new": "0.10.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Four token-reduction automation scripts: archive.py (CHANGELOG append-only, version bump, delivery receipt, index patch), changelog-append.py (open-a append, never reads existing), version-bump.py (deterministic semver), receipt-writer.py (schema-enforced serializer with --validate mode). Eliminates ~28K-40K tokens per Archive run from CHANGELOG/index reads.",
+  "archived_at": "2026-05-25T15:54:48Z",
+  "files_delivered": [
+    "_shared/scripts/archive.py",
+    "_shared/scripts/changelog-append.py",
+    "_shared/scripts/version-bump.py",
+    "_shared/scripts/receipt-writer.py"
+  ],
+  "scripts_added": 4,
+  "tokens_saved_per_archive_run_estimate": 28000,
+  "changelog_read_eliminated": true
+}

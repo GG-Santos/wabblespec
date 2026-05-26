@@ -5,8 +5,16 @@
   "wave": 1,
   "timestamp": "2026-05-22T00:06:00Z",
   "session_id": "e2e-validation-20260522",
-  "checks_run": ["all-receipts-present", "verifier-status-pass", "deliverables-match-decompose"],
-  "checks_passed": ["all-receipts-present", "verifier-status-pass", "deliverables-match-decompose"],
+  "checks_run": [
+    "all-receipts-present",
+    "verifier-status-pass",
+    "deliverables-match-decompose"
+  ],
+  "checks_passed": [
+    "all-receipts-present",
+    "verifier-status-pass",
+    "deliverables-match-decompose"
+  ],
   "evidence": [
     ".wabblespec/receipts/recipe-receipt-20260522.json",
     ".wabblespec/receipts/specify-receipt-20260522.json",
@@ -20,5 +28,7 @@
     "modules/l6/research-log/SKILL.md",
     "modules/l6/research-log/skill-rules.json"
   ],
-  "all_waves_passed": true
+  "all_waves_passed": true,
+  "not_tested": [],
+  "confidence": 0.9
 }

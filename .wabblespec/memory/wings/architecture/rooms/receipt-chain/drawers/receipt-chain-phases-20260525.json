@@ -1,0 +1,17 @@
+{
+  "id": "receipt-chain-phases-20260525",
+  "topic": "Receipt Chain Phase Sequence",
+  "wing": "architecture",
+  "room": "receipt-chain",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Every non-trivial task requires: Research receipt -> Plan receipt -> Execution receipt -> Verifier receipt -> Archive receipt. Each phase reads the prior phase's receipt before proceeding. Skip requires collapse_eligible: true in recipe.json plus complexity below threshold. Implied completion prohibited (I10). Guard enforces the chain via required_receipts in session/state.json. Missing receipt in chain triggers DEPENDENCY error. Archive aggregates all receipts into delivery receipt. Receipt files written to .wabblespec/receipts/ with timestamp in filename.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Benchmark Receipt",
+  "description": "Receipt produced after a Benchmark run completes.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" },
+    {
+      "type": "object",
+      "required": ["blueprint_id", "change_type", "metric_name", "held_out_value", "threshold", "verdict", "developer_outcome_verified"],
+      "properties": {
+        "blueprint_id": {
+          "type": "string"
+        },
+        "change_type": {
+          "type": "string",
+          "enum": ["AUGMENT", "NEW"]
+        },
+        "metric_name": {
+          "type": "string",
+          "description": "Metric name matching blueprint benchmark_gates[].metric.name."
+        },
+        "held_out_value": {
+          "type": "number",
+          "description": "Metric value on held-out split only. Tuning set value not recorded."
+        },
+        "threshold": {
+          "type": "number",
+          "description": "Threshold from blueprint benchmark_gates[].threshold."
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "WARN"]
+        },
+        "developer_outcome_verified": {
+          "type": "boolean",
+          "description": "Whether all benchmark gates had a valid developer_outcome before running."
+        },
+        "failure_note": {
+          "type": "string",
+          "description": "Required when verdict is FAIL. Appended to tracker.json."
+        },
+        "fixtures_path": {
+          "type": "string",
+          "description": "Path to fixture set used."
+        },
+        "held_out_cases_run": {
+          "type": "integer",
+          "description": "Number of held-out cases evaluated."
+        }
+      }
+    }
+  ]
+}

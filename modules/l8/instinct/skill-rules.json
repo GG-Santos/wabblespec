@@ -1,0 +1,61 @@
+{
+  "module": "instinct",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [],
+  "anti_activators": [
+    "execution wave in progress",
+    "executor running",
+    "receipt count below 100",
+    "synth",
+    "auto-promote",
+    "propose improvement"
+  ],
+  "preconditions": [
+    "receipt count >= 100 in .wabblespec/receipts/",
+    "entity-graph.json exists in .wabblespec/memory/",
+    "No Executor PID lock active",
+    "Human explicit --activate flag provided"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-session"],
+  "authority": {
+    "owns": [
+      ".wabblespec/memory/instinct-observations.md"
+    ],
+    "reads": [
+      ".wabblespec/receipts/*.json",
+      ".wabblespec/memory/entity-graph.json",
+      ".wabblespec/memory/gap-map.md"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": false,
+  "collapse_eligible": false,
+  "invariants": [
+    "Instinct never writes outside instinct-observations.md",
+    "Instinct never invokes Synth or any L8 promotion module",
+    "Instinct never produces recommendations — observations only",
+    "Instinct does not run when receipt count < 100",
+    "Instinct does not run during active execution waves",
+    "Human validation required before any pattern influences Synth"
+  ],
+  "produces": [
+    "instinct-observations"
+  ],
+  "depends_on": [
+    "archive",
+    "memory",
+    "entity-graph",
+    "dream"
+  ],
+  "consumed_by": [],
+  "loading_gate": "activation",
+  "commands": [
+    "--activate",
+    "--dry-run",
+    "--status"
+  ],
+  "file_path_patterns": []
+}

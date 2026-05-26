@@ -1,0 +1,21 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "wave-checkpoint-v1",
+  "session_id": "wave-checkpoint-v1",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 7,
+  "version_previous": "0.12.0",
+  "version_new": "0.13.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 1,
+  "not_tested_list": [
+    "scope change triggers re-specify"
+  ],
+  "summary": "Add wave-checkpoint authority path and produces_schemas to executor module",
+  "archived_at": "2026-05-25T17:41:57Z",
+  "files_delivered": [
+    "framework.yaml"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525t",
+  "session_id": "seed-pipeline-t",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "check": "All 8 remaining platforms have templates",
+      "result": "PASS",
+      "evidence": "8 files written; combined with run s (web/api-service/cli), all 11 L3 platforms now have _shared/templates/engineering/performance-budgets-{platform}.md"
+    },
+    {
+      "check": "Each template uses ___ UNDECLARED for project-specific values",
+      "result": "PASS",
+      "evidence": "All templates use UNDECLARED markers for values Monitor must not invent (throughput, costs, tick rates, etc.)"
+    },
+    {
+      "check": "IoT watchdog declared as required",
+      "result": "PASS",
+      "evidence": "Watchdog window section marked required — consistent with l3/iot acceptance test AT-IOT-04"
+    },
+    {
+      "check": "AI-Agent budget covers cost + quality + safety, not just latency",
+      "result": "PASS",
+      "evidence": "Token budget, cost ceiling, eval pass rate, iteration ceiling, Attestation rate, injection detection rate all present"
+    },
+    {
+      "check": "Library template correctly omits runtime SLOs, focuses on build-time contracts",
+      "result": "PASS",
+      "evidence": "Bundle size, tree-shaking, API surface, dep management — no latency SLO (libraries have no runtime server)"
+    },
+    {
+      "check": "Extension template covers MV3 service worker lifecycle (no persistent state)",
+      "result": "PASS",
+      "evidence": "State persistence section references MV3 termination behavior — consistent with l3/extension AT-EXT-01"
+    },
+    {
+      "check": "PII fields section present in all 8 templates",
+      "result": "PASS",
+      "evidence": "Each template has PII fields section with platform-appropriate examples and UNDECLARED marker"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T06:01:00Z"
+}

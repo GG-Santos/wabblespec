@@ -1,0 +1,43 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524i",
+  "timestamp": "2026-05-24T10:30:30Z",
+  "version": "0.4.2",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "receipt-index.json has 11 PASS entries",
+      "result": "PASS",
+      "detail": "3 original tasks + 8 seed runs a-h = 11 entries, all status PASS"
+    },
+    {
+      "check": "l8-corpus-gate.md last_evaluated updated to 2026-05-24",
+      "result": "PASS"
+    },
+    {
+      "check": "l8-corpus-gate.md receipt count reflects 11 task entries / 37 individual receipts",
+      "result": "PASS"
+    },
+    {
+      "check": "INDEX.md module count correct (99)",
+      "result": "PASS"
+    },
+    {
+      "check": "INDEX.md receipt count correct (11 task entries, 37 individual)",
+      "result": "PASS"
+    },
+    {
+      "check": "INDEX.md cold-start coverage declared (81/81)",
+      "result": "PASS"
+    },
+    {
+      "check": "dream.py accepts --background without error",
+      "result": "PASS",
+      "detail": "argparse now includes --background as store_true no-op; Stop hook will complete cleanly"
+    },
+    {
+      "check": "VERSION 0.4.2",
+      "result": "PASS"
+    }
+  ]
+}

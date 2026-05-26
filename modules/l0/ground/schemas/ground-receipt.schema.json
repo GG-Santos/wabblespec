@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ground-receipt.schema.json",
+  "title": "Ground Receipt",
+  "description": "Receipt from the Ground module pre-execution hallucination check",
+  "type": "object",
+  "required": ["module", "layer", "task_card_path", "status", "claims_total", "verified", "unverified", "assumed", "missing", "grounded_at"],
+  "properties": {
+    "module": { "type": "string", "const": "ground" },
+    "layer": { "type": "string", "const": "L0" },
+    "task_card_path": { "type": "string" },
+    "task_card_hash": { "type": "string", "description": "SHA-256 of task-card.md at time of grounding" },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "PARTIAL", "BLOCK"],
+      "description": "PASS=all verifiable claims confirmed; PARTIAL=some unverified; BLOCK=missing prerequisites"
+    },
+    "claims_total": { "type": "integer", "minimum": 0 },
+    "verified": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" },
+      "description": "Claims confirmed against actual files"
+    },
+    "unverified": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" },
+      "description": "Claims that could not be confirmed — treated as unconfirmed assumptions"
+    },
+    "assumed": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" },
+      "description": "Structurally unverifiable claims (behavior, runtime state) — flagged but not blocking"
+    },
+    "missing": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" },
+      "description": "Claims that depend on artifacts that do not exist"
+    },
+    "block_reason": {
+      "type": ["string", "null"],
+      "description": "Required when status=BLOCK. Explains what prerequisite is missing."
+    },
+    "grounded_at": { "type": "string", "format": "date-time" },
+    "not_tested": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Claims that could not be verified due to environmental constraints"
+    }
+  },
+  "definitions": {
+    "finding": {
+      "type": "object",
+      "required": ["pattern", "claim", "result"],
+      "properties": {
+        "pattern": { "type": "string", "enum": ["H1", "H2", "H3", "H4", "H5", "H6"] },
+        "claim": { "type": "string" },
+        "verification_method": { "type": "string", "enum": ["file_exists", "grep", "package_manifest", "config_read", "unverifiable"] },
+        "result": { "type": "string", "enum": ["VERIFIED", "UNVERIFIED", "ASSUMED", "MISSING"] },
+        "evidence": { "type": ["string", "null"] },
+        "note": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

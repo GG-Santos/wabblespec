@@ -1,0 +1,51 @@
+{
+  "module": "blueprint",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "blueprint",
+    "promotion proposal",
+    "before after behavior",
+    "benchmark gate definition",
+    "promotion spec"
+  ],
+  "anti_activators": [
+    "candidate status: approved",
+    "candidate status: rejected",
+    "no candidate.json",
+    "execution wave in progress"
+  ],
+  "preconditions": [
+    "candidate.json exists with status: pending",
+    "Human explicit invocation with candidate ID",
+    "Affected module SKILL.md readable"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-synth"],
+  "authority": {
+    "owns": [".wabblespec/experiments/blueprints/"],
+    "reads": [
+      ".wabblespec/experiments/candidates/",
+      "modules/",
+      "framework.yaml"
+    ]
+  },
+  "verification_mode": "Attestation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "One blueprint.json per candidate",
+    "benchmark_gates must link to a developer_outcome",
+    "status starts as awaiting-attestation",
+    "Augment and Factory must not start before status: approved",
+    "Self-modification blueprints always set verification_mode: Attestation",
+    "Never writes to modules/ or production space"
+  ],
+  "produces": [".wabblespec/experiments/blueprints/"],
+  "depends_on": ["synth", "instinct"],
+  "consumed_by": ["augment", "factory"],
+  "loading_gate": "activation",
+  "commands": ["/blueprint"],
+  "file_path_patterns": []
+}

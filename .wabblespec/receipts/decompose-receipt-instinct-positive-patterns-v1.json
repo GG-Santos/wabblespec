@@ -1,0 +1,36 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "phase": "Plan",
+  "wave": 0,
+  "timestamp": "2026-05-25T17:48:00Z",
+  "session_id": "instinct-positive-patterns-v1",
+  "checks_run": [
+    "wave-plan-complete",
+    "dependencies-declared",
+    "checkpoints-defined",
+    "rollback-defined"
+  ],
+  "checks_passed": [
+    "wave-plan-complete",
+    "dependencies-declared",
+    "checkpoints-defined",
+    "rollback-defined"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "waves": [
+    {
+      "wave": 1,
+      "label": "Add positive-pattern detectors to instinct.py",
+      "files": [
+        "modules/l8/instinct/scripts/instinct.py"
+      ]
+    }
+  ],
+  "total_waves": 1,
+  "outputs": [
+    "task-card.md"
+  ],
+  "not_tested": []
+}

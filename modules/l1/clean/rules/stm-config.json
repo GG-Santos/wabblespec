@@ -1,0 +1,59 @@
+{
+  "_comment": "STM pipeline configuration for Clean module. Defaults: receipt_mode + direct_mode active. Used for receipt artifact cleanup and code comment normalization. Source: G0DM0D3 PAPER §3.5, WabbleSpec-adapted.",
+  "module": "clean",
+  "stm_version": "1.0",
+  "enabled": true,
+  "active_transforms": ["receipt_mode", "direct_mode"],
+  "available_transforms": {
+    "receipt_mode": {
+      "enabled": true,
+      "source": "WabbleSpec-specific",
+      "purpose": "Strip first-person language from receipt artifacts; capitalize status tokens",
+      "pattern_count": 8,
+      "rules": [
+        "I verified -> Verified",
+        "I checked -> Checked",
+        "I ran -> Ran",
+        "I found -> Found",
+        "I wrote -> Wrote",
+        "pass -> PASS (in status fields)",
+        "fail -> FAIL (in status fields)",
+        "warn -> WARN (in status fields)"
+      ]
+    },
+    "direct_mode": {
+      "enabled": true,
+      "source": "G0DM0D3 PAPER §3.5 port",
+      "purpose": "Remove sycophantic preambles from generated code comments and doc strings",
+      "pattern_count": 10,
+      "examples": ["Sure,", "Of course,", "Certainly,", "Absolutely,", "Great question", "That's a good point", "I'd be happy to", "I'd be glad to", "Feel free to", "Don't hesitate to"]
+    },
+    "hedge_reducer": {
+      "enabled": false,
+      "source": "G0DM0D3 PAPER §3.5 port",
+      "purpose": "Remove hedging phrases",
+      "note": "Disabled for Clean — hedge reduction is Polish scope, not Clean scope"
+    },
+    "spec_mode": {
+      "enabled": false,
+      "source": "WabbleSpec-specific",
+      "purpose": "Modal normalization for spec artifacts",
+      "note": "Disabled for Clean — spec artifacts are Polish scope"
+    },
+    "casual_mode": {
+      "enabled": false,
+      "source": "G0DM0D3 PAPER §3.5 port",
+      "note": "Disabled — opt-in only"
+    }
+  },
+  "scope_restriction": "receipt artifacts and code comments only — Clean never applies STM to production code logic",
+  "receipt_field": {
+    "field": "stm_applied",
+    "schema": {
+      "stm_applied": ["receipt_mode", "direct_mode"],
+      "char_count_before": 0,
+      "char_count_after": 0,
+      "reduction_pct": 0.0
+    }
+  }
+}

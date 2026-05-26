@@ -1,0 +1,6 @@
+{
+  "module": "scopeframe", "layer": "L1", "phase": "Intake", "wave": 0,
+  "timestamp": "2026-05-24T02:01:00Z", "session_id": "seed-run-20260524c",
+  "scope_summary": "Fix 30 quality-floor failures: (1) skip layer:shared in checker, (2) normalize 16 SKILL.md headings, (3) add standard fields to 16 Pattern-A skill-rules.json, (4) add missing fields to 10 Pattern-B skill-rules.json, (5) fix ground skill-rules.json.",
+  "status": "PASS", "outputs": ["scope.md"], "not_tested": []
+}

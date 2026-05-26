@@ -1,0 +1,48 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "instinct-positive-patterns-v1",
+  "session_id": "instinct-positive-patterns-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "dry-run detects 4 patterns from 146-receipt corpus",
+      "detail": "dry-run detects 4 patterns from 146-receipt corpus"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "activate writes instinct-observations.md with correct occurrences",
+      "detail": "activate writes instinct-observations.md with correct occurrences"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "existing failure-based detectors unchanged and still present",
+      "detail": "existing failure-based detectors unchanged and still present"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "module name normalization strips -receipt suffix (no duplicates)",
+      "detail": "module name normalization strips -receipt suffix (no duplicates)"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "complexity skew pattern fires at 86% Low dominance (threshold 70%)",
+      "detail": "complexity skew pattern fires at 86% Low dominance (threshold 70%)"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "phase-gap detector finds 0 gaps (all PHASE_EXPECTED modules observed)",
+      "detail": "phase-gap detector finds 0 gaps (all PHASE_EXPECTED modules observed)"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T17:49:50Z"
+}

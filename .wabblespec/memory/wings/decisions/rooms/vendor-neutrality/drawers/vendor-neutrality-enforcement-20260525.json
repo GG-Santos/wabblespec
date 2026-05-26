@@ -1,0 +1,17 @@
+{
+  "id": "vendor-neutrality-enforcement-20260525",
+  "topic": "Vendor Neutrality Enforcement (I6)",
+  "wing": "decisions",
+  "room": "vendor-neutrality",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/invariants.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "I6 (RUNTIME IS VENDOR-NEUTRAL): no model names anywhere in framework files. Use capability descriptors only. Valid descriptors: code-generation, analysis, synthesis, long-context, reasoning, instruction-following, tool-use, vision, embedding. Invalid: any model name, provider name, version string (GPT-4, Claude, Gemini, etc.). runtime-state.json uses capability descriptors with confidence scores — never model IDs. routing receipt uses selected_capability (descriptor) not model name. ContextTuner parameters are generic API fields (temperature, top_p, top_k) — not model-specific. InferenceGuard: no model names in receipt or trigger vocabulary. Violations: I6_VIOLATION error type, HARD severity. Applies to all 100 modules, all shared references, all scripts.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

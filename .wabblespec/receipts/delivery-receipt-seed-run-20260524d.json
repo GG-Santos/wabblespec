@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524d",
+  "timestamp": "2026-05-24T07:24:08Z",
+  "version": "0.3.7",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524d.json",
+    "verifier-receipt-seed-run-20260524d.json",
+    "delivery-receipt-seed-run-20260524d.json"
+  ],
+  "total_receipts_accumulated": 22,
+  "l8_gate_progress": "22/100 PASS receipts",
+  "integration_gate_progress": "4/10 runs (seed-run-20260524d is the 4th complete run)",
+  "quality_floor": "96/96 PASS",
+  "summary": "Gateway integration complete. Three-axis routing architecture implemented: Apply capability routing, 11 platform capability_handoff declarations, 37 framework knowledge files, 4 infrastructure files, 24 gateway reference files including Red/Blue/Purple cycling protocols restored in security/references/cycling/. Two-phase gateway activation declared in all 6 gateway SKILL.md files and gateway-pattern.md."
+}

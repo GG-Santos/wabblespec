@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524f",
+  "timestamp": "2026-05-24T08:16:00Z",
+  "version": "0.3.9",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524f.json",
+    "verifier-receipt-seed-run-20260524f.json",
+    "delivery-receipt-seed-run-20260524f.json"
+  ],
+  "total_receipts_accumulated": 28,
+  "l8_gate_progress": "28/100 PASS receipts",
+  "integration_gate_progress": "6/10 runs",
+  "quality_floor": "98/98 shared files registered",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "gateway-security/rules/ populated: auth-policy.md (7 rules: A1-A7) and secrets-policy.md (8 rules: S1-S8). Registered in framework.yaml gateway_rules section. All 22 platform security files confirmed populated. VERSION 0.3.9."
+}

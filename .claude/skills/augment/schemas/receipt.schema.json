@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Augment Receipt",
+  "description": "Receipt produced after Augment writes a complete experimental module implementation.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" },
+    {
+      "type": "object",
+      "required": ["blueprint_id", "augment_path", "change_type", "fill_markers_remaining", "structural_check_passed"],
+      "properties": {
+        "blueprint_id": {
+          "type": "string",
+          "description": "Blueprint ID this implementation was built from."
+        },
+        "augment_path": {
+          "type": "string",
+          "description": "Path to the experimental module directory."
+        },
+        "change_type": {
+          "type": "string",
+          "enum": ["AUGMENT", "NEW"],
+          "description": "Type of change implemented."
+        },
+        "fill_markers_remaining": {
+          "type": "integer",
+          "const": 0,
+          "description": "Must be 0. Any remaining [FILL] markers = incomplete Augment."
+        },
+        "structural_check_passed": {
+          "type": "boolean",
+          "description": "Whether experimental module passes structural checks: SKILL.md sections complete, skill-rules.json valid, receipt schema valid JSON Schema."
+        },
+        "source_module_version": {
+          "type": "string",
+          "description": "For AUGMENT type: the version of the source module at time of copy."
+        },
+        "sections_modified": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "SKILL.md sections changed from the source module (AUGMENT type only)."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "module": "monitor",
+  "layer": "L7",
+  "tier": 1,
+  "activators": [
+    "generate observability config",
+    "generate monitoring config",
+    "set up monitoring",
+    "generate alerts",
+    "generate dashboards",
+    "generate health checks",
+    "codify SLOs",
+    "monitoring setup",
+    "/monitor"
+  ],
+  "anti_activators": [
+    "no SLOs declared",
+    "engineering specs not written"
+  ],
+  "preconditions": [
+    "engineering/performance-budgets.md exists with at least one declared SLO target"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Deliver"
+  ],
+  "stages": [
+    "post-deploy"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/observability/metric-definitions.yml",
+      ".wabblespec/observability/alert-rules.yml",
+      ".wabblespec/observability/log-schema.json",
+      ".wabblespec/observability/healthcheck.yml",
+      ".wabblespec/observability/dashboard-template.json",
+      ".wabblespec/receipts/monitor-receipt-*.json"
+    ],
+    "reads": [
+      "engineering/performance-budgets.md",
+      "engineering/build-toolchain.md",
+      "modules/l3/*/engineering/performance-budgets.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Monitor derives from declared SLOs \u2014 never invents targets",
+    "Undeclared SLO dimensions marked UNDECLARED \u2014 not filled with guesses",
+    "Every alert rule includes a runbook reference",
+    "Alert thresholds match declared SLO targets exactly",
+    "No PII fields in generated log schema",
+    "All five config artifacts produced or explicitly noted as UNDECLARED"
+  ],
+  "produces": [
+    "monitor-receipt",
+    "metric-definitions.yml",
+    "alert-rules.yml",
+    "log-schema.json",
+    "healthcheck.yml",
+    "dashboard-template.json"
+  ],
+  "depends_on": [],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": []
+}

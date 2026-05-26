@@ -1,15 +1,74 @@
-{
+﻿{
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\src\\hooks\\wabblespec-session-start.js\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\src\\hooks\\wabblespec-prompt-guard.js\""
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Edit|Write|Bash|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "python hooks/pre-tool-use-receipt-check.py"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\pre-tool-use-receipt-check.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\modules\\l2\\executor\\hooks\\post-wave-receipt-check.py\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\scripts\\stop-hook.py\"",
+            "timeout": 150
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\scripts\\run-convo-miner.py\" --urgent",
+            "timeout": 90
           }
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -ExecutionPolicy Bypass -File \"C:\\Vaults\\WabbleSpec v6.1\\src\\hooks\\wabblespec-statusline.ps1\""
   }
 }

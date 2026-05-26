@@ -1,0 +1,17 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525ab",
+  "session_id": "seed-pipeline-ab",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l2/recipe", "l2/grader"],
+  "files_written": [
+    "_shared/references/gate-progression-reference.md",
+    "_shared/references/module-activation-matrix.md"
+  ],
+  "summary": "Gate progression reference: L1-L8 activation sequences for 7 workflow types (new feature, bug fix, security patch, breaking change, dep upgrade, refactor, docs update) with per-layer required/optional module lists and workflow-specific constraints. Module activation matrix: tabular R/O/- view by workflow type, by L4 gateway signal, by platform, plus Provenance cascade conditions, Nexus refresh conditions, and minimum receipt set per workflow type.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T14:00:00Z"
+}

@@ -1,7 +1,7 @@
 # Gap Map
 
-> Generated: 2026-05-21T12:14:57.448839+00:00
-> Drawers scanned: 11
+> Generated: 2026-05-26T06:21:39.759627+00:00
+> Drawers scanned: 50
 > Findings: 0
 
 No actionable findings. All drawers within confidence bounds.

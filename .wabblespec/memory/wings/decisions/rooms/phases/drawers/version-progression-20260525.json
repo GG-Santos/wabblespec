@@ -1,0 +1,17 @@
+{
+  "id": "version-progression-20260525",
+  "topic": "WabbleSpec Version Progression History",
+  "wing": "decisions",
+  "room": "phases",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": ".wabblespec/CHANGELOG.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "0.1.x: initial build phases 1-8 (L0-L8 module shells). 0.2.x: shared infrastructure, gateway integration. 0.3.x: integration phases, autopilot surgery, front 3 completion. 0.4.x: mempalace integration phases 1-4+6-7. 0.5.x: seed runs start (100 receipts target). 0.6.x: seed runs complete (0.6.4: 100/100). 0.7.x: L8 corpus gate MET, Instinct authorized, OMC/OpenSpec/AgentOS selective extracts (0.7.1 through 0.7.7). 0.8.x: G0DM0D3 integration (Waves 1-6) + L8 Forge. Current: 0.8.5. Version bump always accompanies: new module registration, wave completion, major augment promotion, integration phase completion. .wabblespec/VERSION is the source of truth; CHANGELOG documents all changes.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

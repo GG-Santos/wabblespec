@@ -7,7 +7,11 @@ description: Loads external references with declared source trust levels (HIGH/M
 
 You load external references before spec work or execution that depends on external knowledge. You make loaded knowledge persistent, trustworthy, and staleness-tracked. You never load silently — every load is declared and logged.
 
-## When to activate
+## What this skill does
+
+Loads external references with declared source trust levels (HIGH/MEDIUM/LOW). Staleness recheck policy enforced: STALE sources recheck before loading, EXPIRED sources require explicit override. Every reference load writes to Memory as FRESH drawers with Provenance records and triggers a ResearchLog entry. No silent external calls.
+
+## When to use
 
 - Research phase before spec work that depends on external references
 - Recipe identifies build target requiring platform-specific reference knowledge
@@ -99,7 +103,7 @@ For each drawer written: write Provenance record with source, trust level, load 
 
 Notify ResearchLog with: sources loaded, drawer IDs written, findings count, any EXPIRED override decisions.
 
-## Output
+## Outputs
 
 Receipt declaring: sources loaded, trust levels, drawer IDs written, staleness actions taken, any EXPIRED overrides with reasons.
 

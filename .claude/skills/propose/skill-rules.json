@@ -1,0 +1,59 @@
+{
+  "module": "propose",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "multiple valid approaches",
+    "evaluate options",
+    "branching point",
+    "architectural alternatives",
+    "options before deciding",
+    "/propose"
+  ],
+  "anti_activators": [
+    "only one viable approach",
+    "decision already made",
+    "routine decision with obvious answer"
+  ],
+  "phases": [
+    "Research",
+    "Specify"
+  ],
+  "stages": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/options-<stage>-<timestamp>.md"
+    ],
+    "reads": [
+      ".wabblespec/plans/scope.md",
+      ".wabblespec/plans/intent.md",
+      ".wabblespec/plans/project-map.md"
+    ],
+    "notifies": [
+      "Reviewer",
+      "Specify",
+      "Decompose"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "2-4 options maximum \u2014 never fewer than 2, never more than 4",
+    "Options outside declared scope are excluded before generation",
+    "Options contradicting intent.md are excluded before generation",
+    "Recommendation is required \u2014 always include rationale tied to scope and target",
+    "HIGH-impact options route through Reviewer before selection",
+    "Do not activate for decisions with one obvious answer"
+  ],
+  "loading_gate": "stage",
+  "commands": [
+    "/propose"
+  ],
+  "file_path_patterns": []
+}

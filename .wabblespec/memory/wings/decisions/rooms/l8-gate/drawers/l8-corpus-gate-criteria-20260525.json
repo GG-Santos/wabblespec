@@ -1,0 +1,17 @@
+{
+  "id": "l8-corpus-gate-criteria-20260525",
+  "topic": "L8 Corpus Gate Criteria and Status",
+  "wing": "decisions",
+  "room": "l8-gate",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/l8-corpus-gate.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "L8 corpus gate MET 2026-05-25. Three conditions required: 1) receipt corpus 100+ PASS receipts from real execution (CLEARED: 100/100 from 29 complete seed runs 20260524a through 20260525ac); 2) 3 human-validated Instinct patterns confirmed in .wabblespec/memory/instinct-observations.md (CLEARED: Patterns 1-3 all human-validated=true); 3) benchmark schema confirmed + contradictions confirmed zero (CLEARED). Gate unlocks Synth authorization and L8 evolution chain. All 3 patterns subsequently went through full chain (Instinct->Synth->Blueprint->Augment->Benchmark->Forge) and were promoted in version 0.8.5. Future evolution cycles use .wabblespec/experiments/.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

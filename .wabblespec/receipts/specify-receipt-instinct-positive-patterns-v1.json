@@ -1,0 +1,42 @@
+{
+  "module": "specify",
+  "layer": "L1",
+  "phase": "Specify",
+  "wave": 0,
+  "timestamp": "2026-05-25T17:47:43Z",
+  "session_id": "instinct-positive-patterns-v1",
+  "checks_run": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "checks_passed": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "requirements": [
+    "Instinct detects patterns from a corpus with status=PASS-only receipts",
+    "Three new detectors: module activation frequency, phase distribution, complexity skew",
+    "New patterns use same output format as existing patterns (type, name, confidence, evidence, description)",
+    "Thresholds configurable as module-level constants",
+    "all_patterns list extended; format_observations unchanged"
+  ],
+  "success_criteria": [
+    "instinct.py --activate on 143-receipt corpus produces at least 1 pattern",
+    "Existing failure-based detectors unchanged",
+    "instinct-observations.md format unchanged"
+  ],
+  "failure_modes": [
+    "New detectors produce false positives requiring threshold tuning",
+    "Pattern count too high making output noisy"
+  ],
+  "outputs": [
+    "modules/l5/dream/scripts/instinct.py"
+  ],
+  "not_tested": []
+}

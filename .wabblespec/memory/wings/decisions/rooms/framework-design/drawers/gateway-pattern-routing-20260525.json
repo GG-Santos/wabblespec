@@ -1,0 +1,17 @@
+{
+  "id": "gateway-pattern-routing-20260525",
+  "topic": "Gateway Pattern Three-Axis Routing",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/infrastructure/gateway-pattern.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Six L4 gateways: gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience. Three-axis routing: Red axis (security/adversarial), Blue axis (engineering/build quality), Purple axis (aesthetic/design/UX). Gateways load on top of (not instead of) active L3 platform module. Gateway-security: cross-cutting security concerns not covered by L3. Activates on any target at L4 complexity or higher or with security/authentication/payments/PII/secrets tags. Phase A (Specify time): STRIDE analysis, security requirements as acceptance criteria. Phase B (pre-Executor): verdict PASS/FLAG/BLOCK. Red/Blue/Purple cycling: Phase A (Intel), B (Red), C (Blue), D (Purple). InferenceGuard activates when gateway-security is active. 37 framework files touched in gateway integration (2026-05-24).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,4 +1,96 @@
 {
   "version": "1.0",
-  "records": {}
+  "records": {
+    "receipt-schema-design-20260521": {
+      "drawer_id": "receipt-schema-design-20260521",
+      "topic": "Receipt Schema Design",
+      "source": {
+        "path": "_shared/schemas/receipt.base.schema.json",
+        "type": "framework-reference",
+        "trust_level": "HIGH"
+      },
+      "written_by": "memory",
+      "written_at": "2026-05-21T12:15:00Z",
+      "last_updated": "2026-05-23T00:00:00Z",
+      "confidence": 1.0,
+      "staleness_state": "NEEDS_REVERIFICATION",
+      "last_verified": "2026-05-21T12:15:00Z",
+      "superseded_by": null,
+      "source_hash": null,
+      "cited_by": [
+        ".wabblespec/plans/receipt-schema-spec-v1.md"
+      ],
+      "cascade_events": [
+        {
+          "triggered_at": "2026-05-23T00:00:00Z",
+          "change_class": "BREAKING",
+          "source_spec": ".wabblespec/plans/receipt-schema-spec-v1.md",
+          "hop_depth": 1,
+          "affected_specs": []
+        }
+      ],
+      "contradiction_with": [],
+      "deletion": {
+        "deleted": false,
+        "deleted_at": null,
+        "deleted_by": null,
+        "reason": null,
+        "archived_to": null
+      }
+    },
+    "receipt-schema-design-20260519": {
+      "drawer_id": "receipt-schema-design-20260519",
+      "topic": "Receipt Schema Design",
+      "source": {
+        "path": "_shared/schemas/receipt.base.schema.json",
+        "type": "framework-reference",
+        "trust_level": "HIGH"
+      },
+      "written_by": "memory",
+      "written_at": "2026-05-19T09:00:00Z",
+      "last_updated": "2026-05-21T12:15:00Z",
+      "confidence": 0.3312,
+      "staleness_state": "SUPERSEDED",
+      "last_verified": null,
+      "superseded_by": "receipt-schema-design-20260521",
+      "source_hash": null,
+      "cited_by": [],
+      "cascade_events": [],
+      "contradiction_with": [],
+      "deletion": {
+        "deleted": false,
+        "deleted_at": null,
+        "deleted_by": null,
+        "reason": null,
+        "archived_to": null
+      }
+    },
+    "hook-enforcement-pattern-20260519": {
+      "drawer_id": "hook-enforcement-pattern-20260519",
+      "topic": "Hook Enforcement Pattern",
+      "source": {
+        "path": "hooks/pre-tool-use-receipt-check.py",
+        "type": "framework-reference",
+        "trust_level": "HIGH"
+      },
+      "written_by": "memory",
+      "written_at": "2026-05-19T09:15:00Z",
+      "last_updated": null,
+      "confidence": 1.0,
+      "staleness_state": "FRESH",
+      "last_verified": "2026-05-19T09:15:00Z",
+      "superseded_by": null,
+      "source_hash": null,
+      "cited_by": [],
+      "cascade_events": [],
+      "contradiction_with": [],
+      "deletion": {
+        "deleted": false,
+        "deleted_at": null,
+        "deleted_by": null,
+        "reason": null,
+        "archived_to": null
+      }
+    }
+  }
 }

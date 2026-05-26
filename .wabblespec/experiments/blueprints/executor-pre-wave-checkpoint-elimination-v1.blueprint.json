@@ -1,0 +1,40 @@
+{
+  "blueprint_id": "executor-pre-wave-checkpoint-elimination-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/executor-pre-wave-checkpoint-elimination-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "executor",
+  "before_behavior": "Step 1 of each wave: 'Before any work, snapshot the current project state. Write to .wabblespec/checkpoints/wave-<N>-<timestamp>/. Record: wave number, timestamp, list of files that will be touched by this wave. This snapshot is the rollback target. The checkpoint must exist before Guard runs.' authority.owns in skill-rules.json includes '.wabblespec/checkpoints/*'.",
+  "after_behavior": "Step 1 of each wave is eliminated. The rollback ground truth is the locked wave plan at .wabblespec/plans/current-wave-plan.md, which already declares outputs and files touched by each wave. SKILL.md step 1 becomes: 'Rollback reference: the locked wave plan is the ground truth for this wave. If this wave must be rolled back, revert all files listed under this wave in current-wave-plan.md to their pre-wave state. No pre-wave directory snapshot is written.' The post-wave session checkpoint at .wabblespec/session/checkpoints/checkpoint-wave-<N>.json (step 5b) is unchanged. authority.owns in skill-rules.json removes '.wabblespec/checkpoints/*' and retains '.wabblespec/session/checkpoints/*'.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "metric_name": "rollback_intervention_rate",
+      "threshold": 0.10,
+      "direction": "lower_is_better",
+      "developer_outcome": "rework",
+      "rationale": "A rollback intervention rate above 10% (more than 1 in 10 sessions requiring manual recovery after wave failure) indicates the pre-wave directory checkpoint was providing real recovery value. In the current corpus of 33 executor activations, 0 rollback interventions occurred — confirming the pre-wave checkpoint was never used. The 10% threshold gives a 3x safety margin over the 0% base rate."
+    }
+  ],
+  "fixture_spec": {
+    "developer_scenario": "A wave fails mid-implementation with no pre-wave directory checkpoint available. Recovery uses the locked wave plan to identify which files were touched and reverts them.",
+    "dev_cases": 7,
+    "held_out_cases": 3,
+    "total": 10,
+    "dev_ratio": 0.7,
+    "case_structure": {
+      "input": "wave_plan_path, failed_wave_number, files_partially_modified",
+      "expected_outcome": "correct_files_identified_for_revert | rollback_impossible"
+    }
+  },
+  "affected_targets": [
+    "cli", "web", "api-service", "library", "mobile", "desktop",
+    "game", "extension", "iot", "data-pipeline", "ai-agent"
+  ],
+  "verification_mode": "Review",
+  "attestation_required": true,
+  "notes": "Secondary change: skill-rules.json authority.owns must remove .wabblespec/checkpoints/* once pre-wave writes are eliminated. guard-check.py authority tests must be updated accordingly. Both files are in scope for Augment.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "benchmark-passed",
+  "attested_by": "human",
+  "attested_at": "2026-05-26T00:00:00Z"
+}

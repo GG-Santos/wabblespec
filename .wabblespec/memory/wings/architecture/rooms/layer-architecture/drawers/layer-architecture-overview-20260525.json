@@ -1,0 +1,17 @@
+{
+  "id": "layer-architecture-overview-20260525",
+  "topic": "WabbleSpec Layer Architecture Overview",
+  "wing": "architecture",
+  "room": "layer-architecture",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "L0: recipe, runtime-probe (session start, module selection, capability detection). L1: specify, interview, propose, migrate, clean, test, triage (spec and planning). L2: guard, executor, autopilot, model-router, inference-guard, ensemble, verifier (enforcement, execution, orchestration). L3: cli, web, api-service, library, data-pipeline, mobile, desktop, game, extension, iot (platform-specific targets). L4: gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience (cross-cutting standards). L5: memory, provenance (evidence storage, contradiction tracking). L6: document, polish, proofread, markdown, copy, writer, legal, translate, optimize, market (delivery-phase output). L7: changelog, commit, archive (output-oriented modules). L8: instinct, synth, blueprint, augment, benchmark, forge, retro, feedback (self-improvement evolution chain). 100 modules total as of 0.8.5.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

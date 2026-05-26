@@ -1,0 +1,39 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524f",
+  "timestamp": "2026-05-24T08:15:30Z",
+  "version": "0.3.9",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "auth-policy.md exists and has content",
+      "result": "PASS",
+      "detail": "7 rules (A1-A7), 200+ lines, covers: endpoint auth classification, session tokens, refresh rotation, MFA, localStorage ban, API key hashing, OAuth/PKCE"
+    },
+    {
+      "check": "secrets-policy.md exists and has content",
+      "result": "PASS",
+      "detail": "8 rules (S1-S8), 200+ lines, covers: no secrets in source/config/logs/errors, rotation policy, secrets manager, CI OIDC, secret scanning"
+    },
+    {
+      "check": "framework.yaml gateway_rules section",
+      "result": "PASS",
+      "detail": "2 entries: auth-policy.md and secrets-policy.md, consumers: [gateway-security]"
+    },
+    {
+      "check": "validate-graph.py 0 violations",
+      "result": "PASS",
+      "detail": "99 modules, 98 shared files, 0 violations"
+    },
+    {
+      "check": "platform security files all populated",
+      "result": "PASS",
+      "detail": "22/22 files have substantive content (confirmed by line count: 75-214 lines each)"
+    },
+    {
+      "check": "VERSION 0.3.9",
+      "result": "PASS"
+    }
+  ],
+  "quality_floor": "98/98 shared files registered, 0 violations"
+}

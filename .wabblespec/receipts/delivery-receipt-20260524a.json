@@ -1,0 +1,34 @@
+{
+  "module": "archive",
+  "layer": "L7",
+  "phase": "Deliver",
+  "wave": "post-execution",
+  "timestamp": "2026-05-24T00:36:00Z",
+  "session_id": "seed-run-20260524a",
+  "task": "Write _shared/scripts/validate-graph.py — framework module graph integrity validator",
+  "version": "0.3.3",
+  "status": "PASS",
+  "receipts_aggregated": [
+    ".wabblespec/receipts/recipe-receipt-20260524a.json",
+    ".wabblespec/receipts/scopeframe-receipt-20260524a.json",
+    ".wabblespec/receipts/specify-receipt-20260524a.json",
+    ".wabblespec/receipts/decompose-receipt-20260524a.json",
+    ".wabblespec/receipts/executor-receipt-20260524a.json",
+    ".wabblespec/receipts/verifier-receipt-20260524a.json"
+  ],
+  "receipts_passing": 6,
+  "receipts_failing": 0,
+  "files_delivered": [
+    "_shared/scripts/validate-graph.py"
+  ],
+  "side_effects": [
+    "A7 violation fixed: framework.yaml quality-floor-gates.md consumer corrected from scripts/quality-floor-check.py to benchmark"
+  ],
+  "not_tested": [
+    "Exit code 2 path (missing/malformed framework.yaml)",
+    "Python < 3.8 compatibility"
+  ],
+  "evolution_signals": [],
+  "checks_run": ["all-receipts-pass", "no-breaking-changes", "side-effects-documented"],
+  "checks_passed": ["all-receipts-pass", "no-breaking-changes", "side-effects-documented"]
+}

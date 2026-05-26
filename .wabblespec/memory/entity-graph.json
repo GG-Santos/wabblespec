@@ -1,0 +1,760 @@
+{
+  "version": "1.0",
+  "generated": "2026-05-24T13:09:29.147163+00:00",
+  "drawers_scanned": 12,
+  "node_count": 36,
+  "edge_count": 83,
+  "nodes": [
+    {
+      "id": "file::PASS/FAIL/PARTIAL",
+      "type": "file",
+      "label": "PASS/FAIL/PARTIAL",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "verifier-check-types-20260520",
+        "receipt-schema-design-20260519",
+        "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "module::guard",
+      "type": "module",
+      "label": "guard",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "guard-invariant-list-20260520",
+        "guard-mempalace-invariants-20260524",
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::archive",
+      "type": "module",
+      "label": "archive",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "module-order-rationale-20260520",
+        "receipt-schema-design-20260519"
+      ]
+    },
+    {
+      "id": "module::decompose",
+      "type": "module",
+      "label": "decompose",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "phase-1-completion-20260519",
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::memory",
+      "type": "module",
+      "label": "memory",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "guard-mempalace-invariants-20260524",
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "concept::receipt schema design",
+      "type": "concept",
+      "label": "receipt schema design",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "receipt-schema-design-20260519",
+        "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "module::recipe",
+      "type": "module",
+      "label": "recipe",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "module-order-rationale-20260520",
+        "receipt-schema-design-20260519"
+      ]
+    },
+    {
+      "id": "module::verifier",
+      "type": "module",
+      "label": "verifier",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "verifier-check-types-20260520",
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "file::EXPIRED/SUPERSEDED",
+      "type": "file",
+      "label": "EXPIRED/SUPERSEDED",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "file::L0-L8/shared",
+      "type": "file",
+      "label": "L0-L8/shared",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "file::_shared/references/invariants.md",
+      "type": "file",
+      "label": "_shared/references/invariants.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "guard-invariant-list-20260520"
+      ]
+    },
+    {
+      "id": "file::before/after",
+      "type": "file",
+      "label": "before/after",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "wabblespec-kill-criteria-20260521"
+      ]
+    },
+    {
+      "id": "file::claude/settings.json",
+      "type": "file",
+      "label": "claude/settings.json",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "phase-1-completion-20260519"
+      ]
+    },
+    {
+      "id": "concept::drawer staleness states and transitions",
+      "type": "concept",
+      "label": "drawer staleness states and transitions",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "drawer-staleness-states-20260521"
+      ]
+    },
+    {
+      "id": "module::executor",
+      "type": "module",
+      "label": "executor",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::factory",
+      "type": "module",
+      "label": "factory",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "skill-factory-gaps-20260520"
+      ]
+    },
+    {
+      "id": "concept::guard memory backend invariants",
+      "type": "concept",
+      "label": "guard memory backend invariants",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "guard-mempalace-invariants-20260524"
+      ]
+    },
+    {
+      "id": "concept::guard module invariant enforcement",
+      "type": "concept",
+      "label": "guard module invariant enforcement",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "guard-invariant-list-20260520"
+      ]
+    },
+    {
+      "id": "concept::hook enforcement pattern",
+      "type": "concept",
+      "label": "hook enforcement pattern",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-enforcement-pattern-20260519"
+      ]
+    },
+    {
+      "id": "module::instinct",
+      "type": "module",
+      "label": "instinct",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "concept::memory drawer storage structure",
+      "type": "concept",
+      "label": "memory drawer storage structure",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "file::module/receipt_path/staleness_state",
+      "type": "file",
+      "label": "module/receipt_path/staleness_state",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "concept::phase 1 completion",
+      "type": "concept",
+      "label": "phase 1 completion",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "phase-1-completion-20260519"
+      ]
+    },
+    {
+      "id": "concept::phase 2 module order rationale",
+      "type": "concept",
+      "label": "phase 2 module order rationale",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::provenance",
+      "type": "module",
+      "label": "provenance",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "drawer-staleness-states-20260521"
+      ]
+    },
+    {
+      "id": "module::reviewer",
+      "type": "module",
+      "label": "reviewer",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::scaffold",
+      "type": "module",
+      "label": "scaffold",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "skill-factory-gaps-20260520"
+      ]
+    },
+    {
+      "id": "file::scripts/migrate-json-drawers.py",
+      "type": "file",
+      "label": "scripts/migrate-json-drawers.py",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "guard-mempalace-invariants-20260524"
+      ]
+    },
+    {
+      "id": "file::session/state.json",
+      "type": "file",
+      "label": "session/state.json",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-enforcement-pattern-20260519"
+      ]
+    },
+    {
+      "id": "concept::skill factory gaps and wabblespec templates",
+      "type": "concept",
+      "label": "skill factory gaps and wabblespec templates",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "skill-factory-gaps-20260520"
+      ]
+    },
+    {
+      "id": "module::specify",
+      "type": "module",
+      "label": "specify",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "concept::verifier check types",
+      "type": "concept",
+      "label": "verifier check types",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "verifier-check-types-20260520"
+      ]
+    },
+    {
+      "id": "concept::wabblespec kill criteria",
+      "type": "concept",
+      "label": "wabblespec kill criteria",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "wabblespec-kill-criteria-20260521"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory/chroma",
+      "type": "file",
+      "label": "wabblespec/memory/chroma",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "guard-mempalace-invariants-20260524"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory/wings",
+      "type": "file",
+      "label": "wabblespec/memory/wings",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "file::wabblespec/receipts",
+      "type": "file",
+      "label": "wabblespec/receipts",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-enforcement-pattern-20260519"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "module::archive",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "concept::receipt schema design",
+      "target": "file::PASS/FAIL/PARTIAL",
+      "weight": 2
+    },
+    {
+      "source": "concept::verifier check types",
+      "target": "file::PASS/FAIL/PARTIAL",
+      "weight": 1
+    },
+    {
+      "source": "concept::verifier check types",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/PARTIAL",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "concept::skill factory gaps and wabblespec templates",
+      "target": "module::factory",
+      "weight": 1
+    },
+    {
+      "source": "concept::skill factory gaps and wabblespec templates",
+      "target": "module::scaffold",
+      "weight": 1
+    },
+    {
+      "source": "module::factory",
+      "target": "module::scaffold",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard module invariant enforcement",
+      "target": "file::_shared/references/invariants.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard module invariant enforcement",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/references/invariants.md",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard memory backend invariants",
+      "target": "file::scripts/migrate-json-drawers.py",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard memory backend invariants",
+      "target": "file::wabblespec/memory/chroma",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard memory backend invariants",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::guard memory backend invariants",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::scripts/migrate-json-drawers.py",
+      "target": "file::wabblespec/memory/chroma",
+      "weight": 1
+    },
+    {
+      "source": "file::scripts/migrate-json-drawers.py",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::scripts/migrate-json-drawers.py",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/chroma",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/chroma",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 1 completion",
+      "target": "file::claude/settings.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 1 completion",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/settings.json",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::phase 2 module order rationale",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::reviewer",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::reviewer",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::specify",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec kill criteria",
+      "target": "file::before/after",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt schema design",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt schema design",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/PARTIAL",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/PARTIAL",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt schema design",
+      "target": "file::L0-L8/shared",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt schema design",
+      "target": "file::module/receipt_path/staleness_state",
+      "weight": 1
+    },
+    {
+      "source": "file::L0-L8/shared",
+      "target": "file::PASS/FAIL/PARTIAL",
+      "weight": 1
+    },
+    {
+      "source": "file::L0-L8/shared",
+      "target": "file::module/receipt_path/staleness_state",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/PARTIAL",
+      "target": "file::module/receipt_path/staleness_state",
+      "weight": 1
+    },
+    {
+      "source": "concept::drawer staleness states and transitions",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "concept::memory drawer storage structure",
+      "target": "file::EXPIRED/SUPERSEDED",
+      "weight": 1
+    },
+    {
+      "source": "concept::memory drawer storage structure",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "concept::memory drawer storage structure",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::memory drawer storage structure",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::hook enforcement pattern",
+      "target": "file::session/state.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::hook enforcement pattern",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "file::session/state.json",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    }
+  ]
+}

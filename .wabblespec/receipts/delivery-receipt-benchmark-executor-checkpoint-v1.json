@@ -1,0 +1,19 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "benchmark-executor-checkpoint-v1",
+  "session_id": "benchmark-executor-checkpoint-v1",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.18.0",
+  "version_new": "0.19.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Benchmark PASS: executor-pre-wave-checkpoint-elimination-v1, rate=0.0, threshold=0.10",
+  "archived_at": "2026-05-25T21:05:58Z",
+  "files_delivered": [
+    ".wabblespec/experiments/fixtures/executor-pre-wave-checkpoint-elimination-v1/golden.json"
+  ]
+}

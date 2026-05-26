@@ -1,0 +1,60 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "forge-executor-checkpoint-v1",
+  "session_id": "forge-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "blueprint status was benchmark-passed before Forge ran",
+      "detail": "blueprint status was benchmark-passed before Forge ran"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "tracker.json verdict=PASS, no open contradictions",
+      "detail": "tracker.json verdict=PASS, no open contradictions"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "executor is L2, not L8 \u2014 no self-modification Attestation required",
+      "detail": "executor is L2, not L8 \u2014 no self-modification Attestation required"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "augment files copied to modules/l2/executor/ (SKILL.md, skill-rules.json, tests/",
+      "detail": "augment files copied to modules/l2/executor/ (SKILL.md, skill-rules.json, tests/acceptance.md)"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "guard-check authority for .wabblespec/checkpoints/ returns FAIL (correctly remov",
+      "detail": "guard-check authority for .wabblespec/checkpoints/ returns FAIL (correctly removed)"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "framework.yaml promoted_from and promoted_at set on executor entry",
+      "detail": "framework.yaml promoted_from and promoted_at set on executor entry"
+    },
+    {
+      "id": "V-07",
+      "result": "PASS",
+      "description": "tracker forge_status=PROMOTED recorded",
+      "detail": "tracker forge_status=PROMOTED recorded"
+    },
+    {
+      "id": "V-08",
+      "result": "PASS",
+      "description": "augment directory moved to .wabblespec/experiments/archive/",
+      "detail": "augment directory moved to .wabblespec/experiments/archive/"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T21:19:22Z"
+}

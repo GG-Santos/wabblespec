@@ -1,0 +1,122 @@
+# Project Map
+
+**Project:** ___ UNDECLARED  
+**Platform:** Extension  
+**Language:** JavaScript / TypeScript  
+**Scaffolded:** ___ UNDECLARED  
+**explored_at:** ___ UNDECLARED  
+**build_target:** extension  
+**freshness_state:** FRESH  
+**valid_until:** ___ UNDECLARED (24h from explored_at)  
+**WabbleSpec version:** ___ UNDECLARED  
+
+---
+
+## Entry Points
+
+- `src/background/index.ts` — service worker (MV3) / background page (MV2)
+- `src/content/index.ts` — content script(s)
+- `src/popup/index.ts` — popup UI entry (if applicable)
+- `manifest.json` — extension manifest (defines all entry points, permissions, and CSP)
+
+_`manifest.json` is the canonical entry point for the browser — all other entries are registered here._
+
+## Tech Stack
+
+| Area | Technology | Version | Confidence |
+|---|---|---|---|
+| language | TypeScript | ___ UNDECLARED | exact |
+| manifest-version | ___ UNDECLARED (MV3 / MV2 — declare explicitly) | n/a | exact |
+| build | ___ UNDECLARED (webpack / Vite / Rollup / esbuild) | ___ UNDECLARED | exact |
+| test | ___ UNDECLARED (Jest / Vitest + webextension-polyfill mocks) | ___ UNDECLARED | exact |
+| lint | ___ UNDECLARED (ESLint + web-ext lint) | ___ UNDECLARED | exact |
+| csp-validation | ___ UNDECLARED (web-ext / custom CI step) | n/a | inferred |
+| ci | ___ UNDECLARED | n/a | inferred |
+
+_MV3 is the current standard. MV2 requires explicit justification in build-toolchain.md._
+
+## Risk Files
+
+| Path | Risk reason | Churn count | Note |
+|---|---|---|---|
+| `manifest.json` | cross-cutting | 0 | All permissions, entry points, CSP — reviewed by browser store on every submission |
+| `src/background/index.ts` | cross-cutting | 0 | Service worker — MV3 stateless constraint; in-memory state is lost on service worker termination |
+| `src/content/index.ts` | cross-cutting | 0 | Content script — injection timing, DOM access, host page isolation |
+| `src/permissions/` (or equivalent) | cross-cutting | 0 | Permission declaration and request logic — minimal permissions required |
+
+## Impact Slices
+
+### entry-points
+**Reason:** Extension bootstrap — manifest registers all scripts; all extension behavior is declared here.
+
+- `manifest.json`
+- `src/background/index.ts`
+- `src/content/index.ts`
+
+### api-surface
+**Reason:** Message passing interface — how background, content scripts, and popup communicate.
+
+- `src/messages/` (message type definitions — update to actual path)
+- `src/background/handlers/` (message handlers in background — update)
+- `chrome.storage` key schema (if applicable — update)
+
+**Test paths:**
+- `tests/` or `src/**/__tests__/` (unit tests with browser API mocks)
+
+### test-coverage
+**Reason:** Unit tests with mocked browser APIs + web-ext lint + CSP validation.
+
+- `tests/` (unit tests)
+- `web-ext lint` output (CI gate — not test files but coverage signal for manifest compliance)
+- CSP validation (CI gate)
+
+### risk
+**Reason:** Files from Risk Files table above.
+
+- `manifest.json`
+- `src/background/index.ts`
+- `src/content/index.ts`
+
+### conventions
+**Reason:** Message naming, MV3 stateless patterns, and permission hygiene.
+
+- _See Conventions section below_
+
+## Spec Artifacts
+
+| Path | Artifact type | Status |
+|---|---|---|
+| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+
+## Conventions
+
+- Message types: discriminated union with `type` field (e.g. `{ type: "FETCH_DATA", payload: ... }`)
+- MV3 stateless constraint: no in-memory state in service worker — persist to `chrome.storage` before any await
+- Permissions: minimal — declare only what is needed; `host_permissions` restricted to specific origins, not `<all_urls>` unless required
+- CSP: no `unsafe-inline` or `unsafe-eval` — enforced by CI gate and browser store review
+- Content script injection: use `document_idle` unless earlier injection is required and justified
+- Message passing: all cross-context communication via `chrome.runtime.sendMessage` — no direct function calls across contexts
+- Package size: ≤ 10MB declared ceiling (per performance-budgets.md) — enforced by CI gate
+- ___ UNDECLARED — add project-specific conventions after first Explore run
+
+## Git State
+
+- **Active branch:** ___ UNDECLARED
+- **Recent changes:** (none — fresh scaffold)
+- **Uncommitted count:** ___ UNDECLARED
+
+## Gaps
+
+- Permission list: not yet finalized (unknown until all features are scoped)
+- Host permissions: not yet declared (add only after specific origins are identified)
+- Store listing: not yet created (Chrome Web Store / Firefox Add-ons — update)
+- Content script match patterns: not yet defined
+- Options page: not yet scoped (may or may not be needed)
+- Cross-browser compatibility: Chrome confirmed; Firefox compatibility not yet verified
+- MV3 service worker wake/sleep behavior: tested patterns not yet documented
+- `chrome.storage` key schema: not yet defined
+- Test coverage baseline: 0% (fresh scaffold)
+
+---
+
+*Generated by Scaffold from `_shared/templates/scaffold/project-map-extension.md`. Replace all `___ UNDECLARED` with actual values. Explore updates this file after generation. MV3 stateless check and CSP validation are required in CI per build-toolchain.md.*

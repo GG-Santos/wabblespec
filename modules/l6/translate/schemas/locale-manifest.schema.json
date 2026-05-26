@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "locale-manifest.schema.json",
+  "title": "LocaleManifest",
+  "description": "Registry of translatable string keys, their sources, and locale coverage.",
+  "type": "object",
+  "required": ["base_locale", "supported_locales", "keys", "generated_at"],
+  "additionalProperties": false,
+  "properties": {
+    "base_locale": { "type": "string", "description": "BCP 47 source locale (e.g. en-US)" },
+    "supported_locales": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All target locales this product supports"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["react-intl", "i18next", "flutter", "ios", "android", "generic"]
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "source_path", "base_value"],
+        "properties": {
+          "key": { "type": "string", "description": "Dot-separated namespace key" },
+          "source_path": { "type": "string", "description": "File where this string was extracted from" },
+          "base_value": { "type": "string", "description": "String value in base locale" },
+          "max_length": { "type": ["integer", "null"], "description": "Character limit for this string (null if unconstrained)" },
+          "has_variables": { "type": "boolean" },
+          "variable_names": { "type": "array", "items": { "type": "string" } },
+          "is_plural": { "type": "boolean" },
+          "locale_coverage": {
+            "type": "object",
+            "description": "Map of locale code to translation status",
+            "additionalProperties": {
+              "enum": ["translated", "untranslated", "verified"]
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "generated_by": { "type": "string" }
+  }
+}

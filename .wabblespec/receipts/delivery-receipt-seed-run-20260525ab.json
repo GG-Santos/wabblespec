@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525ab",
+  "session_id": "seed-pipeline-ab",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.6.2",
+  "version_new": "0.6.3",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Gate progression reference (L1-L8 activation for 7 workflow types) and module activation matrix (R/O/- by workflow type, platform, and gateway signal; Provenance/Nexus trigger conditions; minimum receipt set per workflow). 97/100 PASS receipts.",
+  "total_receipts_accumulated": 97,
+  "l8_gate_progress": "97/100",
+  "archived_at": "2026-05-25T14:02:00Z"
+}

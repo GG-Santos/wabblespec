@@ -1,0 +1,17 @@
+{
+  "id": "benchmark-axis-decomposition-20260525",
+  "topic": "Benchmark Axis Decomposition and Degradation Protocol",
+  "wing": "implementation",
+  "room": "benchmark",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l8/benchmark/rules/benchmark-discipline.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Rule 6: composite blueprints require named-axis decomposition. WabbleSpec standard axes: spec-compliance (0-25 pts), receipt-completeness (0-20), invariant-adherence (0-20), verification-gate-pass (0-20), language-precision (0-15). Excludes G0DM0D3 length bias (46.7% weight) and anti-refusal axis (26.1%). Rule 7: degradation analysis before composite gate acceptance — zero each axis one at a time, confirm weight ordering matches expectation (spec-compliance drop > receipt-completeness drop etc.), document as axis_calibration_run: true with per-axis deltas. benchmark.schema.json: axes array added (axis enum, weight, operationalization, score_in_calibration_run) and axis_calibration_run boolean. 7 total rules in benchmark-discipline.md. Rules 1-5 from previous build; Rules 6-7 from G0DM0D3 Wave 6 (0.8.4).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,137 @@
+{
+  "fixture_set_id": "archive-conditional-nexus-refresh-v1",
+  "blueprint_id": "archive-conditional-nexus-refresh-v1",
+  "metric": "nexus_drift_rate",
+  "developer_outcome": "graph_drift",
+  "cases": [
+    {
+      "id": "case-01",
+      "description": "Documentation-only task: files_written contains only CHANGELOG.md and README.md. No framework-pattern matches. Nexus refresh correctly skipped.",
+      "input": {
+        "files_written": ["CHANGELOG.md", "README.md"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_skipped",
+      "expected_nexus_refreshed": false,
+      "expected_nexus_skip_reason": "no-framework-files-modified",
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-02",
+      "description": "Framework module task: files_written contains modules/l3/cli/SKILL.md. Pattern matches. Nexus refresh correctly triggered.",
+      "input": {
+        "files_written": ["modules/l3/cli/SKILL.md", "modules/l3/cli/tests/acceptance.md"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_triggered",
+      "expected_nexus_refreshed": true,
+      "expected_nexus_skip_reason": null,
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-03",
+      "description": "skill-rules.json modified: files_written contains modules/l2/verifier/skill-rules.json. Pattern matches. Nexus refresh triggered.",
+      "input": {
+        "files_written": ["modules/l2/verifier/skill-rules.json", ".wabblespec/receipts/forge-verifier-v1-receipt.json"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_triggered",
+      "expected_nexus_refreshed": true,
+      "expected_nexus_skip_reason": null,
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-04",
+      "description": "Shared schema modified: files_written contains _shared/schemas/receipt.base.schema.json. Pattern matches. Nexus refresh triggered.",
+      "input": {
+        "files_written": ["_shared/schemas/receipt.base.schema.json"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_triggered",
+      "expected_nexus_refreshed": true,
+      "expected_nexus_skip_reason": null,
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-05",
+      "description": "framework.yaml modified: exact match. Nexus refresh triggered.",
+      "input": {
+        "files_written": ["framework.yaml", ".wabblespec/VERSION"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_triggered",
+      "expected_nexus_refreshed": true,
+      "expected_nexus_skip_reason": null,
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-06",
+      "description": "Mixed task: files_written contains both product-space files (src/api.py, tests/test_api.py) and no framework files. Correctly skipped — product files do not match the framework pattern.",
+      "input": {
+        "files_written": ["src/api.py", "tests/test_api.py", "docs/api.md"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_skipped",
+      "expected_nexus_refreshed": false,
+      "expected_nexus_skip_reason": "no-framework-files-modified",
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-07",
+      "description": "Nexus graph does not exist yet (first archive run). Skip regardless of files_written content. This is the pre-existing skip condition — must still be honored.",
+      "input": {
+        "files_written": ["modules/l3/web/SKILL.md"],
+        "nexus_graph_exists": false
+      },
+      "expected_outcome": "correctly_skipped",
+      "expected_nexus_refreshed": false,
+      "expected_nexus_skip_reason": "nexus-not-initialized",
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-08",
+      "description": "L8 fixture-generation task: files_written contains only .wabblespec/experiments/ paths and .wabblespec/receipts/ paths. No framework-pattern matches. Correctly skipped.",
+      "input": {
+        "files_written": [
+          ".wabblespec/experiments/fixtures/some-experiment/fixtures.json",
+          ".wabblespec/experiments/fixtures/some-experiment/golden.json",
+          ".wabblespec/receipts/augment-some-experiment-receipt.json"
+        ],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_skipped",
+      "expected_nexus_refreshed": false,
+      "expected_nexus_skip_reason": "no-framework-files-modified",
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-09",
+      "description": "Path that looks like a module path but is product-space: src/modules/feature.py. Must NOT match framework pattern. Pattern requires 'modules/' at start of path, not anywhere in path.",
+      "input": {
+        "files_written": ["src/modules/feature.py", "tests/modules/test_feature.py"],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_skipped",
+      "expected_nexus_refreshed": false,
+      "expected_nexus_skip_reason": "no-framework-files-modified",
+      "graph_drift_occurred": false
+    },
+    {
+      "id": "case-10",
+      "description": "Multiple framework files across layers modified in one task: both SKILL.md and skill-rules.json for two different modules. Nexus refresh triggered once (not per file).",
+      "input": {
+        "files_written": [
+          "modules/l2/executor/SKILL.md",
+          "modules/l2/executor/skill-rules.json",
+          "modules/l2/verifier/SKILL.md",
+          "framework.yaml"
+        ],
+        "nexus_graph_exists": true
+      },
+      "expected_outcome": "correctly_triggered",
+      "expected_nexus_refreshed": true,
+      "expected_nexus_skip_reason": null,
+      "graph_drift_occurred": false
+    }
+  ]
+}

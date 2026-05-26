@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-05-24T17:43:26.375847+00:00",
+  "memory_path": "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\memory",
+  "mode": "apply",
+  "collections": [
+    {
+      "old_collection": "mempalace_drawers",
+      "new_collection": "wabblespec_drawers",
+      "old_count": 2931,
+      "new_count_before": 0,
+      "copied": 2931,
+      "embeddings_preserved": true,
+      "applied": true,
+      "verified": true,
+      "new_count_after": 2931
+    },
+    {
+      "old_collection": "mempalace_closets",
+      "new_collection": "wabblespec_closets",
+      "old_count": 0,
+      "new_count_before": 0,
+      "copied": 0,
+      "embeddings_preserved": null,
+      "applied": true,
+      "verified": true,
+      "new_count_after": 0
+    }
+  ],
+  "preserved_files": [
+    "knowledge_graph.sqlite3",
+    "tunnels.json",
+    "hallways.json",
+    "*.json memory artifacts"
+  ],
+  "verified": true
+}

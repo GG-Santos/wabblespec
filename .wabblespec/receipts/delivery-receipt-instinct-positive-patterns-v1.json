@@ -1,0 +1,19 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "instinct-positive-patterns-v1",
+  "session_id": "instinct-positive-patterns-v1",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 5,
+  "version_previous": "0.13.0",
+  "version_new": "0.14.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Extend instinct.py with positive-pattern detectors for pass-only corpus",
+  "archived_at": "2026-05-25T17:49:55Z",
+  "files_delivered": [
+    "modules/l8/instinct/scripts/instinct.py"
+  ]
+}

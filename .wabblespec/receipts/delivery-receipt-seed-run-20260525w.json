@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525w",
+  "session_id": "seed-pipeline-w",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.7",
+  "version_new": "0.5.8",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Platform-specific runbook stubs for IoT (watchdog-miss, flash-threshold-breach), Game (frame-drop-breach), AI Agent (cost-ceiling-breach, eval-pass-rate-drop), and cross-platform (throughput-drop). Runbook library now covers all SLO dimensions declared in performance-budgets templates across all 11 platforms. 82/100 PASS receipts.",
+  "total_receipts_accumulated": 82,
+  "l8_gate_progress": "82/100",
+  "archived_at": "2026-05-25T09:02:00Z"
+}

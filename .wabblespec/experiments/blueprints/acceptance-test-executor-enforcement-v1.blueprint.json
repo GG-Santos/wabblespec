@@ -1,0 +1,26 @@
+{
+  "blueprint_id": "acceptance-test-executor-enforcement-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/acceptance-test-executor-enforcement-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "executor",
+  "before_behavior": "Executor works through the wave plan wave by wave: checkpoint, Guard, implement, Verify. After the final wave, it writes execution-receipt.json and signals Archive. The SKILL.md describes no check on the built module's acceptance test file — execution-receipt.json is written when all waves pass Verifier, regardless of whether tests/acceptance.md exists for the module that was built.",
+  "after_behavior": "When the task-card declares task_type as module-build, executor adds a post-final-wave check before writing execution-receipt.json: it reads the task-card to identify the target module and checks for tests/acceptance.md at modules/{layer}/{module}/tests/acceptance.md. If the file is absent, executor emits ACCEPTANCE_NOT_COVERED (error type SPEC_VIOLATION, which routes to loop_back per the error routing table) and does not write the execution receipt. The session loops back to acceptance test authorship before the task is declared complete.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "missed_test",
+      "rationale": "A module-build task completed without tests/acceptance.md is a missed test gate — the module enters the corpus without a defined acceptance standard. The target is 0.0 because acceptance files are already required by the framework for all 99 registered modules; any module-build task completing without one is a protocol violation, not an edge case. One ACCEPTANCE_NOT_COVERED miss allowed is one module that can never be formally verified."
+    }
+  ],
+  "affected_targets": ["cli", "web", "api-service", "mobile", "desktop", "iot", "game", "data-pipeline", "ai-agent", "library", "extension"],
+  "verification_mode": "Review",
+  "attestation_required": true,
+  "created_at": "2026-05-25T08:22:00+00:00",
+  "status": "benchmark-passed",
+  "benchmark_run_at": "2026-05-25T09:02:00+00:00",
+  "held_out_value": 0.0,
+  "attested_by": "Gino Santos",
+  "attested_at": "2026-05-25T08:30:00+00:00"
+}

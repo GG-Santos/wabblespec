@@ -1,0 +1,103 @@
+{
+  "fixture_set": "cold-start-coverage-recipe-gate-v1",
+  "description": "Scenario cases for recipe cold-start verification gate. Each case declares which modules are selected and which have cold-start files. Expected outcome: BLOCK when any selected module lacks cold-start.md; PASS when all have it.",
+  "metric": "false_completion_rate",
+  "cases": [
+    {
+      "id": "cs-001",
+      "description": "All selected modules have cold-start.md",
+      "selected_modules": ["analyze", "flag", "plan"],
+      "cold_start_present": ["analyze", "flag", "plan"],
+      "expected_outcome": "PASS",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-002",
+      "description": "One selected module missing cold-start.md",
+      "selected_modules": ["analyze", "flag", "plan"],
+      "cold_start_present": ["analyze", "flag"],
+      "cold_start_missing": ["plan"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "MISSING_COLD_START",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-003",
+      "description": "Two selected modules missing cold-start.md — both paths surfaced in one message",
+      "selected_modules": ["audit", "grader", "reviewer"],
+      "cold_start_present": ["reviewer"],
+      "cold_start_missing": ["audit", "grader"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "MISSING_COLD_START",
+      "expected_message_count": 1,
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-004",
+      "description": "All selected modules missing cold-start.md",
+      "selected_modules": ["deploy", "release"],
+      "cold_start_present": [],
+      "cold_start_missing": ["deploy", "release"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "MISSING_COLD_START",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-005",
+      "description": "Single module selected, cold-start present",
+      "selected_modules": ["guard"],
+      "cold_start_present": ["guard"],
+      "expected_outcome": "PASS",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-006",
+      "description": "Single module selected, cold-start absent",
+      "selected_modules": ["guard"],
+      "cold_start_present": [],
+      "cold_start_missing": ["guard"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "MISSING_COLD_START",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-007",
+      "description": "Step 1 exit path: valid recipe.json exists — Step 2d not reached",
+      "precondition": "valid recipe.json exists with matching session_id",
+      "selected_modules": [],
+      "expected_outcome": "PASS_VIA_CACHE",
+      "expected_false_completion": false,
+      "note": "Step 2d bypassed when Step 1 exits early"
+    },
+    {
+      "id": "cs-008",
+      "description": "Module excluded after MISSING_COLD_START — remaining modules pass",
+      "selected_modules": ["analyze", "plan"],
+      "cold_start_present": ["analyze"],
+      "cold_start_missing": ["plan"],
+      "user_action": "exclude plan from session",
+      "revised_selected_modules": ["analyze"],
+      "expected_outcome": "PASS",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-009",
+      "description": "Large selection, one missing near the end of the list",
+      "selected_modules": ["analyze", "flag", "plan", "enhance", "sharpen", "decompose", "executor"],
+      "cold_start_present": ["analyze", "flag", "plan", "enhance", "sharpen", "decompose"],
+      "cold_start_missing": ["executor"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "MISSING_COLD_START",
+      "expected_false_completion": false
+    },
+    {
+      "id": "cs-010",
+      "description": "No modules selected (empty session) — no check needed",
+      "selected_modules": [],
+      "cold_start_present": [],
+      "expected_outcome": "PASS",
+      "expected_false_completion": false,
+      "note": "Empty selection trivially passes Step 2d — no modules to check"
+    }
+  ]
+}

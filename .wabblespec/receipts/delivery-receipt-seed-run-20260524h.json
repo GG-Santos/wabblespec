@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524h",
+  "timestamp": "2026-05-24T10:01:00Z",
+  "version": "0.4.1",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524h.json",
+    "verifier-receipt-seed-run-20260524h.json",
+    "delivery-receipt-seed-run-20260524h.json"
+  ],
+  "total_receipts_accumulated": 37,
+  "l8_gate_progress": "37/100 PASS receipts",
+  "integration_gate_progress": "8/10 runs",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "Cold-start coverage complete: all 81 modules across L0-L8 now have cold-start.md files (37 new in this run: 8 L5 + 12 L6 + 8 L7 + 9 L8). L8 corpus gate enforced in all L8 modules. L8 activation chain (Instinct -> Synth -> Blueprint -> Forge) dependencies declared. VERSION 0.4.1."
+}

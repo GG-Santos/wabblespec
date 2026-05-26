@@ -8,7 +8,7 @@
       "room": "receipt-schema",
       "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260519.json",
       "staleness_state": "SUPERSEDED",
-      "confidence": 0.3312,
+      "confidence": 0.0005,
       "written_at": "2026-05-19T09:00:00Z"
     },
     {
@@ -17,7 +17,7 @@
       "wing": "architecture",
       "room": "receipt-schema",
       "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260521.json",
-      "staleness_state": "FRESH",
+      "staleness_state": "NEEDS_REVERIFICATION",
       "confidence": 1.0,
       "written_at": "2026-05-21T12:15:00Z"
     },
@@ -58,7 +58,7 @@
       "room": "skill-factory",
       "path": "memory/wings/implementation/rooms/skill-factory/drawers/skill-factory-gaps-20260520.json",
       "staleness_state": "FRESH",
-      "confidence": 0.9652,
+      "confidence": 0.9996,
       "written_at": "2026-05-20T10:00:00Z"
     },
     {
@@ -68,7 +68,7 @@
       "room": "guard",
       "path": "memory/wings/implementation/rooms/guard/drawers/guard-invariant-list-20260520.json",
       "staleness_state": "FRESH",
-      "confidence": 0.9826,
+      "confidence": 0.9996,
       "written_at": "2026-05-20T11:00:00Z"
     },
     {
@@ -78,7 +78,7 @@
       "room": "verifier",
       "path": "memory/wings/implementation/rooms/verifier/drawers/verifier-check-types-20260520.json",
       "staleness_state": "FRESH",
-      "confidence": 0.9826,
+      "confidence": 0.9996,
       "written_at": "2026-05-20T14:00:00Z"
     },
     {
@@ -110,6 +110,396 @@
       "staleness_state": "FRESH",
       "confidence": 1.0,
       "written_at": "2026-05-21T09:30:00Z"
+    },
+    {
+      "id": "guard-mempalace-invariants-20260524",
+      "topic": "Guard Memory Backend Invariants",
+      "wing": "implementation",
+      "room": "guard",
+      "path": "memory/wings/implementation/rooms/guard/drawers/guard-mempalace-invariants-20260524.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-24T00:00:00Z"
+    },
+    {
+      "id": "layer-architecture-overview-20260525",
+      "topic": "WabbleSpec Layer Architecture Overview",
+      "wing": "architecture",
+      "room": "layer-architecture",
+      "path": "memory/wings/architecture/rooms/layer-architecture/drawers/layer-architecture-overview-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "module-file-structure-20260525",
+      "topic": "Module File Structure Requirements",
+      "wing": "architecture",
+      "room": "module-file-structure",
+      "path": "memory/wings/architecture/rooms/module-file-structure/drawers/module-file-structure-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "quality-floor-gates-20260525",
+      "topic": "Quality Floor Gate Design",
+      "wing": "architecture",
+      "room": "quality-floor",
+      "path": "memory/wings/architecture/rooms/quality-floor/drawers/quality-floor-gates-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "receipt-chain-phases-20260525",
+      "topic": "Receipt Chain Phase Sequence",
+      "wing": "architecture",
+      "room": "receipt-chain",
+      "path": "memory/wings/architecture/rooms/receipt-chain/drawers/receipt-chain-phases-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "shared-artifacts-structure-20260525",
+      "topic": "_shared/ Directory Structure and Consumers",
+      "wing": "architecture",
+      "room": "shared-artifacts",
+      "path": "memory/wings/architecture/rooms/shared-artifacts/drawers/shared-artifacts-structure-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "framework-yaml-structure-20260525",
+      "topic": "framework.yaml Canonical Module Registry",
+      "wing": "architecture",
+      "room": "framework-yaml",
+      "path": "memory/wings/architecture/rooms/framework-yaml/drawers/framework-yaml-structure-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "twelve-invariants-20260525",
+      "topic": "The 12 WabbleSpec Invariants",
+      "wing": "architecture",
+      "room": "invariants",
+      "path": "memory/wings/architecture/rooms/invariants/drawers/twelve-invariants-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "hook-architecture-detail-20260525",
+      "topic": "WabbleSpec Hook Architecture Detail",
+      "wing": "architecture",
+      "room": "hooks",
+      "path": "memory/wings/architecture/rooms/hooks/drawers/hook-architecture-detail-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "capability-routing-design-20260525",
+      "topic": "Capability Routing and ContextTuner Design",
+      "wing": "architecture",
+      "room": "capability-routing",
+      "path": "memory/wings/architecture/rooms/capability-routing/drawers/capability-routing-design-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "executor-wave-protocol-20260525",
+      "topic": "Executor Wave Execution Protocol",
+      "wing": "implementation",
+      "room": "executor",
+      "path": "memory/wings/implementation/rooms/executor/drawers/executor-wave-protocol-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "recipe-module-behavior-20260525",
+      "topic": "Recipe Module Behavior and Cold-Start Gate",
+      "wing": "implementation",
+      "room": "recipe",
+      "path": "memory/wings/implementation/rooms/recipe/drawers/recipe-module-behavior-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "inference-guard-activation-20260525",
+      "topic": "InferenceGuard Activation and Tier System",
+      "wing": "implementation",
+      "room": "inference-guard",
+      "path": "memory/wings/implementation/rooms/inference-guard/drawers/inference-guard-activation-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "stm-pipeline-transforms-20260525",
+      "topic": "STM Pipeline Transform Configuration",
+      "wing": "implementation",
+      "room": "stm-pipeline",
+      "path": "memory/wings/implementation/rooms/stm-pipeline/drawers/stm-pipeline-transforms-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "red-blue-purple-9-component-20260525",
+      "topic": "Red/Blue/Purple 9-Component Scoring Model",
+      "wing": "implementation",
+      "room": "security",
+      "path": "memory/wings/implementation/rooms/security/drawers/red-blue-purple-9-component-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "l8-evolution-chain-20260525",
+      "topic": "L8 Self-Improvement Evolution Chain",
+      "wing": "implementation",
+      "room": "l8-evolution",
+      "path": "memory/wings/implementation/rooms/l8-evolution/drawers/l8-evolution-chain-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "benchmark-axis-decomposition-20260525",
+      "topic": "Benchmark Axis Decomposition and Degradation Protocol",
+      "wing": "implementation",
+      "room": "benchmark",
+      "path": "memory/wings/implementation/rooms/benchmark/drawers/benchmark-axis-decomposition-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "autopilot-orchestration-20260525",
+      "topic": "Autopilot Scale-Adaptive Orchestration",
+      "wing": "implementation",
+      "room": "autopilot",
+      "path": "memory/wings/implementation/rooms/autopilot/drawers/autopilot-orchestration-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "ears-syntax-requirements-20260525",
+      "topic": "EARS Syntax for WabbleSpec Requirements",
+      "wing": "implementation",
+      "room": "specify",
+      "path": "memory/wings/implementation/rooms/specify/drawers/ears-syntax-requirements-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "dream-module-behavior-20260525",
+      "topic": "Dream Module Behavior and Gap-Map",
+      "wing": "implementation",
+      "room": "dream",
+      "path": "memory/wings/implementation/rooms/dream/drawers/dream-module-behavior-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "memory-search-hybrid-scoring-20260525",
+      "topic": "MemorySearch Hybrid Scoring Algorithm",
+      "wing": "implementation",
+      "room": "memory",
+      "path": "memory/wings/implementation/rooms/memory/drawers/memory-search-hybrid-scoring-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "archive-module-behavior-20260525",
+      "topic": "Archive Module Behavior and Delivery Receipt",
+      "wing": "implementation",
+      "room": "archive",
+      "path": "memory/wings/implementation/rooms/archive/drawers/archive-module-behavior-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "apply-delta-classification-20260525",
+      "topic": "Apply Module Delta Classification Rules",
+      "wing": "implementation",
+      "room": "apply",
+      "path": "memory/wings/implementation/rooms/apply/drawers/apply-delta-classification-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "provenance-contradiction-tracking-20260525",
+      "topic": "Provenance Module and Contradiction Tracking",
+      "wing": "implementation",
+      "room": "provenance",
+      "path": "memory/wings/implementation/rooms/provenance/drawers/provenance-contradiction-tracking-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "entity-graph-behavior-20260525",
+      "topic": "EntityGraph and Knowledge Graph Behavior",
+      "wing": "implementation",
+      "room": "entity-graph",
+      "path": "memory/wings/implementation/rooms/entity-graph/drawers/entity-graph-behavior-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "document-cross-link-enforcement-20260525",
+      "topic": "Document Module Cross-Link Enforcement",
+      "wing": "implementation",
+      "room": "document",
+      "path": "memory/wings/implementation/rooms/document/drawers/document-cross-link-enforcement-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "g0dm0d3-integration-decisions-20260525",
+      "topic": "G0DM0D3 Integration Key Decisions and Exclusions",
+      "wing": "decisions",
+      "room": "g0dm0d3",
+      "path": "memory/wings/decisions/rooms/g0dm0d3/drawers/g0dm0d3-integration-decisions-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "vendor-neutrality-enforcement-20260525",
+      "topic": "Vendor Neutrality Enforcement (I6)",
+      "wing": "decisions",
+      "room": "vendor-neutrality",
+      "path": "memory/wings/decisions/rooms/vendor-neutrality/drawers/vendor-neutrality-enforcement-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "l8-corpus-gate-criteria-20260525",
+      "topic": "L8 Corpus Gate Criteria and Status",
+      "wing": "decisions",
+      "room": "l8-gate",
+      "path": "memory/wings/decisions/rooms/l8-gate/drawers/l8-corpus-gate-criteria-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "receipt-gating-rationale-20260525",
+      "topic": "Receipt Gating and Implied Completion Prohibition (I10)",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/receipt-gating-rationale-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "framework-product-separation-20260525",
+      "topic": "Framework and Product Space Separation (I11)",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/framework-product-separation-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "spec-single-source-of-truth-20260525",
+      "topic": "Spec as Single Source of Truth (I1)",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/spec-single-source-of-truth-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "tool-call-batching-discipline-20260525",
+      "topic": "Tool Call Batching Discipline for Parallel Execution",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/tool-call-batching-discipline-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "parseltongue-framing-decision-20260525",
+      "topic": "Parseltongue Framing as False-Refusal Prevention (not Jailbreak)",
+      "wing": "decisions",
+      "room": "g0dm0d3",
+      "path": "memory/wings/decisions/rooms/g0dm0d3/drawers/parseltongue-framing-decision-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "wave5-param-learner-gating-20260525",
+      "topic": "Wave 5 ParamLearner Gate Condition",
+      "wing": "decisions",
+      "room": "g0dm0d3",
+      "path": "memory/wings/decisions/rooms/g0dm0d3/drawers/wave5-param-learner-gating-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "version-progression-20260525",
+      "topic": "WabbleSpec Version Progression History",
+      "wing": "decisions",
+      "room": "phases",
+      "path": "memory/wings/decisions/rooms/phases/drawers/version-progression-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "error-taxonomy-key-types-20260525",
+      "topic": "Key WabbleSpec Error Types and Routing",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/error-taxonomy-key-types-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "seed-run-pipeline-20260525",
+      "topic": "Seed Run Pipeline and Completion Criteria",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/seed-run-pipeline-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "gateway-pattern-routing-20260525",
+      "topic": "Gateway Pattern Three-Axis Routing",
+      "wing": "decisions",
+      "room": "framework-design",
+      "path": "memory/wings/decisions/rooms/framework-design/drawers/gateway-pattern-routing-20260525.json",
+      "staleness_state": "FRESH",
+      "confidence": 1.0,
+      "written_at": "2026-05-25T14:37:42Z"
     }
   ]
 }

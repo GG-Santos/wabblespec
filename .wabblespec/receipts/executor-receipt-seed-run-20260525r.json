@@ -1,0 +1,27 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525r",
+  "session_id": "seed-pipeline-r",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l4/security", "l4/engineering", "l4/ai",
+    "l4/aesthetic", "l4/design", "l4/experience"
+  ],
+  "files_written": [
+    "modules/l4/security/tests/acceptance.md",
+    "modules/l4/engineering/tests/acceptance.md",
+    "modules/l4/ai/tests/acceptance.md",
+    "modules/l4/aesthetic/tests/acceptance.md",
+    "modules/l4/design/tests/acceptance.md",
+    "modules/l4/experience/tests/acceptance.md"
+  ],
+  "acceptance_tests_written": 6,
+  "test_coverage": {
+    "L4": "6/6 gateways COMPLETE"
+  },
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T04:00:00Z"
+}

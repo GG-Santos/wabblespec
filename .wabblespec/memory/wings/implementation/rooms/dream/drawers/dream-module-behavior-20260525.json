@@ -1,0 +1,17 @@
+{
+  "id": "dream-module-behavior-20260525",
+  "topic": "Dream Module Behavior and Gap-Map",
+  "wing": "implementation",
+  "room": "dream",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l8/dream/SKILL.md + .wabblespec/memory/dream-log.json",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Dream triggers post-wave or on /dream command. Logs behavioral evidence to .wabblespec/memory/dream-log.json (10 runs logged through Phase 4). Maintains .wabblespec/memory/gap-map.md with identified framework gaps and their priority/status. Theater test (from Phase 4): simulates Dream output without modifying .wabblespec/ — validates the module can produce correct gap-map entries against known inputs. Behavioral change evidence from run #1 confirmed the gap-map format. Dream is scheduled by Autopilot after significant waves. Gap entries include: topic, current_state, future_option, priority (LOW/MEDIUM/HIGH), source. Dream reads receipt corpus to identify recurring patterns before L8 Instinct runs.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,231 @@
+{
+  "fixture_set_id": "recipe-collapse-assessment-v1",
+  "blueprint_id": "recipe-collapse-assessment-v1",
+  "metric": "disposition_error_rate",
+  "developer_outcome": "wrong_disposition",
+  "cases": [
+    {
+      "id": "case-01",
+      "description": "Low complexity session. specify and decompose are collapse_eligible=true. recipe, executor, verifier are collapse_eligible=false. Expected: specify and decompose COLLAPSED, rest ACTIVE.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "recipe",    "skill_collapse_eligible": false},
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true},
+          {"module_id": "executor",  "skill_collapse_eligible": false},
+          {"module_id": "verifier",  "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier",  "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-02",
+      "description": "Medium complexity session. Same module set as case-01. All modules must be ACTIVE regardless of collapse_eligible — Medium complexity suppresses collapsing.",
+      "input": {
+        "complexity": "Medium",
+        "activated_modules": [
+          {"module_id": "recipe",    "skill_collapse_eligible": false},
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true},
+          {"module_id": "executor",  "skill_collapse_eligible": false},
+          {"module_id": "verifier",  "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier",  "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-03",
+      "description": "High complexity session. All modules ACTIVE — High complexity never collapses regardless of module flags.",
+      "input": {
+        "complexity": "High",
+        "activated_modules": [
+          {"module_id": "recipe",    "skill_collapse_eligible": false},
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true},
+          {"module_id": "guard",     "skill_collapse_eligible": false},
+          {"module_id": "executor",  "skill_collapse_eligible": false},
+          {"module_id": "verifier",  "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "guard",     "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier",  "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-04",
+      "description": "Low complexity session with zero collapse_eligible modules. All modules are ACTIVE even at Low — no module is eligible for collapse. collapse_assessment still written with all ACTIVE.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "recipe",   "skill_collapse_eligible": false},
+          {"module_id": "executor", "skill_collapse_eligible": false},
+          {"module_id": "verifier", "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",   "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "executor", "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier", "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-05",
+      "description": "Logic error injected: augmented recipe incorrectly marks a collapse_eligible module as ACTIVE on a Low complexity session. disposition_error must be detected.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "recipe",    "skill_collapse_eligible": false},
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "COLLAPSED"}
+      ],
+      "injected_actual_assessment": [
+        {"module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "COLLAPSED"}
+      ],
+      "expected_outcome": "disposition_error_detected",
+      "disposition_error": true,
+      "notes": "specify should be COLLAPSED (Low + collapse_eligible=true) but was recorded as ACTIVE. This is a disposition error. The benchmark validator must catch this."
+    },
+    {
+      "id": "case-06",
+      "description": "Logic error injected: augmented recipe marks a non-collapse_eligible module as COLLAPSED on Low complexity. This is invalid — only modules with skill_collapse_eligible=true can be COLLAPSED.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "executor", "skill_collapse_eligible": false},
+          {"module_id": "verifier", "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "executor", "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier", "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "injected_actual_assessment": [
+        {"module_id": "executor", "skill_collapse_eligible": false, "disposition": "COLLAPSED"},
+        {"module_id": "verifier", "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "disposition_error_detected",
+      "disposition_error": true,
+      "notes": "executor has skill_collapse_eligible=false but was marked COLLAPSED. This is a disposition error — only collapse_eligible=true modules may be COLLAPSED."
+    },
+    {
+      "id": "case-07",
+      "description": "Logic error injected: Medium complexity session where a collapse_eligible module is incorrectly marked COLLAPSED. Must detect error — Medium never collapses.",
+      "input": {
+        "complexity": "Medium",
+        "activated_modules": [
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true},
+          {"module_id": "executor",  "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "injected_actual_assessment": [
+        {"module_id": "specify",   "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "decompose", "skill_collapse_eligible": true,  "disposition": "ACTIVE"},
+        {"module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "disposition_error_detected",
+      "disposition_error": true,
+      "notes": "specify marked COLLAPSED on Medium complexity. This is a disposition error — Medium complexity never collapses any module."
+    },
+    {
+      "id": "case-08",
+      "description": "Low complexity, single-module session (recipe only). collapse_assessment has one entry, ACTIVE (recipe is not collapse_eligible). Edge case: minimal module set.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "recipe", "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe", "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-09",
+      "description": "Low complexity, all-collapse session: every activated module is collapse_eligible=true. All dispositions COLLAPSED. The collapse_assessment correctly shows 100% collapse.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "specify",   "skill_collapse_eligible": true},
+          {"module_id": "decompose", "skill_collapse_eligible": true},
+          {"module_id": "interview", "skill_collapse_eligible": true}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "specify",   "skill_collapse_eligible": true, "disposition": "COLLAPSED"},
+        {"module_id": "decompose", "skill_collapse_eligible": true, "disposition": "COLLAPSED"},
+        {"module_id": "interview", "skill_collapse_eligible": true, "disposition": "COLLAPSED"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    },
+    {
+      "id": "case-10",
+      "description": "Low complexity, mixed session: 3 collapse_eligible modules, 2 non-eligible, plus L4 gateway and L8 instinct modules (collapse_eligible=false). Verifies assessment covers all activated modules regardless of layer.",
+      "input": {
+        "complexity": "Low",
+        "activated_modules": [
+          {"module_id": "recipe",           "skill_collapse_eligible": false},
+          {"module_id": "specify",          "skill_collapse_eligible": true},
+          {"module_id": "decompose",        "skill_collapse_eligible": true},
+          {"module_id": "executor",         "skill_collapse_eligible": false},
+          {"module_id": "verifier",         "skill_collapse_eligible": false},
+          {"module_id": "gateway-security", "skill_collapse_eligible": true},
+          {"module_id": "instinct",         "skill_collapse_eligible": false}
+        ]
+      },
+      "expected_collapse_assessment": [
+        {"module_id": "recipe",           "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "specify",          "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "decompose",        "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "executor",         "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "verifier",         "skill_collapse_eligible": false, "disposition": "ACTIVE"},
+        {"module_id": "gateway-security", "skill_collapse_eligible": true,  "disposition": "COLLAPSED"},
+        {"module_id": "instinct",         "skill_collapse_eligible": false, "disposition": "ACTIVE"}
+      ],
+      "expected_outcome": "correct_disposition_map",
+      "disposition_error": false
+    }
+  ]
+}

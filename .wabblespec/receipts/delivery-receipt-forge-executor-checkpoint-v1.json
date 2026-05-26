@@ -1,0 +1,19 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "forge-executor-checkpoint-v1",
+  "session_id": "forge-executor-checkpoint-v1",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.19.0",
+  "version_new": "0.20.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted \u2014 pre-wave directory checkpoint eliminated",
+  "archived_at": "2026-05-25T21:19:29Z",
+  "files_delivered": [
+    "modules/l2/executor/tests/acceptance.md"
+  ]
+}

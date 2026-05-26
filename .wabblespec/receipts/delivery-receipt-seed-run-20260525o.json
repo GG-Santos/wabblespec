@@ -1,0 +1,25 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525o",
+  "status": "PASS",
+  "timestamp": "2026-05-25T01:02:00Z",
+  "module": "archive",
+  "summary": "L4 gateway policy files: 5 gateways x 2 rules files each (10 files total). engineering: code-quality-policy + dependency-policy. ai: prompt-safety-policy + model-governance-policy. aesthetic: visual-standards-policy + design-token-policy. design: ux-standards-policy + accessibility-policy. experience: research-standards-policy + accessibility-testing-policy.",
+  "executor_receipt_path": ".wabblespec/receipts/executor-receipt-seed-run-20260525o.json",
+  "verifier_receipt_path": ".wabblespec/receipts/verifier-receipt-seed-run-20260525o.json",
+  "files_delivered": 10,
+  "version_previous": "0.4.9",
+  "version_new": "0.5.0",
+  "version_bump_reason": "ADDITIVE",
+  "total_receipts_accumulated": 58,
+  "l8_gate_progress": "58/100",
+  "gateway_policy_coverage": {
+    "security": "COMPLETE (from seed-run-20260524f: auth-policy + secrets-policy)",
+    "engineering": "COMPLETE (code-quality-policy + dependency-policy)",
+    "ai": "COMPLETE (prompt-safety-policy + model-governance-policy)",
+    "aesthetic": "COMPLETE (visual-standards-policy + design-token-policy)",
+    "design": "COMPLETE (ux-standards-policy + accessibility-policy)",
+    "experience": "COMPLETE (research-standards-policy + accessibility-testing-policy)"
+  },
+  "next_run": "Run p — L3 acceptance tests"
+}

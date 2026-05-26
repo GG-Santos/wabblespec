@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "copy-receipt.schema.json",
+  "title": "CopyReceipt",
+  "allOf": [{ "$ref": "../../../_shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": ["label", "error", "tooltip", "empty-state", "security-warning", "confirmation"]
+    },
+    "context": { "type": "string" },
+    "primary_text": { "type": "string" },
+    "secondary_text": { "type": ["string", "null"] },
+    "cta_label": { "type": ["string", "null"] },
+    "character_count": { "type": "integer", "minimum": 0 },
+    "constraint_met": { "type": "boolean" },
+    "principles_applied": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "verdict": { "enum": ["PASS"] },
+    "written_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["category", "context", "primary_text", "character_count", "constraint_met", "principles_applied", "verdict", "written_at"]
+}

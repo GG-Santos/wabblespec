@@ -1,0 +1,17 @@
+{
+  "module": "augment",
+  "layer": "L8",
+  "blueprint_id": "acceptance-test-executor-enforcement-v1",
+  "affected_module": "executor",
+  "change_type": "AUGMENT",
+  "output_path": ".wabblespec/experiments/augments/acceptance-test-executor-enforcement-v1/",
+  "files_written": [
+    "SKILL.md",
+    "skill-rules.json",
+    "tests/acceptance.md"
+  ],
+  "structural_check_passed": true,
+  "placeholders_remaining": 0,
+  "status": "PASS",
+  "timestamp": "2026-05-25T08:42:00+00:00"
+}

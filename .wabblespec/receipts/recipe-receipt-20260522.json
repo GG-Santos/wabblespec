@@ -5,13 +5,24 @@
   "wave": 0,
   "timestamp": "2026-05-22T00:01:00Z",
   "session_id": "e2e-validation-20260522",
-  "checks_run": ["target-detection", "complexity-scoring", "collapse-eligibility"],
-  "checks_passed": ["target-detection", "complexity-scoring", "collapse-eligibility"],
-  "evidence": ["user-declaration: add research-log L6 module"],
+  "checks_run": [
+    "target-detection",
+    "complexity-scoring",
+    "collapse-eligibility"
+  ],
+  "checks_passed": [
+    "target-detection",
+    "complexity-scoring",
+    "collapse-eligibility"
+  ],
+  "evidence": [
+    "user-declaration: add research-log L6 module"
+  ],
   "status": "PASS",
   "target": "AI-Agent",
   "detection_method": "user-declaration",
   "confidence": 0.95,
   "complexity": "Low",
-  "collapse_eligible": true
+  "collapse_eligible": true,
+  "not_tested": []
 }

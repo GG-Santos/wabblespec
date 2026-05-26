@@ -1,0 +1,41 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524i",
+  "timestamp": "2026-05-24T10:30:00Z",
+  "version": "0.4.2",
+  "status": "PASS",
+  "waves": [
+    {
+      "wave": 1,
+      "label": "Archive sync — receipt-index.json updated",
+      "files_modified": [
+        ".wabblespec/archive/receipt-index.json"
+      ],
+      "notes": "Added seed runs a-h as archived task entries. receipt-index now has 11 PASS entries (was 3). All seed runs properly represented in archive."
+    },
+    {
+      "wave": 2,
+      "label": "Stale reference updates",
+      "files_modified": [
+        "_shared/references/l8-corpus-gate.md",
+        ".wabblespec/INDEX.md"
+      ],
+      "notes": "l8-corpus-gate.md: updated gate_status last_evaluated to 2026-05-24; receipt count updated to 11 task entries / 37 individual receipts. INDEX.md: updated module count (68 -> 99), receipt count, added cold-start coverage status and quality floor."
+    },
+    {
+      "wave": 3,
+      "label": "dream.py --background fix",
+      "files_modified": [
+        "modules/l5/dream/scripts/dream.py"
+      ],
+      "notes": "Added --background as accepted no-op flag. Stop hook runner was passing --background; script only accepted --dry-run, causing hook failure on every session end."
+    },
+    {
+      "wave": 4,
+      "label": "VERSION bump",
+      "files_modified": [".wabblespec/VERSION"],
+      "notes": "0.4.1 -> 0.4.2"
+    }
+  ],
+  "validate_graph": "99 modules, 98 shared files, 0 violations (unchanged)"
+}

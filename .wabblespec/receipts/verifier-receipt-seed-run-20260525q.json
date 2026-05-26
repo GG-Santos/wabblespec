@@ -1,0 +1,47 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525q",
+  "session_id": "seed-pipeline-q",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "check": "L5 acceptance tests present for all 8 modules",
+      "result": "PASS",
+      "evidence": "8 acceptance.md files written under modules/l5/*/tests/"
+    },
+    {
+      "check": "L6 acceptance tests present for all 12 modules",
+      "result": "PASS",
+      "evidence": "12 acceptance.md files written under modules/l6/*/tests/"
+    },
+    {
+      "check": "L7 acceptance tests present for all 8 modules",
+      "result": "PASS",
+      "evidence": "8 acceptance.md files written under modules/l7/*/tests/"
+    },
+    {
+      "check": "Tests follow Given/When/Then format",
+      "result": "PASS",
+      "evidence": "All 28 files use consistent Given/When/Then structure per layer convention"
+    },
+    {
+      "check": "Key invariants reflected in tests",
+      "result": "PASS",
+      "evidence": "EMA formula, EXPIRED never returned, append-only ledger, hard-stop rules (no-verify, signing failure, missing rollback) all present"
+    },
+    {
+      "check": "Receipt field contracts verified against SKILL.md",
+      "result": "PASS",
+      "evidence": "Each test AT-*-receipt check matches exact fields documented in corresponding SKILL.md output contract"
+    },
+    {
+      "check": "No test contradicts SKILL.md invariants",
+      "result": "PASS",
+      "evidence": "All tests derived from SKILL.md readings; no invented behavior"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T03:01:00Z"
+}

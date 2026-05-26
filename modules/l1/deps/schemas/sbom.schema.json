@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Software Bill of Materials",
+  "description": "SBOM produced by Deps. Written to .wabblespec/deps/sbom-<timestamp>.json.",
+  "type": "object",
+  "properties": {
+    "sbom_version": { "type": "string" },
+    "generated": { "type": "string", "format": "date-time" },
+    "project": { "type": "string" },
+    "scan_scope": { "type": "string", "description": "Directory or manifest path scanned." },
+    "total_deps": { "type": "integer", "minimum": 0 },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "resolved_version": { "type": "string" },
+          "ecosystem": { "type": "string", "enum": ["npm", "pypi", "cargo", "go", "maven", "gem", "nuget", "other"] },
+          "manifest_path": { "type": "string" },
+          "dependency_type": { "type": "string", "enum": ["direct", "transitive"] },
+          "depth": { "type": "integer", "minimum": 1 },
+          "license": { "type": "string" },
+          "license_tier": { "type": "string", "enum": ["COMPATIBLE", "REVIEW_REQUIRED", "INCOMPATIBLE", "UNKNOWN"] },
+          "currency": { "type": "string", "enum": ["CURRENT", "OUTDATED", "CRITICAL_OUTDATED", "UNKNOWN"] },
+          "security": { "type": "string", "enum": ["CLEAN", "ADVISORY", "VULNERABLE", "CRITICAL"] },
+          "activity": { "type": "string", "enum": ["ACTIVE", "SLOW", "UNMAINTAINED", "ARCHIVED"] },
+          "risk_tier": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+          "cves": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cve_id": { "type": "string" },
+                "cvss": { "type": "number" },
+                "severity": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+                "fixed_in": { "type": ["string", "null"] },
+                "description": { "type": "string" }
+              },
+              "required": ["cve_id", "cvss", "severity"]
+            }
+          },
+          "supply_chain_flags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["name", "version", "ecosystem", "dependency_type", "depth", "risk_tier"]
+      }
+    }
+  },
+  "required": ["sbom_version", "generated", "project", "scan_scope", "total_deps", "components"]
+}

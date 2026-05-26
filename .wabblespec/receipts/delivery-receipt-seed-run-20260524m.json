@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524m",
+  "timestamp": "2026-05-24T14:02:00Z",
+  "version": "0.4.7",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524m.json",
+    "verifier-receipt-seed-run-20260524m.json",
+    "delivery-receipt-seed-run-20260524m.json"
+  ],
+  "total_receipts_accumulated": 52,
+  "l8_gate_progress": "52/100 PASS receipts",
+  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "L1 acceptance tests batch 2 complete. 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage. L1 acceptance test coverage now 24/24 COMPLETE. Next: L2 acceptance tests (run n). VERSION 0.4.7."
+}

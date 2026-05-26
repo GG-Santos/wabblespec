@@ -1,0 +1,26 @@
+{
+  "module": "api",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/api", "api version", "deprecate api", "api contract", "api audit", "api versioning"],
+  "authority": {
+    "owns": [".wabblespec/receipts/api-receipt-*.json", ".wabblespec/api/contract-*.json"],
+    "reads": [
+      "modules/l1/api/rules/versioning-policy.md",
+      "modules/l1/api/rules/deprecation-lifecycle.md",
+      "modules/l1/api/rules/contract-enforcement.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "API-1", "rule": "Sunset date minimum 6 months from deprecation without explicit justification", "severity": "WARNING" },
+    { "id": "API-2", "rule": "backward_compatible = false when breaking_changes > 0", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/versioning-policy.md",
+    "rules/deprecation-lifecycle.md",
+    "rules/contract-enforcement.md"
+  ],
+  "receipt_schema": "schemas/api-receipt.schema.json"
+}

@@ -1,0 +1,21 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525v",
+  "session_id": "seed-pipeline-v",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/monitor", "l7/scaffold"],
+  "files_written": [
+    "_shared/references/runbook-structure.md",
+    "_shared/templates/runbooks/runbook-latency-breach.md",
+    "_shared/templates/runbooks/runbook-error-rate-breach.md",
+    "_shared/templates/runbooks/runbook-slo-miss.md",
+    "_shared/templates/runbooks/runbook-crash-rate-breach.md",
+    "_shared/templates/runbooks/runbook-memory-breach.md"
+  ],
+  "summary": "Runbook stub templates for Monitor's five core alert types (latency-breach, error-rate-breach, slo-miss, crash-rate-breach, memory-breach) plus runbook-structure reference. Monitor rule 3 satisfied: every alert type now has a stub runbook Scaffold can copy at project creation time.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T08:00:00Z"
+}

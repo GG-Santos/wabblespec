@@ -1,0 +1,93 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524h",
+  "timestamp": "2026-05-24T10:00:00Z",
+  "version": "0.4.1",
+  "status": "PASS",
+  "waves": [
+    {
+      "wave": 1,
+      "label": "L5 cold-start files (8 files)",
+      "files_written": [
+        "modules/l5/memory/rules/cold-start.md",
+        "modules/l5/memory-search/rules/cold-start.md",
+        "modules/l5/memory-mine/rules/cold-start.md",
+        "modules/l5/dream/rules/cold-start.md",
+        "modules/l5/nexus/rules/cold-start.md",
+        "modules/l5/provenance/rules/cold-start.md",
+        "modules/l5/entity-graph/rules/cold-start.md",
+        "modules/l5/forget/rules/cold-start.md"
+      ],
+      "notes": "Memory: palace initialization, staleness defaults. Memory-Search: BM25 fallback. Memory-Mine: first-run cursor. Dream: 3-drawer minimum, no training data compensation. Nexus: entity-graph.json required gate. Provenance: ledger init, cascade policy. Entity-Graph: empty graph valid, 3-type limit. Forget: compliance-policy.md required, hard_delete confirmation gate."
+    },
+    {
+      "wave": 2,
+      "label": "L6 cold-start files (12 files)",
+      "files_written": [
+        "modules/l6/proofread/rules/cold-start.md",
+        "modules/l6/markdown/rules/cold-start.md",
+        "modules/l6/copy/rules/cold-start.md",
+        "modules/l6/writer/rules/cold-start.md",
+        "modules/l6/legal/rules/cold-start.md",
+        "modules/l6/translate/rules/cold-start.md",
+        "modules/l6/optimize/rules/cold-start.md",
+        "modules/l6/market/rules/cold-start.md",
+        "modules/l6/polish/rules/cold-start.md",
+        "modules/l6/research-log/rules/cold-start.md",
+        "modules/l6/document/rules/cold-start.md",
+        "modules/l6/homowabian/rules/cold-start.md"
+      ],
+      "notes": "Legal: jurisdiction required, counsel review disclaimer. Document: Archive receipt gate enforced. Polish: excluded types enforced even without rule file. Research-log: spec_binding optional, unbound path declared. Homowabian: normal default, CLAUDE.md activation."
+    },
+    {
+      "wave": 3,
+      "label": "L7 cold-start files (8 files)",
+      "files_written": [
+        "modules/l7/archive/rules/cold-start.md",
+        "modules/l7/changelog/rules/cold-start.md",
+        "modules/l7/commit/rules/cold-start.md",
+        "modules/l7/deploy/rules/cold-start.md",
+        "modules/l7/monitor/rules/cold-start.md",
+        "modules/l7/package/rules/cold-start.md",
+        "modules/l7/release/rules/cold-start.md",
+        "modules/l7/scaffold/rules/cold-start.md"
+      ],
+      "notes": "Archive: verifier receipt required, uncommitted changes block. Deploy: no implicit production deploys. Monitor: SLO required, no invented targets. Release: Package receipt required, git tag required. Scaffold: idempotency guard for non-empty directories."
+    },
+    {
+      "wave": 4,
+      "label": "L8 cold-start files (9 files)",
+      "files_written": [
+        "modules/l8/instinct/rules/cold-start.md",
+        "modules/l8/synth/rules/cold-start.md",
+        "modules/l8/blueprint/rules/cold-start.md",
+        "modules/l8/forge/rules/cold-start.md",
+        "modules/l8/benchmark/rules/cold-start.md",
+        "modules/l8/augment/rules/cold-start.md",
+        "modules/l8/factory/rules/cold-start.md",
+        "modules/l8/feedback/rules/cold-start.md",
+        "modules/l8/retro/rules/cold-start.md"
+      ],
+      "notes": "All 9 L8 modules: L8 corpus gate (100 PASS receipts) enforced as activation gate. Instinct: observer-only until human-validated. Synth: approved Instinct pattern required. Blueprint: approved Synth proposal required. Forge: backup before modify, validate-graph.py after write."
+    },
+    {
+      "wave": 5,
+      "label": "VERSION bump",
+      "files_modified": [".wabblespec/VERSION"],
+      "notes": "0.4.0 -> 0.4.1 (cold-start coverage complete: all L0-L8 modules)"
+    }
+  ],
+  "cold_start_coverage": {
+    "L0": "5/5",
+    "L1": "12/12",
+    "L2": "10/10",
+    "L3": "11/11",
+    "L4": "6/6",
+    "L5": "8/8",
+    "L6": "12/12",
+    "L7": "8/8",
+    "L8": "9/9",
+    "total": "81/81 modules"
+  },
+  "validate_graph": "99 modules, 98 shared files, 0 violations"
+}

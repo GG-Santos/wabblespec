@@ -1,0 +1,17 @@
+{
+  "candidate_id": "executor-pre-wave-checkpoint-elimination-v1",
+  "source_pattern": "Pattern 1: High-frequency module: executor",
+  "affected_module": "executor",
+  "behavior_change": "Executor currently writes a pre-wave directory checkpoint at .wabblespec/checkpoints/wave-N-timestamp/ before each wave (step 1), recording wave number, timestamp, and files to be touched; since all three fields are already declared in the locked wave plan, Executor should eliminate this pre-wave write and nominate the locked wave plan as the rollback ground truth, retaining only the post-wave session checkpoint at .wabblespec/session/checkpoints/checkpoint-wave-N.json.",
+  "evidence": [
+    ".wabblespec/receipts/executor-receipt-wave-checkpoint-v1.json",
+    ".wabblespec/receipts/executor-receipt-instinct-positive-patterns-v1.json",
+    ".wabblespec/receipts/executor-receipt-l3-framework-extensions-plan-v1.json",
+    ".wabblespec/memory/instinct-observations.md"
+  ],
+  "risk": "If a wave fails mid-implementation with no pre-wave directory checkpoint, rollback requires reverting all changes touched by the wave manually against the decompose state rather than restoring a per-wave snapshot; the wave plan declares intended file changes but not their pre-wave content.",
+  "rollback_condition": "If post-failure manual intervention is required in more than 1 of 10 consecutive sessions after elimination, restore the pre-wave directory checkpoint write unconditionally.",
+  "secondary_change": "Remove .wabblespec/checkpoints/* from executor authority.owns in skill-rules.json once pre-wave writes are eliminated; retain .wabblespec/session/checkpoints/* which covers the surviving post-wave checkpoint.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "pending"
+}

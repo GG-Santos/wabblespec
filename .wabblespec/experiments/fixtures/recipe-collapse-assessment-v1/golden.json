@@ -1,0 +1,30 @@
+{
+  "fixture_set": "recipe-collapse-assessment-v1",
+  "generated_at": "2026-05-26T02:34:24Z",
+  "held_out_evaluations": [
+    {
+      "case_id": "case-05",
+      "expected_outcome": "disposition_error_detected",
+      "wrong_disposition_occurred": false,
+      "verdict": "PASS",
+      "notes": "Injected actual assessment marks specify as ACTIVE on Low complexity session where specify has skill_collapse_eligible=true. Deterministic rule: COLLAPSED = (Low AND collapse_eligible=true). Validator compares injected vs. expected and correctly flags specify's disposition as wrong. Error detected — no undetected wrong disposition reaches production. wrong_disposition_occurred=false (the error was caught, not silently passed)."
+    },
+    {
+      "case_id": "case-01",
+      "expected_outcome": "correct_disposition_map",
+      "wrong_disposition_occurred": false,
+      "verdict": "PASS",
+      "notes": "Low complexity session with specify and decompose (collapse_eligible=true) and recipe/executor/verifier (collapse_eligible=false). Augmented recipe applies rule: specify → COLLAPSED, decompose → COLLAPSED, recipe/executor/verifier → ACTIVE. All 5 dispositions match expected. collapse_assessment written correctly to recipe.json and receipt. No disposition error."
+    },
+    {
+      "case_id": "case-02",
+      "expected_outcome": "correct_disposition_map",
+      "wrong_disposition_occurred": false,
+      "verdict": "PASS",
+      "notes": "Medium complexity session with the same module set as case-01. Medium complexity suppresses all collapsing: specify and decompose are collapse_eligible=true but disposition=ACTIVE because complexity != Low. All 5 entries ACTIVE. Confirms Low vs. Medium branching is correctly distinguished. No disposition error. This case provides the signal that Instinct was requesting: a Medium-complexity session with a different collapse_assessment than Low (all ACTIVE vs. two COLLAPSED)."
+    }
+  ],
+  "held_out_wrong_dispositions": 0,
+  "held_out_total": 3,
+  "held_out_disposition_error_rate": 0.0
+}

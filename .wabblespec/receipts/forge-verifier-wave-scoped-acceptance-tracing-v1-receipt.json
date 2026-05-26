@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "task_id": "forge-verifier-wave-scoped-acceptance-tracing-v1",
+  "session_id": null,
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [
+    "modules/l2/verifier/SKILL.md",
+    "modules/l2/verifier/tests/acceptance.md",
+    "framework.yaml",
+    ".wabblespec/experiments/fixtures/verifier-wave-scoped-acceptance-tracing-v1/fixtures.json",
+    ".wabblespec/experiments/fixtures/verifier-wave-scoped-acceptance-tracing-v1/split.json",
+    ".wabblespec/experiments/fixtures/verifier-wave-scoped-acceptance-tracing-v1/golden.json",
+    ".wabblespec/experiments/tracker.json",
+    ".wabblespec/VERSION"
+  ],
+  "summary": "Forge: verifier-wave-scoped-acceptance-tracing-v1 promoted to production. Step 1 check 4 scopes acceptance tracing to wave declared outputs. Deferred clauses in deferred_then_clauses field. Benchmark: deferred_clause_miss_rate=0.0 <= 0.0. VERSION 0.21.0.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-26T01:43:01Z"
+}

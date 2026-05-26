@@ -1,0 +1,17 @@
+{
+  "id": "autopilot-orchestration-20260525",
+  "topic": "Autopilot Scale-Adaptive Orchestration",
+  "wing": "implementation",
+  "room": "autopilot",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l2/autopilot/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Autopilot exclusively owns .wabblespec/meta.md. Scale-adaptive autonomy L0-L4 from Decompose complexity score. Manages phase transitions, triggers Dream post-wave, schedules Evolution. Activates for multi-stage runs or /autopilot command. Pipeline orchestration: sequences L0->L1->L2->L3/L4 gateways->L5->L6->L7->L8 as appropriate for complexity. Dream is triggered after each significant wave to log behavioral patterns. Evolution is scheduled when enough receipts accumulate for L8. Complexity score (0.0-1.0 from complexity-scorer.py) maps: L0=trivial, L1=simple, L2=moderate, L3=complex, L4=high. Autopilot depends on: executor, verifier, guard, plan, economy, ground, triage, analyze, dream, reviewer, polish, changelog, commit, shift, archive, flag.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

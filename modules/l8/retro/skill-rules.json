@@ -1,0 +1,48 @@
+{
+  "module": "retro",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "retro",
+    "retrospective",
+    "post-execution review",
+    "receipt chain review",
+    "what went wrong"
+  ],
+  "anti_activators": [
+    "execution wave in progress",
+    "executor running",
+    "propose improvements",
+    "synth",
+    "during active task"
+  ],
+  "preconditions": [
+    "No Executor PID lock active",
+    "At least one complete execution chain present in .wabblespec/receipts/"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-execution", "post-session"],
+  "authority": {
+    "owns": [".wabblespec/memory/retro/"],
+    "reads": [
+      ".wabblespec/receipts/",
+      "framework.yaml"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Observations only — no prescriptions or recommendations",
+    "Does not modify any receipt",
+    "Does not invoke Synth or any promotion module",
+    "Does not run during active Executor"
+  ],
+  "produces": [".wabblespec/memory/retro/"],
+  "depends_on": ["archive", "verifier"],
+  "consumed_by": ["instinct"],
+  "loading_gate": "activation",
+  "commands": ["/retro"],
+  "file_path_patterns": []
+}

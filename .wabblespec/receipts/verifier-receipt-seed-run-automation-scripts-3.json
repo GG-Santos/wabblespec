@@ -1,0 +1,81 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-automation-scripts-3",
+  "session_id": "seed-run-automation-scripts-3",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "command-risk-check-smoke",
+      "result": "PASS",
+      "description": "SAFE/WARN/BLOCK verdicts correct; --json valid; exit codes 0/1",
+      "detail": "SAFE/WARN/BLOCK verdicts correct; --json valid; exit codes 0/1"
+    },
+    {
+      "id": "guard-check-wave-pass",
+      "result": "PASS",
+      "description": "executor module with owned files PASS; unowned file FAIL",
+      "detail": "executor module with owned files PASS; unowned file FAIL"
+    },
+    {
+      "id": "guard-check-layer5-block",
+      "result": "PASS",
+      "description": "git push --force correctly BLOCK",
+      "detail": "git push --force correctly BLOCK"
+    },
+    {
+      "id": "drawer-writer-validate",
+      "result": "PASS",
+      "description": "existing drawer validates PASS; dry-run output correct",
+      "detail": "existing drawer validates PASS; dry-run output correct"
+    },
+    {
+      "id": "provenance-record-show",
+      "result": "PASS",
+      "description": "record+show roundtrip confirmed",
+      "detail": "record+show roundtrip confirmed"
+    },
+    {
+      "id": "tracker-list",
+      "result": "PASS",
+      "description": "3 entries listed correctly",
+      "detail": "3 entries listed correctly"
+    },
+    {
+      "id": "fixture-split-validate",
+      "result": "PASS",
+      "description": "all 3 existing fixture sets PASS",
+      "detail": "all 3 existing fixture sets PASS"
+    },
+    {
+      "id": "document-check-reference",
+      "result": "PASS",
+      "description": "PASS on file with cross-refs; FAIL on file without",
+      "detail": "PASS on file with cross-refs; FAIL on file without"
+    },
+    {
+      "id": "index-update-json",
+      "result": "PASS",
+      "description": "34 receipt entries; version 0.11.0 correct",
+      "detail": "34 receipt entries; version 0.11.0 correct"
+    },
+    {
+      "id": "pipeline-start-dry-run",
+      "result": "PASS",
+      "description": "3 steps ran; drift WARN non-fatal",
+      "detail": "3 steps ran; drift WARN non-fatal"
+    },
+    {
+      "id": "pipeline-status",
+      "result": "PASS",
+      "description": "session state and chain status both shown",
+      "detail": "session state and chain status both shown"
+    }
+  ],
+  "not_tested": [
+    "pipeline close dry-run",
+    "guard-check misactivation_risk"
+  ],
+  "verified_at": "2026-05-25T17:01:27Z"
+}

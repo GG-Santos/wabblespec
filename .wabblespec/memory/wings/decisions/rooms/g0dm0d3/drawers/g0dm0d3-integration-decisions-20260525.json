@@ -1,0 +1,17 @@
+{
+  "id": "g0dm0d3-integration-decisions-20260525",
+  "topic": "G0DM0D3 Integration Key Decisions and Exclusions",
+  "wing": "decisions",
+  "room": "g0dm0d3",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": ".wabblespec/plans/g0dm0d3-integration-plan.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "G0DM0D3 by Elder Plinius (AGPL-3.0). Decision: implement algorithms from PAPER.md formulas (not copyrightable), not from TS source (AGPL avoidance). Exclusions by design: GODMODE system prompt (jailbreak tool), anti-refusal scoring axis (jailbreak metric), OpenRouter dependency (I6 violation — model names), ULTRAPLINIAN model tier lists (model names, I6 violation), chaotic context type (66.7% precision attractor, misclassifies code tasks), AutoTune confidence as hard gate (anti-calibrated — wrong predictions average 76.4% confidence vs 65.2% for correct), Parseltongue Tier 3 jailbreak terms (nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay etc.). Waves 1-4 + 6 complete. Wave 5 (ParamLearner) gated on 50+ curated receipts (mempalace Phase 5). EMA constants: alpha=0.3, MIN_SAMPLES=3, MAX_WEIGHT=0.5, SAMPLES_FOR_MAX=20.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

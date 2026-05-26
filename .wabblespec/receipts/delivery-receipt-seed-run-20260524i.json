@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524i",
+  "timestamp": "2026-05-24T10:31:00Z",
+  "version": "0.4.2",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524i.json",
+    "verifier-receipt-seed-run-20260524i.json",
+    "delivery-receipt-seed-run-20260524i.json"
+  ],
+  "total_receipts_accumulated": 40,
+  "l8_gate_progress": "40/100 PASS receipts",
+  "integration_gate_progress": "9/10 runs",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "Maintenance run: receipt-index.json synced (11 entries), l8-corpus-gate.md updated, INDEX.md current (99 modules, cold-start coverage, quality floor). dream.py --background flag fixed. VERSION 0.4.2."
+}

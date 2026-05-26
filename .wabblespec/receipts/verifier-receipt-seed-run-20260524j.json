@@ -1,0 +1,43 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524j",
+  "timestamp": "2026-05-24T11:00:30Z",
+  "version": "0.4.3",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "retro/tests/acceptance.md expanded",
+      "result": "PASS",
+      "detail": "28 -> 90+ lines. Covers: L8 gate, period declaration, structure, chain health, observation-only language, wave summary, memory enrichment, recurring patterns, carry-forward gaps, Not Tested required, idempotency, dry-run"
+    },
+    {
+      "check": "feedback/tests/acceptance.md expanded",
+      "result": "PASS",
+      "detail": "45 -> 90+ lines. Covers: L8 gate, --metrics required, budget target, trend analysis, first-run, analysis period with insufficient-data warning, dry-run shows duplicate warnings"
+    },
+    {
+      "check": "factory/tests/acceptance.md expanded",
+      "result": "PASS",
+      "detail": "45 -> 100+ lines. Covers: L8 gate, stub version tracking, per-file content validation, dry-run idempotency guard behavior"
+    },
+    {
+      "check": "L8 corpus gate present in retro, feedback, factory acceptance tests",
+      "result": "PASS",
+      "detail": "All three now have 'Given receipt count < 100 PASS, Then GATE_NOT_MET' as first scenario"
+    },
+    {
+      "check": "L8 chain consistency: all 9 modules have acceptance tests with gate coverage",
+      "result": "PASS",
+      "detail": "Instinct, Synth, Blueprint, Benchmark, Augment, Forge: pre-existing complete. Retro, Feedback, Factory: expanded this run."
+    },
+    {
+      "check": "validate-graph.py 0 violations",
+      "result": "PASS",
+      "detail": "99 modules, 98 shared files, 0 violations"
+    },
+    {
+      "check": "VERSION 0.4.3",
+      "result": "PASS"
+    }
+  ]
+}

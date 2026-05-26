@@ -1,0 +1,23 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524k",
+  "timestamp": "2026-05-24T12:01:00Z",
+  "version": "0.4.3",
+  "status": "PASS",
+  "checks": [
+    {"check": "All 15 cold-start files present on disk", "result": "PASS"},
+    {"check": "Each file follows cold-start.md pattern (absent-artifact sections + default state table)", "result": "PASS"},
+    {"check": "L1 cold-start coverage: 24/24 modules", "result": "PASS"},
+    {"check": "L2 cold-start coverage: 13/13 modules", "result": "PASS"},
+    {"check": "Grader: hard BLOCK on absent/FAIL Adversary receipt declared", "result": "PASS"},
+    {"check": "Grader: hard BLOCK on absent spec_artifact declared", "result": "PASS"},
+    {"check": "Grader: score thresholds present with built-in fallback", "result": "PASS"},
+    {"check": "L1/plan: BLOCKS without recipe.json declared", "result": "PASS"},
+    {"check": "L1/deps: CRITICAL CVE BLOCK declared", "result": "PASS"},
+    {"check": "L1/perf: baseline-before-optimize invariant declared", "result": "PASS"},
+    {"check": "L2/adversary: challenger_mode required declared", "result": "PASS"},
+    {"check": "L2/audit: fix_mode false declared", "result": "PASS"},
+    {"check": "No file overwrites existing content outside rules/ directories", "result": "PASS"}
+  ],
+  "violations": 0
+}

@@ -1,0 +1,17 @@
+{
+  "id": "l8-evolution-chain-20260525",
+  "topic": "L8 Self-Improvement Evolution Chain",
+  "wing": "implementation",
+  "room": "l8-evolution",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md + .wabblespec/experiments/tracker.json",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "I8: Execution -> Receipt -> Instinct -> Synth -> Blueprint -> Augment -> Benchmark -> Forge. No stage skips. Self-promotion requires Attestation. L8 corpus gate was MET 2026-05-25: 100/100 receipts, 3 human-validated Instinct patterns. All 3 patterns completed full chain (Forge promoted 2026-05-25): Pattern 1 (cold-start coverage) -> cold-start-coverage-recipe-gate-v1 -> Recipe Step 2d; Pattern 2 (acceptance test lag) -> acceptance-test-executor-enforcement-v1 -> Executor post-wave gate; Pattern 3 (reference cross-linkage) -> cross-link-document-required-section-v1 -> Document cross_link_verified. tracker.json: all 3 entries show forge_status: PROMOTED. Experiments live in .wabblespec/experiments/ (candidates, blueprints, augments, fixtures, tracker.json, archive/).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "quality-floor-gates-20260525",
+  "topic": "Quality Floor Gate Design",
+  "wing": "architecture",
+  "room": "quality-floor",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md + _shared/scripts/quality-floor-check.py",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Gate 1 (quick_validate, 8 checks): SKILL.md exists and parses, skill-rules.json exists and parses, required JSON fields present, authority.owns non-empty, receipt_required is boolean, activators declared. Gate 2 (lint_prompts, 6 checks): SKILL.md has YAML frontmatter with name: and description: >=20 chars, contains ## What this skill does and ## When to use headings, has output contract signal, body >=200 characters. Both gates required for quality_floor_passed: true. Run: python _shared/scripts/quality-floor-check.py [--module <id>] [--verbose] [--write]. --write patches framework.yaml. 97 of 100 modules checked (3 shared-dev modules excluded as non-skill type).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

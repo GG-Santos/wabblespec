@@ -9,7 +9,7 @@
   "expires_at": null,
   "source": "BUILD-PLAN.md Phase 0",
   "source_module": "memory",
-  "confidence": 0.9652,
+  "confidence": 0.9996,
   "evidence": "skill-factory Workshop mode produces SKILL.md + skill-rules.json + receipt-schema + references/. Phase 0 additions: WabbleSpec receipt scaffold template, skill-rules.json for framework modules, platform spec-template variants. file_path_patterns added as optional activation field to skill-rules.json schema (adapted from agent-rules pattern). Workshop mode verified to produce modules passing quick_validate, lint_prompts, syntax_check.",
   "superseded_by": null,
   "contradicts": null,
@@ -98,6 +98,326 @@
       "actor": "dream",
       "from_confidence": 0.9613,
       "to_confidence": 0.9652,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:14:53.888187+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9652,
+      "to_confidence": 0.9687,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:15:04.214231+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9687,
+      "to_confidence": 0.9718,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:16:02.005113+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9718,
+      "to_confidence": 0.9746,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:16:45.582098+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9746,
+      "to_confidence": 0.9771,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:29:22.618296+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9771,
+      "to_confidence": 0.9794,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:32:03.263665+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9794,
+      "to_confidence": 0.9815,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:41:39.027482+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9815,
+      "to_confidence": 0.9834,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:12:05.734272+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9834,
+      "to_confidence": 0.9851,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:15:41.723609+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9851,
+      "to_confidence": 0.9866,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:18:06.330397+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9866,
+      "to_confidence": 0.9879,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:26:25.030398+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9879,
+      "to_confidence": 0.9891,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:34:58.845906+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9891,
+      "to_confidence": 0.9902,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:36:16.909192+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9902,
+      "to_confidence": 0.9912,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:27:37.213851+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9912,
+      "to_confidence": 0.9921,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:29:47.577978+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9921,
+      "to_confidence": 0.9929,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:34:23.922043+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9929,
+      "to_confidence": 0.9936,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:43:56.010429+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9936,
+      "to_confidence": 0.9942,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:52:29.751450+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9942,
+      "to_confidence": 0.9948,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:04:49.605566+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9948,
+      "to_confidence": 0.9953,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:20:16.808132+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9953,
+      "to_confidence": 0.9958,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:21:13.308235+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9958,
+      "to_confidence": 0.9962,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:25:49.830402+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9962,
+      "to_confidence": 0.9966,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:33:09.831893+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9966,
+      "to_confidence": 0.9969,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T22:38:41.570035+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9969,
+      "to_confidence": 0.9972,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T22:53:56.565193+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9972,
+      "to_confidence": 0.9975,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:01:09.095140+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9975,
+      "to_confidence": 0.9978,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:10:17.035168+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9978,
+      "to_confidence": 0.998,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:32:23.180383+00:00",
+      "actor": "dream",
+      "from_confidence": 0.998,
+      "to_confidence": 0.9982,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:37:44.977496+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9982,
+      "to_confidence": 0.9984,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:55:01.765531+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9984,
+      "to_confidence": 0.9986,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:59:23.535525+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9986,
+      "to_confidence": 0.9987,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:07:19.081137+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9987,
+      "to_confidence": 0.9988,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:08:59.213043+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9988,
+      "to_confidence": 0.9989,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:12:52.322205+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9989,
+      "to_confidence": 0.999,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:16:43.417318+00:00",
+      "actor": "dream",
+      "from_confidence": 0.999,
+      "to_confidence": 0.9991,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:21:09.939955+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9991,
+      "to_confidence": 0.9992,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:23:38.936162+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9992,
+      "to_confidence": 0.9993,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:25:09.006206+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9993,
+      "to_confidence": 0.9994,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:32:53.290614+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9994,
+      "to_confidence": 0.9995,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:37:45.743763+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9995,
+      "to_confidence": 0.9996,
       "staleness_state": "FRESH"
     }
   ]

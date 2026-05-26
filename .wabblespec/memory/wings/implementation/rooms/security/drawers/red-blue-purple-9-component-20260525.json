@@ -1,0 +1,17 @@
+{
+  "id": "red-blue-purple-9-component-20260525",
+  "topic": "Red/Blue/Purple 9-Component Scoring Model",
+  "wing": "implementation",
+  "room": "security",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l4/security/references/cycling/cycle-protocol.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Purple scoring: 9 components (was 8 before G0DM0D3 Wave 4). Coverage 14.5%, Severity distribution 19.5%, Fix quality 14.5%, Fix completeness 14.5%, Defense depth 9.5%, Regression coverage 9.5%, Cycle efficiency 5.0%, Response time 8.5%, Inference quality 5.0% (new). Inference quality (9th): score 10 = zero inference_refusal flags in Red findings; score 5-9 = 1-3 flags mostly complete; score 0-4 = 4+ flags likely incomplete. Source: inference_guard_summary.refusal_count from Red receipt. If InferenceGuard was suppressed or unavailable: score 5 (neutral). Weights sum to 100% — original 8 components each reduced ~0.5% proportionally. Blue protocol requires inference_guard: false in task card.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,40 @@
+{
+  "blueprint_id": "recipe-collapse-assessment-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/recipe-collapse-assessment-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "recipe",
+  "before_behavior": "Step 3 (Score complexity) produces a single complexity label and a single boolean collapse_eligible. recipe.json records: complexity: 'Low|Medium|High', collapse_eligible: true|false. The receipt records the same two fields. No information about which modules were evaluated for collapse, which were eligible, or which actually collapsed is recorded anywhere in the receipt chain.",
+  "after_behavior": "Step 3 is augmented with a collapse_assessment sub-step. After determining complexity and identifying the activated module set, recipe reads the collapse_eligible field from each selected module's skill-rules.json and computes disposition: COLLAPSED if complexity is Low AND the module's collapse_eligible is true; ACTIVE otherwise. Recipe writes collapse_assessment as an array to recipe.json and the receipt. Format per entry: { 'module_id': string, 'skill_collapse_eligible': boolean, 'disposition': 'COLLAPSED' | 'ACTIVE' }. The top-level collapse_eligible boolean is retained unchanged. collapse_assessment is additive — it does not modify any existing field or gate. Future Instinct cycles can compare collapse_assessment arrays across Low vs. Medium sessions to detect if the same modules are collapsing regardless of complexity tier.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "metric_name": "disposition_error_rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "wrong_disposition",
+      "rationale": "A disposition error is defined as: a module entry in collapse_assessment where disposition=COLLAPSED but complexity is not Low, OR disposition=ACTIVE but the module is collapse_eligible AND complexity is Low. The rule is deterministic: COLLAPSED = (complexity==Low AND module.collapse_eligible==true). Any deviation is a logic error. Threshold 0.0 — any wrong disposition is a regression."
+    }
+  ],
+  "fixture_spec": {
+    "developer_scenario": "A Low-complexity session activates recipe, specify, decompose, executor, verifier. specify and decompose have collapse_eligible=true; recipe, executor, verifier do not. collapse_assessment shows COLLAPSED for specify and decompose, ACTIVE for the rest. A Medium-complexity session with the same module set shows all ACTIVE.",
+    "dev_cases": 7,
+    "held_out_cases": 3,
+    "total": 10,
+    "dev_ratio": 0.7,
+    "case_structure": {
+      "input": "complexity, activated_modules_with_collapse_eligible_flags",
+      "expected_outcome": "correct_disposition_map | no_disposition_error"
+    }
+  },
+  "affected_targets": [
+    "cli", "web", "api-service", "library", "mobile", "desktop",
+    "game", "extension", "iot", "data-pipeline", "ai-agent"
+  ],
+  "verification_mode": "Observation",
+  "attestation_required": true,
+  "notes": "The collapse_eligible field already exists in skill-rules.json for all modules (required field per quality floor gate 1). Recipe can read these values as part of its existing module selection step without any additional file reads. The collapse_assessment field is structured for future Instinct machine-consumption: array of objects with deterministic keys.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "benchmark-passed",
+  "attested_by": "human",
+  "attested_at": "2026-05-26T00:00:00Z"
+}

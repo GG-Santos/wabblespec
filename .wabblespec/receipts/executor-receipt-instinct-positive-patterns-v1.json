@@ -1,0 +1,18 @@
+{
+  "receipt_type": "executor",
+  "task_id": "instinct-positive-patterns-v1",
+  "session_id": "instinct-positive-patterns-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l8/instinct"
+  ],
+  "files_written": [
+    "modules/l8/instinct/scripts/instinct.py"
+  ],
+  "summary": "Added positive-pattern detectors to instinct.py: high-frequency-activation, complexity-skew, phase-gap",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T17:49:50Z"
+}

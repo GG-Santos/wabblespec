@@ -1,0 +1,17 @@
+{
+  "id": "hook-architecture-detail-20260525",
+  "topic": "WabbleSpec Hook Architecture Detail",
+  "wing": "architecture",
+  "room": "hooks",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md + src/hooks/",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Three hooks in src/hooks/ — all CommonJS (package.json sets type: commonjs to prevent ESM/CJS conflict). SessionStart (wabblespec-session-start.js): runs once per session open; writes session flag to ~/.claude/.wabblespec-session; emits invariant context and active task state as stdout injected as system prompt addendum. UserPromptSubmit (wabblespec-prompt-guard.js): runs before every user prompt; two informational nudges only (wave progress if active session with completed waves; recipe reminder if no active session and prompt looks task-start-like); never blocks. Statusline (wabblespec-statusline.ps1): reads flag file, outputs [WS idle] or [WS task-id w:N/M]. Flag file channel (~/.claude/.wabblespec-session): atomic temp+rename write, mode 0600, refuses symlinks. Silent-fail contract: all hooks catch errors and emit {} rather than non-zero exit.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,24 @@
+{
+  "module": "analyze",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/analyze", "root cause", "rca", "analyze failure", "five whys", "fault tree"],
+  "authority": {
+    "owns": [".wabblespec/receipts/analyze-receipt-*.json", ".wabblespec/analysis/rca-*.md"],
+    "reads": [
+      "modules/l1/analyze/rules/rca-method.md",
+      "modules/l1/analyze/rules/evidence-requirements.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "ANL-1", "rule": "Root cause must reach system level — not stop at symptom", "severity": "BLOCKING" },
+    { "id": "ANL-2", "rule": "Confidence < 0.4 = speculative hypothesis, not confirmed root cause", "severity": "WARNING" }
+  ],
+  "rules": [
+    "rules/rca-method.md",
+    "rules/evidence-requirements.md"
+  ],
+  "receipt_schema": "schemas/analyze-receipt.schema.json"
+}

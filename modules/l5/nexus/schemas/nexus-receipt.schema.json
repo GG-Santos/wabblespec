@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nexus Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Nexus module.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "query_type": {
+      "type": "string",
+      "enum": ["why-query", "blast-radius", "pattern-discovery", "what-changed"],
+      "description": "The classified query type that determined traversal strategy."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Topic, module area, or concept queried."
+    },
+    "drawers_queried": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of Memory drawers consulted during traversal."
+    },
+    "relationships_found": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of graph relationships surfaced in the response."
+    },
+    "entities_traversed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of graph nodes visited during traversal."
+    },
+    "response_path": {
+      "type": "string",
+      "description": "Path to the structured response JSON. e.g. .wabblespec/nexus/response-<timestamp>.json"
+    },
+    "graph_freshness": {
+      "type": "string",
+      "enum": ["FRESH", "AGING", "STALE"],
+      "description": "Graph freshness state at query time. FRESH < 20 new drawers since build, AGING 20-50, STALE > 50."
+    },
+    "entity_graph_used": {
+      "type": "boolean",
+      "description": "True if entity-graph.json was consulted during traversal."
+    }
+  },
+  "required": [
+    "query_type",
+    "domain",
+    "drawers_queried",
+    "relationships_found",
+    "entities_traversed",
+    "response_path",
+    "graph_freshness",
+    "entity_graph_used"
+  ]
+}

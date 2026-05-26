@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524k",
+  "timestamp": "2026-05-24T12:02:00Z",
+  "version": "0.4.4",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524k.json",
+    "verifier-receipt-seed-run-20260524k.json",
+    "delivery-receipt-seed-run-20260524k.json"
+  ],
+  "total_receipts_accumulated": 46,
+  "l8_gate_progress": "46/100 PASS receipts",
+  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "Cold-start coverage corrected: 15 missing files written (L1: 12 modules, L2: 3 modules). L1 now 24/24, L2 now 13/13. Total cold-start coverage: 99/99 modules. VERSION 0.4.4."
+}

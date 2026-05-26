@@ -1,0 +1,10 @@
+{
+  "module": "decompose", "layer": "L1", "phase": "Plan", "wave": 0,
+  "timestamp": "2026-05-24T02:03:00Z", "session_id": "seed-run-20260524c",
+  "waves": [
+    { "wave": 1, "name": "Patch quality-floor-check.py", "tasks": ["T1: Add layer filter to skip non-standard layers"], "checkpoint": "Script runs and skips shared-dev-* modules", "rollback": "Revert quality-floor-check.py" },
+    { "wave": 2, "name": "Batch SKILL.md heading fix", "tasks": ["T2: Replace heading in 16 files"], "checkpoint": "grep finds zero '## What this module does' in modules/", "rollback": "Revert with git" },
+    { "wave": 3, "name": "skill-rules.json normalization", "tasks": ["T3: Rewrite 27 skill-rules.json files with standard fields added"], "checkpoint": "quality-floor-check.py reports 0 failures", "rollback": "Revert with git" }
+  ],
+  "status": "PASS", "outputs": [], "not_tested": []
+}

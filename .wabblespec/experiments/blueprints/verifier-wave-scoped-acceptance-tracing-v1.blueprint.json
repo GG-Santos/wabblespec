@@ -1,0 +1,40 @@
+{
+  "blueprint_id": "verifier-wave-scoped-acceptance-tracing-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/verifier-wave-scoped-acceptance-tracing-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "verifier",
+  "before_behavior": "Step 1 check 4 reads: 'Each Then clause from the task card acceptance criteria is traceable to some artifact in the wave output.' This is evaluated without regard to which wave declared which outputs — on wave 1 of a 3-wave task, check 4 requires tracing ALL Then clauses (including those targeting wave 2 and wave 3 outputs) to wave 1 artifacts. If any Then clause is untraceable, spec compliance fails.",
+  "after_behavior": "Step 1 check 4 reads: 'Each Then clause from the task card acceptance criteria whose named artifact is declared in this wave's outputs list is traceable to that artifact. Then clauses whose artifacts are not declared in this wave's outputs are deferred — they will be verified by the wave that declares them, and by the pre-archive sweep at session end.' Verifier reads current-wave-plan.md (already in authority.reads) to determine this wave's declared outputs before evaluating check 4. Deferred clauses are listed in the verification receipt under a new field deferred_then_clauses. No changes to skill-rules.json required — authority.reads already includes current-wave-plan.md.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "metric_name": "deferred_clause_miss_rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "missed_criterion",
+      "rationale": "A Then clause that is deferred by wave-scoped check 4 but is never verified by any subsequent wave represents a silent coverage gap. The threshold is 0.0 — any miss is a regression. The pre-archive sweep completeness dimension provides a backstop (it checks all Then clauses at session end), but since pre-archive sweep is non-blocking (WARN not FAIL), it cannot be relied on as the sole safety net. The benchmark tests that wave-scoped deferral correctly routes each clause to exactly one wave that verifies it."
+    }
+  ],
+  "fixture_spec": {
+    "developer_scenario": "A multi-wave task has a task card with 4 Then clauses. Wave 1 declares outputs A and B (addressing clauses 1 and 2). Wave 2 declares outputs C and D (addressing clauses 3 and 4). Wave-scoped verifier on wave 1 checks only clauses 1 and 2, defers clauses 3 and 4. Wave-scoped verifier on wave 2 checks only clauses 3 and 4. No clause is missed.",
+    "dev_cases": 7,
+    "held_out_cases": 3,
+    "total": 10,
+    "dev_ratio": 0.7,
+    "case_structure": {
+      "input": "task_card_path, wave_plan_path, wave_number, wave_output_artifacts",
+      "expected_outcome": "correctly_scoped_pass | correctly_deferred | no_missed_clauses"
+    }
+  },
+  "affected_targets": [
+    "cli", "web", "api-service", "library", "mobile", "desktop",
+    "game", "extension", "iot", "data-pipeline", "ai-agent"
+  ],
+  "verification_mode": "Audit",
+  "attestation_required": true,
+  "notes": "The new receipt field deferred_then_clauses is additive — it does not break the existing receipt schema. Single-wave tasks produce deferred_then_clauses: [] (empty). The pre-archive sweep completeness check already covers all Then clauses at session end; this change makes per-wave checking consistent with what verifier can actually trace.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "benchmark-passed",
+  "attested_by": "human",
+  "attested_at": "2026-05-26T00:00:00Z"
+}

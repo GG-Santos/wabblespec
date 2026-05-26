@@ -1,0 +1,21 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525z",
+  "session_id": "seed-pipeline-z",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/scaffold", "l1/explore"],
+  "files_written": [
+    "_shared/templates/scaffold/project-map-ai-agent.md",
+    "_shared/templates/scaffold/project-map-iot.md",
+    "_shared/templates/scaffold/project-map-game.md",
+    "_shared/templates/scaffold/project-map-data-pipeline.md",
+    "_shared/templates/scaffold/project-map-library.md",
+    "_shared/templates/scaffold/project-map-extension.md"
+  ],
+  "summary": "project-map.md starter templates for AI-Agent, IoT, Game, Data-Pipeline, Library, Extension. Scaffold project-map template library now covers all 11 L3 platforms. Each template includes 7 required schema fields, 5 standard impact slices, platform-canonical risk files, and platform-specific conventions and gaps.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T12:00:00Z"
+}

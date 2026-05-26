@@ -1,0 +1,30 @@
+{
+  "module": "sharpen",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/sharpen", "broad input", "ambiguous input", "interpret input", "disambiguate"],
+  "authority": {
+    "owns": [".wabblespec/receipts/sharpen-receipt-*.json"],
+    "reads": [
+      "modules/l1/sharpen/rules/breadth-detection.md",
+      "modules/l1/sharpen/rules/interpretation-ranking.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "trigger": {
+    "automatic": "Recipe sets input_broad = true",
+    "manual": "/sharpen command"
+  },
+  "invariants": [
+    { "id": "SHP-1", "rule": "Max 3 interpretations produced", "severity": "BLOCKING" },
+    { "id": "SHP-2", "rule": "User confirmation required unless auto-select threshold met (>=0.85 vs <=0.40)", "severity": "BLOCKING" },
+    { "id": "SHP-3", "rule": "Sharpen must not change target or complexity declared in recipe.json", "severity": "BLOCKING" },
+    { "id": "SHP-4", "rule": "Non-selected interpretations must not appear downstream", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/breadth-detection.md",
+    "rules/interpretation-ranking.md"
+  ],
+  "receipt_schema": "schemas/sharpen-receipt.schema.json"
+}

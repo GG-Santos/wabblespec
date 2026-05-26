@@ -1,0 +1,17 @@
+{
+  "receipt_type": "delivery-receipt",
+  "run_id": "seed-run-20260524g",
+  "timestamp": "2026-05-24T09:01:00Z",
+  "version": "0.4.0",
+  "status": "PASS",
+  "receipts_in_run": [
+    "executor-receipt-seed-run-20260524g.json",
+    "verifier-receipt-seed-run-20260524g.json",
+    "delivery-receipt-seed-run-20260524g.json"
+  ],
+  "total_receipts_accumulated": 31,
+  "l8_gate_progress": "31/100 PASS receipts",
+  "integration_gate_progress": "7/10 runs",
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "summary": "Cold-start coverage for L3 (11 platform modules) and L4 (6 gateway modules). Each file defines absent-artifact behavior, platform/gateway invariants enforced unconditionally, and default state tables. L0-L4 cold-start coverage now complete (44 files total). L5-L8 pending. VERSION 0.4.0."
+}

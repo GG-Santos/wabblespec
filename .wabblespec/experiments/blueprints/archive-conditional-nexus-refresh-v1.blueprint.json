@@ -1,0 +1,40 @@
+{
+  "blueprint_id": "archive-conditional-nexus-refresh-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/archive-conditional-nexus-refresh-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "archive",
+  "before_behavior": "Step 10 reads: 'After archiving: invoke modules/l5/nexus/scripts/graph-builder.py --scope {changed-files} for dependency edges only. If Nexus graph does not exist yet (first archive run): skip and record nexus_refreshed: false. Do not fail archiving because Nexus has not been initialized.' graph-builder.py is invoked after every archive run regardless of whether any framework-relevant files were changed.",
+  "after_behavior": "Step 10 adds a pre-check before invoking graph-builder.py. Archive collects the union of files_written fields across all wave receipts for this session. It checks whether any entry matches a framework-graph-relevant pattern: (a) path starts with 'modules/' and ends with 'SKILL.md' or 'skill-rules.json'; (b) path starts with '_shared/schemas/' and ends with '.json'; (c) exact match 'framework.yaml'. If no file matches: record nexus_refreshed: false, nexus_skip_reason: 'no-framework-files-modified' and skip graph-builder.py. If any file matches: invoke graph-builder.py as before. The nexus_skip_reason field is null when nexus_refreshed=true. This field is additive to the delivery receipt schema.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "metric_name": "nexus_drift_rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "graph_drift",
+      "rationale": "A Nexus graph drift event is defined as: a session where a framework file was modified, archive ran, nexus_refreshed was recorded as false (incorrectly skipped), and the resulting stale edge was later detected by Guard. The threshold is 0.0 — the conditional skip must never suppress a legitimate refresh. The pattern-match logic is deterministic: if a framework file appears in files_written, it matches the pattern and triggers refresh. No drift is acceptable."
+    }
+  ],
+  "fixture_spec": {
+    "developer_scenario": "A documentation-only task delivers CHANGELOG.md and README.md. No framework files touched. Archive step 10 pre-check finds no framework-pattern matches in files_written. graph-builder.py is not invoked. nexus_refreshed=false, nexus_skip_reason='no-framework-files-modified'. A separate task delivers modules/l3/cli/SKILL.md. Pre-check finds a match. graph-builder.py is invoked. nexus_refreshed=true.",
+    "dev_cases": 7,
+    "held_out_cases": 3,
+    "total": 10,
+    "dev_ratio": 0.7,
+    "case_structure": {
+      "input": "files_written_list, nexus_graph_exists",
+      "expected_outcome": "correctly_skipped | correctly_triggered | no_graph_drift"
+    }
+  },
+  "affected_targets": [
+    "cli", "web", "api-service", "library", "mobile", "desktop",
+    "game", "extension", "iot", "data-pipeline", "ai-agent"
+  ],
+  "verification_mode": "Audit",
+  "attestation_required": true,
+  "notes": "The nexus_skip_reason field is additive — it does not break existing delivery receipt consumers. Existing receipts have nexus_refreshed: true or nexus_refreshed: false with no nexus_skip_reason (null is the default). The pattern-match logic covers all known framework-graph-relevant paths. If new framework paths are added in future (e.g., a new shared schema directory), the pattern list in step 10 must be updated.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "benchmark-passed",
+  "attested_by": "human",
+  "attested_at": "2026-05-26T00:00:00Z"
+}

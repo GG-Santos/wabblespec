@@ -1,0 +1,36 @@
+{
+  "module": "specify",
+  "layer": "L1",
+  "phase": "Specify",
+  "wave": 0,
+  "timestamp": "2026-05-24T01:02:00Z",
+  "session_id": "seed-run-20260524b",
+  "checks_run": ["requirements-complete", "success-criteria-measurable", "failure-modes-declared"],
+  "checks_passed": ["requirements-complete", "success-criteria-measurable", "failure-modes-declared"],
+  "status": "PASS",
+  "requirements": [
+    "R1: Read framework.yaml; extract module list and quality_floor config",
+    "R2: For each module, resolve path and run quick_validate (8 checks: SKILL_EXISTS, RULES_EXISTS, RULES_PARSE, REQUIRED_FIELDS, AUTHORITY_OWNS, AUTHORITY_READS, RECEIPT_BOOL, ACTIVATORS_VALID)",
+    "R3: For each module, run lint_prompts (6 checks: FRONTMATTER, DESCRIPTION_LEN, SECTION_WHAT, SECTION_WHEN, SECTION_OUTPUT, MIN_LENGTH)",
+    "R4: Emit adversarial WARNING (not fail) when tags include security/enforcement/receipt/gate and SKILL.md lacks 'adversarial'",
+    "R5: Print per-module verdict (PASS/FAIL) with failing check names",
+    "R6: Print summary: total modules, passing both gates, failing quick_validate, failing lint_prompts, warnings",
+    "R7: --update-yaml mode: print only passing module IDs (for human review)",
+    "R8: --write mode: patch framework.yaml quality_floor_passed field for all modules (opt-in)",
+    "R9: --module <id> flag: run checks for one module only",
+    "R10: --verbose flag: print all check results per module (not just failures)"
+  ],
+  "success_criteria": [
+    "Script runs on live framework.yaml and reports per-module results without crashing",
+    "REQUIRED_FIELDS check correctly fails a module missing 'tier' from skill-rules.json",
+    "lint_prompts correctly fails a SKILL.md missing ## When to use",
+    "Exit code 0 when all modules pass both gates"
+  ],
+  "failure_modes": [
+    "framework.yaml not found: exit code 2",
+    "Module path in framework.yaml does not exist on disk: reported as FAIL (SKILL_EXISTS=false), not crash",
+    "skill-rules.json is invalid JSON: RULES_PARSE=false, remaining checks skipped for that module"
+  ],
+  "outputs": ["_shared/scripts/quality-floor-check.py"],
+  "not_tested": []
+}

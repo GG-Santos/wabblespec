@@ -1,0 +1,21 @@
+{
+  "receipt_type": "executor",
+  "task_id": "forge-executor-checkpoint-v1",
+  "session_id": "forge-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l8/forge"
+  ],
+  "files_written": [
+    "modules/l2/executor/SKILL.md",
+    "modules/l2/executor/skill-rules.json",
+    "modules/l2/executor/tests/acceptance.md",
+    "framework.yaml"
+  ],
+  "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted to production",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T21:19:22Z"
+}

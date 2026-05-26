@@ -1,0 +1,57 @@
+{
+  "fixture_set": "cold-start-coverage-recipe-gate-v1",
+  "generated_at": "2026-05-25T08:50:00+00:00",
+  "held_out_evaluations": [
+    {
+      "case_id": "cs-002",
+      "augmented_recipe_behavior": "BLOCK — emits MISSING_COLD_START, does not write recipe.json",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-003",
+      "augmented_recipe_behavior": "BLOCK — emits MISSING_COLD_START for both missing modules in one message",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-004",
+      "augmented_recipe_behavior": "BLOCK — emits MISSING_COLD_START for both missing modules",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-006",
+      "augmented_recipe_behavior": "BLOCK — emits MISSING_COLD_START for single missing module",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-007",
+      "augmented_recipe_behavior": "PASS_VIA_CACHE — Step 1 exits early, Step 2d not reached, no false completion",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-008",
+      "augmented_recipe_behavior": "BLOCK then PASS — blocks on missing module, user excludes it, re-evaluation passes",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-009",
+      "augmented_recipe_behavior": "BLOCK — correctly identifies missing module at end of large selection list",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "cs-010",
+      "augmented_recipe_behavior": "PASS — empty selection trivially passes, no false completion",
+      "false_completion_occurred": false,
+      "verdict": "PASS"
+    }
+  ],
+  "held_out_false_completions": 0,
+  "held_out_total": 8,
+  "held_out_false_completion_rate": 0.0
+}

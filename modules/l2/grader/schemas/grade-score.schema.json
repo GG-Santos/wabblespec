@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Grade Score Scale",
+  "description": "Reference definition of the 0.0–1.0 grader score scale. Not a standalone schema — referenced by grader-receipt.schema.json.",
+  "type": "object",
+  "properties": {
+    "scale": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["range_low", "range_high", "meaning", "typical_verdict"],
+        "properties": {
+          "range_low": { "type": "number" },
+          "range_high": { "type": "number" },
+          "meaning": { "type": "string" },
+          "typical_verdict": { "type": "string" }
+        }
+      },
+      "default": [
+        {
+          "range_low": 0.9,
+          "range_high": 1.0,
+          "meaning": "Meets all criteria. Adversary concerns are minor or within acceptable scope.",
+          "typical_verdict": "ACCEPT"
+        },
+        {
+          "range_low": 0.7,
+          "range_high": 0.89,
+          "meaning": "Meets most criteria. One or two addressable gaps.",
+          "typical_verdict": "ACCEPT (or REVISE if Adversary concerns are within scope)"
+        },
+        {
+          "range_low": 0.5,
+          "range_high": 0.69,
+          "meaning": "Meets core criteria but has meaningful gaps that reduce usefulness.",
+          "typical_verdict": "REVISE"
+        },
+        {
+          "range_low": 0.0,
+          "range_high": 0.49,
+          "meaning": "Fails to meet key criteria. Significant revision required or human judgment needed.",
+          "typical_verdict": "ESCALATE"
+        }
+      ]
+    }
+  },
+  "description_note": "Score thresholds are guidelines. Verdict is the primary output — see rules/verdict-matrix.md. A score in the ACCEPT range can still produce REVISE if Adversary raised an unaddressed within-scope concern."
+}

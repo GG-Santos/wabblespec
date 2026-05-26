@@ -1,0 +1,33 @@
+{
+  "module": "scopeframe",
+  "layer": "L1",
+  "phase": "Intake",
+  "wave": 0,
+  "timestamp": "2026-05-24T01:01:00Z",
+  "session_id": "seed-run-20260524b",
+  "checks_run": ["scope-completeness", "constraint-declaration", "exclusion-declaration"],
+  "checks_passed": ["scope-completeness", "constraint-declaration", "exclusion-declaration"],
+  "status": "PASS",
+  "scope_summary": "Write _shared/scripts/quality-floor-check.py: reads framework.yaml, runs quick_validate (8 checks) and lint_prompts (6 checks) per module per quality-floor-gates.md, reports results, supports --update-yaml and --write modes.",
+  "in_scope": [
+    "_shared/scripts/quality-floor-check.py",
+    "framework.yaml (read + optional write)",
+    "modules/**/SKILL.md and skill-rules.json (read-only)"
+  ],
+  "out_of_scope": [
+    "Auto-creating or modifying SKILL.md files",
+    "Auto-creating skill-rules.json files",
+    "Network calls",
+    "Database reads"
+  ],
+  "constraints": [
+    "Python 3.8+ compatible",
+    "PyYAML + stdlib only",
+    "Exit code 0 = all modules pass, 1 = one or more fail, 2 = input error",
+    "--write is opt-in only; default is read-only",
+    "Must implement all checks exactly as specified in quality-floor-gates.md"
+  ],
+  "status": "PASS",
+  "outputs": ["scope.md"],
+  "not_tested": []
+}

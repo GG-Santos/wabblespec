@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "proofread-receipt.schema.json",
+  "title": "ProofreadReceipt",
+  "allOf": [{ "$ref": "../../../_shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "artifact_path": { "type": "string" },
+    "content_type": {
+      "type": "string",
+      "enum": ["technical-doc", "marketing-copy", "legal-doc", "ui-copy", "blog-post", "release-notes"]
+    },
+    "word_count": { "type": "integer", "minimum": 0 },
+    "readability_score": { "type": "number" },
+    "readability_target": { "type": "number" },
+    "readability_pass": { "type": "boolean" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "severity", "location", "finding"],
+        "properties": {
+          "type": { "enum": ["readability", "factual", "consistency"] },
+          "severity": { "enum": ["FAIL", "WARN", "INFO"] },
+          "location": { "type": "string" },
+          "finding": { "type": "string" },
+          "suggestion": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "finding_count": { "type": "integer", "minimum": 0 },
+    "fail_count": { "type": "integer", "minimum": 0 },
+    "verdict": { "enum": ["PASS", "FAIL"] },
+    "reviewed_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["artifact_path", "content_type", "findings", "finding_count", "fail_count", "verdict", "reviewed_at"]
+}

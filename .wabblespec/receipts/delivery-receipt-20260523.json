@@ -1,0 +1,46 @@
+{
+  "module": "archive",
+  "layer": "L7",
+  "task_id": "integration-phase5-6-20260523-001",
+  "session_type": "framework-authoring",
+  "timestamp": "2026-05-23T12:00:00Z",
+  "status": "PASS",
+  "receipts_aggregated": 2,
+  "receipts_included": [
+    ".wabblespec/receipts/provenance-cascade-test-20260523.json",
+    ".wabblespec/receipts/runtime-probe-receipt-20260523.json"
+  ],
+  "executor_waves": "N/A — framework-authoring session; no Executor pipeline run",
+  "waves_planned": 0,
+  "waves_completed": 0,
+  "all_waves_passed": true,
+  "version_previous": "0.1.0",
+  "version_new": "0.2.0",
+  "version_bump_reason": "ADDITIVE",
+  "changes_summary": [
+    "5A: Guard Layer 4 — file_path_patterns evaluation + misactivation_risk SOFT warning (modules/l2/guard/SKILL.md)",
+    "5A: Recipe Step 2b — specificity-wins module selection rule (modules/l0/recipe/SKILL.md)",
+    "5C: _shared/references/defect-patterns.md — 25 named defect patterns DP-01 through DP-25",
+    "5D: research-log SKILL.md — feature-scoped research/{slug}/research.md output when spec_binding present",
+    "5D: .wabblespec/INDEX.md — Research Outputs section added",
+    "5E: modules/l8/benchmark/rules/outcome-requirement.md — outcome field required before metrics; missing = SPEC_VIOLATION",
+    "6A: _shared/references/state-protocol.md — State Ownership Map appended (10 state files, exclusive writers, readers)",
+    "6B: 27 rules/cold-start.md files created — all L0 (5), L1 (12), L2 (10) modules covered"
+  ],
+  "not_tested_items": 13,
+  "not_tested_list": [
+    "file_path_patterns evaluation exercised in real Guard wave",
+    "misactivation_risk SOFT warning path in real Guard run",
+    "Recipe Step 2b specificity scoring selecting modules in practice",
+    "defect-patterns.md referenced by Guard/Reviewer/Triage in real run",
+    "research/{slug}/research.md created by real research-log invocation",
+    "outcome-requirement enforcement in real Benchmark run",
+    "State Ownership Map enforced — no tooling exists yet to detect violations",
+    "cold-start.md policies exercised in actual cold-start conditions (all 27 files untested)",
+    "hop_2 cascade — no specs in drawer cited_by at hop 2",
+    "source_hash comparison — source_hash was null (internal-computation origin)",
+    "contradiction resolution — no contradictions flagged",
+    "vision: no image input submitted in this session — marked unavailable",
+    "embedding: no embedding tool available in current tool surface"
+  ]
+}

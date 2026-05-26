@@ -1,0 +1,17 @@
+{
+  "id": "recipe-module-behavior-20260525",
+  "topic": "Recipe Module Behavior and Cold-Start Gate",
+  "wing": "implementation",
+  "room": "recipe",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l0/recipe/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Recipe is the entry gate. Steps: 1) check for existing recipe.json (load if session_id matches, stop); 2) run detection scan (priority: existing recipe > design docs > platform configs > dir structure > user intent > ask); 2b) module specificity scoring (file_path_patterns match beats generic ALL activators); 2c) assess input quality (vague=named artifact/measurable outcome/constraint/scope boundary all absent; broad=two interpretations >=0.5 each with no disambiguating signal; routing: vague+!broad->Enhance->ScopeFrame; broad+!vague->Sharpen->ScopeFrame; vague+broad->both; neither->ScopeFrame direct); 2d) cold-start verification (AUGMENT) — check rules/cold-start.md for each selected module; missing->MISSING_COLD_START, surface all missing paths, do not write recipe.json; 3) score complexity (Low/Medium/High); 4) write recipe.json with cold_start_verified: true; 5) write receipt.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

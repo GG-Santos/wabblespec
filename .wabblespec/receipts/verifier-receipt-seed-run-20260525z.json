@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525z",
+  "session_id": "seed-pipeline-z",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "All 6 files written and present",
+      "result": "PASS",
+      "detail": "All 6 project-map templates confirmed written in _shared/templates/scaffold/"
+    },
+    {
+      "id": "V-02",
+      "description": "All templates contain 7 required schema fields and pass Guard Layer 1 markdown validation",
+      "result": "PASS",
+      "detail": "explored_at, build_target, freshness_state, valid_until, entry_points (>=1), Tech Stack (>=1 row), Gaps (>=1 item) present in all 6 templates"
+    },
+    {
+      "id": "V-03",
+      "description": "All 11 L3 platforms now have project-map templates (runs y + z combined)",
+      "result": "PASS",
+      "detail": "Web/API-Service/CLI/Mobile/Desktop (run y) + AI-Agent/IoT/Game/Data-Pipeline/Library/Extension (run z) = 11/11 platforms covered"
+    },
+    {
+      "id": "V-04",
+      "description": "AI-Agent template notes eval suite requirement and model pinning constraint",
+      "result": "PASS",
+      "detail": "eval harness listed in tech stack; 'latest' model pinning violation noted; eval pass rate and prompt injection gaps documented; L4/AI gateway activation note present"
+    },
+    {
+      "id": "V-05",
+      "description": "IoT template notes watchdog risk file and static allocation convention",
+      "result": "PASS",
+      "detail": "watchdog.c listed as risk file with cross-cutting reason; static allocation convention documented; OTA signing key storage (HSM/vault) in conventions"
+    },
+    {
+      "id": "V-06",
+      "description": "Game template notes physics determinism and GPU runner CI requirement",
+      "result": "PASS",
+      "detail": "Physics scripts listed as risk files with determinism note; GPU runner CI gap documented; physics determinism test path in test-coverage slice"
+    },
+    {
+      "id": "V-07",
+      "description": "Data-Pipeline template notes idempotency test and DLQ requirements",
+      "result": "PASS",
+      "detail": "Idempotency listed as risk file and in test-coverage slice; DLQ convention documented; DAG parse check CI gate noted in footer"
+    },
+    {
+      "id": "V-08",
+      "description": "Library template notes zero-runtime-deps preference and breaking change detection CI gate",
+      "result": "PASS",
+      "detail": "Zero runtime deps convention documented; API Extractor / semver-checks listed in build toolchain; breaking change detection gap documented"
+    },
+    {
+      "id": "V-09",
+      "description": "Extension template notes MV3 stateless constraint and CSP no-unsafe-inline convention",
+      "result": "PASS",
+      "detail": "MV3 stateless constraint documented in both risk files and conventions; CSP no unsafe-inline/eval in conventions; permission hygiene documented"
+    },
+    {
+      "id": "V-10",
+      "description": "No invented project-specific values; all use ___ UNDECLARED",
+      "result": "PASS",
+      "detail": "Project name, versions, paths, connection strings all use ___ UNDECLARED throughout all 6 templates"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T12:01:00Z"
+}

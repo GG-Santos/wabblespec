@@ -1,0 +1,38 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524g",
+  "timestamp": "2026-05-24T09:00:30Z",
+  "version": "0.4.0",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "L3 cold-start files exist (11 files)",
+      "result": "PASS",
+      "detail": "web, cli, api-service, mobile, desktop, game, ai-agent, data-pipeline, library, extension, iot — all written"
+    },
+    {
+      "check": "L4 cold-start files exist (6 files)",
+      "result": "PASS",
+      "detail": "security, engineering, ai, aesthetic, design, experience — all written"
+    },
+    {
+      "check": "Cold-start structure: absent Phase A receipt coverage (L4)",
+      "result": "PASS",
+      "detail": "All 6 gateway cold-start files define Phase B blocking behavior when Phase A receipt is absent"
+    },
+    {
+      "check": "Cold-start structure: platform invariants declared (L3)",
+      "result": "PASS",
+      "detail": "CLI: exit codes enforced. API: RFC 7807 enforced. Mobile: Keychain/Keystore enforced. Desktop: contextIsolation enforced. Library: semver + no-postinstall enforced. Extension: MV3 enforced. IoT: firmware signing + JTAG-disabled enforced. AI Agent: model pinning + output validation enforced. Game: server-authoritative for multiplayer enforced. Data Pipeline: idempotency enforced."
+    },
+    {
+      "check": "validate-graph.py 0 violations",
+      "result": "PASS",
+      "detail": "99 modules, 98 shared files, 0 violations (cold-start files are internal module rules, not shared artifacts)"
+    },
+    {
+      "check": "VERSION 0.4.0",
+      "result": "PASS"
+    }
+  ]
+}

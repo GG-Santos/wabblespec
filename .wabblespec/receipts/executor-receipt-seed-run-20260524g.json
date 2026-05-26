@@ -1,0 +1,58 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524g",
+  "timestamp": "2026-05-24T09:00:00Z",
+  "version": "0.4.0",
+  "status": "PASS",
+  "waves": [
+    {
+      "wave": 1,
+      "label": "L3 platform cold-start files (11 files)",
+      "files_written": [
+        "modules/l3/web/rules/cold-start.md",
+        "modules/l3/cli/rules/cold-start.md",
+        "modules/l3/api-service/rules/cold-start.md",
+        "modules/l3/mobile/rules/cold-start.md",
+        "modules/l3/desktop/rules/cold-start.md",
+        "modules/l3/game/rules/cold-start.md",
+        "modules/l3/ai-agent/rules/cold-start.md",
+        "modules/l3/data-pipeline/rules/cold-start.md",
+        "modules/l3/library/rules/cold-start.md",
+        "modules/l3/extension/rules/cold-start.md",
+        "modules/l3/iot/rules/cold-start.md"
+      ],
+      "notes": "Each file covers: absent framework files, absent conditional files, absent security references, absent spec-template, default state table with platform invariants called out."
+    },
+    {
+      "wave": 2,
+      "label": "L4 gateway cold-start files (6 files)",
+      "files_written": [
+        "modules/l4/security/rules/cold-start.md",
+        "modules/l4/engineering/rules/cold-start.md",
+        "modules/l4/ai/rules/cold-start.md",
+        "modules/l4/aesthetic/rules/cold-start.md",
+        "modules/l4/design/rules/cold-start.md",
+        "modules/l4/experience/rules/cold-start.md"
+      ],
+      "notes": "Each file covers: absent Phase A receipt (Phase B blocks), absent spec (minimal INFORM output), absent reference files (log and continue), gateway-specific invariants enforced unconditionally."
+    },
+    {
+      "wave": 3,
+      "label": "VERSION bump",
+      "files_modified": [".wabblespec/VERSION"],
+      "notes": "0.3.9 -> 0.4.0 (cold-start coverage milestone: all L0-L4 modules now have cold-start.md)"
+    }
+  ],
+  "cold_start_coverage": {
+    "L0": "5/5 (pre-existing)",
+    "L1": "12/12 (pre-existing)",
+    "L2": "10/10 (pre-existing)",
+    "L3": "11/11 (this run)",
+    "L4": "6/6 (this run)",
+    "L5": "0/8 (pending)",
+    "L6": "0/12 (pending)",
+    "L7": "0/8 (pending)",
+    "L8": "0/9 (pending)"
+  },
+  "validate_graph": "99 modules, 98 shared files, 0 violations"
+}

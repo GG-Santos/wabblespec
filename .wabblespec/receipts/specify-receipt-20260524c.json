@@ -1,0 +1,13 @@
+{
+  "module": "specify", "layer": "L1", "phase": "Specify", "wave": 0,
+  "timestamp": "2026-05-24T02:02:00Z", "session_id": "seed-run-20260524c",
+  "requirements": [
+    "R1: quality-floor-check.py skips modules where layer is not L0–L8 (pattern: starts with L + digit)",
+    "R2: 16 SKILL.md files — replace '## What this module does' with '## What this skill does'",
+    "R3: 16 Pattern-A skill-rules.json — add module, tier, activators, authority.owns, authority.reads, verification_mode, receipt_required while preserving existing fields",
+    "R4: 10 Pattern-B skill-rules.json (proofread/markdown/copy/writer/legal/translate/optimize/market/changelog/commit) — add tier, authority.owns, authority.reads, verification_mode",
+    "R5: ground skill-rules.json — add tier, activators, authority.owns (authority.writes already present)",
+    "R6: After all fixes, quality-floor-check.py reports 0 failures on standard-layer modules"
+  ],
+  "status": "PASS", "outputs": [], "not_tested": []
+}

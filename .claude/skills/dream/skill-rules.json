@@ -1,0 +1,63 @@
+{
+  "layer": "L5",
+  "invariants": [
+    "Dream never modifies staleness_state — only confidence values",
+    "Dream only reads from .wabblespec/memory/wings/ — never from receipts or plans",
+    "gap-map.md and staleness-map.md are always overwritten on each run — not appended",
+    "dream-log.json is append-only — runs are never removed or edited",
+    "Dry-run produces identical stdout output but writes no files"
+  ],
+  "depends_on": [
+    "memory",
+    "memory-search",
+    "provenance"
+  ],
+  "produces": [
+    "gap-map.md",
+    "staleness-map.md",
+    "dream-log.json"
+  ],
+  "consumes": [
+    ".wabblespec/memory/index.json",
+    ".wabblespec/memory/wings/**/*.json"
+  ],
+  "validation_gate": {
+    "phase_4_gate": "10 runs in dream-log.json AND at least one gap finding led to a drawer update",
+    "theater_test": "If 10 runs produce zero findings and no drawer is ever updated: thresholds need tuning"
+  },
+  "loading_gate": "activation",
+  "commands": [
+    "/dream"
+  ],
+  "file_path_patterns": [],
+  "module": "dream",
+  "activators": [
+    "run dream",
+    "dream script",
+    "ema decay",
+    "gap-map",
+    "staleness-map",
+    "confidence decay",
+    "session end memory check"
+  ],
+  "anti_activators": [],
+  "tier": 2,
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/dream-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

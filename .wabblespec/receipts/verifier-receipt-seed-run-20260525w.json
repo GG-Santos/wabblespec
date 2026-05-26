@@ -1,0 +1,78 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525w",
+  "session_id": "seed-pipeline-w",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "All 6 files written and present",
+      "result": "PASS",
+      "detail": "All 6 runbook stubs confirmed written in _shared/templates/runbooks/"
+    },
+    {
+      "id": "V-02",
+      "description": "All stubs contain the 7 required sections from runbook-structure.md",
+      "result": "PASS",
+      "detail": "Header block, Symptoms, Immediate triage, Diagnosis, Remediation, Escalation, Post-incident present in all 6 stubs"
+    },
+    {
+      "id": "V-03",
+      "description": "Platform applicability declared in stub headers",
+      "result": "PASS",
+      "detail": "watchdog-miss and flash-threshold-breach marked 'Applies to: IoT'; frame-drop-breach marked 'Applies to: Game'; cost-ceiling-breach and eval-pass-rate-drop marked 'Applies to: AI Agent'; throughput-drop marked cross-platform"
+    },
+    {
+      "id": "V-04",
+      "description": "No invented SLO thresholds or project-specific values",
+      "result": "PASS",
+      "detail": "All numeric thresholds, owner fields, tool invocations, and dashboard links use ___ UNDECLARED"
+    },
+    {
+      "id": "V-05",
+      "description": "Slugs match Monitor alert annotation convention (lowercase, hyphen-separated, describes failure condition)",
+      "result": "PASS",
+      "detail": "All 6 filenames follow the pattern from runbook-structure.md slug convention"
+    },
+    {
+      "id": "V-06",
+      "description": "watchdog-miss runbook covers RTOS priority inversion and blocking call in feed path",
+      "result": "PASS",
+      "detail": "Both causes documented in Diagnosis common causes; CI watchdog coverage check referenced in Prevention section"
+    },
+    {
+      "id": "V-07",
+      "description": "flash-threshold-breach runbook distinguishes build-time (binary size) from runtime (filesystem) causes",
+      "result": "PASS",
+      "detail": "Separate triage, diagnosis, and remediation paths for build-time vs. runtime flash issues"
+    },
+    {
+      "id": "V-08",
+      "description": "frame-drop-breach runbook distinguishes CPU-bound from GPU-bound causes",
+      "result": "PASS",
+      "detail": "Separate diagnosis and remediation sections for CPU (GC, AI, physics) and GPU (draw calls, particles, shadows)"
+    },
+    {
+      "id": "V-09",
+      "description": "cost-ceiling-breach runbook covers per-operation and monthly aggregate cost breaches",
+      "result": "PASS",
+      "detail": "Immediate triage distinguishes per-operation vs. monthly volume; separate remediation paths for each; emergency kill switch documented"
+    },
+    {
+      "id": "V-10",
+      "description": "eval-pass-rate-drop runbook covers model version drift and prompt regression as distinct causes",
+      "result": "PASS",
+      "detail": "Model version drift and prompt regression documented as separate remediation paths; instruction not to lower floor to paper over regression is explicit"
+    },
+    {
+      "id": "V-11",
+      "description": "throughput-drop runbook covers both API Service and Data Pipeline scenarios",
+      "result": "PASS",
+      "detail": "Platform-specific remediation sections for API Service (replica scale, circuit breaker) and Data Pipeline (DQ rejection, idempotency, batch size)"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T09:01:00Z"
+}

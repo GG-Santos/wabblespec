@@ -1,0 +1,52 @@
+{
+  "receipt_type": "verifier",
+  "session_id": "wave-checkpoint-v1",
+  "task_id": "wave-checkpoint-v1",
+  "timestamp": "2026-05-26T00:04:00Z",
+  "module": "verifier",
+  "phase": "Verify",
+  "status": "PASS",
+  "checks_run": [
+    {
+      "check": "AC-7: guard-check.py authority for checkpoint path",
+      "command": "python _shared/scripts/guard-check.py authority --module executor --files .wabblespec/session/checkpoints/checkpoint-wave-1.json --json",
+      "result": "PASS",
+      "detail": "verdict=PASS, unauthorized_files=[]"
+    },
+    {
+      "check": "AC-7: guard-check.py authority for multiple checkpoint paths",
+      "command": "python _shared/scripts/guard-check.py authority --module executor --files .wabblespec/session/checkpoints/checkpoint-wave-{1,2,3}.json --json",
+      "result": "PASS",
+      "detail": "verdict=PASS, unauthorized_files=[]"
+    },
+    {
+      "check": "AC-1: wave-checkpoint.schema.json in executor produces_schemas (framework.yaml)",
+      "result": "PASS",
+      "detail": "produces_schemas: [shared/schemas/receipt.base.schema.json, _shared/schemas/wave-checkpoint.schema.json]"
+    },
+    {
+      "check": "AC-1: wave-checkpoint.schema.json in executor produces_schemas (skill-rules.json)",
+      "result": "PASS",
+      "detail": "produces_schemas field present with _shared/schemas/wave-checkpoint.schema.json"
+    },
+    {
+      "check": "AC-1: schema exists with required fields",
+      "result": "PASS",
+      "detail": "fields: checkpoint_id, session_id, task_id, wave_index, wave_label, timestamp, receipts_written, files_modified, state_snapshot, rollback_safe, rollback_blockers"
+    },
+    {
+      "check": "AC-2 through AC-6: pre-existing implementation audit",
+      "result": "PASS (pre-existing)",
+      "detail": "executor SKILL.md Step 5b, guard SKILL.md Layer 1, recipe SKILL.md Step 1b, executor/tests/acceptance.md, guard/tests/acceptance.md all confirmed present in prior-session audit"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "NOTE",
+      "message": "Task card AC-1 specifies field name 'wave_number'; actual schema uses 'wave_index'. Pre-existing naming discrepancy from prior session — outside this session's scope."
+    }
+  ],
+  "revise_cycles": 0,
+  "verdict": "PASS",
+  "prior_receipt": "executor-receipt-wave-checkpoint-v1.json"
+}

@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "session_id": "wave-checkpoint-v1",
+  "task_id": "wave-checkpoint-v1",
+  "timestamp": "2026-05-26T00:03:00Z",
+  "module": "executor",
+  "phase": "Execute",
+  "status": "COMPLETE",
+  "waves_completed": 2,
+  "waves_failed": 0,
+  "files_modified": [
+    "modules/l2/executor/skill-rules.json",
+    "framework.yaml"
+  ],
+  "outputs_written": [
+    ".wabblespec/receipts/wave-1-receipt-wave-checkpoint-v1.json",
+    ".wabblespec/receipts/wave-2-receipt-wave-checkpoint-v1.json"
+  ],
+  "acceptance_criteria_covered": ["AC-1", "AC-7"],
+  "acceptance_criteria_pre_existing": ["AC-2", "AC-3", "AC-4", "AC-5", "AC-6"],
+  "notes": "AC-2 through AC-6 were confirmed implemented in prior sessions via audit of SKILL.md files, tests/acceptance.md, and schema. Only AC-1 (produces_schemas registration) and AC-7 (authority path) required changes this session.",
+  "prior_receipt": "decompose-receipt-wave-checkpoint-v1.json"
+}

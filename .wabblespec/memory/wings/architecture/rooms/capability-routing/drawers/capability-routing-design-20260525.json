@@ -1,0 +1,17 @@
+{
+  "id": "capability-routing-design-20260525",
+  "topic": "Capability Routing and ContextTuner Design",
+  "wing": "architecture",
+  "room": "capability-routing",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l2/model-router/SKILL.md + modules/l2/model-router/rules/task-shapes.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Two classification systems in model-router: task shapes (11 shapes mapping to capability descriptors) and context types (6 types for ContextTuner parameter selection). Task shapes: code, review, research, spec, debug, plan, test, document, visual, multi-target, agent. Context types: spec-authoring (temp=0.30), code-generation (temp=0.20), security-review (temp=0.50), planning (temp=0.60), synthesis (temp=0.80), administrative (temp=0.20). No chaotic type (G0DM0D3 chaotic has 66.7% precision; misclassifies code tasks with delete/break). Confidence scoring: current message 3x, last 4 history 1x each. If confidence <0.6: blend with planning baseline. Learned params from .wabblespec/memory/learned-params/ applied when sample_count >=3 and FRESH/AGING.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

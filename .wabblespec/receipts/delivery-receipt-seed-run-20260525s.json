@@ -1,0 +1,25 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525s",
+  "session_id": "seed-pipeline-s",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.3",
+  "version_new": "0.5.4",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "l8-corpus-gate.md corrected (67/100, benchmark schema CONFIRMED, contradictions CONFIRMED zero); performance-budgets reference + 3 platform templates (web/api-service/cli); 70/100 PASS receipts",
+  "l8_gate_status": {
+    "receipt_corpus": "70/100 — NOT MET",
+    "human_validated_patterns": "0/3 — NOT MET (blocked: Instinct requires 100 receipts)",
+    "benchmark_schema": "CONFIRMED MET",
+    "no_open_contradictions": "CONFIRMED MET",
+    "forge_attestation": "N/A"
+  },
+  "total_receipts_accumulated": 70,
+  "l8_gate_progress": "70/100",
+  "archived_at": "2026-05-25T05:02:00Z"
+}

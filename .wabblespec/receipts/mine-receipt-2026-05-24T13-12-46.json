@@ -1,0 +1,15 @@
+{
+  "module": "memory-mine",
+  "layer": "L5",
+  "timestamp": "2026-05-24T13:12:49.376679+00:00",
+  "schema_version_current": 1,
+  "drawers_analyzed": 13,
+  "drawers_skipped_schema_mismatch": 2918,
+  "gaps_found": 46,
+  "clusters_found": 0,
+  "patterns_found": 1,
+  "dedup_candidates_found": 0,
+  "staleness_critical": 2919,
+  "output_dir": "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\memory\\mine",
+  "dry_run": false
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "counter-increment-request.schema.json",
+  "title": "CounterIncrementRequest",
+  "description": "Atomic counter change request. Written by Autopilot/Archive/Memory; processed by the counter service to prevent race conditions.",
+  "type": "object",
+  "required": [
+    "request_id",
+    "counter_key",
+    "delta",
+    "source_module",
+    "session_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "description": "Unique identifier for this increment request (UUID)"
+    },
+    "counter_key": {
+      "type": "string",
+      "description": "Dot-separated counter path (e.g., memory.drawers.total, archive.sweep.count)"
+    },
+    "delta": {
+      "type": "integer",
+      "description": "Signed increment value. Positive to increment, negative to decrement."
+    },
+    "source_module": {
+      "type": "string",
+      "description": "Module name issuing the request (autopilot | archive | memory)"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session that issued the request"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when request was created"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "description": "Optional key for exactly-once delivery. If provided, duplicate requests with the same key are ignored."
+    },
+    "precondition": {
+      "type": "object",
+      "description": "Optional conditional check before applying delta",
+      "properties": {
+        "min_value": {
+          "type": "integer",
+          "description": "Request is rejected if current value < min_value (prevents negative counters)"
+        },
+        "max_value": {
+          "type": "integer",
+          "description": "Request is rejected if current value > max_value (prevents runaway counters)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable reason for the increment (logged but not enforced)"
+    }
+  }
+}

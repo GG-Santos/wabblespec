@@ -1,0 +1,28 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524k",
+  "timestamp": "2026-05-24T12:00:00Z",
+  "version": "0.4.3",
+  "status": "PASS",
+  "task": "Cold-start coverage correction — 15 missing files (L1: 12, L2: 3)",
+  "files_written": [
+    "modules/l1/analyze/rules/cold-start.md",
+    "modules/l1/api/rules/cold-start.md",
+    "modules/l1/brainstorm/rules/cold-start.md",
+    "modules/l1/deps/rules/cold-start.md",
+    "modules/l1/enhance/rules/cold-start.md",
+    "modules/l1/flag/rules/cold-start.md",
+    "modules/l1/organize/rules/cold-start.md",
+    "modules/l1/perf/rules/cold-start.md",
+    "modules/l1/plan/rules/cold-start.md",
+    "modules/l1/sharpen/rules/cold-start.md",
+    "modules/l1/shift/rules/cold-start.md",
+    "modules/l1/sync/rules/cold-start.md",
+    "modules/l2/adversary/rules/cold-start.md",
+    "modules/l2/audit/rules/cold-start.md",
+    "modules/l2/grader/rules/cold-start.md"
+  ],
+  "files_written_count": 15,
+  "corrections": "Overclaim of 81/81 cold-start coverage corrected; actual coverage was L1: 12/24 and L2: 10/13 at start of run",
+  "violations": 0
+}

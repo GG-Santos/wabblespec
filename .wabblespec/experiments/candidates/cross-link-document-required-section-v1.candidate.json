@@ -1,0 +1,15 @@
+{
+  "candidate_id": "cross-link-document-required-section-v1",
+  "source_pattern": "Pattern 3: Recurring gap: Reference document cross-linkage gaps",
+  "affected_module": "document",
+  "behavior_change": "Document currently produces reference document outputs without requiring a cross-references section, accepting deliverables that cite no related modules, schemas, or SKILL.md files; it should reject its own output with CROSS_LINK_MISSING when the produced reference document contains no '## Cross-references' or '## See also' section with at least one entry.",
+  "evidence": [
+    ".wabblespec/receipts/executor-receipt-seed-run-20260525x.json",
+    ".wabblespec/receipts/executor-receipt-seed-run-20260525aa.json",
+    ".wabblespec/receipts/executor-receipt-seed-run-20260525ab.json"
+  ],
+  "risk": "Existing reference documents in _shared/references/ that predate this change lack cross-references sections; if Document re-generates any of them for documentation deliverables, it will block on its own prior output. A backfill wave adding cross-references sections to all existing reference documents must run before this change is activated in production.",
+  "rollback_condition": "Rollback if CROSS_LINK_MISSING fires on reference documents that are legitimately terminal (no related modules or schemas exist to link to), indicating the cross-references requirement is too broad and needs a scope constraint limiting it to documents that explicitly reference other framework artifacts.",
+  "created_at": "2026-05-25T08:14:00+00:00",
+  "status": "pending"
+}

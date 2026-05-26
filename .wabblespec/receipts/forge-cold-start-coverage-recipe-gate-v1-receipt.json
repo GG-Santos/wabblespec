@@ -1,0 +1,18 @@
+{
+  "module": "forge",
+  "phase": "L8-evolution",
+  "blueprint_id": "cold-start-coverage-recipe-gate-v1",
+  "target_module": "recipe",
+  "target_path": "modules/l0/recipe/SKILL.md",
+  "augment_path": ".wabblespec/experiments/augments/cold-start-coverage-recipe-gate-v1/SKILL.md",
+  "benchmark_verdict": "PASS",
+  "benchmark_held_out_value": 0.0,
+  "benchmark_threshold": 0.0,
+  "developer_outcome": "false_completion",
+  "forge_verdict": "PROMOTED",
+  "change_summary": "Step 2d (Module cold-start verification) added to Recipe workflow. Recipe now checks rules/cold-start.md existence for all selected modules before writing recipe.json. Emits MISSING_COLD_START on failure. cold_start_verified field added to recipe.json output contract and receipt.",
+  "live_module_verified": true,
+  "augment_label_retained": "(AUGMENT: new step) retained in SKILL.md for provenance",
+  "timestamp": "2026-05-25T14:37:42Z",
+  "status": "PASS"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ears-syntax-requirements-20260525",
+  "topic": "EARS Syntax for WabbleSpec Requirements",
+  "wing": "implementation",
+  "room": "specify",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/scripts/ears-validate.py",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "EARS (Easy Approach to Requirements Syntax) used for all WabbleSpec spec requirements. Patterns: WHEN [condition] THE [system] SHALL [behavior]. WHILE [state] THE [system] SHALL [behavior]. IF [condition] THEN THE [system] SHALL [behavior]. THE [system] SHALL [behavior] (unconditional). THE [system] SHOULD [behavior] (optional/best-effort). THE [system] MAY [behavior] (permitted). Modal hierarchy: SHALL (mandatory), SHOULD (recommended but not mandatory), MAY (optional/permitted). Validate: python _shared/scripts/ears-validate.py <spec_file> [--test-dir <path>] [--json]. Hedging words (might/could/perhaps/maybe) in requirements are spec_mode STM violations — normalize to appropriate modal.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

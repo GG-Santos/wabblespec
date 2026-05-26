@@ -1,0 +1,114 @@
+{
+  "fixture_set": "cross-link-document-required-section-v1",
+  "description": "Scenario cases for document cross-references gate. Each case declares deliverable type and whether the produced document has a cross-references section. Expected outcome: BLOCK when reference-type output lacks cross-references; PASS when present or deliverable is non-reference.",
+  "metric": "stale_evidence_rate",
+  "cases": [
+    {
+      "id": "cl-001",
+      "description": "Reference-type output with populated Cross-references section",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/error-event-catalog.md",
+      "cross_references_section": "## Cross-references",
+      "cross_references_entries": ["modules/l2/guard/SKILL.md", "_shared/schemas/error-event.schema.json"],
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-002",
+      "description": "Reference-type output with no cross-references section at all",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/new-policy.md",
+      "cross_references_section": null,
+      "expected_outcome": "BLOCK",
+      "expected_error": "CROSS_LINK_MISSING",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-003",
+      "description": "Reference-type output with empty cross-references section (header only)",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/version-policy.md",
+      "cross_references_section": "## Cross-references",
+      "cross_references_entries": [],
+      "expected_outcome": "BLOCK",
+      "expected_error": "CROSS_LINK_MISSING",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-004",
+      "description": "README update (non-reference) — check bypassed",
+      "deliverable_type": "readme",
+      "destination": "README.md",
+      "cross_references_section": null,
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false,
+      "note": "Non-reference deliverables bypass cross-references check"
+    },
+    {
+      "id": "cl-005",
+      "description": "Reference-type output with See also section (alternative heading)",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/dependency-policy.md",
+      "cross_references_section": "## See also",
+      "cross_references_entries": ["modules/l2/executor/SKILL.md"],
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-006",
+      "description": "CHANGELOG entry (non-reference) — check bypassed",
+      "deliverable_type": "changelog",
+      "destination": "CHANGELOG.md",
+      "cross_references_section": null,
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-007",
+      "description": "Reference-type output, path in _shared/references/ but type not explicitly declared — falls back to path detection",
+      "deliverable_type": null,
+      "destination": "_shared/references/new-reference.md",
+      "cross_references_section": null,
+      "expected_outcome": "BLOCK",
+      "expected_error": "CROSS_LINK_MISSING",
+      "expected_stale_evidence": false,
+      "note": "Path-based detection triggers check when deliverable.type is absent"
+    },
+    {
+      "id": "cl-008",
+      "description": "Inline comment (non-reference) — check bypassed",
+      "deliverable_type": "inline-comment",
+      "destination": "src/executor.ts",
+      "cross_references_section": null,
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-009",
+      "description": "Reference-type output with multiple entries in cross-references section",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/gate-progression-reference.md",
+      "cross_references_section": "## Cross-references",
+      "cross_references_entries": [
+        "modules/l2/executor/SKILL.md",
+        "modules/l2/guard/SKILL.md",
+        "_shared/schemas/receipt.base.schema.json",
+        "framework.yaml"
+      ],
+      "expected_outcome": "PASS",
+      "expected_stale_evidence": false
+    },
+    {
+      "id": "cl-010",
+      "description": "Reference-type output, section present but contains only a heading comment, no real entries",
+      "deliverable_type": "reference",
+      "destination": "_shared/references/stub-policy.md",
+      "cross_references_section": "## Cross-references",
+      "cross_references_entries": ["<!-- TODO: add links -->"],
+      "expected_outcome": "BLOCK",
+      "expected_error": "CROSS_LINK_MISSING",
+      "expected_stale_evidence": false,
+      "note": "HTML comment is not a valid entry — must be a real link or module reference"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "synth-executor-checkpoint-v1",
+  "session_id": "synth-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "candidate_id is unique \u2014 not in tracker",
+      "detail": "candidate_id is unique \u2014 not in tracker"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "affected_module executor matches framework.yaml id",
+      "detail": "affected_module executor matches framework.yaml id"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "behavior_change is one sentence with clear before/after",
+      "detail": "behavior_change is one sentence with clear before/after"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "risk names a specific failure mode (no rollback snapshot)",
+      "detail": "risk names a specific failure mode (no rollback snapshot)"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "rollback_condition is measurable (1/10 sessions threshold)",
+      "detail": "rollback_condition is measurable (1/10 sessions threshold)"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "evidence paths are real files in corpus",
+      "detail": "evidence paths are real files in corpus"
+    },
+    {
+      "id": "V-07",
+      "result": "PASS",
+      "description": "secondary_change for authority.owns documented",
+      "detail": "secondary_change for authority.owns documented"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T20:19:11Z"
+}

@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "task_id": "augment-executor-checkpoint-v1",
+  "session_id": "augment-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l8/augment"
+  ],
+  "files_written": [
+    ".wabblespec/experiments/augments/executor-pre-wave-checkpoint-elimination-v1/SKILL.md",
+    ".wabblespec/experiments/augments/executor-pre-wave-checkpoint-elimination-v1/skill-rules.json",
+    ".wabblespec/experiments/augments/executor-pre-wave-checkpoint-elimination-v1/tests/acceptance.md",
+    ".wabblespec/experiments/fixtures/executor-pre-wave-checkpoint-elimination-v1/fixtures.json",
+    ".wabblespec/experiments/fixtures/executor-pre-wave-checkpoint-elimination-v1/split.json",
+    ".wabblespec/experiments/fixtures/executor-pre-wave-checkpoint-elimination-v1/golden.json"
+  ],
+  "summary": "Augment: executor step-1 eliminated; skill-rules.json authority.owns updated; fixtures built 7/3",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T21:03:54Z"
+}

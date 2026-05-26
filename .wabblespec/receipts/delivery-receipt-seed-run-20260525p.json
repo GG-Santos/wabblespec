@@ -1,0 +1,24 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525p",
+  "status": "PASS",
+  "timestamp": "2026-05-25T02:02:00Z",
+  "module": "archive",
+  "summary": "L3 acceptance tests: all 11 platform modules covered (ai-agent, api-service, cli, data-pipeline, desktop, extension, game, iot, library, mobile, web). Each test derived from SKILL.md. Platform-specific invariants tested: exit codes (CLI), CWV budgets (Web), p99 latency (API), code signing (Mobile/Desktop), AI gateway mandatory (AI/Agent), semver (Library), idempotency (Data/Pipeline), frame budget (Game), flash/RAM budget (IoT), permission minimization (Extension).",
+  "executor_receipt_path": ".wabblespec/receipts/executor-receipt-seed-run-20260525p.json",
+  "verifier_receipt_path": ".wabblespec/receipts/verifier-receipt-seed-run-20260525p.json",
+  "files_delivered": 11,
+  "version_previous": "0.5.0",
+  "version_new": "0.5.1",
+  "version_bump_reason": "ADDITIVE",
+  "total_receipts_accumulated": 61,
+  "l8_gate_progress": "61/100",
+  "acceptance_test_coverage": {
+    "L1": "24/24 COMPLETE",
+    "L2": "13/13 COMPLETE",
+    "L3": "11/11 COMPLETE",
+    "L4_gateways": "policy rules complete (not acceptance tests — gateways tested via L3/L2)",
+    "L5_through_L7": "pending runs q-r"
+  },
+  "next_run": "Run q — L5/L6/L7 acceptance tests"
+}

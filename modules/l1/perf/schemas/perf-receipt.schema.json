@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Perf Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Perf module.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "baseline_measured": {
+      "type": "boolean",
+      "description": "Must be true before any optimization claim. If false: status must be FAIL."
+    },
+    "platform_budget_applied": {
+      "type": "string",
+      "description": "Which platform performance budget was used. e.g. platform-web, platform-api-service, perf-defaults-web, NONE_DECLARED."
+    },
+    "optimization_opportunities": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of optimization opportunities identified from measurement."
+    },
+    "estimated_improvement_pct": {
+      "type": ["number", "null"],
+      "description": "Estimated performance improvement percentage. Null if unmeasurable."
+    },
+    "profiling_method": {
+      "type": "string",
+      "description": "Tool or technique used for measurement. e.g. Lighthouse, k6, hyperfine."
+    },
+    "perf_baseline_path": {
+      "type": "string",
+      "description": "Path to baseline measurement artifact. e.g. .wabblespec/perf/baseline-<timestamp>.json"
+    },
+    "regressions_detected": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of regressions found in non-optimized paths. 0 is clean."
+    }
+  },
+  "required": [
+    "baseline_measured",
+    "platform_budget_applied",
+    "optimization_opportunities",
+    "profiling_method",
+    "perf_baseline_path",
+    "regressions_detected"
+  ]
+}

@@ -1,0 +1,132 @@
+# WabbleSpec References Index
+# One-sentence description per file. Used by ReferenceLoad and Specify for semantic matching.
+# Alphabetical order. Update when adding or removing files from _shared/references/.
+
+adr/0001-i11-framework-product-separation:
+  description: ADR-0001 — Why I11 (framework/product separation) exists, root cause analysis, rejected alternatives, and the enforcement contract
+
+adr/0002-quality-floor-gate-design:
+  description: ADR-0002 — Why the quality floor uses two sequential gates (structural + content) rather than a single combined check
+
+adversarial-patterns:
+  description: Known adversarial attack patterns and prompt-injection vectors for defensive module and spec design
+
+command-risk-policy:
+  description: Shell command risk classification (BLOCK/WARN/OK) with Guard Layer 5 enforcement rules and safer alternatives
+
+compression-discipline:
+  description: Homowabian compression rules — what to compress, what to write in full prose, and preservation constraints
+
+context-budget:
+  description: Context window health tiers (PEAK/GOOD/DEGRADING/POOR) with observable signals and recommended actions per tier
+
+context-engineering:
+  description: Context window load discipline — what to load (signal), what to exclude (noise), placement rules, and wave isolation
+
+context-integrity:
+  description: Rules for maintaining context consistency across waves — what invariants apply to loaded context, staleness within a session
+
+context-optimization:
+  description: Compaction, masking, and KV-cache techniques for reducing context size without losing operational continuity
+
+context7-integration:
+  description: Optional context7 documentation retrieval capability — availability check, call patterns, failure handling, and I6 compliance note
+
+defect-patterns:
+  description: Recurring defect classes and their root causes — reference for Triage and test authoring to avoid known failure modes
+
+delta-spec-patterns:
+  description: Patterns for writing incremental (delta) specs for ADDITIVE and COSMETIC changes without full re-specify
+
+dependency-policy:
+  description: Rules for declaring, upgrading, and auditing external dependencies — N-2 floor, CVE policy, and upgrade commit discipline
+
+domain-pack-spec:
+  description: Specification for domain packs — how to package a set of modules, standards, and references for a specific domain or platform
+
+ears-syntax:
+  description: EARS (Easy Approach to Requirements Syntax) keyword patterns (WHEN/WHERE/IF-THEN/SHALL) for writing normative requirements
+
+error-event-catalog:
+  description: Catalog of named error events with their emitting modules, resolution paths, and example payloads
+
+error-taxonomy:
+  description: Error type definitions (SOFT/HARD/DEPENDENCY/etc.), routing actions, gate-type annotations, and Guard invariant-to-error mappings
+
+exploit-patterns:
+  description: Known exploit patterns (injection, privilege escalation, path traversal, etc.) for Gateway-Security Phase A threat modeling
+
+gate-progression-reference:
+  description: Which modules activate at each layer for each workflow type (New Feature, Bug Fix, Security Patch, Breaking Change, etc.)
+
+graph-intelligence-gate:
+  description: Activation conditions and readiness criteria for EntityGraph and graph-based intelligence features
+
+guard-policy-reference:
+  description: Guard's five enforcement layers and their pass/fail conditions — authoritative policy reference for Guard and Executor
+
+instinct-activation-walkthrough:
+  description: Step-by-step walkthrough of the full L8 Instinct activation process from receipt corpus to pattern confirmation
+
+invariants:
+  description: The 12 WabbleSpec invariants — full definitions, enforcement modules, and violation consequences
+
+l8-corpus-gate:
+  description: Gate conditions for L8 evolution authorization — receipt corpus threshold, instinct pattern requirements, benchmark schema confirmation
+
+lsp-integration:
+  description: Language server protocol integration patterns for IDE-facing modules (diagnostics, completions, hover, code actions)
+
+memory-backend-decision:
+  description: Decision record for the ChromaDB memory backend choice — alternatives considered, trade-offs, and configuration requirements
+
+memory-routing:
+  description: Rules for routing evidence to the correct memory wing, room, and drawer — topology, naming conventions, and search entry points
+
+model-routing:
+  description: How ModelRouter maps capability descriptors from runtime-state.json to task shapes — routing logic and fallback rules
+
+module-activation-matrix:
+  description: Tabular view of which modules activate per workflow type — companion to gate-progression-reference for quick lookup
+
+orchestration-adapter-boundary:
+  description: Boundary rules between Autopilot, ModelRouter, and Ensemble — which module owns orchestration decisions and when
+
+performance-budgets:
+  description: Performance budget thresholds for platform-specific modules — response time, bundle size, memory, and rendering floors
+
+progressive-disclosure:
+  description: Output length and detail calibration rules — when to summarize vs expand, receipt compaction, and context rotation
+
+prompt-patterns:
+  description: Effective prompt construction patterns for module SKILL.md authors — activation phrasing, output contracts, and anti-patterns
+
+quality-floor-gates:
+  description: Definitions of Gate 1 (quick_validate, 8 checks) and Gate 2 (lint_prompts, 6 checks) used by quality-floor-check.py
+
+reasoning-patterns:
+  description: Multi-step reasoning patterns — chain-of-thought, decomposition, pre-commitment prediction, self-audit, and realist check for review modules
+
+reference-authoring:
+  description: Authoring standards for _shared/references/ and _shared/dev/ files — lead-with-rule, one-concept-per-file, cold-start safety
+
+robots-first-spec:
+  description: Spec writing principles optimized for AI consumption — machine-readable structure, unambiguous phrasing, and testability requirements
+
+runbook-structure:
+  description: Structure and required sections for operational runbooks produced by the Monitor and Deploy modules
+
+secure-defaults:
+  description: Security-safe default configurations for common patterns — auth, CORS, headers, secrets handling, and input validation
+
+security-ownership:
+  description: Ownership rules for security-sensitive artifacts — which modules may write to auth, secrets, and trust-boundary files
+
+staleness-states:
+  description: Evidence staleness states (FRESH/AGING/STALE/EXPIRED/NEEDS_REVERIFICATION/SUPERSEDED), decay rules, and hook enforcement
+
+state-protocol:
+  description: Rules for reading and writing session state.json — enforcement_active lifecycle, required_receipts chain, and wave transitions
+
+version-policy:
+  description: SemVer bump rules by delta_class (BREAKING/ADDITIVE/COSMETIC) and commit type — authoritative version increment reference

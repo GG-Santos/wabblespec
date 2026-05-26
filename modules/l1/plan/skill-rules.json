@@ -1,0 +1,41 @@
+{
+  "module": "plan",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/plan", "plan approach", "design approach", "architectural plan", "implementation plan"],
+  "authority": {
+    "owns": [".wabblespec/receipts/plan-receipt-*.json", ".wabblespec/plans/plan-*.md"],
+    "reads": [
+      "modules/l1/plan/rules/plan-completeness.md",
+      "modules/l1/plan/rules/expert-roles.md",
+      "modules/l1/plan/rules/escalation-triggers.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "trigger": {
+    "automatic": "Complexity Medium or High (from recipe.json), or Autopilot L2+ autonomy",
+    "manual": "/plan command"
+  },
+  "preconditions": [
+    "recipe.json must exist",
+    "Propose must have produced a recommendation"
+  ],
+  "adversary_gate": {
+    "triggers": ["complexity = High", "security scope", "infrastructure scope", "irreversible scope", "open risk rated BLOCKING"],
+    "modules": ["modules/l2/adversary", "modules/l2/grader"]
+  },
+  "invariants": [
+    { "id": "PLN-1", "rule": "Min 2 expert perspectives applied", "severity": "BLOCKING" },
+    { "id": "PLN-2", "rule": "go_no_go must be declared before passing to Decompose", "severity": "BLOCKING" },
+    { "id": "PLN-3", "rule": "GO must not be issued when any open risk is BLOCKING", "severity": "BLOCKING" },
+    { "id": "PLN-4", "rule": "Adversary challenge mandatory for High complexity or security/infra/irreversible scope", "severity": "BLOCKING" },
+    { "id": "PLN-5", "rule": "Plan does not determine wave structure — Decompose owns that", "severity": "WARNING" }
+  ],
+  "rules": [
+    "rules/plan-completeness.md",
+    "rules/expert-roles.md",
+    "rules/escalation-triggers.md"
+  ],
+  "receipt_schema": "schemas/plan-receipt.schema.json"
+}

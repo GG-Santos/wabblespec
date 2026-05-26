@@ -1,0 +1,85 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Data/Pipeline platform only activates when Recipe has run and identified Data/Pipeline as primary target",
+    "Idempotency strategy must be declared before Specify receipt is written",
+    "Schema evolution strategy must be declared before any Executor wave begins",
+    "Data quality assertions must be declared before Specify receipt",
+    "Backfill strategy must be declared before Specify receipt",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/dags/**",
+    "**/pipelines/**",
+    "**/etl/**",
+    "**/transforms/**",
+    "dags/**/*.py",
+    "flows/**/*.py",
+    "models/**/*.sql",
+    "jobs/**/*.py",
+    "pipelines/**/*.py",
+    "dbt_project.yml"
+  ],
+  "module": "data-pipeline",
+  "activators": [
+    "etl pipeline",
+    "data pipeline",
+    "data ingestion",
+    "streaming pipeline",
+    "kafka consumer",
+    "airflow dag",
+    "prefect flow",
+    "dagster asset",
+    "dbt model",
+    "spark job",
+    "flink job",
+    "data transformation",
+    "data orchestration",
+    "data quality",
+    "batch processing",
+    "stream processing"
+  ],
+  "anti_activators": [
+    "web server routes",
+    "REST API endpoints",
+    "frontend components",
+    "mobile screens"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "DATA_PIPELINE"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/data-pipeline-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

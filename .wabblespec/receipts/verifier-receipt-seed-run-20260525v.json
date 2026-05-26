@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525v",
+  "session_id": "seed-pipeline-v",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "All 6 files written and present",
+      "result": "PASS",
+      "detail": "_shared/references/runbook-structure.md and all 5 _shared/templates/runbooks/ stubs confirmed written"
+    },
+    {
+      "id": "V-02",
+      "description": "runbook-structure.md documents required sections (header, symptoms, triage, diagnosis, remediation, escalation, post-incident)",
+      "result": "PASS",
+      "detail": "All 7 required sections documented with required fields and UNDECLARED markers"
+    },
+    {
+      "id": "V-03",
+      "description": "Runbook stubs contain all required sections from runbook-structure spec",
+      "result": "PASS",
+      "detail": "All 5 stubs contain: header block, Symptoms, Immediate triage, Diagnosis, Remediation, Escalation, Post-incident"
+    },
+    {
+      "id": "V-04",
+      "description": "Alert slug convention matches Monitor SKILL.md examples (latency-breach, error-rate-breach, etc.)",
+      "result": "PASS",
+      "detail": "Filenames use lowercase hyphen-separated slugs matching Monitor Step 3 annotation pattern: docs/runbooks/{alert-slug}.md"
+    },
+    {
+      "id": "V-05",
+      "description": "Project-specific values use ___ UNDECLARED marker (not invented values)",
+      "result": "PASS",
+      "detail": "All threshold values, owner fields, dashboard links, and tool invocations use ___ UNDECLARED per Monitor non-negotiable rule 1"
+    },
+    {
+      "id": "V-06",
+      "description": "runbook-structure.md cross-references correct modules (l7/monitor, l7/scaffold, l7/deploy)",
+      "result": "PASS",
+      "detail": "Cross-references section links to SKILL.md files and performance-budgets reference; deploy Attestation policy noted"
+    },
+    {
+      "id": "V-07",
+      "description": "Crash runbook covers both client (mobile/desktop/game) and server (OOM kill) scenarios",
+      "result": "PASS",
+      "detail": "Platform applicability declared in header; separate remediation sections for client apps and server processes"
+    },
+    {
+      "id": "V-08",
+      "description": "Memory runbook covers IoT-specific concerns (static allocation, interrupt context, watchdog)",
+      "result": "PASS",
+      "detail": "IoT subsection present in remediation covering static allocation preference, stack overflow check, and watchdog"
+    },
+    {
+      "id": "V-09",
+      "description": "SLO-miss runbook distinguishes fast-burn vs. slow-burn handling",
+      "result": "PASS",
+      "detail": "Separate remediation paths for fast-burn (immediate incident) and slow-burn (within-SLO scheduling)"
+    },
+    {
+      "id": "V-10",
+      "description": "No invented SLO thresholds or project-specific values",
+      "result": "PASS",
+      "detail": "No numeric thresholds invented; all use ___ UNDECLARED or reference performance-budgets.md as source of truth"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T08:01:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525z",
+  "session_id": "seed-pipeline-z",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.6.0",
+  "version_new": "0.6.1",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "project-map.md starter templates for AI-Agent, IoT, Game, Data-Pipeline, Library, Extension. Scaffold project-map template library complete: all 11 L3 platforms covered. 91/100 PASS receipts.",
+  "total_receipts_accumulated": 91,
+  "l8_gate_progress": "91/100",
+  "archived_at": "2026-05-25T12:02:00Z"
+}

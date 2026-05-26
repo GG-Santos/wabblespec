@@ -1,0 +1,78 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525x",
+  "session_id": "seed-pipeline-x",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "Both files written and present",
+      "result": "PASS",
+      "detail": "_shared/references/error-event-catalog.md and _shared/references/guard-policy-reference.md confirmed written"
+    },
+    {
+      "id": "V-02",
+      "description": "Error event catalog covers all 6 error types from error-event.schema.json",
+      "result": "PASS",
+      "detail": "SOFT/HARD/DEPENDENCY/CONTEXT_EXHAUSTION/SPEC_VIOLATION/STALENESS_VIOLATION all present in routing table with correct routing actions"
+    },
+    {
+      "id": "V-03",
+      "description": "Catalog includes registry entries for L2 (Guard/Executor/Verifier/Archive/Rollback), L5 (Memory/Dream/Forget), and L7 (Deploy/Release/Package/Monitor)",
+      "result": "PASS",
+      "detail": "All major modules with error-emitting behavior have entries in the per-module registry section"
+    },
+    {
+      "id": "V-04",
+      "description": "User-facing message templates never use 'Something went wrong' and always name the artifact/module and next step",
+      "result": "PASS",
+      "detail": "All 30+ message templates include specific artifact/field references and concrete next-step instructions; 'Something went wrong' does not appear"
+    },
+    {
+      "id": "V-05",
+      "description": "User-facing message rules section present and includes HARD vs. SOFT retry/escalation rules",
+      "result": "PASS",
+      "detail": "6 rules documented including: no 'Something went wrong', name artifact, include next step, HARD errors no retry language, SOFT no panic language, STALENESS_VIOLATION must say 'quarantined'"
+    },
+    {
+      "id": "V-06",
+      "description": "Guard policy reference covers all 5 layers with correct trigger conditions and actions",
+      "result": "PASS",
+      "detail": "Layers 1-5 all present; invariants I1/I2/I3/I6/I9/I10/I11/I12 listed with correct violation types per Guard SKILL.md; Layer 5 skip condition documented"
+    },
+    {
+      "id": "V-07",
+      "description": "Memory backend invariants (WABBLESPEC_MEMORY_READY/CHROMADB_EXISTS/CLOSET_INDEX_GATE) included in Layer 3",
+      "result": "PASS",
+      "detail": "All 3 Memory backend invariants documented with trigger conditions and resolution messages matching Guard SKILL.md"
+    },
+    {
+      "id": "V-08",
+      "description": "Guard receipt fields documented with correct type values",
+      "result": "PASS",
+      "detail": "All 9 fields present; layer_5_command_risk includes SKIP value; misactivation_risk boolean documented"
+    },
+    {
+      "id": "V-09",
+      "description": "Error type to routing action cross-reference table present in Guard policy reference",
+      "result": "PASS",
+      "detail": "Table maps each layer's error type to the schema routing action (halt/pause/loop_back); references error-event-catalog.md for message templates"
+    },
+    {
+      "id": "V-10",
+      "description": "Command risk classification rules match Guard SKILL.md (SAFE terminates, piped highest tier, unresolved vars escalate, novel = WARN)",
+      "result": "PASS",
+      "detail": "All 4 classification rules from Guard SKILL.md Layer 5 are present verbatim in guard-policy-reference.md"
+    },
+    {
+      "id": "V-11",
+      "description": "Cross-references correct and include error-event-catalog cross-referencing guard-policy-reference and vice versa",
+      "result": "PASS",
+      "detail": "Bidirectional cross-references present; both files reference each other and the shared schema files"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T10:01:00Z"
+}

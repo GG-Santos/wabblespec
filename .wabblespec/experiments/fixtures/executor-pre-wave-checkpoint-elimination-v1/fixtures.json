@@ -1,0 +1,78 @@
+{
+  "fixture_set_id": "executor-pre-wave-checkpoint-elimination-v1",
+  "blueprint_id": "executor-pre-wave-checkpoint-elimination-v1",
+  "metric": "rollback_intervention_rate",
+  "developer_outcome": "rework",
+  "cases": [
+    {
+      "id": "case-01",
+      "description": "Single-wave session, wave completes successfully — no rollback needed",
+      "input": {"wave_plan_files": ["src/auth.py"], "failed_wave_number": null, "files_partially_modified": []},
+      "expected_outcome": "no_intervention",
+      "label": "success_no_rollback"
+    },
+    {
+      "id": "case-02",
+      "description": "Single-wave session, wave fails after one file written — wave plan identifies correct revert target",
+      "input": {"wave_plan_files": ["src/auth.py", "tests/test_auth.py"], "failed_wave_number": 1, "files_partially_modified": ["src/auth.py"]},
+      "expected_outcome": "correct_files_identified_for_revert",
+      "label": "single_wave_partial_failure"
+    },
+    {
+      "id": "case-03",
+      "description": "Two-wave session, wave 1 completes, wave 2 fails — wave plan covers wave 2 outputs only",
+      "input": {"wave_plan_files": ["src/router.py", "src/middleware.py"], "failed_wave_number": 2, "files_partially_modified": ["src/router.py"]},
+      "expected_outcome": "correct_files_identified_for_revert",
+      "label": "multi_wave_wave2_failure"
+    },
+    {
+      "id": "case-04",
+      "description": "Wave fails before any files written — no revert needed, session restarts cleanly",
+      "input": {"wave_plan_files": ["src/schema.py"], "failed_wave_number": 1, "files_partially_modified": []},
+      "expected_outcome": "no_intervention",
+      "label": "failure_before_writes"
+    },
+    {
+      "id": "case-05",
+      "description": "Wave plan exists and names all outputs — rollback can proceed without directory checkpoint",
+      "input": {"wave_plan_files": ["README.md", "docs/api.md", "CHANGELOG.md"], "failed_wave_number": 1, "files_partially_modified": ["README.md"]},
+      "expected_outcome": "correct_files_identified_for_revert",
+      "label": "multi_file_wave_partial_failure"
+    },
+    {
+      "id": "case-06",
+      "description": "Wave plan outputs list is empty (undeclared outputs) — rollback impossible, surface to human",
+      "input": {"wave_plan_files": [], "failed_wave_number": 1, "files_partially_modified": ["src/unknown.py"]},
+      "expected_outcome": "rollback_impossible",
+      "label": "undeclared_outputs_failure"
+    },
+    {
+      "id": "case-07",
+      "description": "Wave plan missing (corrupted session) — rollback impossible",
+      "input": {"wave_plan_files": null, "failed_wave_number": 1, "files_partially_modified": ["src/main.py"]},
+      "expected_outcome": "rollback_impossible",
+      "label": "missing_wave_plan_failure"
+    },
+    {
+      "id": "case-08",
+      "description": "Three-wave plan, wave 3 fails — wave plan wave-3 outputs correctly scoped",
+      "input": {"wave_plan_files": ["deploy/k8s.yaml"], "failed_wave_number": 3, "files_partially_modified": ["deploy/k8s.yaml"]},
+      "expected_outcome": "correct_files_identified_for_revert",
+      "label": "three_wave_last_wave_failure"
+    },
+    {
+      "id": "case-09",
+      "description": "Wave succeeds — session checkpoint at .wabblespec/session/checkpoints/ is still written",
+      "input": {"wave_plan_files": ["src/models.py"], "failed_wave_number": null, "files_partially_modified": []},
+      "expected_outcome": "session_checkpoint_written",
+      "label": "post_wave_session_checkpoint_survives"
+    },
+    {
+      "id": "case-10",
+      "description": "Guard-check authority does not include .wabblespec/checkpoints/* — path correctly absent",
+      "input": {"proposed_files": [".wabblespec/checkpoints/wave-1-20260526/checkpoint-meta.json"], "module": "executor"},
+      "expected_outcome": "authority_fail",
+      "label": "authority_no_longer_covers_pre_wave_path"
+    }
+  ]
+}

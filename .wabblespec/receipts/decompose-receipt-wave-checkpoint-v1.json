@@ -1,0 +1,37 @@
+{
+  "receipt_type": "decompose",
+  "session_id": "wave-checkpoint-v1",
+  "task_id": "wave-checkpoint-v1",
+  "timestamp": "2026-05-26T00:00:00Z",
+  "module": "decompose",
+  "phase": "Decompose",
+  "status": "COMPLETE",
+  "wave_count": 2,
+  "waves": [
+    {
+      "wave_number": 1,
+      "label": "Fix executor authority.owns and produces_schemas",
+      "files": ["modules/l2/executor/skill-rules.json"],
+      "acceptance_criteria": ["AC-7"]
+    },
+    {
+      "wave_number": 2,
+      "label": "Update framework.yaml executor produces_schemas",
+      "files": ["framework.yaml"],
+      "acceptance_criteria": ["AC-1", "AC-7"]
+    }
+  ],
+  "research_findings": [
+    "schema _shared/schemas/wave-checkpoint.schema.json already exists",
+    "executor SKILL.md Step 5b already has checkpoint write spec",
+    "guard SKILL.md Layer 1 already has checkpoint detection",
+    "recipe SKILL.md Step 1b already has checkpoint surface logic",
+    "executor/tests/acceptance.md already has checkpoint criteria",
+    "guard/tests/acceptance.md already has checkpoint criteria",
+    "framework.yaml schema consumers list already registered",
+    "gap confirmed: executor skill-rules.json authority.owns has .wabblespec/checkpoints/* not .wabblespec/session/checkpoints/*",
+    "gap confirmed: framework.yaml executor produces_schemas missing wave-checkpoint.schema.json"
+  ],
+  "prior_receipt": "specify-receipt-wave-checkpoint-v1.json",
+  "collapse_eligible": false
+}

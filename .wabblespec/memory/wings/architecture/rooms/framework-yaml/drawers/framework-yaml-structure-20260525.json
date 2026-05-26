@@ -1,0 +1,17 @@
+{
+  "id": "framework-yaml-structure-20260525",
+  "topic": "framework.yaml Canonical Module Registry",
+  "wing": "architecture",
+  "room": "framework-yaml",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "framework.yaml",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "framework.yaml is the canonical module registry — single source of truth for all 100 modules. Per-module fields: id (kebab-case), path (modules/{layer}/{id}/), type (skill), layer (L0-L8), tags [], produces_schemas [], consumes_schemas [], depends_on [], last_validated (date string), quality_floor_passed (bool), build_status (built|deferred|planned). Shared files section: shared_files list with path and consumers array. validate-graph.py reads framework.yaml and checks dependency references + shared file consumer declarations. --record-witness computes sha256 of SKILL.md + skill-rules.json; --check-hashes detects MODULE_FILE_DRIFT.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

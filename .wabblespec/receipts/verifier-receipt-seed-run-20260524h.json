@@ -1,0 +1,52 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524h",
+  "timestamp": "2026-05-24T10:00:30Z",
+  "version": "0.4.1",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "L5 cold-start files (8/8)",
+      "result": "PASS",
+      "detail": "memory, memory-search, memory-mine, dream, nexus, provenance, entity-graph, forget"
+    },
+    {
+      "check": "L6 cold-start files (12/12)",
+      "result": "PASS",
+      "detail": "proofread, markdown, copy, writer, legal, translate, optimize, market, polish, research-log, document, homowabian"
+    },
+    {
+      "check": "L7 cold-start files (8/8)",
+      "result": "PASS",
+      "detail": "archive, changelog, commit, deploy, monitor, package, release, scaffold"
+    },
+    {
+      "check": "L8 cold-start files (9/9)",
+      "result": "PASS",
+      "detail": "instinct, synth, blueprint, forge, benchmark, augment, factory, feedback, retro"
+    },
+    {
+      "check": "L8 corpus gate enforced in all L8 cold-starts",
+      "result": "PASS",
+      "detail": "All 9 L8 modules block with corpus gate message when < 100 PASS receipts"
+    },
+    {
+      "check": "Activation gates consistent (L8 chain: Instinct -> Synth -> Blueprint -> Forge)",
+      "result": "PASS",
+      "detail": "Instinct: validated patterns required. Synth: validated Instinct pattern. Blueprint: approved Synth. Forge: approved Blueprint. Chain enforced."
+    },
+    {
+      "check": "validate-graph.py 0 violations",
+      "result": "PASS",
+      "detail": "99 modules, 98 shared files, 0 violations"
+    },
+    {
+      "check": "Cold-start coverage: all 81 modules across L0-L8",
+      "result": "PASS"
+    },
+    {
+      "check": "VERSION 0.4.1",
+      "result": "PASS"
+    }
+  ]
+}

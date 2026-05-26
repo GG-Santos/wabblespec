@@ -1,0 +1,17 @@
+{
+  "id": "apply-delta-classification-20260525",
+  "topic": "Apply Module Delta Classification Rules",
+  "wing": "implementation",
+  "room": "apply",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l1/apply/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Apply writes only to project/repo/ (I11). Delta types: ADDITIVE (new behavior, new API surface, extends interface) -> proceed with diff record. COSMETIC (no behavior change, no API surface change, formatting/rename within boundary) -> proceed. BREAKING (any change that could break consumers) -> halt, route to Executor with Specify delta. Gateway reads apply layer (L1) for routing decisions. Apply produces delta proposals: ADDITIVE/COSMETIC can proceed with --patch; BREAKING causes Executor halt. Reads active platform package and capability gateways to determine which modules are relevant to current wave. Writes only to project/repo/ — never touches .wabblespec/ (I11 enforcement).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

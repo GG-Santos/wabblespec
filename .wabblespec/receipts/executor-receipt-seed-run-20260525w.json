@@ -1,0 +1,21 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525w",
+  "session_id": "seed-pipeline-w",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/monitor", "l7/scaffold"],
+  "files_written": [
+    "_shared/templates/runbooks/runbook-watchdog-miss.md",
+    "_shared/templates/runbooks/runbook-flash-threshold-breach.md",
+    "_shared/templates/runbooks/runbook-frame-drop-breach.md",
+    "_shared/templates/runbooks/runbook-cost-ceiling-breach.md",
+    "_shared/templates/runbooks/runbook-eval-pass-rate-drop.md",
+    "_shared/templates/runbooks/runbook-throughput-drop.md"
+  ],
+  "summary": "Platform-specific runbook stubs for 6 alert types: IoT (watchdog-miss, flash-threshold-breach), Game (frame-drop-breach), AI Agent (cost-ceiling-breach, eval-pass-rate-drop), cross-platform (throughput-drop). Runbook library now covers all platform-specific SLO dimensions declared in performance-budgets templates.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T09:00:00Z"
+}

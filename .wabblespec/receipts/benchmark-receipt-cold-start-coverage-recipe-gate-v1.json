@@ -1,0 +1,13 @@
+{
+  "module": "benchmark",
+  "layer": "L8",
+  "blueprint_id": "cold-start-coverage-recipe-gate-v1",
+  "metric_name": "false_completion_rate",
+  "held_out_cases": 8,
+  "held_out_value": 0.0,
+  "threshold": 0.0,
+  "verdict": "PASS",
+  "fixture_set": ".wabblespec/experiments/fixtures/cold-start-coverage-recipe-gate-v1/",
+  "status": "PASS",
+  "timestamp": "2026-05-25T09:00:00+00:00"
+}

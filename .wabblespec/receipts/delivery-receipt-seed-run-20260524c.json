@@ -1,0 +1,23 @@
+{
+  "receipt_type": "delivery",
+  "run_id": "seed-run-20260524c",
+  "status": "PASS",
+  "timestamp": "2026-05-23T17:00:47Z",
+  "deliverables": [
+    "_shared/scripts/quality-floor-check.py (patched: layer filter + utf-8-sig BOM fix)",
+    "16 SKILL.md files: heading normalized to '## What this skill does'",
+    "27 skill-rules.json files: normalized to standard schema (module/layer/tier/activators/authority/verification_mode/receipt_required)",
+    "_shared/scripts/validate-graph.py (built, A7 violation caught and fixed)",
+    "framework.yaml: A7 violation on quality-floor-gates.md fixed"
+  ],
+  "receipts_in_run": [
+    "recipe-receipt-seed-run-20260524c.json",
+    "scopeframe-receipt-seed-run-20260524c.json",
+    "specify-receipt-seed-run-20260524c.json",
+    "decompose-receipt-seed-run-20260524c.json",
+    "executor-receipt-seed-run-20260524c.json",
+    "verifier-receipt-seed-run-20260524c.json",
+    "delivery-receipt-seed-run-20260524c.json"
+  ],
+  "total_receipts_accumulated": 19
+}

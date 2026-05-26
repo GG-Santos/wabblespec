@@ -1,0 +1,17 @@
+{
+  "id": "document-cross-link-enforcement-20260525",
+  "topic": "Document Module Cross-Link Enforcement",
+  "wing": "implementation",
+  "room": "document",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l6/document/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Document (L6) enforces cross-reference section for reference-type deliverables (AUGMENT: Forge 3, from Pattern 3, promoted 0.8.5). Detection: deliverable.type == 'reference' OR file path starts with _shared/references/. Check: output file must contain ## Cross-references or ## See also with at least one entry. Empty section header does not satisfy. On failure: CROSS_LINK_MISSING error, do not write document-receipt, surface message. On pass: cross_link_verified: true in document receipt. Non-reference outputs (README, inline comments, CHANGELOG, API reference): cross_link_verified is null. A reference document with no cross-references is navigation-dead. Loop-back is not optional.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

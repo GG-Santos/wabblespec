@@ -1,0 +1,40 @@
+{
+  "promotions": [
+    {
+      "blueprint_id": "cold-start-coverage-recipe-gate-v1",
+      "promoted_at": "2026-05-25T09:10:00+00:00",
+      "attested_by": "Gino Santos",
+      "source": ".wabblespec/experiments/augments/cold-start-coverage-recipe-gate-v1/",
+      "target": "modules/l0/recipe/",
+      "files_promoted": ["SKILL.md", "skill-rules.json", "tests/acceptance.md"],
+      "benchmark_verdict": "PASS",
+      "held_out_value": 0.0,
+      "developer_outcome": "false_completion",
+      "needs_reverification": ["product", "enhance", "sharpen", "scope-frame", "scaffold", "platform-web", "platform-api-service", "platform-cli", "platform-game", "platform-mobile", "platform-desktop", "platform-iot-embedded", "platform-library-package", "platform-extension-plugin", "platform-data-pipeline", "platform-ai-agent"]
+    },
+    {
+      "blueprint_id": "acceptance-test-executor-enforcement-v1",
+      "promoted_at": "2026-05-25T09:12:00+00:00",
+      "attested_by": "Gino Santos",
+      "source": ".wabblespec/experiments/augments/acceptance-test-executor-enforcement-v1/",
+      "target": "modules/l2/executor/",
+      "files_promoted": ["SKILL.md", "skill-rules.json", "tests/acceptance.md"],
+      "benchmark_verdict": "PASS",
+      "held_out_value": 0.0,
+      "developer_outcome": "missed_test",
+      "needs_reverification": ["verifier", "apply", "autopilot"]
+    },
+    {
+      "blueprint_id": "cross-link-document-required-section-v1",
+      "promoted_at": "2026-05-25T09:14:00+00:00",
+      "attested_by": "Gino Santos",
+      "source": ".wabblespec/experiments/augments/cross-link-document-required-section-v1/",
+      "target": "modules/l6/document/",
+      "files_promoted": ["SKILL.md", "skill-rules.json", "tests/acceptance.md"],
+      "benchmark_verdict": "PASS",
+      "held_out_value": 0.0,
+      "developer_outcome": "stale_evidence",
+      "needs_reverification": []
+    }
+  ]
+}

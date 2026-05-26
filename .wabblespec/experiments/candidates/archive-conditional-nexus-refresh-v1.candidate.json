@@ -1,0 +1,15 @@
+{
+  "candidate_id": "archive-conditional-nexus-refresh-v1",
+  "source_pattern": "Pattern 3: High-frequency module: delivery (archive)",
+  "affected_module": "archive",
+  "behavior_change": "Archive step 10 currently invokes graph-builder.py after every archive run, with the only skip condition being 'Nexus graph does not exist yet.' This means documentation tasks, delivery tasks, L8 fixture-generation tasks, and seed runs that touch zero framework files still trigger graph-builder.py. The Nexus graph tracks framework module dependency edges (modules/**/SKILL.md, modules/**/skill-rules.json, _shared/schemas/*.json, framework.yaml) — it does not track product-space code changes. The change adds a pre-check: Archive reads the aggregated files_written list from this session's wave receipts and checks whether any entry matches a framework-graph-relevant path pattern. Patterns: modules/ prefix with SKILL.md or skill-rules.json suffix; _shared/schemas/ prefix with .json suffix; exact match framework.yaml. If no match: skip graph-builder.py, record nexus_refreshed: false, nexus_skip_reason: 'no-framework-files-modified'. If any match: invoke graph-builder.py as before.",
+  "evidence": [
+    ".wabblespec/memory/instinct-observations.md",
+    ".wabblespec/receipts/executor-receipt-instinct-positive-patterns-v1.json"
+  ],
+  "risk": "A session that modifies a framework file but does not list it in files_written (in any wave receipt) would incorrectly skip Nexus refresh, allowing graph drift. Guard already enforces files_written completeness before each wave proceeds — any framework file modified in a wave must appear in files_written or Guard blocks the wave. The risk is low but non-zero for manual edits outside the wave receipt chain.",
+  "rollback_condition": "If Nexus graph drift — defined as stale or missing edges detected at next-session Guard for a module that was modified since last Nexus refresh — occurs in more than 1 of 10 consecutive sessions after this change, restore unconditional graph-builder invocation at step 10.",
+  "secondary_change": "The delivery receipt gains a new field nexus_skip_reason (string, null when nexus_refreshed=true). No skill-rules.json changes required.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "pending"
+}

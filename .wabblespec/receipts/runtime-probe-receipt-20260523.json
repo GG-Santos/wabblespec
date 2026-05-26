@@ -1,0 +1,44 @@
+{
+  "module": "runtime-probe",
+  "layer": "L0",
+  "phase": "Research",
+  "wave": 0,
+  "timestamp": "2026-05-23T00:00:00Z",
+  "checks_run": [
+    "code-generation-detection",
+    "analysis-detection",
+    "synthesis-detection",
+    "instruction-following-detection",
+    "reasoning-detection",
+    "tool-use-detection",
+    "vision-detection",
+    "embedding-detection",
+    "no-model-names-in-output"
+  ],
+  "checks_passed": [
+    "code-generation-detection",
+    "analysis-detection",
+    "synthesis-detection",
+    "instruction-following-detection",
+    "reasoning-detection",
+    "tool-use-detection",
+    "vision-detection",
+    "embedding-detection",
+    "no-model-names-in-output"
+  ],
+  "evidence": [
+    ".wabblespec/runtime/runtime-state.json"
+  ],
+  "status": "PASS",
+  "outputs": [
+    ".wabblespec/runtime/runtime-state.json"
+  ],
+  "not_tested": [
+    "vision: no image input submitted in this session — marked unavailable with confidence 0.80",
+    "embedding: no embedding tool available in current tool surface — marked unavailable with confidence 0.90"
+  ],
+  "confidence": 0.92,
+  "overrides_applied": false,
+  "capabilities_detected": ["code-generation", "analysis", "synthesis", "instruction-following", "reasoning", "tool-use"],
+  "capabilities_unavailable": ["vision", "embedding"]
+}

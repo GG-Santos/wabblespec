@@ -1,0 +1,40 @@
+{
+  "module": "specify",
+  "layer": "L1",
+  "phase": "Specify",
+  "wave": 0,
+  "timestamp": "2026-05-25T20:10:20Z",
+  "session_id": "l3-framework-extensions-plan-v1",
+  "checks_run": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "checks_passed": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "requirements": [
+    "Audit all 12 L3 platform modules for framework-specific extension completeness",
+    "Determine whether CLI/data-pipeline/desktop/ai-agent/library need L3-specific spec templates",
+    "Resolve Security leaf modules deferred item from phase-integration.md",
+    "Produce decision document closing the gateway leaf module deferred item"
+  ],
+  "success_criteria": [
+    "All L3 modules assessed with clear COMPLETE/ACCEPTABLE verdict",
+    "Decision rationale documented for Pattern A vs Pattern B vs Pattern C choice",
+    "Deferred item from phase-integration.md formally closed"
+  ],
+  "failure_modes": [
+    "Gaps identified requiring new L3 files"
+  ],
+  "outputs": [
+    ".wabblespec/plans/l3-framework-extensions-plan.md"
+  ],
+  "not_tested": []
+}

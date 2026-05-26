@@ -1,0 +1,32 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-automation-scripts-3",
+  "session_id": "seed-run-automation-scripts-3",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 2,
+  "version_previous": "0.11.0",
+  "version_new": "0.12.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 4,
+  "not_tested_list": [
+    "provenance-append cascade multi-hop",
+    "index-update quality section",
+    "pipeline close dry-run",
+    "guard-check misactivation_risk"
+  ],
+  "summary": "Wave 3 automation: 9 scripts (command-risk-check, guard-check, drawer-writer, provenance-append, tracker-update, fixture-split, document-check, index-update, pipeline)",
+  "archived_at": "2026-05-25T17:01:41Z",
+  "files_delivered": [
+    "_shared/scripts/command-risk-check.py",
+    "_shared/scripts/guard-check.py",
+    "_shared/scripts/drawer-writer.py",
+    "_shared/scripts/provenance-append.py",
+    "_shared/scripts/tracker-update.py",
+    "_shared/scripts/fixture-split.py",
+    "_shared/scripts/document-check.py",
+    "_shared/scripts/index-update.py",
+    "_shared/scripts/pipeline.py"
+  ]
+}

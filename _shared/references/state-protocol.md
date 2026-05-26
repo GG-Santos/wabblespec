@@ -119,3 +119,32 @@ To verify enforcement works end-to-end:
 5. Restore the receipt file.
 6. Retry the tool call.
 7. Expected: hook exits 0, tool proceeds.
+
+## State Ownership Map
+
+Exclusive writers listed. All other modules submit via the owning module — never write directly.
+
+| State file | Exclusive writer | Readers (no write authority) |
+|---|---|---|
+| `.wabblespec/receipts/` | Each module (its own receipt only) | Guard, Verifier, Archive, Executor |
+| `.wabblespec/memory/drawers/` | Memory module | All L5 modules via Memory write path |
+| `.wabblespec/memory/ledger.md` | Provenance | Memory, Forget (notify only) |
+| `.wabblespec/memory/index.md` | Memory | MemorySearch, Dream, MemoryMine (read only) |
+| `.wabblespec/memory/tracker.json` | Instinct (write), Dream (decay) | Synth (read only) |
+| `.wabblespec/session/state.json` | Autopilot, each module (own fields only) | pre-tool-use hook (read only) |
+| `framework.yaml` | Manual / path-linter script | All modules (read only) |
+| `.wabblespec/meta.md` | Autopilot exclusively | All modules submit change requests |
+| `.wabblespec/experiments/` | Factory, Augment, Benchmark | Forge (reads for promotion) |
+| `project/repo/` | Apply, Executor, platform modules | All spec/memory/delivery modules (read only) |
+
+## State vs Instructions Hygiene
+
+`state.json` has one job: answer enforcement questions.
+
+- Is enforcement active?
+- Which receipts are required before tool use proceeds?
+- Which module is currently running?
+
+`state.json` must not be used to inject module instructions, wave implementation guidance, or task context. Module instructions come from `SKILL.md` files loaded per wave. Task context comes from `task-card.md` and `scope.md`. Mixing instructions into state.json creates two problems: (1) instructions become stale without a versioning contract; (2) state.json grows unbounded across waves.
+
+**Practical signal:** if `state.json` exceeds ~40 lines mid-session, it has likely accumulated content that belongs in receipts or SKILL.md files. Audit and trim before the next wave.

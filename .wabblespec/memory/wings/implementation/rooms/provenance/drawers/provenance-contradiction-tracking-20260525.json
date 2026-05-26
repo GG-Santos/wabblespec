@@ -1,0 +1,17 @@
+{
+  "id": "provenance-contradiction-tracking-20260525",
+  "topic": "Provenance Module and Contradiction Tracking",
+  "wing": "implementation",
+  "room": "provenance",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l5/provenance/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Provenance (L5) tracks the lineage of decisions and detects contradictions between receipts. Reads receipt chain and spec artifacts. Emits CONTRADICTION_DETECTED when a verifier-passed output conflicts with a prior verifier-passed output on the same requirement. Contradiction resolution requires human Attestation — cannot be auto-resolved. Stores provenance records in .wabblespec/memory/. L8 corpus gate condition: contradictions confirmed zero. As of 2026-05-25, contradictions confirmed zero (L8 gate MET). Provenance is read by Guard, Instinct, Synth, Blueprint.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

@@ -1,0 +1,60 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "blueprint-executor-checkpoint-v1",
+  "session_id": "blueprint-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "blueprint_id matches candidate_id",
+      "detail": "blueprint_id matches candidate_id"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "before_behavior quotes specific SKILL.md step 1 text",
+      "detail": "before_behavior quotes specific SKILL.md step 1 text"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "after_behavior specifies exact replacement for step 1 and authority.owns change",
+      "detail": "after_behavior specifies exact replacement for step 1 and authority.owns change"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "benchmark gate has metric/threshold/direction/developer_outcome",
+      "detail": "benchmark gate has metric/threshold/direction/developer_outcome"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "rollback_intervention_rate threshold 10% derives from candidate rollback_conditi",
+      "detail": "rollback_intervention_rate threshold 10% derives from candidate rollback_condition"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "all 11 L3 targets listed as affected_targets",
+      "detail": "all 11 L3 targets listed as affected_targets"
+    },
+    {
+      "id": "V-07",
+      "result": "PASS",
+      "description": "verification_mode=Review correct for L2 module (not L8 self-modification)",
+      "detail": "verification_mode=Review correct for L2 module (not L8 self-modification)"
+    },
+    {
+      "id": "V-08",
+      "result": "PASS",
+      "description": "status=awaiting-attestation blocking Augment",
+      "detail": "status=awaiting-attestation blocking Augment"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T20:20:37Z"
+}

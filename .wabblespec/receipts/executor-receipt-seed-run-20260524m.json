@@ -1,0 +1,27 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524m",
+  "timestamp": "2026-05-24T14:00:00Z",
+  "status": "PASS",
+  "version_previous": "0.4.6",
+  "version_new": "0.4.7",
+  "files_written": [
+    "modules/l1/apply/tests/acceptance.md",
+    "modules/l1/clean/tests/acceptance.md",
+    "modules/l1/decompose/tests/acceptance.md",
+    "modules/l1/explore/tests/acceptance.md",
+    "modules/l1/interview/tests/acceptance.md",
+    "modules/l1/migrate/tests/acceptance.md",
+    "modules/l1/propose/tests/acceptance.md",
+    "modules/l1/reference-load/tests/acceptance.md",
+    "modules/l1/scope-frame/tests/acceptance.md",
+    "modules/l1/specify/tests/acceptance.md",
+    "modules/l1/test/tests/acceptance.md",
+    "modules/l1/triage/tests/acceptance.md"
+  ],
+  "files_count": 12,
+  "violation_count": 0,
+  "wave": 1,
+  "wave_description": "L1 acceptance tests batch 2 — 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage",
+  "notes": "Completes full L1 acceptance test coverage (24/24 modules). Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, Do NOT scenarios, write authority invariants, receipt field requirements."
+}

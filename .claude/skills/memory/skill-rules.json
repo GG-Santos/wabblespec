@@ -1,0 +1,63 @@
+{
+  "module": "memory",
+  "layer": "L5",
+  "tier": 1,
+  "activators": [
+    "write evidence",
+    "store evidence",
+    "store fact",
+    "create drawer",
+    "update drawer",
+    "read drawer",
+    "retrieve evidence by id",
+    "evidence staleness transition",
+    "mark evidence expired",
+    "mark drawer stale",
+    "archive drawer",
+    "memory write",
+    "memory read"
+  ],
+  "anti_activators": [
+    "search across drawers",
+    "query drawers by topic",
+    "query drawers by keyword",
+    "full-text search memory",
+    "record lineage",
+    "cascade computation",
+    "contradiction detection"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/memory/wings/**/*.json",
+      ".wabblespec/memory/closets/**/*.json",
+      ".wabblespec/memory/index.json",
+      ".wabblespec/memory/tracker.json"
+    ],
+    "reads": [
+      ".wabblespec/receipts/*.json",
+      "_shared/schemas/drawer.schema.json",
+      "_shared/references/staleness-states.md",
+      "modules/l5/memory/rules/staleness-thresholds.md",
+      "modules/l5/memory/rules/drawer-naming.md"
+    ],
+    "notifies": [
+      "provenance"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "requires_receipts_from": [],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": []
+}

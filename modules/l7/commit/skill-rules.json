@@ -1,0 +1,17 @@
+{
+  "module": "commit",
+  "layer": "L7",
+  "tier": 1,
+  "activators": ["explicit_invocation", "polish_pipeline_step", "post_changelog", "/commit"],
+  "authority": {
+    "owns": [".wabblespec/receipts/commit-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["staged_changes_present_when_write", "git_repository_present", "hooks_never_skipped"],
+  "receipt_schema": "modules/l7/commit/schemas/commit-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": false,
+  "notes": "Never passes --no-verify. Hook failures surface to human."
+}

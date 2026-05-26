@@ -9,7 +9,7 @@
   "expires_at": null,
   "source": "modules/l2/guard/SKILL.md",
   "source_module": "memory",
-  "confidence": 0.9826,
+  "confidence": 0.9996,
   "evidence": "Guard enforces invariants from _shared/references/invariants.md. Three enforcement modes: authority validation (module owns the path being written), receipt chain check (required upstream receipts present before execution), invariant assertion (declared constraints not violated). Produces error-event.schema.json on violation. Budget-gated — runs at wave boundaries, not per-tool-call. Blocks execution, does not patch silently.",
   "superseded_by": null,
   "contradicts": null,
@@ -98,6 +98,270 @@
       "actor": "dream",
       "from_confidence": 0.9807,
       "to_confidence": 0.9826,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:14:53.888187+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9826,
+      "to_confidence": 0.9843,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:15:04.214231+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9843,
+      "to_confidence": 0.9859,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:16:02.005113+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9859,
+      "to_confidence": 0.9873,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:16:45.582098+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9873,
+      "to_confidence": 0.9886,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:29:22.618296+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9886,
+      "to_confidence": 0.9897,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:32:03.263665+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9897,
+      "to_confidence": 0.9907,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T12:41:39.027482+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9907,
+      "to_confidence": 0.9916,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:12:05.734272+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9916,
+      "to_confidence": 0.9924,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:15:41.723609+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9924,
+      "to_confidence": 0.9932,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:18:06.330397+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9932,
+      "to_confidence": 0.9939,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:26:25.030398+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9939,
+      "to_confidence": 0.9945,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:34:58.845906+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9945,
+      "to_confidence": 0.995,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T13:36:16.909192+00:00",
+      "actor": "dream",
+      "from_confidence": 0.995,
+      "to_confidence": 0.9955,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:27:37.213851+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9955,
+      "to_confidence": 0.996,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:29:47.577978+00:00",
+      "actor": "dream",
+      "from_confidence": 0.996,
+      "to_confidence": 0.9964,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:34:23.922043+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9964,
+      "to_confidence": 0.9968,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:43:56.010429+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9968,
+      "to_confidence": 0.9971,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T16:52:29.751450+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9971,
+      "to_confidence": 0.9974,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:04:49.605566+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9974,
+      "to_confidence": 0.9977,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:20:16.808132+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9977,
+      "to_confidence": 0.9979,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:21:13.308235+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9979,
+      "to_confidence": 0.9981,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:25:49.830402+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9981,
+      "to_confidence": 0.9983,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T17:33:09.831893+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9983,
+      "to_confidence": 0.9985,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T22:38:41.570035+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9985,
+      "to_confidence": 0.9987,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T22:53:56.565193+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9987,
+      "to_confidence": 0.9988,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:01:09.095140+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9988,
+      "to_confidence": 0.9989,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:10:17.035168+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9989,
+      "to_confidence": 0.999,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:32:23.180383+00:00",
+      "actor": "dream",
+      "from_confidence": 0.999,
+      "to_confidence": 0.9991,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:37:44.977496+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9991,
+      "to_confidence": 0.9992,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:55:01.765531+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9992,
+      "to_confidence": 0.9993,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-24T23:59:23.535525+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9993,
+      "to_confidence": 0.9994,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:07:19.081137+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9994,
+      "to_confidence": 0.9995,
+      "staleness_state": "FRESH"
+    },
+    {
+      "event": "EMA_DECAY",
+      "timestamp": "2026-05-25T00:08:59.213043+00:00",
+      "actor": "dream",
+      "from_confidence": 0.9995,
+      "to_confidence": 0.9996,
       "staleness_state": "FRESH"
     }
   ]

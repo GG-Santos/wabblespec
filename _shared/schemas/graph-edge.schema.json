@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Graph Edge",
+  "description": "Shared interchange format for graph edges. Used by EntityGraph output and Nexus graph. Consumers: nexus, shift, entity-graph.",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Source entity ID. Must match a node id in the same graph."
+    },
+    "target": {
+      "type": "string",
+      "description": "Target entity ID. Must match a node id in the same graph."
+    },
+    "weight": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Edge weight — number of drawers in which source and target co-occur."
+    },
+    "edge_type": {
+      "type": "string",
+      "enum": ["co-occurrence", "dependency", "provenance", "temporal"],
+      "description": "Semantic edge type. co-occurrence: entities appear in the same drawer. dependency: one entity depends on the other (from framework.yaml). provenance: one entity is the origin decision for another. temporal: entities are connected by time sequence."
+    }
+  },
+  "required": ["source", "target", "weight"]
+}

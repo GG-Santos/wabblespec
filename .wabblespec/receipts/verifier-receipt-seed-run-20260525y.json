@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525y",
+  "session_id": "seed-pipeline-y",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "All 5 files written and present",
+      "result": "PASS",
+      "detail": "All 5 project-map templates confirmed written in _shared/templates/scaffold/"
+    },
+    {
+      "id": "V-02",
+      "description": "All templates contain the 7 required schema fields (project-map.schema.json)",
+      "result": "PASS",
+      "detail": "explored_at, build_target, freshness_state, valid_until, entry_points, tech_stack, gaps present in all 5 templates"
+    },
+    {
+      "id": "V-03",
+      "description": "Guard Layer 1 validation fields present in markdown: explored_at, build_target, freshness_state, valid_until, entry_points (>=1), Tech Stack section (>=1 row), Risk Files section, Impact Slices section (>=1 named slice), Gaps section (>=1 item)",
+      "result": "PASS",
+      "detail": "All required markdown sections present in all 5 templates with content"
+    },
+    {
+      "id": "V-04",
+      "description": "freshness_state initializes to FRESH in all templates",
+      "result": "PASS",
+      "detail": "All templates set freshness_state: FRESH — correct for newly scaffolded + explored projects"
+    },
+    {
+      "id": "V-05",
+      "description": "Each template has exactly 5 standard impact slices: entry-points, api-surface, test-coverage, risk, conventions",
+      "result": "PASS",
+      "detail": "All 5 slices present in all 5 templates"
+    },
+    {
+      "id": "V-06",
+      "description": "Project-specific values use ___ UNDECLARED (not invented values)",
+      "result": "PASS",
+      "detail": "Project name, language version, author, paths, timestamps all use ___ UNDECLARED"
+    },
+    {
+      "id": "V-07",
+      "description": "Gaps section contains at least 1 item per template and items are meaningful (not generic)",
+      "result": "PASS",
+      "detail": "All templates have 6-9 platform-specific gaps reflecting genuine unknowns on a fresh scaffold"
+    },
+    {
+      "id": "V-08",
+      "description": "API-Service template offers multi-language entry point options (Node/Python/Go/Java/Rust)",
+      "result": "PASS",
+      "detail": "Language-specific entry point variants documented with instruction to update after scaffold"
+    },
+    {
+      "id": "V-09",
+      "description": "Desktop template covers both Electron and Tauri (two-process architecture documented for both)",
+      "result": "PASS",
+      "detail": "Both frameworks documented with main/renderer/preload structure; IPC boundary explicitly noted as security boundary"
+    },
+    {
+      "id": "V-10",
+      "description": "Mobile template notes platform-specific risk files (android/ and ios/ native directories)",
+      "result": "PASS",
+      "detail": "android/ and ios/ directories listed in Risk Files as cross-cutting; signing and OTA gaps documented"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T11:01:00Z"
+}

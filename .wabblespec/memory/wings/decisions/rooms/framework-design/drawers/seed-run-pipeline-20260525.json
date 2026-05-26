@@ -1,0 +1,17 @@
+{
+  "id": "seed-run-pipeline-20260525",
+  "topic": "Seed Run Pipeline and Completion Criteria",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": ".wabblespec/receipts/ + memory/project_seed_runs.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "100/100 PASS receipts written across 29 complete seed runs (20260524a through 20260525ac). Seed runs are real executions of the framework against itself — not simulations. Each run executes a discrete task card through the full receipt chain. Naming: YYYYMMDD{letter} (a-z then aa-az). Receipts in .wabblespec/receipts/. L8 corpus gate cleared at run 20260525ac. Run durations ranged from single-module exercises to multi-wave builds. The 100-receipt corpus is the evidence base for L8 Instinct pattern detection. Instinct observed 117 receipts when patterns were detected (session receipts added during observation window).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

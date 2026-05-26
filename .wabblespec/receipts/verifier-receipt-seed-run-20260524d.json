@@ -1,0 +1,54 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524d",
+  "timestamp": "2026-05-24T07:24:08Z",
+  "version": "0.3.7",
+  "status": "PASS",
+  "quality_floor": {
+    "modules_checked": 96,
+    "passing_both_gates": 96,
+    "failing_quick_validate": 0,
+    "failing_lint_prompts": 0,
+    "adversarial_warnings": 0,
+    "result": "PASS"
+  },
+  "behavioral_checks": [
+    {
+      "check": "Apply SKILL.md contains capability routing section with routing table",
+      "result": "PASS"
+    },
+    {
+      "check": "All 11 L3 platform SKILL.md files contain capability_handoff declaration",
+      "result": "PASS"
+    },
+    {
+      "check": "_shared/dev/frameworks/ contains 11 platform subdirectories",
+      "result": "PASS"
+    },
+    {
+      "check": "_shared/dev/infrastructure/ contains 4 files",
+      "result": "PASS"
+    },
+    {
+      "check": "All 6 gateway SKILL.md files contain Phase A and Phase B sections",
+      "result": "PASS"
+    },
+    {
+      "check": "gateway-security/references/cycling/ contains all 5 protocol files",
+      "result": "PASS"
+    },
+    {
+      "check": "gateway-pattern.md declares two-phase protocol with receipt type definitions",
+      "result": "PASS"
+    },
+    {
+      "check": "_docs/core/architecture.md documents three-axis routing model",
+      "result": "PASS"
+    },
+    {
+      "check": "_docs/layers/L4-gateways.md documents Phase A and Phase B",
+      "result": "PASS"
+    }
+  ],
+  "notes": "All behavioral checks PASS. No quality floor regressions from integration work."
+}

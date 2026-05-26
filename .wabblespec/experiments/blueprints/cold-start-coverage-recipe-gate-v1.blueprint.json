@@ -1,0 +1,33 @@
+{
+  "blueprint_id": "cold-start-coverage-recipe-gate-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/cold-start-coverage-recipe-gate-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "recipe",
+  "before_behavior": "Recipe works through detection signals in priority order, selects modules via specificity scoring (Step 2b in SKILL.md), and writes recipe.json with the selected build target and complexity. It does not inspect the file structure of selected modules — module selection is based solely on activator matching and file path patterns. A module with no rules/cold-start.md is selected and activated identically to one that has the file.",
+  "after_behavior": "After Step 2b module specificity scoring and before writing recipe.json, recipe iterates over each selected module and checks for the existence of rules/cold-start.md at the expected path (modules/{layer}/{module}/rules/cold-start.md). If any selected module lacks the file, recipe emits MISSING_COLD_START, does not write recipe.json, and surfaces the missing paths to the user. The session cannot advance until the gap is resolved or the module is excluded from activation.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "false_completion",
+      "rationale": "A session that activates a module without a cold-start file is a false completion — the module appears ready but lacks its minimum documentation contract. The target threshold is 0.0 (zero tolerance) because cold-start files are a framework invariant: they exist for every registered module as of VERSION 0.4.4. Any activation of a module without one is unambiguously a gap, not a tradeoff."
+    },
+    {
+      "metric": "count",
+      "threshold": 0,
+      "direction": "lower_is_better",
+      "developer_outcome": "rework",
+      "rationale": "Each session that proceeds without a cold-start file creates a rework event when the gap is later discovered — the session must be re-run after the file is added. Zero MISSING_COLD_START suppressions means zero downstream rework events attributable to this gap class."
+    }
+  ],
+  "affected_targets": ["cli", "web", "api-service", "mobile", "desktop", "iot", "game", "data-pipeline", "ai-agent", "library", "extension"],
+  "verification_mode": "Review",
+  "attestation_required": true,
+  "created_at": "2026-05-25T08:20:00+00:00",
+  "status": "benchmark-passed",
+  "benchmark_run_at": "2026-05-25T09:00:00+00:00",
+  "held_out_value": 0.0,
+  "attested_by": "Gino Santos",
+  "attested_at": "2026-05-25T08:30:00+00:00"
+}

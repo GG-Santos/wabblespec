@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Flag Manifest",
+  "description": "Registry of all feature flags. Written to .wabblespec/flags/manifest.json.",
+  "type": "object",
+  "properties": {
+    "manifest_version": { "type": "string" },
+    "last_updated": { "type": "string", "format": "date-time" },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "flag_id": { "type": "string", "description": "Unique identifier, kebab-case." },
+          "description": { "type": "string" },
+          "state": { "type": "string", "enum": ["DRAFT", "ACTIVE", "ROLLING", "RETIRED"] },
+          "created_at": { "type": "string", "format": "date-time" },
+          "last_transition_at": { "type": "string", "format": "date-time" },
+          "sunset_condition": { "type": "string", "description": "Condition or date when flag should be retired." },
+          "rollout_pct": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Current rollout percentage. Null if not in ROLLING state."
+          },
+          "rollout_cohort": {
+            "type": ["string", "null"],
+            "description": "Named cohort for partial rollout. Null if percentage-based."
+          },
+          "monitoring_reference": {
+            "type": ["string", "null"],
+            "description": "Path to the alert rule or metric declared in Monitor for this flag."
+          },
+          "rollback_plan": { "type": "string" },
+          "retire_code_removed": {
+            "type": "boolean",
+            "description": "True if flag-gated code was removed after retirement."
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timestamp": { "type": "string", "format": "date-time" },
+                "from_state": { "type": ["string", "null"] },
+                "to_state": { "type": "string" },
+                "receipt_path": { "type": "string" }
+              },
+              "required": ["timestamp", "to_state"]
+            }
+          }
+        },
+        "required": ["flag_id", "description", "state", "created_at", "sunset_condition"]
+      }
+    }
+  },
+  "required": ["manifest_version", "last_updated", "flags"]
+}

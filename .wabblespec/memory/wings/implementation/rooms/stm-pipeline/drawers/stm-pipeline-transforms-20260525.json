@@ -1,0 +1,17 @@
+{
+  "id": "stm-pipeline-transforms-20260525",
+  "topic": "STM Pipeline Transform Configuration",
+  "wing": "implementation",
+  "room": "stm-pipeline",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l6/polish/rules/stm-config.json + modules/l1/clean/rules/stm-config.json",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Five STM transforms from G0DM0D3 PAPER §3.5 (adapted). hedge_reducer (G0DM0D3 port, 11 patterns): removes I think/perhaps/maybe/I believe/it seems/might be/could be/arguably etc. direct_mode (G0DM0D3 port, 10 patterns): removes Sure,/Of course,/Certainly,/Great question/I'd be happy to etc. spec_mode (WabbleSpec-specific, 5 rules): normalizes modals might->SHOULD, will->SHALL. receipt_mode (WabbleSpec-specific, 8 rules): strips first-person from receipts, capitalizes PASS/FAIL/WARN. casual_mode (G0DM0D3 port, 22 subs): However->But, Utilize->Use, In order to->To; off by default. Polish defaults: hedge_reducer + direct_mode. Clean defaults: receipt_mode + direct_mode. Clean STM scope: receipt artifacts and code comments only — never production code logic. STM receipt field: {stm_applied:[], char_count_before, char_count_after, reduction_pct}.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

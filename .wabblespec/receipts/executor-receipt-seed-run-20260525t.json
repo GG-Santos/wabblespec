@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525t",
+  "session_id": "seed-pipeline-t",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/monitor", "l4/engineering", "l3/mobile", "l3/desktop", "l3/iot", "l3/game", "l3/data-pipeline", "l3/ai-agent", "l3/library", "l3/extension"],
+  "files_written": [
+    "_shared/templates/engineering/performance-budgets-mobile.md",
+    "_shared/templates/engineering/performance-budgets-desktop.md",
+    "_shared/templates/engineering/performance-budgets-iot.md",
+    "_shared/templates/engineering/performance-budgets-game.md",
+    "_shared/templates/engineering/performance-budgets-data-pipeline.md",
+    "_shared/templates/engineering/performance-budgets-ai-agent.md",
+    "_shared/templates/engineering/performance-budgets-library.md",
+    "_shared/templates/engineering/performance-budgets-extension.md"
+  ],
+  "summary": "Performance budget templates for remaining 8 platforms: mobile, desktop, iot, game, data-pipeline, ai-agent, library, extension. All 11 L3 platforms now have performance budget templates.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T06:00:00Z"
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec recipe.json",
+  "description": "Declared build target for the current session. Written by Recipe. Read by all downstream modules.",
+  "type": "object",
+  "required": [
+    "target",
+    "detection_method",
+    "confidence",
+    "complexity",
+    "secondary_targets",
+    "collapse_eligible",
+    "locked_at",
+    "session_id"
+  ],
+  "properties": {
+    "target": {
+      "type": "string",
+      "enum": [
+        "Web",
+        "API-Service",
+        "Game",
+        "Mobile",
+        "Desktop",
+        "CLI",
+        "IoT-Embedded",
+        "Library-Package",
+        "Extension-Plugin",
+        "Data-Pipeline",
+        "AI-Agent"
+      ],
+      "description": "Primary declared build target for this session. Locked after Recipe runs."
+    },
+    "detection_method": {
+      "type": "string",
+      "enum": ["file-signals", "user-declaration", "interview", "existing-recipe"],
+      "description": "How the target was identified."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Detection confidence. Must be ≥ 0.8 for auto-declare. Below 0.8 requires user confirmation."
+    },
+    "complexity": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High"],
+      "description": "Task complexity. Low = single feature, no integration points. Medium = multiple components, 1-2 integration points. High = cross-cutting or unclear."
+    },
+    "secondary_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional targets present (monorepo case). Empty array if single target."
+    },
+    "collapse_eligible": {
+      "type": "boolean",
+      "description": "true only when complexity=Low AND single spec stage AND I2 gate collapsing is permitted."
+    },
+    "locked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when recipe was declared."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session identifier. Used to detect stale recipe.json from prior sessions."
+    }
+  }
+}

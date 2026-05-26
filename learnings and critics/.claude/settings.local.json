@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(Get-ChildItem \"C:\\\\Vaults\\\\references\" -Recurse -Directory)",
-      "Bash(Select-Object FullName)",
-      "Bash(Format-List)"
-    ]
-  }
-}

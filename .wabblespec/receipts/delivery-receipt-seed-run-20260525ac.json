@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525ac",
+  "session_id": "seed-pipeline-ac",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.6.3",
+  "version_new": "0.6.4",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "FINAL SEED RUN. Receipt corpus gate CLEARED: 100/100 PASS receipts. Instinct activation walkthrough written. l8-corpus-gate.md updated to PARTIALLY_MET: receipt corpus YES, Instinct authorized to run. Remaining gate condition: human must run instinct.py --activate, review patterns, mark 3 as Human-validated:true to authorize Synth and complete L8 gate.",
+  "total_receipts_accumulated": 100,
+  "l8_gate_progress": "100/100 — CORPUS GATE CLEARED",
+  "archived_at": "2026-05-25T15:02:00Z"
+}

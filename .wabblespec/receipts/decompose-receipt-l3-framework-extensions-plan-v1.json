@@ -1,0 +1,36 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "phase": "Plan",
+  "wave": 0,
+  "timestamp": "2026-05-25T20:10:20Z",
+  "session_id": "l3-framework-extensions-plan-v1",
+  "checks_run": [
+    "wave-plan-complete",
+    "dependencies-declared",
+    "checkpoints-defined",
+    "rollback-defined"
+  ],
+  "checks_passed": [
+    "wave-plan-complete",
+    "dependencies-declared",
+    "checkpoints-defined",
+    "rollback-defined"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "waves": [
+    {
+      "wave": 1,
+      "label": "Research + plan document only; no file writes in modules/",
+      "files": [
+        ".wabblespec/plans/l3-framework-extensions-plan.md"
+      ]
+    }
+  ],
+  "total_waves": 1,
+  "outputs": [
+    "task-card.md"
+  ],
+  "not_tested": []
+}

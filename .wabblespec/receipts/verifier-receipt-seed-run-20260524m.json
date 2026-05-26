@@ -1,0 +1,71 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524m",
+  "timestamp": "2026-05-24T14:01:00Z",
+  "status": "PASS",
+  "checks": [
+    {
+      "file": "modules/l1/apply/tests/acceptance.md",
+      "checks": ["BLOCK absent delta plan", "BLOCK absent wave context", "happy path routing present", "engineering infrastructure load present", "BREAKING halts wave present", "write authority I11 invariant present", "new-file vs edit-on-absent target present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/clean/tests/acceptance.md",
+      "checks": ["BLOCK absent scope", "BLOCK absent wave receipts", "BLOCK absent decompose receipt", "COSMETIC proceeds present", "BREAKING halts and routes present", "project/repo/ only invariant present", "Do NOT introduce abstractions present", "Do NOT rename across package boundaries present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/decompose/tests/acceptance.md",
+      "checks": ["BLOCK absent specify receipt", "BLOCK absent upstream receipts", "wave independence requirement present", "rollback worktree conditions present", "verification mode strongest applicable present", "Low complexity wave count present", "more than 8 waves requires confirmation present", "Reviewer routing present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/explore/tests/acceptance.md",
+      "checks": ["BLOCK absent recipe.json", "BLOCK absent recipe receipt", "traversal from high-value nodes present", "project-map required fields present", "STALE blocks consumption present", "drawer limit 50 present", "Do NOT run during waves present", "Do NOT one drawer per file present", "Gaps section never empty present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/interview/tests/acceptance.md",
+      "checks": ["BLOCK absent recipe receipt", "happy path ambiguity resolution present", "product-context open questions first present", "no leading questions present", "max 3 per batch present", "stop when resolved present", "no re-asking present", "cold start no specs present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/migrate/tests/acceptance.md",
+      "checks": ["BLOCK absent BREAKING delta receipt", "BLOCK absent source artifact", "two-phase default present", "Phase 2 gate no auto-advance present", "single-phase exception with justification present", "migration script path invariant present", "Do NOT execute migration present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/propose/tests/acceptance.md",
+      "checks": ["BLOCK absent spec artifacts", "BLOCK absent specify receipt", "2-4 distinct options present", "options must be distinct present", "maximum 4 options present", "tradeoffs honest present", "HIGH-impact routes to Reviewer present", "Propose does not decide present", "Do NOT activate for obvious decisions present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/reference-load/tests/acceptance.md",
+      "checks": ["BLOCK absent reference file", "BLOCK absent recipe receipt", "dedup check FRESH drawer present", "happy path reference loaded present", "file read limit 5 present", "trust level not inflated present", "Do NOT load generated/private artifacts present", "one source one drawer invariant present", "confidence scoring present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/scope-frame/tests/acceptance.md",
+      "checks": ["BLOCK absent recipe.json", "BLOCK absent recipe receipt", "user_confirmed must be true present", "project standards loaded before drafting present", "no project standards proceeds without block present", "cold-start scope.md absent present", "Out of Scope invariant present", "receipt fields present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/specify/tests/acceptance.md",
+      "checks": ["BLOCK absent scope.md", "BLOCK absent upstream receipts", "GWT criteria count by complexity present", "BREAKING adversarial gate present", "BREAKING change_summary and affected_specs present", "--patch LOCAL continues wave present", "--patch BOUNDARY halts wave present", "validation before write present", "receipt fields present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/test/tests/acceptance.md",
+      "checks": ["BLOCK absent spec artifacts", "BLOCK absent specify receipt", "EARS requirement mapping present", "untestable flag never skip present", "framework from platform package present", "pre-execution plan-only mode present", "test stubs in project/repo/tests/ only present", "100% coverage target present"],
+      "status": "PASS"
+    },
+    {
+      "file": "modules/l1/triage/tests/acceptance.md",
+      "checks": ["BLOCK absent issue description present", "recurrence escalation present", "Security gateway first present", "routing table enforcement present", "Do NOT fix present", "no receipts allowed with SOFT warning present", "absent defect-patterns proceeds present", "triage records in Memory only present"],
+      "status": "PASS"
+    }
+  ],
+  "files_verified": 12,
+  "files_failed": 0,
+  "violations": []
+}

@@ -1,0 +1,22 @@
+{
+  "receipt_type": "wave",
+  "session_id": "wave-checkpoint-v1",
+  "task_id": "wave-checkpoint-v1",
+  "wave_number": 2,
+  "wave_label": "Update framework.yaml executor produces_schemas",
+  "timestamp": "2026-05-26T00:02:00Z",
+  "status": "COMPLETE",
+  "files_modified": [
+    "framework.yaml"
+  ],
+  "changes": [
+    "Added _shared/schemas/wave-checkpoint.schema.json to executor produces_schemas",
+    "Updated executor last_validated to 2026-05-26"
+  ],
+  "verification": {
+    "method": "yaml parse + produces_schemas check",
+    "command": "python -c \"import yaml; d=yaml.safe_load(open('framework.yaml')); ex=[m for m in d['modules'] if m['id']=='executor'][0]; print(ex['produces_schemas'])\"",
+    "result": "['shared/schemas/receipt.base.schema.json', '_shared/schemas/wave-checkpoint.schema.json']"
+  },
+  "acceptance_criteria_covered": ["AC-1", "AC-7"]
+}

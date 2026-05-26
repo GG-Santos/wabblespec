@@ -1,0 +1,29 @@
+{
+  "module": "specify",
+  "layer": "L1",
+  "phase": "Specify",
+  "wave": 0,
+  "timestamp": "2026-05-25T17:34:28Z",
+  "session_id": "wave-checkpoint-v1",
+  "checks_run": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "checks_passed": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "requirements": [],
+  "success_criteria": [],
+  "failure_modes": [],
+  "outputs": [],
+  "not_tested": [
+    "scope change triggers re-specify"
+  ]
+}

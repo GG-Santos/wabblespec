@@ -1,0 +1,30 @@
+{
+  "fixture_set": "archive-conditional-nexus-refresh-v1",
+  "generated_at": "2026-05-26T02:27:50Z",
+  "held_out_evaluations": [
+    {
+      "case_id": "case-05",
+      "expected_outcome": "correctly_triggered",
+      "graph_drift_occurred": false,
+      "verdict": "PASS",
+      "notes": "files_written contains framework.yaml — exact-match pattern. Augmented archive pre-check finds the match and invokes graph-builder.py. nexus_refreshed=true, nexus_skip_reason=null. No graph drift: the refresh fires correctly for this framework file change."
+    },
+    {
+      "case_id": "case-01",
+      "expected_outcome": "correctly_skipped",
+      "graph_drift_occurred": false,
+      "verdict": "PASS",
+      "notes": "files_written contains only CHANGELOG.md and README.md. Neither matches any framework-graph-relevant pattern (no modules/ prefix, no _shared/schemas/ prefix, not framework.yaml). Augmented archive pre-check finds no match. graph-builder.py is not invoked. nexus_refreshed=false, nexus_skip_reason='no-framework-files-modified'. No graph drift: no framework files were modified so no edges changed."
+    },
+    {
+      "case_id": "case-02",
+      "expected_outcome": "correctly_triggered",
+      "graph_drift_occurred": false,
+      "verdict": "PASS",
+      "notes": "files_written contains modules/l3/cli/SKILL.md (matches modules/ prefix + SKILL.md suffix) and modules/l3/cli/tests/acceptance.md (does not match, but first file already triggers). Augmented archive pre-check finds the SKILL.md match on first scan. graph-builder.py invoked once. nexus_refreshed=true, nexus_skip_reason=null. No graph drift."
+    }
+  ],
+  "held_out_graph_drifts": 0,
+  "held_out_total": 3,
+  "held_out_nexus_drift_rate": 0.0
+}

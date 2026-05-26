@@ -1,0 +1,17 @@
+{
+  "id": "spec-single-source-of-truth-20260525",
+  "topic": "Spec as Single Source of Truth (I1)",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/invariants.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "I1 (SPEC IS SINGLE SOURCE OF TRUTH): every execution is grounded in spec. Phase ordering: P1 (spec) must be locked before P2 (plan); P2 must be locked before P3 (execute). Guard enforces this via receipt chain — no execution without specify-receipt and decompose-receipt. Spec is the task card: .wabblespec/plans/task-card.md. EARS-syntax requirements in task card are the ground truth. Executor produces exactly what the spec declares — no more, no less. BREAKING deviation discovered mid-wave: stop, surface, loop back to Specify before continuing. framework.yaml is the spec for module existence and structure. .wabblespec/VERSION is the spec for framework version. CHANGELOG is the spec for what changed and when.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

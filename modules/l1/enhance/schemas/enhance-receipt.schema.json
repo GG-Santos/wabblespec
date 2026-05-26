@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enhance Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Enhance module.",
+  "allOf": [
+    { "$ref": "../../../_shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "dimensions_present": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dimensions explicitly present in original input"
+    },
+    "dimensions_absent": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dimensions missing from original input"
+    },
+    "dimensions_derived": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dimensions inferred without explicit user statement"
+    },
+    "critical_dimensions_resolved": {
+      "type": "boolean",
+      "description": "Task + Target + Format all present or derived. Must be true before ScopeFrame runs."
+    },
+    "questions_asked": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6,
+      "description": "Total clarifying questions asked (max 3 per pass, max 2 passes)"
+    },
+    "questions_answered": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Questions that received a user response"
+    },
+    "vague_resolved": {
+      "type": "boolean",
+      "description": "Input is no longer vague after Enhance. Must be true for status = PASS."
+    },
+    "enhanced_input_path": {
+      "type": "string",
+      "description": "Path to the enhanced input statement. ScopeFrame reads this."
+    }
+  },
+  "required": [
+    "dimensions_present",
+    "dimensions_absent",
+    "dimensions_derived",
+    "critical_dimensions_resolved",
+    "questions_asked",
+    "questions_answered",
+    "vague_resolved",
+    "enhanced_input_path"
+  ]
+}

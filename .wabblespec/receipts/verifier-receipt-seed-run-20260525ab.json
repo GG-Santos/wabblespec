@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525ab",
+  "session_id": "seed-pipeline-ab",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "Both files written and present",
+      "result": "PASS",
+      "detail": "_shared/references/gate-progression-reference.md and _shared/references/module-activation-matrix.md confirmed written"
+    },
+    {
+      "id": "V-02",
+      "description": "Gate progression reference covers all 7 workflow types",
+      "result": "PASS",
+      "detail": "New Feature, Bug Fix, Security Patch, Breaking Change, Dep Upgrade, Refactor, Docs Update — all present with per-layer activation details"
+    },
+    {
+      "id": "V-03",
+      "description": "Guard noted as universal (not workflow-specific) in both documents",
+      "result": "PASS",
+      "detail": "gate-progression-reference.md has explicit 'Guard is always present' section; matrix shows R for Guard across all workflow types"
+    },
+    {
+      "id": "V-04",
+      "description": "Breaking Change workflow requires Nexus blast-radius query pre-Executor and Provenance cascade",
+      "result": "PASS",
+      "detail": "Gate progression reference documents both: Nexus blast-radius before Executor; Provenance cascade (BREAKING only, 2-hop limit); Nexus refresh post-Archive mandatory"
+    },
+    {
+      "id": "V-05",
+      "description": "Security Patch workflow routes Changelog entry to Security section (not Fixed)",
+      "result": "PASS",
+      "detail": "Security Patch section states: 'Changelog entry goes in the Security section — never buried in Fixed'"
+    },
+    {
+      "id": "V-06",
+      "description": "Dep Upgrade workflow enforces separate commit rule (no bundling with feature work)",
+      "result": "PASS",
+      "detail": "Key constraint documented: 'Dep upgrades are separate commits — never bundled with feature work. One dep family per commit.'"
+    },
+    {
+      "id": "V-07",
+      "description": "Module activation matrix covers all 7 workflow types x all module layers with R/O/- classification",
+      "result": "PASS",
+      "detail": "Matrix rows cover L1 (7 modules), L2 (6 modules), L3, L4 (6 gateways), L5 (6 modules), L6 (6 modules), L7 (7 modules)"
+    },
+    {
+      "id": "V-08",
+      "description": "Platform-by-gateway table identifies Security as Required for API-Service, AI-Agent, IoT, Extension",
+      "result": "PASS",
+      "detail": "Table marks Security R for platforms that handle external input, network, or privileged access by definition; rationale noted"
+    },
+    {
+      "id": "V-09",
+      "description": "Provenance cascade and Nexus refresh conditions correctly limited to BREAKING and ADDITIVE respectively",
+      "result": "PASS",
+      "detail": "Provenance cascade: BREAKING only (matches Provenance SKILL.md). Nexus refresh: BREAKING (mandatory) and ADDITIVE (recommended). NON_BREAKING: neither."
+    },
+    {
+      "id": "V-10",
+      "description": "Minimum receipt set table clarifies Guard receipts are not counted toward L8 corpus gate",
+      "result": "PASS",
+      "detail": "Table footer states: 'Guard receipts are not counted in the L8 corpus gate — only executor, verifier, and delivery receipts count.'"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T14:01:00Z"
+}

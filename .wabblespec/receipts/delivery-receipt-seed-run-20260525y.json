@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525y",
+  "session_id": "seed-pipeline-y",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.9",
+  "version_new": "0.6.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "project-map.md starter templates for Web, API-Service, CLI, Mobile, and Desktop. All 7 required schema fields present; 5 standard impact slices per template; platform-canonical tech stacks and entry points. Scaffold uses these when generating initial project-map.md after Explore runs. 88/100 PASS receipts.",
+  "total_receipts_accumulated": 88,
+  "l8_gate_progress": "88/100",
+  "archived_at": "2026-05-25T11:02:00Z"
+}

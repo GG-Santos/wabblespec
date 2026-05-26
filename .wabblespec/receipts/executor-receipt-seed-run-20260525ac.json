@@ -1,0 +1,17 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525ac",
+  "session_id": "seed-pipeline-ac",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l8/instinct", "l8/synth"],
+  "files_written": [
+    "_shared/references/instinct-activation-walkthrough.md",
+    "_shared/references/l8-corpus-gate.md"
+  ],
+  "summary": "Final seed run. Instinct activation walkthrough: 7-step procedure using instinct.py --status/--dry-run/--activate, pattern review criteria, Human-validated: true promotion procedure, Synth authorization conditions, troubleshooting. l8-corpus-gate.md updated: receipt corpus CLEARED (100/100), gate_status PARTIALLY_MET, Instinct now authorized to run, next action documented for human, authorization table per L8 module.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T15:00:00Z"
+}

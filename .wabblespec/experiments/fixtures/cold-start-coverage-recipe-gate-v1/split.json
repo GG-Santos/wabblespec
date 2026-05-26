@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "fixture_set": ".wabblespec/experiments/fixtures/cold-start-coverage-recipe-gate-v1/",
+  "created_at": "2026-05-25T08:50:00+00:00",
+  "seed": 4201,
+  "split_method": "random",
+  "total_cases": 10,
+  "dev_cases": ["cs-001", "cs-005"],
+  "held_out_cases": ["cs-002", "cs-003", "cs-004", "cs-006", "cs-007", "cs-008", "cs-009", "cs-010"]
+}

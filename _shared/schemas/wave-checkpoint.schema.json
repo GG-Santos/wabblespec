@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "wave-checkpoint.schema.json",
+  "title": "WaveCheckpoint",
+  "description": "Rollback state written by Decompose at each wave boundary. Read by Rollback to restore prior state.",
+  "type": "object",
+  "required": [
+    "checkpoint_id",
+    "session_id",
+    "task_id",
+    "wave_index",
+    "wave_label",
+    "timestamp",
+    "receipts_written",
+    "files_modified",
+    "state_snapshot"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "checkpoint_id": {
+      "type": "string",
+      "description": "Unique checkpoint identifier (UUID or wave-scoped slug)"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session that wrote this checkpoint"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Task card ID this checkpoint belongs to"
+    },
+    "wave_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Zero-based wave index within the task"
+    },
+    "wave_label": {
+      "type": "string",
+      "description": "Human-readable wave name (e.g., Wave 1 — Schema Design)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when checkpoint was written"
+    },
+    "receipts_written": {
+      "type": "array",
+      "description": "Paths to receipts written in this wave",
+      "items": { "type": "string" }
+    },
+    "files_modified": {
+      "type": "array",
+      "description": "Files created or modified in this wave (for rollback diffing)",
+      "items": {
+        "type": "object",
+        "required": ["path", "action"],
+        "properties": {
+          "path": { "type": "string" },
+          "action": { "enum": ["created", "modified", "deleted"] },
+          "prior_hash": {
+            "type": "string",
+            "description": "SHA-256 of file content before this wave (null if created)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "state_snapshot": {
+      "type": "object",
+      "description": "Key wave-state values preserved for rollback reconstruction",
+      "properties": {
+        "wave_plan_path": { "type": "string" },
+        "task_card_path": { "type": "string" },
+        "acceptance_criteria_met": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "acceptance_criteria_pending": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "rollback_safe": {
+      "type": "boolean",
+      "description": "True when all wave outputs are reversible without side effects",
+      "default": true
+    },
+    "rollback_blockers": {
+      "type": "array",
+      "description": "Reasons rollback may be unsafe (e.g., external API calls made)",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "blueprint_id": "cross-link-document-required-section-v1",
+  "candidate_ref": ".wabblespec/experiments/candidates/cross-link-document-required-section-v1.candidate.json",
+  "change_type": "AUGMENT",
+  "affected_module": "document",
+  "before_behavior": "Document produces README updates, API docs, inline comments, and CHANGELOG entries from verified receipts and wave artifacts. Its rules state 'Document only verified facts' and 'No speculation' but impose no requirement on cross-referencing other framework artifacts. A reference document output is accepted and receipted as complete regardless of whether it links to related modules, schemas, or SKILL.md files.",
+  "after_behavior": "When the task-card declares a documentation deliverable of type reference (any document destined for _shared/references/), document inspects its own output before writing the document-receipt. If the produced file lacks a '## Cross-references' or '## See also' section containing at least one entry, document emits CROSS_LINK_MISSING and does not write the receipt. The document must be revised to include at least one cross-reference before the document task is marked complete. Non-reference outputs (README, inline comments, CHANGELOG) are not subject to this check.",
+  "benchmark_gates": [
+    {
+      "metric": "rate",
+      "threshold": 0.0,
+      "direction": "lower_is_better",
+      "developer_outcome": "stale_evidence",
+      "rationale": "A reference document without cross-references becomes stale evidence: downstream modules or humans citing it cannot navigate to related specs, causing decisions to be made on incomplete context. The target is 0.0 for reference-type outputs because cross-references are navigation infrastructure — a reference document that acknowledges no related artifacts is by definition isolated from the framework graph. The check is scoped to reference-type only to avoid over-application to README or inline comment outputs where cross-linking conventions differ."
+    },
+    {
+      "metric": "count",
+      "threshold": 0,
+      "direction": "lower_is_better",
+      "developer_outcome": "rework",
+      "rationale": "Each reference document shipped without cross-references requires a follow-up rework session (as observed across runs x, aa, ab, ac where cross-link additions were the primary deliverable). Zero CROSS_LINK_MISSING suppressions means zero follow-up rework sessions attributable to missing cross-reference sections."
+    }
+  ],
+  "affected_targets": ["cli", "web", "api-service", "mobile", "desktop", "iot", "game", "data-pipeline", "ai-agent", "library", "extension"],
+  "verification_mode": "Review",
+  "attestation_required": true,
+  "created_at": "2026-05-25T08:24:00+00:00",
+  "status": "benchmark-passed",
+  "benchmark_run_at": "2026-05-25T09:04:00+00:00",
+  "held_out_value": 0.0,
+  "attested_by": "Gino Santos",
+  "attested_at": "2026-05-25T08:30:00+00:00"
+}

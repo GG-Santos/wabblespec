@@ -1,0 +1,17 @@
+{
+  "id": "memory-search-hybrid-scoring-20260525",
+  "topic": "MemorySearch Hybrid Scoring Algorithm",
+  "wing": "implementation",
+  "room": "memory",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l5/memory-search/scripts/search-index.py",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "MemorySearch uses hybrid scoring with ChromaDB (col.query() and col.get()). Score components: name boost (+40% weight on topic/id exact or prefix match), staleness penalty (-20% for AGING, -50% for STALE, -100% for EXPIRED/SUPERSEDED), confidence boost (base confidence from drawer field). Dedup via seen_drawer_ids set. ChromaDB GetResult object has .ids, .metadatas, .documents attributes (not dict). 2931 total docs in palace as of mempalace Phase 2 completion. wing_sessions drawers from ConvoMiner have no wabblespec_schema_version — MemoryMine classifies them as needs_rebuild (correct, secondary/unverified). 73 JSONL files mined via ConvoMiner into wing_sessions.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

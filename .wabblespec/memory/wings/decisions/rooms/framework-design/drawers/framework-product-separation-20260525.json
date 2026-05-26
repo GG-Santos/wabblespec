@@ -1,0 +1,17 @@
+{
+  "id": "framework-product-separation-20260525",
+  "topic": "Framework and Product Space Separation (I11)",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/invariants.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "I11 (FRAMEWORK AND PRODUCT NEVER MIX): .wabblespec/ is framework space — all framework modules own all writes here. project/repo/ is product space — Apply and product tasks write here only. Never cross the boundary. Apply writes only to project/repo/ and reads from .wabblespec/ (read-only). Framework modules (Guard, Memory, Instinct, etc.) write to .wabblespec/ only. Product tasks declared in task cards never write to .wabblespec/. G0DM0D3 Wave 5 persistence: .wabblespec/memory/learned-params/ (framework space, correct). Curated drawers: .wabblespec/memory/wings/ (framework space). The boundary is enforced by Guard's authority check — any Write/Edit to .wabblespec/ from a non-framework module triggers I11_VIOLATION.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

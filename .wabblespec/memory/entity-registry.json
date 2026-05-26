@@ -1,0 +1,316 @@
+{
+  "version": "1.0",
+  "generated": "2026-05-24T13:09:29.147163+00:00",
+  "drawers_scanned": 12,
+  "entity_counts": {
+    "concept": 11,
+    "module": 13,
+    "file": 12
+  },
+  "entities": {
+    "concept": [
+      {
+        "id": "concept::receipt schema design",
+        "label": "receipt schema design",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "receipt-schema-design-20260519",
+          "receipt-schema-design-20260521"
+        ]
+      },
+      {
+        "id": "concept::verifier check types",
+        "label": "verifier check types",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "verifier-check-types-20260520"
+        ]
+      },
+      {
+        "id": "concept::skill factory gaps and wabblespec templates",
+        "label": "skill factory gaps and wabblespec templates",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "skill-factory-gaps-20260520"
+        ]
+      },
+      {
+        "id": "concept::guard module invariant enforcement",
+        "label": "guard module invariant enforcement",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-invariant-list-20260520"
+        ]
+      },
+      {
+        "id": "concept::guard memory backend invariants",
+        "label": "guard memory backend invariants",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524"
+        ]
+      },
+      {
+        "id": "concept::phase 1 completion",
+        "label": "phase 1 completion",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "phase-1-completion-20260519"
+        ]
+      },
+      {
+        "id": "concept::phase 2 module order rationale",
+        "label": "phase 2 module order rationale",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "concept::wabblespec kill criteria",
+        "label": "wabblespec kill criteria",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "wabblespec-kill-criteria-20260521"
+        ]
+      },
+      {
+        "id": "concept::drawer staleness states and transitions",
+        "label": "drawer staleness states and transitions",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "drawer-staleness-states-20260521"
+        ]
+      },
+      {
+        "id": "concept::memory drawer storage structure",
+        "label": "memory drawer storage structure",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-drawer-structure-20260521"
+        ]
+      },
+      {
+        "id": "concept::hook enforcement pattern",
+        "label": "hook enforcement pattern",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-enforcement-pattern-20260519"
+        ]
+      }
+    ],
+    "module": [
+      {
+        "id": "module::guard",
+        "label": "guard",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "guard-invariant-list-20260520",
+          "guard-mempalace-invariants-20260524",
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::verifier",
+        "label": "verifier",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "verifier-check-types-20260520",
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::memory",
+        "label": "memory",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524",
+          "memory-drawer-structure-20260521"
+        ]
+      },
+      {
+        "id": "module::decompose",
+        "label": "decompose",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "phase-1-completion-20260519",
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::recipe",
+        "label": "recipe",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "module-order-rationale-20260520",
+          "receipt-schema-design-20260519"
+        ]
+      },
+      {
+        "id": "module::archive",
+        "label": "archive",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "module-order-rationale-20260520",
+          "receipt-schema-design-20260519"
+        ]
+      },
+      {
+        "id": "module::factory",
+        "label": "factory",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "skill-factory-gaps-20260520"
+        ]
+      },
+      {
+        "id": "module::scaffold",
+        "label": "scaffold",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "skill-factory-gaps-20260520"
+        ]
+      },
+      {
+        "id": "module::reviewer",
+        "label": "reviewer",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::executor",
+        "label": "executor",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::specify",
+        "label": "specify",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::provenance",
+        "label": "provenance",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "drawer-staleness-states-20260521"
+        ]
+      },
+      {
+        "id": "module::instinct",
+        "label": "instinct",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-drawer-structure-20260521"
+        ]
+      }
+    ],
+    "file": [
+      {
+        "id": "file::PASS/FAIL/PARTIAL",
+        "label": "PASS/FAIL/PARTIAL",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "verifier-check-types-20260520",
+          "receipt-schema-design-20260519",
+          "receipt-schema-design-20260521"
+        ]
+      },
+      {
+        "id": "file::_shared/references/invariants.md",
+        "label": "_shared/references/invariants.md",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-invariant-list-20260520"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/chroma",
+        "label": "wabblespec/memory/chroma",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524"
+        ]
+      },
+      {
+        "id": "file::scripts/migrate-json-drawers.py",
+        "label": "scripts/migrate-json-drawers.py",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524"
+        ]
+      },
+      {
+        "id": "file::claude/settings.json",
+        "label": "claude/settings.json",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "phase-1-completion-20260519"
+        ]
+      },
+      {
+        "id": "file::before/after",
+        "label": "before/after",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "wabblespec-kill-criteria-20260521"
+        ]
+      },
+      {
+        "id": "file::L0-L8/shared",
+        "label": "L0-L8/shared",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "receipt-schema-design-20260521"
+        ]
+      },
+      {
+        "id": "file::module/receipt_path/staleness_state",
+        "label": "module/receipt_path/staleness_state",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "receipt-schema-design-20260521"
+        ]
+      },
+      {
+        "id": "file::EXPIRED/SUPERSEDED",
+        "label": "EXPIRED/SUPERSEDED",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-drawer-structure-20260521"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/wings",
+        "label": "wabblespec/memory/wings",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-drawer-structure-20260521"
+        ]
+      },
+      {
+        "id": "file::session/state.json",
+        "label": "session/state.json",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-enforcement-pattern-20260519"
+        ]
+      },
+      {
+        "id": "file::wabblespec/receipts",
+        "label": "wabblespec/receipts",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-enforcement-pattern-20260519"
+        ]
+      }
+    ]
+  }
+}

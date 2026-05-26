@@ -1,0 +1,51 @@
+{
+  "module": "factory",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "factory",
+    "scaffold new module",
+    "generate module stub",
+    "new module from blueprint"
+  ],
+  "anti_activators": [
+    "blueprint status: awaiting-attestation",
+    "blueprint status: pending",
+    "change_type: AUGMENT",
+    "modify existing module",
+    "execution wave in progress"
+  ],
+  "preconditions": [
+    "blueprint.json has change_type: NEW and status: approved",
+    "Blueprint receipt exists confirming Attestation",
+    "No existing directory at .wabblespec/experiments/augments/{blueprint-id}/",
+    "Human explicit invocation with blueprint ID"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-blueprint"],
+  "authority": {
+    "owns": [".wabblespec/experiments/augments/"],
+    "reads": [
+      ".wabblespec/experiments/blueprints/",
+      ".wabblespec/receipts/blueprint-*.json",
+      "framework.yaml"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Only activates on change_type: NEW blueprints",
+    "Idempotency guard: no overwrite on duplicate directory",
+    "Stubs contain [FILL] placeholders, not behavioral logic",
+    "Never writes to modules/ or production space",
+    "Checks framework.yaml for ID conflicts before writing"
+  ],
+  "produces": [".wabblespec/experiments/augments/"],
+  "depends_on": ["blueprint", "synth", "instinct"],
+  "consumed_by": ["augment", "benchmark"],
+  "loading_gate": "activation",
+  "commands": ["/factory"],
+  "file_path_patterns": []
+}

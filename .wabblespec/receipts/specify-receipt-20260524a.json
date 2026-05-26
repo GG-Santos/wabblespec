@@ -1,0 +1,45 @@
+{
+  "module": "specify",
+  "layer": "L1",
+  "phase": "Specify",
+  "wave": 0,
+  "timestamp": "2026-05-24T00:32:00Z",
+  "session_id": "seed-run-20260524a",
+  "checks_run": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "checks_passed": [
+    "requirements-complete",
+    "success-criteria-measurable",
+    "failure-modes-declared",
+    "no-pia-fields"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "requirements": [
+    "R1: Read framework.yaml from the working directory (path configurable via --framework flag, default: framework.yaml)",
+    "R2: Extract all module IDs from the modules list",
+    "R3: For each module, validate all depends_on entries are valid module IDs — flag any missing",
+    "R4: For each shared.references entry, validate all consumers are valid module IDs — flag any missing",
+    "R5: For each shared.infrastructure entry, validate all consumers are valid module IDs — flag any missing",
+    "R6: Print summary: total modules checked, total shared files checked, total violations found",
+    "R7: Print each violation with: type (depends_on | consumer), source module or file path, invalid reference",
+    "R8: Exit code 0 if zero violations; exit code 1 if one or more violations"
+  ],
+  "success_criteria": [
+    "Script runs on framework.yaml with exit code 0 and reports zero violations",
+    "Script correctly flags a seeded invalid depends_on reference when tested with a modified input",
+    "Script correctly flags a seeded invalid consumer reference when tested with a modified input"
+  ],
+  "failure_modes": [
+    "framework.yaml not found: print clear error, exit code 2",
+    "framework.yaml malformed YAML: print parse error with line number, exit code 2",
+    "Module has depends_on referencing non-existent ID: violation reported, exit code 1",
+    "Shared file has consumer referencing non-existent module ID: violation reported, exit code 1"
+  ],
+  "outputs": ["_shared/scripts/validate-graph.py"],
+  "not_tested": []
+}

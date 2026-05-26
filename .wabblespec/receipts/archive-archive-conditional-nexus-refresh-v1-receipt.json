@@ -1,0 +1,14 @@
+{
+  "receipt_type": "executor",
+  "task_id": "archive-archive-conditional-nexus-refresh-v1",
+  "session_id": null,
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [],
+  "summary": "Archive: archive-conditional-nexus-refresh-v1 Forge complete. Augment dir moved to experiments/archive. forge_receipt set in tracker. VERSION 0.22.0.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-26T02:30:47Z"
+}

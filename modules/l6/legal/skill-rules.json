@@ -1,0 +1,17 @@
+{
+  "module": "legal",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "compliance_document_request", "/legal"],
+  "authority": {
+    "owns": [".wabblespec/receipts/legal-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["document_type_declared", "product_name_declared", "required_inputs_present"],
+  "receipt_schema": "modules/l6/legal/schemas/legal-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": true,
+  "notes": "All output is DRAFT. legal_review_required is always true."
+}

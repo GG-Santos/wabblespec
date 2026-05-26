@@ -1,0 +1,40 @@
+{
+  "receipt_type": "verifier-receipt",
+  "run_id": "seed-run-20260524e",
+  "timestamp": "2026-05-24T07:32:02Z",
+  "version": "0.3.8",
+  "status": "PASS",
+  "quality_floor": {
+    "modules_checked": 96,
+    "passing_both_gates": 96,
+    "result": "PASS"
+  },
+  "validate_graph": {
+    "modules_checked": 99,
+    "shared_files_checked": 96,
+    "violations_found": 0,
+    "result": "PASS"
+  },
+  "behavioral_checks": [
+    {
+      "check": "dev_frameworks section present in framework.yaml with 37 entries",
+      "result": "PASS"
+    },
+    {
+      "check": "dev_infrastructure section present in framework.yaml with 4 entries",
+      "result": "PASS"
+    },
+    {
+      "check": "gateway-ai added to gateway-pattern.md consumers",
+      "result": "PASS"
+    },
+    {
+      "check": "validate-graph.py uses dynamic section iteration — no hardcoded section names",
+      "result": "PASS"
+    },
+    {
+      "check": "All 41 new consumer IDs resolve to known module IDs (0 violations)",
+      "result": "PASS"
+    }
+  ]
+}

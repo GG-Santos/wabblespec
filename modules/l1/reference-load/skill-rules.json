@@ -1,0 +1,60 @@
+{
+  "module": "reference-load",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "load reference",
+    "load external reference",
+    "load internal reference",
+    "reference-load",
+    "/reference-load",
+    "read reference source",
+    "extract concept from reference",
+    "inspect reference",
+    "load ref"
+  ],
+  "anti_activators": [
+    "reference already loaded and drawer is FRESH",
+    "reading project memory — use MemorySearch",
+    "reading runtime capability — use RuntimeProbe"
+  ],
+  "phases": [
+    "Research",
+    "Plan"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/memory/wings/references/",
+      ".wabblespec/receipts/reference-load-<source-slug>-<timestamp>.json"
+    ],
+    "reads": [
+      "External and internal reference paths (read-only, bounded to 5 files per invocation)",
+      ".wabblespec/memory/index.json (dedup check)",
+      "Any README.md or project-map.md at reference root"
+    ],
+    "notifies": [
+      "Memory (drawer write)",
+      "Provenance (record new drawer)",
+      "Explore (when map is produced)"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Dedup check runs before any file read — never skip",
+    "Maximum 5 files read per invocation — split if more needed",
+    "Never read .npmrc, private journals, eval-workspace, or generated bundles",
+    "One source + one purpose = one drawer — no cross-source mixing",
+    "trust_level must be stated — never omit"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": [
+    "C:/Vaults/references/**",
+    "C:/Vaults/WabbleSpec v6.1/spec-reference/**"
+  ]
+}

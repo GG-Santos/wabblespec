@@ -1,0 +1,14 @@
+{
+  "receipt_type": "executor",
+  "task_id": "archive-recipe-collapse-assessment-v1",
+  "session_id": null,
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [],
+  "summary": "Archive: recipe-collapse-assessment-v1 Forge complete. Augment dir moved to experiments/archive. VERSION 0.23.0.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-26T02:39:51Z"
+}

@@ -1,0 +1,72 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525ac",
+  "session_id": "seed-pipeline-ac",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "description": "Both files written and present",
+      "result": "PASS",
+      "detail": "_shared/references/instinct-activation-walkthrough.md and updated _shared/references/l8-corpus-gate.md confirmed written"
+    },
+    {
+      "id": "V-02",
+      "description": "Walkthrough covers all three instinct.py modes (--status, --dry-run, --activate) with expected output",
+      "result": "PASS",
+      "detail": "Steps 1/2/3 document all three flags; expected output strings provided for each"
+    },
+    {
+      "id": "V-03",
+      "description": "Walkthrough documents all three pattern types and their detection thresholds",
+      "result": "PASS",
+      "detail": "high-frequency-failure (≥20%/≥5), co-occurrence-cluster (≥3), recurring-gap (≥3 sessions) — all match instinct.py constants"
+    },
+    {
+      "id": "V-04",
+      "description": "Walkthrough explains how to inspect evidence for each pattern type before validating",
+      "result": "PASS",
+      "detail": "Step 4 documents evidence inspection for high-frequency-failure (open receipt files), co-occurrence-cluster (check known dependencies), recurring-gap (verify gap-map.md)"
+    },
+    {
+      "id": "V-05",
+      "description": "Human-validated: true procedure documented with validation note requirement",
+      "result": "PASS",
+      "detail": "Step 5 shows exact field change and requires a one-line validation note explaining rationale"
+    },
+    {
+      "id": "V-06",
+      "description": "Pattern quality heuristics table distinguishes genuine from spurious patterns",
+      "result": "PASS",
+      "detail": "5-column table with genuine/spurious signal pairs covering date spread, module weakness, coupling, gap-map confidence, actionability, benchmark schema match"
+    },
+    {
+      "id": "V-07",
+      "description": "l8-corpus-gate.md gate_status updated to PARTIALLY_MET with accurate receipt count",
+      "result": "PASS",
+      "detail": "gate_status: PARTIALLY_MET; receipt corpus row: 100 receipts — YES; human-validated patterns row: 0 — NO"
+    },
+    {
+      "id": "V-08",
+      "description": "l8-corpus-gate.md Instinct authorized to run; Synth still read-only pending validation",
+      "result": "PASS",
+      "detail": "Module authorization table: Instinct AUTHORIZED TO RUN; Synth read-only until 3 validated; Forge requires Attestation"
+    },
+    {
+      "id": "V-09",
+      "description": "l8-corpus-gate.md documents what changed since last evaluation",
+      "result": "PASS",
+      "detail": "What Changed section records: 67→100 receipts, benchmark schema CONFIRMED, contradictions CONFIRMED, human-validated patterns still 0"
+    },
+    {
+      "id": "V-10",
+      "description": "l8-corpus-gate.md Next Required Action section provides exact bash commands for human to execute",
+      "result": "PASS",
+      "detail": "6-step bash sequence with comments; references instinct-activation-walkthrough.md for full details"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T15:01:00Z"
+}

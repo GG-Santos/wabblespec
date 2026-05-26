@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-05-24T22:37:09.536972+00:00",
+  "reason": "Remove verified-migrated legacy Chroma collections to stop corrupt legacy HNSW drift quarantine from recurring.",
+  "memory_path": "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\memory",
+  "deleted_collections": [
+    "mempalace_drawers"
+  ],
+  "before": {
+    "legacy_drawers": 2931,
+    "legacy_closets": 0,
+    "new_drawers": 2931,
+    "new_closets": 0
+  },
+  "after": {
+    "legacy_drawers": 0,
+    "legacy_closets": 0,
+    "new_drawers": 2931,
+    "new_closets": 0
+  },
+  "verified": true
+}

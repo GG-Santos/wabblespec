@@ -1,0 +1,235 @@
+{
+  "fixture_set": "verifier-wave-scoped-acceptance-tracing-v1",
+  "generated_at": "2026-05-26T00:00:00Z",
+  "benchmark_gate": "deferred_clause_miss_rate",
+  "threshold": 0.0,
+  "direction": "lower_is_better",
+  "developer_outcome": "missed_criterion",
+  "cases": [
+    {
+      "id": "case-01",
+      "description": "Single-wave task: all 3 Then clauses map to wave 1 outputs. Wave-scoped check should verify all 3. No deferral.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 1,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/cli.py", "text": "Then the CLI exits with code 0 on success"},
+          {"id": "tc-2", "artifact": "tests/test_cli.py", "text": "Then all unit tests pass"},
+          {"id": "tc-3", "artifact": "README.md", "text": "Then README documents the --help flag"}
+        ],
+        "wave_declared_outputs": ["src/cli.py", "tests/test_cli.py", "README.md"],
+        "wave_output_artifacts": {
+          "src/cli.py": "present",
+          "tests/test_cli.py": "present",
+          "README.md": "present"
+        }
+      },
+      "expected_outcome": "correctly_scoped_pass",
+      "expected_deferred_clauses": [],
+      "expected_checked_clauses": ["tc-1", "tc-2", "tc-3"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-02",
+      "description": "Multi-wave task: wave 1 of 2. Clauses tc-1 and tc-2 map to wave 1 outputs. Clauses tc-3 and tc-4 map to wave 2 outputs. Wave-scoped check verifies tc-1 and tc-2; defers tc-3 and tc-4.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 2,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/auth.py", "text": "Then authentication returns a JWT token"},
+          {"id": "tc-2", "artifact": "tests/test_auth.py", "text": "Then auth tests pass with 100% coverage"},
+          {"id": "tc-3", "artifact": "docs/api.md", "text": "Then API documentation lists all endpoints"},
+          {"id": "tc-4", "artifact": "CHANGELOG.md", "text": "Then CHANGELOG entry is present for this release"}
+        ],
+        "wave_declared_outputs": ["src/auth.py", "tests/test_auth.py"],
+        "wave_output_artifacts": {
+          "src/auth.py": "present",
+          "tests/test_auth.py": "present"
+        }
+      },
+      "expected_outcome": "correctly_deferred",
+      "expected_deferred_clauses": ["tc-3", "tc-4"],
+      "expected_checked_clauses": ["tc-1", "tc-2"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-03",
+      "description": "Multi-wave task: wave 2 of 2 (final wave). Wave 2 declares outputs that cover tc-3 and tc-4 (deferred from wave 1). Wave-scoped check verifies tc-3 and tc-4. No further deferral. All clauses covered across both waves.",
+      "input": {
+        "wave_number": 2,
+        "total_waves": 2,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/auth.py", "text": "Then authentication returns a JWT token"},
+          {"id": "tc-2", "artifact": "tests/test_auth.py", "text": "Then auth tests pass with 100% coverage"},
+          {"id": "tc-3", "artifact": "docs/api.md", "text": "Then API documentation lists all endpoints"},
+          {"id": "tc-4", "artifact": "CHANGELOG.md", "text": "Then CHANGELOG entry is present for this release"}
+        ],
+        "wave_declared_outputs": ["docs/api.md", "CHANGELOG.md"],
+        "wave_output_artifacts": {
+          "docs/api.md": "present",
+          "CHANGELOG.md": "present"
+        }
+      },
+      "expected_outcome": "correctly_scoped_pass",
+      "expected_deferred_clauses": [],
+      "expected_checked_clauses": ["tc-3", "tc-4"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-04",
+      "description": "Multi-wave task: wave 1 of 3. Wave 1 outputs cover tc-1 only. tc-2 through tc-4 deferred to waves 2 and 3. Wave-scoped check correctly narrows to tc-1.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 3,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/schema.py", "text": "Then the data schema validates against the spec"},
+          {"id": "tc-2", "artifact": "src/pipeline.py", "text": "Then the pipeline processes 1000 records/sec"},
+          {"id": "tc-3", "artifact": "tests/e2e_test.py", "text": "Then the end-to-end test passes on real data"},
+          {"id": "tc-4", "artifact": "docs/runbook.md", "text": "Then the runbook includes rollback instructions"}
+        ],
+        "wave_declared_outputs": ["src/schema.py"],
+        "wave_output_artifacts": {
+          "src/schema.py": "present"
+        }
+      },
+      "expected_outcome": "correctly_deferred",
+      "expected_deferred_clauses": ["tc-2", "tc-3", "tc-4"],
+      "expected_checked_clauses": ["tc-1"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-05",
+      "description": "Wave declares an output that exists but the Then clause for that artifact fails traceability (artifact present but criterion not satisfied). Wave-scoped check should FAIL — this is a real failure, not a deferral.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 1,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/validator.py", "text": "Then the validator rejects inputs missing required fields"},
+          {"id": "tc-2", "artifact": "README.md", "text": "Then README documents the validator API"}
+        ],
+        "wave_declared_outputs": ["src/validator.py", "README.md"],
+        "wave_output_artifacts": {
+          "src/validator.py": "present_but_criterion_unmet",
+          "README.md": "present"
+        }
+      },
+      "expected_outcome": "spec_compliance_fail",
+      "expected_deferred_clauses": [],
+      "expected_checked_clauses": ["tc-1", "tc-2"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-06",
+      "description": "Then clause artifact is not declared in any wave's outputs (gap in wave plan). Wave-scoped check defers it from wave 1 (not declared). Pre-archive sweep must catch the miss.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 1,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/main.py", "text": "Then main.py initializes the app correctly"},
+          {"id": "tc-2", "artifact": "src/config.py", "text": "Then config.py loads environment variables"}
+        ],
+        "wave_declared_outputs": ["src/main.py"],
+        "wave_output_artifacts": {
+          "src/main.py": "present"
+        }
+      },
+      "expected_outcome": "deferred_but_uncovered",
+      "expected_deferred_clauses": ["tc-2"],
+      "expected_checked_clauses": ["tc-1"],
+      "missed_criterion": true,
+      "notes": "tc-2 is not declared in any wave. Pre-archive sweep completeness must surface this as WARN. This case validates that wave-scoped deferral does not silently drop clauses — the deferred_then_clauses field must be populated and visible to pre-archive sweep."
+    },
+    {
+      "id": "case-07",
+      "description": "Multi-wave task with 5 Then clauses spread across 3 waves. Wave 2 of 3 verifies its 2 clauses, defers the remaining. No missed clauses across all waves.",
+      "input": {
+        "wave_number": 2,
+        "total_waves": 3,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/models.py", "text": "Then data models pass schema validation"},
+          {"id": "tc-2", "artifact": "src/api.py", "text": "Then API returns 200 on valid request"},
+          {"id": "tc-3", "artifact": "src/cache.py", "text": "Then cache hit rate exceeds 80%"},
+          {"id": "tc-4", "artifact": "tests/integration.py", "text": "Then integration tests pass"},
+          {"id": "tc-5", "artifact": "docs/ops.md", "text": "Then ops runbook covers incident response"}
+        ],
+        "wave_declared_outputs": ["src/api.py", "src/cache.py"],
+        "wave_output_artifacts": {
+          "src/api.py": "present",
+          "src/cache.py": "present"
+        }
+      },
+      "expected_outcome": "correctly_deferred",
+      "expected_deferred_clauses": ["tc-1", "tc-4", "tc-5"],
+      "expected_checked_clauses": ["tc-2", "tc-3"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-08",
+      "description": "Wave output artifact present but declared path does not match Then clause artifact path exactly (case mismatch: README.md vs readme.md). Wave-scoped check must treat unmatched paths as out-of-scope (deferred), not as checked.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 1,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "README.md", "text": "Then README.md documents installation steps"}
+        ],
+        "wave_declared_outputs": ["readme.md"],
+        "wave_output_artifacts": {
+          "readme.md": "present"
+        }
+      },
+      "expected_outcome": "correctly_deferred",
+      "expected_deferred_clauses": ["tc-1"],
+      "expected_checked_clauses": [],
+      "missed_criterion": true,
+      "notes": "Path matching must be case-sensitive and exact. A mismatch means the clause is not covered by this wave's declared outputs."
+    },
+    {
+      "id": "case-09",
+      "description": "All 6 Then clauses map to a single wave. Wave declares all 6 outputs. Wave-scoped check verifies all 6. No deferral. Confirms no regression for large single-wave tasks.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 1,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/a.py", "text": "Then module A initializes"},
+          {"id": "tc-2", "artifact": "src/b.py", "text": "Then module B processes input"},
+          {"id": "tc-3", "artifact": "src/c.py", "text": "Then module C writes output"},
+          {"id": "tc-4", "artifact": "tests/test_a.py", "text": "Then A tests pass"},
+          {"id": "tc-5", "artifact": "tests/test_b.py", "text": "Then B tests pass"},
+          {"id": "tc-6", "artifact": "docs/arch.md", "text": "Then architecture doc reflects module structure"}
+        ],
+        "wave_declared_outputs": ["src/a.py", "src/b.py", "src/c.py", "tests/test_a.py", "tests/test_b.py", "docs/arch.md"],
+        "wave_output_artifacts": {
+          "src/a.py": "present",
+          "src/b.py": "present",
+          "src/c.py": "present",
+          "tests/test_a.py": "present",
+          "tests/test_b.py": "present",
+          "docs/arch.md": "present"
+        }
+      },
+      "expected_outcome": "correctly_scoped_pass",
+      "expected_deferred_clauses": [],
+      "expected_checked_clauses": ["tc-1", "tc-2", "tc-3", "tc-4", "tc-5", "tc-6"],
+      "missed_criterion": false
+    },
+    {
+      "id": "case-10",
+      "description": "Wave declares 0 outputs (edge case: wave is a documentation-only research wave with no declared file outputs). All Then clauses deferred. Pre-archive sweep backstop must catch all.",
+      "input": {
+        "wave_number": 1,
+        "total_waves": 2,
+        "task_card_then_clauses": [
+          {"id": "tc-1", "artifact": "src/feature.py", "text": "Then feature is implemented"},
+          {"id": "tc-2", "artifact": "tests/test_feature.py", "text": "Then feature tests pass"}
+        ],
+        "wave_declared_outputs": [],
+        "wave_output_artifacts": {}
+      },
+      "expected_outcome": "correctly_deferred",
+      "expected_deferred_clauses": ["tc-1", "tc-2"],
+      "expected_checked_clauses": [],
+      "missed_criterion": false,
+      "notes": "All clauses deferred because no outputs declared. Verifier should not fail — deferral is correct behavior. Wave 2 must declare both outputs."
+    }
+  ]
+}

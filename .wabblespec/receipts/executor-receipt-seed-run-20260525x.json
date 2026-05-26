@@ -1,0 +1,17 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525x",
+  "session_id": "seed-pipeline-x",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l2/guard", "l2/triage", "l6/copy"],
+  "files_written": [
+    "_shared/references/error-event-catalog.md",
+    "_shared/references/guard-policy-reference.md"
+  ],
+  "summary": "Error event catalog: definitive registry of all typed error events across L2/L5/L7 modules, with routing actions and user-facing message templates satisfying Copy's prohibition on 'Something went wrong'. Guard policy reference: 5-layer validation summary, COMMAND_RISK taxonomy, Memory backend invariants, error type-to-routing mapping, and common failure modes. Together: cross-cutting framework knowledge for Triage, Grader, and Copy.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T10:00:00Z"
+}

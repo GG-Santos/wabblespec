@@ -1,0 +1,12 @@
+{
+  "module": "blueprint",
+  "layer": "L8",
+  "blueprint_id": "cold-start-coverage-recipe-gate-v1",
+  "affected_module": "recipe",
+  "change_type": "AUGMENT",
+  "attestation_confirmed": true,
+  "attested_by": "Gino Santos",
+  "attested_at": "2026-05-25T08:30:00+00:00",
+  "status": "PASS",
+  "timestamp": "2026-05-25T08:20:00+00:00"
+}

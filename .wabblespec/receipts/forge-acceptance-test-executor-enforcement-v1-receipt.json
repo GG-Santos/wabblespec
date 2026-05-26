@@ -1,0 +1,18 @@
+{
+  "module": "forge",
+  "phase": "L8-evolution",
+  "blueprint_id": "acceptance-test-executor-enforcement-v1",
+  "target_module": "executor",
+  "target_path": "modules/l2/executor/SKILL.md",
+  "augment_path": ".wabblespec/experiments/augments/acceptance-test-executor-enforcement-v1/SKILL.md",
+  "benchmark_verdict": "PASS",
+  "benchmark_held_out_value": 0.0,
+  "benchmark_threshold": 0.0,
+  "developer_outcome": "missed_test",
+  "forge_verdict": "PROMOTED",
+  "change_summary": "Module-build acceptance gate added to Executor post-wave epilogue. On task_type: module-build, checks tests/acceptance.md exists before writing execution-receipt.json. Emits ACCEPTANCE_NOT_COVERED on failure; routes back to acceptance test authorship. acceptance_verified field added to execution-receipt output contract.",
+  "live_module_verified": true,
+  "augment_label_retained": "(AUGMENT: new step) retained in SKILL.md for provenance",
+  "timestamp": "2026-05-25T14:37:42Z",
+  "status": "PASS"
+}

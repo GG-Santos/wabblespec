@@ -1,0 +1,30 @@
+{
+  "fixture_set": "verifier-wave-scoped-acceptance-tracing-v1",
+  "generated_at": "2026-05-26T01:40:10Z",
+  "held_out_evaluations": [
+    {
+      "case_id": "case-05",
+      "expected_outcome": "spec_compliance_fail",
+      "missed_criterion_occurred": false,
+      "verdict": "PASS",
+      "notes": "Wave declares both outputs (src/validator.py, README.md). Both Then clauses are in scope under wave-scoped check 4. tc-1 (validator.py) is present_but_criterion_unmet — augmented verifier correctly identifies the traceability failure and issues spec compliance FAIL. tc-2 (README.md) passes. The FAIL is correctly issued; no clause is deferred or missed. missed_criterion_occurred = false. Benchmark gate: not a miss, a correctly caught failure."
+    },
+    {
+      "case_id": "case-01",
+      "expected_outcome": "correctly_scoped_pass",
+      "missed_criterion_occurred": false,
+      "verdict": "PASS",
+      "notes": "Single-wave task. Wave 1 of 1 declares all 3 outputs (src/cli.py, tests/test_cli.py, README.md). All 3 Then clauses are in scope. All artifacts present. Wave-scoped check 4 correctly verifies all 3 clauses. deferred_then_clauses = []. Verdict PASS. No regression vs pre-change behavior on single-wave tasks."
+    },
+    {
+      "case_id": "case-02",
+      "expected_outcome": "correctly_deferred",
+      "missed_criterion_occurred": false,
+      "verdict": "PASS",
+      "notes": "Multi-wave task, wave 1 of 2. Wave declares src/auth.py and tests/test_auth.py. tc-1 and tc-2 are in scope (their artifacts declared). tc-3 (docs/api.md) and tc-4 (CHANGELOG.md) are not declared in wave 1 — augmented verifier correctly defers them to wave 2. deferred_then_clauses = [tc-3, tc-4]. Both wave 1 artifacts present. PASS. No clauses missed: tc-3 and tc-4 are declared as wave 2 outputs and will be verified there."
+    }
+  ],
+  "held_out_missed_criterions": 0,
+  "held_out_total": 3,
+  "held_out_deferred_clause_miss_rate": 0.0
+}

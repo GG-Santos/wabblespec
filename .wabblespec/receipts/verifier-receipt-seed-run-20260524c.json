@@ -1,0 +1,18 @@
+{
+  "receipt_type": "verifier",
+  "run_id": "seed-run-20260524c",
+  "status": "PASS",
+  "timestamp": "2026-05-23T17:00:47Z",
+  "checkpoint": "quality-floor-check.py reports 0 failures",
+  "verification_result": {
+    "modules_checked": 96,
+    "passing_both_gates": 96,
+    "failing_quick_validate": 0,
+    "failing_lint_prompts": 0,
+    "adversarial_warnings": 0,
+    "verdict": "All modules PASS"
+  },
+  "root_cause_confirmed": "UTF-8 BOM in SKILL.md files caused FRONTMATTER regex to fail; fixed by switching load_skill() to utf-8-sig encoding",
+  "quality_floor_failures_before": 30,
+  "quality_floor_failures_after": 0
+}

@@ -1,0 +1,18 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525u",
+  "session_id": "seed-pipeline-u",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.5",
+  "version_new": "0.5.6",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Build-toolchain templates for all 11 L3 platforms; Monitor's two engineering inputs now complete for every platform; 76/100 PASS receipts",
+  "total_receipts_accumulated": 76,
+  "l8_gate_progress": "76/100",
+  "archived_at": "2026-05-25T07:02:00Z"
+}

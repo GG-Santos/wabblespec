@@ -1,0 +1,22 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260524n",
+  "status": "PASS",
+  "timestamp": "2026-05-25T00:02:00Z",
+  "module": "archive",
+  "summary": "L2 acceptance tests: all 13 modules covered (adversary, audit, autopilot, economy, ensemble, executor, grader, guard, model-router, reviewer, rollback, team-plan, verifier). Each test derived from SKILL.md + cold-start.md content.",
+  "executor_receipt_path": ".wabblespec/receipts/executor-receipt-seed-run-20260524n.json",
+  "verifier_receipt_path": ".wabblespec/receipts/verifier-receipt-seed-run-20260524n.json",
+  "files_delivered": 13,
+  "version_previous": "0.4.8",
+  "version_new": "0.4.9",
+  "version_bump_reason": "ADDITIVE",
+  "total_receipts_accumulated": 55,
+  "l8_gate_progress": "55/100",
+  "acceptance_test_coverage": {
+    "L1": "24/24 COMPLETE",
+    "L2": "13/13 COMPLETE",
+    "L3_through_L7": "pending runs o-r"
+  },
+  "next_run": "Run o — L4 gateway policy files (5 gateways, 1-2 policy files each)"
+}

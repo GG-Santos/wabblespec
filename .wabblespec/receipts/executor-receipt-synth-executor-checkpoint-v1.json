@@ -1,0 +1,18 @@
+{
+  "receipt_type": "executor",
+  "task_id": "synth-executor-checkpoint-v1",
+  "session_id": "synth-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [
+    "l8/synth"
+  ],
+  "files_written": [
+    ".wabblespec/experiments/candidates/executor-pre-wave-checkpoint-elimination-v1.candidate.json"
+  ],
+  "summary": "Synth: executor-pre-wave-checkpoint-elimination-v1 candidate from Pattern 1",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T20:19:11Z"
+}

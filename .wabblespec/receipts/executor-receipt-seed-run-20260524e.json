@@ -1,0 +1,34 @@
+{
+  "receipt_type": "executor-receipt",
+  "run_id": "seed-run-20260524e",
+  "timestamp": "2026-05-24T07:32:02Z",
+  "version": "0.3.8",
+  "status": "PASS",
+  "waves": [
+    {
+      "wave": 1,
+      "title": "framework.yaml: register 41 new shared artifacts (dev_frameworks + dev_infrastructure sections)",
+      "files_written": ["framework.yaml"],
+      "changes": [
+        "Added dev_frameworks: section — 37 files across 11 platform directories",
+        "Added dev_infrastructure: section — 4 engineering infrastructure files",
+        "Fixed gateway-pattern.md consumers: added gateway-ai (was missing)"
+      ],
+      "status": "PASS"
+    },
+    {
+      "wave": 2,
+      "title": "validate-graph.py: fix hardcoded section list — dynamic iteration over all shared sections",
+      "files_written": ["_shared/scripts/validate-graph.py"],
+      "changes": [
+        "check_shared_consumers() now iterates shared.items() instead of hardcoded tuple",
+        "shared_file_count now sums over shared.values() instead of hardcoded tuple",
+        "Shared files checked: 55 → 96 (+41 newly visible entries)"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "quality_floor_result": "96/96 PASS",
+  "validate_graph_result": "96 shared files, 0 violations",
+  "notes": "Both framework.yaml and validate-graph.py are now correct and consistent. New shared sections are fully enumerated and consumer IDs all resolve."
+}

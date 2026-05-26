@@ -1,0 +1,23 @@
+{
+  "module": "decompose",
+  "layer": "L1",
+  "phase": "Plan",
+  "wave": 0,
+  "timestamp": "2026-05-24T01:03:00Z",
+  "session_id": "seed-run-20260524b",
+  "checks_run": ["wave-plan-complete", "dependencies-declared", "checkpoints-defined", "rollback-defined"],
+  "checks_passed": ["wave-plan-complete", "dependencies-declared", "checkpoints-defined", "rollback-defined"],
+  "status": "PASS",
+  "waves": [
+    {
+      "wave": 1,
+      "name": "Write quality-floor-check.py",
+      "tasks": ["T1: Write _shared/scripts/quality-floor-check.py implementing R1–R10"],
+      "checkpoint": "Script exists, runs without ImportError, reports results on live framework.yaml",
+      "rollback": "Delete _shared/scripts/quality-floor-check.py"
+    }
+  ],
+  "total_waves": 1,
+  "outputs": ["task-card.md"],
+  "not_tested": []
+}

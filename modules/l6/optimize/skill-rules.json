@@ -1,0 +1,16 @@
+{
+  "module": "optimize",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "pre_launch_audit", "discoverability_request", "/optimize"],
+  "authority": {
+    "owns": [".wabblespec/receipts/optimize-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["mode_declared", "target_path_exists"],
+  "receipt_schema": "modules/l6/optimize/schemas/optimize-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": true
+}

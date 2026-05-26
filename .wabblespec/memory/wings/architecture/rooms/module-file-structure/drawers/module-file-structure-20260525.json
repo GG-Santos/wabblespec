@@ -1,0 +1,17 @@
+{
+  "id": "module-file-structure-20260525",
+  "topic": "Module File Structure Requirements",
+  "wing": "architecture",
+  "room": "module-file-structure",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Every standard module (L0-L8) requires: SKILL.md (prompt file with YAML frontmatter having name: and description: >=20 chars; ## What this skill does and ## When to use headings; output contract section; body >=200 chars). skill-rules.json (required fields: module, layer, tier, activators, authority with owns+reads lists, verification_mode, receipt_required as boolean). rules/cold-start.md (cold-start procedure). tests/acceptance.md (acceptance criteria, required before any execution receipt). Modules tagged security/enforcement/receipt/gate must also contain word 'adversarial' in SKILL.md (warning, not gate fail).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

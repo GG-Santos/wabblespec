@@ -1,0 +1,20 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525s",
+  "session_id": "seed-pipeline-s",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l7/monitor", "l4/engineering", "l8/benchmark", "l8/instinct"],
+  "files_written": [
+    "_shared/references/l8-corpus-gate.md",
+    "_shared/references/performance-budgets.md",
+    "_shared/templates/engineering/performance-budgets-web.md",
+    "_shared/templates/engineering/performance-budgets-api-service.md",
+    "_shared/templates/engineering/performance-budgets-cli.md"
+  ],
+  "summary": "l8-corpus-gate.md updated to accurate state (67/100, benchmark schema CONFIRMED, contradictions CONFIRMED zero); performance budget reference + 3 platform templates (web/api-service/cli)",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T05:00:00Z"
+}

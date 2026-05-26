@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "task_id": "forge-archive-conditional-nexus-refresh-v1",
+  "session_id": null,
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [
+    "modules/l7/archive/SKILL.md",
+    "modules/l7/archive/tests/acceptance.md",
+    "framework.yaml",
+    ".wabblespec/experiments/fixtures/archive-conditional-nexus-refresh-v1/fixtures.json",
+    ".wabblespec/experiments/fixtures/archive-conditional-nexus-refresh-v1/split.json",
+    ".wabblespec/experiments/fixtures/archive-conditional-nexus-refresh-v1/golden.json",
+    ".wabblespec/experiments/tracker.json",
+    ".wabblespec/VERSION"
+  ],
+  "summary": "Forge: archive-conditional-nexus-refresh-v1 promoted to production. Step 10 Nexus refresh now conditional on framework-relevant files in files_written. nexus_skip_reason field added to delivery receipt schema. Benchmark: nexus_drift_rate=0.0/3=0.0 <= 0.0. VERSION 0.22.0.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-26T02:30:17Z"
+}

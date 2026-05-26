@@ -1,0 +1,26 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-automation-scripts-2",
+  "session_id": "seed-run-automation-scripts-2",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 0,
+  "version_previous": "0.10.0",
+  "version_new": "0.11.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Five mechanical-layer scripts: framework-register.py (framework.yaml patch without 13K-token read), module-scaffold.py (4-file module stub generator, quality gates pass on creation), receipt-chain-validate.py (pre-Archive chain scan, both session_id and task_id matching), recipe-writer.py (recipe.json + receipt from CLI args), session-state.py (session/state.json CRUD). All five tested and passing.",
+  "archived_at": "2026-05-25T16:27:08Z",
+  "files_delivered": [
+    "_shared/scripts/framework-register.py",
+    "_shared/scripts/module-scaffold.py",
+    "_shared/scripts/receipt-chain-validate.py",
+    "_shared/scripts/recipe-writer.py",
+    "_shared/scripts/session-state.py"
+  ],
+  "scripts_added": 5,
+  "tokens_saved_per_framework_write": 13000,
+  "receipt_chain_scan_automated": true
+}

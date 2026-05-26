@@ -1,10 +1,17 @@
 {
-  "target": "AI-Agent",
-  "detection_method": "file-signals",
-  "confidence": 0.85,
+  "target": "Framework",
+  "platform": "Framework",
+  "detection_method": "explicit-instruction",
+  "confidence": 0.97,
   "complexity": "Low",
   "secondary_targets": [],
-  "collapse_eligible": true,
-  "locked_at": "2026-05-21T10:00:00Z",
-  "session_id": "phase2-done-gate-20260521"
+  "collapse_eligible": false,
+  "input_quality": {
+    "vague": false,
+    "broad": false,
+    "enhanced": false,
+    "sharpened": false
+  },
+  "locked_at": "2026-05-25T21:06:14Z",
+  "session_id": "forge-executor-checkpoint-v1"
 }

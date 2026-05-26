@@ -1,0 +1,17 @@
+{
+  "id": "entity-graph-behavior-20260525",
+  "topic": "EntityGraph and Knowledge Graph Behavior",
+  "wing": "implementation",
+  "room": "entity-graph",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l2/team-plan/SKILL.md + mempalace Phase 4",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "entity-graph.py writes KG triples (weight >= 2) to knowledge_graph.sqlite3 and produces entity-registry.json. KG timestamp format required: YYYY-MM-DDTHH:MM:SSZ (not Python's +00:00 format). staleness-checker.py calls kg.invalidate() on EXPIRED/SUPERSEDED drawer transitions. EntityGraph produces canonical entity names — Polish and Specify reference these for naming consistency checks. team-plan module reads entity registry for multi-person task coordination. add_triple() requires valid_from in YYYY-MM-DDTHH:MM:SSZ format. KG triples threshold: weight >= 2 (raw co-occurrence must appear at least twice to be promoted to KG).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

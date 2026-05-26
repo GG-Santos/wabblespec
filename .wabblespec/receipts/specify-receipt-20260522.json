@@ -5,16 +5,33 @@
   "wave": 0,
   "timestamp": "2026-05-22T00:02:00Z",
   "session_id": "e2e-validation-20260522",
-  "checks_run": ["goal-declared", "non-goals-declared", "verification-criteria-declared", "gwt-scenarios-present"],
-  "checks_passed": ["goal-declared", "non-goals-declared", "verification-criteria-declared", "gwt-scenarios-present"],
-  "evidence": [".wabblespec/receipts/recipe-receipt-20260522.json"],
+  "checks_run": [
+    "goal-declared",
+    "non-goals-declared",
+    "verification-criteria-declared",
+    "gwt-scenarios-present"
+  ],
+  "checks_passed": [
+    "goal-declared",
+    "non-goals-declared",
+    "verification-criteria-declared",
+    "gwt-scenarios-present"
+  ],
+  "evidence": [
+    ".wabblespec/receipts/recipe-receipt-20260522.json"
+  ],
   "status": "PASS",
   "task": "Add research-log L6 module to WabbleSpec",
   "goal": "Build SKILL.md and skill-rules.json for research-log module so agents can log research findings as memory drawers with provenance",
-  "non_goals": ["implement drawer-writing logic (that is memory module's job)", "build retrieval (that is memory-search)"],
+  "non_goals": [
+    "implement drawer-writing logic (that is memory module's job)",
+    "build retrieval (that is memory-search)"
+  ],
   "verification_criteria": [
     "SKILL.md declares when to activate and what it produces",
     "skill-rules.json has correct layer, type, depends_on",
-    "Module is distinct from memory module — research-log is the interface for logging, memory is the storage"
-  ]
+    "Module is distinct from memory module \u2014 research-log is the interface for logging, memory is the storage"
+  ],
+  "not_tested": [],
+  "confidence": 0.9
 }

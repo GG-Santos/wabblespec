@@ -1,0 +1,17 @@
+{
+  "receipt_type": "executor",
+  "task_id": "seed-run-20260525aa",
+  "session_id": "seed-pipeline-aa",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": ["l4/engineering", "l7/archive", "l7/changelog", "l7/commit"],
+  "files_written": [
+    "_shared/references/dependency-policy.md",
+    "_shared/references/version-policy.md"
+  ],
+  "summary": "Dependency policy: violation classes (BLOCK vs. FLAG), upgrade decision tree, staged upgrade workflow (one major version at a time), security patch workflow, EOL runtime upgrade, CI commands. Version policy: BREAKING/ADDITIVE/NON_BREAKING taxonomy with exhaustive classification tables, SemVer bump decision tree, conventional commit type to delta_class mapping, pre-release conventions, WabbleSpec seed pipeline versioning rules.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T13:00:00Z"
+}

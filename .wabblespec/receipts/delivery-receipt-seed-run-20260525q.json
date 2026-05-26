@@ -1,0 +1,23 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "seed-run-20260525q",
+  "session_id": "seed-pipeline-q",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.5.1",
+  "version_new": "0.5.2",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "L5/L6/L7 acceptance tests: 28 modules (L5: 8, L6: 12, L7: 8); all layers COMPLETE; 64/100 PASS receipts",
+  "acceptance_test_coverage": {
+    "L5": "8/8 COMPLETE (memory/memory-search/memory-mine/dream/entity-graph/forget/nexus/provenance)",
+    "L6": "12/12 COMPLETE (polish/proofread/markdown/writer/copy/document/homowabian/legal/market/optimize/research-log/translate)",
+    "L7": "8/8 COMPLETE (archive/changelog/commit/deploy/monitor/package/release/scaffold)"
+  },
+  "total_receipts_accumulated": 64,
+  "l8_gate_progress": "64/100",
+  "archived_at": "2026-05-25T03:02:00Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "archive-module-behavior-20260525",
+  "topic": "Archive Module Behavior and Delivery Receipt",
+  "wing": "implementation",
+  "room": "archive",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l7/archive/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Archive finalizes completed execution. Called by Executor after all waves complete. Steps: 1) read all wave receipts from .wabblespec/receipts/; 2) run Verifier pre-archive sweep (non-blocking — checks completeness, correctness, coherence; findings as WARN in archive receipt pre_archive_sweep field; Archive proceeds regardless); 3) aggregate all receipts into one delivery receipt; 4) bump version; 5) append CHANGELOG entry; 6) write delivery receipt to .wabblespec/archive/receipt-index.json. Task is not done until Archive runs (I10). 32 entries in receipt-index.json as of 2026-05-25. Archive owns shift+nexus triggers. Depends on verifier, shift, nexus.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

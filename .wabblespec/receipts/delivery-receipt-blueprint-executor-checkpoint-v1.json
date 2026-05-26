@@ -1,0 +1,19 @@
+{
+  "receipt_type": "delivery",
+  "task_id": "blueprint-executor-checkpoint-v1",
+  "session_id": "blueprint-executor-checkpoint-v1",
+  "status": "PASS",
+  "all_waves_passed": true,
+  "waves_completed": 1,
+  "receipts_aggregated": 3,
+  "version_previous": "0.16.0",
+  "version_new": "0.17.0",
+  "version_bump_reason": "ADDITIVE",
+  "not_tested_items": 0,
+  "not_tested_list": [],
+  "summary": "Blueprint: executor-pre-wave-checkpoint-elimination-v1 awaiting attestation",
+  "archived_at": "2026-05-25T20:20:45Z",
+  "files_delivered": [
+    ".wabblespec/experiments/blueprints/executor-pre-wave-checkpoint-elimination-v1.blueprint.json"
+  ]
+}

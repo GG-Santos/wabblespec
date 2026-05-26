@@ -1,0 +1,24 @@
+{
+  "module": "organize",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/organize", "organize files", "audit file structure", "fix naming", "file organization"],
+  "authority": {
+    "owns": [".wabblespec/receipts/organize-receipt-*.json", ".wabblespec/organize/report-*.md"],
+    "reads": [
+      "modules/l1/organize/rules/audit-dimensions.md",
+      "modules/l1/organize/rules/repair-policy.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "ORG-1", "rule": "CONFIRM classification required before any destructive action", "severity": "BLOCKING" },
+    { "id": "ORG-2", "rule": "Check external references before classifying a move as AUTO", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/audit-dimensions.md",
+    "rules/repair-policy.md"
+  ],
+  "receipt_schema": "schemas/organize-receipt.schema.json"
+}

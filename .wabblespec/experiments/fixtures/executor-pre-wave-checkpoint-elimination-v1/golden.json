@@ -1,0 +1,30 @@
+{
+  "fixture_set": "executor-pre-wave-checkpoint-elimination-v1",
+  "generated_at": "2026-05-25T21:02:17Z",
+  "held_out_evaluations": [
+    {
+      "case_id": "case-05",
+      "expected_outcome": "correct_files_identified_for_revert",
+      "rework_occurred": false,
+      "verdict": "PASS",
+      "notes": "Wave plan lists README.md, docs/api.md, CHANGELOG.md. Augmented executor reads wave plan outputs for wave 1 and identifies README.md (partially written) as revert target. No directory checkpoint needed. Rollback proceeds without manual intervention."
+    },
+    {
+      "case_id": "case-01",
+      "expected_outcome": "no_intervention",
+      "rework_occurred": false,
+      "verdict": "PASS",
+      "notes": "Wave completes successfully. No rollback needed. Session checkpoint written to .wabblespec/session/checkpoints/ as expected. No pre-wave directory written to .wabblespec/checkpoints/. Zero intervention required."
+    },
+    {
+      "case_id": "case-02",
+      "expected_outcome": "correct_files_identified_for_revert",
+      "rework_occurred": false,
+      "verdict": "PASS",
+      "notes": "Wave plan declares src/auth.py and tests/test_auth.py for wave 1. Wave fails after src/auth.py is partially written. Augmented executor reads wave plan to identify both files; reverts src/auth.py. Correct identification without pre-wave directory checkpoint. Zero manual intervention."
+    }
+  ],
+  "held_out_reworks": 0,
+  "held_out_total": 3,
+  "held_out_rollback_intervention_rate": 0.0
+}

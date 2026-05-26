@@ -1,0 +1,54 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "benchmark-executor-checkpoint-v1",
+  "session_id": "benchmark-executor-checkpoint-v1",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "id": "V-01",
+      "result": "PASS",
+      "description": "benchmark_gate has developer_outcome=rework (valid link)",
+      "detail": "benchmark_gate has developer_outcome=rework (valid link)"
+    },
+    {
+      "id": "V-02",
+      "result": "PASS",
+      "description": "held-out set evaluated (3 cases, never seen during development)",
+      "detail": "held-out set evaluated (3 cases, never seen during development)"
+    },
+    {
+      "id": "V-03",
+      "result": "PASS",
+      "description": "case-05 PASS \u2014 multi-file partial failure, revert targets correctly identified f",
+      "detail": "case-05 PASS \u2014 multi-file partial failure, revert targets correctly identified from wave plan"
+    },
+    {
+      "id": "V-04",
+      "result": "PASS",
+      "description": "case-01 PASS \u2014 success path, no intervention, session checkpoint written",
+      "detail": "case-01 PASS \u2014 success path, no intervention, session checkpoint written"
+    },
+    {
+      "id": "V-05",
+      "result": "PASS",
+      "description": "case-02 PASS \u2014 single-wave partial failure, revert target identified from wave p",
+      "detail": "case-02 PASS \u2014 single-wave partial failure, revert target identified from wave plan"
+    },
+    {
+      "id": "V-06",
+      "result": "PASS",
+      "description": "rollback_intervention_rate=0.0 < threshold=0.10 (lower_is_better)",
+      "detail": "rollback_intervention_rate=0.0 < threshold=0.10 (lower_is_better)"
+    },
+    {
+      "id": "V-07",
+      "result": "PASS",
+      "description": "tracker.json verdict=PASS recorded, no open contradictions",
+      "detail": "tracker.json verdict=PASS recorded, no open contradictions"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T21:05:52Z"
+}

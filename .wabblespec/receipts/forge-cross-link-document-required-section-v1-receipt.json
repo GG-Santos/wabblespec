@@ -1,0 +1,18 @@
+{
+  "module": "forge",
+  "phase": "L8-evolution",
+  "blueprint_id": "cross-link-document-required-section-v1",
+  "target_module": "document",
+  "target_path": "modules/l6/document/SKILL.md",
+  "augment_path": ".wabblespec/experiments/augments/cross-link-document-required-section-v1/SKILL.md",
+  "benchmark_verdict": "PASS",
+  "benchmark_held_out_value": 0.0,
+  "benchmark_threshold": 0.0,
+  "developer_outcome": "stale_evidence",
+  "forge_verdict": "PROMOTED",
+  "change_summary": "Cross-references enforcement added to Document module for reference-type deliverables. Files destined for _shared/references/ or typed reference in task-card must contain ## Cross-references or ## See also with at least one entry. Emits CROSS_LINK_MISSING on failure. cross_link_verified field added to document receipt.",
+  "live_module_verified": true,
+  "augment_label_retained": "(AUGMENT: new rule) retained in SKILL.md for provenance",
+  "timestamp": "2026-05-25T14:37:42Z",
+  "status": "PASS"
+}

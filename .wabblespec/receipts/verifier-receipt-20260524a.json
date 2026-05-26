@@ -1,0 +1,36 @@
+{
+  "module": "verifier",
+  "layer": "L1",
+  "phase": "Verify",
+  "wave": 1,
+  "timestamp": "2026-05-24T00:35:00Z",
+  "session_id": "seed-run-20260524a",
+  "checks_run": [
+    "script-exists",
+    "exit-code-0-on-clean-input",
+    "violation-reported-on-dirty-input",
+    "output-format-correct",
+    "success-criteria-R1-R8"
+  ],
+  "checks_passed": [
+    "script-exists",
+    "exit-code-0-on-clean-input",
+    "violation-reported-on-dirty-input",
+    "output-format-correct",
+    "success-criteria-R1-R8"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.97,
+  "evidence": [
+    "Ran: python _shared/scripts/validate-graph.py --framework framework.yaml",
+    "Output: Modules checked: 99, Shared files checked: 55, Violations found: 0, exit code 0",
+    "Before fix: script correctly detected consumer 'scripts/quality-floor-check.py' as not a module ID (exit code 1)",
+    "After fix: exit code 0"
+  ],
+  "spec_deviations": [],
+  "outputs": ["verifier-receipt-20260524a.json"],
+  "not_tested": [
+    "R1 --framework flag with non-default path (only tested default)",
+    "Exit code 2 on missing file (not tested in this run)"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "executor-wave-protocol-20260525",
+  "topic": "Executor Wave Execution Protocol",
+  "wing": "implementation",
+  "room": "executor",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "modules/l2/executor/SKILL.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Per-wave sequence: 0) update state.json with current wave, 1) save checkpoint to .wabblespec/checkpoints/wave-N-timestamp/, 2) run Guard (PASS required before proceeding; HARD->abort; SPEC_VIOLATION->pause), 3) implement wave outputs, 4) run Verifier (PASS->write receipt+advance; FAIL->REVISE loop max 3; BLOCKED->Attestation), 5) write wave receipt. Post-all-waves: module-build acceptance gate (AUGMENT) — if task_type is module-build, verify tests/acceptance.md exists at modules/{layer}/{module_id}/tests/acceptance.md before writing execution-receipt.json; absent->ACCEPTANCE_NOT_COVERED; present->acceptance_verified: true. Error types: SOFT(retry once), HARD(halt+rollback), DEPENDENCY(pause), CONTEXT_EXHAUSTION(compress+resume), SPEC_VIOLATION(loop back), STALENESS_VIOLATION(quarantine).",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

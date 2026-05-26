@@ -1,0 +1,32 @@
+{
+  "module": "scopeframe",
+  "layer": "L1",
+  "phase": "Intake",
+  "wave": 0,
+  "timestamp": "2026-05-24T00:31:00Z",
+  "session_id": "seed-run-20260524a",
+  "checks_run": ["scope-completeness", "constraint-declaration", "exclusion-declaration"],
+  "checks_passed": ["scope-completeness", "constraint-declaration", "exclusion-declaration"],
+  "status": "PASS",
+  "confidence_score": 0.95,
+  "scope_summary": "Write _shared/scripts/validate-graph.py: reads framework.yaml, validates depends_on references and shared file consumers against module registry, reports violations. Single-file output. No external dependencies.",
+  "in_scope": [
+    "_shared/scripts/validate-graph.py",
+    "framework.yaml (read-only input)",
+    "validation report written to stdout"
+  ],
+  "out_of_scope": [
+    "Auto-fixing violations",
+    "Modifying framework.yaml",
+    "External network calls",
+    "Database reads"
+  ],
+  "constraints": [
+    "Python 3.8+ compatible",
+    "PyYAML only — no other third-party libraries",
+    "Exit code 0 = clean, exit code 1 = violations found",
+    "Must run correctly on current framework.yaml with zero violations"
+  ],
+  "outputs": ["scope.md"],
+  "not_tested": []
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nexus Why-Query Response",
+  "description": "Structured response written to .wabblespec/nexus/response-<timestamp>.json for any Nexus query type.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The original query string."
+    },
+    "query_type": {
+      "type": "string",
+      "enum": ["why-query", "blast-radius", "pattern-discovery", "what-changed"]
+    },
+    "domain": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string",
+      "description": "Direct answer to the query. Backed by evidence below."
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "drawer_id": { "type": "string" },
+          "topic": { "type": "string" },
+          "staleness_state": { "type": "string" },
+          "relevance": { "type": "string", "description": "Why this drawer is relevant to the answer." }
+        },
+        "required": ["drawer_id", "topic"]
+      },
+      "description": "Drawers cited as evidence. Every claim in answer must map to at least one entry here."
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "string", "description": "Source entity ID." },
+          "target": { "type": "string", "description": "Target entity ID." },
+          "edge_type": { "type": "string" },
+          "weight": { "type": "number" },
+          "hop_distance": { "type": "integer" }
+        },
+        "required": ["source", "target"]
+      }
+    },
+    "not_found": {
+      "type": "string",
+      "description": "What was searched for but not found. Limits the claim boundary."
+    },
+    "graph_freshness": {
+      "type": "string",
+      "enum": ["FRESH", "AGING", "STALE"]
+    },
+    "generated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["query", "query_type", "domain", "answer", "evidence", "graph_freshness", "generated"]
+}

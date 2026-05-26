@@ -1,0 +1,23 @@
+{
+  "receipt_type": "wave",
+  "session_id": "wave-checkpoint-v1",
+  "task_id": "wave-checkpoint-v1",
+  "wave_number": 1,
+  "wave_label": "Fix executor authority.owns and produces_schemas",
+  "timestamp": "2026-05-26T00:01:00Z",
+  "status": "COMPLETE",
+  "files_modified": [
+    "modules/l2/executor/skill-rules.json"
+  ],
+  "changes": [
+    "Added .wabblespec/session/checkpoints/* to authority.owns",
+    "Added produces_schemas field with _shared/schemas/wave-checkpoint.schema.json"
+  ],
+  "verification": {
+    "method": "guard-check.py authority",
+    "command": "python _shared/scripts/guard-check.py authority --module executor --files .wabblespec/session/checkpoints/checkpoint-wave-1.json --json",
+    "result": "PASS",
+    "unauthorized_files": []
+  },
+  "acceptance_criteria_covered": ["AC-7"]
+}

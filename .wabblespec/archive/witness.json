@@ -1,0 +1,589 @@
+{
+  "schema": "wabblespec-witness-v1",
+  "framework_sha256": "60f614e7ede2fb115638db8a4db54bba7c46aa8d30f213f197b102a68a2b7033",
+  "recorded_at": "2026-05-26T03:38:25.715207+00:00",
+  "modules": {
+    "runtime-probe": {
+      "path": "modules/l0/runtime-probe/",
+      "skill_md_sha256": "3354ca919b5d702a0486d72900e58c707570d989bbdb18633b252b2b7a9f6de6",
+      "skill_rules_sha256": "c4232bcdbaf4b87ae1e4a95ad0c4e6d2408d6586054df31b2540c949ff982b82",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "recipe": {
+      "path": "modules/l0/recipe/",
+      "skill_md_sha256": "29b066c57302cf3a25094c07a415d3f7112e3049b892b9546c53b6cac5a0463f",
+      "skill_rules_sha256": "c97383909802cd24cff84235cfe4c57683974ffa21d5ba5e88a1f72f94e647a2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "product": {
+      "path": "modules/l0/product/",
+      "skill_md_sha256": "3cbdeec16040481dc10c25581e060bc4629e7b57a58a7216b6f1a3b304001215",
+      "skill_rules_sha256": "459987e0c28fc142769205f85d0ce0e41b69d8606196198ebd1a1a7625d8341f",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "ground": {
+      "path": "modules/l0/ground/",
+      "skill_md_sha256": "fbce1e189821f7a50e91ac7f6fb01c84d1f3e049fbba7e8f251479362f6a00c9",
+      "skill_rules_sha256": "6273b7bea5041f7dd8e606dd8339c261e1d71e318d3fb3a7956894544ffed059",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "reference-load-l0": {
+      "path": "modules/l0/reference-load/",
+      "skill_md_sha256": "a3dea91810d993851680f60805eb069078772ef4f743ea243379ee4d0f628f93",
+      "skill_rules_sha256": "fc4984143fd1770b54162dc853455504ebc4a749a48bd91333ae45049e412b91",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "test": {
+      "path": "modules/l1/test/",
+      "skill_md_sha256": "7ad040bd5fffc9a509e6f7c300d146a631c652b2a9c0ecbe09a2abc3119007b5",
+      "skill_rules_sha256": "380f95b79653925544b3c5540dfd31f2f4fe56f229b9baa4b9e9afd4d8ce5a8c",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "clean": {
+      "path": "modules/l1/clean/",
+      "skill_md_sha256": "d94f59d2db75d3fe77f0ad5c3d200f33f07438d38f9084a66688c3ab8a79a994",
+      "skill_rules_sha256": "4fa8ceb984a4cd2e97eafa4ee86384ffdf26ce54bff86eb463cefaf623ecb437",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "triage": {
+      "path": "modules/l1/triage/",
+      "skill_md_sha256": "c8ad1d91f819bd036685727830569fd96f0e96a40f977f9d58c753be65b1344c",
+      "skill_rules_sha256": "7c22e0cb3dee7462e0476ccad5b378776c3af7997ad687a9d9074b9f7c18a075",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "migrate": {
+      "path": "modules/l1/migrate/",
+      "skill_md_sha256": "d43fd2544e921762e38ad951aff355b2535bf3d714e0bdbb6edc14bab06385a8",
+      "skill_rules_sha256": "c23f2ce760bf9781d49b516b19b1f452de8aaf22b2257a7eefc85f98eb70af8b",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "enhance": {
+      "path": "modules/l1/enhance/",
+      "skill_md_sha256": "ce2b314246ce573cb35d4752bafe1acaa15870c2964096c132d053f15936cf3f",
+      "skill_rules_sha256": "144a5617141ccbd1508ae406b5a00d662c081a2914dda8ecdc9196eced150549",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "sharpen": {
+      "path": "modules/l1/sharpen/",
+      "skill_md_sha256": "cf40486393397849304f3307385a230fcb0dee6a7aa667ee5e2febc120fc0e61",
+      "skill_rules_sha256": "21eb4ce7229847404e46ef23395c69f6849931a7af1fa6d76708a6ca20e1899c",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "brainstorm": {
+      "path": "modules/l1/brainstorm/",
+      "skill_md_sha256": "4809d9beef0cc3ef99f6c658a94db9482ab7ec378b9e0edadbc15a564df6fffe",
+      "skill_rules_sha256": "4a50ba6bba6057d351ec7b9b776d60ed41b742f2cdde906f722f78832c756a63",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "plan": {
+      "path": "modules/l1/plan/",
+      "skill_md_sha256": "19eb10866aac053f65b7128e015c275e19e9b0cca3624204404b071d03dc74ef",
+      "skill_rules_sha256": "04e89d8d36a0f2bef76e0456043aa1af66f055b1f80daf653f3244a79b109351",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "scope-frame": {
+      "path": "modules/l1/scope-frame/",
+      "skill_md_sha256": "819bf59de85bf4c1e74bb20b35e0e5f8f5c69a5844f346db4c8006cc530f632a",
+      "skill_rules_sha256": "c82ccf1a6071e9518c7cd213c5443dced70988ce6c4ab2903c48c26c437edbea",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "specify": {
+      "path": "modules/l1/specify/",
+      "skill_md_sha256": "16df57e7a55956f45dead0d9f1d28cc898144f4bf33db4d224648bfd74080bd6",
+      "skill_rules_sha256": "71af1f7724d2315f72922fe4eb4e814877814d55867391f9cb2d248d10d25684",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "interview": {
+      "path": "modules/l1/interview/",
+      "skill_md_sha256": "5aae0e585698ed785ef8d817c403bd0f392884c31770f0d0f7dde2bcfa71d141",
+      "skill_rules_sha256": "2ac89e7ece9fd4a6268e995414e9d220c5eedeb576b9390410bb15de04728778",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "explore": {
+      "path": "modules/l1/explore/",
+      "skill_md_sha256": "583ba370d07885c0133718e9a19db9e540674ec2e568972030a1373db421b8c4",
+      "skill_rules_sha256": "f5b35efc6624f1563bc1329e6b6dfed0efb3b5856ac777de50bf804d32520f24",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "decompose": {
+      "path": "modules/l1/decompose/",
+      "skill_md_sha256": "ea1b8cdef0f2127038d04d0d8f635325641b5b61ac5ea29538f78fedb9cccdfd",
+      "skill_rules_sha256": "7e725f191e2c1578b3051c2a319e2dde666bc2cfa6d1c72dea52094d0d8b5ace",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "propose": {
+      "path": "modules/l1/propose/",
+      "skill_md_sha256": "4122e7e1227a9c1e723f5f819f021e86bfc865e948065ee198a64805337ae075",
+      "skill_rules_sha256": "7c96e353af57429f6b638bb39012d19d18d3b46e73e9ff0a0accfd6ed1af8c06",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "reference-load": {
+      "path": "modules/l1/reference-load/",
+      "skill_md_sha256": "01d2a0f009eaa4f16e0ec1a8ca753e7be0e9f61d48db4f835394736e9ac89623",
+      "skill_rules_sha256": "ae18efca62b6bd69f24b02701010496b73db827321dc93ec02a12ea8e774ab04",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "executor": {
+      "path": "modules/l2/executor/",
+      "skill_md_sha256": "d7d417e3df5637d752d701854a6ee47968328b5d44db987411f540dfdbdbd2ed",
+      "skill_rules_sha256": "07e3e28d3aa858aa2d54fcd7a42711b50109683c4ed9bc29fb1e299af8cf1c46",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "verifier": {
+      "path": "modules/l2/verifier/",
+      "skill_md_sha256": "a2c09f2bb1e9eceeb7e09c31f768d05570519a6838c7d7f6f6479cabdd325534",
+      "skill_rules_sha256": "688404cac4caaa9d1eee08158747b6c09c86d78ddf6bb5c776f0f5c8ff25d8b5",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "guard": {
+      "path": "modules/l2/guard/",
+      "skill_md_sha256": "df171487c35f51e02b8268d422c63766f57968f06435edc90b94273d34757bc7",
+      "skill_rules_sha256": "e381b75dd2af344b88a20905d972b0d4cfc412809852ebd775d7b650255b8c44",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "adversary": {
+      "path": "modules/l2/adversary/",
+      "skill_md_sha256": "3b0e4b21420122f40fcedc980093ef92240256edcb0ac2a5d9fc08ee6cbf1dad",
+      "skill_rules_sha256": "cade2ddef77d2114403ec8aaa787c597c70b96d9dd8a14010fabe1ca205fb515",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "grader": {
+      "path": "modules/l2/grader/",
+      "skill_md_sha256": "0c28fce4c343922d26d0ceaa8978768ad05578096ed98466f460d30fd15a8ad5",
+      "skill_rules_sha256": "1d5196f4158def9b5047118d66f0a27ac4b31632268e2c001e14e1586ee0f47c",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "reviewer": {
+      "path": "modules/l2/reviewer/",
+      "skill_md_sha256": "c908fd718c41b2cea87cbe1a377994417677530f54c25f23eb7839fa46860a5b",
+      "skill_rules_sha256": "daa6691d884faac4188b8f498d81bac59e43373785ae45b8fc354f2c05418267",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "archive": {
+      "path": "modules/l7/archive/",
+      "skill_md_sha256": "0a71128fde59067bf6017fd17c628128f69c9ba5f4c03eb9f0a8192180e5c61d",
+      "skill_rules_sha256": "1349d2c589e8faf40f049a27afdb41276f04542e7d683f3d0ff7e634c4127a16",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "apply": {
+      "path": "modules/l1/apply/",
+      "skill_md_sha256": "896b2867a41e9b77342fb75c3ff954a35484b3542a6f3aff4a4a81dda3dbfb55",
+      "skill_rules_sha256": "0b1453229d217047e8304816d3edfac833218d2f17e5875981065937ad1ac1f0",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "model-router": {
+      "path": "modules/l2/model-router/",
+      "skill_md_sha256": "d0a01f49c63a5c3bab438b48c830f6f3fd7f46a30e2fced34316aef1ad079f04",
+      "skill_rules_sha256": "e0951fb9b16abec456c6272304afcdbde4b761b6d2455a80ff2b437ee47cb48d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "ensemble": {
+      "path": "modules/l2/ensemble/",
+      "skill_md_sha256": "9b409c5c082ff21279f294e1c5f123d37b824ab158963f68b3b69a9d90e15772",
+      "skill_rules_sha256": "c48a826156fe22247431be10094606e6ef59f3b4bc09bfc3ec4119c1dabfcbdb",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "autopilot": {
+      "path": "modules/l2/autopilot/",
+      "skill_md_sha256": "97ea692b1c0f54b8582d6d2afd96014c12310606a9c5b302208c738945eebf7b",
+      "skill_rules_sha256": "a6c8eeb891290e7258a4405bcab669e051ec60bc77f3adc2b4da8e4820b89190",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "team-plan": {
+      "path": "modules/l2/team-plan/",
+      "skill_md_sha256": "c36bb50b050ec781292b03031d2b982b2e1a103ffbc56187a59e6b73b505682c",
+      "skill_rules_sha256": "db611953eee949d73caddb9df7feae6f71f95766eaf02fba336524f8bb1bf1b2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "scaffold": {
+      "path": "modules/l7/scaffold/",
+      "skill_md_sha256": "342785fad6a54c29ef9a09d716026c3d30d04cf909694ef35ba8910ad2b18d69",
+      "skill_rules_sha256": "f9e33383c4744d2ea18d13a4c8ef9310984c0848095ac31436afc7ac4b23c3b0",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "rollback": {
+      "path": "modules/l2/rollback/",
+      "skill_md_sha256": "9608c67c7d33ba8ce412a12c4d38ff4b9ddb267c4369aca89933bc3ac72a425a",
+      "skill_rules_sha256": "86c852cfed90c8bb895b2fae7cc3a53db8c7591fd0314a996c3aa7f685848320",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-web": {
+      "path": "modules/l3/web/",
+      "skill_md_sha256": "5e4480580c2b89d3a19d937ff34c86484ddc3ca20bc162df4584791c6c7a029e",
+      "skill_rules_sha256": "0c2192a7913d32964b170c594327b1c8f2fca5705a1d4c06784d53d8c5006aa0",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-api-service": {
+      "path": "modules/l3/api-service/",
+      "skill_md_sha256": "cc2f818c894550596204b9eb613c973894c4a958d65d9485e9f16a0fc4d744d4",
+      "skill_rules_sha256": "e2c52d39597cfc5ea4778a184e46f83a2c81fa74d0aa53a545e8ea6420c9c7b9",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-cli": {
+      "path": "modules/l3/cli/",
+      "skill_md_sha256": "d98e8cc005fae23b078645c83a2beb0647d348434dae531c9401ae39b0dcf4cc",
+      "skill_rules_sha256": "030b55b3554251b1029c129325ce42b392fd661777b4f76e71817c7bf60535bb",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-game": {
+      "path": "modules/l3/game/",
+      "skill_md_sha256": "d1d91a2baf025d9b7cad9f4c0f6061a1dc75b30858572f912416b824cde4c052",
+      "skill_rules_sha256": "4c6d09f11404139e3e98908b6405a21f119ced78af9b352a0edad4f8defd7a29",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-mobile": {
+      "path": "modules/l3/mobile/",
+      "skill_md_sha256": "96fbcf42e3d7f2744e9bd6d7ac1a6b9f9c065f8c4b92c57430128e2c682b1cf4",
+      "skill_rules_sha256": "aa49b68faa2d8287ae6e2b5c74beb46dd75a199406d54df562126ffa0a801ca7",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-desktop": {
+      "path": "modules/l3/desktop/",
+      "skill_md_sha256": "1cf1aa26ddfa6afd74f653b477b959ff50232b0a38bc043fad1359596201cac7",
+      "skill_rules_sha256": "5029e99db7f5759b085299a2d0bbe833ef318db7d4b630bb3e95b985f363ced8",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-iot-embedded": {
+      "path": "modules/l3/iot/",
+      "skill_md_sha256": "0543834a2214e30d1060a729c3ad17997f9b9bf058da262234fa7b88fb2a05de",
+      "skill_rules_sha256": "52476bc4f6d7e2d3895b66cfd2a64a7c3ed0ae31a7ab5a4b6e9937e859ce6a9e",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-library-package": {
+      "path": "modules/l3/library/",
+      "skill_md_sha256": "ab3ab919566c3254684d5f7ddfec59be460ff8ba50385cbe6aa93e7461721c43",
+      "skill_rules_sha256": "97f0216ff3378b818ce96ae81a961ef3ec213dce2aa43e70a83445aaa0961efb",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-extension-plugin": {
+      "path": "modules/l3/extension/",
+      "skill_md_sha256": "a495df408c44f740cfb3efe1e86216e253bc75ffb32d42fcf929e8c4af32ce71",
+      "skill_rules_sha256": "5cccd81f0ef8d30cbb9ea3576e45a6d31588a8796cb6a059454f2089437b334d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-data-pipeline": {
+      "path": "modules/l3/data-pipeline/",
+      "skill_md_sha256": "6cf983647c12bc3a8b51ce15c033f5e6dee29e40b091becada02021915ec5c42",
+      "skill_rules_sha256": "8e05d3a20500288914f5dc65c0d4ae41a5afcb427e348a84084be3969a8954aa",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "platform-ai-agent": {
+      "path": "modules/l3/ai-agent/",
+      "skill_md_sha256": "e9e80bccaabedc750cee0375fc66602c67b0ba0a2b7e7da3bf6d484f67384f38",
+      "skill_rules_sha256": "82268c72a6a7a163d88177fb0254f42bbe5da6380050da840de07154c5071bc1",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-security": {
+      "path": "modules/l4/security/",
+      "skill_md_sha256": "bb8205b5c7e2a86f5d2590e8ab0ba5b021ca616c6aeceb3abcfce29a0ff6330a",
+      "skill_rules_sha256": "91aa5c9759154b0816a15d47509e858eb14ae70e51315dd25c48bde3ec7d5249",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-engineering": {
+      "path": "modules/l4/engineering/",
+      "skill_md_sha256": "9e9d22f6282e48b90675a463221abf20fba9e336a029592d89666226f2d92501",
+      "skill_rules_sha256": "01bc79dd565060362b9751424144ae08cefe4705d548eeac9d209a4d37e9776f",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-ai": {
+      "path": "modules/l4/ai/",
+      "skill_md_sha256": "5e5fee2cdf38492788a95cc586e8b4cd7413f41307e45bad22be1ed779d09ef5",
+      "skill_rules_sha256": "dfc13b8a5988e7cc1ec203b6e2dc9e4529ca47cda5eaf31f324172db11ee6a52",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-aesthetic": {
+      "path": "modules/l4/aesthetic/",
+      "skill_md_sha256": "0f90686e539f8e706269278e472eb014b48bfb9ce1dc01e699faa2c83606b225",
+      "skill_rules_sha256": "0d2ba679f1e686ec1464544a890405117c3ed1dfc18ee085ad496248b190dea3",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-design": {
+      "path": "modules/l4/design/",
+      "skill_md_sha256": "cf9e7ae9f073cc8680e926af138f57942dfd262641d4cc0a4a0b11fad293aeb4",
+      "skill_rules_sha256": "37b4a6ed1d5ddb2e1140b70a8f85c1d7e7022025008facc67231443fd5037c47",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "gateway-experience": {
+      "path": "modules/l4/experience/",
+      "skill_md_sha256": "6ad54d802f6ad3910069be54b5a43691938e270d1ac3a0ea44de9398d40c5a2b",
+      "skill_rules_sha256": "9877df5f368e42112199a43ec38ce08720e107ceb6731ec1306e5dfd2eea69b6",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "memory": {
+      "path": "modules/l5/memory/",
+      "skill_md_sha256": "49ca089b465f6c238d8a95043c3ee5e5b8b44b0ce2cae6d719307101786eb69b",
+      "skill_rules_sha256": "dbdeece23fabbadd861b93a4fbf61bc43e7385c44d194e1756dfb8a5865eb231",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "memory-search": {
+      "path": "modules/l5/memory-search/",
+      "skill_md_sha256": "e8764e151a3ea4e2761f3cac6dab09094b9627b6130c4a87247f95f054e5140f",
+      "skill_rules_sha256": "b4b58d11743c4b15a474f4b07b4fbba745da4c93906a14461b3979db9cd182f2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "provenance": {
+      "path": "modules/l5/provenance/",
+      "skill_md_sha256": "3f9126e2b396a48e84789ef00cc13e63200dcb8bd5091a90c5a638a293279d16",
+      "skill_rules_sha256": "08a7d643fc667c38dc274e72aa7f4d5ca7e60f1079d8e5f9acbae82c558a608d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "entity-graph": {
+      "path": "modules/l5/entity-graph/",
+      "skill_md_sha256": "2c9aee491820a7cbbfc9a358dddfe4d14fad6402e43f6f179d28a0e2bf8419e4",
+      "skill_rules_sha256": "16eb9af936cc6e855cc67cddf468e095b05ba64ad2b8748469d1350fd8ca3451",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "dream": {
+      "path": "modules/l5/dream/",
+      "skill_md_sha256": "07afefdd48c50f210bb1c798d3846383b43ce6262cd5dbcfa963a16885a49595",
+      "skill_rules_sha256": "c3ad7683565da1a27dd42632540369203def2f7ded8b66c42639e8313fd51d22",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "memory-mine": {
+      "path": "modules/l5/memory-mine/",
+      "skill_md_sha256": "fe4c13075d4aad3ff877e487c12fd5b44bdfc20173ac2cc262307d8eb8741343",
+      "skill_rules_sha256": "da6fedf11484092e9af59ed89acdce246ef3046403becee7a1462f0d4181287e",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "forget": {
+      "path": "modules/l5/forget/",
+      "skill_md_sha256": "892903ea5644a784faa697e8054b34ededec2656833c69862e9d7a890b824792",
+      "skill_rules_sha256": "93fb9658bf347240cd96006c2e21bf91a02bcdda4fc298d637c89000f7187ef8",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "homowabian": {
+      "path": "modules/l6/homowabian/",
+      "skill_md_sha256": "8a3bc63b57035dfc523b6bd657139b89d587fc0427f535a59d75647a353ede91",
+      "skill_rules_sha256": "1fb6c2b37452a1a7e38962a58e95a03f7e8f1935492d40bdb0165a7c555c5141",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "economy": {
+      "path": "modules/l2/economy/",
+      "skill_md_sha256": "1927d61917ff63391f8c9db91b019a360ce0bbc522aab1863b400bac93cfa6d1",
+      "skill_rules_sha256": "4fcd2182b14346651bcac9c3f3ad1e174f23533f81823f31aef3ac32b32f9f17",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "document": {
+      "path": "modules/l6/document/",
+      "skill_md_sha256": "0fa301d38ac7ddb46f28bc29193ec03a2a4c98d992355cf8649157b6267b31f2",
+      "skill_rules_sha256": "dd16b157fdd07d38a65a15a692520c278a4de7ac887f3bb456edc0049c49ea17",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "polish": {
+      "path": "modules/l6/polish/",
+      "skill_md_sha256": "2fbd655465a917bb3d6daca54fee0471c5f599e22e98c1118fa7fe9ef2c0783f",
+      "skill_rules_sha256": "afc359b09c1bd39879992e742f23bc077efa539fa742f9a55dc21bf474cb9499",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "research-log": {
+      "path": "modules/l6/research-log/",
+      "skill_md_sha256": "55179d19b465588de2498575d0bf468a0beabcc217b58d8a994470285a7bc161",
+      "skill_rules_sha256": "5c23169dab075f03a9890f2033f36d9e0de40e02992eb636574d8e1cfc3149de",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "deploy": {
+      "path": "modules/l7/deploy/",
+      "skill_md_sha256": "b1fe9a29dfc7b3fe0cb62e01eb73689f804670db95838494d8e4af93c163051f",
+      "skill_rules_sha256": "3b4705b7ef5e23cf93e7aeeaa61a2c2ad8e4b36c962ffd7c750094bcedcad1d1",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "package": {
+      "path": "modules/l7/package/",
+      "skill_md_sha256": "1df092aff4ee20abcb74d6c39ad0a48f73ff1743255f2d9d81cc38dcc71e8074",
+      "skill_rules_sha256": "514acbbe69d895862ecf7e95a33b3132fe16dd25a9c7a3865b9d4f89367c398d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "release": {
+      "path": "modules/l7/release/",
+      "skill_md_sha256": "bbe47108720e33f148e964f6758d53bba050a9f27c835de83dbbe16ab97ab579",
+      "skill_rules_sha256": "3f512082336553444bee9908c4f04b834ffd051a96cfaa91ec0f1af311c0fbfe",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "monitor": {
+      "path": "modules/l7/monitor/",
+      "skill_md_sha256": "95c30dd3af744aee2178dfbf46dd8b67851e73b8a7499b71ed2ed015a303fe5f",
+      "skill_rules_sha256": "d1de8d7073828c02e896577cd273ac90ee086efc016789b935b668db991cca31",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "instinct": {
+      "path": "modules/l8/instinct/",
+      "skill_md_sha256": "462878231f0a8bd04eabfde286631fb0a746cd6ac7af42a348af5c4df7f29567",
+      "skill_rules_sha256": "3deeffe89f4989c3f348793b549e1ff9f77de3449529af56196a65b6c54cc762",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "synth": {
+      "path": "modules/l8/synth/",
+      "skill_md_sha256": "61abb6470c11f57902f4838dc977b6a2c324a07518829b4974ec8bf22be745d9",
+      "skill_rules_sha256": "83e2d60ef10c2fdfa417c2059cf89bd32c626fb094c1333d7f8fe26fc1da9c3d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "blueprint": {
+      "path": "modules/l8/blueprint/",
+      "skill_md_sha256": "27fa94b156ca4467d7327f1b431e6457cf460fefe4ecb82dabc2d4cc27622cd4",
+      "skill_rules_sha256": "5f6ab1ffe4ee9d8003961a2fc24e168ca255132ae8228974ba083d8098a646c3",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "factory": {
+      "path": "modules/l8/factory/",
+      "skill_md_sha256": "bac8e75d585f01688bcf99db58c8c698a8ff94e8cec88e296a20f75979b6f4a0",
+      "skill_rules_sha256": "b4757246a25a7706471b25042a8f0c4112d2e1050fe3c2bf98895751351a23b1",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "augment": {
+      "path": "modules/l8/augment/",
+      "skill_md_sha256": "3eb3aefbef24754df69330ea4afa85a3df95da16298c9ba321a453e97f0486b6",
+      "skill_rules_sha256": "906cd10fb315f2b0d24de152ac821c34a851d6ee3f64184ae4974bd6c6534bb2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "benchmark": {
+      "path": "modules/l8/benchmark/",
+      "skill_md_sha256": "00b81143e658dfbf1b217dbe462602537ab265620f9810066d25b634dd6d6903",
+      "skill_rules_sha256": "79311954d38ab049cdb8520e53560118407142a20c944ebcaa57357564a6b304",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "forge": {
+      "path": "modules/l8/forge/",
+      "skill_md_sha256": "3c3ea513d402aedc95818b05b9484eb53d6b2f248f99640b51e1f41d8d34ce1b",
+      "skill_rules_sha256": "d4fd216f45fbc20422bc3e246bbf8bdbf8d9619274b26ec512d5d0cf23540b23",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "retro": {
+      "path": "modules/l8/retro/",
+      "skill_md_sha256": "75a21387cb32d25adf1f1190d84a9148003cbde6b95a8c35076d38f88ae44581",
+      "skill_rules_sha256": "322c42d2cda72e318ecdba63b7e89ee36c32c4f2537f82c5052532c7d1f3e248",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "feedback": {
+      "path": "modules/l8/feedback/",
+      "skill_md_sha256": "8c8ef3798eed683b66c997745576c062298461c295295b9a8d0f5acef7ab8ef5",
+      "skill_rules_sha256": "5e0ea2a524c414604cb8e5d2bc68beb5e78ce8923da00e14797f0c927ae293a2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "nexus": {
+      "path": "modules/l5/nexus/",
+      "skill_md_sha256": "b32a3f6165b14f383b8dc72c9c68ba729dcacad7b93dd0d2544528fd8e7224f3",
+      "skill_rules_sha256": "37b38eda176b2850d551f32d8ef92f72c3bd50b37c676c69a284654872579832",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "shift": {
+      "path": "modules/l1/shift/",
+      "skill_md_sha256": "dbc51784155fba9e5305593bd62ef6fa0cb6a351143cc0e9a90bdd0c7c7c05fc",
+      "skill_rules_sha256": "0e509f66d4741d24856675f66c398442f0e950880c1dfcd8d77b34902f2030b6",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "sync": {
+      "path": "modules/l1/sync/",
+      "skill_md_sha256": "92a4c3cad52e9c819345c215b7734e0d4190bfd1257c4f18b3d2ceca6573cd36",
+      "skill_rules_sha256": "205353cb1cca498bf8c7f0630025d405b67358b16cf77a3111c6be2b3e94b90c",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "organize": {
+      "path": "modules/l1/organize/",
+      "skill_md_sha256": "463f550f28f11a0bdb5366fd80a39c7dd0b0773e52932973e7dfd8757ded702b",
+      "skill_rules_sha256": "b0c656bc38630d917ca9ce6e6417a632e891bde8681fa14eda6a03f5a3f84cee",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "flag": {
+      "path": "modules/l1/flag/",
+      "skill_md_sha256": "c82712483b5bbc34c78dd50891b2d697c21a5d32c7047361bdf17d3f7a1809ec",
+      "skill_rules_sha256": "ec45c2ec825f122c136e7418d6fbf98385a1c69b3555d737d2b435b3366e2fa9",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "analyze": {
+      "path": "modules/l1/analyze/",
+      "skill_md_sha256": "e556f46771cfcdb8f7061bbfa0667dd4c51d378cf64cb54489db9a52c4e10296",
+      "skill_rules_sha256": "0b5d9d6aeade5bff748c30253bc026c6799a96f2896dcd539801ee1d09655ebb",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "perf": {
+      "path": "modules/l1/perf/",
+      "skill_md_sha256": "5a13a314fee79dc8501c87e612f7aaf2f8398b4ecc9fb4899f56d1e63c9e75e9",
+      "skill_rules_sha256": "484f4f7e17bad14465f340b5202fd6de38d3e7a51921438de048c74d6a6f6536",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "deps": {
+      "path": "modules/l1/deps/",
+      "skill_md_sha256": "b9e843aa78c27a0bbdcc181765201da00f8f2c26d0440bcaa31a02f9be3cedcf",
+      "skill_rules_sha256": "7598ac63dcd5029c446876e038c494d62c912d5ceecd73f8b3eb8315dc3d905a",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "audit": {
+      "path": "modules/l2/audit/",
+      "skill_md_sha256": "6c9f7b404b1cfa73c0a09b5cdeb16fc7f5a9761b27e4e5675896f33f7fb9cfcd",
+      "skill_rules_sha256": "29d66b55f8513e4b4ad307e692f650798fa725fdf1025b2775dd69c68c17d67a",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "api": {
+      "path": "modules/l1/api/",
+      "skill_md_sha256": "f7fc6751485a268c40265e397153a7eccd83657263f916573fb4885bd3cfe48e",
+      "skill_rules_sha256": "d0a23f484d44bd27b96e53ed63d4112facf7bf75da21f6193f8215ebb6670f46",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "proofread": {
+      "path": "modules/l6/proofread/",
+      "skill_md_sha256": "649f04a7e2046d7f1bcd5f8ad092b2af1032c6dfdd168f4f88a742e0cafe9071",
+      "skill_rules_sha256": "fe66ef0ed89ff3e8ba3f4c13c9693542b1a95366e226312ae9038f8fcfdef012",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "markdown": {
+      "path": "modules/l6/markdown/",
+      "skill_md_sha256": "dc2aeb7094c87cf3c7c5aab464e63efa504d2fa442c0b52388e2fccb96060a8a",
+      "skill_rules_sha256": "7964a3c752f42d9c5869feb61849e45197d6b8f1fc2f8aef4c259d3cc5c7fcd2",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "copy": {
+      "path": "modules/l6/copy/",
+      "skill_md_sha256": "b739a22cd2505c6ccea5dd890ffcb2fd3b79523a0ffe2fb8be57232d42ebe14a",
+      "skill_rules_sha256": "b6e4da2efacbebbe212eeb0296287affdc9cd9861377dc16a65cfb24b325fa04",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "writer": {
+      "path": "modules/l6/writer/",
+      "skill_md_sha256": "a0918abb59a0fd85ea2e04d65517229b0d7b2c5da34efd8e689535927c8eadba",
+      "skill_rules_sha256": "7389c77340a761f513ad44033779afca7bce31655f5c47c8db2cd447c3136a26",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "legal": {
+      "path": "modules/l6/legal/",
+      "skill_md_sha256": "8937187b97470b90f74a81c845c0ee1bf5e58224e7311b81d3b01a6954ed42f6",
+      "skill_rules_sha256": "f8571088d1b9a5b96b50ea8aca6d6f6dac5e8b3f9f3c33e39366abbd206caca5",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "translate": {
+      "path": "modules/l6/translate/",
+      "skill_md_sha256": "c52f75c6bfaf885028756ca9b05f7db3d3c2105e9cdb2e378aacf553e4cf38b1",
+      "skill_rules_sha256": "3d413a9866608864e1179ce37bd439c586717fb96113e74819f6c2ea452cb21b",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "optimize": {
+      "path": "modules/l6/optimize/",
+      "skill_md_sha256": "9a4477bc842b8abb182e863335e2280936abadc563fdd7704b02bb90063c9726",
+      "skill_rules_sha256": "fc9a87735d3471c9c267c30d90361ee5f9d61447ebe44df09961eeefc77cade0",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "market": {
+      "path": "modules/l6/market/",
+      "skill_md_sha256": "fa62a1030e608106dcb81c477ab4460a11d4382c6c39a6f95292de54869ad518",
+      "skill_rules_sha256": "5796078f90b52bbb2ea0f3b3d95a69125bfceb8b8b12bfe506430a7c703bd574",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "changelog": {
+      "path": "modules/l7/changelog/",
+      "skill_md_sha256": "032cf648971052070e56eac61d5b32e8836c515d1af76387100c2c1b14406ce3",
+      "skill_rules_sha256": "64916820a3a5e0167aa96a12ea9b89de358d96d890a053b7191ad70c678d867d",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "commit": {
+      "path": "modules/l7/commit/",
+      "skill_md_sha256": "4dbf2e555ed0801dbe2eb85d7301e775bc6749dd3d4702c388286c8dac76f0c8",
+      "skill_rules_sha256": "376bbb546e1f24c920059750ddf31e763e9d2803e1ca21c9600c0eb94a3513ac",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    },
+    "inference-guard": {
+      "path": "modules/l2/inference-guard/",
+      "skill_md_sha256": "565365404c751d004399bb80ebade619732078c5e3ecc147c6f376014238568a",
+      "skill_rules_sha256": "4a1524487427270e126acd270b906545c5c746842a308a76cdf3ff5876a17b5b",
+      "recorded_at": "2026-05-26T03:38:25.715207+00:00"
+    }
+  }
+}

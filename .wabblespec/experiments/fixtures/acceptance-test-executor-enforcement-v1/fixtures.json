@@ -1,0 +1,104 @@
+{
+  "fixture_set": "acceptance-test-executor-enforcement-v1",
+  "description": "Scenario cases for executor module-build acceptance gate. Each case declares task_type, target_module, and whether tests/acceptance.md exists. Expected outcome: BLOCK when task_type is module-build and acceptance.md absent; PASS when present or task_type is not module-build.",
+  "metric": "missed_test_rate",
+  "cases": [
+    {
+      "id": "at-001",
+      "description": "module-build task, acceptance.md present",
+      "task_type": "module-build",
+      "target_module": {"layer": "L1", "module_id": "analyze"},
+      "acceptance_md_present": true,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-002",
+      "description": "module-build task, acceptance.md absent",
+      "task_type": "module-build",
+      "target_module": {"layer": "L1", "module_id": "new-module"},
+      "acceptance_md_present": false,
+      "expected_outcome": "BLOCK",
+      "expected_error": "ACCEPTANCE_NOT_COVERED",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-003",
+      "description": "feature task (not module-build), acceptance.md absent — check skipped",
+      "task_type": "feature",
+      "target_module": null,
+      "acceptance_md_present": false,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false,
+      "note": "Non-module-build tasks bypass acceptance gate"
+    },
+    {
+      "id": "at-004",
+      "description": "bugfix task, acceptance.md absent — check skipped",
+      "task_type": "bugfix",
+      "target_module": null,
+      "acceptance_md_present": false,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-005",
+      "description": "module-build task for L2 module, acceptance.md absent",
+      "task_type": "module-build",
+      "target_module": {"layer": "L2", "module_id": "verifier"},
+      "acceptance_md_present": false,
+      "expected_outcome": "BLOCK",
+      "expected_error": "ACCEPTANCE_NOT_COVERED",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-006",
+      "description": "module-build task for L5 module, acceptance.md present",
+      "task_type": "module-build",
+      "target_module": {"layer": "L5", "module_id": "dream"},
+      "acceptance_md_present": true,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-007",
+      "description": "module-build task, task-card missing task_type field entirely — treated as non-module-build",
+      "task_type": null,
+      "target_module": null,
+      "acceptance_md_present": false,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false,
+      "note": "Absent task_type field cannot trigger module-build gate"
+    },
+    {
+      "id": "at-008",
+      "description": "module-build for L8 module, acceptance.md present",
+      "task_type": "module-build",
+      "target_module": {"layer": "L8", "module_id": "synth"},
+      "acceptance_md_present": true,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false
+    },
+    {
+      "id": "at-009",
+      "description": "module-build task, acceptance.md file exists but is empty",
+      "task_type": "module-build",
+      "target_module": {"layer": "L1", "module_id": "enhance"},
+      "acceptance_md_present": true,
+      "acceptance_md_empty": true,
+      "expected_outcome": "PASS",
+      "expected_missed_test": false,
+      "note": "File existence check only — content validation is Verifier's role"
+    },
+    {
+      "id": "at-010",
+      "description": "module-build task, correct path structure resolves to absent file",
+      "task_type": "module-build",
+      "target_module": {"layer": "L6", "module_id": "changelog"},
+      "acceptance_md_present": false,
+      "expected_outcome": "BLOCK",
+      "expected_error": "ACCEPTANCE_NOT_COVERED",
+      "expected_missed_test": false
+    }
+  ]
+}

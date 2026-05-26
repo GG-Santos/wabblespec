@@ -1,0 +1,42 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525u",
+  "session_id": "seed-pipeline-u",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "check": "All 11 L3 platforms have build-toolchain templates",
+      "result": "PASS",
+      "evidence": "11 files written; each covers: language/runtime, build tool, test runner, CI gates, deployment target, observability stack"
+    },
+    {
+      "check": "Monitor observability stack declaration present in all templates",
+      "result": "PASS",
+      "evidence": "Each template has an Observability section with a note explaining what Monitor generates from that stack declaration"
+    },
+    {
+      "check": "Engineering gateway CI gate requirements aligned with policy rules",
+      "result": "PASS",
+      "evidence": "All templates include: lint, tests, coverage threshold (80% — rule Q1), dependency audit (rule D3), SAST where applicable (Security gateway)"
+    },
+    {
+      "check": "Platform-specific gates included",
+      "result": "PASS",
+      "evidence": "Mobile: code signing; IoT: flash/RAM/watchdog checks; Extension: MV3 stateless + CSP; AI-Agent: eval suite + prompt injection; Game: frame-time regression"
+    },
+    {
+      "check": "AI-Agent template requires eval harness and pinned model (l4/ai M1+M2)",
+      "result": "PASS",
+      "evidence": "build-toolchain-ai-agent.md includes: primary model (pinned), fallback model (required), eval fixture location, eval pass rate CI gate"
+    },
+    {
+      "check": "IoT signing key storage declared as non-source (HSM/vault)",
+      "result": "PASS",
+      "evidence": "build-toolchain-iot.md signing key storage field notes: must be HSM or secrets vault, never in source"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T07:01:00Z"
+}

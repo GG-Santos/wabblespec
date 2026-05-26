@@ -1,0 +1,17 @@
+{
+  "id": "shared-artifacts-structure-20260525",
+  "topic": "_shared/ Directory Structure and Consumers",
+  "wing": "architecture",
+  "room": "shared-artifacts",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md + framework.yaml",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "_shared/ contains: schemas/ (JSON schemas for receipts, errors, drawers, task cards, graph nodes/edges), references/ (lookup tables and policies: invariants, error taxonomy, staleness states, reasoning patterns, delta-spec patterns, etc.), infrastructure/ (cross-cutting principles: economy, guard-policy, gateway pattern, version tracking), scripts/ (shared Python utilities: validate-graph.py, quality-floor-check.py, ears-validate.py, complexity-scorer.py, graph-traverse.py, bm25.py, markdown-extract.py, inference-guard.py, context-tuner.py, stm-pipeline.py, param-learner.py), templates/ (reusable output templates: legal, changelog, specs, handoffs), dev/ (language, database, API, framework reference guides). Consumers declared in framework.yaml shared_files section.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

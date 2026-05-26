@@ -1,0 +1,42 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525s",
+  "session_id": "seed-pipeline-s",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "check": "l8-corpus-gate.md accurately reflects current state",
+      "result": "PASS",
+      "evidence": "Receipt count updated to 67/100; benchmark schema confirmed by reading modules/l8/benchmark/schemas/benchmark.schema.json (developer_outcome required field present); contradictions confirmed by reading .wabblespec/memory/provenance/contradictions.md (empty table)"
+    },
+    {
+      "check": "Performance budget reference covers all consumer modules",
+      "result": "PASS",
+      "evidence": "_shared/references/performance-budgets.md documents Monitor, Engineering gateway, Web/API-Service/CLI platform consumption patterns"
+    },
+    {
+      "check": "Web template covers CWV (LCP/CLS/INP), TTFB, bundle size, error rate, availability, PII fields",
+      "result": "PASS",
+      "evidence": "All sections present with Monitor-parseable Target: lines and rationale"
+    },
+    {
+      "check": "API-Service template covers p50/p95/p99 latency, timeout declaration, error rate, throughput, resource ceilings",
+      "result": "PASS",
+      "evidence": "All sections present; timeout declaration section addresses cascading-hangs failure mode"
+    },
+    {
+      "check": "CLI template covers cold start < 100ms, interactive command, memory ceiling, exit code contract",
+      "result": "PASS",
+      "evidence": "Exit code contract section included — Monitor enforces declaration; all sections have rationale"
+    },
+    {
+      "check": "Templates use UNDECLARED marker for user-populated fields",
+      "result": "PASS",
+      "evidence": "Fields requiring project-specific values use ___ UNDECLARED per Monitor SKILL.md convention"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T05:01:00Z"
+}

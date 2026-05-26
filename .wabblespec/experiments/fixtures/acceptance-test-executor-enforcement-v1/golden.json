@@ -1,0 +1,57 @@
+{
+  "fixture_set": "acceptance-test-executor-enforcement-v1",
+  "generated_at": "2026-05-25T08:52:00+00:00",
+  "held_out_evaluations": [
+    {
+      "case_id": "at-002",
+      "augmented_executor_behavior": "BLOCK — emits ACCEPTANCE_NOT_COVERED (SPEC_VIOLATION), does not write execution-receipt.json",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-004",
+      "augmented_executor_behavior": "PASS — bugfix task_type bypasses acceptance gate, writes execution-receipt with acceptance_verified: null",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-005",
+      "augmented_executor_behavior": "BLOCK — emits ACCEPTANCE_NOT_COVERED for L2 module-build task",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-006",
+      "augmented_executor_behavior": "PASS — L5 module-build with acceptance.md present proceeds normally",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-007",
+      "augmented_executor_behavior": "PASS — null task_type cannot trigger module-build gate; check skipped",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-008",
+      "augmented_executor_behavior": "PASS — L8 module-build with acceptance.md present proceeds normally",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-009",
+      "augmented_executor_behavior": "PASS — file existence check satisfied; empty file content is Verifier's concern",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    },
+    {
+      "case_id": "at-010",
+      "augmented_executor_behavior": "BLOCK — emits ACCEPTANCE_NOT_COVERED for L6 module-build task",
+      "missed_test_occurred": false,
+      "verdict": "PASS"
+    }
+  ],
+  "held_out_missed_tests": 0,
+  "held_out_total": 8,
+  "held_out_missed_test_rate": 0.0
+}

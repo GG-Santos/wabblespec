@@ -1,0 +1,53 @@
+{
+  "module": "augment",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "augment",
+    "write experiment",
+    "implement module change",
+    "complete factory stubs",
+    "experimental implementation"
+  ],
+  "anti_activators": [
+    "blueprint status: awaiting-attestation",
+    "blueprint status: pending",
+    "write to modules/",
+    "production module",
+    "execution wave in progress"
+  ],
+  "preconditions": [
+    "blueprint.json status: approved",
+    "Blueprint receipt confirms Attestation received",
+    "For AUGMENT: source module files readable",
+    "For NEW: Factory stubs exist",
+    "Human explicit invocation with blueprint ID"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-blueprint"],
+  "authority": {
+    "owns": [".wabblespec/experiments/augments/"],
+    "reads": [
+      ".wabblespec/experiments/blueprints/",
+      ".wabblespec/receipts/blueprint-*.json",
+      "modules/"
+    ]
+  },
+  "verification_mode": "Demonstration",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Never writes to modules/ or production space (I11)",
+    "No [FILL] placeholders in output",
+    "Scope bounded by blueprint before_behavior and after_behavior",
+    "Does not copy receipts/ directory from source module",
+    "New behavior only — no unrequested improvements"
+  ],
+  "produces": [".wabblespec/experiments/augments/"],
+  "depends_on": ["blueprint", "factory", "synth"],
+  "consumed_by": ["benchmark"],
+  "loading_gate": "activation",
+  "commands": ["/augment"],
+  "file_path_patterns": []
+}

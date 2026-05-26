@@ -1,0 +1,23 @@
+{
+  "receipt_type": "executor",
+  "task_id": "forge-recipe-collapse-assessment-v1",
+  "session_id": null,
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "modules_activated": [],
+  "files_written": [
+    "modules/l0/recipe/SKILL.md",
+    "modules/l0/recipe/tests/acceptance.md",
+    "framework.yaml",
+    ".wabblespec/experiments/fixtures/recipe-collapse-assessment-v1/fixtures.json",
+    ".wabblespec/experiments/fixtures/recipe-collapse-assessment-v1/split.json",
+    ".wabblespec/experiments/fixtures/recipe-collapse-assessment-v1/golden.json",
+    ".wabblespec/experiments/tracker.json",
+    ".wabblespec/VERSION"
+  ],
+  "summary": "Forge: recipe-collapse-assessment-v1 promoted to production. Step 3 gains collapse_assessment sub-step. recipe.json and receipt output contracts updated. Benchmark: disposition_error_rate=0.0/3=0.0 <= 0.0. VERSION 0.23.0.",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-26T02:39:50Z"
+}

@@ -1,0 +1,9 @@
+{
+  "module": "recipe", "layer": "L0", "phase": "Intake", "wave": 0,
+  "timestamp": "2026-05-24T02:00:00Z", "session_id": "seed-run-20260524c",
+  "target": "Script", "platform": "CLI", "complexity": "Low",
+  "input_quality": { "vague": false, "broad": false, "enhanced": false, "sharpened": false },
+  "checks_run": ["target-detection", "complexity-score", "input-quality"],
+  "checks_passed": ["target-detection", "complexity-score", "input-quality"],
+  "status": "PASS", "outputs": ["recipe.json"], "not_tested": []
+}

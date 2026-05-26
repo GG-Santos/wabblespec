@@ -1,0 +1,17 @@
+{
+  "id": "error-taxonomy-key-types-20260525",
+  "topic": "Key WabbleSpec Error Types and Routing",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "_shared/references/error-taxonomy.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Error routing in Executor: SOFT (retry once; if retry fails -> HARD), HARD (halt wave; human-confirmed rollback), DEPENDENCY (pause; surface upstream failure; await resolution), CONTEXT_EXHAUSTION (compress context; resume from last checkpoint), SPEC_VIOLATION (pause; loop back to Specify or ScopeFrame), STALENESS_VIOLATION (quarantine evidence; surface for fresh fetch). New error types from augments: MISSING_COLD_START (Recipe Step 2d) -> await human resolution; ACCEPTANCE_NOT_COVERED (Executor post-wave) -> loop to acceptance test authorship. New from G0DM0D3: CROSS_LINK_MISSING (Document) -> loop to add cross-references section. New from InferenceGuard: inference_refusal flag in Red findings (not an error type — tracking field). COMMAND_RISK taxonomy added 2026-05-23.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

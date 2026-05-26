@@ -1,0 +1,17 @@
+{
+  "id": "tool-call-batching-discipline-20260525",
+  "topic": "Tool Call Batching Discipline for Parallel Execution",
+  "wing": "decisions",
+  "room": "framework-design",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": "CLAUDE.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "Claude Code executes independent tool calls in parallel. Batching rules: all file reads that do not depend on each other go in one response turn. All file writes/edits that do not conflict go in one response turn. Script executions that are independent can be issued as parallel Bash calls. Do not chain Read->Edit->Read when second Read is only to confirm (Edit succeeds or errors). What cannot be parallel: write that depends on content of prior read in same turn; script whose input is output of another script in same turn; receipt writes (each phase's receipt depends on prior phase's receipt). Applies to framework authoring and product-space tasks equally. Batching is the primary mechanism for seed run speed improvement.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

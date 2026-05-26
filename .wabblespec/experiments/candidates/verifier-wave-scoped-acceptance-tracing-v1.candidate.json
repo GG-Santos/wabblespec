@@ -1,0 +1,15 @@
+{
+  "candidate_id": "verifier-wave-scoped-acceptance-tracing-v1",
+  "source_pattern": "Pattern 2: High-frequency module: verifier",
+  "affected_module": "verifier",
+  "behavior_change": "Verifier's Step 1 check 4 currently reads: 'Each Then clause from the task card acceptance criteria is traceable to some artifact in the wave output.' On multi-wave tasks this requires every Then clause to be traceable to every wave's output — an impossible condition for clauses targeting later waves. The change scopes check 4 to only the Then clauses that correspond to this wave's declared outputs list in current-wave-plan.md. If a Then clause names an artifact not declared in this wave's outputs, it is deferred to the wave that declares it. Session-level completeness (pre-archive sweep completeness dimension) continues to verify all Then clauses are covered before delivery. Single-wave tasks are unaffected: the wave declares all outputs, so all Then clauses are in scope.",
+  "evidence": [
+    ".wabblespec/memory/instinct-observations.md",
+    ".wabblespec/receipts/executor-receipt-instinct-positive-patterns-v1.json"
+  ],
+  "risk": "A Then clause satisfied by a wave that did not explicitly declare the relevant artifact in its outputs list would pass at verification time but not be flagged until pre-archive sweep. Pre-archive sweep completeness dimension is non-blocking (WARN only), so an uncovered Then clause would surface as a warning rather than a FAIL.",
+  "rollback_condition": "If false-pass rate on multi-wave tasks — defined as delivery receipts containing pre_archive_sweep completeness WARN due to untraced Then clauses — exceeds 5% over 10 consecutive tasks, restore unscoped check 4 unconditionally.",
+  "secondary_change": "SKILL.md Step 1 check 4 must be rewritten to read: 'Each Then clause from the task card acceptance criteria whose named artifact is declared in this wave's outputs list is traceable to that artifact. Then clauses whose artifacts are not declared in this wave's outputs are deferred — they will be verified by the wave that declares them, and by the pre-archive sweep at session end.' No skill-rules.json changes required.",
+  "created_at": "2026-05-26T00:00:00Z",
+  "status": "pending"
+}

@@ -1,0 +1,44 @@
+{
+  "module": "autopilot",
+  "layer": "L2",
+  "tier": 1,
+  "activators": [
+    "multi-stage run",
+    "full lifecycle",
+    "orchestrate",
+    "/autopilot"
+  ],
+  "anti_activators": [
+    "single-wave execution only",
+    "collapse-eligible task"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/meta.md"
+    ],
+    "reads": [
+      ".wabblespec/receipts/",
+      ".wabblespec/plans/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Exclusively owns meta.md \u2014 no other module writes it directly",
+    "Phase advance requires all three phase receipts (Research + Plan + Execute)",
+    "TeamPlan activation requires complexity > 0.9 or explicit /teamplan command",
+    "Post-wave Dream trigger is non-blocking"
+  ],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": []
+}

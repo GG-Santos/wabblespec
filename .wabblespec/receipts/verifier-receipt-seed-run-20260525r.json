@@ -1,0 +1,42 @@
+{
+  "receipt_type": "verifier",
+  "task_id": "seed-run-20260525r",
+  "session_id": "seed-pipeline-r",
+  "status": "PASS",
+  "wave": 1,
+  "wave_of": 1,
+  "checks": [
+    {
+      "check": "L4 acceptance tests present for all 6 gateways",
+      "result": "PASS",
+      "evidence": "6 acceptance.md files written under modules/l4/*/tests/"
+    },
+    {
+      "check": "Tests cover two-phase activation (Phase A / Phase B)",
+      "result": "PASS",
+      "evidence": "Each gateway test verifies Phase A (Specify-time) and Phase B (pre-Executor verdict) separately"
+    },
+    {
+      "check": "BLOCK conditions derived from policy rule IDs",
+      "result": "PASS",
+      "evidence": "Rule IDs cited in tests match rules written in seed-run-20260524f and seed-run-20260525o (Q1-Q6, D1-D5, P1-P5, M1-M5, V1-V4, T1-T4, U1-U5, X1-X5, R1-R4, AT1-AT4)"
+    },
+    {
+      "check": "Activation preconditions tested (L3 receipt required, Design receipt for Experience)",
+      "result": "PASS",
+      "evidence": "All 6 gateways test the prerequisite receipt requirement; Experience additionally requires Design gateway receipt"
+    },
+    {
+      "check": "Gateway boundary separation tested (what each gateway does NOT own)",
+      "result": "PASS",
+      "evidence": "Security/Engineering/AI each confirm L3 platform concerns not re-audited; Aesthetic/Design ownership separation tested"
+    },
+    {
+      "check": "Receipt field contracts correct",
+      "result": "PASS",
+      "evidence": "gateway-verdict-receipt fields derived from SKILL.md output contracts"
+    }
+  ],
+  "not_tested": [],
+  "verified_at": "2026-05-25T04:01:00Z"
+}

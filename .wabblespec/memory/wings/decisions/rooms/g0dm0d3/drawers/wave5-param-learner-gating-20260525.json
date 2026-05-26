@@ -1,0 +1,17 @@
+{
+  "id": "wave5-param-learner-gating-20260525",
+  "topic": "Wave 5 ParamLearner Gate Condition",
+  "wing": "decisions",
+  "room": "g0dm0d3",
+  "staleness_state": "FRESH",
+  "written_at": "2026-05-25T14:37:42Z",
+  "last_verified": "2026-05-25T14:37:42Z",
+  "expires_at": null,
+  "source": ".wabblespec/plans/g0dm0d3-integration-plan.md",
+  "source_module": "memory",
+  "confidence": 1.0,
+  "evidence": "G0DM0D3 Wave 5 (ParamLearner, AUGMENT Feedback) is DEFERRED pending 50+ curated receipt corpus. Gate is mempalace Phase 5 gate. Current state: 50+ curated drawers REACHED (2026-05-25 session). param-learner.py is ready in _shared/scripts/. Wave 5 will: extend Feedback module with EMA-based parameter adaptation; write learned profiles to .wabblespec/memory/learned-params/; model-router reads learned-params/ when outputting ContextTuner results. EMA constants: alpha=0.3 (converges within ~19 signals), MIN_SAMPLES=3 (no adjustments until 3 receipts per context type), MAX_WEIGHT=0.5 (learned adjustments never exceed 50% of base profile), SAMPLES_FOR_MAX=20 (reach max weight at 20 samples). New Feedback mode: feedback --learn --receipt <path> --context-type <type>.",
+  "superseded_by": null,
+  "contradicts": null,
+  "provenance": [{"event": "WRITTEN", "timestamp": "2026-05-25T14:37:42Z", "actor": "memory", "note": "Session g0dm0d3-waves-1-6"}]
+}

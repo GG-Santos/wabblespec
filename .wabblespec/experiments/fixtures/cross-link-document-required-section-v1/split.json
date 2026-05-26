@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "fixture_set": ".wabblespec/experiments/fixtures/cross-link-document-required-section-v1/",
+  "created_at": "2026-05-25T08:54:00+00:00",
+  "seed": 4203,
+  "split_method": "random",
+  "total_cases": 10,
+  "dev_cases": ["cl-001", "cl-004"],
+  "held_out_cases": ["cl-002", "cl-003", "cl-005", "cl-006", "cl-007", "cl-008", "cl-009", "cl-010"]
+}

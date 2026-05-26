@@ -18,13 +18,22 @@ cascade_policy:
 shared:
   schemas:
     - path: _shared/schemas/receipt.base.schema.json
-      consumers: [recipe, specify, scope-frame, decompose, executor, verifier, guard, archive, reviewer, memory, memory-search, provenance, apply]
+      consumers: [recipe, specify, scope-frame, decompose, executor, verifier, guard, archive, reviewer, memory, memory-search, provenance, apply, nexus, shift, sync, organize, flag, analyze, perf, deps, audit, api]
       version: "1.0"
     - path: _shared/schemas/error-event.schema.json
       consumers: [guard, verifier, executor, reviewer]
       version: "1.0"
     - path: _shared/schemas/skill-rules.schema.json
       consumers: []
+      version: "1.0"
+    - path: _shared/schemas/specify-receipt.extension.schema.json
+      consumers: [specify]
+      version: "1.0"
+    - path: _shared/schemas/task-card.schema.json
+      consumers: [specify, executor, guard, verifier]
+      version: "1.0"
+    - path: _shared/schemas/project-map.schema.json
+      consumers: [reference-load]
       version: "1.0"
   references:
     - path: _shared/references/invariants.md
@@ -33,23 +42,254 @@ shared:
       consumers: [guard, verifier, executor, triage]
     - path: _shared/references/staleness-states.md
       consumers: [memory, memory-search, provenance, guard]
+    - path: _shared/references/state-protocol.md
+      consumers: [executor, autopilot, guard, verifier]
+    - path: _shared/references/command-risk-policy.md
+      consumers: [guard]
+    - path: _shared/references/orchestration-adapter-boundary.md
+      consumers: [autopilot, model-router, ensemble, team-plan]
+    - path: _shared/references/l8-corpus-gate.md
+      consumers: [guard, instinct, synth, blueprint, factory, augment, benchmark, forge]
+    - path: _shared/references/quality-floor-gates.md
+      consumers: [benchmark]
+    - path: _shared/references/memory-backend-decision.md
+      consumers: [memory, memory-search, provenance]
+    - path: _shared/references/domain-pack-spec.md
+      consumers: []
+    - path: _shared/references/graph-intelligence-gate.md
+      consumers: [entity-graph, dream, memory-mine]
+    - path: _shared/references/compression-discipline.md
+      consumers: [economy]
+    - path: _shared/references/model-routing.md
+      consumers: [economy, model-router]
+    - path: _shared/references/adversarial-patterns.md
+      consumers: [adversary, reviewer]
+    - path: _shared/references/ears-syntax.md
+      consumers: [specify]
+    - path: _shared/references/secure-defaults.md
+      consumers: [apply, gateway-security]
+    - path: _shared/references/lsp-integration.md
+      consumers: [apply]
+    - path: _shared/references/robots-first-spec.md
+      consumers: [executor]
+    - path: _shared/references/progressive-disclosure.md
+      consumers: [memory-search, reference-load]
+    - path: _shared/references/delta-spec-patterns.md
+      consumers: [shift, sync]
+    - path: _shared/references/exploit-patterns.md
+      consumers: [gateway-security, adversary]
+    - path: _shared/references/security-ownership.md
+      consumers: [gateway-security, guard]
+    - path: _shared/references/context-engineering.md
+      consumers: [executor, autopilot, economy, model-router]
+    - path: _shared/references/context-integrity.md
+      consumers: [executor, guard, verifier]
+    - path: _shared/references/context-optimization.md
+      consumers: [executor, autopilot, economy]
+    - path: _shared/references/context-budget.md
+      consumers: [executor, autopilot, economy]
+    - path: _shared/references/context7-integration.md
+      consumers: [executor, runtime-probe, autopilot]
+    - path: _shared/references/reference-authoring.md
+      consumers: [factory]
+    - path: _shared/references/index.yml
+      consumers: [reference-load, specify, recipe]
+    - path: _shared/references/reasoning-patterns.md
+      consumers: [adversary, plan, specify, executor]
+    - path: _shared/references/memory-routing.md
+      consumers: [memory, memory-search, provenance, nexus]
+    - path: _shared/references/defect-patterns.md
+      consumers: [guard, reviewer, triage]
+    - path: _shared/references/prompt-patterns.md
+      consumers: [factory, guard]
+    - path: _shared/references/hook-event-schema.md
+      consumers: [guard, recipe, factory, gateway-security]
+    - path: _shared/references/permission-flow.md
+      consumers: [guard, gateway-security, gateway-engineering, executor]
+    - path: _shared/references/compaction-behavior.md
+      consumers: [economy, autopilot, memory]
+  infrastructure:
+    - path: _shared/infrastructure/economy-principles.md
+      consumers: [economy]
+    - path: _shared/infrastructure/guard-policy.md
+      consumers: [guard, executor]
+    - path: _shared/infrastructure/gateway-pattern.md
+      consumers: [gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience]
+    - path: _shared/infrastructure/version-tracking.md
+      consumers: [shift, api]
+    - path: _shared/infrastructure/completion-promise.md
+      consumers: [executor, verifier]
+  scripts:
+    - path: _shared/scripts/graph-traverse.py
+      consumers: [nexus, shift, memory]
+    - path: _shared/scripts/bm25.py
+      consumers: [nexus, explore]
+    - path: _shared/scripts/markdown-extract.py
+      consumers: [verifier, document]
+  templates:
+    - path: _shared/templates/legal/privacy-policy-gdpr.md
+      consumers: [legal]
+    - path: _shared/templates/legal/terms-of-service-base.md
+      consumers: [legal]
+    - path: _shared/templates/legal/disclaimer-base.md
+      consumers: [legal]
+    - path: _shared/templates/changelog/release-notes.md
+      consumers: [changelog]
+    - path: _shared/templates/changelog/conventional-changelog.md
+      consumers: [changelog, archive]
+    - path: _shared/templates/specs/task-card.md
+      consumers: [specify]
+    - path: _shared/templates/specs/spec-folder-readme.md
+      consumers: [specify, organize]
+    - path: _shared/templates/handoff/session-handoff.md
+      consumers: [team-plan, document]
+    - path: _shared/templates/standards/index-template.yml
+      consumers: [organize]
+    - path: _shared/schemas/graph-node.schema.json
+      consumers: [nexus, shift, entity-graph]
+      version: "1.0"
+    - path: _shared/schemas/graph-edge.schema.json
+      consumers: [nexus, shift, entity-graph]
+      version: "1.0"
+    - path: _shared/schemas/wave-checkpoint.schema.json
+      consumers: [decompose, rollback, executor, guard, recipe]
+      version: "1.0"
+    - path: _shared/schemas/counter-increment-request.schema.json
+      consumers: [autopilot, archive, memory]
+      version: "1.0"
+  dev_frameworks:
+    # Web platform frameworks — loaded by Apply when platform-web is active
+    - path: _shared/dev/frameworks/web/core.md
+      consumers: [apply, platform-web]
+    - path: _shared/dev/frameworks/web/security.md
+      consumers: [apply, platform-web]
+    - path: _shared/dev/frameworks/web/nextjs.md
+      consumers: [apply, platform-web]
+    - path: _shared/dev/frameworks/web/react.md
+      consumers: [apply, platform-web]
+    - path: _shared/dev/frameworks/web/vue.md
+      consumers: [apply, platform-web]
+    - path: _shared/dev/frameworks/web/svelte.md
+      consumers: [apply, platform-web]
+    # CLI platform frameworks — loaded by Apply when platform-cli is active
+    - path: _shared/dev/frameworks/cli/core.md
+      consumers: [apply, platform-cli]
+    - path: _shared/dev/frameworks/cli/cobra.md
+      consumers: [apply, platform-cli]
+    - path: _shared/dev/frameworks/cli/click.md
+      consumers: [apply, platform-cli]
+    - path: _shared/dev/frameworks/cli/clap.md
+      consumers: [apply, platform-cli]
+    # API/Service platform frameworks — loaded by Apply when platform-api-service is active
+    - path: _shared/dev/frameworks/api/core.md
+      consumers: [apply, platform-api-service]
+    - path: _shared/dev/frameworks/api/security.md
+      consumers: [apply, platform-api-service]
+    - path: _shared/dev/frameworks/api/grpc.md
+      consumers: [apply, platform-api-service]
+    - path: _shared/dev/frameworks/api/graphql.md
+      consumers: [apply, platform-api-service]
+    # Mobile platform frameworks — loaded by Apply when platform-mobile is active
+    - path: _shared/dev/frameworks/mobile/core.md
+      consumers: [apply, platform-mobile]
+    - path: _shared/dev/frameworks/mobile/react-native.md
+      consumers: [apply, platform-mobile]
+    - path: _shared/dev/frameworks/mobile/flutter.md
+      consumers: [apply, platform-mobile]
+    - path: _shared/dev/frameworks/mobile/swift-uikit.md
+      consumers: [apply, platform-mobile]
+    - path: _shared/dev/frameworks/mobile/kotlin-compose.md
+      consumers: [apply, platform-mobile]
+    # Desktop platform frameworks — loaded by Apply when platform-desktop is active
+    - path: _shared/dev/frameworks/desktop/core.md
+      consumers: [apply, platform-desktop]
+    - path: _shared/dev/frameworks/desktop/electron.md
+      consumers: [apply, platform-desktop]
+    - path: _shared/dev/frameworks/desktop/tauri.md
+      consumers: [apply, platform-desktop]
+    # Game platform frameworks — loaded by Apply when platform-game is active
+    - path: _shared/dev/frameworks/game/core.md
+      consumers: [apply, platform-game]
+    - path: _shared/dev/frameworks/game/unity.md
+      consumers: [apply, platform-game]
+    - path: _shared/dev/frameworks/game/unreal.md
+      consumers: [apply, platform-game]
+    - path: _shared/dev/frameworks/game/godot.md
+      consumers: [apply, platform-game]
+    # AI/Agent platform frameworks — loaded by Apply when platform-ai-agent is active
+    - path: _shared/dev/frameworks/ai/core.md
+      consumers: [apply, platform-ai-agent]
+    - path: _shared/dev/frameworks/ai/safety.md
+      consumers: [apply, platform-ai-agent, gateway-ai]
+    - path: _shared/dev/frameworks/ai/langchain.md
+      consumers: [apply, platform-ai-agent]
+    - path: _shared/dev/frameworks/ai/openai-sdk.md
+      consumers: [apply, platform-ai-agent]
+    # Data/Pipeline platform frameworks — loaded by Apply when platform-data-pipeline is active
+    - path: _shared/dev/frameworks/data/core.md
+      consumers: [apply, platform-data-pipeline]
+    - path: _shared/dev/frameworks/data/dbt.md
+      consumers: [apply, platform-data-pipeline]
+    - path: _shared/dev/frameworks/data/spark.md
+      consumers: [apply, platform-data-pipeline]
+    - path: _shared/dev/frameworks/data/airflow.md
+      consumers: [apply, platform-data-pipeline]
+    # Library/Package platform framework
+    - path: _shared/dev/frameworks/library/core.md
+      consumers: [apply, platform-library-package]
+    # Extension/Plugin platform framework
+    - path: _shared/dev/frameworks/extension/core.md
+      consumers: [apply, platform-extension-plugin]
+    # IoT/Embedded platform framework
+    - path: _shared/dev/frameworks/iot/core.md
+      consumers: [apply, platform-iot-embedded]
+  dev_infrastructure:
+    # Engineering infrastructure knowledge — loaded by Apply when gateway-engineering is active
+    - path: _shared/dev/infrastructure/cicd.md
+      consumers: [apply, gateway-engineering]
+    - path: _shared/dev/infrastructure/containers.md
+      consumers: [apply, gateway-engineering]
+    - path: _shared/dev/infrastructure/iac.md
+      consumers: [apply, gateway-engineering]
+    - path: _shared/dev/infrastructure/observability.md
+      consumers: [apply, gateway-engineering]
+  gateway_rules:
+    # Gateway-specific enforcement rules — loaded by gateway Phase B verdict step
+    - path: modules/l4/security/rules/auth-policy.md
+      consumers: [gateway-security]
+    - path: modules/l4/security/rules/secrets-policy.md
+      consumers: [gateway-security]
 
 # ─────────────────────────────────────────────
 # L0 — PRODUCT LAYER
 # ─────────────────────────────────────────────
 modules:
 
+  - id: runtime-probe
+    path: modules/l0/runtime-probe/
+    type: skill
+    layer: L0
+    tags: [runtime, capabilities, vendor-neutral, probe]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
   - id: recipe
     path: modules/l0/recipe/
     type: skill
     layer: L0
-    tags: [entry-point, routing, detection, complexity]
+    tags: [entry-point, routing, detection, complexity, input-quality]
     produces_schemas: []
-    consumes_schemas: []
-    depends_on: []
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    consumes_schemas: [_shared/schemas/wave-checkpoint.schema.json]
+    depends_on: [enhance, sharpen]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
     build_status: built
+    promoted_from: recipe-collapse-assessment-v1
+    promoted_at: "2026-05-26"
 
   - id: product
     path: modules/l0/product/
@@ -60,60 +300,132 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
-  - id: test
-    path: modules/l0/test/
+  - id: ground
+    path: modules/l0/ground/
     type: skill
     layer: L0
+    tags: [verification, hallucination, pre-execution, grounding]
+    produces_schemas: [modules/l0/ground/schemas/ground-receipt.schema.json]
+    consumes_schemas: []
+    depends_on: [decompose]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: reference-load-l0
+    path: modules/l0/reference-load/
+    type: skill
+    layer: L0
+    tags: [research, reference, loading, trust, staleness, batch]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: test
+    path: modules/l1/test/
+    type: skill
+    layer: L1
     tags: [testing, verification, quality]
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: []
     depends_on: []
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: clean
-    path: modules/l0/clean/
+    path: modules/l1/clean/
     type: skill
-    layer: L0
+    layer: L1
     tags: [cleanup, maintenance]
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
 
   - id: triage
-    path: modules/l0/triage/
+    path: modules/l1/triage/
     type: skill
-    layer: L0
+    layer: L1
     tags: [error-handling, triage, routing]
     produces_schemas: []
     consumes_schemas: [shared/schemas/error-event.schema.json]
     depends_on: []
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: migrate
-    path: modules/l0/migrate/
+    path: modules/l1/migrate/
     type: skill
-    layer: L0
+    layer: L1
     tags: [migration, upgrade]
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L1 — SPEC CORE
 # ─────────────────────────────────────────────
+
+  - id: enhance
+    path: modules/l1/enhance/
+    type: skill
+    layer: L1
+    tags: [input-quality, vague-resolution, intent, clarification]
+    produces_schemas: [modules/l1/enhance/schemas/enhance-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [recipe]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: sharpen
+    path: modules/l1/sharpen/
+    type: skill
+    layer: L1
+    tags: [input-quality, broad-resolution, interpretations, disambiguation]
+    produces_schemas: [modules/l1/sharpen/schemas/sharpen-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [recipe]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: brainstorm
+    path: modules/l1/brainstorm/
+    type: skill
+    layer: L1
+    tags: [divergent, options, ideation, pre-propose]
+    produces_schemas: [modules/l1/brainstorm/schemas/brainstorm-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: plan
+    path: modules/l1/plan/
+    type: skill
+    layer: L1
+    tags: [planning, expert-review, go-no-go, pre-decompose, strategic]
+    produces_schemas: [modules/l1/plan/schemas/plan-receipt.schema.json, modules/l1/plan/schemas/plan-artifact.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json, modules/l2/adversary/schemas/adversary-receipt.schema.json, modules/l2/grader/schemas/grader-receipt.schema.json]
+    depends_on: [specify, propose, adversary, grader]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: scope-frame
     path: modules/l1/scope-frame/
@@ -124,7 +436,7 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: specify
@@ -134,9 +446,9 @@ modules:
     tags: [spec, task-card, acceptance-criteria, gate]
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: []
-    depends_on: [scope-frame]
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    depends_on: [scope-frame, adversary]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
     build_status: built
 
   - id: interview
@@ -148,8 +460,8 @@ modules:
     consumes_schemas: []
     depends_on: [scope-frame]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: explore
     path: modules/l1/explore/
@@ -160,8 +472,8 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: decompose
     path: modules/l1/decompose/
@@ -172,7 +484,7 @@ modules:
     consumes_schemas: []
     depends_on: [specify]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: propose
@@ -184,8 +496,8 @@ modules:
     consumes_schemas: []
     depends_on: [scope-frame]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: reference-load
     path: modules/l1/reference-load/
@@ -195,9 +507,9 @@ modules:
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L2 — ORCHESTRATION
@@ -208,12 +520,14 @@ modules:
     type: skill
     layer: L2
     tags: [execution, waves, implementation, gate]
-    produces_schemas: [shared/schemas/receipt.base.schema.json]
-    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    produces_schemas: [shared/schemas/receipt.base.schema.json, _shared/schemas/wave-checkpoint.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, _shared/schemas/wave-checkpoint.schema.json]
     depends_on: [decompose, guard]
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
     build_status: built
+    promoted_from: executor-pre-wave-checkpoint-elimination-v1
+    promoted_at: "2026-05-26"
 
   - id: verifier
     path: modules/l2/verifier/
@@ -223,9 +537,11 @@ modules:
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: [shared/schemas/receipt.base.schema.json, shared/schemas/error-event.schema.json]
     depends_on: [executor]
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
     build_status: built
+    promoted_from: verifier-wave-scoped-acceptance-tracing-v1
+    promoted_at: "2026-05-26"
 
   - id: guard
     path: modules/l2/guard/
@@ -233,10 +549,46 @@ modules:
     layer: L2
     tags: [invariants, enforcement, gate, security]
     produces_schemas: [shared/schemas/error-event.schema.json]
-    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, _shared/schemas/wave-checkpoint.schema.json]
     depends_on: []
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
+    build_status: built
+
+  - id: inference-guard
+    path: modules/l2/inference-guard/
+    type: skill
+    layer: L2
+    tags: [security, enforcement, gate, inference]
+    produces_schemas: [modules/l2/inference-guard/schemas/receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [gateway-security]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: adversary
+    path: modules/l2/adversary/
+    type: skill
+    layer: L2
+    tags: [adversarial, challenge, quality, gate]
+    produces_schemas: [modules/l2/adversary/schemas/adversary-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: grader
+    path: modules/l2/grader/
+    type: skill
+    layer: L2
+    tags: [evaluation, verdict, quality, gate]
+    produces_schemas: [modules/l2/grader/schemas/grader-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json, modules/l2/adversary/schemas/adversary-receipt.schema.json]
+    depends_on: [adversary]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
     build_status: built
 
   - id: reviewer
@@ -246,46 +598,72 @@ modules:
     tags: [adversarial, review, quality, gate]
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
-    depends_on: [verifier]
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    depends_on: [adversary, grader, verifier]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
     build_status: built
 
   - id: archive
-    path: modules/l2/archive/
+    path: modules/l7/archive/
     type: skill
-    layer: L2
-    tags: [receipts, index, auditability, persistence]
+    layer: L7
+    tags: [receipts, index, auditability, persistence, shift-trigger, sweep, nexus-refresh]
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
-    depends_on: [verifier]
-    last_validated: "2026-05-21"
-    quality_floor_passed: false
+    depends_on: [verifier, shift, nexus]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
     build_status: built
+    promoted_from: archive-conditional-nexus-refresh-v1
+    promoted_at: "2026-05-26"
 
   - id: apply
-    path: modules/l2/apply/
+    path: modules/l1/apply/
     type: skill
-    layer: L2
+    layer: L1
     tags: [application, artifacts, delivery]
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [executor, verifier]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
+
+  - id: model-router
+    path: modules/l2/model-router/
+    type: skill
+    layer: L2
+    tags: [routing, capabilities, vendor-neutral, orchestration]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [runtime-probe]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: ensemble
+    path: modules/l2/ensemble/
+    type: skill
+    layer: L2
+    tags: [multi-lane, coordination, cross-check, orchestration]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [model-router]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
 
   - id: autopilot
     path: modules/l2/autopilot/
     type: skill
     layer: L2
-    tags: [autonomy, orchestration, multi-wave]
+    tags: [autonomy, orchestration, multi-wave, pipeline, lifecycle]
     produces_schemas: []
-    consumes_schemas: [shared/schemas/receipt.base.schema.json]
-    depends_on: [executor, verifier, guard]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json, _shared/schemas/counter-increment-request.schema.json]
+    depends_on: [executor, verifier, guard, plan, economy, ground, triage, analyze, dream, reviewer, polish, changelog, commit, shift, archive, flag]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: team-plan
     path: modules/l2/team-plan/
@@ -296,20 +674,20 @@ modules:
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [decompose, guard]
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: scaffold
-    path: modules/l2/scaffold/
+    path: modules/l7/scaffold/
     type: skill
-    layer: L2
+    layer: L7
     tags: [scaffolding, project-init, templates]
     produces_schemas: []
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: rollback
     path: modules/l2/rollback/
@@ -320,8 +698,8 @@ modules:
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [guard]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L3 — PLATFORM PACKAGES
@@ -336,7 +714,7 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: platform-api-service
@@ -348,7 +726,7 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: platform-cli
@@ -360,7 +738,7 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: platform-game
@@ -372,8 +750,8 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-mobile
     path: modules/l3/mobile/
@@ -384,8 +762,8 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-desktop
     path: modules/l3/desktop/
@@ -396,11 +774,11 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-iot-embedded
-    path: modules/l3/iot-embedded/
+    path: modules/l3/iot/
     type: skill
     layer: L3
     tags: [platform, iot, embedded, firmware]
@@ -408,11 +786,11 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-library-package
-    path: modules/l3/library-package/
+    path: modules/l3/library/
     type: skill
     layer: L3
     tags: [platform, library, package, sdk]
@@ -420,11 +798,11 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-extension-plugin
-    path: modules/l3/extension-plugin/
+    path: modules/l3/extension/
     type: skill
     layer: L3
     tags: [platform, extension, plugin, addon]
@@ -432,8 +810,8 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-data-pipeline
     path: modules/l3/data-pipeline/
@@ -444,8 +822,8 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: platform-ai-agent
     path: modules/l3/ai-agent/
@@ -456,8 +834,8 @@ modules:
     consumes_schemas: []
     depends_on: [recipe]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L4 — CAPABILITY GATEWAYS
@@ -472,7 +850,7 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: gateway-engineering
@@ -484,7 +862,7 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: gateway-ai
@@ -496,8 +874,8 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
   - id: gateway-aesthetic
     path: modules/l4/aesthetic/
@@ -507,9 +885,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: gateway-design
     path: modules/l4/design/
@@ -519,9 +897,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: gateway-experience
     path: modules/l4/experience/
@@ -530,10 +908,10 @@ modules:
     tags: [experience, accessibility, performance, delight]
     produces_schemas: []
     consumes_schemas: []
-    depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    depends_on: [gateway-design]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L5 — MEMORY
@@ -548,7 +926,7 @@ modules:
     consumes_schemas: [_shared/references/staleness-states.md]
     depends_on: []
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: memory-search
@@ -560,7 +938,7 @@ modules:
     consumes_schemas: [_shared/schemas/drawer.schema.json]
     depends_on: [memory]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: provenance
@@ -572,7 +950,7 @@ modules:
     consumes_schemas: [_shared/schemas/drawer.schema.json]
     depends_on: [memory]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: entity-graph
@@ -584,7 +962,7 @@ modules:
     consumes_schemas: []
     depends_on: [memory, memory-search]
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: dream
@@ -596,7 +974,7 @@ modules:
     consumes_schemas: []
     depends_on: [memory, memory-search, provenance]
     last_validated: "2026-05-21"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: memory-mine
@@ -607,9 +985,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [memory, memory-search, dream]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: forget
     path: modules/l5/forget/
@@ -620,8 +998,8 @@ modules:
     consumes_schemas: []
     depends_on: [memory, provenance]
     last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L6 — EXPRESSION
@@ -636,19 +1014,19 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: economy
-    path: modules/l6/economy/
+    path: modules/l2/economy/
     type: skill
-    layer: L6
+    layer: L2
     tags: [tokens, compression, density, context]
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
   - id: document
@@ -659,8 +1037,8 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: "2026-05-22"
-    quality_floor_passed: false
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
     build_status: built
 
   - id: polish
@@ -669,11 +1047,11 @@ modules:
     layer: L6
     tags: [polish, refinement, quality]
     produces_schemas: []
-    consumes_schemas: []
-    depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [homowabian]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
 
   - id: research-log
     path: modules/l6/research-log/
@@ -684,7 +1062,7 @@ modules:
     consumes_schemas: []
     depends_on: [memory]
     last_validated: "2026-05-22"
-    quality_floor_passed: false
+    quality_floor_passed: true
     build_status: built
 
 # ─────────────────────────────────────────────
@@ -699,9 +1077,9 @@ modules:
     produces_schemas: [shared/schemas/receipt.base.schema.json]
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [verifier, archive]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: package
     path: modules/l7/package/
@@ -711,9 +1089,9 @@ modules:
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [verifier]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: release
     path: modules/l7/release/
@@ -723,9 +1101,9 @@ modules:
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [package]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
   - id: monitor
     path: modules/l7/monitor/
@@ -733,14 +1111,18 @@ modules:
     layer: L7
     tags: [monitoring, observability, alerts]
     produces_schemas: []
-    consumes_schemas: []
+    consumes_schemas: [_shared/schemas/error-event.schema.json]
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # L8 — EVOLUTION
+# OPERATIONAL GATE: NOT MET. Modules are structurally built but not
+# authorized to modify live framework files. Gate conditions defined in
+# _shared/references/l8-corpus-gate.md. Requires 100+ PASS receipts,
+# 3 human-validated Instinct patterns, and benchmark schema before promotion.
 # ─────────────────────────────────────────────
 
   - id: instinct
@@ -751,9 +1133,9 @@ modules:
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [archive, memory]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: synth
     path: modules/l8/synth/
@@ -763,9 +1145,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [instinct]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: blueprint
     path: modules/l8/blueprint/
@@ -775,9 +1157,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [synth]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: factory
     path: modules/l8/factory/
@@ -787,9 +1169,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [blueprint]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: augment
     path: modules/l8/augment/
@@ -799,9 +1181,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [blueprint]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: benchmark
     path: modules/l8/benchmark/
@@ -811,9 +1193,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: [factory, augment]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: forge
     path: modules/l8/forge/
@@ -823,9 +1205,9 @@ modules:
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [benchmark]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: retro
     path: modules/l8/retro/
@@ -835,9 +1217,9 @@ modules:
     produces_schemas: []
     consumes_schemas: [shared/schemas/receipt.base.schema.json]
     depends_on: [archive]
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
   - id: feedback
     path: modules/l8/feedback/
@@ -847,9 +1229,133 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: deferred
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# PHASE 3 MODULES — built 2026-05-23
+# ─────────────────────────────────────────────
+
+  - id: nexus
+    path: modules/l5/nexus/
+    type: skill
+    layer: L5
+    tags: [knowledge-retrieval, graph-traversal, blast-radius, pattern-discovery, why-query]
+    produces_schemas: [modules/l5/nexus/schemas/nexus-receipt.schema.json, modules/l5/nexus/schemas/why-query-response.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [memory, memory-search, entity-graph]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: shift
+    path: modules/l1/shift/
+    type: skill
+    layer: L1
+    tags: [change-classification, semantic-diff, reverse-drift, compatibility, breaking-change]
+    produces_schemas: [modules/l1/shift/schemas/shift-receipt.schema.json, modules/l1/shift/schemas/compatibility-report.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: sync
+    path: modules/l1/sync/
+    type: skill
+    layer: L1
+    tags: [spec-reconciliation, divergence, merge, conflict-resolution]
+    produces_schemas: [modules/l1/sync/schemas/sync-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: organize
+    path: modules/l1/organize/
+    type: skill
+    layer: L1
+    tags: [file-structure, orphan-detection, naming, repair, audit]
+    produces_schemas: [modules/l1/organize/schemas/organize-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: flag
+    path: modules/l1/flag/
+    type: skill
+    layer: L1
+    tags: [feature-flags, rollout, lifecycle, gate, manifest]
+    produces_schemas: [modules/l1/flag/schemas/flag-receipt.schema.json, modules/l1/flag/schemas/flag-manifest.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: analyze
+    path: modules/l1/analyze/
+    type: skill
+    layer: L1
+    tags: [root-cause, rca, 5-whys, fishbone, fault-tree, investigation]
+    produces_schemas: [modules/l1/analyze/schemas/analyze-receipt.schema.json, modules/l1/analyze/schemas/rca-report.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [triage]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: perf
+    path: modules/l1/perf/
+    type: skill
+    layer: L1
+    tags: [performance, baseline, measurement, optimization, budget]
+    produces_schemas: [modules/l1/perf/schemas/perf-receipt.schema.json, modules/l1/perf/schemas/perf-baseline.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: deps
+    path: modules/l1/deps/
+    type: skill
+    layer: L1
+    tags: [dependencies, sbom, vulnerabilities, supply-chain, license, risk]
+    produces_schemas: [modules/l1/deps/schemas/deps-receipt.schema.json, modules/l1/deps/schemas/sbom.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [gateway-security]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: audit
+    path: modules/l2/audit/
+    type: skill
+    layer: L2
+    tags: [compliance, accessibility, wcag, gdpr, license-compliance, guard-log-review]
+    produces_schemas: [modules/l2/audit/schemas/audit-receipt.schema.json, modules/l2/audit/schemas/compliance-report.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [guard]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: api
+    path: modules/l1/api/
+    type: skill
+    layer: L1
+    tags: [api-versioning, deprecation, contract, backward-compatibility]
+    produces_schemas: [modules/l1/api/schemas/api-receipt.schema.json, modules/l1/api/schemas/api-contract.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
 
 # ─────────────────────────────────────────────
 # SHARED DEV INFRASTRUCTURE
@@ -863,9 +1369,9 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
 
   - id: shared-dev-databases
     path: _shared/dev/databases/
@@ -875,18 +1381,142 @@ modules:
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
 
   - id: shared-dev-api-consumption
-    path: _shared/dev/api-consumption/
+    path: _shared/dev/api/
     type: skill
     layer: shared
     tags: [api, http, rest, graphql, consumption]
     produces_schemas: []
     consumes_schemas: []
     depends_on: []
-    last_validated: ""
-    quality_floor_passed: false
-    build_status: planned
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# PHASE 5 MODULES — built 2026-05-23
+# ─────────────────────────────────────────────
+
+  - id: proofread
+    path: modules/l6/proofread/
+    type: skill
+    layer: L6
+    tags: [quality-gate, readability, factual-accuracy, consistency, text]
+    produces_schemas: [modules/l6/proofread/schemas/proofread-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: markdown
+    path: modules/l6/markdown/
+    type: skill
+    layer: L6
+    tags: [formatting, obsidian, agentskills, frontmatter, wikilinks, output]
+    produces_schemas: [modules/l6/markdown/schemas/markdown-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [proofread]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: copy
+    path: modules/l6/copy/
+    type: skill
+    layer: L6
+    tags: [microcopy, ui-text, errors, tooltips, labels, security-warnings]
+    produces_schemas: [modules/l6/copy/schemas/copy-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: writer
+    path: modules/l6/writer/
+    type: skill
+    layer: L6
+    tags: [long-form, content, landing-page, blog, technical-article, case-study]
+    produces_schemas: [modules/l6/writer/schemas/writer-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: legal
+    path: modules/l6/legal/
+    type: skill
+    layer: L6
+    tags: [legal-documents, privacy-policy, terms-of-service, gdpr, ccpa, compliance]
+    produces_schemas: [modules/l6/legal/schemas/legal-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [audit]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: translate
+    path: modules/l6/translate/
+    type: skill
+    layer: L6
+    tags: [i18n, l10n, locale, translation, bcp47, strings]
+    produces_schemas: [modules/l6/translate/schemas/translate-receipt.schema.json, modules/l6/translate/schemas/locale-manifest.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: optimize
+    path: modules/l6/optimize/
+    type: skill
+    layer: L6
+    tags: [seo, ai-search, structured-data, performance, social, local, video, voice, discoverability]
+    produces_schemas: [modules/l6/optimize/schemas/optimize-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: market
+    path: modules/l6/market/
+    type: skill
+    layer: L6
+    tags: [marketing, positioning, icp, messaging, go-to-market, channels]
+    produces_schemas: [modules/l6/market/schemas/market-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: changelog
+    path: modules/l7/changelog/
+    type: skill
+    layer: L7
+    tags: [release-notes, git, conventional-commits, user-facing, delivery]
+    produces_schemas: [modules/l7/changelog/schemas/changelog-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: commit
+    path: modules/l7/commit/
+    type: skill
+    layer: L7
+    tags: [git, conventional-commits, staging, atomic-commits, delivery]
+    produces_schemas: [modules/l7/commit/schemas/commit-receipt.schema.json]
+    consumes_schemas: [_shared/schemas/receipt.base.schema.json]
+    depends_on: [changelog]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built

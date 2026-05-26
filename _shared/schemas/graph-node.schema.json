@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Graph Node",
+  "description": "Shared interchange format for graph nodes. Used by EntityGraph output and Nexus graph. Every node must reference the Memory drawers that evidence it (drawer_ids). Consumers: nexus, shift, entity-graph.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique entity identifier. Format: '<type>::<label>'. e.g. 'module::guard', 'concept::receipt-gating'."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["file", "module", "concept"],
+      "description": "Entity type. Three canonical types — see entity-graph expansion rule."
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable label. The part after '::' in the id."
+    },
+    "drawer_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of Memory drawers in which this entity appears."
+    },
+    "drawer_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of drawer_id values from Memory drawers that evidence this entity. Required by Nexus architecture (A5). Empty array only acceptable when no drawers exist."
+    }
+  },
+  "required": ["id", "type", "label", "drawer_count", "drawer_ids"]
+}
