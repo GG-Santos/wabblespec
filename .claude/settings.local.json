@@ -115,7 +115,15 @@
       "Bash(Test-Path *)",
       "Bash(Select-Object -ExpandProperty Name)",
       "Bash(grep -E \"^d|\\\\.md$|\\\\.yaml$\")",
-      "PowerShell(Remove-Item *)"
+      "PowerShell(Remove-Item *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"hook exit: $?\")",
+      "Bash(cp \"C:/Vaults/WabbleSpec v6.1/.claude/skills/skill-factory/references/wabblespec-v61.md\" \"C:/Vaults/WabbleSpec v6.1/.agents/skills/skill-factory/references/wabblespec-v61.md\")",
+      "Bash(cp \"C:/Vaults/WabbleSpec v6.1/.claude/skills/skill-factory/agents/module-auditor.md\" \"C:/Vaults/WabbleSpec v6.1/.agents/skills/skill-factory/agents/module-auditor.md\")",
+      "Bash(grep -v \"^adr$\")",
+      "Bash(find *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell($totalWabblespec = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.wabblespec\" -Recurse -File\\).Count; $totalShared = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\_shared\" -Recurse -File\\).Count; $totalHooks = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\hooks\" -Recurse -File\\).Count; Write-Output \".wabblespec/ files: $totalWabblespec\"; Write-Output \"_shared/ files: $totalShared\"; Write-Output \"hooks/ files: $totalHooks\")"
     ]
   }
 }

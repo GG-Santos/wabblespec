@@ -70,3 +70,16 @@ If `skill-rules.json` tags include any of `[security, enforcement, receipt, gate
 `scripts/quality-floor-check.py --update-yaml` reads all modules, runs both gates, and prints a list of module IDs that now pass. A human manually updates `framework.yaml` or runs `--write` to patch it automatically.
 
 Automatic writes are opt-in to avoid unreviewed framework.yaml changes.
+
+---
+
+## Pattern Quality (above the floor)
+
+Passing both gates is the floor, not the ceiling. Pattern quality — whether
+the SKILL.md produces good invocation output — is scored separately by
+`_shared/agents/module-auditor.md` using the six patterns and seven
+regression checks defined in `_shared/references/skill-writing-contract.md`.
+
+A module can pass Gate 1 and Gate 2 but still score below 4.0 on Pattern 3
+(named failure modes). The gates and the pattern score are independent
+signals. Run the module auditor before marking `build_complete: true`.

@@ -122,6 +122,9 @@ secure-defaults:
 security-ownership:
   description: Ownership rules for security-sensitive artifacts — which modules may write to auth, secrets, and trust-boundary files
 
+skill-writing-contract:
+  description: Six output quality patterns (concrete examples, theory-of-mind, named failure modes, output contracts, token density, provider neutrality) and seven named regression checks for writing WabbleSpec module SKILL.md files
+
 staleness-states:
   description: Evidence staleness states (FRESH/AGING/STALE/EXPIRED/NEEDS_REVERIFICATION/SUPERSEDED), decay rules, and hook enforcement
 
