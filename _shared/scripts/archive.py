@@ -54,7 +54,31 @@ import json
 import glob
 import argparse
 import re
+import subprocess
 from datetime import datetime, timezone
+
+
+# ---------------------------------------------------------------------------
+# Audio helper
+# ---------------------------------------------------------------------------
+
+def _play_lifecycle_sound(event_name: str, root: str) -> None:
+    """
+    Fire-and-forget: spawn wabble-sound.py detached, never block, never raise.
+    root — repo root path (used to locate the script).
+    """
+    try:
+        script = os.path.join(root, "_shared", "scripts", "wabble-sound.py")
+        if not os.path.isfile(script):
+            return
+        subprocess.Popen(
+            [sys.executable, script, "--event", event_name],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            close_fds=True,
+        )
+    except Exception:
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -479,6 +503,9 @@ def main():
     if not_tested:
         for item in not_tested:
             print(f"    - {item}")
+
+    # Play archive-done sound (fire-and-forget; never blocks or raises)
+    _play_lifecycle_sound("archive-done", root)
 
     sys.exit(0)
 

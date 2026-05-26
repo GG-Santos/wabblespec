@@ -16,7 +16,22 @@
 
 'use strict';
 
+const path = require('path');
+const { spawn } = require('child_process');
 const { readSessionState, readFlag, FLAG_PATH } = require('./wabblespec-config');
+
+// ── Audio ─────────────────────────────────────────────────────────────────────
+
+function playSound(eventName) {
+  try {
+    const script = path.join(process.cwd(), '_shared', 'scripts', 'wabble-sound.py');
+    const child  = spawn('python', [script, '--event', eventName], {
+      detached: true,
+      stdio:    'ignore',
+    });
+    child.unref();
+  } catch (e) { /* silent fail */ }
+}
 
 process.stdin.resume(); // drain stdin; PreCompact hooks receive a JSON payload
 
@@ -29,6 +44,7 @@ process.stdin.on('end', () => {
 
     // Only inject when there is an active task with a known task_id
     if (!state || !state.task_id || !flag || flag === 'idle') {
+      playSound('pre-compact');
       process.stdout.write('{}');
       return;
     }
@@ -54,6 +70,7 @@ process.stdin.on('end', () => {
     ].join('\n');
 
     process.stdout.write(JSON.stringify({ customSystemPrompt: instruction }));
+    playSound('pre-compact');
 
   } catch (e) {
     // Silent fail — never block compaction

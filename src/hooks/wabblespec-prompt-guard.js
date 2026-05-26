@@ -9,7 +9,22 @@
 
 'use strict';
 
+const path = require('path');
+const { spawn } = require('child_process');
 const { readSessionState, readFlag, FLAG_PATH } = require('./wabblespec-config');
+
+// ── Audio ─────────────────────────────────────────────────────────────────────
+
+function playSound(eventName) {
+  try {
+    const script = path.join(process.cwd(), '_shared', 'scripts', 'wabble-sound.py');
+    const child  = spawn('python', [script, '--event', eventName], {
+      detached: true,
+      stdio:    'ignore',
+    });
+    child.unref();
+  } catch (e) { /* silent fail */ }
+}
 
 // Patterns indicating the user intends to start a new build task
 const TASK_START_PATTERNS = [
@@ -55,6 +70,9 @@ process.stdin.on('end', () => {
     }
 
   } catch (e) { /* silent fail — never block on parse errors */ }
+
+  // Play message-sent sound for every submitted prompt (detached; does not block)
+  playSound('message-sent');
 
   // No output — pass through silently
   process.stdout.write('{}');

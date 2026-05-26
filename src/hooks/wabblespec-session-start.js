@@ -8,7 +8,22 @@
 
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 const { FLAG_PATH, safeWriteFlag, readSessionState } = require('./wabblespec-config');
+
+// ── Audio ─────────────────────────────────────────────────────────────────────
+
+function playSound(eventName) {
+  // Fire-and-forget: detached child, never blocks the hook, never throws.
+  try {
+    const script = path.join(process.cwd(), '_shared', 'scripts', 'wabble-sound.py');
+    const child  = spawn('python', [script, '--event', eventName], {
+      detached: true,
+      stdio:    'ignore',
+    });
+    child.unref();
+  } catch (e) { /* silent fail */ }
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -106,3 +121,6 @@ if (state && state.task_id) {
 }
 
 process.stdout.write(lines.join('\n'));
+
+// Play session-start sound (detached; does not block stdout or hook return)
+playSound('session-start');
