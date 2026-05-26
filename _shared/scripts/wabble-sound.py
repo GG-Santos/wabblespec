@@ -37,7 +37,6 @@ import json
 import os
 import subprocess
 import sys
-import textwrap
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -356,13 +355,37 @@ def play_sound(path: Path, volume: float = 0.7) -> bool:
         return False
 
 
+def _play_mci(abs_path: str) -> bool:
+    """
+    Play via Windows MCI API (winmm.dll mciSendStringW).
+    Works in non-interactive/detached sessions where WMP COM stays in
+    playState 9 (Transitioning) and never produces audio.
+    Blocks the calling thread until playback completes.
+    """
+    try:
+        import ctypes
+        winmm = ctypes.windll.winmm
+        alias = "wabble_snd"
+        r = winmm.mciSendStringW(
+            f'open "{abs_path}" type mpegvideo alias {alias}', None, 0, None
+        )
+        if r != 0:
+            return False
+        try:
+            r2 = winmm.mciSendStringW(f'play {alias} wait', None, 0, None)
+        finally:
+            winmm.mciSendStringW(f'close {alias}', None, 0, None)
+        return r2 == 0
+    except Exception:
+        return False
+
+
 def _play_windows(path: Path, volume: float) -> bool:
     abs_path = str(path.resolve())
     ext      = path.suffix.lower()
-    vol_pct  = max(0, min(100, int(volume * 100)))
 
     if ext == ".wav":
-        # System.Media.SoundPlayer — built-in .NET, no dependencies, WAV only
+        # System.Media.SoundPlayer — built-in .NET, synchronous, WAV only
         ps_cmd = f'(New-Object System.Media.SoundPlayer "{abs_path}").PlaySync()'
         r = subprocess.run(
             ["powershell", "-NoProfile", "-NonInteractive",
@@ -372,45 +395,8 @@ def _play_windows(path: Path, volume: float) -> bool:
         return r.returncode == 0
 
     if ext in (".mp3", ".aiff"):
-        # Primary: Windows Media Player COM (available on Windows 10/11 Home by default)
-        # Fallback: WPF MediaPlayer (requires .NET Framework presentationCore)
-        ps_cmd = textwrap.dedent(f"""
-            try {{
-                $wmp = New-Object -ComObject WMPlayer.OCX
-                $wmp.settings.volume = {vol_pct}
-                $wmp.URL = "{abs_path}"
-                $wmp.controls.play()
-                $t = 0
-                while ($wmp.playState -eq 3 -and $t -lt 400) {{
-                    Start-Sleep -Milliseconds 100
-                    $t++
-                }}
-                $wmp.close()
-            }} catch {{
-                try {{
-                    Add-Type -AssemblyName presentationCore
-                    $p = [System.Windows.Media.MediaPlayer]::new()
-                    $p.Volume = {volume}
-                    $p.Open([System.Uri]::new("file:///{abs_path.replace(chr(92), '/')}"))
-                    $p.Play()
-                    $t = 0
-                    while (-not $p.NaturalDuration.HasTimeSpan -and $t -lt 50) {{
-                        Start-Sleep -Milliseconds 100; $t++
-                    }}
-                    if ($p.NaturalDuration.HasTimeSpan) {{
-                        $dur = [int]($p.NaturalDuration.TimeSpan.TotalSeconds + 0.9)
-                    }} else {{ $dur = 4 }}
-                    Start-Sleep -Seconds $dur
-                    $p.Stop()
-                }} catch {{}}
-            }}
-        """).strip()
-        r = subprocess.run(
-            ["powershell", "-NoProfile", "-NonInteractive",
-             "-WindowStyle", "Hidden", "-Command", ps_cmd],
-            capture_output=True, timeout=30
-        )
-        return r.returncode == 0
+        # MCI API via ctypes — no COM, no subprocess, works in all session types
+        return _play_mci(abs_path)
 
     return False
 
