@@ -55,6 +55,8 @@ Threshold: co-occurrence in ≥ 3 distinct execution waves, p < expected by modu
 
 A topic appearing in Dream's gap-map across ≥ 3 distinct sessions with confidence remaining low. Indicates a knowledge area that the current modules consistently fail to populate.
 
+**Confidence floor:** No pattern is emitted unless backed by at least `MIN_EVIDENCE_COUNT` (currently 3) distinct receipts or waves. Single-receipt anomalies are suppressed before reaching the observation log. Per-pattern thresholds may be stricter (Type 1 requires ≥ 5 receipts); none may be lower than this floor.
+
 ## Output contract
 
 **One file only:** `.wabblespec/memory/instinct-observations.md`

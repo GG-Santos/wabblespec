@@ -68,6 +68,15 @@ def main() -> int:
     rc2 = _run(dream_script, timeout=60, label="dream")
     if rc2 != 0:
         print(f"[stop-hook] ERROR: dream exited {rc2}", flush=True)
+        # Do not return yet — sync push should still fire
+
+    # Step 3: sync push — commit + push .wabblespec/ changes to remote
+    # Non-blocking: push failure never fails the Stop hook (silent-fail contract)
+    sync_push_script = root / "scripts" / "sync-push.py"
+    if sync_push_script.exists():
+        _run(sync_push_script, timeout=30, label="sync-push")
+
+    if rc2 != 0:
         return 2
 
     return 0

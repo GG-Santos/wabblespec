@@ -1,7 +1,7 @@
 # Hook Event Schema
 
 **Derived from:** `claude-code-main/src/types/hooks.ts` (production source — read 2026-05-26)
-**Consumed by:** l2/guard (pre-tool-use hook validation), l0/recipe (session hook config), all modules authoring hooks, WabbleSpec hook files in `src/hooks/`
+**Consumed by:** l2/guard (pre-tool-use hook validation), l0/recipe (session hook config), all modules authoring hooks, WabbleSpec hook files in `hooks/`
 **Purpose:** Factual vocabulary for hook event types, payload shapes, response fields, and execution lifecycle. Replaces guesswork in WabbleSpec hook authoring.
 
 ---
@@ -193,7 +193,7 @@ When multiple hooks fire for the same event, results are aggregated into an `Agg
 
 All hooks must catch errors and return `{}` rather than a non-zero exit code. A hook that exits non-zero causes the runtime to treat the event as a non-blocking error — the session continues. Hook failures must never interrupt a session.
 
-WabbleSpec hook files in `src/hooks/` implement this via try/catch with `process.stdout.write('{}')` as the fallback output.
+WabbleSpec hook files in `hooks/` implement this via try/catch with `process.stdout.write('{}')` as the fallback output.
 
 ---
 

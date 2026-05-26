@@ -24,6 +24,8 @@ import os
 import json
 import hashlib
 import argparse
+import subprocess
+from collections import Counter
 from datetime import datetime, timezone
 
 try:
@@ -263,6 +265,164 @@ def check_shared_consumers(data, known_ids):
     return violations
 
 
+# ─── Centrality analysis ──────────────────────────────────────────────────────
+
+def compute_centrality(data):
+    """
+    Rank modules and shared artifacts by incoming dependency count.
+
+    Hub modules: modules most listed in other modules' depends_on arrays.
+    Hub shared artifacts: shared files with the most declared consumers.
+    """
+    # ── Hub modules ──────────────────────────────────────────────────────────
+    dep_counter = Counter()
+    for module in data.get("modules", []):
+        for dep in module.get("depends_on", []):
+            dep_counter[dep] += 1
+
+    print("=== Hub Modules (by incoming depends_on count) ===")
+    if not dep_counter:
+        print("  (no depends_on relationships found)")
+    else:
+        for rank, (mid, count) in enumerate(dep_counter.most_common(15), 1):
+            noun = "module depends on this" if count == 1 else "modules depend on this"
+            print(f"  {rank:>2}. {mid:<30} — {count} {noun}")
+
+    # ── Hub shared artifacts ─────────────────────────────────────────────────
+    print()
+    print("=== Hub Shared Artifacts (by consumer count) ===")
+    shared = data.get("shared", {})
+    section_order = [
+        "schemas", "references", "infrastructure", "scripts", "templates",
+        "dev_frameworks", "dev_infrastructure", "gateway_rules",
+    ]
+    any_shared = False
+    for section_name in section_order:
+        section = shared.get(section_name)
+        if not isinstance(section, list) or not section:
+            continue
+        ranked = sorted(
+            [
+                (e.get("path", "<unknown>"), len(e.get("consumers", [])))
+                for e in section
+                if isinstance(e, dict)
+            ],
+            key=lambda x: -x[1],
+        )
+        top = [(p, c) for p, c in ranked if c > 0][:10]
+        if not top:
+            continue
+        any_shared = True
+        print(f"  {section_name}:")
+        for path, count in top:
+            noun = "consumer" if count == 1 else "consumers"
+            basename = os.path.basename(path)
+            print(f"    {basename:<45} — {count} {noun}")
+    if not any_shared:
+        print("  (no shared artifacts with declared consumers found)")
+
+
+# ─── Co-change coupling detection ─────────────────────────────────────────────
+
+def detect_co_change(data, framework_dir, threshold=3):
+    """
+    Detect modules that co-commit frequently without a declared dependency.
+
+    Parses git history to find pairs of modules that change together above
+    the threshold. Compares against declared depends_on relationships and
+    emits UNDECLARED_COUPLING for pairs with no declared link in either
+    direction.
+
+    Non-fatal if git is unavailable or the directory is not a git repo.
+    """
+    # Build path-prefix → module-id map from framework.yaml module paths
+    path_to_module = {}
+    for m in data.get("modules", []):
+        mid = m.get("id")
+        rel_path = m.get("path", "")
+        if mid and rel_path:
+            norm = rel_path.replace("\\", "/").rstrip("/")
+            path_to_module[norm] = mid
+
+    def file_to_module_id(filepath):
+        norm = filepath.replace("\\", "/").rstrip("/")
+        for mod_path, mid in path_to_module.items():
+            if norm.startswith(mod_path + "/") or norm == mod_path:
+                return mid
+        return None
+
+    # Run git log — all commits, name-only, separated by COMMIT_ sentinel
+    try:
+        result = subprocess.run(
+            ["git", "log", "--name-only", "--pretty=format:COMMIT_%H"],
+            capture_output=True, text=True, cwd=framework_dir, timeout=30,
+        )
+    except FileNotFoundError:
+        print("WARNING: git not found. Skipping co-change analysis.")
+        return
+    except subprocess.TimeoutExpired:
+        print("WARNING: git log timed out. Skipping co-change analysis.")
+        return
+
+    if result.returncode != 0:
+        print("WARNING: git log failed. Skipping co-change analysis.")
+        return
+
+    # Parse output into per-commit module-id sets
+    commits_to_module_sets = []
+    current_files = []
+    in_commit = False
+    for line in result.stdout.split("\n"):
+        stripped = line.strip()
+        if stripped.startswith("COMMIT_"):
+            if current_files:
+                ids = {file_to_module_id(f) for f in current_files} - {None}
+                if len(ids) >= 2:
+                    commits_to_module_sets.append(sorted(ids))
+            current_files = []
+            in_commit = True
+        elif stripped and in_commit:
+            current_files.append(stripped)
+    # Flush last commit block
+    if current_files:
+        ids = {file_to_module_id(f) for f in current_files} - {None}
+        if len(ids) >= 2:
+            commits_to_module_sets.append(sorted(ids))
+
+    # Build co-commit frequency counter
+    co_counts = Counter()
+    for mod_list in commits_to_module_sets:
+        for i in range(len(mod_list)):
+            for j in range(i + 1, len(mod_list)):
+                co_counts[(mod_list[i], mod_list[j])] += 1
+
+    # Build declared dependency map (bidirectional lookup)
+    declared_deps = {}
+    for m in data.get("modules", []):
+        mid = m.get("id")
+        if mid:
+            declared_deps[mid] = set(m.get("depends_on", []))
+
+    # Find pairs above threshold with no declared link in either direction
+    findings = []
+    for (a, b), count in sorted(co_counts.items(), key=lambda x: -x[1]):
+        if count >= threshold:
+            if b not in declared_deps.get(a, set()) and a not in declared_deps.get(b, set()):
+                findings.append((a, b, count))
+
+    print(f"=== Co-Change Coupling Analysis (threshold: {threshold} co-commits) ===")
+    print()
+    if findings:
+        for a, b, count in findings:
+            print(f"UNDECLARED_COUPLING: {a} <-> {b} ({count} co-commits, no declared dependency)")
+        print()
+        print(f"{len(findings)} potential undeclared coupling(s) found.")
+        print("Review: add to depends_on or confirm coupling is intentional.")
+    else:
+        print("No undeclared couplings detected above threshold.")
+    print(f"\n(Analyzed {len(commits_to_module_sets)} commits touching 2+ modules)")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validate framework.yaml module graph integrity")
     parser.add_argument(
@@ -290,6 +450,25 @@ def main():
         metavar="ID",
         help="Restrict --record-witness or --check-hashes to a single module ID"
     )
+    parser.add_argument(
+        "--centrality",
+        action="store_true",
+        help="Rank modules and shared artifacts by incoming dependency count"
+    )
+    parser.add_argument(
+        "--co-change",
+        action="store_true",
+        dest="co_change",
+        help="Detect modules that co-commit frequently without a declared dependency"
+    )
+    parser.add_argument(
+        "--co-change-threshold",
+        type=int,
+        default=3,
+        dest="co_change_threshold",
+        metavar="N",
+        help="Minimum co-commit count to flag as potential undeclared coupling (default: 3)"
+    )
     args = parser.parse_args()
 
     framework_path = os.path.abspath(args.framework)
@@ -311,6 +490,16 @@ def main():
     if args.check_hashes:
         ok = check_hashes(framework_path, framework_dir, data, witness_path, target_id=args.module)
         sys.exit(0 if ok else 1)
+
+    # ── Centrality mode ──────────────────────────────────────────────────────
+    if args.centrality:
+        compute_centrality(data)
+        sys.exit(0)
+
+    # ── Co-change mode ───────────────────────────────────────────────────────
+    if args.co_change:
+        detect_co_change(data, framework_dir, threshold=args.co_change_threshold)
+        sys.exit(0)
 
     # ── Graph integrity mode (default) ──────────────────────────────────────
     known_ids = collect_module_ids(data)

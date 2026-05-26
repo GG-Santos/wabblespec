@@ -39,7 +39,8 @@
     "Instinct never produces recommendations — observations only",
     "Instinct does not run when receipt count < 100",
     "Instinct does not run during active execution waves",
-    "Human validation required before any pattern influences Synth"
+    "Human validation required before any pattern influences Synth",
+    "Patterns backed by fewer than MIN_EVIDENCE_COUNT (3) distinct receipts or waves are suppressed, not emitted"
   ],
   "produces": [
     "instinct-observations"

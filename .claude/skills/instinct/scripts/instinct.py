@@ -19,13 +19,19 @@ GAP_MAP_PATH = Path(".wabblespec/memory/gap-map.md")
 OBSERVATIONS_PATH = Path(".wabblespec/memory/instinct-observations.md")
 EXECUTOR_PID_PATH = Path(".wabblespec/memory/.executor.pid")
 
+# Minimum distinct receipts/waves backing a pattern before it is eligible
+# for emission. Per-detector thresholds may be stricter; none may be lower.
+# Sourced from sourcebook confidence floor: surface only findings with >= 3
+# data points to suppress single-receipt anomalies.
+MIN_EVIDENCE_COUNT = 3
+
 FAILURE_RATE_THRESHOLD = 0.20
-FAILURE_MIN_RECEIPTS = 5
-CO_OCCURRENCE_MIN = 3
-GAP_TOPIC_MIN_SESSIONS = 3
+FAILURE_MIN_RECEIPTS = 5         # > MIN_EVIDENCE_COUNT; stricter by design for failure patterns
+CO_OCCURRENCE_MIN = 3            # = MIN_EVIDENCE_COUNT
+GAP_TOPIC_MIN_SESSIONS = 3       # = MIN_EVIDENCE_COUNT
 
 # Positive-pattern thresholds
-MODULE_FREQUENCY_MIN = 10        # receipts for "high activation" pattern
+MODULE_FREQUENCY_MIN = 10        # > MIN_EVIDENCE_COUNT; receipts for "high activation" pattern
 COMPLEXITY_SKEW_THRESHOLD = 0.70 # fraction of sessions at one level → skew
 PHASE_EXPECTED = {"recipe", "specify", "decompose", "executor", "verifier"}  # phases that should appear
 

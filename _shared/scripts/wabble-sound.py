@@ -1,20 +1,22 @@
 """
 wabble-sound.py  —  WabbleSpec lifecycle audio feedback.
 
-Reads Claude Code hook JSON from stdin (standard hook invocation) OR accepts
-a named lifecycle event via --event (for calls from Python scripts).
+Three invocation modes:
 
-Resolves a sound file using a 5-level fallback chain (ported from claudio's
-sounds/mapper.go) then plays it via Windows-native audio.
+  --hook         (Claude Code hook registration)
+                 Read stdin once, spawn self as detached worker, exit
+                 immediately.  Never blocks Claude Code.  Register this
+                 mode in settings.json for every hook event that needs
+                 audio (PreToolUse, PostToolUse, SessionStart, etc.).
 
-Usage — from a hook (stdin):
-    echo '<hook_json>' | python wabble-sound.py
+  --stdin-file F (worker mode — spawned by --hook automatically)
+                 Read hook JSON from file F, delete it, parse, play.
+                 Never invoke directly.
 
-Usage — direct lifecycle trigger (from scripts):
-    python wabble-sound.py --event session-start
-    python wabble-sound.py --event archive-done
-    python wabble-sound.py --event wave-complete
-    python wabble-sound.py --event guard-blocked
+  --event NAME   (direct lifecycle trigger)
+                 Play a named WabbleSpec lifecycle sound with no stdin.
+                 Used by Python scripts (archive.py) that are already
+                 running in a detached Popen.
 
 Soundpack: _shared/sounds/  (startrek-bridge layout)
   system/      — session-start, compacting
@@ -22,7 +24,7 @@ Soundpack: _shared/sounds/  (startrek-bridge layout)
   completion/  — agent-complete, completion
   success/     — success, wave-complete
   error/       — error, guard-blocked
-  loading/     — loading, wave-start
+  loading/     — bash-start, git-commit-start, read-start, …
 
 Env override: WABBLE_SOUNDPACK_DIR=/path/to/soundpack
 Env disable:  WABBLE_SOUND_ENABLED=0
@@ -465,6 +467,83 @@ def get_soundpack_dir() -> Path:
 
 
 # ---------------------------------------------------------------------------
+# Hook self-detach mode  (--hook)
+# ---------------------------------------------------------------------------
+
+def _run_hook_mode(args) -> None:
+    """
+    Non-blocking hook driver for settings.json registration.
+
+    Sequence:
+      1. Read all stdin (Claude Code sends hook JSON payload here).
+      2. Write '{}' to stdout so Claude Code gets a valid response immediately.
+      3. Write stdin data to a temp file.
+      4. Spawn self as a detached worker with --stdin-file <path>.
+      5. Exit.  Worker plays the sound independently.
+
+    Never raises; always calls sys.exit(0).
+    """
+    import tempfile
+
+    # Read stdin — drain the full payload before writing response
+    try:
+        data = sys.stdin.buffer.read()
+    except Exception:
+        data = b''
+
+    # Respond to Claude Code immediately (valid JSON for all hook types)
+    sys.stdout.write('{}')
+    sys.stdout.flush()
+
+    if not data.strip():
+        sys.exit(0)
+
+    # Write payload to temp file
+    try:
+        with tempfile.NamedTemporaryFile(
+            delete=False, suffix='.json', prefix='wabble-hook-'
+        ) as tmp:
+            tmp.write(data)
+            tmp_path = tmp.name
+    except Exception:
+        sys.exit(0)
+
+    # Spawn detached worker
+    cmd = [
+        sys.executable,
+        str(Path(__file__).resolve()),
+        '--stdin-file', tmp_path,
+        '--volume', str(args.volume),
+    ]
+    if args.soundpack:
+        cmd += ['--soundpack', args.soundpack]
+
+    try:
+        if sys.platform == 'win32':
+            flags = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+            subprocess.Popen(
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=flags,
+            )
+        else:
+            subprocess.Popen(
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+    except Exception:
+        try:
+            os.unlink(tmp_path)
+        except Exception:
+            pass
+
+    sys.exit(0)
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
@@ -477,6 +556,17 @@ def main() -> None:
         description="WabbleSpec lifecycle audio feedback",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
+    )
+    parser.add_argument(
+        "--hook",
+        action="store_true",
+        help="Hook mode: read stdin, spawn detached worker, exit immediately. "
+             "Register this in settings.json for non-blocking hook audio.",
+    )
+    parser.add_argument(
+        "--stdin-file",
+        metavar="PATH",
+        help=argparse.SUPPRESS,  # Internal: used by detached worker spawned by --hook
     )
     parser.add_argument(
         "--event", "-e",
@@ -511,10 +601,31 @@ def main() -> None:
     if args.silent:
         sys.exit(0)
 
+    # --hook: non-blocking mode for Claude Code hook registration.
+    # Read stdin, write to temp file, spawn detached worker, exit immediately.
+    if args.hook:
+        _run_hook_mode(args)
+        sys.exit(0)  # _run_hook_mode always exits; this is unreachable
+
     # Build EventContext
-    if args.event:
+    if args.stdin_file:
+        # Worker mode: spawned by --hook, reads from temp file
+        try:
+            with open(args.stdin_file, 'rb') as f:
+                data = f.read()
+            try:
+                os.unlink(args.stdin_file)
+            except Exception:
+                pass
+        except Exception:
+            sys.exit(0)
+        ctx = parse_hook_event(data)
+        if ctx is None:
+            sys.exit(0)
+    elif args.event:
         ctx = make_lifecycle_context(args.event)
     else:
+        # Direct stdin mode (testing / pipe usage)
         try:
             data = sys.stdin.buffer.read()
         except Exception:

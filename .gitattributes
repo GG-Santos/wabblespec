@@ -1,0 +1,13 @@
+# .gitattributes — WabbleSpec merge strategies
+#
+# session/state.json is machine-specific active session state.
+# On any merge or rebase, always prefer the current branch's version
+# so that pulling from another device never clobbers an active session.
+# sync-merge.py enforces the same rule as a belt-and-suspenders fallback.
+
+.wabblespec/session/state.json  merge=ours
+
+# Treat all .wabblespec JSON files as text (not binary) so git can
+# produce conflict markers that sync-merge.py can parse.
+.wabblespec/**/*.json  text
+.wabblespec/**/*.md    text
