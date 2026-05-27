@@ -39,7 +39,7 @@ Then an Attestation receipt for this blueprint ID exists in .wabblespec/receipts
 ## Boundary enforcement
 
 Given any Forge invocation,
-Then no file under project/repo/ is created or modified.
+Then no file under  is created or modified.
 Then tracker.json is appended, not overwritten.
 Then experiment_archived is true in receipt before promotion is recorded.
 

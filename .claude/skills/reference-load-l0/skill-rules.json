@@ -1,0 +1,65 @@
+{
+  "module": "reference-load",
+  "layer": "L0",
+  "tier": 1,
+  "activators": [
+    "load reference",
+    "load documentation",
+    "external reference",
+    "reference loading",
+    "load docs",
+    "/reference-load"
+  ],
+  "anti_activators": [
+    "loading from memory only",
+    "no external sources needed",
+    "execution wave in progress without declared reference"
+  ],
+  "phases": [
+    "Research"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/memory/drawers/*.json"
+    ],
+    "reads": [
+      ".wabblespec/memory/index.md"
+    ],
+    "triggers": [
+      "ResearchLog",
+      "Provenance"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "trust_levels": [
+    "HIGH",
+    "MEDIUM",
+    "LOW",
+    "UNVERIFIED"
+  ],
+  "staleness_recheck": {
+    "FRESH": "load",
+    "AGING": "load with note",
+    "STALE": "recheck before load",
+    "EXPIRED": "explicit override required",
+    "NEEDS_REVERIFICATION": "recheck before load",
+    "SUPERSEDED": "load superseding drawer only"
+  },
+  "invariants": [
+    "Every load is declared before it happens \u2014 no silent external calls",
+    "EXPIRED sources require explicit human override",
+    "One Memory drawer per distinct finding \u2014 not per source",
+    "Every drawer written gets a Provenance record",
+    "Trust level cannot be upgraded without re-verification"
+  ],
+  "loading_gate": "recipe",
+  "commands": [
+    "/ref-load"
+  ],
+  "file_path_patterns": []
+}

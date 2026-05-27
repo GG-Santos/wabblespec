@@ -48,7 +48,7 @@
     "L8 self-modification requires Attestation receipt — no exceptions (I8)",
     "Downstream depends_on modules marked NEEDS_REVERIFICATION",
     "Experiment archived with provenance before receipt written",
-    "Never writes to project/repo/ (I11)",
+    "Never writes to product space (I11)",
     "tracker.json is append-only"
   ],
   "produces": [

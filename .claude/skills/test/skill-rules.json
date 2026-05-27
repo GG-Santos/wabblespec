@@ -23,13 +23,13 @@
     "P4"
   ],
   "authority": {
+    "product_space": true,
     "owns": [
-      "project/repo/tests/",
-      ".wabblespec/plans/test-plan-<spec-id>.md"
+      ".wabblespec/state/plans/test-plan-<spec-id>.md"
     ],
     "reads": [
-      ".wabblespec/plans/*.md",
-      ".wabblespec/receipts/platform-receipt.json"
+      ".wabblespec/state/plans/*.md",
+      ".wabblespec/state/receipts/platform-receipt.json"
     ],
     "notifies": [
       "Verifier",
@@ -42,7 +42,7 @@
   "invariants": [
     "Every EARS requirement has at least one test stub \u2014 no silent skips",
     "Untestable requirements flagged with UNTESTABLE marker \u2014 not omitted",
-    "Test stubs write only to project/repo/tests/ \u2014 I11 boundary enforced",
+    "Test stubs write only to product space \u2014 never to .wabblespec/ (I11 boundary enforced)",
     "Test framework sourced from active platform package \u2014 never inferred",
     "Test plan written before receipt \u2014 coverage matrix required",
     "Test does not execute tests \u2014 stubs and plan only"

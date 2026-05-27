@@ -27,7 +27,7 @@ Reads the locked task card and wave plan. For each claim about current state (fi
 
 - `.wabblespec/plans/task-card.md` (locked)
 - `.wabblespec/plans/wave-plan.md` (wave 1 declaration)
-- `project/repo/` (actual codebase to verify against)
+- product space (actual codebase to verify against)
 
 ## How to do it
 

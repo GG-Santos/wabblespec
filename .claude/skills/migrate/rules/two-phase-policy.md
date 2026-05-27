@@ -21,7 +21,7 @@ Single-phase (immediate removal) is only permitted when:
 
 | Exception | Condition |
 |---|---|
-| All-internal consumers | No external API, no third-party consumers — all consumers are within project/repo/ |
+| All-internal consumers | No external API, no third-party consumers — all consumers are within  |
 | Security-critical | The breaking change fixes a vulnerability that cannot wait for two-phase timing |
 
 Both exceptions require documented justification in the migration plan (`single_phase_justification` field). If justification is absent, default to two-phase.

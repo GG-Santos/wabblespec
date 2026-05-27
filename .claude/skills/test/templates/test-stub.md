@@ -1,6 +1,6 @@
 # Test Stub Template — Test
 
-One stub file per spec artifact, containing all stubs for that artifact. Write to `project/repo/tests/<spec-id>/`.
+One stub file per spec artifact, containing all stubs for that artifact. Write to `tests/<spec-id>/`.
 
 ## Stub format
 

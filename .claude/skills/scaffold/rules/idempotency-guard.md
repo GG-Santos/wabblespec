@@ -79,6 +79,6 @@ Scaffold does not wait for Explore to complete — it signals and closes with PA
 - Test files (Test module handles test generation from spec)
 - CI/CD pipeline config (Engineering gateway owns this)
 - Security configuration (Security gateway owns this)
-- Any file under `project/repo/` that is product code (Apply module writes product code)
+- Any file under product space that is product code (Apply module writes product code)
 
 Scaffold generates structure only: directories, empty files, `.wabblespec/` infrastructure, and `project-map.md`.

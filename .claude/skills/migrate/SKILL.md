@@ -42,7 +42,7 @@ All BREAKING changes use two-phase migration by default.
 2. Determine migration type — two-phase default, single-phase if exception criteria met
 3. Write migration plan to `.wabblespec/plans/migration-plan-<id>.md`
 4. Determine if migration is automatable:
-   - IF yes: write migration script to `project/repo/scripts/migrate/`
+   - IF yes: write migration script to `scripts/migrate/`
    - IF no: document why and write manual steps
 5. Write consumer migration guide (input to Document module)
 6. Route Phase 1 to Executor as ADDITIVE wave
@@ -107,4 +107,4 @@ Writes a receipt to `.wabblespec/receipts/` on successful completion.
 - Do not use single-phase without meeting exception criteria — document the justification
 - Do not advance to Phase 2 without human gate confirmation
 - Do not execute migration — produce the plan for Executor
-- Do not write migration scripts outside `project/repo/scripts/migrate/`
+- Do not write migration scripts outside `scripts/migrate/`

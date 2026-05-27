@@ -46,10 +46,10 @@ Then Clean halts and classifies it BREAKING.
 Then Clean routes it to Executor with a Specify delta.
 Then Clean does not apply the BREAKING change.
 
-## Scope invariant: project/repo/ only
+## Scope invariant:  only
 
 Given any Clean invocation,
-Then Clean validates that all targets are within `project/repo/` (I11 check).
+Then Clean validates that all targets are within product space (I11 check).
 Then Clean never touches `.wabblespec/`.
 Then Clean never modifies test assertions.
 

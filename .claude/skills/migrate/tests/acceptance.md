@@ -45,7 +45,7 @@ Then single-phase without meeting exception criteria is not allowed.
 
 Given the migration is automatable (deterministic transformation),
 When Migrate produces the migration plan,
-Then a migration script is written to `project/repo/scripts/migrate/`.
+Then a migration script is written to `scripts/migrate/`.
 Then if not automatable, manual steps are documented with the reason automation is not possible.
 
 ## Consumer migration guide
@@ -63,7 +63,7 @@ Then Migrate does not execute migration steps itself — that is Executor's role
 ## Write location invariant
 
 Given Migrate writes a migration script,
-Then the script is written to `project/repo/scripts/migrate/` only.
+Then the script is written to `scripts/migrate/` only.
 Then Migrate does not write scripts outside that path.
 
 ## Migration plan required fields
