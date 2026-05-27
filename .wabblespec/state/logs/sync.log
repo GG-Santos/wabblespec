@@ -81,3 +81,6 @@
 [2026-05-26T10:01:31Z] [LAPTOP-AHBS9745] [push] 3 file(s) changed: .wabblespec/memory/dream-log.json, .wabblespec/memory/gap-map.md, .wabblespec/memory/staleness-map.md
 [2026-05-26T10:01:31Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-26T10:01:31Z
 [2026-05-26T10:01:35Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
+[2026-05-27T09:28:10Z] [LAPTOP-AHBS9745] [push] no .wabblespec/ changes — nothing to push
+[2026-05-27T09:37:45Z] [LAPTOP-AHBS9745] [pull] already up to date
+[2026-05-27T09:47:58Z] [LAPTOP-AHBS9745] [push] 1 file(s) changed: .wabblespec/state/logs/sync.log
