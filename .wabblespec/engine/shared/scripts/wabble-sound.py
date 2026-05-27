@@ -445,7 +445,7 @@ def get_soundpack_dir() -> Path:
         return sounds_local
 
     # Fallback: cwd-relative (for callers that run from repo root)
-    cwd_sounds = Path.cwd() / "_shared" / "sounds"
+    cwd_sounds = Path.cwd() / ".wabblespec" / "engine" / "shared" / "sounds"
     if cwd_sounds.exists():
         return cwd_sounds
 

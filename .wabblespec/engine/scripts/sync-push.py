@@ -37,7 +37,7 @@ ROOT = _repo_root()
 def _log(msg: str) -> None:
     if ROOT is None:
         return
-    log_dir = ROOT / "_shared" / "logs"
+    log_dir = ROOT / ".wabblespec" / "state" / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     log_path = log_dir / "sync.log"
     ts = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")

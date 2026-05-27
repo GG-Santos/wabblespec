@@ -1006,7 +1006,7 @@ def _server_command_parts() -> list[str]:
     root = _repo_root_from_package()
     if root is None:
         return ["memory-mcp"]
-    return [sys.executable, str(root / "scripts" / "memory-mcp.py")]
+    return [sys.executable, str(root / ".wabblespec" / "engine" / "scripts" / "memory-mcp.py")]
 
 
 def _format_command(parts: list[str]) -> str:

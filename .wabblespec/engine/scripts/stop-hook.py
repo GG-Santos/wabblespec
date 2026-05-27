@@ -49,8 +49,10 @@ def _run(script: Path, *, timeout: int, label: str) -> int:
 def main() -> int:
     root = _repo_root()
 
+    engine = root / ".wabblespec" / "engine"
+
     # Step 1: memory bootstrap (sets WABBLESPEC_MEMORY_PATH for Dream)
-    bootstrap_script = root / "scripts" / "memory-bootstrap.py"
+    bootstrap_script = engine / "scripts" / "memory-bootstrap.py"
     rc1 = _run(bootstrap_script, timeout=60, label="memory-bootstrap")
     if rc1 != 0:
         print(
@@ -60,7 +62,7 @@ def main() -> int:
         )
 
     # Step 2: Dream (EMA decay + gap-map + staleness-map)
-    dream_script = root / "modules" / "l5" / "dream" / "scripts" / "dream.py"
+    dream_script = engine / "modules" / "l5" / "dream" / "scripts" / "dream.py"
     if not dream_script.exists():
         print(f"[stop-hook] WARNING: Dream script not found at {dream_script}", flush=True)
         return rc1
@@ -72,7 +74,7 @@ def main() -> int:
 
     # Step 3: sync push — commit + push .wabblespec/ changes to remote
     # Non-blocking: push failure never fails the Stop hook (silent-fail contract)
-    sync_push_script = root / "scripts" / "sync-push.py"
+    sync_push_script = engine / "scripts" / "sync-push.py"
     if sync_push_script.exists():
         _run(sync_push_script, timeout=30, label="sync-push")
 
