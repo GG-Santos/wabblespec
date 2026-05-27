@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Game Platform Receipt",
+  "allOf": [{ "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "platform_target": { "type": "string", "const": "game" },
+    "engine": { "type": "string", "enum": ["unity", "unreal", "godot", "web", "custom", "other"] },
+    "target_platforms": { "type": "array", "items": { "type": "string", "enum": ["pc", "mac", "linux", "ios", "android", "ps5", "xbox", "switch", "web"] } },
+    "frame_budget_ms": { "type": "number", "description": "Target frame time in ms (16.6 = 60fps, 11.1 = 90fps)" },
+    "multiplayer": { "type": "boolean" },
+    "authority_model_declared": { "type": "boolean", "description": "Server/client authority model declared" },
+    "anti_cheat_scope_declared": { "type": "boolean" },
+    "spec_template_variant": { "type": "string", "const": "game" },
+    "verification_gates_passed": { "type": "array", "items": { "type": "string" } },
+    "verification_gates_failed": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["platform_target", "engine", "target_platforms", "frame_budget_ms", "spec_template_variant", "verification_gates_passed", "verification_gates_failed"]
+}

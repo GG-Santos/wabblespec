@@ -1,0 +1,111 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "API/Service platform only activates when Recipe has identified a network-serving backend target",
+    "service-contract.md pillars and consumer registry must be declared before Specify receipt",
+    "SLO targets (availability, p99 latency, error rate) must be declared before Specify receipt",
+    "Framework-specific doc must be loaded if FastAPI, Fastify/Express, gRPC, or Serverless is detected",
+    "Auth scheme must be declared before Specify receipt is written",
+    "OpenAPI/contract format must be declared (or explicitly waived with justification) before Specify receipt",
+    "Health endpoint (/health or equivalent) must be declared in design-document before Executor begins",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/service-contract.md",
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "engineering/qa-pipeline.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "conditional_loads": [
+    {
+      "signal": "fastapi in requirements.txt or pyproject.toml",
+      "load": "spec-template/framework-specific/fastapi.md"
+    },
+    {
+      "signal": "fastify or express in package.json",
+      "load": "spec-template/framework-specific/fastify-express.md"
+    },
+    {
+      "signal": ".proto files detected",
+      "load": "spec-template/framework-specific/grpc.md"
+    },
+    {
+      "signal": "serverless.yml or sam.yaml or template.yaml",
+      "load": "spec-template/framework-specific/serverless.md"
+    }
+  ],
+  "routes_to_language_modules": [
+    ".wabblespec/engine/shared/dev/languages/node",
+    ".wabblespec/engine/shared/dev/languages/python",
+    ".wabblespec/engine/shared/dev/languages/go",
+    ".wabblespec/engine/shared/dev/languages/rust"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/routes/**",
+    "**/api/**",
+    "**/controllers/**",
+    "**/handlers/**",
+    "**/routes/**/*.{ts,js,py,go}",
+    "**/handlers/**/*.{ts,js,py,go}",
+    "**/controllers/**/*.{ts,js,py,go}",
+    "**/*.proto",
+    "**/openapi.{yaml,json}",
+    "**/swagger.{yaml,json}"
+  ],
+  "module": "api-service",
+  "activators": [
+    "REST API",
+    "REST service",
+    "HTTP API",
+    "API server",
+    "backend service",
+    "microservice",
+    "gRPC service",
+    "GraphQL API",
+    "webhook service",
+    "serverless function",
+    "background service",
+    "worker service"
+  ],
+  "anti_activators": [
+    "index.html",
+    "pages/",
+    "src/components/",
+    "cli.py",
+    "__main__.py",
+    "cmd/ with no server",
+    "bin/ with no server"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "API_SERVICE"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/api-service-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

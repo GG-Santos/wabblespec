@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Instinct Receipt",
+  "description": "Receipt produced after Instinct --activate completes.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" },
+    {
+      "type": "object",
+      "required": ["receipt_count_observed", "patterns_detected", "gate_met"],
+      "properties": {
+        "receipt_count_observed": {
+          "type": "integer",
+          "description": "Number of receipts in .wabblespec/receipts/ at time of run."
+        },
+        "patterns_detected": {
+          "type": "integer",
+          "description": "Total patterns above threshold written to instinct-observations.md."
+        },
+        "gate_met": {
+          "type": "boolean",
+          "description": "Whether all gate conditions (100+ receipts, entity-graph present, no executor lock) were satisfied."
+        },
+        "pattern_types": {
+          "type": "object",
+          "description": "Count per pattern type detected.",
+          "properties": {
+            "high_frequency_failure": { "type": "integer" },
+            "co_occurrence_cluster": { "type": "integer" },
+            "recurring_gap": { "type": "integer" }
+          }
+        },
+        "observation_window": {
+          "type": "object",
+          "description": "Date range of receipts observed.",
+          "properties": {
+            "first": { "type": "string", "format": "date-time" },
+            "last": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    }
+  ]
+}

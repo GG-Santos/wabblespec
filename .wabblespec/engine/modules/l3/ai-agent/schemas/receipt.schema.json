@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec AI/Agent Platform Receipt",
+  "description": "Extends base receipt schema for AI/Agent platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": { "type": "string", "const": "ai-agent" },
+    "l4_ai_gateway_loaded": { "type": "boolean", "description": "L4 AI gateway loaded — mandatory" },
+    "model_pinned": { "type": "boolean", "description": "Specific model version pinned in config" },
+    "eval_suite_declared": { "type": "boolean", "description": "Eval dataset and pass threshold declared" },
+    "cost_budget_declared": { "type": "boolean", "description": "Per-request and monthly cost budget declared" },
+    "safety_boundaries_declared": { "type": "boolean", "description": "Input/output safety guardrails declared" },
+    "prompt_version": { "type": "string", "description": "Version identifier for active prompt set" },
+    "spec_template_variant": { "type": "string", "const": "ai-agent" },
+    "verification_gates_passed": { "type": "array", "items": { "type": "string" } },
+    "verification_gates_failed": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": [
+    "platform_target", "l4_ai_gateway_loaded", "model_pinned",
+    "eval_suite_declared", "cost_budget_declared", "spec_template_variant",
+    "verification_gates_passed", "verification_gates_failed"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "module": "executor",
+  "layer": "L2",
+  "tier": 1,
+  "activators": [
+    "wave plan locked",
+    "decompose receipt exists",
+    "/execute command",
+    "run the waves",
+    "start execution",
+    "begin implementation",
+    "resume from checkpoint"
+  ],
+  "anti_activators": [
+    "decompose-receipt.json missing",
+    "wave plan not reviewed",
+    "wave blocked awaiting attestation"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "runtime_lanes": [
+    "code-generation",
+    "analysis"
+  ],
+  "produces_schemas": [
+    ".wabblespec/engine/shared/schemas/wave-checkpoint.schema.json"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/wave-*-receipt.json",
+      ".wabblespec/receipts/execution-receipt.json",
+      ".wabblespec/session/checkpoints/*"
+    ],
+    "reads": [
+      ".wabblespec/plans/current-wave-plan.md",
+      ".wabblespec/plans/task-card.md",
+      ".wabblespec/scope.md",
+      ".wabblespec/receipts/*",
+      "modules/*/tests/acceptance.md"
+    ]
+  },
+  "error_types_emitted": [
+    "ACCEPTANCE_NOT_COVERED"
+  ],
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "decompose",
+    "guard"
+  ],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": [],
+  "promoted_from": "acceptance-test-executor-enforcement-v1",
+  "promoted_at": "2026-05-25T09:12:00+00:00"
+}

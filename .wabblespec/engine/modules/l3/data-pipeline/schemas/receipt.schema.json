@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Data/Pipeline Platform Receipt",
+  "description": "Extends base receipt schema for Data/Pipeline platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": {
+      "type": "string",
+      "const": "data-pipeline",
+      "description": "Fixed: data-pipeline"
+    },
+    "pipeline_type": {
+      "type": "string",
+      "enum": ["batch-etl", "streaming", "sql-transformation", "orchestrated-dag", "data-quality", "hybrid"],
+      "description": "Pipeline type detected by Recipe"
+    },
+    "orchestrator": {
+      "type": "string",
+      "enum": ["airflow", "prefect", "dagster", "dbt", "spark", "flink", "cron", "none", "other"],
+      "description": "Primary orchestration tool"
+    },
+    "idempotency_declared": {
+      "type": "boolean",
+      "description": "Idempotency strategy declared in design-document"
+    },
+    "schema_evolution_declared": {
+      "type": "boolean",
+      "description": "Schema evolution strategy declared in design-document"
+    },
+    "data_quality_assertions_declared": {
+      "type": "boolean",
+      "description": "Data quality assertions declared with pass/fail thresholds"
+    },
+    "backfill_strategy_declared": {
+      "type": "boolean",
+      "description": "Backfill strategy declared in design-document"
+    },
+    "pii_handling_declared": {
+      "type": "boolean",
+      "description": "PII fields identified and handling declared (mask/encrypt/exclude)"
+    },
+    "spec_template_variant": {
+      "type": "string",
+      "const": "data-pipeline",
+      "description": "Fixed: data-pipeline"
+    },
+    "verification_gates_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that passed"
+    },
+    "verification_gates_failed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that failed. Must be empty before Delivery wave."
+    }
+  },
+  "required": [
+    "platform_target",
+    "pipeline_type",
+    "idempotency_declared",
+    "schema_evolution_declared",
+    "data_quality_assertions_declared",
+    "spec_template_variant",
+    "verification_gates_passed",
+    "verification_gates_failed"
+  ]
+}

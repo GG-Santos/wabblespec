@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Extension Platform Receipt",
+  "description": "Extends base receipt schema for Extension/Plugin platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": {
+      "type": "string",
+      "const": "extension",
+      "description": "Fixed: extension"
+    },
+    "extension_type": {
+      "type": "string",
+      "enum": ["browser-mv3", "browser-mv2", "vscode", "jetbrains", "other"],
+      "description": "Specific extension type detected by Recipe"
+    },
+    "manifest_version": {
+      "type": "number",
+      "description": "Browser extension manifest version (2 or 3). MV2 triggers migration flag."
+    },
+    "permissions_declared": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All permissions declared in manifest — must be minimal"
+    },
+    "csp_declared": {
+      "type": "boolean",
+      "description": "Content Security Policy explicitly declared in manifest"
+    },
+    "spec_template_variant": {
+      "type": "string",
+      "const": "extension",
+      "description": "Fixed: extension"
+    },
+    "store_target": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["chrome-web-store", "firefox-add-ons", "edge-add-ons", "safari-extensions", "vscode-marketplace", "jetbrains-marketplace", "other"]
+      },
+      "description": "Distribution store(s) targeted"
+    },
+    "mv3_migration_flagged": {
+      "type": "boolean",
+      "description": "Set to true if manifest_version is 2 — migration to MV3 required"
+    },
+    "verification_gates_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that passed"
+    },
+    "verification_gates_failed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that failed. Must be empty before Delivery wave."
+    }
+  },
+  "required": [
+    "platform_target",
+    "extension_type",
+    "spec_template_variant",
+    "permissions_declared",
+    "verification_gates_passed",
+    "verification_gates_failed"
+  ]
+}

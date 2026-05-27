@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Retro Receipt",
+  "description": "Receipt produced after Retro writes a retrospective document.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" },
+    {
+      "type": "object",
+      "required": ["retro_path", "chain_health", "modules_in_chain", "waves_reviewed"],
+      "properties": {
+        "retro_path": {
+          "type": "string",
+          "description": "Path to the written retro-{timestamp}.md file."
+        },
+        "chain_health": {
+          "type": "string",
+          "enum": ["INTACT", "BROKEN", "PARTIAL"],
+          "description": "Overall receipt chain health for the reviewed execution."
+        },
+        "modules_in_chain": {
+          "type": "integer",
+          "description": "Number of distinct modules in the reviewed receipt chain."
+        },
+        "waves_reviewed": {
+          "type": "integer",
+          "description": "Number of execution waves covered by this retro."
+        },
+        "fail_partial_count": {
+          "type": "integer",
+          "description": "Number of waves with FAIL or PARTIAL receipt status."
+        },
+        "max_revise_cycles": {
+          "type": "integer",
+          "description": "Highest REVISE cycle count observed across all reviewed waves."
+        },
+        "missing_receipts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Module IDs with expected but absent receipts."
+        }
+      }
+    }
+  ]
+}

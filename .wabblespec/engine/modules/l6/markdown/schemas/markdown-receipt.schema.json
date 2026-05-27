@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "markdown-receipt.schema.json",
+  "title": "MarkdownReceipt",
+  "allOf": [{ "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "source_path": { "type": "string" },
+    "output_path": { "type": "string" },
+    "target_format": { "enum": ["obsidian", "agentskills", "plain"] },
+    "note_type": { "type": ["string", "null"] },
+    "frontmatter_added": { "type": "boolean" },
+    "links_inserted": { "type": "integer", "minimum": 0 },
+    "callouts_added": { "type": "integer", "minimum": 0 },
+    "heading_levels_normalized": { "type": "boolean" },
+    "verdict": { "enum": ["PASS", "FAIL"] },
+    "formatted_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["source_path", "output_path", "target_format", "frontmatter_added", "links_inserted", "callouts_added", "heading_levels_normalized", "verdict", "formatted_at"]
+}

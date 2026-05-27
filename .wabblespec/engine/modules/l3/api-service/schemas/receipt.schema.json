@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec API/Service Platform Receipt",
+  "description": "Extends base receipt schema for API/Service platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": {
+      "type": "string",
+      "const": "api-service",
+      "description": "Fixed: api-service"
+    },
+    "api_style": {
+      "type": "string",
+      "enum": ["rest", "graphql", "grpc", "websocket", "mixed"],
+      "description": "API style declared in design-document"
+    },
+    "language_modules_loaded": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Language modules activated from .wabblespec/engine/shared/dev/languages/ (e.g. ['node', 'python'])"
+    },
+    "framework": {
+      "type": "string",
+      "description": "HTTP framework in use (fastify, express, fastapi, gin, axum, etc.)"
+    },
+    "auth_scheme": {
+      "type": "string",
+      "enum": ["bearer-jwt", "api-key", "mtls", "oauth2-client-credentials", "oauth2-auth-code", "none"],
+      "description": "Auth scheme declared in design-document"
+    },
+    "spec_template_variant": {
+      "type": "string",
+      "const": "api-service",
+      "description": "Fixed: api-service — confirms API/Service templates were used, not generic"
+    },
+    "openapi_contract_present": {
+      "type": "boolean",
+      "description": "true if openapi.yaml / schema.graphql / .proto file committed to repo"
+    },
+    "health_endpoint_declared": {
+      "type": "boolean",
+      "description": "true if /health (or equivalent) declared in design-document and implemented"
+    },
+    "ready_endpoint_declared": {
+      "type": "boolean",
+      "description": "true if /ready (or equivalent) declared in design-document and implemented"
+    },
+    "rate_limiting_declared": {
+      "type": "boolean",
+      "description": "true if rate limiting strategy declared in design-document (even if 'none' with justification)"
+    },
+    "deployment_target": {
+      "type": "string",
+      "enum": ["container-kubernetes", "container-ecs", "container-compose", "serverless-lambda", "serverless-gcf", "vm", "other"],
+      "description": "Deployment target declared in design-document"
+    },
+    "verification_gates_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that passed (1=auth-enforcement, 2=health-endpoint, 3=ready-endpoint, 4=no-secrets-in-logs, 5=no-internals-in-errors, 6=structured-log-format, 7=parameterized-queries, 8=rate-limit-enforcement, 9=container-lifecycle)"
+    },
+    "verification_gates_failed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that failed. Must be empty before Delivery wave."
+    },
+    "auth_enforcement_verified": {
+      "type": "boolean",
+      "description": "Gate 1 passed: unauthenticated request → 401 on all protected endpoints"
+    },
+    "secrets_in_logs_verified": {
+      "type": "boolean",
+      "description": "Gate 4 passed: known token value absent from all log output"
+    },
+    "parameterized_queries_verified": {
+      "type": "boolean",
+      "description": "Gate 7 passed: no user-input concatenation found in query strings"
+    },
+    "p99_latency_ms": {
+      "type": "number",
+      "description": "Measured p99 response latency in milliseconds from load test"
+    },
+    "p99_latency_budget_ms": {
+      "type": "number",
+      "description": "Declared p99 budget from performance-budgets.md (default: 200)"
+    },
+    "container_exit_code_on_sigterm": {
+      "type": "number",
+      "description": "Gate 9: container exit code after SIGTERM. Must be 0."
+    }
+  },
+  "required": [
+    "platform_target",
+    "api_style",
+    "auth_scheme",
+    "spec_template_variant",
+    "health_endpoint_declared",
+    "ready_endpoint_declared",
+    "verification_gates_passed",
+    "verification_gates_failed"
+  ]
+}
