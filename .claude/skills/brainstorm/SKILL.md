@@ -1,4 +1,4 @@
-﻿---
+---
 name: brainstorm
 description: Divergent idea generation before convergent planning. Produces a ranked option set for downstream evaluation. Invoked on-demand before Specify or Propose when the solution space is genuinely open.
 ---

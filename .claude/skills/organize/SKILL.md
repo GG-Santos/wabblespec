@@ -1,4 +1,4 @@
-﻿---
+---
 name: organize
 description: Audits and repairs project file and folder structure. Detects naming violations, orphaned files, depth violations, and duplicates. Moves and renames automatically when safe; requires human confirmation for destructive actions.
 ---

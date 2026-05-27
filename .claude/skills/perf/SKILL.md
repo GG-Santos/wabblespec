@@ -1,4 +1,4 @@
-﻿---
+---
 name: perf
 description: Performance profiling, baseline measurement, and optimization. Measurement before optimization is mandatory. Platform budget definitions apply.
 ---

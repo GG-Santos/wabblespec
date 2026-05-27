@@ -1,4 +1,4 @@
-﻿---
+---
 name: deps
 description: Dependency health audit. Scans for vulnerabilities, outdated packages, license issues, and supply chain risk. Produces SBOM. On-demand or pre-deployment gate.
 ---

@@ -26,6 +26,10 @@
 
 **verification_mode:** Test | Review | Audit | Measurement | Observation | Attestation | Demonstration
 
+**verification_command:** `<exact runnable command — no pseudocode. If no command exists, set verification_mode to Attestation instead of leaving this blank.>`
+
+**expected_output_contains:** `<string that must appear in command output to confirm the checkpoint condition is satisfied>`
+
 ---
 
 ### Wave 2: <name>
@@ -47,6 +51,10 @@
 -->
 
 **verification_mode:** <mode>
+
+**verification_command:** `<exact runnable command>`
+
+**expected_output_contains:** `<expected string in command output>`
 
 ---
 

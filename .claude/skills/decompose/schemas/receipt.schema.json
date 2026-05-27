@@ -7,7 +7,8 @@
     "wave_count",
     "complexity_confirmed",
     "reviewer_triggered",
-    "rollback_checkpoints"
+    "rollback_checkpoints",
+    "waves_with_verification_command"
   ],
   "properties": {
     "wave_count": {
@@ -57,6 +58,11 @@
         "enum": ["Test", "Review", "Audit", "Measurement", "Observation", "Attestation", "Demonstration"]
       },
       "description": "List of verification modes assigned, one per wave"
+    },
+    "waves_with_verification_command": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of waves that declare a runnable verification_command. Must equal wave_count; a mismatch means at least one wave has no runnable verification command."
     }
   },
   "if": {

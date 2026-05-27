@@ -49,7 +49,14 @@ process.stdin.on('end', () => {
     // 2. No active session + prompt looks like task-start — remind to run Recipe
     const looksLikeTaskStart = TASK_START_PATTERNS.some(p => p.test(prompt));
     if (looksLikeTaskStart && (!state || !state.task_id)) {
-      const output = '[WabbleSpec] Session inactive — Recipe activates Guard and enables full invariant enforcement (I1, I4, I10). Start a task card via Recipe, then retry this prompt.';
+      const output = [
+        '[WabbleSpec] Session inactive — Recipe activates Guard and enables full invariant enforcement.',
+        'Common rationalisations that signal an invariant violation is forming:',
+        '  "This is too simple to need a receipt"          → I10: complexity is not the gate; non-trivial is.',
+        '  "I know what the spec means, I can proceed"     → I1: locked spec is the gate, not interpretation.',
+        '  "I just need to fix one thing in .wabblespec/"  → I11: framework space; no product-task exceptions.',
+        'Start a task card via Recipe, then retry this prompt.',
+      ].join('\n');
       process.stdout.write(JSON.stringify({ additionalContext: output }));
       return;
     }

@@ -1,4 +1,4 @@
-﻿---
+---
 name: plan
 description: Multi-expert strategic planning for Medium+ complexity tasks. Applies diverse expert perspectives to a chosen approach. Budget-gated Adversary challenge for High complexity or security/infrastructure scope. Sits between Propose and Decompose. Produces a plan artifact that Decompose reads.
 ---

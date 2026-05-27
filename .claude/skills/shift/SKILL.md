@@ -1,4 +1,4 @@
-﻿---
+---
 name: shift
 description: Semantic spec versioning and reverse drift detection. Classifies spec changes as BREAKING/DEPRECATION/ADDITIVE/COSMETIC. Detects when implementation diverges from spec. Triggered by Archive post-hook when spec changes.
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: enhance
 description: Resolves vague input before it reaches ScopeFrame. Extracts intent across 9 dimensions. Asks at most 3 targeted clarifying questions. Triggered automatically by Recipe when input_vague = true.
 ---

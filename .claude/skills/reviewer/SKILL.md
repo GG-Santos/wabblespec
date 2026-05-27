@@ -49,16 +49,32 @@ Measure each trigger condition against the thresholds:
 
 If no condition met: write receipt with `triggered: false`, return.
 
-### Step 2 — Adversary analysis
+### Step 2 — Two-stage Adversary analysis
+
+Reviews run in two sequential stages with separate scope restrictions. Stage B only runs after Stage A returns ACCEPT or a minor REVISE. A major spec gap in Stage A returns immediately to the originating module — Stage B does not run.
+
+**Stage A — Spec compliance**
 
 Invoke `modules/l2/adversary` with:
 - `artifact_to_challenge`: the primary output
 - `challenger_mode`: "spec-bound"
 - `spec_artifact`: the spec artifact (task card or scope.md)
+- `challenge_scope`: "spec-compliance-only"
 
-Adversary returns `adversary-receipt.json` containing a structured counter-analysis. Record the receipt path in `adversary_receipt_path`.
+Adversary challenges only whether the implementation satisfies the declared task card criteria. Code quality, style, and efficiency are out of scope for Stage A. Record the receipt path in `adversary_receipt_path[0]` as `adversary-receipt-spec-<timestamp>.json`.
 
-Do not reproduce or interpret Adversary's logic here. Adversary is the authority on its own analysis. If Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader.
+If Stage A Grader verdict is REVISE on a criterion marked as major (blocking spec gap), return revision guidance to the originating module. Do not proceed to Stage B.
+
+**Stage B — Code quality**
+
+Invoke `modules/l2/adversary` with:
+- `artifact_to_challenge`: the primary output
+- `challenger_mode`: "open"
+- `challenge_scope`: "code-quality-only"
+
+Adversary challenges implementation quality: maintainability, security, efficiency, error handling, naming. Spec compliance is assumed satisfied by Stage A. Record the receipt path in `adversary_receipt_path[1]` as `adversary-receipt-quality-<timestamp>.json`.
+
+Do not reproduce or interpret Adversary's logic in either stage. Adversary is the authority on its own analysis. If any Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader for that stage.
 
 ### Step 3 — Grader evaluation
 
@@ -119,8 +135,8 @@ Base receipt schema. Extension fields:
     "generated_files_excluded": "integer — count of findings suppressed due to generated file origin"
   },
   "adversary_receipt_path": {
-    "type": "string",
-    "description": "Path to the adversary-receipt.json produced for this review cycle. Null if triggered = false."
+    "type": "array",
+    "description": "Paths to the two stage adversary receipts: [0] spec-compliance, [1] code-quality. Null entries if that stage did not run. Null if triggered = false."
   },
   "grader_receipt_path": {
     "type": "string",

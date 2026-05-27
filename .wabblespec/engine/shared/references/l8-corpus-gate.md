@@ -38,6 +38,23 @@ All conditions met. No further gate actions required.
 
 Next step: run Synth to generate framework evolution proposals based on the 3 validated Instinct patterns.
 
+## Behavioral Pressure Validation (pre-Benchmark requirement)
+
+Before any skill candidate reaches Benchmark, it must pass behavioral pressure validation. This gate sits between Augment and Benchmark in the evolution chain. Quantitative Benchmark thresholds (80% parity for AUGMENT, 60% improvement for NEW) measure performance on fixture sets -- they do not test whether the skill actually prevents the behavioral violations it was designed to address.
+
+**Protocol:**
+
+1. Write 3 pressure scenarios: prompts designed to trigger the exact rationalization the skill candidate is meant to prevent. These are adversarial prompts -- they should look reasonable while leading the agent toward the violation.
+2. Run each scenario against a fresh-context agent that does NOT have the skill loaded. Confirm the agent violates the rule (baseline failure). If the agent passes without the skill, the skill is solving a non-problem -- halt and surface to human.
+3. Load the skill candidate. Re-run the same 3 scenarios. Confirm the agent complies with the rule in all 3 cases.
+4. If the agent finds a new rationalization not covered by the skill during testing, refine the skill and re-run. Each refinement restarts the 3-scenario pass requirement.
+
+**Pass condition:** All 3 scenarios must produce compliant agent behavior with the skill loaded. Partial pass (2/3) is a fail -- the uncovered rationalization must be closed before Benchmark.
+
+**Evidence requirement:** 3 scenario transcripts (saved to `.wabblespec/state/experiments/pressure-validation/<candidate-id>/`) must be attached to the Benchmark receipt as `pressure_validation_transcripts`. A Benchmark receipt without this field is rejected by Guard.
+
+**What this gate is not:** This is not a substitute for Benchmark metric thresholds. Both gates must pass. A skill that passes behavioral pressure validation but fails Benchmark is still not promoted.
+
 ## What L8 Modules May Do Now
 
 | Module | Current authorization |

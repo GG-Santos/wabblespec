@@ -84,9 +84,10 @@ if (state && state.task_id) {
   }
   lines.push('');
   lines.push('ENFORCEMENT ACTIVE:');
-  lines.push('  I1  — spec is single source of truth; no execution outside spec');
-  lines.push('  I10 — every non-trivial output requires a receipt; implied completion prohibited');
-  lines.push('  I11 — do not write to .wabblespec/ directly; framework modules own writes there');
+  lines.push('  I1  — NO EXECUTION outside a locked spec. Phase 2 does not begin until Phase 1 spec is locked.');
+  lines.push('  I4  — NO PHASE ADVANCE without a passing verification gate. Max 3 REVISE cycles; cycle 3 forces Attestation.');
+  lines.push('  I10 — NO IMPLIED COMPLETION. Every non-trivial output writes a receipt before the phase closes.');
+  lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks. Framework modules own that space.');
   lines.push('  Guard is active. Pre-tool-use hooks enforcing staleness + invariants.');
 } else {
   // No open session
@@ -100,9 +101,9 @@ if (state && state.task_id) {
   if (l8Status) lines.push(`L8 evolution gate: ${l8Status}`);
   lines.push('');
   lines.push('Key invariants:');
-  lines.push('  I1  — spec is single source of truth');
-  lines.push('  I10 — receipts are operational artifacts; implied completion prohibited');
-  lines.push('  I11 — .wabblespec/ is framework space; never write there from product tasks');
+  lines.push('  I1  — NO EXECUTION outside a locked spec.');
+  lines.push('  I10 — NO IMPLIED COMPLETION. Non-trivial output requires a receipt.');
+  lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
 process.stdout.write(lines.join('\n'));

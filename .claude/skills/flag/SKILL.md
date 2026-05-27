@@ -1,4 +1,4 @@
-﻿---
+---
 name: flag
 description: Feature flag lifecycle management. Create, roll out, audit, and retire flags. Maintains flag manifest. Rollout gated on declared conditions.
 ---

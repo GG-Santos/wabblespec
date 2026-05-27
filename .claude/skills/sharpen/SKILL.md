@@ -1,4 +1,4 @@
-﻿---
+---
 name: sharpen
 description: Resolves broad input before it reaches ScopeFrame. Surfaces competing interpretations, ranks them, and confirms the user's intended interpretation. Triggered automatically by Recipe when input_broad = true.
 ---

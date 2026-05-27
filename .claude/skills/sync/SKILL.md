@@ -1,4 +1,4 @@
-﻿---
+---
 name: sync
 description: Reconciles diverged spec artifacts from parallel changes. Detects divergence, applies merge strategy, escalates unresolvable conflicts. On-demand when parallel work produces conflicting specs.
 ---

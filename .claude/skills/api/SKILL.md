@@ -1,4 +1,4 @@
-﻿---
+---
 name: api
 description: API lifecycle management. Version, deprecate, audit contracts, enforce backward compatibility. Four modes: --version, --deprecate, --contract, --audit.
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: analyze
 description: Root cause investigation using structured analysis methods. 5-whys, fishbone, fault-tree. Knowledge-graph-leveraged when Nexus is available. On-demand.
 ---

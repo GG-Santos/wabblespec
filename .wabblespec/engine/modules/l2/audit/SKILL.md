@@ -1,4 +1,4 @@
-﻿---
+---
 name: audit
 description: Compliance and accessibility verification. WCAG, GDPR, license compliance, Guard log review. L2 — co-equal to Guard. Triggered on-demand or post-deployment.
 ---

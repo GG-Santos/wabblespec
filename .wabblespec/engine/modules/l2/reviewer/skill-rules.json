@@ -29,7 +29,9 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/state/receipts/reviewer-receipt-*.json"
+      ".wabblespec/state/receipts/reviewer-receipt-*.json",
+      ".wabblespec/state/receipts/adversary-receipt-spec-*.json",
+      ".wabblespec/state/receipts/adversary-receipt-quality-*.json"
     ],
     "reads": [
       ".wabblespec/state/plans/task-card.md",
@@ -37,6 +39,9 @@
       ".wabblespec/recipe.json"
     ]
   },
+  "review_stages": ["spec_compliance", "code_quality"],
+  "stage_ordering": "sequential",
+  "stage_a_early_return": "major_spec_gap",
   "verification_mode": "Review",
   "receipt_required": true,
   "collapse_eligible": false,

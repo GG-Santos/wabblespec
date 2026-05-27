@@ -1,4 +1,4 @@
-﻿---
+---
 name: grader
 description: Standalone grader. Evaluates primary output against Adversary counter-analysis and spec artifact. Issues ACCEPT / REVISE / ESCALATE verdict with score and revision guidance. Invokable directly by any caller — not only Reviewer.
 ---

@@ -63,6 +63,12 @@ Wave count guidelines:
 - Medium: 2–4 waves
 - High: 4–8 waves (more than 8 requires user confirmation before writing plan)
 
+### Step 3b — Declare verification command per wave
+
+Every wave must include a `verification_command`: the exact shell command that proves the checkpoint condition is satisfied when run. No pseudocode. No descriptions. A command that can be copied and executed as-is.
+
+If no runnable command exists for a wave (human judgment required, visual inspection, live environment), set `verification_mode` to Attestation — not Observation. Defaulting to Observation when no command is available silently removes the verification gate.
+
 ### Step 4 — Assign verification mode per wave
 
 For each wave, declare the mode Verifier will use. Pick the strongest mode that applies:
@@ -130,12 +136,14 @@ Write to `.wabblespec/state/receipts/decompose-receipt.json`.
 | Wave 2 fails | Wave 1 checkpoint | HARD error or BLOCKED after 3 REVISE cycles |
 ```
 
-**receipt** (`.wabblespec/state/receipts/decompose-receipt.json`): base receipt. Extension: `wave_count` (integer), `complexity_confirmed` (Low|Medium|High), `reviewer_triggered` (boolean), `rollback_checkpoints` (integer).
+**receipt** (`.wabblespec/state/receipts/decompose-receipt.json`): base receipt. Extension: `wave_count` (integer), `complexity_confirmed` (Low|Medium|High), `reviewer_triggered` (boolean), `rollback_checkpoints` (integer), `waves_with_verification_command` (integer — must equal `wave_count`; a mismatch indicates a wave was left without a runnable verification command).
 
 ## A note on common failure modes
 
-1. **Waves that depend on each other's partial output.** Each wave must be a complete unit. If Wave 2 needs Wave 1 "half done," re-sequence: either merge them or split Wave 1 into a clean prerequisite.
+1. **Wave with no verification command defaults silently to Observation.** Observation mode passes any wave where the artifact exists, regardless of functional correctness. If you cannot write a runnable verification command, the mode must be Attestation — not Observation. Never leave `verification_command` blank and keep the mode as Observation.
 
-2. **Verification mode too weak.** "Observation" for a wave that produces runnable code misses functional correctness. Pick the strongest mode that applies — Verifier uses what you declare.
+2. **Waves that depend on each other's partial output.** Each wave must be a complete unit. If Wave 2 needs Wave 1 "half done," re-sequence: either merge them or split Wave 1 into a clean prerequisite.
 
-3. **Too many waves for Low complexity.** A single Low-complexity feature with 5 waves has been over-engineered. Merge or collapse.
+3. **Verification mode too weak.** "Observation" for a wave that produces runnable code misses functional correctness. Pick the strongest mode that applies — Verifier uses what you declare.
+
+4. **Too many waves for Low complexity.** A single Low-complexity feature with 5 waves has been over-engineered. Merge or collapse.

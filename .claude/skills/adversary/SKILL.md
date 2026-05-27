@@ -1,4 +1,4 @@
-﻿---
+---
 name: adversary
 description: Standalone adversarial analysis module. Generates the strongest honest case against an artifact or decision. Invokable directly by any caller — not only Reviewer. Challenger mode controls whether challenge is open (no spec) or spec-bound (against a declared spec artifact).
 ---

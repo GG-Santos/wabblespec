@@ -1,4 +1,4 @@
-﻿---
+---
 name: nexus
 description: Tribal knowledge retrieval. Answers cross-module architectural questions by traversing the Memory graph and EntityGraph. Invokable from any layer. Lives at L5 because it queries Memory and EntityGraph directly.
 ---
