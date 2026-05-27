@@ -88,7 +88,10 @@ def quick_validate(module_dir, rules_data, rules_error):
 
         auth = rules_data.get("authority", {})
         owns = auth.get("owns") if isinstance(auth, dict) else None
-        checks["AUTHORITY_OWNS"] = isinstance(owns, list) and len(owns) > 0
+        product_space = auth.get("product_space", False) if isinstance(auth, dict) else False
+        # product_space: true is a valid authority declaration for modules that
+        # write to arbitrary product-space paths (e.g. Apply, Migrate).
+        checks["AUTHORITY_OWNS"] = (isinstance(owns, list) and len(owns) > 0) or product_space is True
 
         reads = auth.get("reads") if isinstance(auth, dict) else None
         checks["AUTHORITY_READS"] = isinstance(reads, list)
