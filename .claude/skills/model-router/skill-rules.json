@@ -1,0 +1,42 @@
+{
+  "module": "model-router",
+  "layer": "L2",
+  "tier": 1,
+  "activators": [
+    "route task",
+    "select capability",
+    "model routing",
+    "capability routing"
+  ],
+  "anti_activators": [],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/model-router-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/runtime/runtime-state.json"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Never reads model names \u2014 capability descriptors only",
+    "Capabilities with confidence < 0.5 treated as unavailable",
+    "Ensemble trigger evaluation is mandatory \u2014 never skipped",
+    "runtime-state.json must be FRESH before routing \u2014 EXPIRED triggers error"
+  ],
+  "triggers_modules": [
+    "ensemble"
+  ],
+  "requires_receipts_from": [],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": []
+}

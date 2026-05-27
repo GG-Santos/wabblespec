@@ -1,0 +1,25 @@
+{
+  "module": "flag",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/flag", "feature flag", "create flag", "rollout flag", "retire flag", "flag audit"],
+  "authority": {
+    "owns": [".wabblespec/receipts/flag-receipt-*.json", ".wabblespec/flags/manifest.json"],
+    "reads": [
+      "modules/l1/flag/rules/flag-lifecycle.md",
+      "modules/l1/flag/rules/rollout-gate.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "FLG-1", "rule": "Flags start as DRAFT — never ACTIVE at creation", "severity": "BLOCKING" },
+    { "id": "FLG-2", "rule": "Retired flags remain in manifest — no deletion without --purge", "severity": "BLOCKING" },
+    { "id": "FLG-3", "rule": "Rollout gate must pass before DRAFT->ACTIVE or ACTIVE->ROLLING transition", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/flag-lifecycle.md",
+    "rules/rollout-gate.md"
+  ],
+  "receipt_schema": "schemas/flag-receipt.schema.json"
+}

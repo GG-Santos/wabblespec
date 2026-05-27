@@ -1,0 +1,45 @@
+{
+  "module": "guard",
+  "layer": "L2",
+  "tier": 2,
+  "activators": [
+    "before executor wave",
+    "pre-wave validation required",
+    "/guard command",
+    "validate wave inputs",
+    "invariant check",
+    "authority check"
+  ],
+  "anti_activators": [
+    "wave inputs not yet assembled"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/guard-wave-*-receipt.json"
+    ],
+    "reads": [
+      ".wabblespec/scope.md",
+      ".wabblespec/recipe.json",
+      ".wabblespec/receipts/*",
+      ".wabblespec/plans/task-card.md",
+      ".wabblespec/engine/shared/references/invariants.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": ["scopeframe", "specify", "decompose"],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": []
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec IoT Platform Receipt",
+  "allOf": [{ "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "platform_target": { "type": "string", "const": "iot" },
+    "mcu": { "type": "string", "description": "Target MCU/SoC identifier (e.g. STM32F4, ESP32-S3, nRF52840)" },
+    "toolchain": { "type": "string", "enum": ["arm-none-eabi", "xtensa-esp32", "avr", "riscv", "other"] },
+    "flash_budget_kb": { "type": "number", "description": "Total flash budget in KB" },
+    "ram_budget_kb": { "type": "number", "description": "Total RAM budget in KB" },
+    "flash_used_kb": { "type": "number", "description": "Actual flash usage after build" },
+    "ram_used_kb": { "type": "number", "description": "Actual RAM usage (static + stack estimate)" },
+    "ota_signing_declared": { "type": "boolean" },
+    "watchdog_declared": { "type": "boolean" },
+    "failsafe_declared": { "type": "boolean" },
+    "spec_template_variant": { "type": "string", "const": "iot" },
+    "verification_gates_passed": { "type": "array", "items": { "type": "string" } },
+    "verification_gates_failed": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["platform_target", "mcu", "flash_budget_kb", "ram_budget_kb", "ota_signing_declared", "watchdog_declared", "spec_template_variant", "verification_gates_passed", "verification_gates_failed"]
+}

@@ -1,0 +1,90 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Library platform only activates when Recipe has run and identified Library/Package as primary target",
+    "Public API surface must be declared before any Executor wave begins",
+    "Semver policy must be declared in design-document.md before Specify receipt is written",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "routes_to_language_modules": [
+    ".wabblespec/engine/shared/dev/languages/node",
+    ".wabblespec/engine/shared/dev/languages/python",
+    ".wabblespec/engine/shared/dev/languages/go",
+    ".wabblespec/engine/shared/dev/languages/rust"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/src/**",
+    "**/lib/**",
+    "**/index.*",
+    "src/index.ts",
+    "src/index.js",
+    "lib/index.ts",
+    "lib/index.js",
+    "src/lib.rs",
+    "**/mod.rs"
+  ],
+  "module": "library",
+  "activators": [
+    "npm package",
+    "npm library",
+    "pypi package",
+    "python library",
+    "rust crate",
+    "go module",
+    "nuget package",
+    "maven artifact",
+    "library",
+    "distributable package",
+    "reusable module",
+    "sdk",
+    "component library",
+    "utility library"
+  ],
+  "anti_activators": [
+    "bin field in package.json",
+    "cli.py",
+    "__main__.py",
+    "cmd/main.go",
+    "server.ts",
+    "app.py with Flask/FastAPI",
+    "index.html at root",
+    "Dockerfile with EXPOSE"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "LIBRARY"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/library-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

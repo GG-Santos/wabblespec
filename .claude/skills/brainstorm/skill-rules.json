@@ -1,0 +1,29 @@
+{
+  "module": "brainstorm",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/brainstorm", "generate options", "explore alternatives", "brainstorm", "ideate"],
+  "authority": {
+    "owns": [".wabblespec/receipts/brainstorm-receipt-*.json", ".wabblespec/brainstorm/options-*.md"],
+    "reads": [
+      "modules/l1/brainstorm/rules/divergence-rules.md",
+      "modules/l1/brainstorm/rules/convergence-gate.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "trigger": {
+    "automatic": "Propose signals insufficient options",
+    "manual": "/brainstorm command"
+  },
+  "invariants": [
+    { "id": "BRN-1", "rule": "evaluation_deferred must be true — no evaluation during generation", "severity": "BLOCKING" },
+    { "id": "BRN-2", "rule": "Top option set is 3-5 options; full generated set may be larger", "severity": "WARNING" },
+    { "id": "BRN-3", "rule": "Brainstorm does not recommend — Propose evaluates", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/divergence-rules.md",
+    "rules/convergence-gate.md"
+  ],
+  "receipt_schema": "schemas/brainstorm-receipt.schema.json"
+}

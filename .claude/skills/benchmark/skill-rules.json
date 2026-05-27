@@ -1,0 +1,55 @@
+{
+  "module": "benchmark",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "benchmark",
+    "run benchmark",
+    "quality gate",
+    "measure experiment",
+    "held-out metric"
+  ],
+  "anti_activators": [
+    "augment not complete",
+    "structural_check_passed: false",
+    "no fixture set",
+    "execution wave in progress"
+  ],
+  "preconditions": [
+    "Augment receipt exists with structural_check_passed: true",
+    "blueprint.json status: approved",
+    "Fixture set committed at blueprint benchmark_gates fixtures_path",
+    "Human explicit invocation with blueprint ID"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-augment"],
+  "authority": {
+    "owns": [
+      ".wabblespec/experiments/tracker.json"
+    ],
+    "reads": [
+      ".wabblespec/experiments/augments/",
+      ".wabblespec/experiments/blueprints/",
+      ".wabblespec/receipts/augment-*.json"
+    ]
+  },
+  "verification_mode": "Measurement",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "tracker.json is append-only — entries never removed or edited",
+    "Only held-out metric is reported — tuning set values never persisted",
+    "Failure halts promotion without auto-requeue",
+    "Gate without developer_outcome is rejected before running",
+    "AUGMENT threshold: >= 80% parity; NEW threshold: >= 60% improvement"
+  ],
+  "produces": [
+    ".wabblespec/experiments/tracker.json"
+  ],
+  "depends_on": ["augment", "blueprint", "factory"],
+  "consumed_by": ["forge"],
+  "loading_gate": "activation",
+  "commands": ["/benchmark"],
+  "file_path_patterns": []
+}

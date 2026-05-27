@@ -1,0 +1,16 @@
+{
+  "module": "markdown",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "polish_pipeline_step", "post_proofread", "/markdown"],
+  "authority": {
+    "owns": [".wabblespec/receipts/markdown-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["artifact_path_exists", "target_format_declared"],
+  "receipt_schema": "modules/l6/markdown/schemas/markdown-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": true
+}

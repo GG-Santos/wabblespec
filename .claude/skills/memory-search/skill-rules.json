@@ -1,0 +1,53 @@
+{
+  "module": "memory-search",
+  "layer": "L5",
+  "tier": 2,
+  "activators": [
+    "search memory",
+    "query evidence",
+    "find drawers by topic",
+    "full-text search drawers",
+    "memory search",
+    "search for evidence",
+    "query by staleness",
+    "find stale evidence",
+    "find expired evidence",
+    "research phase evidence lookup",
+    "/memory-search"
+  ],
+  "anti_activators": [
+    "retrieve drawer by id",
+    "write evidence",
+    "create drawer",
+    "transition staleness"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Research"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/memorysearch-*.json"
+    ],
+    "reads": [
+      ".wabblespec/memory/index.json",
+      ".wabblespec/memory/wings/**/*.json",
+      ".wabblespec/memory/provenance/index.json",
+      ".wabblespec/engine/shared/references/staleness-states.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "requires_receipts_from": [],
+  "loading_gate": "activation",
+  "commands": [
+    "/memory-search"
+  ],
+  "file_path_patterns": []
+}

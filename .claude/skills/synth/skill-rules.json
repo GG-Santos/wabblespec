@@ -1,0 +1,51 @@
+{
+  "module": "synth",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "synth",
+    "improvement hypothesis",
+    "candidate from instinct",
+    "promote validated pattern"
+  ],
+  "anti_activators": [
+    "human-validated: false",
+    "unvalidated pattern",
+    "instinct not run",
+    "execution wave in progress",
+    "auto-promote"
+  ],
+  "preconditions": [
+    "instinct-observations.md contains >= 3 Human-validated: true patterns",
+    "Named pattern has Confidence: medium or high",
+    "Human explicitly invokes with specific pattern name",
+    "No Executor PID lock active"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-instinct"],
+  "authority": {
+    "owns": [".wabblespec/experiments/candidates/"],
+    "reads": [
+      ".wabblespec/memory/instinct-observations.md",
+      ".wabblespec/receipts/instinct-*.json",
+      "modules/"
+    ]
+  },
+  "verification_mode": "Review",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "One candidate.json per invocation",
+    "Only processes Human-validated: true patterns",
+    "Never writes to modules/ or production space",
+    "behavior_change must be a single sentence",
+    "rollback_condition must name a metric and threshold"
+  ],
+  "produces": [".wabblespec/experiments/candidates/"],
+  "depends_on": ["instinct", "archive", "memory"],
+  "consumed_by": ["blueprint"],
+  "loading_gate": "activation",
+  "commands": ["/synth"],
+  "file_path_patterns": []
+}

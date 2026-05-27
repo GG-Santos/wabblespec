@@ -1,0 +1,57 @@
+{
+  "module": "migrate",
+  "layer": "L1",
+  "tier": 3,
+  "activators": [
+    "breaking change",
+    "BREAKING delta",
+    "migration plan",
+    "breaking spec change",
+    "/migrate"
+  ],
+  "anti_activators": [
+    "no BREAKING delta receipt from Specify",
+    "ADDITIVE delta only",
+    "COSMETIC delta only"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "requires_receipts_from": [
+    "specify"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/plans/migration-plan-*.md",
+      "project/repo/scripts/migrate/"
+    ],
+    "reads": [
+      ".wabblespec/receipts/specify-receipt.json"
+    ],
+    "notifies": [
+      "Executor",
+      "Verifier",
+      "Document",
+      "Release"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Cannot activate without Specify BREAKING delta receipt",
+    "Two-phase migration is the default \u2014 single-phase requires documented justification",
+    "Phase 2 is gated on human confirmation that all consumers have migrated \u2014 no auto-advance",
+    "Phase 1 must pass Verifier before Phase 2 is authorized",
+    "Migration scripts write only to project/repo/scripts/migrate/ \u2014 never to .wabblespec/"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

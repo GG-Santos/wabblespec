@@ -14,6 +14,15 @@
         "hooks": [
           {
             "type": "command",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\scripts\\wabblespec-sync-skills.py\" --quiet",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
             "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-session-start.js\""
           }
         ]

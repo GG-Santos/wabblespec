@@ -1,0 +1,57 @@
+{
+  "module": "archive",
+  "layer": "L7",
+  "tier": 1,
+  "activators": [
+    "execution complete",
+    "all waves passed",
+    "executor signals complete",
+    "/archive command",
+    "finalize execution",
+    "close task",
+    "write delivery receipt",
+    "task is done"
+  ],
+  "anti_activators": [
+    "waves still in progress",
+    "verifier has outstanding FAIL",
+    "missing wave receipts",
+    "execution-receipt.json missing"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/delivery-receipt-*.json",
+      ".wabblespec/VERSION",
+      ".wabblespec/CHANGELOG.md"
+    ],
+    "reads": [
+      ".wabblespec/receipts/*"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "scopeframe",
+    "specify",
+    "decompose",
+    "guard",
+    "executor",
+    "verifier"
+  ],
+  "loading_gate": "phase",
+  "commands": [
+    "/archive"
+  ],
+  "file_path_patterns": []
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "API Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the API module.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": ["version", "deprecate", "contract", "audit"],
+      "description": "Operation mode that was invoked."
+    },
+    "api_version": {
+      "type": "string",
+      "description": "API version being acted on. e.g. v2, 2024-01-15, 3."
+    },
+    "versioning_scheme": {
+      "type": "string",
+      "enum": ["semver", "date-based", "header-based"],
+      "description": "Versioning scheme in use for this API."
+    },
+    "breaking_changes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of BREAKING changes in this API operation."
+    },
+    "deprecations_added": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of items entering Stage 1 deprecation this session."
+    },
+    "deprecations_sunset": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of items reaching Stage 3 (removed) this session."
+    },
+    "backward_compatible": {
+      "type": "boolean",
+      "description": "True if all five contract enforcement checks pass."
+    },
+    "contract_path": {
+      "type": "string",
+      "description": "Path to API contract artifact. e.g. .wabblespec/api/contract-<timestamp>.json"
+    }
+  },
+  "required": [
+    "mode",
+    "api_version",
+    "versioning_scheme",
+    "breaking_changes",
+    "deprecations_added",
+    "deprecations_sunset",
+    "backward_compatible",
+    "contract_path"
+  ]
+}

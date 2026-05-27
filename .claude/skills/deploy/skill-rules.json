@@ -1,0 +1,71 @@
+{
+  "module": "deploy",
+  "layer": "L7",
+  "tier": 1,
+  "activators": [
+    "deploy",
+    "deploy to staging",
+    "deploy to production",
+    "deploy to dev",
+    "release to environment",
+    "push to production",
+    "ship it",
+    "/deploy"
+  ],
+  "anti_activators": [
+    "package receipt missing",
+    "artifact not signed",
+    "rollback plan not declared",
+    "staging not passed for production deploy"
+  ],
+  "preconditions": [
+    "package-receipt-*.json exists",
+    "manifest-*.json exists with SHA-256 hashes",
+    "deploy-receipt for prior environment exists (staging requires dev, production requires staging)",
+    "Rollback plan declared",
+    "Attestation present for production"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Deliver"
+  ],
+  "stages": [
+    "post-package"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/deploy-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/receipts/package-receipt-*.json",
+      ".wabblespec/artifacts/manifest-*.json",
+      ".wabblespec/receipts/deploy-receipt-*.json"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Artifact SHA-256 re-verified against manifest before deployment",
+    "Prior environment deploy receipt required \u2014 no skip-to-production",
+    "Production requires signed Attestation from authorized human",
+    "Rollback plan must be declared before activation begins",
+    "Health check failure triggers immediate rollback"
+  ],
+  "produces": [
+    "deploy-receipt"
+  ],
+  "depends_on": [
+    "package"
+  ],
+  "consumed_by": [
+    "release"
+  ],
+  "loading_gate": "phase",
+  "commands": [
+    "/deploy"
+  ],
+  "file_path_patterns": []
+}

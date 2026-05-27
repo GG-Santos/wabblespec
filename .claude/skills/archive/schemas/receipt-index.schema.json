@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Archive Receipt Index",
+  "description": "Queryable index of all archived task executions. Stored at .wabblespec/archive/receipt-index.json. Append-only task entries; status fields updated in place as execution progresses.",
+  "type": "object",
+  "required": ["index_version", "last_updated", "tasks"],
+  "properties": {
+    "index_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema version. Increment on structural changes."
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent write to this index."
+    },
+    "tasks": {
+      "type": "array",
+      "description": "One entry per archived task execution. Ordered oldest-first.",
+      "items": {
+        "type": "object",
+        "required": [
+          "task_id", "target", "complexity", "status",
+          "started_at", "waves_planned", "receipts_by_module"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Unique execution identifier. Format: <target-slug>-<ISO-date>-<3-digit-seq>. Example: cli-2026-05-22-001."
+          },
+          "target": {
+            "type": "string",
+            "description": "Platform target from recipe.json. e.g. CLI, Web, API-Service."
+          },
+          "complexity": {
+            "type": "string",
+            "enum": ["Low", "Medium", "High"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "IN_PROGRESS", "PASS", "FAIL", "BLOCKED"],
+            "description": "PENDING: task created, execution not started. IN_PROGRESS: at least one wave receipt written. PASS: delivery receipt written, all_waves_passed true. FAIL: delivery receipt written, at least one wave FAIL or missing receipt. BLOCKED: execution halted awaiting human input (escalation gate)."
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when ScopeFrame receipt was first written for this task."
+          },
+          "archived_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Timestamp when Archive wrote the delivery receipt. Null until Archive runs."
+          },
+          "delivery_receipt_path": {
+            "type": ["string", "null"],
+            "description": "Relative path to delivery-receipt-<timestamp>.json. Null until Archive runs."
+          },
+          "version_previous": {
+            "type": ["string", "null"],
+            "pattern": "^\\d+\\.\\d+\\.\\d+$|^$",
+            "description": "Semver before bump. Null until Archive runs."
+          },
+          "version_new": {
+            "type": ["string", "null"],
+            "pattern": "^\\d+\\.\\d+\\.\\d+$|^$",
+            "description": "Semver after bump. Null until Archive runs."
+          },
+          "version_bump_reason": {
+            "type": ["string", "null"],
+            "enum": ["BREAKING", "ADDITIVE", "COSMETIC", null]
+          },
+          "waves_planned": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Wave count from decompose plan."
+          },
+          "waves_completed": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Waves that completed with Verifier PASS. Updated after each wave."
+          },
+          "not_tested_items": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Total not_tested item count from all receipts. Updated at Archive time."
+          },
+          "not_tested_list": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Aggregated not_tested items verbatim. Queryable to scope future sessions. Updated at Archive time."
+          },
+          "missing_receipts": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Required receipts absent at Archive time. Non-empty only when status=FAIL."
+          },
+          "blocked_reason": {
+            "type": ["string", "null"],
+            "description": "Human-readable reason for BLOCKED status. Null when not BLOCKED."
+          },
+          "receipts_by_module": {
+            "type": "object",
+            "description": "Per-module receipt status. Keys are module IDs. Enables query by module.",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["status", "receipt_path"],
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "IN_PROGRESS", "PASS", "FAIL", "BLOCKED", "SKIP"],
+                  "description": "SKIP: module not applicable for this task (e.g. Reviewer not triggered)."
+                },
+                "receipt_path": {
+                  "type": ["string", "null"],
+                  "description": "Relative path to this module's receipt file. Null if not yet written."
+                },
+                "completed_at": {
+                  "type": ["string", "null"],
+                  "format": "date-time"
+                }
+              }
+            },
+            "examples": [
+              {
+                "scopeframe": { "status": "PASS", "receipt_path": ".wabblespec/receipts/scopeframe-receipt.json", "completed_at": "2026-05-22T10:00:00Z" },
+                "specify":    { "status": "PASS", "receipt_path": ".wabblespec/receipts/specify-receipt.json", "completed_at": "2026-05-22T10:05:00Z" },
+                "decompose":  { "status": "PASS", "receipt_path": ".wabblespec/receipts/decompose-receipt.json", "completed_at": "2026-05-22T10:10:00Z" },
+                "executor":   { "status": "IN_PROGRESS", "receipt_path": null, "completed_at": null },
+                "verifier":   { "status": "PENDING", "receipt_path": null, "completed_at": null },
+                "reviewer":   { "status": "SKIP", "receipt_path": null, "completed_at": null }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

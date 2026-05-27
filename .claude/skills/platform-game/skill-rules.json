@@ -1,0 +1,90 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Frame budget must be declared before Specify receipt",
+    "Game loop architecture must be declared before any Executor wave",
+    "Multiplayer authority model must be declared if networking is in scope",
+    "Anti-cheat scope must be declared before Specify receipt",
+    "Platform targets must be declared before Specify receipt",
+    "Game pillars must be declared in game-concept.md before Specify receipt",
+    "Accessibility requirements must be declared in ui-spec.md before Specify receipt if any UI is present",
+    "Content inventory MVP counts must be declared in design-document.md before Executor wave begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/game-concept.md",
+    "spec-template/systems-index.md",
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "engineering/qa-pipeline.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "conditional_loads": {
+    "project.godot": "spec-template/engine-specific/godot.md",
+    "Source/ + .uproject": "spec-template/engine-specific/unreal.md",
+    "monetization OR virtual_economy OR currency": "spec-template/economy-model.md",
+    "hud OR inventory OR non_trivial_ui OR menu": "spec-template/ui-spec.md",
+    "ai_enemies OR npc OR behavior_tree OR pathfinding": "spec-template/ai-architecture.md"
+  },
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/Assets/**",
+    "**/scenes/**",
+    "**/*.gd",
+    "**/*.cs",
+    "**/*.unity",
+    "Assets/**/*",
+    "Source/**/*",
+    "scenes/**/*",
+    "project.godot"
+  ],
+  "module": "game",
+  "activators": [
+    "game",
+    "video game",
+    "unity game",
+    "unreal game",
+    "godot game",
+    "game engine",
+    "multiplayer game",
+    "mobile game",
+    "indie game",
+    "game jam",
+    "2d game",
+    "3d game",
+    "fps",
+    "rts",
+    "rpg",
+    "puzzle game"
+  ],
+  "anti_activators": [],
+  "tier": 2,
+  "build_targets": [
+    "GAME"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/game-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

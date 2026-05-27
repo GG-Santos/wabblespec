@@ -1,0 +1,48 @@
+{
+  "module": "rollback",
+  "layer": "L2",
+  "tier": 1,
+  "activators": [
+    "rollback",
+    "restore checkpoint",
+    "undo deployment",
+    "/rollback"
+  ],
+  "anti_activators": [
+    "no rollback target declared",
+    "Attestation not received"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/rollback-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/checkpoints/",
+      ".wabblespec/experiments/rollback-*/",
+      ".wabblespec/receipts/deploy-receipt-*.json"
+    ]
+  },
+  "verification_mode": "Attestation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "rollback_target_types": [
+    "wave-checkpoint",
+    "deploy-snapshot",
+    "forge-pre-promotion"
+  ],
+  "invariants": [
+    "All rollback operations require Attestation before execution",
+    "Hash verification required after every restoration",
+    "Release rollback (git operations) provided as commands only \u2014 not executed",
+    "Rollback receipt declares: target, timestamp, files restored, hash result"
+  ],
+  "loading_gate": "phase",
+  "commands": [],
+  "file_path_patterns": []
+}

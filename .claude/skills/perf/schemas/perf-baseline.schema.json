@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Perf Baseline",
+  "description": "Baseline measurement artifact written to .wabblespec/perf/baseline-<timestamp>.json. Reference point for all optimization claims.",
+  "type": "object",
+  "properties": {
+    "generated": { "type": "string", "format": "date-time" },
+    "platform": { "type": "string", "description": "Platform being measured. e.g. web, api, mobile-ios, cli." },
+    "profiling_method": { "type": "string" },
+    "environment": { "type": "string", "description": "Where measurement was taken. e.g. prod-equivalent, staging." },
+    "budget_applied": { "type": "string" },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric": { "type": "string", "description": "Metric name. e.g. p95_latency_ms, lcp_s, memory_mb." },
+          "value": { "type": "number" },
+          "unit": { "type": "string" },
+          "budget_target": { "type": ["number", "null"] },
+          "budget_status": { "type": "string", "enum": ["PASS", "FAIL", "UNDECLARED"] },
+          "run_count": { "type": "integer", "minimum": 1, "description": "Number of measurement runs. Min 3 for reliable baseline." }
+        },
+        "required": ["metric", "value", "unit", "budget_status"]
+      }
+    },
+    "paths_measured": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Code paths or endpoints included in measurement."
+    },
+    "preliminary": {
+      "type": "boolean",
+      "description": "True if baseline does not meet validity criteria (wrong environment, single run, etc.)."
+    }
+  },
+  "required": ["generated", "platform", "profiling_method", "environment", "measurements"]
+}

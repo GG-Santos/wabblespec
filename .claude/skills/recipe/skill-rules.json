@@ -1,0 +1,47 @@
+{
+  "module": "recipe",
+  "layer": "L0",
+  "tier": 1,
+  "activators": [
+    "session start",
+    "no recipe.json exists",
+    "recipe.json expired",
+    "build target changed",
+    "/recipe command",
+    "what are we building",
+    "identify build target"
+  ],
+  "anti_activators": [
+    "recipe.json exists and session_id matches current session"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Research"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/recipe.json",
+      ".wabblespec/receipts/recipe-receipt.json"
+    ],
+    "reads": [
+      "modules/*/rules/cold-start.md"
+    ]
+  },
+  "error_types_emitted": [
+    "MISSING_COLD_START"
+  ],
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "recipe",
+  "commands": [
+    "/recipe"
+  ],
+  "file_path_patterns": [],
+  "promoted_from": "cold-start-coverage-recipe-gate-v1",
+  "promoted_at": "2026-05-25T09:10:00+00:00"
+}

@@ -1,0 +1,78 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Desktop platform only activates when Recipe has run and identified Desktop as primary target",
+    "Code signing strategy must be declared before Specify receipt is written",
+    "IPC security model (contextBridge/preload) must be declared before any Executor wave",
+    "Auto-updater strategy must be declared before Specify receipt",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/design-document.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/src-tauri/**",
+    "**/electron/**",
+    "**/main.ts",
+    "**/preload.ts",
+    "src-tauri/**/*",
+    "electron/**/*",
+    "src/main.ts",
+    "src-tauri/tauri.conf.json",
+    "electron-builder.yml"
+  ],
+  "module": "desktop",
+  "activators": [
+    "desktop app",
+    "desktop application",
+    "electron app",
+    "tauri app",
+    "native desktop",
+    "macos app",
+    "windows app",
+    "linux desktop",
+    "cross-platform desktop",
+    "system tray app",
+    "gui application"
+  ],
+  "anti_activators": [
+    "package.json without electron dependency",
+    "web-only index.html",
+    "server.ts",
+    "cli.py"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "DESKTOP"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/desktop-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

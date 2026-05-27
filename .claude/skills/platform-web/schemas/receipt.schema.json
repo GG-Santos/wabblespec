@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Web Platform Receipt",
+  "description": "Extends base receipt schema for Web platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": {
+      "type": "string",
+      "const": "web"
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["next", "react", "vue", "svelte", "angular", "astro", "vanilla"],
+      "description": "Detected frontend framework"
+    },
+    "rendering_strategy": {
+      "type": "string",
+      "enum": ["CSR", "SSR", "SSG", "ISR", "islands", "hybrid"],
+      "description": "Declared in design-document §Rendering Strategy"
+    },
+    "spec_template_variant": {
+      "type": "string",
+      "const": "web"
+    },
+    "core_web_vitals": {
+      "type": "object",
+      "properties": {
+        "lcp_ms": { "type": "number", "description": "Measured LCP in milliseconds" },
+        "cls": { "type": "number", "description": "Measured CLS score" },
+        "inp_ms": { "type": "number", "description": "Measured INP in milliseconds" },
+        "lcp_pass": { "type": "boolean" },
+        "cls_pass": { "type": "boolean" },
+        "inp_pass": { "type": "boolean" }
+      }
+    },
+    "bundle_size_kb_gzipped": {
+      "type": "number",
+      "description": "Initial JS bundle size in KB (gzipped)"
+    },
+    "bundle_budget_kb": {
+      "type": "number",
+      "description": "Declared budget from design-document §Performance Budget"
+    },
+    "accessibility_violations_critical": {
+      "type": "integer",
+      "description": "axe-core critical violation count — must be 0"
+    },
+    "csp_enforcing": {
+      "type": "boolean",
+      "description": "Gate 1: CSP header present and enforcing (not report-only)"
+    },
+    "verification_gates_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs passed (1=security-headers, 2=csrf, 3=cwv, 4=bundle, 5=a11y, 6=cross-browser, 7=no-secrets, 8=xss-audit)"
+    },
+    "verification_gates_failed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Must be empty before Delivery wave"
+    }
+  },
+  "required": [
+    "platform_target",
+    "spec_template_variant",
+    "verification_gates_passed",
+    "verification_gates_failed"
+  ]
+}

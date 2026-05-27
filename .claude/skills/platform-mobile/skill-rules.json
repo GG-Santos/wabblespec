@@ -1,0 +1,106 @@
+{
+  "layer": "L3",
+  "invariants": [
+    "Mobile platform only activates when Recipe has run and identified Mobile as primary target",
+    "product-concept.md pillars and platform decision (iOS/Android/cross-platform) must be declared before Specify receipt",
+    "Framework-specific doc must be loaded if React Native, Flutter, Swift, or Kotlin is detected",
+    "ui-spec.md must be loaded with P1 — navigation pattern and touch target declarations cannot be deferred",
+    "Code signing strategy must be declared for both iOS and Android before Specify receipt",
+    "OS permission usage descriptions must be declared before any Executor wave begins",
+    "Offline behavior (online-only/offline-capable/offline-first) must be declared before Specify receipt",
+    "Accessibility tier must be declared in product-concept.md before Specify receipt",
+    "verification/gates.md must be registered with Verifier before any Executor wave runs",
+    "Platform activation receipt must be written before Specify begins"
+  ],
+  "produces": [
+    "platform-activation-receipt"
+  ],
+  "loads": [
+    "spec-template/product-concept.md",
+    "spec-template/design-document.md",
+    "spec-template/ui-spec.md",
+    "spec-template/systems-design.md",
+    "spec-template/technical-spec.md",
+    "engineering/build-toolchain.md",
+    "engineering/performance-budgets.md",
+    "engineering/qa-pipeline.md",
+    "security/threat-model.md",
+    "security/platform-controls.md",
+    "verification/gates.md"
+  ],
+  "conditional_loads": [
+    {
+      "signal": "react-native in package.json",
+      "load": "spec-template/framework-specific/react-native.md"
+    },
+    {
+      "signal": "pubspec.yaml with flutter",
+      "load": "spec-template/framework-specific/flutter.md"
+    },
+    {
+      "signal": ".xcodeproj or Package.swift",
+      "load": "spec-template/framework-specific/swift-uikit.md"
+    },
+    {
+      "signal": "build.gradle or AndroidManifest.xml",
+      "load": "spec-template/framework-specific/kotlin-compose.md"
+    }
+  ],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": [
+    "**/ios/**",
+    "**/android/**",
+    "**/*.dart",
+    "**/*.swift",
+    "**/*.kt",
+    "ios/**/*",
+    "android/**/*",
+    "pubspec.yaml",
+    "app.json",
+    "lib/**/*.dart",
+    "src/screens/**/*"
+  ],
+  "module": "mobile",
+  "activators": [
+    "mobile app",
+    "ios app",
+    "android app",
+    "react native",
+    "flutter app",
+    "native ios",
+    "native android",
+    "swiftui app",
+    "jetpack compose",
+    "capacitor app",
+    "expo app",
+    "cross-platform mobile"
+  ],
+  "anti_activators": [
+    "web-only index.html",
+    "server.ts",
+    "electron dependency in package.json",
+    "cli.py"
+  ],
+  "tier": 2,
+  "build_targets": [
+    "MOBILE"
+  ],
+  "phases": [
+    "Research",
+    "Plan",
+    "Execute"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/mobile-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/plans/",
+      ".wabblespec/receipts/"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false
+}

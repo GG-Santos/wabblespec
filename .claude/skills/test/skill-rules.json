@@ -1,0 +1,53 @@
+{
+  "module": "test",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "generate test stubs",
+    "test strategy",
+    "test plan",
+    "spec-driven tests",
+    "P4 spec complete",
+    "/test"
+  ],
+  "anti_activators": [
+    "no P4 spec artifact",
+    "no EARS requirements present",
+    "test execution requested (route to Verifier)"
+  ],
+  "phases": [
+    "Research",
+    "Execution"
+  ],
+  "stages": [
+    "P4"
+  ],
+  "authority": {
+    "owns": [
+      "project/repo/tests/",
+      ".wabblespec/plans/test-plan-<spec-id>.md"
+    ],
+    "reads": [
+      ".wabblespec/plans/*.md",
+      ".wabblespec/receipts/platform-receipt.json"
+    ],
+    "notifies": [
+      "Verifier",
+      "Archive"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Every EARS requirement has at least one test stub \u2014 no silent skips",
+    "Untestable requirements flagged with UNTESTABLE marker \u2014 not omitted",
+    "Test stubs write only to project/repo/tests/ \u2014 I11 boundary enforced",
+    "Test framework sourced from active platform package \u2014 never inferred",
+    "Test plan written before receipt \u2014 coverage matrix required",
+    "Test does not execute tests \u2014 stubs and plan only"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

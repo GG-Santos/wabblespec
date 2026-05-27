@@ -1,0 +1,35 @@
+{
+  "module": "grader",
+  "layer": "L2",
+  "tier": 2,
+  "activators": ["/grader", "grade this", "evaluate output", "score against spec", "verdict"],
+  "authority": {
+    "owns": [".wabblespec/receipts/grader-receipt-*.json"],
+    "reads": [
+      "modules/l2/grader/rules/verdict-matrix.md",
+      "modules/l2/grader/rules/revision-guidance.md",
+      "modules/l2/grader/rules/anti-inflation.md"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "invocation": {
+    "required_inputs": ["primary_output", "adversary_counter_analysis", "spec_artifact"],
+    "preconditions": [
+      "adversary receipt must exist and have status = PASS before Grader is invoked"
+    ]
+  },
+  "invariants": [
+    { "id": "GRD-1", "rule": "verdict must be one of ACCEPT, REVISE, ESCALATE", "severity": "BLOCKING" },
+    { "id": "GRD-2", "rule": "revision_guidance required when verdict = REVISE", "severity": "BLOCKING" },
+    { "id": "GRD-3", "rule": "escalation_reason required when verdict = ESCALATE", "severity": "BLOCKING" },
+    { "id": "GRD-4", "rule": "score must be 0.0-1.0; score_rationale must reference the spec artifact", "severity": "BLOCKING" },
+    { "id": "GRD-5", "rule": "Grader must not implement or act on revision guidance", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/verdict-matrix.md",
+    "rules/revision-guidance.md",
+    "rules/anti-inflation.md"
+  ],
+  "receipt_schema": "schemas/grader-receipt.schema.json"
+}

@@ -1,0 +1,49 @@
+{
+  "module": "scope-frame",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "recipe.json exists",
+    "stage gate fires after target declaration",
+    "/scope command",
+    "scope expansion detected",
+    "before specify runs",
+    "define scope",
+    "what are we not building"
+  ],
+  "anti_activators": [
+    "recipe has not run",
+    "scope.md locked and no expansion detected"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Plan"
+  ],
+  "stages": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/scope.md",
+      ".wabblespec/receipts/scopeframe-receipt.json"
+    ],
+    "reads": [
+      ".wabblespec/recipe.json"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "recipe"
+  ],
+  "loading_gate": "stage",
+  "commands": [],
+  "file_path_patterns": []
+}

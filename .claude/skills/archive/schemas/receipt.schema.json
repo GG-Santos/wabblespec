@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Archive Delivery Receipt",
+  "description": "Extension fields for delivery-receipt-<timestamp>.json. Extends receipt.base.schema.json. Written by Archive as the master I10 completion record.",
+  "type": "object",
+  "required": [
+    "receipts_aggregated",
+    "not_tested_items",
+    "version_previous",
+    "version_new",
+    "version_bump_reason",
+    "waves_completed",
+    "all_waves_passed"
+  ],
+  "properties": {
+    "receipts_aggregated": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Count of receipts read during aggregation. Minimum 1 (at least one wave receipt required)."
+    },
+    "not_tested_items": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total count of not_tested items aggregated from all receipts. Verbatim in delivery receipt."
+    },
+    "not_tested_list": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Aggregated not_tested items from all receipts. Deduplicated exact duplicates; distinct items preserved. Becomes starting scope for next related session."
+    },
+    "version_previous": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semver version before bump"
+    },
+    "version_new": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semver version after bump"
+    },
+    "version_bump_reason": {
+      "type": "string",
+      "enum": ["BREAKING", "ADDITIVE", "COSMETIC"],
+      "description": "BREAKING = major bump. ADDITIVE = minor bump. COSMETIC = patch bump."
+    },
+    "waves_completed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of waves that completed with Verifier PASS"
+    },
+    "waves_planned": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of waves declared in the decompose plan"
+    },
+    "all_waves_passed": {
+      "type": "boolean",
+      "description": "True only when waves_completed = waves_planned and no wave receipt has status FAIL"
+    },
+    "missing_receipts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required receipt files that were absent. Populated only on FAIL status. Empty on PASS."
+    },
+    "changelog_path": {
+      "type": "string",
+      "description": "Path to CHANGELOG.md where the new entry was appended"
+    },
+    "version_file_path": {
+      "type": "string",
+      "description": "Path to VERSION file that was bumped"
+    }
+  },
+  "if": {
+    "properties": { "all_waves_passed": { "const": false } }
+  },
+  "then": {
+    "required": ["missing_receipts"]
+  }
+}

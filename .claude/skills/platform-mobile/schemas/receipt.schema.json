@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Mobile Platform Receipt",
+  "description": "Extends base receipt schema for Mobile platform activation and gate verification.",
+  "allOf": [
+    { "$ref": "../../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "platform_target": {
+      "type": "string",
+      "const": "mobile",
+      "description": "Fixed: mobile"
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["react-native", "flutter", "native-ios", "native-android", "capacitor", "expo-managed", "other"],
+      "description": "Mobile framework detected by Recipe"
+    },
+    "os_targets": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["ios", "android"] },
+      "description": "Mobile operating systems targeted"
+    },
+    "ios_signing_declared": {
+      "type": "boolean",
+      "description": "iOS provisioning profile and certificate strategy declared"
+    },
+    "android_signing_declared": {
+      "type": "boolean",
+      "description": "Android keystore signing strategy declared"
+    },
+    "permissions_declared": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All OS permissions declared with usage descriptions"
+    },
+    "offline_behavior_declared": {
+      "type": "boolean",
+      "description": "Offline behavior explicitly declared in design-document"
+    },
+    "ota_strategy_declared": {
+      "type": "boolean",
+      "description": "OTA update strategy declared (or 'store-only' documented)"
+    },
+    "spec_template_variant": {
+      "type": "string",
+      "const": "mobile",
+      "description": "Fixed: mobile"
+    },
+    "verification_gates_passed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that passed"
+    },
+    "verification_gates_failed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Gate IDs that failed. Must be empty before Delivery wave."
+    }
+  },
+  "required": [
+    "platform_target",
+    "framework",
+    "os_targets",
+    "offline_behavior_declared",
+    "spec_template_variant",
+    "verification_gates_passed",
+    "verification_gates_failed"
+  ]
+}

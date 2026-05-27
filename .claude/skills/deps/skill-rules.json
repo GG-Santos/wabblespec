@@ -1,0 +1,27 @@
+{
+  "module": "deps",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/deps", "dependency audit", "check dependencies", "sbom", "supply chain"],
+  "authority": {
+    "owns": [".wabblespec/receipts/deps-receipt-*.json", ".wabblespec/deps/sbom-*.json"],
+    "reads": [
+      "modules/l1/deps/rules/health-dimensions.md",
+      "modules/l1/deps/rules/risk-tiers.md",
+      "modules/l1/deps/rules/sbom-format.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "DPS-1", "rule": "status = FAIL when risk_summary.critical > 0", "severity": "BLOCKING" },
+    { "id": "DPS-2", "rule": "status = PARTIAL when risk_summary.high > 0 and critical = 0", "severity": "WARNING" },
+    { "id": "DPS-3", "rule": "SBOM must be produced for every deps run", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/health-dimensions.md",
+    "rules/risk-tiers.md",
+    "rules/sbom-format.md"
+  ],
+  "receipt_schema": "schemas/deps-receipt.schema.json"
+}

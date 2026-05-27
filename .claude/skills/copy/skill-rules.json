@@ -1,0 +1,16 @@
+{
+  "module": "copy",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "ui_component_text_request", "/copy"],
+  "authority": {
+    "owns": [".wabblespec/receipts/copy-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["category_declared", "context_declared"],
+  "receipt_schema": "modules/l6/copy/schemas/copy-receipt.schema.json",
+  "max_concurrent": 3,
+  "idempotent": true
+}

@@ -1,0 +1,54 @@
+{
+  "module": "provenance",
+  "layer": "L5",
+  "tier": 2,
+  "activators": [
+    "record evidence lineage",
+    "provenance write",
+    "memory write notification",
+    "breaking spec change",
+    "cascade needs reverification",
+    "deletion provenance",
+    "track evidence citation",
+    "record drawer deletion",
+    "contradiction detected"
+  ],
+  "anti_activators": [
+    "read evidence content",
+    "search drawers",
+    "write drawer",
+    "staleness transition"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "ALL"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/memory/provenance/ledger.md",
+      ".wabblespec/memory/provenance/index.json",
+      ".wabblespec/memory/provenance/contradictions.md",
+      ".wabblespec/receipts/provenance-*.json"
+    ],
+    "reads": [
+      ".wabblespec/memory/index.json",
+      ".wabblespec/memory/wings/**/*.json",
+      ".wabblespec/engine/shared/references/staleness-states.md"
+    ],
+    "notifies": [
+      "memory"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "requires_receipts_from": [],
+  "loading_gate": "activation",
+  "commands": [],
+  "file_path_patterns": []
+}

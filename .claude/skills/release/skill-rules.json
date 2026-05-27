@@ -1,0 +1,74 @@
+{
+  "module": "release",
+  "layer": "L7",
+  "tier": 1,
+  "activators": [
+    "release",
+    "create release",
+    "publish release",
+    "tag release",
+    "github release",
+    "cut a release",
+    "/release"
+  ],
+  "anti_activators": [
+    "production deploy not confirmed",
+    "deploy rolled back",
+    "tag already exists",
+    "changelog missing"
+  ],
+  "preconditions": [
+    "deploy-receipt-production-*.json exists with status DEPLOYED",
+    ".wabblespec/CHANGELOG.md has entry for current VERSION",
+    "Tag v{VERSION} does not already exist in git"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Deliver"
+  ],
+  "stages": [
+    "post-deploy"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/receipts/release-receipt-*.json"
+    ],
+    "reads": [
+      ".wabblespec/receipts/deploy-receipt-production-*.json",
+      ".wabblespec/CHANGELOG.md",
+      ".wabblespec/VERSION",
+      ".wabblespec/artifacts/manifest-*.json"
+    ],
+    "publishes": [
+      "git-tag",
+      "github-release"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "Production deploy receipt with status DEPLOYED required before release",
+    "Tag must be annotated and signed \u2014 no lightweight tags",
+    "Never force-push a release tag",
+    "Release notes sourced verbatim from CHANGELOG.md \u2014 not written from scratch",
+    "All Package artifacts attached to GitHub Release with SHA-256 and signature files"
+  ],
+  "produces": [
+    "release-receipt",
+    "git-tag",
+    "github-release"
+  ],
+  "depends_on": [
+    "deploy",
+    "archive",
+    "package"
+  ],
+  "loading_gate": "phase",
+  "commands": [
+    "/release"
+  ],
+  "file_path_patterns": []
+}

@@ -1,0 +1,34 @@
+{
+  "module": "adversary",
+  "layer": "L2",
+  "tier": 2,
+  "activators": ["/adversary", "challenge this", "adversarial review", "challenge output", "stress test"],
+  "authority": {
+    "owns": [".wabblespec/receipts/adversary-receipt-*.json"],
+    "reads": [
+      "modules/l2/adversary/rules/budget-thresholds.md",
+      "modules/l2/adversary/rules/challenge-format.md",
+      "modules/l2/adversary/rules/anchoring-prevention.md"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "invocation": {
+    "required_inputs": ["artifact_to_challenge", "challenger_mode"],
+    "conditional_inputs": [
+      { "field": "spec_artifact", "required_when": "challenger_mode = spec-bound" }
+    ]
+  },
+  "invariants": [
+    { "id": "ADV-1", "rule": "anchoring_prevention_applied must be true in every receipt", "severity": "BLOCKING" },
+    { "id": "ADV-2", "rule": "All four challenge domains must be present in counter_analysis", "severity": "BLOCKING" },
+    { "id": "ADV-3", "rule": "Adversary must not receive reasoning context from the producing module", "severity": "BLOCKING" },
+    { "id": "ADV-4", "rule": "counter_analysis arrays may be empty only when strong_output_acknowledged = true", "severity": "WARNING" }
+  ],
+  "rules": [
+    "rules/budget-thresholds.md",
+    "rules/challenge-format.md",
+    "rules/anchoring-prevention.md"
+  ],
+  "receipt_schema": "schemas/adversary-receipt.schema.json"
+}
