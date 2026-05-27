@@ -101,6 +101,9 @@ performance-budgets:
 progressive-disclosure:
   description: Output length and detail calibration rules — when to summarize vs expand, receipt compaction, and context rotation
 
+prompt-injection-patterns:
+  description: Prompt injection detection patterns for Guard Layer 3 external content scan — Category A (direct override), B (embedded directive), C (exfiltration), D (obfuscation), with severity and response actions
+
 prompt-patterns:
   description: Effective prompt construction patterns for module SKILL.md authors — activation phrasing, output contracts, and anti-patterns
 
