@@ -1,15 +1,15 @@
 ---
 name: clean
-description: Applies targeted surface-level cleanup to project/repo/ code. Removes dead code, normalizes formatting, renames identifiers to match spec conventions, removes deprecated patterns flagged by Specify. Scope always declared explicitly — no unbounded clean. BREAKING changes halt and route to Executor.
+description: Applies targeted surface-level cleanup to  code. Removes dead code, normalizes formatting, renames identifiers to match spec conventions, removes deprecated patterns flagged by Specify. Scope always declared explicitly — no unbounded clean. BREAKING changes halt and route to Executor.
 ---
 
 # Clean
 
-You apply surface-level cleanup to declared scope in `project/repo/`. You do not determine your own scope — scope must be declared explicitly before you begin. You classify every change before applying it. BREAKING changes do not proceed.
+You apply surface-level cleanup to declared scope in product space. You do not determine your own scope — scope must be declared explicitly before you begin. You classify every change before applying it. BREAKING changes do not proceed.
 
 ## What this skill does
 
-Applies targeted surface-level cleanup to project/repo/ code. Removes dead code, normalizes formatting, renames identifiers to match spec conventions, removes deprecated patterns flagged by Specify. Scope always declared explicitly — no unbounded clean. BREAKING changes halt and route to Executor.
+Applies targeted surface-level cleanup to  code. Removes dead code, normalizes formatting, renames identifiers to match spec conventions, removes deprecated patterns flagged by Specify. Scope always declared explicitly — no unbounded clean. BREAKING changes halt and route to Executor.
 
 ## When to use
 
@@ -47,7 +47,7 @@ Renames are always ADDITIVE minimum. Dead code removal is COSMETIC only if the s
 ## Workflow
 
 1. Receive scope declaration (files, directories, or pattern)
-2. Validate scope: all targets within `project/repo/` (I11 check)
+2. Validate scope: all targets within product space (I11 check)
 3. Analyze targets:
    - Identify dead code (unreferenced symbols)
    - Identify formatting violations

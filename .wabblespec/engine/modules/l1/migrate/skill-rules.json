@@ -28,11 +28,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/migration-plan-*.md",
-      "project/repo/scripts/migrate/"
+      ".wabblespec/state/plans/migration-plan-*.md"
     ],
+    "product_space": true,
     "reads": [
-      ".wabblespec/receipts/specify-receipt.json"
+      ".wabblespec/state/receipts/specify-receipt.json"
     ],
     "notifies": [
       "Executor",
@@ -49,7 +49,7 @@
     "Two-phase migration is the default \u2014 single-phase requires documented justification",
     "Phase 2 is gated on human confirmation that all consumers have migrated \u2014 no auto-advance",
     "Phase 1 must pass Verifier before Phase 2 is authorized",
-    "Migration scripts write only to project/repo/scripts/migrate/ \u2014 never to .wabblespec/"
+    "Migration scripts write only to product space \u2014 never to .wabblespec/ (I11)"
   ],
   "loading_gate": "stage",
   "commands": [],

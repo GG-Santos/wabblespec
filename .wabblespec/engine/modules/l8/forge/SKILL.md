@@ -57,7 +57,7 @@ If any gate is unmet, Forge exits with `FORGE_BLOCKED`, names the unmet gate, an
 **Mutates:** Downstream module receipts (NEEDS_REVERIFICATION notes)
 **Moves:** experiment to archive with provenance record
 
-**Does not touch:** product source under `project/repo/`
+**Does not touch:** product source under product space
 
 ## Failure modes
 

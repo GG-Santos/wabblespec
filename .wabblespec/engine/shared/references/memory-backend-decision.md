@@ -84,7 +84,7 @@ If WabbleSpec Memory/ChromaDB becomes unavailable or breaks:
 
 1. **Immediate fallback:** All drawer content is written to `.wabblespec/memory/` as files by WabbleSpec Memory — these exist regardless of whether ChromaDB is queryable. Drawers can be read by ID from the filesystem without WabbleSpec Memory.
 2. **Search fallback:** Add a `grep`-based staleness-aware search script over drawer files. No semantic ranking — keyword match only. Acceptable for emergency retrieval.
-3. **Full migration:** Port to SQLite FTS5 (context-mode-main pattern) if semantic search requirements change. Schema is stable — `wabblespec_*` metadata fields translate to SQLite columns. Migration script path: `project/repo/scripts/migrate/memory-to-fts5.py`.
+3. **Full migration:** Port to SQLite FTS5 (context-mode-main pattern) if semantic search requirements change. Schema is stable — `wabblespec_*` metadata fields translate to SQLite columns. Migration script path: `scripts/migrate/memory-to-fts5.py`.
 
 Rollback does not require changing module SKILL.md files. Only the bootstrap script and MemorySearch query execution change.
 

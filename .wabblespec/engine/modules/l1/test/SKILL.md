@@ -39,7 +39,7 @@ Untestable requirement: flag with `<!-- UNTESTABLE: <reason> -->` and write to n
    - Generate test stub
    - Flag untestable requirements
 4. Read platform package testing conventions for framework selection
-5. Write test stubs to `project/repo/tests/` (I11 — test files are product files)
+5. Write test stubs to `tests/` (I11 — test files are product files)
 6. Write test plan to `.wabblespec/plans/test-plan-<spec-id>.md`
 7. Write Test receipt
 
@@ -95,6 +95,6 @@ Writes a receipt to `.wabblespec/receipts/` on successful completion.
 
 - Do not execute tests — generate stubs only
 - Do not skip untestable requirements — flag them explicitly
-- Do not write test stubs outside `project/repo/tests/`
+- Do not write test stubs outside `tests/`
 - Do not infer test framework — read it from the active platform package
 - Do not generate stubs without reading the spec artifact first

@@ -35,7 +35,7 @@ This gateway runs first in the gateway chain. A BLOCK from this gateway stops th
 ## Verdict rules
 
 **BLOCK** on:
-- Hardcoded credentials or secrets in any file reaching `project/repo/`
+- Hardcoded credentials or secrets in any file reaching product space
 - Use of known-broken algorithms (MD5/SHA1 for security, DES, RC4)
 - Unauthenticated endpoints handling PII
 - SAST findings at severity HIGH or CRITICAL

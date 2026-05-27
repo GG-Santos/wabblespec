@@ -12,9 +12,9 @@
 
 WabbleSpec maintains two distinct namespaces in every repository:
 
-- **Framework space** — `.wabblespec/` and all files under it (`framework.yaml`, `receipts/`, `plans/`, `session/`, `memory/`, `experiments/`). Owned exclusively by framework modules. The module registry (`framework.yaml`) is the canonical source of truth for all 99 modules. If it is corrupted or overwritten mid-session, Guard cannot enforce invariants and the entire receipt chain loses its authority anchor.
+- **Framework space** — `.wabblespec/` and all files under it (`wabblespec.yaml`, `engine/`, `state/`). Owned exclusively by framework modules. The module registry (`wabblespec.yaml`) is the canonical source of truth for all 99 modules. If it is corrupted or overwritten mid-session, Guard cannot enforce invariants and the entire receipt chain loses its authority anchor.
 
-- **Product space** — `project/repo/` (or whatever the product target directory is). Owned by product-space tasks executing under Executor waves. Product receipts are written to `.wabblespec/receipts/` by the framework (not by product task code), but actual code/artifact output goes to product space only.
+- **Product space** — project root excluding `.wabblespec/`, `.claude/`, and `.git/`. Any root-level directory or file not starting with one of those prefixes is product space. Owned by product-space tasks executing under Executor waves. Product receipts are written to `.wabblespec/state/receipts/` by the framework (not by product task code), but actual code/artifact output goes to product space only.
 
 Without a hard boundary, the following failure modes are possible:
 
@@ -30,11 +30,13 @@ Without a hard boundary, the following failure modes are possible:
 
 ## Decision
 
-`.wabblespec/` is framework space. `project/repo/` is product space. **No product-space task writes to `.wabblespec/`, ever.** Framework modules write receipts and state; product task code writes only to the designated product output directory.
+`.wabblespec/` is framework space. Project root (excluding `.wabblespec/`, `.claude/`, `.git/`) is product space. **No product-space task writes to `.wabblespec/`, ever.** Framework modules write receipts and state; product task code writes only to product space.
+
+Product-space modules declare `"product_space": true` in their `skill-rules.json` authority block instead of enumerating `"owns"` globs. Guard translates this to: any path not prefixed with `.wabblespec/`, `.claude/`, or `.git/` is authorized.
 
 The boundary is enforced at two layers:
 
-1. **Guard pre-wave** — Guard's authority check reads the executing module's `skill-rules.json` `authority.owns` list and validates that every planned write target falls within that module's declared authority. Any write targeting `.wabblespec/` from a non-framework module is a HARD error (type: `AUTHORITY_VIOLATION`).
+1. **Guard pre-wave** — Guard's authority check reads the executing module's `skill-rules.json`. If `authority.product_space == true`, any path outside `.wabblespec/`, `.claude/`, `.git/` is authorized. Explicit `authority.owns` globs are also supported for modules with narrower authority. Any write targeting `.wabblespec/` from a non-framework module is a HARD error (type: `AUTHORITY_VIOLATION`).
 
 2. **PreToolUse hook** — `pre-tool-use-receipt-check.py` intercepts every Edit/Write/Bash/MultiEdit call and checks whether the target path is inside `.wabblespec/`. If it is, and the current session has no active framework module with authority over that path, the hook emits a warning injection.
 
@@ -54,7 +56,7 @@ A static allowlist file (e.g., `.wabblespec/engine/shared/references/framework-p
 
 ### Path prefix gate only (no module-level authority) — Rejected
 
-A simple `.wabblespec/` prefix guard (any write to this prefix is blocked from product space) is necessary but not sufficient. It does not address the inverse: a framework module accidentally writing to the product directory (e.g., writing a receipt to `project/repo/` instead of `.wabblespec/receipts/`). The bidirectional authority model (owns + reads declared per module) catches both directions.
+A simple `.wabblespec/` prefix guard (any write to this prefix is blocked from product space) is necessary but not sufficient. It does not address the inverse: a framework module accidentally writing to the product directory (e.g., writing a receipt to product space instead of `.wabblespec/receipts/`). The bidirectional authority model (owns + reads declared per module) catches both directions.
 
 ---
 
@@ -62,7 +64,7 @@ A simple `.wabblespec/` prefix guard (any write to this prefix is blocked from p
 
 ### Positive
 
-- Framework registry (`framework.yaml`) has guaranteed integrity across all execution waves.
+- Framework registry (`wabblespec.yaml`) has guaranteed integrity across all execution waves.
 - Receipt chain is always written by framework modules, never by product code. Receipts are authentic artifacts.
 - Guard's pre-wave authority check is cheap and deterministic: O(n) scan of the wave's planned write targets against the module's declared owns list.
 - New module authors get a clear, machine-checkable contract: declare your `authority.owns` paths, write only to those paths.

@@ -100,15 +100,15 @@ def find_repo_root(start=None):
 def find_rules_file(module_id, repo_root):
     """
     Search for skill-rules.json by module id.
-    Tries modules/<layer>/<id>/skill-rules.json for each known layer.
+    Tries .wabblespec/engine/modules/<layer>/<id>/skill-rules.json for each known layer.
     Returns the first match or None.
     """
     layers = ["l0", "l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8"]
     for layer in layers:
-        path = os.path.join(repo_root, "modules", layer, module_id, "skill-rules.json")
+        path = os.path.join(repo_root, ".wabblespec", "engine", "modules", layer, module_id, "skill-rules.json")
         if os.path.isfile(path):
             return path
-    # Also try a flat modules/<id>/skill-rules.json
+    # Fallback: flat modules/<id>/skill-rules.json (legacy)
     path = os.path.join(repo_root, "modules", module_id, "skill-rules.json")
     if os.path.isfile(path):
         return path
@@ -128,6 +128,14 @@ def load_rules(rules_file):
 # Layer 4 — Authority check
 # ---------------------------------------------------------------------------
 
+_FRAMEWORK_PREFIXES = (".wabblespec/", ".claude/", ".git/")
+
+
+def _is_product_space(path_normalized: str) -> bool:
+    """Return True if path is in product space (not under any framework prefix)."""
+    return not any(path_normalized.startswith(p) for p in _FRAMEWORK_PREFIXES)
+
+
 def check_authority(rules, proposed_files, wave_files=None):
     """
     Returns a Layer 4 report dict:
@@ -138,8 +146,13 @@ def check_authority(rules, proposed_files, wave_files=None):
         "misactivation_risk": bool,    # True if file_path_patterns non-empty and no wave_files match
         "details": str
     }
+
+    If authority.product_space == true, any path not under .wabblespec/, .claude/, or .git/
+    is authorized. Explicit authority.owns globs are checked in addition.
     """
-    owns_patterns = rules.get("authority", {}).get("owns", [])
+    authority = rules.get("authority", {})
+    product_space_flag = authority.get("product_space", False)
+    owns_patterns = authority.get("owns", [])
     file_path_patterns = rules.get("file_path_patterns", [])
 
     unauthorized = []
@@ -147,11 +160,15 @@ def check_authority(rules, proposed_files, wave_files=None):
         # Normalize path separators for matching
         f_normalized = f.replace("\\", "/")
         matched = False
-        for pat in owns_patterns:
-            pat_normalized = pat.replace("\\", "/")
-            if fnmatch.fnmatch(f_normalized, pat_normalized):
-                matched = True
-                break
+        # product_space: true grants authority over all non-framework paths
+        if product_space_flag and _is_product_space(f_normalized):
+            matched = True
+        if not matched:
+            for pat in owns_patterns:
+                pat_normalized = pat.replace("\\", "/")
+                if fnmatch.fnmatch(f_normalized, pat_normalized):
+                    matched = True
+                    break
         if not matched:
             unauthorized.append(f)
 

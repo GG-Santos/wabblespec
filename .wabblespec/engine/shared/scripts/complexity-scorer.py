@@ -32,7 +32,7 @@ SCALE_THRESHOLDS = [
 def score_file_scope(task_text: str, wave_text: str) -> tuple[float, str]:
     """Factor 1: Number of files declared in wave plan."""
     all_text = task_text + "\n" + wave_text
-    file_refs = re.findall(r"project/repo/[^\s`\"']+", all_text)
+    file_refs = re.findall(r"(?:src/|lib/|app/|tests/)[^\s`\"']+", all_text)
     unique_files = len(set(file_refs))
     if unique_files == 0:
         score = 0.1

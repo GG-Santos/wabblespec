@@ -19,7 +19,7 @@ LLM safety and evaluation gate. Activates before any execution that produces AI/
 
 - Any target tagged `ai`, `llm`, `ml`, `agent`, `embedding`, `rag`
 - Any platform-ai-agent target
-- Any wave that adds an LLM API call to `project/repo/`
+- Any wave that adds an LLM API call to product space
 - Explicit invocation: `/gateway-ai`
 
 ## Sequencing

@@ -16,7 +16,7 @@ Clean does not determine its own scope. A scope must be declared before any anal
 
 ## Scope boundaries
 
-All scope targets must resolve within `project/repo/`. Any target that resolves outside `project/repo/` is rejected before analysis begins (I11 check).
+All scope targets must resolve within product space. Any target that resolves outside product space is rejected before analysis begins (I11 check).
 
 Clean never self-expands scope. If Clean discovers that the cleanup in a declared scope logically connects to another file, it reports that connection — it does not include the connected file unless it is in the declared scope.
 

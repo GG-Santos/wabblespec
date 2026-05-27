@@ -23,7 +23,7 @@ Then every WHEN/THEN requirement maps to at least one positive case and one boun
 Then every IF/WHEN/THEN requirement maps to a positive case and a condition-not-met case.
 Then every WHILE requirement maps to a state-entry test and a state-exit test.
 Then a test plan is written to `.wabblespec/plans/test-plan-<spec-id>.md`.
-Then test stubs are written to `project/repo/tests/`.
+Then test stubs are written to `tests/`.
 Then a receipt is written to `.wabblespec/receipts/`.
 
 ## Untestable requirements: flag, never skip
@@ -49,10 +49,10 @@ Then Test operates in test-plan mode (writing stubs and plans, not running tests
 Then no DEPENDENCY error is surfaced for absent wave receipts in pre-execution mode.
 Then no attempt is made to run tests against code that has not been written yet.
 
-## Test stubs: written to project/repo/tests/ only
+## Test stubs: written to tests/ only
 
 Given any Test run,
-Then test stubs are written to `project/repo/tests/` only.
+Then test stubs are written to `tests/` only.
 Then Test does not write stubs outside that path.
 Then Test does not execute tests — stub generation only.
 

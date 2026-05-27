@@ -7,7 +7,7 @@ The enforcement and execution layer. L2 modules run tasks, verify outcomes, enfo
 ### Execution
 | Module | Role |
 |--------|------|
-| `executor` | Executes the wave plan wave by wave. Writes to `project/repo/` only. Halts on wave failure. Core pipeline module. |
+| `executor` | Executes the wave plan wave by wave. Writes to product space only. Halts on wave failure. Core pipeline module. |
 | `autopilot` | Full lifecycle meta-orchestrator. Owns `.wabblespec/meta.md`. Scale-adaptive autonomy (L0–L4 complexity). Manages phase transitions, triggers Dream post-wave, schedules Evolution. |
 | `rollback` | Reverts a wave or execution to a previous checkpoint. Requires a declared rollback target in the wave plan. |
 
@@ -31,7 +31,7 @@ The enforcement and execution layer. L2 modules run tasks, verify outcomes, enfo
 
 ## Key behaviors
 
-**Executor** is the only module authorized to write to `project/repo/`. All other modules that produce project artifacts must route through Executor. The post-wave hook (`modules/l2/executor/hooks/post-wave-receipt-check.py`) fires after each tool call to verify wave integrity.
+**Executor** is the only module authorized to write to product space. All other modules that produce project artifacts must route through Executor. The post-wave hook (`modules/l2/executor/hooks/post-wave-receipt-check.py`) fires after each tool call to verify wave integrity.
 
 **Guard** enforces five nested scope boundaries. A CRITICAL-tier block halts the entire session — not just the current wave. Guard receipts are written on any WARN or BLOCK event.
 
@@ -46,7 +46,7 @@ The enforcement and execution layer. L2 modules run tasks, verify outcomes, enfo
 
 ## Layer rules
 
-- Executor writes only to `project/repo/` — never to `.wabblespec/`
+- Executor writes only to product space — never to `.wabblespec/`
 - Guard and Economy run as cross-cutting concerns, not as pipeline stages
 - Rollback requires a declared rollback target — cannot roll back without a checkpoint
 - Model-router never outputs model names — only capability descriptors

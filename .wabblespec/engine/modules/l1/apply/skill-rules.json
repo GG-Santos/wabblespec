@@ -19,17 +19,17 @@
     "ALL"
   ],
   "authority": {
-    "owns": [
-      "project/repo/**/*"
-    ],
+    "product_space": true,
     "reads": [
-      ".wabblespec/receipts/",
-      ".wabblespec/plans/",
-      "modules/l3/",
-      "modules/l4/"
+      ".wabblespec/state/receipts/",
+      ".wabblespec/state/plans/",
+      ".wabblespec/engine/modules/l3/",
+      ".wabblespec/engine/modules/l4/"
     ],
     "forbidden_writes": [
-      ".wabblespec/"
+      ".wabblespec/",
+      ".claude/",
+      ".git/"
     ]
   },
   "verification_mode": "Review",

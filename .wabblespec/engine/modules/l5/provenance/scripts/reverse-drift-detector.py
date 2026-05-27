@@ -83,7 +83,7 @@ def load_wave_plan_targets(wave_plan_path: Path):
     with open(wave_plan_path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line.startswith("- ") and ("project/repo/" in line or "src/" in line):
+            if line.startswith("- ") and ("" in line or "src/" in line):
                 # Extract path-like tokens
                 for token in line.split():
                     if token.startswith("project/") or token.startswith("src/"):

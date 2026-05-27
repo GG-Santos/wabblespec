@@ -18,7 +18,7 @@ Build quality and standards gate. Activates before any engineering execution at 
 ## When this gateway activates
 
 - Any engineering execution at Medium or High complexity
-- Any wave plan that modifies `project/repo/` at more than 3 files
+- Any wave plan that modifies product space at more than 3 files
 - Any wave plan that adds or removes dependencies
 - Explicit invocation: `/gateway-engineering`
 

@@ -56,7 +56,7 @@ Every module lives at `modules/l{N}/{name}/` and contains:
 | I3 | A module writes only to paths listed in its `authority.owns`. |
 | I4 | `framework.yaml` is the single source of truth for module registration. |
 | I10 | No implied completion. A module that starts a process must complete it, fail explicitly, or escalate. |
-| I11 | Apply writes only to `project/repo/`. Never touches `.wabblespec/`. |
+| I11 | Apply writes only to product space. Never touches `.wabblespec/`. |
 | I12 | Every output token carries information. No decorative prose. |
 
 Full invariant list: `.wabblespec/engine/shared/references/invariants.md`.

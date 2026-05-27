@@ -45,9 +45,9 @@ Each stage is a discrete module invocation. Stages are ordered — a stage does 
 
 ### Executor (L2)
 **Activator:** After Decompose PASS and all required gateway PASses.
-**Does:** Executes the wave plan wave by wave. Each wave modifies `project/repo/`. Writes a wave receipt after each wave. Halts on wave failure — does not continue to next wave.
+**Does:** Executes the wave plan wave by wave. Each wave modifies product space. Writes a wave receipt after each wave. Halts on wave failure — does not continue to next wave.
 **Writes:** `executor-receipt-{run-id}.json`, wave receipts per wave.
-**Authority:** Only writes to `project/repo/`. Never touches `.wabblespec/`.
+**Authority:** Only writes to product space. Never touches `.wabblespec/`.
 
 ### Verifier (L2)
 **Activator:** After Executor receipt PASS.

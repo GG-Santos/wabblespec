@@ -22,13 +22,13 @@
     "ALL"
   ],
   "authority": {
+    "product_space": true,
     "owns": [
-      "project/repo/ (declared scope only)",
-      ".wabblespec/receipts/clean-diff-<timestamp>.md"
+      ".wabblespec/state/receipts/clean-diff-<timestamp>.md"
     ],
     "reads": [
-      ".wabblespec/receipts/specify-receipt.md",
-      ".wabblespec/receipts/entity-graph.json"
+      ".wabblespec/state/receipts/specify-receipt.md",
+      ".wabblespec/state/receipts/entity-graph.json"
     ],
     "notifies": [
       "Executor",
@@ -40,7 +40,7 @@
   "collapse_eligible": false,
   "invariants": [
     "Scope must be explicitly declared \u2014 no unbounded clean",
-    "All targets must be within project/repo/ \u2014 I11 boundary enforced",
+    "All targets must be in product space (project root excluding .wabblespec/, .claude/, .git/) \u2014 I11 enforced",
     "Every change classified COSMETIC|ADDITIVE|BREAKING before applying",
     "BREAKING changes halt and route to Executor \u2014 never applied by Clean",
     "Before/after diff written to receipt for every change applied",

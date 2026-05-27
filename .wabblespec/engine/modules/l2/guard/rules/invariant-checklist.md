@@ -72,7 +72,7 @@ Violation action: DEPENDENCY error — pause, surface missing receipt, await res
 
 Check: Wave writes only to product space. Executor waves must not write to `.wabblespec/` (framework space). Framework modules that legitimately write to `.wabblespec/` are exempt — but only their declared `authority.owns` paths.
 
-Pass condition: Wave output paths are in `project/repo/` (product space) OR match the requesting module's `authority.owns` entries exactly.
+Pass condition: Wave output paths are in product space (product space) OR match the requesting module's `authority.owns` entries exactly.
 
 Violation action: HARD error — abort wave immediately.
 

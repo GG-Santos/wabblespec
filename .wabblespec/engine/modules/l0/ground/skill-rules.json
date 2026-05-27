@@ -6,9 +6,9 @@
   "authority": {
     "owns": [".wabblespec/receipts/ground-receipt.json"],
     "reads": [
-      ".wabblespec/plans/task-card.md",
-      ".wabblespec/plans/wave-plan.md",
-      "project/repo/**"
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/plans/wave-plan.md",
+      "**/*"
     ]
   },
   "verification_mode": "observation",
@@ -26,9 +26,8 @@
     ]
   },
   "never_writes": [
-    "project/repo/**",
-    ".wabblespec/plans/**",
-    ".wabblespec/memory/**"
+    ".wabblespec/state/plans/**",
+    ".wabblespec/state/memory/**"
   ],
   "blocks_on": ["BLOCK"],
   "passes_through_on": ["PASS", "PARTIAL"]

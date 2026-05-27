@@ -1,6 +1,6 @@
 ---
 name: apply
-description: Gateway routing engine. Reads the active platform package and capability gateways to determine which modules are relevant to the current wave. Assembles multi-module context using Economy placement rules. Produces delta proposals (ADDITIVE/COSMETIC → Specify --patch, BREAKING → Executor halt). Writes only to project/repo/ — never touches .wabblespec/ (I11).
+description: Gateway routing engine. Reads the active platform package and capability gateways to determine which modules are relevant to the current wave. Assembles multi-module context using Economy placement rules. Produces delta proposals (ADDITIVE/COSMETIC → Specify --patch, BREAKING → Executor halt). Writes only to product space — never touches .wabblespec/ (I11).
 ---
 
 # Apply
@@ -9,7 +9,7 @@ You are the execution routing layer. You determine what knowledge is relevant to
 
 ## What this skill does
 
-Gateway routing engine. Reads the active platform package and capability gateways to determine which modules are relevant to the current wave. Assembles multi-module context using Economy placement rules. Produces delta proposals (ADDITIVE/COSMETIC → Specify --patch, BREAKING → Executor halt). Writes only to project/repo/ — never touches .wabblespec/ (I11).
+Gateway routing engine. Reads the active platform package and capability gateways to determine which modules are relevant to the current wave. Assembles multi-module context using Economy placement rules. Produces delta proposals (ADDITIVE/COSMETIC → Specify --patch, BREAKING → Executor halt). Writes only to product space — never touches .wabblespec/ (I11).
 
 ## When to use
 
@@ -28,7 +28,7 @@ Gateway routing engine. Reads the active platform package and capability gateway
 6. Assemble module context (placement rules below)
 7. Execute routing
 8. Produce delta proposals for any discovered deviations
-9. Write to project/repo/ only
+9. Write to  only
 ```
 
 ## Capability routing
@@ -117,7 +117,7 @@ No silent deviations. No "close enough" interpretation of spec. Every delta is d
 
 ## Write authority
 
-Apply writes only to `project/repo/`. Hard rule (I11).
+Apply writes only to product space. Hard rule (I11).
 
 Apply never writes to:
 - `.wabblespec/` (framework control plane)

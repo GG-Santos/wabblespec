@@ -24,7 +24,7 @@
       ".wabblespec/plans/project-map.md"
     ],
     "reads": [
-      "project/repo/**/*"
+      "**/*"
     ],
     "notifies": [
       "EntityGraph",

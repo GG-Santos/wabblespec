@@ -55,7 +55,7 @@ Then Specify halts and surfaces the boundary change to the user before the wave 
 ## Write authority invariant (I11)
 
 Given any Apply invocation,
-Then Apply writes only to `project/repo/`.
+Then Apply writes only to product space.
 Then Apply never writes to `.wabblespec/`.
 Then if Apply discovers it needs to write outside declared wave targets, it surfaces SPEC_VIOLATION and does not proceed.
 

@@ -4,23 +4,23 @@ Guidance for Claude Code (claude.ai/code) in this repository.
 
 ## What This Repository Is
 
-WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 99 skill modules across layers L0–L8, `framework.yaml` as canonical module registry.
+WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 99 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
 
 Current version: **0.23.0** (see `.wabblespec/VERSION`)
 
 ## Key Scripts
 
-All scripts require `pip install pyyaml pytest jinja2` (see `.claude/skills/skill-factory/requirements.txt`). All scripts in `_shared/scripts/`; run any with `--help` for flags.
+All scripts require `pip install pyyaml pytest jinja2` (see `.claude/skills/factory/requirements.txt`). All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help` for flags.
 
 ## The 12 Invariants
 
-Full table: `_shared/references/invariants.md`. Key session rules:
+Full table: `.wabblespec/engine/shared/references/invariants.md`. Key session rules:
 
 - **I1 SPEC IS SINGLE SOURCE OF TRUTH** — Every execution is grounded in spec. P2 blocked until P1 locked; P3 blocked until P2 locked.
 - **I4 VERIFICATION IS EXPLICIT** — Every output passes a declared verification gate. Max 3 REVISE cycles; at 3 failures, Attestation required.
 - **I6 RUNTIME IS VENDOR-NEUTRAL** — No model names anywhere in framework files. Use capability descriptors only (`code-generation`, `analysis`, `synthesis`, `long-context`).
 - **I10 RECEIPTS ARE OPERATIONAL ARTIFACTS** — Every non-trivial execution writes a receipt. Implied completion is prohibited.
-- **I11 FRAMEWORK AND PRODUCT NEVER MIX** — `.wabblespec/` is framework space. `project/repo/` is product space. Never cross the boundary. Apply writes only to `project/repo/`.
+- **I11 FRAMEWORK AND PRODUCT NEVER MIX** — `.wabblespec/` is framework space. Project root (excluding `.wabblespec/`, `.claude/`, `.git/`) is product space. Never cross the boundary. Apply writes only to product space.
 - **I8 SELF-IMPROVEMENT THROUGH EVIDENCE** — Evolution chain is Execution → Receipt → Instinct → Synth → Blueprint → Augment → Benchmark → Forge. No stage skips. Self-promotion requires Attestation.
 
 ## Quality Floor Gates
@@ -32,13 +32,13 @@ Both gates enforced by `quality-floor-check.py`. Details in that script's output
 **Do not write to `.wabblespec/` from product-space tasks (I11).** Framework modules own all writes here.
 
 Key paths:
-- `framework.yaml` — canonical module registry; source of truth for all 99 modules
-- `.wabblespec/receipts/` — individual seed run receipts (100 accumulated)
-- `.wabblespec/archive/receipt-index.json` — completed task receipt index
-- `.wabblespec/memory/` — drawers, entity graph, gap-map, instinct observations
-- `.wabblespec/experiments/` — L8 evolution cycle artifacts (candidates, blueprints, augments, fixtures, tracker.json)
-- `.wabblespec/plans/` — active task card and wave plan
-- `.wabblespec/session/state.json` — session enforcement state (active only during open task)
+- `.wabblespec/wabblespec.yaml` — canonical module registry; source of truth for all 99 modules
+- `.wabblespec/state/receipts/` — individual seed run receipts (100 accumulated)
+- `.wabblespec/state/archive/receipt-index.json` — completed task receipt index
+- `.wabblespec/state/memory/` — drawers, entity graph, gap-map, instinct observations
+- `.wabblespec/state/experiments/` — L8 evolution cycle artifacts (candidates, blueprints, augments, fixtures, tracker.json)
+- `.wabblespec/state/plans/` — active task card and wave plan
+- `.wabblespec/state/session/state.json` — session enforcement state (active only during open task)
 
 ## Receipt Chain
 
@@ -46,15 +46,15 @@ Every non-trivial task: Research receipt → Plan receipt → Execution receipt 
 
 ## Staleness States
 
-Drawer evidence states and decay rules: `_shared/references/staleness-states.md`. `EXPIRED` evidence emits `STALENESS_VIOLATION` (I9) — Guard pre-tool-use hook enforces.
+Drawer evidence states and decay rules: `.wabblespec/engine/shared/references/staleness-states.md`. `EXPIRED` evidence emits `STALENESS_VIOLATION` (I9) — Guard pre-tool-use hook enforces.
 
 ## L8 Evolution Gate
 
-Gate: **MET** (as of 0.23.0). Gate conditions and current status: `_shared/references/l8-corpus-gate.md`.
+Gate: **MET** (as of 0.23.0). Gate conditions and current status: `.wabblespec/engine/shared/references/l8-corpus-gate.md`.
 
 ## Hook Architecture
 
-Hook files live in `hooks/`. All four JS files are CommonJS modules. `hooks/package.json` sets `{"type": "commonjs"}` to prevent ESM/CJS conflict when an ancestor `package.json` declares `"type": "module"`.
+Hook files live in `.wabblespec/engine/hooks/`. All four JS files are CommonJS modules. `hooks/package.json` sets `{"type": "commonjs"}` to prevent ESM/CJS conflict when an ancestor `package.json` declares `"type": "module"`.
 
 **SessionStart** (`wabblespec-session-start.js`): Runs once per session open. Writes a session flag to `~/.claude/.wabblespec-session`. Emits invariant context and active task state as stdout — Claude Code injects this as a system prompt addendum, so invariants don't need re-stating per turn.
 

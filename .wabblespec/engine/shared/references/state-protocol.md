@@ -135,7 +135,7 @@ Exclusive writers listed. All other modules submit via the owning module — nev
 | `framework.yaml` | Manual / path-linter script | All modules (read only) |
 | `.wabblespec/meta.md` | Autopilot exclusively | All modules submit change requests |
 | `.wabblespec/experiments/` | Factory, Augment, Benchmark | Forge (reads for promotion) |
-| `project/repo/` | Apply, Executor, platform modules | All spec/memory/delivery modules (read only) |
+| product space | Apply, Executor, platform modules | All spec/memory/delivery modules (read only) |
 
 ## State vs Instructions Hygiene
 

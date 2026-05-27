@@ -35,7 +35,7 @@
 ## Automated Migration Script
 
 <!-- If automatable -->
-Script: `project/repo/scripts/migrate/<change-id>.sh`
+Script: `scripts/migrate/<change-id>.sh`
 
 <!-- If not automatable -->
 Not automatable — reason: <specific reason>

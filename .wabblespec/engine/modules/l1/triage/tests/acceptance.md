@@ -75,4 +75,4 @@ Then the record contains: `timestamp`, `severity`, `type`, `recurrence_count`, `
 
 Given any Triage invocation,
 Then triage records are written to Memory only.
-Then no triage record is written to `.wabblespec/plans/` or `project/repo/`.
+Then no triage record is written to `.wabblespec/plans/` or product space.

@@ -80,7 +80,7 @@ All L4 gateways load rule files and `references/` knowledge files. Their files l
 
 ## Layer rules
 
-- Gateways never write to `project/repo/`
+- Gateways never write to product space
 - Gateways never call Executor
 - A BLOCK from gateway-security stops the entire chain — do not run remaining gateways on a security-blocked execution
 - Gateway checks run once per execution, not per wave (unless platform declaration changes mid-execution)

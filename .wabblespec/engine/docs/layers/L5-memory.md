@@ -43,6 +43,6 @@ The staleness system flags memory entries and spec artifacts that may be outdate
 ## Layer rules
 
 - Forget requires human confirmation for any entry tagged CRITICAL
-- Dream never modifies `project/repo/` — it only writes to `.wabblespec/memory/`
+- Dream never modifies product space — it only writes to `.wabblespec/memory/`
 - Provenance is append-only — never removes or modifies existing provenance entries
 - Memory-mine is a read-only analysis module — it writes to Dream's input queue, not directly to memory
