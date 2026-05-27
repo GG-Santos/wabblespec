@@ -170,8 +170,8 @@ def main():
         "not_tested": [],
     }
 
-    recipe_path = os.path.join(ws, "recipe.json")
-    receipt_path = os.path.join(ws, "receipts", f"recipe-receipt-{args.session_id}.json")
+    recipe_path = os.path.join(ws, "state", "recipe.json")
+    receipt_path = os.path.join(ws, "state", "receipts", f"recipe-receipt-{args.session_id}.json")
 
     write_json(recipe_path, recipe, args.dry_run)
     write_json(receipt_path, receipt, args.dry_run)
