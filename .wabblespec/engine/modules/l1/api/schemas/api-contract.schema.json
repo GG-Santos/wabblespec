@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "API Contract",
+  "description": "Full API contract artifact written to .wabblespec/api/contract-<timestamp>.json.",
+  "type": "object",
+  "properties": {
+    "contract_version": { "type": "string" },
+    "generated": { "type": "string", "format": "date-time" },
+    "api_name": { "type": "string" },
+    "api_version": { "type": "string" },
+    "versioning_scheme": { "type": "string", "enum": ["semver", "date-based", "header-based"] },
+    "base_url": { "type": "string" },
+    "authentication": {
+      "type": "object",
+      "properties": {
+        "method": { "type": "string", "description": "e.g. api-key, oauth2, jwt, none" },
+        "header": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      },
+      "required": ["method"]
+    },
+    "rate_limits": {
+      "type": "object",
+      "properties": {
+        "requests_per_minute": { "type": ["integer", "null"] },
+        "requests_per_day": { "type": ["integer", "null"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "error_format": {
+      "type": "object",
+      "description": "Shape of error responses. Must be stable across versions.",
+      "additionalProperties": true
+    },
+    "deprecation_policy": { "type": "string", "description": "Reference to deprecation-lifecycle.md or inline policy." },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "method": { "type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"] },
+          "description": { "type": "string" },
+          "deprecated": { "type": "boolean" },
+          "sunset_date": { "type": ["string", "null"] },
+          "request_schema": { "type": "object", "additionalProperties": true },
+          "response_schema": { "type": "object", "additionalProperties": true },
+          "status_codes": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "required": ["path", "method"]
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string" },
+          "change_class": { "type": "string", "enum": ["BREAKING", "DEPRECATION", "ADDITIVE", "COSMETIC"] },
+          "description": { "type": "string" }
+        },
+        "required": ["version", "change_class", "description"]
+      }
+    }
+  },
+  "required": ["contract_version", "generated", "api_name", "api_version", "versioning_scheme", "base_url", "authentication", "error_format", "deprecation_policy", "endpoints"]
+}

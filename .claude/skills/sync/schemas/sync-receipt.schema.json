@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sync Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Sync module.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "specs_reconciled": {
+      "type": "integer",
+      "minimum": 2,
+      "description": "Number of spec artifacts involved in reconciliation."
+    },
+    "divergence_severity": {
+      "type": "string",
+      "enum": ["MINOR", "MAJOR"],
+      "description": "Worst divergence severity found across all spec pairs."
+    },
+    "auto_merged": {
+      "type": "boolean",
+      "description": "True if all conflicts were resolved automatically (MINOR only)."
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "description": "True if any MAJOR conflict requires human decision."
+    },
+    "merge_strategy": {
+      "type": "string",
+      "enum": ["auto", "manual", "escalated"],
+      "description": "Strategy used: auto (all MINOR), manual (human resolved MAJOR), escalated (too many conflicts to list)."
+    },
+    "conflicts_resolved": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of conflicts resolved (auto or human)."
+    },
+    "conflicts_escalated": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of conflicts that could not be resolved and were escalated."
+    },
+    "sync_result_path": {
+      "type": "string",
+      "description": "Path to the sync result artifact. e.g. .wabblespec/sync/result-<timestamp>.md"
+    }
+  },
+  "required": [
+    "specs_reconciled",
+    "divergence_severity",
+    "auto_merged",
+    "human_review_required",
+    "merge_strategy",
+    "conflicts_resolved",
+    "conflicts_escalated",
+    "sync_result_path"
+  ]
+}

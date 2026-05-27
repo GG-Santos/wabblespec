@@ -1,0 +1,16 @@
+{
+  "module": "translate",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "locale_scaffold_request", "i18n_verification_request", "/translate"],
+  "authority": {
+    "owns": [".wabblespec/receipts/translate-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["mode_declared", "source_path_exists_when_extract"],
+  "receipt_schema": "modules/l6/translate/schemas/translate-receipt.schema.json",
+  "max_concurrent": 3,
+  "idempotent": true
+}

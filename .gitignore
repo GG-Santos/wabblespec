@@ -1,0 +1,7 @@
+# WabbleSpec runtime state — machine-local, not versioned in target projects
+.wabblespec/state/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

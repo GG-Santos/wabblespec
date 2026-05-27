@@ -1,0 +1,32 @@
+{
+  "module": "enhance",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/enhance", "clarify input", "vague input", "resolve dimensions", "enhance input"],
+  "authority": {
+    "owns": [".wabblespec/receipts/enhance-receipt-*.json"],
+    "reads": [
+      "modules/l1/enhance/rules/intent-dimensions.md",
+      "modules/l1/enhance/rules/critical-dimensions.md",
+      "modules/l1/enhance/rules/question-budget.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "trigger": {
+    "automatic": "Recipe sets input_vague = true",
+    "manual": "/enhance command"
+  },
+  "invariants": [
+    { "id": "ENH-1", "rule": "Max 3 clarifying questions per pass", "severity": "BLOCKING" },
+    { "id": "ENH-2", "rule": "critical_dimensions_resolved must be true before passing to ScopeFrame", "severity": "BLOCKING" },
+    { "id": "ENH-3", "rule": "Enhance must not change target or complexity declared in recipe.json", "severity": "BLOCKING" },
+    { "id": "ENH-4", "rule": "Do not invent specifics the user did not provide", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/intent-dimensions.md",
+    "rules/critical-dimensions.md",
+    "rules/question-budget.md"
+  ],
+  "receipt_schema": "schemas/enhance-receipt.schema.json"
+}

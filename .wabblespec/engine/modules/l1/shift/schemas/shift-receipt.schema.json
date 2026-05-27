@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shift Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Shift module.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "change_class": {
+      "type": "string",
+      "enum": ["BREAKING", "DEPRECATION", "ADDITIVE", "COSMETIC"],
+      "description": "Classification of the spec change. Conservative — when in doubt upgrade to higher class."
+    },
+    "reverse_drift_detected": {
+      "type": "boolean",
+      "description": "True if implementation diverges from spec in this session."
+    },
+    "reverse_drift_details": {
+      "type": ["string", "null"],
+      "description": "Description of drift found. Null if reverse_drift_detected is false."
+    },
+    "downstream_consumers_affected": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of modules affected by this change."
+    },
+    "affected_consumer_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Module IDs from framework.yaml affected by this change."
+    },
+    "compatibility_report_path": {
+      "type": ["string", "null"],
+      "description": "Path to compatibility report. e.g. .wabblespec/shift/compat-<timestamp>.md"
+    },
+    "semantic_diff_path": {
+      "type": ["string", "null"],
+      "description": "Path to semantic diff output. e.g. .wabblespec/shift/diff-<timestamp>.md"
+    },
+    "loop_back_required": {
+      "type": "boolean",
+      "description": "True when change_class is BREAKING and downstream_consumers_affected > 0. Blocks archive until consumers are notified."
+    }
+  },
+  "required": [
+    "change_class",
+    "reverse_drift_detected",
+    "downstream_consumers_affected",
+    "affected_consumer_ids",
+    "loop_back_required"
+  ]
+}

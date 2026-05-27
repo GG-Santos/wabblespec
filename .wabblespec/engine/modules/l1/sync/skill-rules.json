@@ -1,0 +1,24 @@
+{
+  "module": "sync",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/sync", "reconcile specs", "merge specs", "spec divergence", "sync specs"],
+  "authority": {
+    "owns": [".wabblespec/receipts/sync-receipt-*.json", ".wabblespec/sync/result-*.md"],
+    "reads": [
+      "modules/l1/sync/rules/divergence-detection.md",
+      "modules/l1/sync/rules/merge-policy.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "SYN-1", "rule": "No partial merged spec on escalation — produce nothing or escalate cleanly", "severity": "BLOCKING" },
+    { "id": "SYN-2", "rule": "MAJOR conflicts with no priority signal must escalate", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/divergence-detection.md",
+    "rules/merge-policy.md"
+  ],
+  "receipt_schema": "schemas/sync-receipt.schema.json"
+}

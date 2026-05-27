@@ -1,0 +1,16 @@
+{
+  "module": "changelog",
+  "layer": "L7",
+  "tier": 1,
+  "activators": ["explicit_invocation", "pre_release", "polish_pipeline_step", "/changelog"],
+  "authority": {
+    "owns": [".wabblespec/receipts/changelog-receipt-*.json", ".wabblespec/CHANGELOG.md"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["from_ref_declared", "version_declared", "git_repository_present"],
+  "receipt_schema": "modules/l7/changelog/schemas/changelog-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": true
+}

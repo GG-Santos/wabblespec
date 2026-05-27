@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\scripts\\sync-pull.py\"",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\scripts\\sync-pull.py\"",
             "timeout": 30
           }
         ]
@@ -14,7 +14,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\wabblespec-session-start.js\""
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\scripts\\wabblespec-sync-skills.py\" --quiet",
+            "timeout": 30
           }
         ]
       },
@@ -22,7 +23,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-session-start.js\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -32,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\wabblespec-prompt-guard.js\""
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-prompt-guard.js\""
           }
         ]
       },
@@ -40,7 +49,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -51,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\pre-tool-use-receipt-check.py\""
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\pre-tool-use-receipt-check.py\""
           }
         ]
       },
@@ -59,7 +68,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -70,7 +79,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\modules\\l2\\executor\\hooks\\post-wave-receipt-check.py\""
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\modules\\l2\\executor\\hooks\\post-wave-receipt-check.py\""
           }
         ]
       },
@@ -78,7 +87,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -89,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\scripts\\stop-hook.py\"",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\scripts\\stop-hook.py\"",
             "timeout": 150
           }
         ]
@@ -98,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -109,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\scripts\\run-convo-miner.py\" --urgent",
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\scripts\\run-convo-miner.py\" --urgent",
             "timeout": 90
           }
         ]
@@ -118,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\wabblespec-precompact.js\""
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-precompact.js\""
           }
         ]
       },
@@ -126,7 +135,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\_shared\\scripts\\wabble-sound.py\" --hook"
+            "command": "python \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\shared\\scripts\\wabble-sound.py\" --hook"
           }
         ]
       }
@@ -134,6 +143,6 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "powershell -ExecutionPolicy Bypass -File \"C:\\Vaults\\WabbleSpec v6.1\\hooks\\wabblespec-statusline.ps1\""
+    "command": "powershell -ExecutionPolicy Bypass -File \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-statusline.ps1\""
   }
 }

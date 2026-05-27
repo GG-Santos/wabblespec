@@ -1,0 +1,27 @@
+{
+  "module": "audit",
+  "layer": "L2",
+  "tier": 2,
+  "activators": ["/audit", "compliance audit", "accessibility audit", "wcag audit", "gdpr audit", "license audit"],
+  "authority": {
+    "owns": [".wabblespec/receipts/audit-receipt-*.json", ".wabblespec/audits/compliance-*.md"],
+    "reads": [
+      "modules/l2/audit/rules/audit-dimensions.md",
+      "modules/l2/audit/rules/guard-log-consumption.md",
+      "modules/l2/audit/rules/accessibility-gates.md"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "AUD-1", "rule": "attestation_required = true when CRITICAL or HIGH violations exist", "severity": "BLOCKING" },
+    { "id": "AUD-2", "rule": "Guard logs must be consumed when available", "severity": "WARNING" },
+    { "id": "AUD-3", "rule": "WCAG AA is the minimum — do not accept PARTIAL for accessible UI", "severity": "BLOCKING" }
+  ],
+  "rules": [
+    "rules/audit-dimensions.md",
+    "rules/guard-log-consumption.md",
+    "rules/accessibility-gates.md"
+  ],
+  "receipt_schema": "schemas/audit-receipt.schema.json"
+}

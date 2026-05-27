@@ -1,0 +1,24 @@
+{
+  "module": "perf",
+  "layer": "L1",
+  "tier": 2,
+  "activators": ["/perf", "performance baseline", "measure performance", "optimize performance", "profiling"],
+  "authority": {
+    "owns": [".wabblespec/receipts/perf-receipt-*.json", ".wabblespec/perf/baseline-*.json"],
+    "reads": [
+      "modules/l1/perf/rules/measurement-first.md",
+      "modules/l1/perf/rules/budget-definition.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "invariants": [
+    { "id": "PRF-1", "rule": "baseline_measured must be true — no optimization without baseline", "severity": "BLOCKING" },
+    { "id": "PRF-2", "rule": "One optimization at a time with measurement after each", "severity": "WARNING" }
+  ],
+  "rules": [
+    "rules/measurement-first.md",
+    "rules/budget-definition.md"
+  ],
+  "receipt_schema": "schemas/perf-receipt.schema.json"
+}

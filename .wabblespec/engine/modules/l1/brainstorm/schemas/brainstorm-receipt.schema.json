@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Brainstorm Receipt Extension",
+  "description": "Extends receipt.base.schema.json. Module-specific fields for the Brainstorm module.",
+  "allOf": [
+    { "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }
+  ],
+  "properties": {
+    "options_generated": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total ideas generated before convergence gate fired"
+    },
+    "convergence_trigger": {
+      "type": "string",
+      "enum": ["volume_cap", "diminishing_returns", "user_signal", "time_budget"],
+      "description": "Which convergence signal ended generation"
+    },
+    "options": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Summary strings for top options surfaced to Propose. One per option."
+    },
+    "evaluation_deferred": {
+      "type": "boolean",
+      "description": "Must be true. false = evaluation occurred during generation (invariant BRN-1 violation)."
+    },
+    "top_options_path": {
+      "type": "string",
+      "description": "Path to the top options file passed to Propose"
+    }
+  },
+  "required": [
+    "options_generated",
+    "convergence_trigger",
+    "options",
+    "evaluation_deferred",
+    "top_options_path"
+  ]
+}

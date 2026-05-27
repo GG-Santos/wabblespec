@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plan Artifact",
+  "description": "Schema for plan-<timestamp>.md structured content. Decompose reads this to structure wave execution.",
+  "type": "object",
+  "required": ["chosen_approach", "go_no_go", "expert_perspectives", "open_risks"],
+  "properties": {
+    "chosen_approach": {
+      "type": "string",
+      "description": "One sentence: what will be built and how"
+    },
+    "go_no_go": {
+      "type": "string",
+      "enum": ["GO", "NO_GO", "CONDITIONAL"],
+      "description": "Plan verdict"
+    },
+    "conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required when go_no_go = CONDITIONAL. Each condition must be verifiable before execution."
+    },
+    "expert_perspectives": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["name", "finding"],
+        "properties": {
+          "name": { "type": "string", "description": "Perspective label e.g. architecture, security" },
+          "finding": { "type": "string", "description": "One sentence: concern, confirmation, or risk" }
+        }
+      }
+    },
+    "open_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "consequence", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "consequence": { "type": "string", "description": "What happens if this risk materializes" },
+          "status": { "type": "string", "enum": ["BLOCKING", "ACCEPTABLE"] }
+        }
+      }
+    },
+    "adversary_receipt_path": {
+      "type": ["string", "null"],
+      "description": "Path to adversary receipt if Adversary was triggered. null otherwise."
+    },
+    "grader_receipt_path": {
+      "type": ["string", "null"],
+      "description": "Path to grader receipt if Grader was triggered. null otherwise."
+    }
+  },
+  "if": {
+    "properties": { "go_no_go": { "const": "CONDITIONAL" } }
+  },
+  "then": {
+    "required": ["conditions"]
+  }
+}

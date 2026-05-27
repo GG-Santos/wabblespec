@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Drawer",
+  "description": "Evidence drawer. Written by Memory. Read by MemorySearch. One JSON file per topic-cluster.",
+  "type": "object",
+  "required": [
+    "id", "topic", "wing", "room",
+    "staleness_state", "written_at", "source", "source_module",
+    "confidence", "evidence", "provenance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique drawer ID. Format: {topic-slug}-{YYYYMMDD}. Max 60 chars."
+    },
+    "topic": {
+      "type": "string",
+      "description": "Human-readable topic label."
+    },
+    "wing": {
+      "type": "string",
+      "description": "Wing name. Matches directory under memory/wings/."
+    },
+    "room": {
+      "type": "string",
+      "description": "Room name. Matches directory under wing/rooms/."
+    },
+    "staleness_state": {
+      "type": "string",
+      "enum": ["FRESH", "AGING", "STALE", "EXPIRED", "NEEDS_REVERIFICATION", "SUPERSEDED"],
+      "description": "Current staleness. See .wabblespec/engine/shared/references/staleness-states.md."
+    },
+    "written_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC. When first written."
+    },
+    "last_verified": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 UTC. When staleness was last confirmed FRESH via re-verification."
+    },
+    "expires_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Hard expiry. null = no hard expiry, subject to activity-decay only."
+    },
+    "source": {
+      "type": "string",
+      "description": "Path, URL, or reference string for evidence origin."
+    },
+    "source_module": {
+      "type": "string",
+      "description": "Module ID that wrote this drawer."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Trust score. 1.0 = fully verified. Below 0.7 must be flagged on use."
+    },
+    "evidence": {
+      "type": "string",
+      "description": "Evidence content. Plain text or structured prose."
+    },
+    "superseded_by": {
+      "type": ["string", "null"],
+      "description": "Drawer ID that supersedes this. Required when staleness_state = SUPERSEDED."
+    },
+    "contradicts": {
+      "type": ["string", "null"],
+      "description": "Drawer ID this evidence contradicts. Flagged by Provenance."
+    },
+    "provenance": {
+      "type": "array",
+      "description": "Append-only event log for this drawer. Never remove entries.",
+      "items": {
+        "type": "object",
+        "required": ["event", "timestamp", "actor"],
+        "properties": {
+          "event": {
+            "type": "string",
+            "enum": ["WRITTEN", "UPDATED", "TRANSITION", "ACCESSED", "ARCHIVED", "SUPERSEDED"]
+          },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "actor": { "type": "string" },
+          "from_state": { "type": "string" },
+          "to_state": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  },
+  "if": {
+    "properties": { "staleness_state": { "const": "SUPERSEDED" } },
+    "required": ["staleness_state"]
+  },
+  "then": {
+    "required": ["superseded_by"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "module": "market",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "go_to_market_request", "positioning_request", "/market"],
+  "authority": {
+    "owns": [".wabblespec/receipts/market-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["product_name_declared", "target_audience_declared", "competitive_alternatives_declared_when_positioning"],
+  "receipt_schema": "modules/l6/market/schemas/market-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": false
+}

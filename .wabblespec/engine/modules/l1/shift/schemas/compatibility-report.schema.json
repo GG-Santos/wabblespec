@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shift Compatibility Report",
+  "description": "Written to .wabblespec/shift/compat-<timestamp>.md (as JSON). Documents consumer impact of a spec change.",
+  "type": "object",
+  "properties": {
+    "generated": { "type": "string", "format": "date-time" },
+    "change_class": {
+      "type": "string",
+      "enum": ["BREAKING", "DEPRECATION", "ADDITIVE", "COSMETIC"]
+    },
+    "spec_before": { "type": "string", "description": "Path or version identifier of the spec before the change." },
+    "spec_after": { "type": "string", "description": "Path or version identifier of the spec after the change." },
+    "consumers_checked": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "module_id": { "type": "string" },
+          "affected": { "type": "boolean" },
+          "impact_description": { "type": "string" },
+          "action_required": { "type": "string", "enum": ["NONE", "UPDATE_REQUIRED", "MIGRATION_REQUIRED", "HUMAN_REVIEW"] }
+        },
+        "required": ["module_id", "affected", "action_required"]
+      }
+    },
+    "semantic_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section": { "type": "string" },
+          "change_type": { "type": "string", "enum": ["BREAKING", "DEPRECATION", "ADDITIVE", "COSMETIC"] },
+          "description": { "type": "string" }
+        },
+        "required": ["section", "change_type", "description"]
+      }
+    },
+    "loop_back_required": { "type": "boolean" }
+  },
+  "required": ["generated", "change_class", "consumers_checked", "loop_back_required"]
+}

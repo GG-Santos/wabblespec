@@ -1,0 +1,122 @@
+# Project Map
+
+**Project:** ___ UNDECLARED  
+**Platform:** IoT  
+**Language:** C / C++ / Rust  
+**Scaffolded:** ___ UNDECLARED  
+**explored_at:** ___ UNDECLARED  
+**build_target:** iot  
+**freshness_state:** FRESH  
+**valid_until:** ___ UNDECLARED (24h from explored_at)  
+**WabbleSpec version:** ___ UNDECLARED  
+
+---
+
+## Entry Points
+
+- `src/main.c` (or `src/main.cpp` / `src/main.rs`) — firmware entry point
+- `src/watchdog.c` (or equivalent) — watchdog feed implementation
+- `CMakeLists.txt` (or `Makefile` / `Cargo.toml`) — build system root
+- `include/` — public header files (C/C++)
+
+## Tech Stack
+
+| Area | Technology | Version | Confidence |
+|---|---|---|---|
+| language | ___ UNDECLARED (C / C++ / Rust) | ___ UNDECLARED | exact |
+| mcu-soc | ___ UNDECLARED (ESP32 / STM32 / RP2040 / nRF52 / custom) | ___ UNDECLARED | exact |
+| rtos | ___ UNDECLARED (FreeRTOS / Zephyr / RIOT / bare-metal) | ___ UNDECLARED | exact |
+| build | ___ UNDECLARED (CMake / Make / cargo) | ___ UNDECLARED | exact |
+| sdk | ___ UNDECLARED (ESP-IDF / STM32CubeIDE / Zephyr SDK) | ___ UNDECLARED | exact |
+| test | ___ UNDECLARED (Unity / cmocka / cargo test) | ___ UNDECLARED | exact |
+| static-analysis | ___ UNDECLARED (cppcheck / clang-tidy / clippy — CI gate) | n/a | inferred |
+| ota | ___ UNDECLARED (if applicable — declared in build-toolchain.md) | n/a | assumed |
+| fleet-observability | ___ UNDECLARED (declared in build-toolchain.md) | n/a | assumed |
+
+## Risk Files
+
+| Path | Risk reason | Churn count | Note |
+|---|---|---|---|
+| `src/main.c` (or entry) | cross-cutting | 0 | Firmware entry — startup sequence, peripheral init, main loop |
+| `src/watchdog.c` (or equivalent) | cross-cutting | 0 | Watchdog feed — must run on every code path; blocking calls here cause watchdog miss |
+| `CMakeLists.txt` (or build root) | cross-cutting | 0 | Build config — flash/RAM analysis gate reads this |
+| `src/ota/` (or equivalent, if used) | cross-cutting | 0 | OTA update logic — signing key references must be HSM/vault, not source |
+| `include/config.h` (or equivalent) | cross-cutting | 0 | Hardware configuration — wrong values brick device |
+
+## Impact Slices
+
+### entry-points
+**Reason:** Firmware boot sequence and main loop — all peripheral init and task startup flows from here.
+
+- `src/main.c` (or equivalent)
+- `src/watchdog.c`
+- `CMakeLists.txt`
+
+### api-surface
+**Reason:** Hardware abstraction layer and external interfaces (UART, I2C, SPI, network).
+
+- `include/hal/` (hardware abstraction layer headers — update to actual path)
+- `src/comm/` (communication protocols — UART/MQTT/CoAP/BLE — update)
+- `src/ota/` (OTA interface — update if applicable)
+
+**Test paths:**
+- `tests/unit/` (unit tests using mock hardware)
+- `tests/integration/` (on-device integration tests — update)
+
+### test-coverage
+**Reason:** Unit tests (host-side with mock hardware) + CI static analysis gates.
+
+- `tests/unit/` (Unity/cmocka unit tests)
+- `tests/` (all test files)
+- Static analysis: cppcheck / clang-tidy / clippy (CI gate — not test files, but coverage signals)
+
+### risk
+**Reason:** Files from Risk Files table above.
+
+- `src/main.c`
+- `src/watchdog.c`
+- `CMakeLists.txt`
+- `include/config.h`
+
+### conventions
+**Reason:** Naming conventions, peripheral init ordering, watchdog feed pattern.
+
+- _See Conventions section below_
+
+## Spec Artifacts
+
+| Path | Artifact type | Status |
+|---|---|---|
+| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+
+## Conventions
+
+- File naming: lowercase underscore-separated (e.g. `uart_driver.c`, `mqtt_client.h`)
+- Watchdog feed: dedicated highest-priority RTOS task or in a non-blocking interrupt — never in a task that may block
+- Error handling: return codes (not exceptions) — every function return value checked
+- Interrupt handlers: minimal work only — defer to task via queue/semaphore
+- Dynamic allocation: forbidden in interrupt context; prefer static allocation throughout
+- OTA signing key: HSM or vault reference only — never in source or build artifacts
+- Flash/RAM budget: enforced by linker script; CI gate fails build if limits exceeded
+- ___ UNDECLARED — add project-specific conventions after first Explore run
+
+## Git State
+
+- **Active branch:** ___ UNDECLARED
+- **Recent changes:** (none — fresh scaffold)
+- **Uncommitted count:** ___ UNDECLARED
+
+## Gaps
+
+- Peripheral list: not yet defined (unknown until hardware schematic is reviewed)
+- Flash / RAM usage: 0% (fresh scaffold — linker report not yet available)
+- Watchdog timeout value: declared in performance-budgets.md — must match hardware watchdog register configuration
+- OTA signing: declared in build-toolchain.md — HSM/vault not yet configured
+- Fleet observability: assumed from build-toolchain.md — not yet integrated
+- Power consumption profile: not yet measured (declared targets in performance-budgets.md)
+- RTOS task list and stack sizes: not yet finalized
+- Hardware schematic review: not yet complete
+
+---
+
+*Generated by Scaffold from `.wabblespec/engine/shared/templates/scaffold/project-map-iot.md`. Replace all `___ UNDECLARED` with actual values. Explore updates this file after generation. Flash/RAM static analysis CI gate is required per build-toolchain.md.*

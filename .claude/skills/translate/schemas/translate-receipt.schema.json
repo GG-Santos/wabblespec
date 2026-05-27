@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "translate-receipt.schema.json",
+  "title": "TranslateReceipt",
+  "allOf": [{ "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "mode": { "enum": ["extract", "scaffold", "verify", "format"] },
+    "base_locale": { "type": "string" },
+    "target_locale": { "type": ["string", "null"] },
+    "strings_extracted": { "type": "integer", "minimum": 0 },
+    "strings_verified": { "type": "integer", "minimum": 0 },
+    "verification_failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "issue", "severity"],
+        "properties": {
+          "key": { "type": "string" },
+          "issue": { "type": "string" },
+          "severity": { "enum": ["FAIL", "WARN"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "locale_manifest_path": { "type": ["string", "null"] },
+    "output_path": { "type": ["string", "null"] },
+    "verdict": { "enum": ["PASS", "FAIL", "WARN"] },
+    "processed_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["mode", "base_locale", "verification_failures", "verdict", "processed_at"]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "commit-receipt.schema.json",
+  "title": "CommitReceipt",
+  "allOf": [{ "$ref": "../../../.wabblespec/engine/shared/schemas/receipt.base.schema.json" }],
+  "properties": {
+    "mode": { "enum": ["stage", "split", "write", "audit"] },
+    "commits_produced": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "subject", "files_included", "applied"],
+        "properties": {
+          "type": { "type": "string" },
+          "scope": { "type": ["string", "null"] },
+          "breaking": { "type": "boolean" },
+          "subject": { "type": "string" },
+          "body": { "type": ["string", "null"] },
+          "footer": { "type": ["string", "null"] },
+          "files_included": { "type": "array", "items": { "type": "string" } },
+          "applied": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "total_commits": { "type": "integer", "minimum": 0 },
+    "dry_run": { "type": "boolean" },
+    "verdict": { "enum": ["PASS", "WARN", "FAIL"] },
+    "committed_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["mode", "commits_produced", "total_commits", "dry_run", "verdict", "committed_at"]
+}

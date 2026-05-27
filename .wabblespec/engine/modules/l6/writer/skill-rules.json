@@ -1,0 +1,16 @@
+{
+  "module": "writer",
+  "layer": "L6",
+  "tier": 3,
+  "activators": ["explicit_invocation", "content_production_request", "/writer"],
+  "authority": {
+    "owns": [".wabblespec/receipts/writer-receipt-*.json"],
+    "reads": []
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "guards": ["content_type_declared", "goal_declared", "audience_declared"],
+  "receipt_schema": "modules/l6/writer/schemas/writer-receipt.schema.json",
+  "max_concurrent": 1,
+  "idempotent": false
+}

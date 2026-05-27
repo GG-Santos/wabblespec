@@ -123,7 +123,16 @@
       "Bash(grep -v \"^adr$\")",
       "Bash(find *)",
       "PowerShell(Get-Content *)",
-      "PowerShell($totalWabblespec = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.wabblespec\" -Recurse -File\\).Count; $totalShared = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\_shared\" -Recurse -File\\).Count; $totalHooks = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\hooks\" -Recurse -File\\).Count; Write-Output \".wabblespec/ files: $totalWabblespec\"; Write-Output \"_shared/ files: $totalShared\"; Write-Output \"hooks/ files: $totalHooks\")"
+      "PowerShell($totalWabblespec = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.wabblespec\" -Recurse -File\\).Count; $totalShared = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\_shared\" -Recurse -File\\).Count; $totalHooks = @\\(Get-ChildItem -Path \"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\hooks\" -Recurse -File\\).Count; Write-Output \".wabblespec/ files: $totalWabblespec\"; Write-Output \"_shared/ files: $totalShared\"; Write-Output \"hooks/ files: $totalHooks\")",
+      "Bash(git add *)",
+      "Bash(git commit -m 'phase-2: move state files to .wabblespec/state/ *)",
+      "Bash(git check-ignore *)",
+      "Bash(git commit -m ' *)",
+      "Bash(python3 -c ' *)",
+      "Bash(git ls-tree *)",
+      "Bash(awk '{print $4}')",
+      "Bash(cmd /c \"dir /al \\\\\"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.claude\\\\skills\\\\\"\")",
+      "Bash(cmd /c \"dir \\\\\"C:\\\\Vaults\\\\WabbleSpec v6.1\\\\.claude\\\\skills\\\\\"\")"
     ]
   }
 }

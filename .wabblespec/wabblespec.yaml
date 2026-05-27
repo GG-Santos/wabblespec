@@ -1,0 +1,1522 @@
+framework:
+  name: wabblespec
+  version: 1.0.0-build
+  description: Spec-driven, receipt-gated, hook-enforced framework for the complete software development lifecycle within a single agent runtime.
+
+quality_floor:
+  min_pattern_score: 4.0
+  required_gates: [quick_validate, lint_prompts]
+  adversarial_required_for_tags: [security, enforcement, receipt, gate]
+
+cascade_policy:
+  schema_change_triggers_revalidation: true
+  shared_reference_change_triggers_revalidation: false
+
+# ─────────────────────────────────────────────
+# SHARED ARTIFACTS
+# ─────────────────────────────────────────────
+shared:
+  schemas:
+    - path: .wabblespec/engine/shared/schemas/receipt.base.schema.json
+      consumers: [recipe, specify, scope-frame, decompose, executor, verifier, guard, archive, reviewer, memory, memory-search, provenance, apply, nexus, shift, sync, organize, flag, analyze, perf, deps, audit, api]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/error-event.schema.json
+      consumers: [guard, verifier, executor, reviewer]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/skill-rules.schema.json
+      consumers: []
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/specify-receipt.extension.schema.json
+      consumers: [specify]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/task-card.schema.json
+      consumers: [specify, executor, guard, verifier]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/project-map.schema.json
+      consumers: [reference-load]
+      version: "1.0"
+  references:
+    - path: .wabblespec/engine/shared/references/invariants.md
+      consumers: [guard, verifier, executor, recipe, specify]
+    - path: .wabblespec/engine/shared/references/error-taxonomy.md
+      consumers: [guard, verifier, executor, triage]
+    - path: .wabblespec/engine/shared/references/staleness-states.md
+      consumers: [memory, memory-search, provenance, guard]
+    - path: .wabblespec/engine/shared/references/state-protocol.md
+      consumers: [executor, autopilot, guard, verifier]
+    - path: .wabblespec/engine/shared/references/command-risk-policy.md
+      consumers: [guard]
+    - path: .wabblespec/engine/shared/references/orchestration-adapter-boundary.md
+      consumers: [autopilot, model-router, ensemble, team-plan]
+    - path: .wabblespec/engine/shared/references/l8-corpus-gate.md
+      consumers: [guard, instinct, synth, blueprint, factory, augment, benchmark, forge]
+    - path: .wabblespec/engine/shared/references/quality-floor-gates.md
+      consumers: [benchmark]
+    - path: .wabblespec/engine/shared/references/memory-backend-decision.md
+      consumers: [memory, memory-search, provenance]
+    - path: .wabblespec/engine/shared/references/domain-pack-spec.md
+      consumers: []
+    - path: .wabblespec/engine/shared/references/graph-intelligence-gate.md
+      consumers: [entity-graph, dream, memory-mine]
+    - path: .wabblespec/engine/shared/references/compression-discipline.md
+      consumers: [economy]
+    - path: .wabblespec/engine/shared/references/model-routing.md
+      consumers: [economy, model-router]
+    - path: .wabblespec/engine/shared/references/adversarial-patterns.md
+      consumers: [adversary, reviewer]
+    - path: .wabblespec/engine/shared/references/ears-syntax.md
+      consumers: [specify]
+    - path: .wabblespec/engine/shared/references/secure-defaults.md
+      consumers: [apply, gateway-security]
+    - path: .wabblespec/engine/shared/references/lsp-integration.md
+      consumers: [apply]
+    - path: .wabblespec/engine/shared/references/robots-first-spec.md
+      consumers: [executor]
+    - path: .wabblespec/engine/shared/references/progressive-disclosure.md
+      consumers: [memory-search, reference-load]
+    - path: .wabblespec/engine/shared/references/delta-spec-patterns.md
+      consumers: [shift, sync]
+    - path: .wabblespec/engine/shared/references/exploit-patterns.md
+      consumers: [gateway-security, adversary]
+    - path: .wabblespec/engine/shared/references/security-ownership.md
+      consumers: [gateway-security, guard]
+    - path: .wabblespec/engine/shared/references/context-engineering.md
+      consumers: [executor, autopilot, economy, model-router]
+    - path: .wabblespec/engine/shared/references/context-integrity.md
+      consumers: [executor, guard, verifier]
+    - path: .wabblespec/engine/shared/references/context-optimization.md
+      consumers: [executor, autopilot, economy]
+    - path: .wabblespec/engine/shared/references/context-budget.md
+      consumers: [executor, autopilot, economy]
+    - path: .wabblespec/engine/shared/references/context7-integration.md
+      consumers: [executor, runtime-probe, autopilot]
+    - path: .wabblespec/engine/shared/references/reference-authoring.md
+      consumers: [factory]
+    - path: .wabblespec/engine/shared/references/index.yml
+      consumers: [reference-load, specify, recipe]
+    - path: .wabblespec/engine/shared/references/reasoning-patterns.md
+      consumers: [adversary, plan, specify, executor]
+    - path: .wabblespec/engine/shared/references/memory-routing.md
+      consumers: [memory, memory-search, provenance, nexus]
+    - path: .wabblespec/engine/shared/references/defect-patterns.md
+      consumers: [guard, reviewer, triage]
+    - path: .wabblespec/engine/shared/references/prompt-patterns.md
+      consumers: [factory, guard]
+    - path: .wabblespec/engine/shared/references/hook-event-schema.md
+      consumers: [guard, recipe, factory, gateway-security]
+    - path: .wabblespec/engine/shared/references/permission-flow.md
+      consumers: [guard, gateway-security, gateway-engineering, executor]
+    - path: .wabblespec/engine/shared/references/compaction-behavior.md
+      consumers: [economy, autopilot, memory]
+  infrastructure:
+    - path: .wabblespec/engine/shared/infrastructure/economy-principles.md
+      consumers: [economy]
+    - path: .wabblespec/engine/shared/infrastructure/guard-policy.md
+      consumers: [guard, executor]
+    - path: .wabblespec/engine/shared/infrastructure/gateway-pattern.md
+      consumers: [gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience]
+    - path: .wabblespec/engine/shared/infrastructure/version-tracking.md
+      consumers: [shift, api]
+    - path: .wabblespec/engine/shared/infrastructure/completion-promise.md
+      consumers: [executor, verifier]
+  scripts:
+    - path: .wabblespec/engine/shared/scripts/graph-traverse.py
+      consumers: [nexus, shift, memory]
+    - path: .wabblespec/engine/shared/scripts/bm25.py
+      consumers: [nexus, explore]
+    - path: .wabblespec/engine/shared/scripts/markdown-extract.py
+      consumers: [verifier, document]
+  templates:
+    - path: .wabblespec/engine/shared/templates/legal/privacy-policy-gdpr.md
+      consumers: [legal]
+    - path: .wabblespec/engine/shared/templates/legal/terms-of-service-base.md
+      consumers: [legal]
+    - path: .wabblespec/engine/shared/templates/legal/disclaimer-base.md
+      consumers: [legal]
+    - path: .wabblespec/engine/shared/templates/changelog/release-notes.md
+      consumers: [changelog]
+    - path: .wabblespec/engine/shared/templates/changelog/conventional-changelog.md
+      consumers: [changelog, archive]
+    - path: .wabblespec/engine/shared/templates/specs/task-card.md
+      consumers: [specify]
+    - path: .wabblespec/engine/shared/templates/specs/spec-folder-readme.md
+      consumers: [specify, organize]
+    - path: .wabblespec/engine/shared/templates/handoff/session-handoff.md
+      consumers: [team-plan, document]
+    - path: .wabblespec/engine/shared/templates/standards/index-template.yml
+      consumers: [organize]
+    - path: .wabblespec/engine/shared/schemas/graph-node.schema.json
+      consumers: [nexus, shift, entity-graph]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/graph-edge.schema.json
+      consumers: [nexus, shift, entity-graph]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/wave-checkpoint.schema.json
+      consumers: [decompose, rollback, executor, guard, recipe]
+      version: "1.0"
+    - path: .wabblespec/engine/shared/schemas/counter-increment-request.schema.json
+      consumers: [autopilot, archive, memory]
+      version: "1.0"
+  dev_frameworks:
+    # Web platform frameworks — loaded by Apply when platform-web is active
+    - path: .wabblespec/engine/shared/dev/frameworks/web/core.md
+      consumers: [apply, platform-web]
+    - path: .wabblespec/engine/shared/dev/frameworks/web/security.md
+      consumers: [apply, platform-web]
+    - path: .wabblespec/engine/shared/dev/frameworks/web/nextjs.md
+      consumers: [apply, platform-web]
+    - path: .wabblespec/engine/shared/dev/frameworks/web/react.md
+      consumers: [apply, platform-web]
+    - path: .wabblespec/engine/shared/dev/frameworks/web/vue.md
+      consumers: [apply, platform-web]
+    - path: .wabblespec/engine/shared/dev/frameworks/web/svelte.md
+      consumers: [apply, platform-web]
+    # CLI platform frameworks — loaded by Apply when platform-cli is active
+    - path: .wabblespec/engine/shared/dev/frameworks/cli/core.md
+      consumers: [apply, platform-cli]
+    - path: .wabblespec/engine/shared/dev/frameworks/cli/cobra.md
+      consumers: [apply, platform-cli]
+    - path: .wabblespec/engine/shared/dev/frameworks/cli/click.md
+      consumers: [apply, platform-cli]
+    - path: .wabblespec/engine/shared/dev/frameworks/cli/clap.md
+      consumers: [apply, platform-cli]
+    # API/Service platform frameworks — loaded by Apply when platform-api-service is active
+    - path: .wabblespec/engine/shared/dev/frameworks/api/core.md
+      consumers: [apply, platform-api-service]
+    - path: .wabblespec/engine/shared/dev/frameworks/api/security.md
+      consumers: [apply, platform-api-service]
+    - path: .wabblespec/engine/shared/dev/frameworks/api/grpc.md
+      consumers: [apply, platform-api-service]
+    - path: .wabblespec/engine/shared/dev/frameworks/api/graphql.md
+      consumers: [apply, platform-api-service]
+    # Mobile platform frameworks — loaded by Apply when platform-mobile is active
+    - path: .wabblespec/engine/shared/dev/frameworks/mobile/core.md
+      consumers: [apply, platform-mobile]
+    - path: .wabblespec/engine/shared/dev/frameworks/mobile/react-native.md
+      consumers: [apply, platform-mobile]
+    - path: .wabblespec/engine/shared/dev/frameworks/mobile/flutter.md
+      consumers: [apply, platform-mobile]
+    - path: .wabblespec/engine/shared/dev/frameworks/mobile/swift-uikit.md
+      consumers: [apply, platform-mobile]
+    - path: .wabblespec/engine/shared/dev/frameworks/mobile/kotlin-compose.md
+      consumers: [apply, platform-mobile]
+    # Desktop platform frameworks — loaded by Apply when platform-desktop is active
+    - path: .wabblespec/engine/shared/dev/frameworks/desktop/core.md
+      consumers: [apply, platform-desktop]
+    - path: .wabblespec/engine/shared/dev/frameworks/desktop/electron.md
+      consumers: [apply, platform-desktop]
+    - path: .wabblespec/engine/shared/dev/frameworks/desktop/tauri.md
+      consumers: [apply, platform-desktop]
+    # Game platform frameworks — loaded by Apply when platform-game is active
+    - path: .wabblespec/engine/shared/dev/frameworks/game/core.md
+      consumers: [apply, platform-game]
+    - path: .wabblespec/engine/shared/dev/frameworks/game/unity.md
+      consumers: [apply, platform-game]
+    - path: .wabblespec/engine/shared/dev/frameworks/game/unreal.md
+      consumers: [apply, platform-game]
+    - path: .wabblespec/engine/shared/dev/frameworks/game/godot.md
+      consumers: [apply, platform-game]
+    # AI/Agent platform frameworks — loaded by Apply when platform-ai-agent is active
+    - path: .wabblespec/engine/shared/dev/frameworks/ai/core.md
+      consumers: [apply, platform-ai-agent]
+    - path: .wabblespec/engine/shared/dev/frameworks/ai/safety.md
+      consumers: [apply, platform-ai-agent, gateway-ai]
+    - path: .wabblespec/engine/shared/dev/frameworks/ai/langchain.md
+      consumers: [apply, platform-ai-agent]
+    - path: .wabblespec/engine/shared/dev/frameworks/ai/openai-sdk.md
+      consumers: [apply, platform-ai-agent]
+    # Data/Pipeline platform frameworks — loaded by Apply when platform-data-pipeline is active
+    - path: .wabblespec/engine/shared/dev/frameworks/data/core.md
+      consumers: [apply, platform-data-pipeline]
+    - path: .wabblespec/engine/shared/dev/frameworks/data/dbt.md
+      consumers: [apply, platform-data-pipeline]
+    - path: .wabblespec/engine/shared/dev/frameworks/data/spark.md
+      consumers: [apply, platform-data-pipeline]
+    - path: .wabblespec/engine/shared/dev/frameworks/data/airflow.md
+      consumers: [apply, platform-data-pipeline]
+    # Library/Package platform framework
+    - path: .wabblespec/engine/shared/dev/frameworks/library/core.md
+      consumers: [apply, platform-library-package]
+    # Extension/Plugin platform framework
+    - path: .wabblespec/engine/shared/dev/frameworks/extension/core.md
+      consumers: [apply, platform-extension-plugin]
+    # IoT/Embedded platform framework
+    - path: .wabblespec/engine/shared/dev/frameworks/iot/core.md
+      consumers: [apply, platform-iot-embedded]
+  dev_infrastructure:
+    # Engineering infrastructure knowledge — loaded by Apply when gateway-engineering is active
+    - path: .wabblespec/engine/shared/dev/infrastructure/cicd.md
+      consumers: [apply, gateway-engineering]
+    - path: .wabblespec/engine/shared/dev/infrastructure/containers.md
+      consumers: [apply, gateway-engineering]
+    - path: .wabblespec/engine/shared/dev/infrastructure/iac.md
+      consumers: [apply, gateway-engineering]
+    - path: .wabblespec/engine/shared/dev/infrastructure/observability.md
+      consumers: [apply, gateway-engineering]
+  gateway_rules:
+    # Gateway-specific enforcement rules — loaded by gateway Phase B verdict step
+    - path: .wabblespec/engine/modules/l4/security/rules/auth-policy.md
+      consumers: [gateway-security]
+    - path: .wabblespec/engine/modules/l4/security/rules/secrets-policy.md
+      consumers: [gateway-security]
+
+# ─────────────────────────────────────────────
+# L0 — PRODUCT LAYER
+# ─────────────────────────────────────────────
+modules:
+
+  - id: runtime-probe
+    path: .wabblespec/engine/modules/l0/runtime-probe/
+    type: skill
+    layer: L0
+    tags: [runtime, capabilities, vendor-neutral, probe]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: recipe
+    path: .wabblespec/engine/modules/l0/recipe/
+    type: skill
+    layer: L0
+    tags: [entry-point, routing, detection, complexity, input-quality]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/wave-checkpoint.schema.json]
+    depends_on: [enhance, sharpen]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
+    build_status: built
+    promoted_from: recipe-collapse-assessment-v1
+    promoted_at: "2026-05-26"
+
+  - id: product
+    path: .wabblespec/engine/modules/l0/product/
+    type: skill
+    layer: L0
+    tags: [product, roadmap, planning]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: ground
+    path: .wabblespec/engine/modules/l0/ground/
+    type: skill
+    layer: L0
+    tags: [verification, hallucination, pre-execution, grounding]
+    produces_schemas: [.wabblespec/engine/modules/l0/ground/schemas/ground-receipt.schema.json]
+    consumes_schemas: []
+    depends_on: [decompose]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: reference-load-l0
+    path: .wabblespec/engine/modules/l0/reference-load/
+    type: skill
+    layer: L0
+    tags: [research, reference, loading, trust, staleness, batch]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: test
+    path: .wabblespec/engine/modules/l1/test/
+    type: skill
+    layer: L1
+    tags: [testing, verification, quality]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: clean
+    path: .wabblespec/engine/modules/l1/clean/
+    type: skill
+    layer: L1
+    tags: [cleanup, maintenance]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: triage
+    path: .wabblespec/engine/modules/l1/triage/
+    type: skill
+    layer: L1
+    tags: [error-handling, triage, routing]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/error-event.schema.json]
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: migrate
+    path: .wabblespec/engine/modules/l1/migrate/
+    type: skill
+    layer: L1
+    tags: [migration, upgrade]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L1 — SPEC CORE
+# ─────────────────────────────────────────────
+
+  - id: enhance
+    path: .wabblespec/engine/modules/l1/enhance/
+    type: skill
+    layer: L1
+    tags: [input-quality, vague-resolution, intent, clarification]
+    produces_schemas: [.wabblespec/engine/modules/l1/enhance/schemas/enhance-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [recipe]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: sharpen
+    path: .wabblespec/engine/modules/l1/sharpen/
+    type: skill
+    layer: L1
+    tags: [input-quality, broad-resolution, interpretations, disambiguation]
+    produces_schemas: [.wabblespec/engine/modules/l1/sharpen/schemas/sharpen-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [recipe]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: brainstorm
+    path: .wabblespec/engine/modules/l1/brainstorm/
+    type: skill
+    layer: L1
+    tags: [divergent, options, ideation, pre-propose]
+    produces_schemas: [.wabblespec/engine/modules/l1/brainstorm/schemas/brainstorm-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: plan
+    path: .wabblespec/engine/modules/l1/plan/
+    type: skill
+    layer: L1
+    tags: [planning, expert-review, go-no-go, pre-decompose, strategic]
+    produces_schemas: [.wabblespec/engine/modules/l1/plan/schemas/plan-receipt.schema.json, .wabblespec/engine/modules/l1/plan/schemas/plan-artifact.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json, .wabblespec/engine/modules/l2/adversary/schemas/adversary-receipt.schema.json, .wabblespec/engine/modules/l2/grader/schemas/grader-receipt.schema.json]
+    depends_on: [specify, propose, adversary, grader]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: scope-frame
+    path: .wabblespec/engine/modules/l1/scope-frame/
+    type: skill
+    layer: L1
+    tags: [spec, scoping, boundary]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: specify
+    path: .wabblespec/engine/modules/l1/specify/
+    type: skill
+    layer: L1
+    tags: [spec, task-card, acceptance-criteria, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [scope-frame, adversary]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: interview
+    path: .wabblespec/engine/modules/l1/interview/
+    type: skill
+    layer: L1
+    tags: [clarification, ambiguity, requirements]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: explore
+    path: .wabblespec/engine/modules/l1/explore/
+    type: skill
+    layer: L1
+    tags: [research, codebase, discovery]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: decompose
+    path: .wabblespec/engine/modules/l1/decompose/
+    type: skill
+    layer: L1
+    tags: [waves, breakdown, planning, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: [specify]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: propose
+    path: .wabblespec/engine/modules/l1/propose/
+    type: skill
+    layer: L1
+    tags: [options, tradeoffs, decision]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: reference-load
+    path: .wabblespec/engine/modules/l1/reference-load/
+    type: skill
+    layer: L1
+    tags: [research, reference, loading]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L2 — ORCHESTRATION
+# ─────────────────────────────────────────────
+
+  - id: executor
+    path: .wabblespec/engine/modules/l2/executor/
+    type: skill
+    layer: L2
+    tags: [execution, waves, implementation, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json, .wabblespec/engine/shared/schemas/wave-checkpoint.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, .wabblespec/engine/shared/schemas/wave-checkpoint.schema.json]
+    depends_on: [decompose, guard]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
+    build_status: built
+    promoted_from: executor-pre-wave-checkpoint-elimination-v1
+    promoted_at: "2026-05-26"
+
+  - id: verifier
+    path: .wabblespec/engine/modules/l2/verifier/
+    type: skill
+    layer: L2
+    tags: [verification, checks, receipt, gate, enforcement]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, shared/schemas/error-event.schema.json]
+    depends_on: [executor]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
+    build_status: built
+    promoted_from: verifier-wave-scoped-acceptance-tracing-v1
+    promoted_at: "2026-05-26"
+
+  - id: guard
+    path: .wabblespec/engine/modules/l2/guard/
+    type: skill
+    layer: L2
+    tags: [invariants, enforcement, gate, security]
+    produces_schemas: [shared/schemas/error-event.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json, .wabblespec/engine/shared/schemas/wave-checkpoint.schema.json]
+    depends_on: []
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: inference-guard
+    path: .wabblespec/engine/modules/l2/inference-guard/
+    type: skill
+    layer: L2
+    tags: [security, enforcement, gate, inference]
+    produces_schemas: [.wabblespec/engine/modules/l2/inference-guard/schemas/receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [gateway-security]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: adversary
+    path: .wabblespec/engine/modules/l2/adversary/
+    type: skill
+    layer: L2
+    tags: [adversarial, challenge, quality, gate]
+    produces_schemas: [.wabblespec/engine/modules/l2/adversary/schemas/adversary-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: grader
+    path: .wabblespec/engine/modules/l2/grader/
+    type: skill
+    layer: L2
+    tags: [evaluation, verdict, quality, gate]
+    produces_schemas: [.wabblespec/engine/modules/l2/grader/schemas/grader-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json, .wabblespec/engine/modules/l2/adversary/schemas/adversary-receipt.schema.json]
+    depends_on: [adversary]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: reviewer
+    path: .wabblespec/engine/modules/l2/reviewer/
+    type: skill
+    layer: L2
+    tags: [adversarial, review, quality, gate]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [adversary, grader, verifier]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: archive
+    path: .wabblespec/engine/modules/l7/archive/
+    type: skill
+    layer: L7
+    tags: [receipts, index, auditability, persistence, shift-trigger, sweep, nexus-refresh]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier, shift, nexus]
+    last_validated: "2026-05-26"
+    quality_floor_passed: true
+    build_status: built
+    promoted_from: archive-conditional-nexus-refresh-v1
+    promoted_at: "2026-05-26"
+
+  - id: apply
+    path: .wabblespec/engine/modules/l1/apply/
+    type: skill
+    layer: L1
+    tags: [application, artifacts, delivery]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [executor, verifier]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: model-router
+    path: .wabblespec/engine/modules/l2/model-router/
+    type: skill
+    layer: L2
+    tags: [routing, capabilities, vendor-neutral, orchestration]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [runtime-probe]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: ensemble
+    path: .wabblespec/engine/modules/l2/ensemble/
+    type: skill
+    layer: L2
+    tags: [multi-lane, coordination, cross-check, orchestration]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [model-router]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: autopilot
+    path: .wabblespec/engine/modules/l2/autopilot/
+    type: skill
+    layer: L2
+    tags: [autonomy, orchestration, multi-wave, pipeline, lifecycle]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json, .wabblespec/engine/shared/schemas/counter-increment-request.schema.json]
+    depends_on: [executor, verifier, guard, plan, economy, ground, triage, analyze, dream, reviewer, polish, changelog, commit, shift, archive, flag]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: team-plan
+    path: .wabblespec/engine/modules/l2/team-plan/
+    type: skill
+    layer: L2
+    tags: [multi-agent, coordination, handoff]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [decompose, guard]
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: scaffold
+    path: .wabblespec/engine/modules/l7/scaffold/
+    type: skill
+    layer: L7
+    tags: [scaffolding, project-init, templates]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: rollback
+    path: .wabblespec/engine/modules/l2/rollback/
+    type: skill
+    layer: L2
+    tags: [rollback, checkpoints, recovery]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [guard]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L3 — PLATFORM PACKAGES
+# ─────────────────────────────────────────────
+
+  - id: platform-web
+    path: .wabblespec/engine/modules/l3/web/
+    type: skill
+    layer: L3
+    tags: [platform, web, frontend, browser]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-api-service
+    path: .wabblespec/engine/modules/l3/api-service/
+    type: skill
+    layer: L3
+    tags: [platform, api, service, backend, rest, graphql]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-cli
+    path: .wabblespec/engine/modules/l3/cli/
+    type: skill
+    layer: L3
+    tags: [platform, cli, terminal, command-line]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-game
+    path: .wabblespec/engine/modules/l3/game/
+    type: skill
+    layer: L3
+    tags: [platform, game, gamedev]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-mobile
+    path: .wabblespec/engine/modules/l3/mobile/
+    type: skill
+    layer: L3
+    tags: [platform, mobile, ios, android]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-desktop
+    path: .wabblespec/engine/modules/l3/desktop/
+    type: skill
+    layer: L3
+    tags: [platform, desktop, electron, native]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-iot-embedded
+    path: .wabblespec/engine/modules/l3/iot/
+    type: skill
+    layer: L3
+    tags: [platform, iot, embedded, firmware]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-library-package
+    path: .wabblespec/engine/modules/l3/library/
+    type: skill
+    layer: L3
+    tags: [platform, library, package, sdk]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-extension-plugin
+    path: .wabblespec/engine/modules/l3/extension/
+    type: skill
+    layer: L3
+    tags: [platform, extension, plugin, addon]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-data-pipeline
+    path: .wabblespec/engine/modules/l3/data-pipeline/
+    type: skill
+    layer: L3
+    tags: [platform, data, pipeline, etl]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: platform-ai-agent
+    path: .wabblespec/engine/modules/l3/ai-agent/
+    type: skill
+    layer: L3
+    tags: [platform, ai, agent, llm]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [recipe]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L4 — CAPABILITY GATEWAYS
+# ─────────────────────────────────────────────
+
+  - id: gateway-security
+    path: .wabblespec/engine/modules/l4/security/
+    type: skill
+    layer: L4
+    tags: [security, threat-model, vulnerability, gate, enforcement]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: gateway-engineering
+    path: .wabblespec/engine/modules/l4/engineering/
+    type: skill
+    layer: L4
+    tags: [engineering, build, quality, standards]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: gateway-ai
+    path: .wabblespec/engine/modules/l4/ai/
+    type: skill
+    layer: L4
+    tags: [ai, llm, prompt-engineering, evaluation, safety]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: gateway-aesthetic
+    path: .wabblespec/engine/modules/l4/aesthetic/
+    type: skill
+    layer: L4
+    tags: [aesthetic, visual, brand, style]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: gateway-design
+    path: .wabblespec/engine/modules/l4/design/
+    type: skill
+    layer: L4
+    tags: [design, ux, ui, interaction]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: gateway-experience
+    path: .wabblespec/engine/modules/l4/experience/
+    type: skill
+    layer: L4
+    tags: [experience, accessibility, performance, delight]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [gateway-design]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L5 — MEMORY
+# ─────────────────────────────────────────────
+
+  - id: memory
+    path: .wabblespec/engine/modules/l5/memory/
+    type: skill
+    layer: L5
+    tags: [memory, storage, drawers, staleness, evidence]
+    produces_schemas: [.wabblespec/engine/shared/schemas/drawer.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/references/staleness-states.md]
+    depends_on: []
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: memory-search
+    path: .wabblespec/engine/modules/l5/memory-search/
+    type: skill
+    layer: L5
+    tags: [memory, search, retrieval, query]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/drawer.schema.json]
+    depends_on: [memory]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: provenance
+    path: .wabblespec/engine/modules/l5/provenance/
+    type: skill
+    layer: L5
+    tags: [provenance, lineage, citations, cascade]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/drawer.schema.json]
+    depends_on: [memory]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: entity-graph
+    path: .wabblespec/engine/modules/l5/entity-graph/
+    type: script
+    layer: L5
+    tags: [entities, graph, relationships, index]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search]
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: dream
+    path: .wabblespec/engine/modules/l5/dream/
+    type: script
+    layer: L5
+    tags: [consolidation, decay, ema, staleness, background]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search, provenance]
+    last_validated: "2026-05-21"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: memory-mine
+    path: .wabblespec/engine/modules/l5/memory-mine/
+    type: skill
+    layer: L5
+    tags: [mining, patterns, analysis]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, memory-search, dream]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: forget
+    path: .wabblespec/engine/modules/l5/forget/
+    type: skill
+    layer: L5
+    tags: [deletion, cleanup, privacy]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory, provenance]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L6 — EXPRESSION
+# ─────────────────────────────────────────────
+
+  - id: homowabian
+    path: .wabblespec/engine/modules/l6/homowabian/
+    type: skill
+    layer: L6
+    tags: [voice, register, expression, tone]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: economy
+    path: .wabblespec/engine/modules/l2/economy/
+    type: skill
+    layer: L2
+    tags: [tokens, compression, density, context]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: document
+    path: .wabblespec/engine/modules/l6/document/
+    type: skill
+    layer: L6
+    tags: [documentation, onboarding, reference]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: polish
+    path: .wabblespec/engine/modules/l6/polish/
+    type: skill
+    layer: L6
+    tags: [polish, refinement, quality]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [homowabian]
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: research-log
+    path: .wabblespec/engine/modules/l6/research-log/
+    type: skill
+    layer: L6
+    tags: [research, logging, evidence]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [memory]
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L7 — DELIVERY
+# ─────────────────────────────────────────────
+
+  - id: deploy
+    path: .wabblespec/engine/modules/l7/deploy/
+    type: skill
+    layer: L7
+    tags: [deployment, release, infra]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier, archive]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: package
+    path: .wabblespec/engine/modules/l7/package/
+    type: skill
+    layer: L7
+    tags: [packaging, distribution, bundle]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: release
+    path: .wabblespec/engine/modules/l7/release/
+    type: skill
+    layer: L7
+    tags: [release, versioning, changelog]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [package]
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: monitor
+    path: .wabblespec/engine/modules/l7/monitor/
+    type: skill
+    layer: L7
+    tags: [monitoring, observability, alerts]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/error-event.schema.json]
+    depends_on: []
+    last_validated: "2026-05-24"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# L8 — EVOLUTION
+# OPERATIONAL GATE: NOT MET. Modules are structurally built but not
+# authorized to modify live framework files. Gate conditions defined in
+# .wabblespec/engine/shared/references/l8-corpus-gate.md. Requires 100+ PASS receipts,
+# 3 human-validated Instinct patterns, and benchmark schema before promotion.
+# ─────────────────────────────────────────────
+
+  - id: instinct
+    path: .wabblespec/engine/modules/l8/instinct/
+    type: script
+    layer: L8
+    tags: [evolution, observation, patterns, ema]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [archive, memory]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: synth
+    path: .wabblespec/engine/modules/l8/synth/
+    type: skill
+    layer: L8
+    tags: [evolution, synthesis, proposals]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [instinct]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: blueprint
+    path: .wabblespec/engine/modules/l8/blueprint/
+    type: skill
+    layer: L8
+    tags: [evolution, spec, improvement]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [synth]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: factory
+    path: .wabblespec/engine/modules/l8/factory/
+    type: skill
+    layer: L8
+    tags: [evolution, generation, scaffolding]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [blueprint]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: augment
+    path: .wabblespec/engine/modules/l8/augment/
+    type: skill
+    layer: L8
+    tags: [evolution, improvement, patching]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [blueprint]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: benchmark
+    path: .wabblespec/engine/modules/l8/benchmark/
+    type: skill
+    layer: L8
+    tags: [evolution, benchmarking, evaluation]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [factory, augment]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: forge
+    path: .wabblespec/engine/modules/l8/forge/
+    type: skill
+    layer: L8
+    tags: [evolution, promotion, live-update]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [benchmark]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: retro
+    path: .wabblespec/engine/modules/l8/retro/
+    type: skill
+    layer: L8
+    tags: [evolution, retrospective, learning]
+    produces_schemas: []
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: feedback
+    path: .wabblespec/engine/modules/l8/feedback/
+    type: skill
+    layer: L8
+    tags: [evolution, feedback, input]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# PHASE 3 MODULES — built 2026-05-23
+# ─────────────────────────────────────────────
+
+  - id: nexus
+    path: .wabblespec/engine/modules/l5/nexus/
+    type: skill
+    layer: L5
+    tags: [knowledge-retrieval, graph-traversal, blast-radius, pattern-discovery, why-query]
+    produces_schemas: [.wabblespec/engine/modules/l5/nexus/schemas/nexus-receipt.schema.json, .wabblespec/engine/modules/l5/nexus/schemas/why-query-response.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [memory, memory-search, entity-graph]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: shift
+    path: .wabblespec/engine/modules/l1/shift/
+    type: skill
+    layer: L1
+    tags: [change-classification, semantic-diff, reverse-drift, compatibility, breaking-change]
+    produces_schemas: [.wabblespec/engine/modules/l1/shift/schemas/shift-receipt.schema.json, .wabblespec/engine/modules/l1/shift/schemas/compatibility-report.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: sync
+    path: .wabblespec/engine/modules/l1/sync/
+    type: skill
+    layer: L1
+    tags: [spec-reconciliation, divergence, merge, conflict-resolution]
+    produces_schemas: [.wabblespec/engine/modules/l1/sync/schemas/sync-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: organize
+    path: .wabblespec/engine/modules/l1/organize/
+    type: skill
+    layer: L1
+    tags: [file-structure, orphan-detection, naming, repair, audit]
+    produces_schemas: [.wabblespec/engine/modules/l1/organize/schemas/organize-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: flag
+    path: .wabblespec/engine/modules/l1/flag/
+    type: skill
+    layer: L1
+    tags: [feature-flags, rollout, lifecycle, gate, manifest]
+    produces_schemas: [.wabblespec/engine/modules/l1/flag/schemas/flag-receipt.schema.json, .wabblespec/engine/modules/l1/flag/schemas/flag-manifest.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: analyze
+    path: .wabblespec/engine/modules/l1/analyze/
+    type: skill
+    layer: L1
+    tags: [root-cause, rca, 5-whys, fishbone, fault-tree, investigation]
+    produces_schemas: [.wabblespec/engine/modules/l1/analyze/schemas/analyze-receipt.schema.json, .wabblespec/engine/modules/l1/analyze/schemas/rca-report.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [triage]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: perf
+    path: .wabblespec/engine/modules/l1/perf/
+    type: skill
+    layer: L1
+    tags: [performance, baseline, measurement, optimization, budget]
+    produces_schemas: [.wabblespec/engine/modules/l1/perf/schemas/perf-receipt.schema.json, .wabblespec/engine/modules/l1/perf/schemas/perf-baseline.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: deps
+    path: .wabblespec/engine/modules/l1/deps/
+    type: skill
+    layer: L1
+    tags: [dependencies, sbom, vulnerabilities, supply-chain, license, risk]
+    produces_schemas: [.wabblespec/engine/modules/l1/deps/schemas/deps-receipt.schema.json, .wabblespec/engine/modules/l1/deps/schemas/sbom.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [gateway-security]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: audit
+    path: .wabblespec/engine/modules/l2/audit/
+    type: skill
+    layer: L2
+    tags: [compliance, accessibility, wcag, gdpr, license-compliance, guard-log-review]
+    produces_schemas: [.wabblespec/engine/modules/l2/audit/schemas/audit-receipt.schema.json, .wabblespec/engine/modules/l2/audit/schemas/compliance-report.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [guard]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: api
+    path: .wabblespec/engine/modules/l1/api/
+    type: skill
+    layer: L1
+    tags: [api-versioning, deprecation, contract, backward-compatibility]
+    produces_schemas: [.wabblespec/engine/modules/l1/api/schemas/api-receipt.schema.json, .wabblespec/engine/modules/l1/api/schemas/api-contract.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# SHARED DEV INFRASTRUCTURE
+# ─────────────────────────────────────────────
+
+  - id: shared-dev-languages
+    path: .wabblespec/engine/shared/dev/languages/
+    type: skill
+    layer: shared
+    tags: [languages, conventions, standards]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: shared-dev-databases
+    path: .wabblespec/engine/shared/dev/databases/
+    type: skill
+    layer: shared
+    tags: [databases, sql, nosql, orm]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: shared-dev-api-consumption
+    path: .wabblespec/engine/shared/dev/api/
+    type: skill
+    layer: shared
+    tags: [api, http, rest, graphql, consumption]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-22"
+    quality_floor_passed: true
+    build_status: built
+
+# ─────────────────────────────────────────────
+# PHASE 5 MODULES — built 2026-05-23
+# ─────────────────────────────────────────────
+
+  - id: proofread
+    path: .wabblespec/engine/modules/l6/proofread/
+    type: skill
+    layer: L6
+    tags: [quality-gate, readability, factual-accuracy, consistency, text]
+    produces_schemas: [.wabblespec/engine/modules/l6/proofread/schemas/proofread-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: markdown
+    path: .wabblespec/engine/modules/l6/markdown/
+    type: skill
+    layer: L6
+    tags: [formatting, obsidian, agentskills, frontmatter, wikilinks, output]
+    produces_schemas: [.wabblespec/engine/modules/l6/markdown/schemas/markdown-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [proofread]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: copy
+    path: .wabblespec/engine/modules/l6/copy/
+    type: skill
+    layer: L6
+    tags: [microcopy, ui-text, errors, tooltips, labels, security-warnings]
+    produces_schemas: [.wabblespec/engine/modules/l6/copy/schemas/copy-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: writer
+    path: .wabblespec/engine/modules/l6/writer/
+    type: skill
+    layer: L6
+    tags: [long-form, content, landing-page, blog, technical-article, case-study]
+    produces_schemas: [.wabblespec/engine/modules/l6/writer/schemas/writer-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: legal
+    path: .wabblespec/engine/modules/l6/legal/
+    type: skill
+    layer: L6
+    tags: [legal-documents, privacy-policy, terms-of-service, gdpr, ccpa, compliance]
+    produces_schemas: [.wabblespec/engine/modules/l6/legal/schemas/legal-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [audit]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: translate
+    path: .wabblespec/engine/modules/l6/translate/
+    type: skill
+    layer: L6
+    tags: [i18n, l10n, locale, translation, bcp47, strings]
+    produces_schemas: [.wabblespec/engine/modules/l6/translate/schemas/translate-receipt.schema.json, .wabblespec/engine/modules/l6/translate/schemas/locale-manifest.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: optimize
+    path: .wabblespec/engine/modules/l6/optimize/
+    type: skill
+    layer: L6
+    tags: [seo, ai-search, structured-data, performance, social, local, video, voice, discoverability]
+    produces_schemas: [.wabblespec/engine/modules/l6/optimize/schemas/optimize-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: market
+    path: .wabblespec/engine/modules/l6/market/
+    type: skill
+    layer: L6
+    tags: [marketing, positioning, icp, messaging, go-to-market, channels]
+    produces_schemas: [.wabblespec/engine/modules/l6/market/schemas/market-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: []
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: changelog
+    path: .wabblespec/engine/modules/l7/changelog/
+    type: skill
+    layer: L7
+    tags: [release-notes, git, conventional-commits, user-facing, delivery]
+    produces_schemas: [.wabblespec/engine/modules/l7/changelog/schemas/changelog-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [archive]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: commit
+    path: .wabblespec/engine/modules/l7/commit/
+    type: skill
+    layer: L7
+    tags: [git, conventional-commits, staging, atomic-commits, delivery]
+    produces_schemas: [.wabblespec/engine/modules/l7/commit/schemas/commit-receipt.schema.json]
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [changelog]
+    last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
