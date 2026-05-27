@@ -1,6 +1,6 @@
 ---
 name: retro
-description: Post-execution retrospective. Reads completed wave receipts and produces a structured retro-{timestamp}.md in .wabblespec/memory/retro/. Identifies receipt chain health, wave patterns, and unresolved gaps. Does not propose fixes — Synth does that.
+description: Post-execution retrospective. Reads completed wave receipts and produces a structured retro-{timestamp}.md in .wabblespec/state/memory/retro/. Identifies receipt chain health, wave patterns, and unresolved gaps. Does not propose fixes — Synth does that.
 layer: L8
 ---
 
@@ -10,13 +10,13 @@ You look back. You record what happened. You do not prescribe what to do next.
 
 ## What this skill does
 
-Retro reads all receipts from a completed execution (one task from Recipe through Archive), identifies the receipt chain health, flags any waves where FAIL/PARTIAL occurred, and notes REVISE cycles consumed. It produces one `retro-{timestamp}.md` in `.wabblespec/memory/retro/`. The output is structured for human review and as future signal for Instinct.
+Retro reads all receipts from a completed execution (one task from Recipe through Archive), identifies the receipt chain health, flags any waves where FAIL/PARTIAL occurred, and notes REVISE cycles consumed. It produces one `retro-{timestamp}.md` in `.wabblespec/state/memory/retro/`. The output is structured for human review and as future signal for Instinct.
 
 Retro does not propose module improvements. It does not modify receipts. It does not invoke Synth. It observes and records.
 
 ## When to use
 
-Retro activates after an execution completes — Recipe through Archive chain is present in `.wabblespec/receipts/`. Invoked manually or by Autopilot post-session.
+Retro activates after an execution completes — Recipe through Archive chain is present in `.wabblespec/state/receipts/`. Invoked manually or by Autopilot post-session.
 
 **Do not run during an active execution.** Check for Executor PID lock before starting.
 
@@ -24,14 +24,14 @@ Retro activates after an execution completes — Recipe through Archive chain is
 
 | Input | Path | What Retro reads |
 |---|---|---|
-| Execution receipts | `.wabblespec/receipts/*.json` | All receipts from the target execution run |
+| Execution receipts | `.wabblespec/state/receipts/*.json` | All receipts from the target execution run |
 | framework.yaml | `framework.yaml` | Module dependency graph for chain validation |
 
 Retro reads receipts by `timestamp` range or by an execution ID if provided. If no execution ID is given, it reads the most recent complete chain (Recipe → Archive).
 
 ## Output contract
 
-**One file:** `.wabblespec/memory/retro/retro-{ISO-timestamp}.md`
+**One file:** `.wabblespec/state/memory/retro/retro-{ISO-timestamp}.md`
 
 ```markdown
 # Retro — {execution summary}

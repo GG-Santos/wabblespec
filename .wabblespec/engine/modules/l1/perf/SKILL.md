@@ -56,7 +56,7 @@ After optimization: run baseline measurement again. Compare all metrics, not jus
 
 ## Output contract
 
-**perf-receipt.json** (`.wabblespec/receipts/perf-receipt-<timestamp>.json`):
+**perf-receipt.json** (`.wabblespec/state/receipts/perf-receipt-<timestamp>.json`):
 
 ```json
 {

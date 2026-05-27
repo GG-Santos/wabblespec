@@ -20,12 +20,12 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/rollback-receipt-*.json"
+      ".wabblespec/state/receipts/rollback-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/checkpoints/",
-      ".wabblespec/experiments/rollback-*/",
-      ".wabblespec/receipts/deploy-receipt-*.json"
+      ".wabblespec/state/checkpoints/",
+      ".wabblespec/state/experiments/rollback-*/",
+      ".wabblespec/state/receipts/deploy-receipt-*.json"
     ]
   },
   "verification_mode": "Attestation",

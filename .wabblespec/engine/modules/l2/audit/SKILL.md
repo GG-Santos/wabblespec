@@ -63,7 +63,7 @@ Write to `.wabblespec/audits/compliance-<timestamp>.md`. Write receipt.
 
 ## Output contract
 
-**audit-receipt.json** (`.wabblespec/receipts/audit-receipt-<timestamp>.json`):
+**audit-receipt.json** (`.wabblespec/state/receipts/audit-receipt-<timestamp>.json`):
 
 ```json
 {

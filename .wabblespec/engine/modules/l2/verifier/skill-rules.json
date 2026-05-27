@@ -24,13 +24,13 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/verification-wave-*-*.json"
+      ".wabblespec/state/receipts/verification-wave-*-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/task-card.md",
-      ".wabblespec/plans/current-wave-plan.md",
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/plans/current-wave-plan.md",
       ".wabblespec/scope.md",
-      ".wabblespec/receipts/wave-*-receipt.json"
+      ".wabblespec/state/receipts/wave-*-receipt.json"
     ]
   },
   "verification_mode": "Audit",

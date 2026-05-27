@@ -1,6 +1,6 @@
 # Wave Plan
 
-**task_card:** .wabblespec/plans/task-card.md
+**task_card:** .wabblespec/state/plans/task-card.md
 **target:** <from recipe.json — e.g., CLI, Web, API-Service>
 **complexity:** Low | Medium | High
 **collapse_eligible:** true | false
@@ -13,7 +13,7 @@
 ### Wave 1: <name — verb phrase describing the work, e.g., "Build data model">
 
 **inputs:**
-- `.wabblespec/plans/task-card.md` — sections: <list relevant sections>
+- `.wabblespec/state/plans/task-card.md` — sections: <list relevant sections>
 - <any context files required — e.g., existing schema, config>
 
 **outputs:**
@@ -32,7 +32,7 @@
 
 **inputs:**
 - Wave 1 outputs (list specific artifacts)
-- `.wabblespec/plans/task-card.md` — sections: <list>
+- `.wabblespec/state/plans/task-card.md` — sections: <list>
 
 **outputs:**
 - `<path/to/artifact>` — <what it is>
@@ -42,7 +42,7 @@
 **rollback_to:** Wave 1 checkpoint
 <!-- rollback_to options:
   - null                              (Wave 1 only)
-  - Wave N checkpoint                 (default — file copies in .wabblespec/checkpoints/)
+  - Wave N checkpoint                 (default — file copies in .wabblespec/state/checkpoints/)
   - worktree:.worktrees/<wave-id>/    (High complexity + irreversible ops + git repo confirmed)
 -->
 

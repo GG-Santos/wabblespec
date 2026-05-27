@@ -89,5 +89,5 @@ Then platform-web does not suppress WCAG AA requirement for any visual browser t
 ## Receipt fields
 
 Given any successful platform-web activation,
-Then a receipt is written to `.wabblespec/receipts/platform-web-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-web-<timestamp>.json`.
 Then the receipt contains: platform, framework_detected, language_module_loaded, templates_activated, cwv_budgets_declared, security_files_loaded, gates_registered, capability_handoff.

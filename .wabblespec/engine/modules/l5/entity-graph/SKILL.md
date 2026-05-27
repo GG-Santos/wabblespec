@@ -9,7 +9,7 @@ You run the EntityGraph script. You do not interpret its output — you surface 
 
 ## What this skill does
 
-Invokes `modules/l5/entity-graph/scripts/entity-graph.py`. The script reads all curated drawers from `.wabblespec/memory/wings/`, extracts entity mentions of 3 types, builds a relationship graph using typed predicates and temporal validity, writes co-occurrence triples to the knowledge graph, and writes output files to `.wabblespec/memory/`.
+Invokes `modules/l5/entity-graph/scripts/entity-graph.py`. The script reads all curated drawers from `.wabblespec/state/memory/wings/`, extracts entity mentions of 3 types, builds a relationship graph using typed predicates and temporal validity, writes co-occurrence triples to the knowledge graph, and writes output files to `.wabblespec/state/memory/`.
 
 You do not decide what is related. The script decides based on co-occurrence in drawer evidence with a minimum threshold of 2. You run the script and report what it found.
 
@@ -88,7 +88,7 @@ Minimum co-occurrence count: **2**. Entity pairs that co-occur in only one drawe
 
 ## Backend
 
-Knowledge graph: SQLite at `.wabblespec/memory/knowledge_graph.sqlite3` through the WabbleSpec Memory facade.
+Knowledge graph: SQLite at `.wabblespec/state/memory/knowledge_graph.sqlite3` through the WabbleSpec Memory facade.
 
 ```python
 from _shared.memory_backend import get_knowledge_graph
@@ -132,10 +132,10 @@ Run from the project root.
 
 | File | Location | Purpose |
 |---|---|---|
-| `entity-graph.json` | `.wabblespec/memory/` | Graph: nodes (entities with tier + confidence) + edges (typed predicates with temporal validity) |
-| `entity-report.md` | `.wabblespec/memory/` | Human-readable: top entities by degree, densest relationships |
-| `entity-registry.json` | `.wabblespec/memory/` | Full entity list with type, label, drawer count, drawer IDs |
-| `knowledge_graph.sqlite3` | `.wabblespec/memory/` | SQLite KG — co-occurrence triples with temporal validity |
+| `entity-graph.json` | `.wabblespec/state/memory/` | Graph: nodes (entities with tier + confidence) + edges (typed predicates with temporal validity) |
+| `entity-report.md` | `.wabblespec/state/memory/` | Human-readable: top entities by degree, densest relationships |
+| `entity-registry.json` | `.wabblespec/state/memory/` | Full entity list with type, label, drawer count, drawer IDs |
+| `knowledge_graph.sqlite3` | `.wabblespec/state/memory/` | SQLite KG — co-occurrence triples with temporal validity |
 
 ## Invalidation
 

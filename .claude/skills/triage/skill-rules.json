@@ -23,7 +23,7 @@
   "authority": {
     "owns": [
       "Memory triage drawer (FRESH)",
-      ".wabblespec/receipts/triage-receipt-<id>.json"
+      ".wabblespec/state/receipts/triage-receipt-<id>.json"
     ],
     "reads": [
       "Memory (prior triage records for recurrence check)"

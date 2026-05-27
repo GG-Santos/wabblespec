@@ -30,7 +30,7 @@ Markdown is invoked:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/markdown-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/markdown-{timestamp}.json`
 
 ```json
 {

@@ -21,10 +21,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/runtime/runtime-state.json"
+      ".wabblespec/state/runtime/runtime-state.json"
     ],
     "reads": [
-      ".wabblespec/runtime/runtime.json"
+      ".wabblespec/state/runtime/runtime.json"
     ]
   },
   "verification_mode": "Observation",

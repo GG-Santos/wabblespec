@@ -167,6 +167,6 @@ Microcompaction runs before each API call to trim tool result tokens without a f
 
 - Economy's `--budget` mode projects token cost before a wave. The actual auto-compact threshold is `effectiveContextWindow - 13,000`. A projected cost approaching this value is the real risk boundary, not the raw model context window.
 - Autopilot should treat compaction as a transparent runtime event — no module action required. The runtime handles context recovery. Modules that maintain important state (file content, skill references) will have that state re-injected automatically post-compact.
-- Receipts and task cards are not affected by compaction — they live on disk (`.wabblespec/engine/shared/references/`, `.wabblespec/receipts/`), not in the conversation context. A compacted session retains full receipt chain integrity.
+- Receipts and task cards are not affected by compaction — they live on disk (`.wabblespec/engine/shared/references/`, `.wabblespec/state/receipts/`), not in the conversation context. A compacted session retains full receipt chain integrity.
 - The `SessionStart` hooks (`wabblespec-session-start.js`) re-run after every compaction. The invariant context they inject is therefore available in every post-compact turn.
 - CLAUDE.md memory files are excluded from post-compact file re-injection (they are already loaded via the memory system separately).

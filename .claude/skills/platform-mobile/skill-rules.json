@@ -93,11 +93,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/mobile-receipt-*.json"
+      ".wabblespec/state/receipts/mobile-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

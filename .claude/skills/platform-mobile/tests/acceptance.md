@@ -80,5 +80,5 @@ Then platform-mobile does not treat mobile as identical to Web.
 ## Receipt fields
 
 Given any successful platform-mobile activation,
-Then a receipt is written to `.wabblespec/receipts/platform-mobile-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-mobile-<timestamp>.json`.
 Then the receipt contains: platform, framework_detected, code_signing_declared, permissions_declared, offline_strategy_declared, ota_strategy_declared, gates_registered, capability_handoff.

@@ -55,7 +55,7 @@ Verifies the wave task is within `scope.md` boundaries.
 | Invariant | Check | Violation result |
 |---|---|---|
 | `WABBLESPEC_MEMORY_READY` | `WABBLESPEC_MEMORY_PATH` env var set | HARD — abort; "Run bootstrap script" |
-| `CHROMADB_EXISTS` | `.wabblespec/memory/chroma.sqlite3` present | HARD — abort; "Run migrate-json-drawers.py" |
+| `CHROMADB_EXISTS` | `.wabblespec/state/memory/chroma.sqlite3` present | HARD — abort; "Run migrate-json-drawers.py" |
 | `CLOSET_INDEX_GATE` | Closet indexing only when ChromaDB drawer count ≥ 50 | SPEC_VIOLATION — route to Reviewer |
 
 ### Layer 4 — Authority check
@@ -98,7 +98,7 @@ Wave cannot proceed. Remove or replace this command before re-submitting.
 
 ## Guard receipt fields
 
-Written to `.wabblespec/receipts/guard-wave-{N}-receipt.json`:
+Written to `.wabblespec/state/receipts/guard-wave-{N}-receipt.json`:
 
 ```json
 {

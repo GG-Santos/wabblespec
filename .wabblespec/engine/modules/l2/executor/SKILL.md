@@ -26,8 +26,8 @@ Works through the wave plan from Decompose, wave by wave in order. Before each w
 
 ## Inputs
 
-- `.wabblespec/plans/current-wave-plan.md` (locked wave plan)
-- `.wabblespec/plans/task-card.md` (spec ground truth)
+- `.wabblespec/state/plans/current-wave-plan.md` (locked wave plan)
+- `.wabblespec/state/plans/task-card.md` (spec ground truth)
 - `.wabblespec/scope.md`
 - All prior wave receipts (for I10 chain)
 
@@ -35,7 +35,7 @@ Works through the wave plan from Decompose, wave by wave in order. Before each w
 
 ### Pre-execution prologue (once, before Wave 1)
 
-Before any wave begins, confirm `decompose-receipt.json` exists. Then write the enforcement prologue to `.wabblespec/session/state.json`:
+Before any wave begins, confirm `decompose-receipt.json` exists. Then write the enforcement prologue to `.wabblespec/state/session/state.json`:
 
 ```json
 {
@@ -67,7 +67,7 @@ Preserve all other fields. Do not reset `enforcement_active` to false.
 
 **1. Establish rollback reference**
 
-The locked wave plan at `.wabblespec/plans/current-wave-plan.md` is the rollback ground truth for this wave. It already declares which files this wave will touch under its `outputs` list. No pre-wave directory snapshot is written. If this wave must be rolled back, revert all files listed under this wave in `current-wave-plan.md` to their pre-wave state using git or manual revert.
+The locked wave plan at `.wabblespec/state/plans/current-wave-plan.md` is the rollback ground truth for this wave. It already declares which files this wave will touch under its `outputs` list. No pre-wave directory snapshot is written. If this wave must be rolled back, revert all files listed under this wave in `current-wave-plan.md` to their pre-wave state using git or manual revert.
 
 **2. Run Guard**
 
@@ -82,7 +82,7 @@ After Guard returns PASS, append `"guard-wave-<N>"` to `required_receipts` in st
 
 **2b. Optional: Context7 enrichment**
 
-If `context7.available: true` in `.wabblespec/runtime/runtime-state.json`, and the wave implementation involves a named library or framework not covered by `.wabblespec/engine/shared/dev/`, use context7 to fetch the relevant API surface before implementing:
+If `context7.available: true` in `.wabblespec/state/runtime/runtime-state.json`, and the wave implementation involves a named library or framework not covered by `.wabblespec/engine/shared/dev/`, use context7 to fetch the relevant API surface before implementing:
 
 - MCP path: `resolve-library-id` → `get-library-docs` with targeted topic
 - CLI path: `ctx7 <library-name>` piped to the relevant section
@@ -111,11 +111,11 @@ Handle Verifier result:
 
 **5. Write wave receipt**
 
-`.wabblespec/receipts/wave-<N>-receipt.json`. Required fields: all base receipt fields + wave number, verification mode used, revise cycles consumed, checkpoint path, deviations found.
+`.wabblespec/state/receipts/wave-<N>-receipt.json`. Required fields: all base receipt fields + wave number, verification mode used, revise cycles consumed, checkpoint path, deviations found.
 
 **5b. Write session checkpoint**
 
-After the wave receipt is written, write `.wabblespec/session/checkpoints/checkpoint-wave-<N>.json` conforming to `.wabblespec/engine/shared/schemas/wave-checkpoint.schema.json`. Required fields:
+After the wave receipt is written, write `.wabblespec/state/session/checkpoints/checkpoint-wave-<N>.json` conforming to `.wabblespec/engine/shared/schemas/wave-checkpoint.schema.json`. Required fields:
 
 ```json
 {
@@ -128,15 +128,15 @@ After the wave receipt is written, write `.wabblespec/session/checkpoints/checkp
   "receipts_written": ["<paths to receipts written this wave>"],
   "files_modified": [{"path": "...", "action": "created|modified|deleted"}],
   "state_snapshot": {
-    "wave_plan_path": ".wabblespec/plans/current-wave-plan.md",
-    "task_card_path": ".wabblespec/plans/task-card.md",
+    "wave_plan_path": ".wabblespec/state/plans/current-wave-plan.md",
+    "task_card_path": ".wabblespec/state/plans/task-card.md",
     "acceptance_criteria_met": [],
     "acceptance_criteria_pending": []
   }
 }
 ```
 
-Create `.wabblespec/session/checkpoints/` if it does not exist. This checkpoint is the recovery point for session resume after interruption. Do not write this checkpoint before the wave receipt exists — the receipt is the confirmation that the wave completed.
+Create `.wabblespec/state/session/checkpoints/` if it does not exist. This checkpoint is the recovery point for session resume after interruption. Do not write this checkpoint before the wave receipt exists — the receipt is the confirmation that the wave completed.
 
 ### After all waves complete — module-build acceptance gate
 
@@ -158,7 +158,7 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 
 ### Write final execution receipt
 
-`.wabblespec/receipts/execution-receipt.json`. Signal Archive to run.
+`.wabblespec/state/receipts/execution-receipt.json`. Signal Archive to run.
 
 ### Error routing
 
@@ -173,7 +173,7 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 
 ## Output contract
 
-**wave receipts** (`.wabblespec/receipts/wave-<N>-receipt.json`):
+**wave receipts** (`.wabblespec/state/receipts/wave-<N>-receipt.json`):
 
 Base receipt schema. Extension fields:
 ```json
@@ -181,12 +181,12 @@ Base receipt schema. Extension fields:
   "wave_number": "integer",
   "verification_mode_used": "string",
   "revise_cycles": "integer — 0 to 3",
-  "checkpoint_path": ".wabblespec/checkpoints/wave-N-timestamp/",
+  "checkpoint_path": ".wabblespec/state/checkpoints/wave-N-timestamp/",
   "deviations_found": ["string — ADDITIVE/COSMETIC deviations if any"]
 }
 ```
 
-**execution-receipt.json** (`.wabblespec/receipts/execution-receipt.json`):
+**execution-receipt.json** (`.wabblespec/state/receipts/execution-receipt.json`):
 
 Base receipt. Extension:
 ```json
@@ -207,7 +207,7 @@ Base receipt. Extension:
 }
 ```
 
-**checkpoints** (`.wabblespec/checkpoints/wave-<N>-<timestamp>/`): directory with `checkpoint-meta.json` listing wave number, timestamp, files snapshotted.
+**checkpoints** (`.wabblespec/state/checkpoints/wave-<N>-<timestamp>/`): directory with `checkpoint-meta.json` listing wave number, timestamp, files snapshotted.
 
 ## A note on common failure modes
 

@@ -89,5 +89,5 @@ Then platform-cli does not load gateway-aesthetic/references/ (CLI is non-visual
 ## Receipt fields
 
 Given any successful platform-cli activation,
-Then a receipt is written to `.wabblespec/receipts/platform-cli-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-cli-<timestamp>.json`.
 Then the receipt contains: platform, language_module_loaded, framework_loaded, templates_activated, engineering_files_loaded, security_files_loaded, gates_registered, capability_handoff.

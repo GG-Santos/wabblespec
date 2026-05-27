@@ -24,13 +24,13 @@ Reads all receipts from the current execution session. Compiles `not_tested` ite
 
 ## Inputs
 
-- All receipts in `.wabblespec/receipts/` written during this session
+- All receipts in `.wabblespec/state/receipts/` written during this session
 - `.wabblespec/VERSION` (current version string)
 - `.wabblespec/CHANGELOG.md` (existing changelog — append only)
 
 ## Receipt index
 
-Archive maintains `.wabblespec/archive/receipt-index.json` as a queryable audit record across all executions. Schema: `schemas/receipt-index.schema.json`.
+Archive maintains `.wabblespec/state/archive/receipt-index.json` as a queryable audit record across all executions. Schema: `schemas/receipt-index.schema.json`.
 
 **Query use cases the index enables:**
 - All tasks with `status=FAIL` — find incomplete executions
@@ -57,7 +57,7 @@ The index is never deleted. FAIL entries are audit evidence, not garbage.
 
 ### Step 0 — Initialize or update receipt index
 
-Read `.wabblespec/archive/receipt-index.json`. If absent: create it with `index_version: 1`, empty `tasks[]`.
+Read `.wabblespec/state/archive/receipt-index.json`. If absent: create it with `index_version: 1`, empty `tasks[]`.
 
 Find or create the index entry for the current `task_id`:
 - If no entry exists: create PENDING entry with `started_at` = ScopeFrame receipt timestamp, `waves_planned` from decompose receipt, `receipts_by_module` keys from required receipt list (all PENDING)
@@ -111,7 +111,7 @@ Append to `.wabblespec/CHANGELOG.md`. Never overwrite existing entries.
 - <aggregated not-tested list — verbatim>
 
 ### Receipts
-- execution-receipt: .wabblespec/receipts/execution-receipt.json
+- execution-receipt: .wabblespec/state/receipts/execution-receipt.json
 - waves: <N> planned, <N> completed, <N> failed
 - verification: all waves PASS
 ```
@@ -122,7 +122,7 @@ Read `.wabblespec/VERSION`. Increment the correct semver component. Write the ne
 
 ### Step 6 — Write delivery receipt
 
-Write to `.wabblespec/receipts/delivery-receipt-<timestamp>.json`. This is the master I10 record for this execution.
+Write to `.wabblespec/state/receipts/delivery-receipt-<timestamp>.json`. This is the master I10 record for this execution.
 
 ### Step 6b — Finalize receipt index entry
 
@@ -161,7 +161,7 @@ Do not block archiving on Shift completion. Shift runs after the delivery receip
 
 ### Step 9 — Sweep mode (--sweep)
 
-When invoked with `--sweep`: scan `.wabblespec/archive/receipt-index.json` for entries with staleness state `EXPIRED` (≥ 50 changes since last touch).
+When invoked with `--sweep`: scan `.wabblespec/state/archive/receipt-index.json` for entries with staleness state `EXPIRED` (≥ 50 changes since last touch).
 
 Batch-entomb all EXPIRED entries in one operation:
 - Update their `status` to `ARCHIVED_STALE`
@@ -201,7 +201,7 @@ Record the following additive fields in the delivery receipt:
 
 ## Output contract
 
-**delivery-receipt** (`.wabblespec/receipts/delivery-receipt-<timestamp>.json`):
+**delivery-receipt** (`.wabblespec/state/receipts/delivery-receipt-<timestamp>.json`):
 
 Base receipt schema. Extension fields:
 ```json

@@ -40,7 +40,7 @@ Takes one reference source (path, URL, or known reference id). Reads the project
 
 ### Step 1 — Deduplicate check
 
-Read `.wabblespec/memory/index.json`. Search for an existing FRESH drawer whose topic matches this source + purpose combination. If found: return that drawer id. Do not load again. Write a receipt noting dedup hit.
+Read `.wabblespec/state/memory/index.json`. Search for an existing FRESH drawer whose topic matches this source + purpose combination. If found: return that drawer id. Do not load again. Write a receipt noting dedup hit.
 
 ### Step 2 — Map the source
 
@@ -71,7 +71,7 @@ Concepts to exclude:
 
 ### Step 4 — Write reference card to Memory
 
-Write a memory drawer to `.wabblespec/memory/` with:
+Write a memory drawer to `.wabblespec/state/memory/` with:
 ```json
 {
   "id": "<source-slug>-<purpose-slug>-<YYYYMMDD>",
@@ -142,11 +142,11 @@ Pointer mode use cases:
 
 ## Output contract
 
-**Reference card drawer** in `.wabblespec/memory/wings/references/rooms/<source-slug>/drawers/<id>.json`
+**Reference card drawer** in `.wabblespec/state/memory/wings/references/rooms/<source-slug>/drawers/<id>.json`
 
 **Memory index** updated: `index.json` entry added.
 
-**Reference receipt** at `.wabblespec/receipts/reference-load-<source-slug>-<timestamp>.json`
+**Reference receipt** at `.wabblespec/state/receipts/reference-load-<source-slug>-<timestamp>.json`
 
 ## Common failure modes
 

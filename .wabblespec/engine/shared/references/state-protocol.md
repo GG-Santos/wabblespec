@@ -1,6 +1,6 @@
 # WabbleSpec State Protocol
 
-Defines which module writes which fields to `.wabblespec/session/state.json` at each lifecycle point, and what the pre-tool-use hook requires from those fields.
+Defines which module writes which fields to `.wabblespec/state/session/state.json` at each lifecycle point, and what the pre-tool-use hook requires from those fields.
 
 ## Why this file exists
 
@@ -38,7 +38,7 @@ Written by: Autopilot, or manually before first module runs.
 
 ### After each planning-phase module completes
 
-Each L1 module appends its receipt stem to `required_receipts` and sets `active_module` to the next module. Stems must match the actual filename without `.json` — confirmed against live `.wabblespec/receipts/`.
+Each L1 module appends its receipt stem to `required_receipts` and sets `active_module` to the next module. Stems must match the actual filename without `.json` — confirmed against live `.wabblespec/state/receipts/`.
 
 | Module completes | Append to required_receipts | Set active_module |
 |---|---|---|
@@ -126,15 +126,15 @@ Exclusive writers listed. All other modules submit via the owning module — nev
 
 | State file | Exclusive writer | Readers (no write authority) |
 |---|---|---|
-| `.wabblespec/receipts/` | Each module (its own receipt only) | Guard, Verifier, Archive, Executor |
-| `.wabblespec/memory/drawers/` | Memory module | All L5 modules via Memory write path |
-| `.wabblespec/memory/ledger.md` | Provenance | Memory, Forget (notify only) |
-| `.wabblespec/memory/index.md` | Memory | MemorySearch, Dream, MemoryMine (read only) |
-| `.wabblespec/memory/tracker.json` | Instinct (write), Dream (decay) | Synth (read only) |
-| `.wabblespec/session/state.json` | Autopilot, each module (own fields only) | pre-tool-use hook (read only) |
+| `.wabblespec/state/receipts/` | Each module (its own receipt only) | Guard, Verifier, Archive, Executor |
+| `.wabblespec/state/memory/drawers/` | Memory module | All L5 modules via Memory write path |
+| `.wabblespec/state/memory/ledger.md` | Provenance | Memory, Forget (notify only) |
+| `.wabblespec/state/memory/index.md` | Memory | MemorySearch, Dream, MemoryMine (read only) |
+| `.wabblespec/state/memory/tracker.json` | Instinct (write), Dream (decay) | Synth (read only) |
+| `.wabblespec/state/session/state.json` | Autopilot, each module (own fields only) | pre-tool-use hook (read only) |
 | `framework.yaml` | Manual / path-linter script | All modules (read only) |
 | `.wabblespec/meta.md` | Autopilot exclusively | All modules submit change requests |
-| `.wabblespec/experiments/` | Factory, Augment, Benchmark | Forge (reads for promotion) |
+| `.wabblespec/state/experiments/` | Factory, Augment, Benchmark | Forge (reads for promotion) |
 | product space | Apply, Executor, platform modules | All spec/memory/delivery modules (read only) |
 
 ## State vs Instructions Hygiene

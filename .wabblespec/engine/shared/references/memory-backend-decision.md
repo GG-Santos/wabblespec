@@ -28,7 +28,7 @@ ChromaDB (semantic vector search) + SQLite (temporal KG)
 
 ### Option A: Flat-JSON drawers (original WabbleSpec Phase 3 approach)
 
-Drawer files at `.wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{id}.json`. Index at `.wabblespec/memory/index.json`.
+Drawer files at `.wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{id}.json`. Index at `.wabblespec/state/memory/index.json`.
 
 **Pros:** Zero dependency, fully portable, human-readable, no install step.  
 **Cons:** Search requires full-index scan or separate FTS index. No semantic recall — can only find drawers with exact keyword matches. As drawer count grows, scan performance degrades. MemorySearch built on this approach was replaced during BUILD-PLAN P1 because topic/staleness filters were slow and keyword-only.  
@@ -46,7 +46,7 @@ SQLite FTS5 BM25-ranked search, chunked by markdown headings, stored in local `.
 
 WabbleSpec Memory facade with ChromaDB vector index for semantic search. SQLite for entity knowledge graph.
 
-**Pros:** Semantic search finds conceptually related drawers even when exact keywords don't match. Drawer hierarchy (wings/rooms) maps directly to WabbleSpec's evidence taxonomy. WabbleSpec Memory is already running in this workspace via the session MCP server. Single-project isolation achieved by redirecting all memory paths to `.wabblespec/memory/`. Staleness metadata stored as `wabblespec_*` fields in ChromaDB metadata.  
+**Pros:** Semantic search finds conceptually related drawers even when exact keywords don't match. Drawer hierarchy (wings/rooms) maps directly to WabbleSpec's evidence taxonomy. WabbleSpec Memory is already running in this workspace via the session MCP server. Single-project isolation achieved by redirecting all memory paths to `.wabblespec/state/memory/`. Staleness metadata stored as `wabblespec_*` fields in ChromaDB metadata.  
 **Cons:** ChromaDB embeds locally via sentence-transformers on first use (one-time download). Adds a local Python runtime dependency.  
 **Verdict:** Selected.
 
@@ -54,16 +54,16 @@ WabbleSpec Memory facade with ChromaDB vector index for semantic search. SQLite 
 
 **Package:** `packages/memory/`  
 **Python:** 3.10+  
-**Memory path:** `.wabblespec/memory/` — set via `WABBLESPEC_MEMORY_PATH` environment variable  
+**Memory path:** `.wabblespec/state/memory/` — set via `WABBLESPEC_MEMORY_PATH` environment variable  
 **Config reference:** `modules/l5/memory/rules/memory-backend-config.md`  
-**Initialisation:** `_shared.memory_backend` adds `packages/memory/src/`, calls `memory.runtime.configure_project()`, sets `WABBLESPEC_MEMORY_PATH`, and redirects runtime state to `.wabblespec/memory/.runtime/` for single-project isolation  
+**Initialisation:** `_shared.memory_backend` adds `packages/memory/src/`, calls `memory.runtime.configure_project()`, sets `WABBLESPEC_MEMORY_PATH`, and redirects runtime state to `.wabblespec/state/memory/.runtime/` for single-project isolation  
 **Checkout launchers:** `scripts/memory.py` and `scripts/memory-mcp.py` run the CLI/MCP server without requiring editable install or console-script PATH setup.  
 **MCP compatibility:** Tool identifiers remain `wabblespec_memory_*` even though the package and command surface are named `memory`.  
 
 **Single-project isolation patches:**
-- `hallways._HALLWAY_FILE` → `.wabblespec/memory/hallways.json`
-- `palace_graph._TUNNEL_FILE` → `.wabblespec/memory/tunnels.json`
-- PID files → `.wabblespec/memory/.runtime/hook_state/`
+- `hallways._HALLWAY_FILE` → `.wabblespec/state/memory/hallways.json`
+- `palace_graph._TUNNEL_FILE` → `.wabblespec/state/memory/tunnels.json`
+- PID files → `.wabblespec/state/memory/.runtime/hook_state/`
 - ConvoMiner scoped to current project's Claude Code sessions only
 
 **WabbleSpec metadata extensions** (prefixed to avoid collision with WabbleSpec Memory native fields):
@@ -82,7 +82,7 @@ WabbleSpec Memory facade with ChromaDB vector index for semantic search. SQLite 
 
 If WabbleSpec Memory/ChromaDB becomes unavailable or breaks:
 
-1. **Immediate fallback:** All drawer content is written to `.wabblespec/memory/` as files by WabbleSpec Memory — these exist regardless of whether ChromaDB is queryable. Drawers can be read by ID from the filesystem without WabbleSpec Memory.
+1. **Immediate fallback:** All drawer content is written to `.wabblespec/state/memory/` as files by WabbleSpec Memory — these exist regardless of whether ChromaDB is queryable. Drawers can be read by ID from the filesystem without WabbleSpec Memory.
 2. **Search fallback:** Add a `grep`-based staleness-aware search script over drawer files. No semantic ranking — keyword match only. Acceptable for emergency retrieval.
 3. **Full migration:** Port to SQLite FTS5 (context-mode-main pattern) if semantic search requirements change. Schema is stable — `wabblespec_*` metadata fields translate to SQLite columns. Migration script path: `scripts/migrate/memory-to-fts5.py`.
 

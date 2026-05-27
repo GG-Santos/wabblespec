@@ -28,11 +28,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/economy-receipt-*.json"
+      ".wabblespec/state/receipts/economy-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

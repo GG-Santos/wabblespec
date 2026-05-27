@@ -10,7 +10,7 @@ You are the only path from experiment to production. The gates are not optional.
 
 ## What this skill does
 
-Forge copies a fully benchmarked experimental module from `.wabblespec/experiments/augments/{blueprint-id}/` to the production module path `modules/{layer}/{module}/`. After copying, it updates the module's receipt, archives the experiment with a provenance trail, and marks any downstream specs as NEEDS_REVERIFICATION. It then writes a Forge receipt.
+Forge copies a fully benchmarked experimental module from `.wabblespec/state/experiments/augments/{blueprint-id}/` to the production module path `modules/{layer}/{module}/`. After copying, it updates the module's receipt, archives the experiment with a provenance trail, and marks any downstream specs as NEEDS_REVERIFICATION. It then writes a Forge receipt.
 
 Forge does not evaluate whether the change is good — Benchmark did that. Forge verifies that all prerequisite gates are met and executes the promotion.
 
@@ -32,20 +32,20 @@ If any gate is unmet, Forge exits with `FORGE_BLOCKED`, names the unmet gate, an
 
 | Input | Path | Required |
 |---|---|---|
-| Blueprint | `.wabblespec/experiments/blueprints/{id}.blueprint.json` | Yes — status must be benchmark-passed |
-| Benchmark receipt | `.wabblespec/receipts/benchmark-*.json` | Yes — verdict: PASS |
-| Augment output | `.wabblespec/experiments/augments/{blueprint-id}/` | Yes |
-| tracker.json | `.wabblespec/experiments/tracker.json` | Yes — checked for open contradictions |
-| Attestation receipt (L8 only) | `.wabblespec/receipts/attestation-*.json` | Required for L8 modules |
+| Blueprint | `.wabblespec/state/experiments/blueprints/{id}.blueprint.json` | Yes — status must be benchmark-passed |
+| Benchmark receipt | `.wabblespec/state/receipts/benchmark-*.json` | Yes — verdict: PASS |
+| Augment output | `.wabblespec/state/experiments/augments/{blueprint-id}/` | Yes |
+| tracker.json | `.wabblespec/state/experiments/tracker.json` | Yes — checked for open contradictions |
+| Attestation receipt (L8 only) | `.wabblespec/state/receipts/attestation-*.json` | Required for L8 modules |
 
 ## Workflow
 
 1. Verify all activation gates. Exit `FORGE_BLOCKED` on any failure.
 2. Identify target path: `modules/{layer}/{module}/` from blueprint `affected_module` + framework.yaml.
 3. Copy augment files to target path. Overwrite existing files.
-4. Write updated module receipt to `.wabblespec/receipts/{module}-promoted-{timestamp}.json`.
+4. Write updated module receipt to `.wabblespec/state/receipts/{module}-promoted-{timestamp}.json`.
 5. Mark downstream specs NEEDS_REVERIFICATION: check framework.yaml `depends_on` graph for modules that depend on the promoted module. Write NEEDS_REVERIFICATION note to each affected module's receipt.
-6. Archive experiment: move `.wabblespec/experiments/augments/{blueprint-id}/` to `.wabblespec/experiments/archive/{blueprint-id}/`. Append provenance record to `.wabblespec/experiments/archive/provenance.json`.
+6. Archive experiment: move `.wabblespec/state/experiments/augments/{blueprint-id}/` to `.wabblespec/state/experiments/archive/{blueprint-id}/`. Append provenance record to `.wabblespec/state/experiments/archive/provenance.json`.
 7. Update framework.yaml: set promoted module's `last_validated` and `build_status: built`.
 8. Write Forge receipt.
 
@@ -53,7 +53,7 @@ If any gate is unmet, Forge exits with `FORGE_BLOCKED`, names the unmet gate, an
 
 **Writes to production:** `modules/{layer}/{module}/` — complete replacement of module files
 **Mutates:** `framework.yaml` (last_validated, build_status)
-**Mutates:** `.wabblespec/experiments/tracker.json` (promotion record appended)
+**Mutates:** `.wabblespec/state/experiments/tracker.json` (promotion record appended)
 **Mutates:** Downstream module receipts (NEEDS_REVERIFICATION notes)
 **Moves:** experiment to archive with provenance record
 

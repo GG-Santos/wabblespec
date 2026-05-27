@@ -9,7 +9,7 @@ Then Clean does not self-scope.
 
 ## BLOCK: absent wave receipts
 
-Given no wave receipts exist in `.wabblespec/receipts/`,
+Given no wave receipts exist in `.wabblespec/state/receipts/`,
 When Clean is invoked,
 Then Clean surfaces a DEPENDENCY error: "Clean operates on completed wave output."
 Then Clean does not run cleanup passes against in-progress or uncommitted code.
@@ -28,8 +28,8 @@ When Clean audits the declared scope,
 Then dead code confirmed by static analysis is classified COSMETIC and removed.
 Then formatting violations (whitespace, indentation, line endings) are classified COSMETIC when a format config exists and normalized.
 Then deprecated patterns flagged by Specify are classified COSMETIC and removed.
-Then a before/after diff is written to `.wabblespec/receipts/clean-diff-<timestamp>.md`.
-Then a Clean receipt is written to `.wabblespec/receipts/`.
+Then a before/after diff is written to `.wabblespec/state/receipts/clean-diff-<timestamp>.md`.
+Then a Clean receipt is written to `.wabblespec/state/receipts/`.
 
 ## Delta classification: ADDITIVE rename
 

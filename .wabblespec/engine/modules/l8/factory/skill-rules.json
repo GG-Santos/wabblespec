@@ -18,17 +18,17 @@
   "preconditions": [
     "blueprint.json has change_type: NEW and status: approved",
     "Blueprint receipt exists confirming Attestation",
-    "No existing directory at .wabblespec/experiments/augments/{blueprint-id}/",
+    "No existing directory at .wabblespec/state/experiments/augments/{blueprint-id}/",
     "Human explicit invocation with blueprint ID"
   ],
   "build_targets": [],
   "phases": [],
   "stages": ["post-blueprint"],
   "authority": {
-    "owns": [".wabblespec/experiments/augments/"],
+    "owns": [".wabblespec/state/experiments/augments/"],
     "reads": [
-      ".wabblespec/experiments/blueprints/",
-      ".wabblespec/receipts/blueprint-*.json",
+      ".wabblespec/state/experiments/blueprints/",
+      ".wabblespec/state/receipts/blueprint-*.json",
       "framework.yaml"
     ]
   },
@@ -42,7 +42,7 @@
     "Never writes to modules/ or production space",
     "Checks framework.yaml for ID conflicts before writing"
   ],
-  "produces": [".wabblespec/experiments/augments/"],
+  "produces": [".wabblespec/state/experiments/augments/"],
   "depends_on": ["blueprint", "synth", "instinct"],
   "consumed_by": ["augment", "benchmark"],
   "loading_gate": "activation",

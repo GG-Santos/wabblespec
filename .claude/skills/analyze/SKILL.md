@@ -59,7 +59,7 @@ Write to `.wabblespec/analysis/rca-<timestamp>.md`. Write receipt.
 
 ## Output contract
 
-**analyze-receipt.json** (`.wabblespec/receipts/analyze-receipt-<timestamp>.json`):
+**analyze-receipt.json** (`.wabblespec/state/receipts/analyze-receipt-<timestamp>.json`):
 
 ```json
 {

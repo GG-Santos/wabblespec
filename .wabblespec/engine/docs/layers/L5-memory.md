@@ -6,7 +6,7 @@ The memory and knowledge layer. L5 modules persist, retrieve, and evolve knowled
 
 | Module | Role |
 |--------|------|
-| `memory` | Core memory read/write. Manages the session memory store at `.wabblespec/memory/`. Writes to `index.json` and `tracker.json`. |
+| `memory` | Core memory read/write. Manages the session memory store at `.wabblespec/state/memory/`. Writes to `index.json` and `tracker.json`. |
 | `memory-search` | Semantic and keyword search over stored memory. Returns relevant entries ranked by relevance. |
 | `memory-mine` | Extracts latent patterns from receipt history and session logs. Feeds candidates to Dream and Instinct. |
 | `forget` | Explicit memory deletion. Requires human confirmation for CRITICAL-tier entries. Never auto-forgets. |
@@ -18,7 +18,7 @@ The memory and knowledge layer. L5 modules persist, retrieve, and evolve knowled
 ## Memory store layout
 
 ```
-.wabblespec/memory/
+.wabblespec/state/memory/
   index.json          — module registry, session entry points
   tracker.json        — module performance tracking, run counts
   dream-log.json      — Dream module output across all waves
@@ -43,6 +43,6 @@ The staleness system flags memory entries and spec artifacts that may be outdate
 ## Layer rules
 
 - Forget requires human confirmation for any entry tagged CRITICAL
-- Dream never modifies product space — it only writes to `.wabblespec/memory/`
+- Dream never modifies product space — it only writes to `.wabblespec/state/memory/`
 - Provenance is append-only — never removes or modifies existing provenance entries
 - Memory-mine is a read-only analysis module — it writes to Dream's input queue, not directly to memory

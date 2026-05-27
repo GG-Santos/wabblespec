@@ -5,7 +5,7 @@ Defines what Release does when its upstream artifacts or version data are absent
 ## Absent: Package artifact
 
 Condition: Release invoked but no Package receipt or signed artifact exists.
-Detection: No `package-receipt.json` in `.wabblespec/receipts/`.
+Detection: No `package-receipt.json` in `.wabblespec/state/receipts/`.
 Action: BLOCK Release. Surface: "Release requires a Package receipt. Complete Package step first."
 Do NOT: Release without a confirmed package artifact.
 

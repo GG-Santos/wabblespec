@@ -50,7 +50,7 @@
 ## AT-PROV-06: Receipt contains required fields
 
 **Given** a completed Provenance operation
-**Then** the receipt at `.wabblespec/receipts/provenance-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/provenance-{timestamp}.json` contains:
 - `records_created`
 - `records_updated`
 - `cascade_triggered`

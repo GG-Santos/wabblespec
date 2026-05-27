@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Clean Receipt",
-  "description": "Extension fields for clean-receipt.json in .wabblespec/receipts/",
+  "description": "Extension fields for clean-receipt.json in .wabblespec/state/receipts/",
   "type": "object",
   "required": ["scope", "files_analyzed", "cosmetic_changes", "additive_changes", "breaking_halted", "diff_path"],
   "properties": {
@@ -27,7 +27,7 @@
     },
     "diff_path": {
       "type": "string",
-      "description": "Path to before/after diff document in .wabblespec/receipts/"
+      "description": "Path to before/after diff document in .wabblespec/state/receipts/"
     }
   }
 }

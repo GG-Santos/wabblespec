@@ -17,7 +17,7 @@ Both operations are optional enrichment. If context7 is unavailable, execution p
 
 ## Availability check
 
-Read `context7.available` from `.wabblespec/runtime/runtime-state.json`. This field is written by RuntimeProbe.
+Read `context7.available` from `.wabblespec/state/runtime/runtime-state.json`. This field is written by RuntimeProbe.
 
 If runtime-state.json is absent, stale, or the `context7` key is missing: treat as unavailable. Do not block.
 

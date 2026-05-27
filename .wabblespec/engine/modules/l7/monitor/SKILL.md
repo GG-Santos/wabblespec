@@ -41,7 +41,7 @@ If no SLO declared for a dimension: note as `UNDECLARED` — do not invent a tar
 
 In addition to SLO-based monitoring, Monitor subscribes to Guard operation logs as a signal source via PostToolUse hook.
 
-Read all `guard-*-receipt.json` files in `.wabblespec/receipts/` for the current session. Evaluate:
+Read all `guard-*-receipt.json` files in `.wabblespec/state/receipts/` for the current session. Evaluate:
 
 - **Repeated blocks:** Same operation type blocked ≥ 3 times in one session → systemic policy issue
 - **Risk-tier escalations:** Any CRITICAL tier trigger in Guard logs
@@ -184,7 +184,7 @@ healthcheck.yml
 dashboard-template.json
 ```
 
-**monitor-receipt** (`.wabblespec/receipts/monitor-receipt-{timestamp}.json`):
+**monitor-receipt** (`.wabblespec/state/receipts/monitor-receipt-{timestamp}.json`):
 ```json
 {
   "slos_codified": "integer",

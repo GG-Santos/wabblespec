@@ -19,7 +19,7 @@ Then Executor surfaces the blocked state and awaits human resolution.
 
 Given decompose-receipt.json exists and Executor starts,
 When Executor writes the enforcement prologue,
-Then `.wabblespec/session/state.json` is written with `enforcement_active: true`.
+Then `.wabblespec/state/session/state.json` is written with `enforcement_active: true`.
 Then `required_receipts` lists all planning chain receipts.
 Then `active_module` is set to "executor".
 
@@ -27,16 +27,16 @@ Then `active_module` is set to "executor".
 
 Given a wave is about to begin,
 When Executor establishes the rollback reference,
-Then no directory is written to `.wabblespec/checkpoints/wave-<N>-<timestamp>/`.
-Then Executor treats `.wabblespec/plans/current-wave-plan.md` as the rollback ground truth.
+Then no directory is written to `.wabblespec/state/checkpoints/wave-<N>-<timestamp>/`.
+Then Executor treats `.wabblespec/state/plans/current-wave-plan.md` as the rollback ground truth.
 Then the wave plan's outputs list for this wave identifies all files to revert on rollback.
 
 ## No pre-wave directory checkpoint written
 
 Given any wave of any complexity,
 When Executor prepares for the wave,
-Then no file is written to `.wabblespec/checkpoints/`.
-Then the `.wabblespec/checkpoints/` directory is not created by Executor.
+Then no file is written to `.wabblespec/state/checkpoints/`.
+Then the `.wabblespec/state/checkpoints/` directory is not created by Executor.
 
 ## Guard PASS required before implementation
 
@@ -70,7 +70,7 @@ Then the wave is not halted.
 
 Given Verifier returns PASS for a wave,
 When Executor records the result,
-Then the wave receipt is written to `.wabblespec/receipts/wave-<N>-receipt.json`.
+Then the wave receipt is written to `.wabblespec/state/receipts/wave-<N>-receipt.json`.
 Then `wave-<N>` and the verification receipt stem are appended to `required_receipts` in state.json.
 Then Executor advances to the next wave.
 
@@ -93,7 +93,7 @@ Then the blocked state is surfaced to the user for Attestation.
 
 Given a wave completes successfully and the wave receipt is written,
 When Executor runs step 5b,
-Then `.wabblespec/session/checkpoints/checkpoint-wave-<N>.json` is written.
+Then `.wabblespec/state/session/checkpoints/checkpoint-wave-<N>.json` is written.
 Then the checkpoint contains: `checkpoint_id`, `session_id`, `task_id`, `wave_index`, `wave_label`, `timestamp`, `receipts_written`, `files_modified`, `state_snapshot`.
 Then the checkpoint directory is created if absent.
 
@@ -157,7 +157,7 @@ Then Executor quarantines the expired evidence and surfaces for fresh fetch befo
 
 Given all waves complete and acceptance gate passes (or is not applicable),
 When Executor signals Archive,
-Then the final execution receipt is written to `.wabblespec/receipts/execution-receipt.json`.
+Then the final execution receipt is written to `.wabblespec/state/receipts/execution-receipt.json`.
 Then `waves_planned`, `waves_completed`, `waves_failed`, `rollbacks_triggered`, `acceptance_verified`, and `errors_by_type` are all populated.
 
 ## Do NOT

@@ -82,5 +82,5 @@ Then platform-desktop does not treat Desktop as equivalent to Web.
 ## Receipt fields
 
 Given any successful platform-desktop activation,
-Then a receipt is written to `.wabblespec/receipts/platform-desktop-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-desktop-<timestamp>.json`.
 Then the receipt contains: platform, framework_detected, code_signing_declared, auto_updater_declared, ipc_security_addressed, offline_behavior_declared, gates_registered, capability_handoff.

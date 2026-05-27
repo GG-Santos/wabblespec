@@ -1,6 +1,6 @@
 ---
 name: factory
-description: Scaffolds a net-new module from an approved Blueprint. Writes stub files (SKILL.md, skill-rules.json, receipt schema, tests/acceptance.md) to .wabblespec/experiments/augments/. Never writes to production module space.
+description: Scaffolds a net-new module from an approved Blueprint. Writes stub files (SKILL.md, skill-rules.json, receipt schema, tests/acceptance.md) to .wabblespec/state/experiments/augments/. Never writes to production module space.
 layer: L8
 ---
 
@@ -10,7 +10,7 @@ You scaffold the shape of a new module. Augment fills it in.
 
 ## What this skill does
 
-Factory reads an approved `blueprint.json` with `change_type: NEW`, then generates a complete module directory scaffold in `.wabblespec/experiments/augments/{blueprint-id}/`. The scaffold contains stub files pre-populated from the blueprint's specifications: SKILL.md with purpose, activation, input/output contracts, and failure mode placeholders; skill-rules.json with layer, authority, and verification_mode from the blueprint; receipt schema extending the base; and acceptance criteria stubs.
+Factory reads an approved `blueprint.json` with `change_type: NEW`, then generates a complete module directory scaffold in `.wabblespec/state/experiments/augments/{blueprint-id}/`. The scaffold contains stub files pre-populated from the blueprint's specifications: SKILL.md with purpose, activation, input/output contracts, and failure mode placeholders; skill-rules.json with layer, authority, and verification_mode from the blueprint; receipt schema extending the base; and acceptance criteria stubs.
 
 Factory writes structure only. It does not write behavioral logic, decision trees, or implementation details — those belong in the stub placeholders for Augment to complete.
 
@@ -19,7 +19,7 @@ Factory writes structure only. It does not write behavioral logic, decision tree
 Factory activates when:
 1. `blueprint.json` exists with `change_type: NEW` and `status: approved`
 2. Blueprint receipt exists confirming human Attestation was obtained
-3. No existing directory at `.wabblespec/experiments/augments/{blueprint-id}/`
+3. No existing directory at `.wabblespec/state/experiments/augments/{blueprint-id}/`
 4. Human explicitly invokes Factory with the blueprint ID
 
 If the augments directory already contains the blueprint ID, Factory exits with `IDEMPOTENCY_GUARD` rather than overwriting.
@@ -28,15 +28,15 @@ If the augments directory already contains the blueprint ID, Factory exits with 
 
 | Input | Path | Required |
 |---|---|---|
-| Approved blueprint | `.wabblespec/experiments/blueprints/{id}.blueprint.json` | Yes — status must be approved |
-| Blueprint receipt | `.wabblespec/receipts/blueprint-*.json` | Yes — confirms Attestation |
+| Approved blueprint | `.wabblespec/state/experiments/blueprints/{id}.blueprint.json` | Yes — status must be approved |
+| Blueprint receipt | `.wabblespec/state/receipts/blueprint-*.json` | Yes — confirms Attestation |
 | Framework manifest | `framework.yaml` | Yes — checks for ID conflicts |
 
 Check `framework.yaml` for ID conflicts before scaffolding. A proposed module ID that already exists in framework.yaml must be surfaced to the human before proceeding.
 
 ## Output contract
 
-**Directory:** `.wabblespec/experiments/augments/{blueprint-id}/`
+**Directory:** `.wabblespec/state/experiments/augments/{blueprint-id}/`
 
 ```
 {blueprint-id}/

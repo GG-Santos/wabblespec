@@ -24,7 +24,7 @@ Then each option is assessed across 5 tradeoff dimensions: Complexity, Time, Ris
 Then one recommendation is issued with a rationale tied to scope and target.
 Then the options document is written to `.wabblespec/options-<stage>-<timestamp>.md`.
 Then the selected option is recorded in the receipt.
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## Options must be distinct
 

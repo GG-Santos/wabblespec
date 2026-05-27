@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/flag", "feature flag", "create flag", "rollout flag", "retire flag", "flag audit"],
   "authority": {
-    "owns": [".wabblespec/receipts/flag-receipt-*.json", ".wabblespec/flags/manifest.json"],
+    "owns": [".wabblespec/state/receipts/flag-receipt-*.json", ".wabblespec/flags/manifest.json"],
     "reads": [
       "modules/l1/flag/rules/flag-lifecycle.md",
       "modules/l1/flag/rules/rollout-gate.md"

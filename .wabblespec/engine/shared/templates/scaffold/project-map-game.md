@@ -89,7 +89,7 @@ _Engine version must be pinned — unpinned engine upgrades cause undocumented b
 
 | Path | Artifact type | Status |
 |---|---|---|
-| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+| `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
 
 ## Conventions
 

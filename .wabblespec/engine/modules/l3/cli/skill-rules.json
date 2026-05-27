@@ -64,11 +64,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/cli-receipt-*.json"
+      ".wabblespec/state/receipts/cli-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

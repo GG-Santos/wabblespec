@@ -29,11 +29,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/current-wave-plan.md",
-      ".wabblespec/receipts/decompose-receipt.json"
+      ".wabblespec/state/plans/current-wave-plan.md",
+      ".wabblespec/state/receipts/decompose-receipt.json"
     ],
     "reads": [
-      ".wabblespec/plans/task-card.md",
+      ".wabblespec/state/plans/task-card.md",
       ".wabblespec/scope.md",
       ".wabblespec/recipe.json"
     ]

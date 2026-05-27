@@ -15,7 +15,7 @@ When Interview runs,
 Then at most 3 questions are asked in the first batch.
 Then Interview waits for answers before sending the next batch.
 Then when all ambiguity is resolved, Interview stops — it does not exhaust all 9 dimensions.
-Then intent.md is written to `.wabblespec/plans/intent.md`.
+Then intent.md is written to `.wabblespec/state/plans/intent.md`.
 Then a receipt is written.
 
 ## Product-context.md open questions: covered first
@@ -65,4 +65,4 @@ Then intent.md contains: Session timestamp, Resolved dimensions list, Unresolved
 ## Receipt
 
 Given any successful Interview run,
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.

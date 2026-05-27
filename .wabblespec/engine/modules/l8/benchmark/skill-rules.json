@@ -26,12 +26,12 @@
   "stages": ["post-augment"],
   "authority": {
     "owns": [
-      ".wabblespec/experiments/tracker.json"
+      ".wabblespec/state/experiments/tracker.json"
     ],
     "reads": [
-      ".wabblespec/experiments/augments/",
-      ".wabblespec/experiments/blueprints/",
-      ".wabblespec/receipts/augment-*.json"
+      ".wabblespec/state/experiments/augments/",
+      ".wabblespec/state/experiments/blueprints/",
+      ".wabblespec/state/receipts/augment-*.json"
     ]
   },
   "verification_mode": "Measurement",
@@ -45,7 +45,7 @@
     "AUGMENT threshold: >= 80% parity; NEW threshold: >= 60% improvement"
   ],
   "produces": [
-    ".wabblespec/experiments/tracker.json"
+    ".wabblespec/state/experiments/tracker.json"
   ],
   "depends_on": ["augment", "blueprint", "factory"],
   "consumed_by": ["forge"],

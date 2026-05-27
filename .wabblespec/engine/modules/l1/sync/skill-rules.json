@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/sync", "reconcile specs", "merge specs", "spec divergence", "sync specs"],
   "authority": {
-    "owns": [".wabblespec/receipts/sync-receipt-*.json", ".wabblespec/sync/result-*.md"],
+    "owns": [".wabblespec/state/receipts/sync-receipt-*.json", ".wabblespec/sync/result-*.md"],
     "reads": [
       "modules/l1/sync/rules/divergence-detection.md",
       "modules/l1/sync/rules/merge-policy.md"

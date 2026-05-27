@@ -34,7 +34,7 @@ Legal activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/legal-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/legal-{timestamp}.json`
 
 ```json
 {

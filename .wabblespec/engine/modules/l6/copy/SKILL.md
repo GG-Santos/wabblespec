@@ -32,7 +32,7 @@ Copy activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/copy-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/copy-{timestamp}.json`
 
 ```json
 {

@@ -9,7 +9,7 @@ You run the Dream script. You do not interpret its output — you surface it.
 
 ## What this skill does
 
-Invokes `modules/l5/dream/scripts/dream.py`. The script reads all curated drawer JSON files from `.wabblespec/memory/wings/`, applies EMA decay to confidence scores, detects coverage gaps and abandoned knowledge, and writes output files to `.wabblespec/memory/`.
+Invokes `modules/l5/dream/scripts/dream.py`. The script reads all curated drawer JSON files from `.wabblespec/state/memory/wings/`, applies EMA decay to confidence scores, detects coverage gaps and abandoned knowledge, and writes output files to `.wabblespec/state/memory/`.
 
 You do not decide what is stale. The script decides. You run the script and report what it found.
 
@@ -34,16 +34,16 @@ python modules/l5/dream/scripts/dream.py --dry-run
 
 Run from the project root.
 
-Dream reads drawer JSON files directly from `.wabblespec/memory/wings/**/*.json` — not via ChromaDB. It reads `staleness_state`, `confidence`, `expires_at`, and `schema_version` from each JSON file's fields, applies EMA, and writes the updated confidence back to both the JSON file and `index.json`.
+Dream reads drawer JSON files directly from `.wabblespec/state/memory/wings/**/*.json` — not via ChromaDB. It reads `staleness_state`, `confidence`, `expires_at`, and `schema_version` from each JSON file's fields, applies EMA, and writes the updated confidence back to both the JSON file and `index.json`.
 
 Note: dream.py does not update ChromaDB metadata. If you need ChromaDB to reflect updated confidence values, run `scripts/migrate-json-drawers.py` to re-sync after Dream applies changes.
 
 ## Concurrency guard
 
-Dream uses a PID lock file at `.wabblespec/memory/.dream.pid` before starting. If the PID file exists and the process is alive, the script exits immediately ("Dream already running — skipping"). The PID file is removed on clean exit or crash (via `atexit`). This prevents overlapping runs when the Stop hook fires repeatedly in a session.
+Dream uses a PID lock file at `.wabblespec/state/memory/.dream.pid` before starting. If the PID file exists and the process is alive, the script exits immediately ("Dream already running — skipping"). The PID file is removed on clean exit or crash (via `atexit`). This prevents overlapping runs when the Stop hook fires repeatedly in a session.
 
 ```
-.wabblespec/memory/.dream.pid   — lock file, contains PID + start timestamp
+.wabblespec/state/memory/.dream.pid   — lock file, contains PID + start timestamp
 ```
 
 ## Hook wiring (session-end auto-trigger)
@@ -87,7 +87,7 @@ Two hooks registered in `.claude/settings.json`:
 
 ConvoMiner is project-scoped via `scripts/memory-bootstrap.py`. It does NOT mine all `~/.claude/projects/` — only the current project's session directory.
 
-**All paths project-local:** hook_state PID files all write to `.wabblespec/memory/.hook_state/`. Nothing written to user home directories.
+**All paths project-local:** hook_state PID files all write to `.wabblespec/state/memory/.hook_state/`. Nothing written to user home directories.
 
 ## Staleness triggers
 
@@ -112,9 +112,9 @@ Applied once per run. Deterministic — same inputs always produce same output.
 
 | File | Location | Purpose |
 |---|---|---|
-| `gap-map.md` | `.wabblespec/memory/` | Actionable findings: EXPIRED drawers, low-confidence, coverage gaps, schema-version mismatches |
-| `staleness-map.md` | `.wabblespec/memory/` | Full drawer state table sorted worst-first |
-| `dream-log.json` | `.wabblespec/memory/` | Run history for Phase 4 validation gate (10 runs required) |
+| `gap-map.md` | `.wabblespec/state/memory/` | Actionable findings: EXPIRED drawers, low-confidence, coverage gaps, schema-version mismatches |
+| `staleness-map.md` | `.wabblespec/state/memory/` | Full drawer state table sorted worst-first |
+| `dream-log.json` | `.wabblespec/state/memory/` | Run history for Phase 4 validation gate (10 runs required) |
 
 ## After running
 

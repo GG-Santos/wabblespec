@@ -8,13 +8,13 @@ Three rollback target types. Each has a distinct source path, trigger condition,
 
 Restores to the last Executor checkpoint written before a failing wave.
 
-**Source path:** `.wabblespec/checkpoints/<wave-id>/`
+**Source path:** `.wabblespec/state/checkpoints/<wave-id>/`
 
 **Trigger condition:** Executor detects HARD error during wave execution and writes a checkpoint. Rollback is activated by Executor (not by human) to signal the rollback target.
 
 **Checkpoint structure:**
 ```
-.wabblespec/checkpoints/<wave-id>/
+.wabblespec/state/checkpoints/<wave-id>/
   manifest.json         — list of all files modified in wave, with SHA-256 hashes before modification
   files/                — copy of all modified files at their pre-wave state
 ```
@@ -46,7 +46,7 @@ Restores to the prior deployment state.
     "env": "staging | dev",
     "artifact_sha256": "string",
     "artifact_path": ".wabblespec/artifacts/<manifest>",
-    "deploy_receipt": ".wabblespec/receipts/deploy-receipt-<prev-timestamp>.json"
+    "deploy_receipt": ".wabblespec/state/receipts/deploy-receipt-<prev-timestamp>.json"
   }
 }
 ```
@@ -68,13 +68,13 @@ Restores to the prior deployment state.
 
 Restores framework files to their pre-Forge-promotion state.
 
-**Source path:** `.wabblespec/experiments/rollback-<timestamp>/`
+**Source path:** `.wabblespec/state/experiments/rollback-<timestamp>/`
 
 **Trigger condition:** Forge pre-promotion snapshot was created before promoting an experiment to production. If promotion is found to be defective, this snapshot restores the pre-promotion framework state.
 
 **Snapshot structure:**
 ```
-.wabblespec/experiments/rollback-<timestamp>/
+.wabblespec/state/experiments/rollback-<timestamp>/
   manifest.json         — list of framework files modified by Forge, with pre-promotion hashes
   files/                — copy of framework files at pre-promotion state
 ```
@@ -86,7 +86,7 @@ Restores framework files to their pre-Forge-promotion state.
 4. Copy each file from `rollback-<timestamp>/files/` back to production paths
 5. Verify: SHA-256 each restored file against manifest hashes
 6. Write rollback receipt
-7. Update `.wabblespec/experiments/{plan-name}/experiment-manifest.schema.json` status to `rollback-executed`
+7. Update `.wabblespec/state/experiments/{plan-name}/experiment-manifest.schema.json` status to `rollback-executed`
 
 ---
 

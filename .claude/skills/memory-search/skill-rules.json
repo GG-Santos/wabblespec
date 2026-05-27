@@ -32,12 +32,12 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/memorysearch-*.json"
+      ".wabblespec/state/receipts/memorysearch-*.json"
     ],
     "reads": [
-      ".wabblespec/memory/index.json",
-      ".wabblespec/memory/wings/**/*.json",
-      ".wabblespec/memory/provenance/index.json",
+      ".wabblespec/state/memory/index.json",
+      ".wabblespec/state/memory/wings/**/*.json",
+      ".wabblespec/state/memory/provenance/index.json",
       ".wabblespec/engine/shared/references/staleness-states.md"
     ]
   },

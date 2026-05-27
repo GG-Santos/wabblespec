@@ -12,7 +12,7 @@ Do NOT: Stage files automatically without explicit user instruction.
 ## Absent: verifier receipt (for task commits)
 
 Condition: Commit is for a WabbleSpec task but no verifier receipt exists.
-Detection: Task context present but `.wabblespec/receipts/verifier-receipt.json` absent.
+Detection: Task context present but `.wabblespec/state/receipts/verifier-receipt.json` absent.
 Action: Surface warning: "No verifier receipt found for this task. Committing without verified output is discouraged." Do NOT block — Commit proceeds on user confirmation.
 
 ## Absent: rule files

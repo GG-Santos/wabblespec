@@ -26,7 +26,7 @@ After build artifacts are produced by an Executor wave and before Deploy runs, w
 
 ### Step 1 — Verify delivery receipt exists
 
-Package does not run if Archive has not run. Check for `delivery-receipt-*.json` in `.wabblespec/receipts/`. If absent: FAIL with `MISSING_DELIVERY_RECEIPT`.
+Package does not run if Archive has not run. Check for `delivery-receipt-*.json` in `.wabblespec/state/receipts/`. If absent: FAIL with `MISSING_DELIVERY_RECEIPT`.
 
 ### Step 2 — Collect build outputs
 
@@ -81,7 +81,7 @@ npm pack  # produces app-1.2.3.tgz
     }
   ],
   "provenance": {
-    "delivery_receipt": ".wabblespec/receipts/delivery-receipt-{timestamp}.json",
+    "delivery_receipt": ".wabblespec/state/receipts/delivery-receipt-{timestamp}.json",
     "git_commit": "abc1234",
     "git_ref": "refs/tags/v1.2.3",
     "builder": "github-actions",
@@ -98,7 +98,7 @@ npm pack  # produces app-1.2.3.tgz
 
 ## Output contract
 
-**package-receipt** (`.wabblespec/receipts/package-receipt-{timestamp}.json`):
+**package-receipt** (`.wabblespec/state/receipts/package-receipt-{timestamp}.json`):
 ```json
 {
   "version": "string",

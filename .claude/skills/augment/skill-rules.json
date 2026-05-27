@@ -27,10 +27,10 @@
   "phases": [],
   "stages": ["post-blueprint"],
   "authority": {
-    "owns": [".wabblespec/experiments/augments/"],
+    "owns": [".wabblespec/state/experiments/augments/"],
     "reads": [
-      ".wabblespec/experiments/blueprints/",
-      ".wabblespec/receipts/blueprint-*.json",
+      ".wabblespec/state/experiments/blueprints/",
+      ".wabblespec/state/receipts/blueprint-*.json",
       "modules/"
     ]
   },
@@ -44,7 +44,7 @@
     "Does not copy receipts/ directory from source module",
     "New behavior only — no unrequested improvements"
   ],
-  "produces": [".wabblespec/experiments/augments/"],
+  "produces": [".wabblespec/state/experiments/augments/"],
   "depends_on": ["blueprint", "factory", "synth"],
   "consumed_by": ["benchmark"],
   "loading_gate": "activation",

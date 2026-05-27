@@ -4,7 +4,7 @@ Defines what Document does when its Archive receipt or source content are absent
 
 ## Absent: Archive receipt
 
-Condition: Document invoked but no archive receipt exists in `.wabblespec/receipts/`.
+Condition: Document invoked but no archive receipt exists in `.wabblespec/state/receipts/`.
 Detection: `archive-receipt.json` absent.
 Action: BLOCK Document run. Surface: "Document activates only after an Archive receipt exists. Complete the task archive first."
 Do NOT: Document in-progress or unarchived work. Document operates on completed, archived work only.

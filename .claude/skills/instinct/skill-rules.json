@@ -12,8 +12,8 @@
     "propose improvement"
   ],
   "preconditions": [
-    "receipt count >= 100 in .wabblespec/receipts/",
-    "entity-graph.json exists in .wabblespec/memory/",
+    "receipt count >= 100 in .wabblespec/state/receipts/",
+    "entity-graph.json exists in .wabblespec/state/memory/",
     "No Executor PID lock active",
     "Human explicit --activate flag provided"
   ],
@@ -22,12 +22,12 @@
   "stages": ["post-session"],
   "authority": {
     "owns": [
-      ".wabblespec/memory/instinct-observations.md"
+      ".wabblespec/state/memory/instinct-observations.md"
     ],
     "reads": [
-      ".wabblespec/receipts/*.json",
-      ".wabblespec/memory/entity-graph.json",
-      ".wabblespec/memory/gap-map.md"
+      ".wabblespec/state/receipts/*.json",
+      ".wabblespec/state/memory/entity-graph.json",
+      ".wabblespec/state/memory/gap-map.md"
     ]
   },
   "verification_mode": "Audit",

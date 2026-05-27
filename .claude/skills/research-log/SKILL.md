@@ -42,7 +42,7 @@ Links the research finding to the specific spec artifact and requirement it was 
 
 ```json
 {
-  "spec_artifact_path": ".wabblespec/plans/task-card.md",
+  "spec_artifact_path": ".wabblespec/state/plans/task-card.md",
   "requirement_name": "<requirement name or section heading in that artifact>",
   "wave_id": "<wave-id from decompose plan — e.g. wave-2>",
   "binding_type": "supports | contradicts | qualifies"
@@ -90,7 +90,7 @@ When `spec_binding` is present, Research Log writes a second output in addition 
 **Path:** `research/{feature-slug}/research.md`
 
 **Feature-slug derivation:** extract the final path segment (without extension) from `spec_binding.spec_artifact_path`.
-- Example: `spec_binding.spec_artifact_path: ".wabblespec/plans/task-card.md"` → slug = `task-card`
+- Example: `spec_binding.spec_artifact_path: ".wabblespec/state/plans/task-card.md"` → slug = `task-card`
 - Example: `spec_binding.spec_artifact_path: "specs/auth-flow/spec.md"` → slug = `auth-flow`
 
 **File content:** Markdown summary of all findings bound to this spec artifact. Sections per `requirement_name`. Each finding includes body, evidence, confidence, and binding_type.
@@ -101,7 +101,7 @@ When `spec_binding` is present, Research Log writes a second output in addition 
 
 ## Receipt
 
-Research Log writes a receipt to `.wabblespec/receipts/research-log-{timestamp}.json` confirming:
+Research Log writes a receipt to `.wabblespec/state/receipts/research-log-{timestamp}.json` confirming:
 - Number of drawers written
 - Topics covered
 - Confidence range across entries

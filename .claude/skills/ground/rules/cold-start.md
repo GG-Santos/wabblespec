@@ -12,7 +12,7 @@ Output: Ground receipt with `hallucination_count` equal to the number of missing
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules when Ground is called.
-Detection: `.wabblespec/receipts/` empty or missing expected stems.
+Detection: `.wabblespec/state/receipts/` empty or missing expected stems.
 Action: Surface DEPENDENCY error naming the missing upstream module. Ground validates wave outputs — it requires a wave to have run first.
 Do NOT: Validate an empty or hypothetical output.
 

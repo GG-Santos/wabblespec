@@ -72,13 +72,13 @@ Do not invent specifics the user did not provide. If a dimension remains unclear
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/receipts/enhance-receipt-<timestamp>.json`. Schema: `modules/l1/enhance/schemas/enhance-receipt.schema.json`.
+Write to `.wabblespec/state/receipts/enhance-receipt-<timestamp>.json`. Schema: `modules/l1/enhance/schemas/enhance-receipt.schema.json`.
 
 Pass enhanced input path to ScopeFrame as next step.
 
 ## Output contract
 
-**enhance-receipt.json** (`.wabblespec/receipts/enhance-receipt-<timestamp>.json`):
+**enhance-receipt.json** (`.wabblespec/state/receipts/enhance-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/enhance-receipt.schema.json`. Key extension fields:
 

@@ -88,7 +88,7 @@ _Update to match actual entry after Scaffold generates structure._
 
 | Path | Artifact type | Status |
 |---|---|---|
-| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+| `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
 
 ## Conventions
 

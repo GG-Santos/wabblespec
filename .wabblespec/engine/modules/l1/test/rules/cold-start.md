@@ -12,7 +12,7 @@ Do NOT: Infer test cases from code structure alone.
 ## Absent: wave receipts (no execution has run)
 
 Condition: No wave receipts exist — Test called before Executor has run.
-Detection: No `wave-*-receipt.json` in `.wabblespec/receipts/`.
+Detection: No `wave-*-receipt.json` in `.wabblespec/state/receipts/`.
 Action: If called pre-execution, Test operates in test-plan mode (writing test plans, not running tests). No DEPENDENCY error for this case — test planning is a valid pre-execution activity.
 Do NOT: Attempt to run tests against code that has not been written yet.
 

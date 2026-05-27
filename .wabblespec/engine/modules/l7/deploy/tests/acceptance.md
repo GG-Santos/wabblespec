@@ -47,7 +47,7 @@
 ## AT-DEPLOY-06: Deploy receipt contains required fields
 
 **Given** a completed Deploy run (any outcome)
-**Then** the receipt at `.wabblespec/receipts/deploy-receipt-{env}-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/deploy-receipt-{env}-{timestamp}.json` contains:
 - `environment`
 - `version`
 - `artifact_hash_verified`

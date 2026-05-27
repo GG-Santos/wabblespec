@@ -33,7 +33,7 @@ Writer activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/writer-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/writer-{timestamp}.json`
 
 ```json
 {

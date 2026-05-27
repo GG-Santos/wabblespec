@@ -10,7 +10,7 @@
       "properties": {
         "receipt_count_observed": {
           "type": "integer",
-          "description": "Number of receipts in .wabblespec/receipts/ at time of run."
+          "description": "Number of receipts in .wabblespec/state/receipts/ at time of run."
         },
         "patterns_detected": {
           "type": "integer",

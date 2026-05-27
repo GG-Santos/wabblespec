@@ -30,12 +30,12 @@ See `.wabblespec/CHANGELOG.md` for the authoritative record. Summary of recent w
 | Module registry | `framework.yaml` |
 | Module specs | `modules/l{N}/{name}/SKILL.md` |
 | Module rules | `modules/l{N}/{name}/skill-rules.json` |
-| Receipts | `.wabblespec/receipts/` |
-| Current task card | `.wabblespec/plans/task-card.md` |
-| Current wave plan | `.wabblespec/plans/wave-current.md` |
+| Receipts | `.wabblespec/state/receipts/` |
+| Current task card | `.wabblespec/state/plans/task-card.md` |
+| Current wave plan | `.wabblespec/state/plans/wave-current.md` |
 | Quality floor checker | `.wabblespec/engine/shared/scripts/quality-floor-check.py` |
 | Graph validator | `.wabblespec/engine/shared/scripts/validate-graph.py` |
-| Health reports | `.wabblespec/health/` |
+| Health reports | `.wabblespec/state/health/` |
 | Changelog | `.wabblespec/CHANGELOG.md` |
 | Version | `.wabblespec/VERSION` |
 | Hooks | `hooks/pre-tool-use-receipt-check.py`, `modules/l2/executor/hooks/post-wave-receipt-check.py` |
@@ -57,7 +57,7 @@ See `.wabblespec/CHANGELOG.md` for the authoritative record. Summary of recent w
 
 ## How to resume a pipeline run
 
-1. Check `.wabblespec/receipts/` for the most recent run-id
+1. Check `.wabblespec/state/receipts/` for the most recent run-id
 2. Find which stages are missing receipts
 3. Resume from the first missing stage
 4. If the last stage was Executor without Verifier/Archive: run verifier first, do not re-run Executor
@@ -75,5 +75,5 @@ python .wabblespec/engine/shared/scripts/validate-graph.py --framework framework
 python .wabblespec/engine/shared/scripts/quality-floor-check.py --framework framework.yaml --module {id} --verbose
 
 # Count PASS receipts
-ls .wabblespec/receipts/ | grep -c delivery
+ls .wabblespec/state/receipts/ | grep -c delivery
 ```

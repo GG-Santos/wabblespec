@@ -22,11 +22,11 @@ All activations require Attestation before execution.
 
 ## Four rollback target types
 
-**Wave checkpoint** — restores to last Executor checkpoint written before the failing wave. Source: `.wabblespec/checkpoints/<wave-id>/`.
+**Wave checkpoint** — restores to last Executor checkpoint written before the failing wave. Source: `.wabblespec/state/checkpoints/<wave-id>/`.
 
 **Deploy snapshot** — restores to prior deployment state. Source: `rollback_to` field in Deploy receipt.
 
-**Forge pre-promotion snapshot** — restores framework files to pre-promotion state. Source: `.wabblespec/experiments/rollback-<timestamp>/`.
+**Forge pre-promotion snapshot** — restores framework files to pre-promotion state. Source: `.wabblespec/state/experiments/rollback-<timestamp>/`.
 
 **Worktree isolation** — discards an isolated git worktree branch created for a high-risk wave. No file restoration needed — work was never merged to main branch. Source: `.worktrees/<wave-id>/` in target project. Trigger: High-complexity waves with irreversible operations. Sandbox fallback: Type 1 wave checkpoint when git worktree is unavailable. Full specification: `rules/checkpoint-types.md` Type 4.
 
@@ -50,7 +50,7 @@ Does not execute these — provides to human for manual execution.
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

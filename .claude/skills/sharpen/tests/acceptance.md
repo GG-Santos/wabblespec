@@ -17,7 +17,7 @@ Then each interpretation is written as a one-sentence summary with a confidence 
 Then interpretations are ranked by specificity, feasibility, and user signal strength.
 Then the interpretations are presented to the user for selection.
 Then after selection, the sharpened input is written to `.wabblespec/sharpen/sharpened-<timestamp>.md`.
-Then the sharpen receipt is written to `.wabblespec/receipts/sharpen-receipt-<timestamp>.json`.
+Then the sharpen receipt is written to `.wabblespec/state/receipts/sharpen-receipt-<timestamp>.json`.
 Then `broad_resolved` in the receipt is true.
 
 ## User confirmation required

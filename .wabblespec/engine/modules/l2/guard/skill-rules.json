@@ -24,13 +24,13 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/guard-wave-*-receipt.json"
+      ".wabblespec/state/receipts/guard-wave-*-receipt.json"
     ],
     "reads": [
       ".wabblespec/scope.md",
       ".wabblespec/recipe.json",
-      ".wabblespec/receipts/*",
-      ".wabblespec/plans/task-card.md",
+      ".wabblespec/state/receipts/*",
+      ".wabblespec/state/plans/task-card.md",
       ".wabblespec/engine/shared/references/invariants.md"
     ]
   },

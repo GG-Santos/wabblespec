@@ -35,14 +35,14 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/memory/mine/gap-map.md",
-      ".wabblespec/memory/mine/mine-clusters.md",
-      ".wabblespec/memory/mine/pattern-summary.md",
-      ".wabblespec/memory/mine/staleness-map.md"
+      ".wabblespec/state/memory/mine/gap-map.md",
+      ".wabblespec/state/memory/mine/mine-clusters.md",
+      ".wabblespec/state/memory/mine/pattern-summary.md",
+      ".wabblespec/state/memory/mine/staleness-map.md"
     ],
     "reads": [
-      ".wabblespec/memory/index.json",
-      ".wabblespec/memory/wings/**/*.json",
+      ".wabblespec/state/memory/index.json",
+      ".wabblespec/state/memory/wings/**/*.json",
       "modules/l5/memory/rules/staleness-thresholds.md"
     ],
     "notifies": []

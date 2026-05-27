@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "locale_scaffold_request", "i18n_verification_request", "/translate"],
   "authority": {
-    "owns": [".wabblespec/receipts/translate-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/translate-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

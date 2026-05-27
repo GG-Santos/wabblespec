@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/perf", "performance baseline", "measure performance", "optimize performance", "profiling"],
   "authority": {
-    "owns": [".wabblespec/receipts/perf-receipt-*.json", ".wabblespec/perf/baseline-*.json"],
+    "owns": [".wabblespec/state/receipts/perf-receipt-*.json", ".wabblespec/perf/baseline-*.json"],
     "reads": [
       "modules/l1/perf/rules/measurement-first.md",
       "modules/l1/perf/rules/budget-definition.md"

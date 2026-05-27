@@ -21,7 +21,7 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/project-map.md"
+      ".wabblespec/state/plans/project-map.md"
     ],
     "reads": [
       "**/*"

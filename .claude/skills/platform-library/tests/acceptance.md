@@ -89,5 +89,5 @@ Then platform-library does not bundle peer dependencies.
 ## Receipt fields
 
 Given any successful platform-library activation,
-Then a receipt is written to `.wabblespec/receipts/platform-library-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-library-<timestamp>.json`.
 Then the receipt contains: platform, language_module_loaded, templates_activated, semver_policy_declared, public_api_surface_declared, peer_deps_declared, gates_registered, capability_handoff.

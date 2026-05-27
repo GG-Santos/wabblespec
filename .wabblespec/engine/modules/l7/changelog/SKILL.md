@@ -31,7 +31,7 @@ Changelog activates:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/changelog-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/changelog-{timestamp}.json`
 
 ```json
 {

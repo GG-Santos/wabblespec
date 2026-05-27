@@ -6,8 +6,8 @@
     "**/*.json",
     "**/*.yaml",
     "**/*.yml",
-    ".wabblespec/receipts/**",
-    ".wabblespec/memory/wings/**"
+    ".wabblespec/state/receipts/**",
+    ".wabblespec/state/memory/wings/**"
   ],
   "passes": [
     "register",
@@ -57,11 +57,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/polish-receipt-*.json"
+      ".wabblespec/state/receipts/polish-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Observation",

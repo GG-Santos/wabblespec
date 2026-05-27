@@ -46,7 +46,7 @@ Transition state to RETIRED. Record `retired_at` timestamp and `retirement_reaso
 
 ## Output contract
 
-**flag-receipt.json** (`.wabblespec/receipts/flag-receipt-<timestamp>.json`):
+**flag-receipt.json** (`.wabblespec/state/receipts/flag-receipt-<timestamp>.json`):
 
 ```json
 {

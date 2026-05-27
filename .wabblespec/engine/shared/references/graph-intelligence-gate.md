@@ -51,7 +51,7 @@ When MemorySearch returns results that feel incomplete or misleading, record:
 }
 ```
 
-File at: `.wabblespec/memory/graph-failure-cases.jsonl` (append-only, one JSON object per line).
+File at: `.wabblespec/state/memory/graph-failure-cases.jsonl` (append-only, one JSON object per line).
 
 Dream should surface any entries in this file in its gap-map when `failure_type` count ≥ 3.
 
@@ -116,7 +116,7 @@ Dream currently: EMA decay, gap-map, staleness-map.
 Graph adds to Dream (when activated):
 
 - Append a **connectivity section** to `gap-map.md`: entities that appear in drawers but have no KG edges (degree 0). These are isolated facts with no relationship context — high-value targets for follow-up.
-- Surface failure cases from `.wabblespec/memory/graph-failure-cases.jsonl` in gap-map when count ≥ 3. Label as: `GRAPH_GATE: N full-text failures logged — graph MVP may be warranted`.
+- Surface failure cases from `.wabblespec/state/memory/graph-failure-cases.jsonl` in gap-map when count ≥ 3. Label as: `GRAPH_GATE: N full-text failures logged — graph MVP may be warranted`.
 
 Dream does NOT run graph traversal itself. It reads `entity-graph.json` (already produced by EntityGraph) and appends to its gap-map.
 
@@ -139,8 +139,8 @@ MemoryMine does NOT implement the KG itself. It reads `entity-graph.json` as a s
 
 Do NOT implement any of the above MVP operations until ALL of the following are true:
 
-1. **Corpus gate**: 100+ verified receipts exist in `.wabblespec/receipts/`
-2. **Failure case gate**: 3+ entries in `.wabblespec/memory/graph-failure-cases.jsonl` with distinct `failure_type` values
+1. **Corpus gate**: 100+ verified receipts exist in `.wabblespec/state/receipts/`
+2. **Failure case gate**: 3+ entries in `.wabblespec/state/memory/graph-failure-cases.jsonl` with distinct `failure_type` values
 3. **Evidence gate**: At least one logged failure case where the expected answer is verifiably correct AND full-text returned something provably wrong or incomplete
 4. **Drawer gate**: 50+ drawers exist (MemoryMine activation threshold — graph requires the same data density)
 

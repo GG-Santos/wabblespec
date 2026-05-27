@@ -40,7 +40,7 @@ All BREAKING changes use two-phase migration by default.
 
 1. Read Specify BREAKING delta record
 2. Determine migration type — two-phase default, single-phase if exception criteria met
-3. Write migration plan to `.wabblespec/plans/migration-plan-<id>.md`
+3. Write migration plan to `.wabblespec/state/plans/migration-plan-<id>.md`
 4. Determine if migration is automatable:
    - IF yes: write migration script to `scripts/migrate/`
    - IF no: document why and write manual steps
@@ -53,7 +53,7 @@ All BREAKING changes use two-phase migration by default.
 
 ## Migration plan format
 
-Write to `.wabblespec/plans/migration-plan-<id>.md`:
+Write to `.wabblespec/state/plans/migration-plan-<id>.md`:
 
 ```markdown
 # Migration Plan — <breaking-change-id>
@@ -99,7 +99,7 @@ Write to `.wabblespec/plans/migration-plan-<id>.md`:
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

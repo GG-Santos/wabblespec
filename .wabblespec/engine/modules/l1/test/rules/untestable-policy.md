@@ -24,7 +24,7 @@ Vague reasons are not accepted: "too hard", "not applicable", "N/A". If the reas
 
 ## Not-tested compilation
 
-Write all UNTESTABLE requirements to `.wabblespec/plans/test-plan-<spec-id>.md` in the Untestable Requirements section. Archive reads this compilation.
+Write all UNTESTABLE requirements to `.wabblespec/state/plans/test-plan-<spec-id>.md` in the Untestable Requirements section. Archive reads this compilation.
 
 ## Review by Reviewer
 

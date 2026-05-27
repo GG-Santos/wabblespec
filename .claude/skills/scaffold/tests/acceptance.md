@@ -40,8 +40,8 @@
 - `src/` directory
 - `tests/` directory
 - `.wabblespec/project-map.md`
-- `.wabblespec/receipts/`
-- `.wabblespec/memory/`
+- `.wabblespec/state/receipts/`
+- `.wabblespec/state/memory/`
 - `.wabblespec/VERSION` (initialized to "0.1.0")
 - `.wabblespec/CHANGELOG.md`
 - `README.md`
@@ -61,7 +61,7 @@
 ## AT-SCAF-07: Receipt contains generation counts
 
 **Given** a completed Scaffold run
-**Then** the receipt at `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` contains:
 - `project_name`
 - `platform`
 - `language`

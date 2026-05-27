@@ -25,8 +25,8 @@ Reads the locked task card and wave plan. For each claim about current state (fi
 
 ## Inputs
 
-- `.wabblespec/plans/task-card.md` (locked)
-- `.wabblespec/plans/wave-plan.md` (wave 1 declaration)
+- `.wabblespec/state/plans/task-card.md` (locked)
+- `.wabblespec/state/plans/wave-plan.md` (wave 1 declaration)
 - product space (actual codebase to verify against)
 
 ## How to do it
@@ -71,13 +71,13 @@ Three buckets:
 
 ## Output contract
 
-**Ground receipt** at `.wabblespec/receipts/ground-receipt.json` with:
+**Ground receipt** at `.wabblespec/state/receipts/ground-receipt.json` with:
 
 ```json
 {
   "module": "ground",
   "layer": "L0",
-  "task_card_path": ".wabblespec/plans/task-card.md",
+  "task_card_path": ".wabblespec/state/plans/task-card.md",
   "status": "PASS|PARTIAL|BLOCK",
   "claims_total": 0,
   "verified": [],

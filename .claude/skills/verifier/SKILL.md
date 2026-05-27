@@ -24,7 +24,7 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 
 - Wave output artifacts (produced by the completed wave)
 - Wave plan entry (declared `outputs`, `verification_mode`, `checkpoint`)
-- `.wabblespec/plans/task-card.md` (spec ground truth — acceptance criteria)
+- `.wabblespec/state/plans/task-card.md` (spec ground truth — acceptance criteria)
 - `.wabblespec/scope.md` (boundary reference)
 
 ## How to do it
@@ -106,11 +106,11 @@ Cycle count resets at each new wave. A wave that consumed 2 REVISE cycles does n
 
 ### Step 5 — Write verification receipt
 
-`.wabblespec/receipts/verification-wave-<N>-<timestamp>.json`. Always write this, regardless of verdict.
+`.wabblespec/state/receipts/verification-wave-<N>-<timestamp>.json`. Always write this, regardless of verdict.
 
 **Evidence capture rule (I10 anti-theater):** Every entry in `checks_run` must have a corresponding evidence record. Acceptable forms:
 
-- File path to captured output (e.g., `".wabblespec/receipts/test-output-wave-2.txt"`)
+- File path to captured output (e.g., `".wabblespec/state/receipts/test-output-wave-2.txt"`)
 - Drawer ID of a memory drawer containing the output
 - Exact quoted excerpt (≤10 lines) in the `evidence` array
 
@@ -128,7 +128,7 @@ Archive invokes Verifier in pre-archive mode after all waves are complete and be
 
 ### Three dimensions
 
-**Completeness:** All wave receipts declared in the wave plan are present in `.wabblespec/receipts/`. All acceptance criteria "Then" clauses in the task card have a corresponding artifact or receipt entry.
+**Completeness:** All wave receipts declared in the wave plan are present in `.wabblespec/state/receipts/`. All acceptance criteria "Then" clauses in the task card have a corresponding artifact or receipt entry.
 
 **Correctness:** Implementation artifacts reference (by path or ID) the spec requirement they satisfy. No orphaned implementations — artifacts that exist but cannot be traced to any acceptance criterion.
 
@@ -159,7 +159,7 @@ If all three dimensions pass: `findings: []`.
 
 ## Output contract
 
-**verification receipt** (`.wabblespec/receipts/verification-wave-<N>-<timestamp>.json`):
+**verification receipt** (`.wabblespec/state/receipts/verification-wave-<N>-<timestamp>.json`):
 
 Base receipt schema. Extension fields:
 ```json

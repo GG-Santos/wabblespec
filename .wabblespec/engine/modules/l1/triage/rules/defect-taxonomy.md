@@ -30,7 +30,7 @@ Recurrence escalation from Triage SKILL.md applies: second occurrence escalates 
 **Detection:**
 ```bash
 # Validate against base schema:
-cat .wabblespec/receipts/<module>-receipt.json | python3 -c "
+cat .wabblespec/state/receipts/<module>-receipt.json | python3 -c "
 import sys, json, jsonschema, pathlib
 receipt = json.load(sys.stdin)
 schema = json.loads(pathlib.Path('.wabblespec/engine/shared/schemas/receipt.base.schema.json').read_text())
@@ -54,7 +54,7 @@ print('PASS')
 
 **Detection:**
 ```bash
-cat .wabblespec/receipts/scopeframe-receipt.json | python3 -c "
+cat .wabblespec/state/receipts/scopeframe-receipt.json | python3 -c "
 import sys, json
 r = json.load(sys.stdin)
 if not r.get('user_confirmed', False):
@@ -78,7 +78,7 @@ print('PASS')
 
 **Detection:**
 ```bash
-cat .wabblespec/receipts/guard-receipt.json | python3 -c "
+cat .wabblespec/state/receipts/guard-receipt.json | python3 -c "
 import sys, json
 r = json.load(sys.stdin)
 v = r.get('violations', [])
@@ -129,23 +129,23 @@ print('PASS')
 
 ## WD-005 — WAVE_CHECKPOINT_MISSING
 
-**Symptom:** Wave completed successfully, but expected checkpoint directory absent from `.wabblespec/checkpoints/<wave-id>/`. Rollback to this wave is impossible.
+**Symptom:** Wave completed successfully, but expected checkpoint directory absent from `.wabblespec/state/checkpoints/<wave-id>/`. Rollback to this wave is impossible.
 
 **Detection:**
 ```bash
 # Check checkpoint exists for completed wave:
-ls .wabblespec/checkpoints/<wave-id>/
+ls .wabblespec/state/checkpoints/<wave-id>/
 # Expected: directory with copied artifacts
 
 # From wave plan: rollback_to field names the wave-id
 ```
 
 **Fix path:**
-1. If wave outputs are still intact: write checkpoint now by copying wave output artifacts to `.wabblespec/checkpoints/<wave-id>/`
+1. If wave outputs are still intact: write checkpoint now by copying wave output artifacts to `.wabblespec/state/checkpoints/<wave-id>/`
 2. If wave outputs are partial or corrupted: rollback is not possible — escalate to user, identify last safe state
 3. Add checkpoint write step to wave plan before proceeding to next wave
 
-**Test:** `.wabblespec/checkpoints/<wave-id>/` exists and contains expected wave output artifacts.
+**Test:** `.wabblespec/state/checkpoints/<wave-id>/` exists and contains expected wave output artifacts.
 
 **Triage route:** Bug → High (rollback impossible). Route: Executor (write checkpoint) or user escalation if state is unrecoverable.
 
@@ -160,7 +160,7 @@ ls .wabblespec/checkpoints/<wave-id>/
 # Estimate: 1 token ≈ 4 chars English prose, ≈ 3 chars code
 # If inline output > 8000 chars: likely > 2000 tokens
 # Check receipt for captures array:
-cat .wabblespec/receipts/<module>-receipt.json | python3 -c "
+cat .wabblespec/state/receipts/<module>-receipt.json | python3 -c "
 import sys, json
 r = json.load(sys.stdin)
 captures = r.get('captures', [])
@@ -193,8 +193,8 @@ def read_ts(path):
     r = json.loads(pathlib.Path(path).read_text())
     return r.get('timestamp', '')
 
-prereq = read_ts('.wabblespec/receipts/scopeframe-receipt.json')
-dependent = read_ts('.wabblespec/receipts/specify-receipt.json')
+prereq = read_ts('.wabblespec/state/receipts/scopeframe-receipt.json')
+dependent = read_ts('.wabblespec/state/receipts/specify-receipt.json')
 
 if prereq < dependent:
     print('PASS: order correct')

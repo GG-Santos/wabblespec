@@ -183,7 +183,7 @@ Then PARTIAL receipts set `status: "PARTIAL"` and `confidence` below 0.7.
 
 Given any Verifier run regardless of verdict,
 When verification completes,
-Then a verification receipt is written to `.wabblespec/receipts/verification-wave-<N>-<timestamp>.json`.
+Then a verification receipt is written to `.wabblespec/state/receipts/verification-wave-<N>-<timestamp>.json`.
 Then this is true for PASS, FAIL, and BLOCKED verdicts.
 
 ## Do NOT

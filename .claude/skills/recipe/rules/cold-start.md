@@ -12,7 +12,7 @@ Output: Fresh `recipe.json` with detection_method reflecting how target was foun
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules.
-Detection: `.wabblespec/receipts/` is empty or missing expected stems.
+Detection: `.wabblespec/state/receipts/` is empty or missing expected stems.
 Action: Recipe has no upstream dependencies — proceed normally. Recipe produces the first receipt.
 Do NOT: Pause or surface DEPENDENCY errors. Recipe is always first.
 

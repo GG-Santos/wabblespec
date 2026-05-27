@@ -10,7 +10,7 @@ Then no guard receipt is written.
 ## Layer 1 — Checkpoint detection on Wave 1
 
 Given Guard is invoked for Wave 1 of a task,
-And `.wabblespec/session/checkpoints/checkpoint-wave-*.json` files exist,
+And `.wabblespec/state/session/checkpoints/checkpoint-wave-*.json` files exist,
 When Guard runs Layer 1,
 Then Guard surfaces the most recent checkpoint to Executor with wave_index, wave_label, timestamp, and receipts_written.
 Then Guard pauses (SOFT) and awaits Executor confirmation before continuing Layer 2.
@@ -82,7 +82,7 @@ Then the wave does not proceed.
 Given any wave plan includes a Memory, MemorySearch, MemoryMine, or EntityGraph module,
 When Guard runs Layer 3,
 Then Guard checks that `WABBLESPEC_MEMORY_PATH` env var is set (WABBLESPEC_MEMORY_READY invariant).
-Then Guard checks that `.wabblespec/memory/chroma.sqlite3` exists (CHROMADB_EXISTS invariant).
+Then Guard checks that `.wabblespec/state/memory/chroma.sqlite3` exists (CHROMADB_EXISTS invariant).
 Then if either check fails, Guard returns a HARD error with actionable resolution message.
 Then Guard checks that ChromaDB drawer count >= 50 before any closet indexing (CLOSET_INDEX_GATE).
 
@@ -134,7 +134,7 @@ Then Guard records `layer_5_command_risk: "SKIP"` and issues no warnings.
 Given all five layers pass,
 When Guard returns,
 Then `overall: "PASS"` is returned to Executor.
-Then a guard receipt is written to `.wabblespec/receipts/guard-wave-<N>-receipt.json`.
+Then a guard receipt is written to `.wabblespec/state/receipts/guard-wave-<N>-receipt.json`.
 
 ## Guard cannot be bypassed
 

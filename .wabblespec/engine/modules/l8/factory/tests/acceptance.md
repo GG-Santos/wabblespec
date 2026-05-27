@@ -2,7 +2,7 @@
 
 ## L8 corpus gate
 
-Given receipt count in .wabblespec/receipts/ is fewer than 100 PASS,
+Given receipt count in .wabblespec/state/receipts/ is fewer than 100 PASS,
 When Factory is invoked,
 Then Factory exits and outputs "GATE_NOT_MET" with the current count.
 Then no scaffold files are written.
@@ -97,7 +97,7 @@ Then these fields allow Augment to detect if the stub is stale relative to a Fac
 Given any Factory invocation,
 Then no file is written directly under modules/.
 Then framework.yaml is not modified by Factory.
-Then existing receipts in .wabblespec/receipts/ are not modified.
+Then existing receipts in .wabblespec/state/receipts/ are not modified.
 Then only experiments/augments/{blueprint_id}/ receives new files.
 
 ## Dry-run

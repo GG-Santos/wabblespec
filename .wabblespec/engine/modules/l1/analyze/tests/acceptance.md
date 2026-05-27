@@ -13,7 +13,7 @@ Given a problem statement is provided with at least one evidence source (logs, t
 When Analyze runs,
 Then a method is selected (5-whys, fishbone, fault-tree, or timeline) and the selection rationale is recorded in the receipt.
 Then the RCA report is written to `.wabblespec/analysis/rca-<timestamp>.md`.
-Then the analyze receipt is written to `.wabblespec/receipts/analyze-receipt-<timestamp>.json`.
+Then the analyze receipt is written to `.wabblespec/state/receipts/analyze-receipt-<timestamp>.json`.
 Then `root_cause_confidence` is >= 0.4 when evidence supports a probable root cause.
 Then `root_cause_identified` is true when confidence >= 0.4.
 

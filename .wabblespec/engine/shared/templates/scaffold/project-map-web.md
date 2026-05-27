@@ -87,7 +87,7 @@ _Populated by Explore from git history. On fresh scaffold, churn count = 0; upda
 
 | Path | Artifact type | Status |
 |---|---|---|
-| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+| `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
 
 _Populated by Explore. On fresh scaffold: only scaffold receipt present._
 

@@ -51,7 +51,7 @@
 ## AT-REL-07: Release receipt contains required fields
 
 **Given** a completed Release run
-**Then** the receipt at `.wabblespec/receipts/release-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/release-receipt-{timestamp}.json` contains:
 - `version`
 - `tag`
 - `tag_signed`

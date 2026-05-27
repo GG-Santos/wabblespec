@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/analyze", "root cause", "rca", "analyze failure", "five whys", "fault tree"],
   "authority": {
-    "owns": [".wabblespec/receipts/analyze-receipt-*.json", ".wabblespec/analysis/rca-*.md"],
+    "owns": [".wabblespec/state/receipts/analyze-receipt-*.json", ".wabblespec/analysis/rca-*.md"],
     "reads": [
       "modules/l1/analyze/rules/rca-method.md",
       "modules/l1/analyze/rules/evidence-requirements.md"

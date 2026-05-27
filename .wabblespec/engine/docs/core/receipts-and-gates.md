@@ -29,7 +29,7 @@ Examples:
 - `delivery-receipt-seed-run-20260524a.json`
 - `gateway-security-receipt-20260525a.json`
 
-All receipts land in `.wabblespec/receipts/`. Archived runs are indexed in `.wabblespec/archive/receipt-index.json`.
+All receipts land in `.wabblespec/state/receipts/`. Archived runs are indexed in `.wabblespec/state/archive/receipt-index.json`.
 
 ## Receipt authority
 

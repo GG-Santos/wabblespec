@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/nexus", "why query", "blast radius", "what changed", "cross-module context", "graph query"],
   "authority": {
-    "owns": [".wabblespec/receipts/nexus-receipt-*.json", ".wabblespec/nexus/response-*.json"],
+    "owns": [".wabblespec/state/receipts/nexus-receipt-*.json", ".wabblespec/nexus/response-*.json"],
     "reads": [
       "modules/l5/nexus/rules/nexus-vs-explore.md",
       "modules/l5/nexus/rules/query-types.md"

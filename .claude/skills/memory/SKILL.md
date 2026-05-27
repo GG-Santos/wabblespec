@@ -9,10 +9,10 @@ You are the evidence store. You write facts, retrieve them on request, and maint
 
 ## Backend
 
-WabbleSpec memory store — ChromaDB vector index + SQLite metadata. Memory path: `.wabblespec/memory/` (set via `WABBLESPEC_MEMORY_PATH` env var — see `modules/l5/memory/rules/memory-backend-config.md`).
+WabbleSpec memory store — ChromaDB vector index + SQLite metadata. Memory path: `.wabblespec/state/memory/` (set via `WABBLESPEC_MEMORY_PATH` env var — see `modules/l5/memory/rules/memory-backend-config.md`).
 
-Storage: ChromaDB at `.wabblespec/memory/chroma.sqlite3`.
-KG: SQLite at `.wabblespec/memory/knowledge_graph.sqlite3` (owned by EntityGraph).
+Storage: ChromaDB at `.wabblespec/state/memory/chroma.sqlite3`.
+KG: SQLite at `.wabblespec/state/memory/knowledge_graph.sqlite3` (owned by EntityGraph).
 
 **Dependency:** shared internal package at `packages/memory/`. WabbleSpec modules must import through `_shared.memory_backend`, which configures the package before storage access.
 
@@ -135,7 +135,7 @@ If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit 
 
 ## Output contract
 
-**memory-write receipt** (`.wabblespec/receipts/memory-write-{timestamp}.json`):
+**memory-write receipt** (`.wabblespec/state/receipts/memory-write-{timestamp}.json`):
 
 ```json
 {
@@ -153,7 +153,7 @@ If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit 
 
 ## Common failure modes
 
-1. **`WABBLESPEC_MEMORY_PATH` not set.** The memory store may write outside `.wabblespec/memory/`. Import `_shared.memory_backend` before storage access, or run `scripts/memory-bootstrap.py` for compatibility entry points. See `modules/l5/memory/rules/memory-backend-config.md`.
+1. **`WABBLESPEC_MEMORY_PATH` not set.** The memory store may write outside `.wabblespec/state/memory/`. Import `_shared.memory_backend` before storage access, or run `scripts/memory-bootstrap.py` for compatibility entry points. See `modules/l5/memory/rules/memory-backend-config.md`.
 
 2. **Writing without notifying Provenance.** Every write requires Provenance notification — cascade computation depends on it.
 

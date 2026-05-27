@@ -58,13 +58,13 @@ This is the only evaluation step in Brainstorm. Do not score, compare, or argue 
 
 ### Step 4 — Write receipt
 
-Write to `.wabblespec/receipts/brainstorm-receipt-<timestamp>.json`. Write top options to `.wabblespec/brainstorm/options-<timestamp>.md`. Schema: `modules/l1/brainstorm/schemas/brainstorm-receipt.schema.json`.
+Write to `.wabblespec/state/receipts/brainstorm-receipt-<timestamp>.json`. Write top options to `.wabblespec/brainstorm/options-<timestamp>.md`. Schema: `modules/l1/brainstorm/schemas/brainstorm-receipt.schema.json`.
 
 Pass options file path to Propose (or Specify) for evaluation.
 
 ## Output contract
 
-**brainstorm-receipt.json** (`.wabblespec/receipts/brainstorm-receipt-<timestamp>.json`):
+**brainstorm-receipt.json** (`.wabblespec/state/receipts/brainstorm-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/brainstorm-receipt.schema.json`. Key extension fields:
 

@@ -15,7 +15,7 @@ When Deps runs,
 Then all direct and transitive dependencies are discovered and `deps_scanned` is recorded.
 Then each dependency is assessed across four dimensions: vulnerability, age, license, supply chain.
 Then an SBOM is written to `.wabblespec/deps/sbom-<timestamp>.json`.
-Then a deps receipt is written to `.wabblespec/receipts/deps-receipt-<timestamp>.json`.
+Then a deps receipt is written to `.wabblespec/state/receipts/deps-receipt-<timestamp>.json`.
 
 ## Lock file absent: flag but continue
 

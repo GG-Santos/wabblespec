@@ -70,11 +70,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/iot-receipt-*.json"
+      ".wabblespec/state/receipts/iot-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

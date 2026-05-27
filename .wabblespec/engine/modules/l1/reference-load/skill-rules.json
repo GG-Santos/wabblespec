@@ -27,12 +27,12 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/memory/wings/references/",
-      ".wabblespec/receipts/reference-load-<source-slug>-<timestamp>.json"
+      ".wabblespec/state/memory/wings/references/",
+      ".wabblespec/state/receipts/reference-load-<source-slug>-<timestamp>.json"
     ],
     "reads": [
       "External and internal reference paths (read-only, bounded to 5 files per invocation)",
-      ".wabblespec/memory/index.json (dedup check)",
+      ".wabblespec/state/memory/index.json (dedup check)",
       "Any README.md or project-map.md at reference root"
     ],
     "notifies": [

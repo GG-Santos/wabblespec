@@ -27,10 +27,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/inference-guard-receipt-*.json"
+      ".wabblespec/state/receipts/inference-guard-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/task-card.md",
+      ".wabblespec/state/plans/task-card.md",
       ".wabblespec/engine/shared/scripts/inference-guard.py",
       "modules/l2/inference-guard/rules/activation-policy.md",
       "modules/l2/inference-guard/rules/trigger-vocabulary.md"

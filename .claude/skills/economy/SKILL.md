@@ -193,4 +193,4 @@ After the wave completes, Verifier may compare `tokens_projected` against actual
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion. In `--budget` mode, also writes to `.wabblespec/advisories/` when projected tokens exceed ceiling.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion. In `--budget` mode, also writes to `.wabblespec/advisories/` when projected tokens exceed ceiling.

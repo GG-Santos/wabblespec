@@ -40,7 +40,7 @@ Untestable requirement: flag with `<!-- UNTESTABLE: <reason> -->` and write to n
    - Flag untestable requirements
 4. Read platform package testing conventions for framework selection
 5. Write test stubs to `tests/` (I11 — test files are product files)
-6. Write test plan to `.wabblespec/plans/test-plan-<spec-id>.md`
+6. Write test plan to `.wabblespec/state/plans/test-plan-<spec-id>.md`
 7. Write Test receipt
 
 ## Test stub format
@@ -61,7 +61,7 @@ Untestable requirement: flag with `<!-- UNTESTABLE: <reason> -->` and write to n
 
 ## Test plan format
 
-Write to `.wabblespec/plans/test-plan-<spec-id>.md`:
+Write to `.wabblespec/state/plans/test-plan-<spec-id>.md`:
 
 ```markdown
 # Test Plan — <spec artifact>
@@ -89,7 +89,7 @@ Write to `.wabblespec/plans/test-plan-<spec-id>.md`:
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

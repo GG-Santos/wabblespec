@@ -24,9 +24,9 @@
   "phases": [],
   "stages": ["post-synth"],
   "authority": {
-    "owns": [".wabblespec/experiments/blueprints/"],
+    "owns": [".wabblespec/state/experiments/blueprints/"],
     "reads": [
-      ".wabblespec/experiments/candidates/",
+      ".wabblespec/state/experiments/candidates/",
       "modules/",
       "framework.yaml"
     ]
@@ -42,7 +42,7 @@
     "Self-modification blueprints always set verification_mode: Attestation",
     "Never writes to modules/ or production space"
   ],
-  "produces": [".wabblespec/experiments/blueprints/"],
+  "produces": [".wabblespec/state/experiments/blueprints/"],
   "depends_on": ["synth", "instinct"],
   "consumed_by": ["augment", "factory"],
   "loading_gate": "activation",

@@ -56,7 +56,7 @@ A static allowlist file (e.g., `.wabblespec/engine/shared/references/framework-p
 
 ### Path prefix gate only (no module-level authority) — Rejected
 
-A simple `.wabblespec/` prefix guard (any write to this prefix is blocked from product space) is necessary but not sufficient. It does not address the inverse: a framework module accidentally writing to the product directory (e.g., writing a receipt to product space instead of `.wabblespec/receipts/`). The bidirectional authority model (owns + reads declared per module) catches both directions.
+A simple `.wabblespec/` prefix guard (any write to this prefix is blocked from product space) is necessary but not sufficient. It does not address the inverse: a framework module accidentally writing to the product directory (e.g., writing a receipt to product space instead of `.wabblespec/state/receipts/`). The bidirectional authority model (owns + reads declared per module) catches both directions.
 
 ---
 

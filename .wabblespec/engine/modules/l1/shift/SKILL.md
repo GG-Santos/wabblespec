@@ -72,7 +72,7 @@ Write compatibility report to `.wabblespec/shift/compat-<timestamp>.md`. Write s
 
 ## Output contract
 
-**shift-receipt.json** (`.wabblespec/receipts/shift-receipt-<timestamp>.json`):
+**shift-receipt.json** (`.wabblespec/state/receipts/shift-receipt-<timestamp>.json`):
 
 ```json
 {

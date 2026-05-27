@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "WabbleSpec Project Map Contract",
-  "description": "Contract schema for .wabblespec/plans/project-map.md. Markdown — Guard Layer 1 validates by field-name presence in the markdown body. Full JSON validation applies only if project-map is serialised as JSON. freshness_state and valid_until are required — a map without them cannot be used as a reference slice by ReferenceLoad.",
+  "description": "Contract schema for .wabblespec/state/plans/project-map.md. Markdown — Guard Layer 1 validates by field-name presence in the markdown body. Full JSON validation applies only if project-map is serialised as JSON. freshness_state and valid_until are required — a map without them cannot be used as a reference slice by ReferenceLoad.",
   "type": "object",
   "required": [
     "explored_at",

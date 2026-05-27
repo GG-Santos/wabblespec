@@ -12,7 +12,7 @@ WabbleSpec runs inside an orchestration runtime (currently OMX/Codex or Claude C
 | Artifact | Owner module | Notes |
 |---|---|---|
 | `.wabblespec/meta.md` | Autopilot | Sole writer. No runtime may write this file. |
-| `.wabblespec/receipts/*.json` | Per-module authority | Runtime has no receipt authority. |
+| `.wabblespec/state/receipts/*.json` | Per-module authority | Runtime has no receipt authority. |
 | Phase transitions (Research → Plan → Execute → Delivery) | Autopilot | Transition rules defined in Autopilot SKILL.md. |
 | Capability routing decisions | ModelRouter | Runtime provides capabilities; ModelRouter selects. |
 | Wave dispatch records | Autopilot | Handoff records in `.wabblespec/meta.md` dispatch log. |
@@ -23,7 +23,7 @@ WabbleSpec runs inside an orchestration runtime (currently OMX/Codex or Claude C
 
 | Artifact | Runtime responsibility | Notes |
 |---|---|---|
-| `.wabblespec/runtime/runtime-state.json` | RuntimeProbe (writes), Runtime (provides capabilities) | WabbleSpec reads but does not write capability descriptors. |
+| `.wabblespec/state/runtime/runtime-state.json` | RuntimeProbe (writes), Runtime (provides capabilities) | WabbleSpec reads but does not write capability descriptors. |
 | Tool execution (Edit, Write, Bash) | Runtime | WabbleSpec describes what to do; runtime executes. |
 | Session continuity, context compression | Runtime | WabbleSpec does not manage token window directly. |
 | MCP server connections | Runtime | WabbleSpec uses MCP tools but does not configure the MCP server. |

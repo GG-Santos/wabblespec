@@ -51,7 +51,7 @@
 ## AT-CLOG-07: Receipt contains commit counts and section breakdown
 
 **Given** a completed Changelog run
-**Then** the receipt at `.wabblespec/receipts/changelog-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/changelog-{timestamp}.json` contains:
 - `version`
 - `from_ref`
 - `to_ref`

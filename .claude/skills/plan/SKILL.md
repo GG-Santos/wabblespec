@@ -85,13 +85,13 @@ On NO_GO or CONDITIONAL: surface to user with clear rationale. Do not proceed to
 
 ### Step 6 — Write plan artifact and receipt
 
-Write plan artifact to `.wabblespec/plans/plan-<timestamp>.md`. Receipt to `.wabblespec/receipts/plan-receipt-<timestamp>.json`.
+Write plan artifact to `.wabblespec/state/plans/plan-<timestamp>.md`. Receipt to `.wabblespec/state/receipts/plan-receipt-<timestamp>.json`.
 
 Pass plan artifact path to Decompose. Decompose uses the chosen approach, rationale, and open risks to structure waves.
 
 ## Output contract
 
-**plan-<timestamp>.md** (`.wabblespec/plans/plan-<timestamp>.md`):
+**plan-<timestamp>.md** (`.wabblespec/state/plans/plan-<timestamp>.md`):
 
 ```markdown
 # Plan
@@ -120,7 +120,7 @@ Pass plan artifact path to Decompose. Decompose uses the chosen approach, ration
 - <condition 2>
 ```
 
-**plan-receipt.json** (`.wabblespec/receipts/plan-receipt-<timestamp>.json`):
+**plan-receipt.json** (`.wabblespec/state/receipts/plan-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/plan-receipt.schema.json`. Key extension fields:
 
@@ -134,7 +134,7 @@ Base receipt schema extended with fields per `schemas/plan-receipt.schema.json`.
   "grader_verdict": "ACCEPT | REVISE | ESCALATE | null",
   "open_risks": ["array of risk strings"],
   "go_no_go": "GO | NO_GO | CONDITIONAL",
-  "plan_artifact_path": ".wabblespec/plans/plan-<timestamp>.md",
+  "plan_artifact_path": ".wabblespec/state/plans/plan-<timestamp>.md",
   "human_escalation_required": "boolean"
 }
 ```

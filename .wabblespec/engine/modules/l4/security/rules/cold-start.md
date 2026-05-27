@@ -4,7 +4,7 @@ Defines how gateway-security behaves when expected upstream artifacts are absent
 
 ## Absent: gateway-spec-receipt (Phase A not yet run)
 
-Condition: `gateway-security-spec-receipt.json` absent from `.wabblespec/receipts/` when Phase B is triggered.
+Condition: `gateway-security-spec-receipt.json` absent from `.wabblespec/state/receipts/` when Phase B is triggered.
 Detection: Phase B checks for spec receipt before running verdict.
 Action: Block Phase B — surface DEPENDENCY error: "Phase A (security analysis) must complete before Phase B verdict." Route back to Specify to complete Phase A.
 Do NOT: Issue a verdict without Phase A having run. A verdict without threat model context is invalid.

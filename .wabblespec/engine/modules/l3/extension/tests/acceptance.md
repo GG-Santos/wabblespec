@@ -90,5 +90,5 @@ Then platform-extension does not omit permission scope declaration.
 ## Receipt fields
 
 Given any successful platform-extension activation,
-Then a receipt is written to `.wabblespec/receipts/platform-extension-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-extension-<timestamp>.json`.
 Then the receipt contains: platform, extension_type_detected, manifest_version, permission_scope_declared, csp_declared, mv2_migration_required, gates_registered, capability_handoff.

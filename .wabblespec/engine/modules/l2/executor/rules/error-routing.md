@@ -52,5 +52,5 @@ When emitting an error, include all fields required by `.wabblespec/engine/share
 1. Write wave receipt with `status: "FAIL"` and `failure_reason`
 2. Surface rollback target from wave plan `rollback_to` field to user
 3. Wait for human confirmation before restoring any files
-4. Restore files from `.wabblespec/checkpoints/wave-<N>-<timestamp>/` snapshot
+4. Restore files from `.wabblespec/state/checkpoints/wave-<N>-<timestamp>/` snapshot
 5. Update `checkpoint-meta.json` with `restored_at` timestamp

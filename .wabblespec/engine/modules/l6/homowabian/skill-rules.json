@@ -26,11 +26,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/homowabian-receipt-*.json"
+      ".wabblespec/state/receipts/homowabian-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Observation",

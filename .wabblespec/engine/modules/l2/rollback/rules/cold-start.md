@@ -19,7 +19,7 @@ Do NOT: Execute a Type 3 or Type 4 rollback without worktree isolation.
 ## Absent: prior receipts
 
 Condition: No wave receipts exist — Rollback called before any execution.
-Detection: No `wave-*-receipt.json` in `.wabblespec/receipts/`.
+Detection: No `wave-*-receipt.json` in `.wabblespec/state/receipts/`.
 Action: Surface DEPENDENCY error — Rollback requires a prior successful wave to roll back to. There is no state to restore on a fresh project.
 Do NOT: Attempt rollback when no prior wave has completed.
 

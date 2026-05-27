@@ -5,7 +5,7 @@ Defines what Clean does when its expected upstream artifacts are absent.
 ## Absent: wave receipts
 
 Condition: No wave receipts exist when Clean runs.
-Detection: No `wave-*-receipt.json` in `.wabblespec/receipts/`.
+Detection: No `wave-*-receipt.json` in `.wabblespec/state/receipts/`.
 Action: Surface DEPENDENCY error — Clean operates on completed wave output. Without a completed wave, there is nothing to clean.
 Do NOT: Run cleanup passes against in-progress or uncommitted code.
 

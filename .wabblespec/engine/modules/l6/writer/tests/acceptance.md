@@ -35,7 +35,7 @@
 ## AT-WRITER-05: Receipt contains required fields
 
 **Given** a completed Writer run
-**Then** the receipt at `.wabblespec/receipts/writer-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/writer-{timestamp}.json` contains:
 - `content_type`
 - `goal`
 - `audience`

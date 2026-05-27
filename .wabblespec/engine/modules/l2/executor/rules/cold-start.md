@@ -4,7 +4,7 @@ Defines what Executor does when its expected upstream artifacts are absent.
 
 ## Absent: decompose receipt
 
-Condition: No `decompose-receipt.json` in `.wabblespec/receipts/`.
+Condition: No `decompose-receipt.json` in `.wabblespec/state/receipts/`.
 Detection: Receipt stem missing from `required_receipts` in state.json, or file absent.
 Action: DEPENDENCY error — Decompose must complete before Executor begins. Executor cannot derive a wave plan from scratch.
 Do NOT: Infer wave structure from the task description alone.
@@ -12,7 +12,7 @@ Do NOT: Infer wave structure from the task description alone.
 ## Absent: prior wave receipts (Wave N > 0)
 
 Condition: Wave N is about to begin but Wave N-1 receipt is absent.
-Detection: Expected `wave-{N-1}-receipt.json` missing from `.wabblespec/receipts/`.
+Detection: Expected `wave-{N-1}-receipt.json` missing from `.wabblespec/state/receipts/`.
 Action: Treat as wave 0 only if N=0. For N>0, surface I10 DEPENDENCY error — prior wave receipt must exist.
 Do NOT: Skip a wave or merge two waves because a receipt is missing.
 
@@ -25,7 +25,7 @@ Do NOT: Proceed on the assumption that Guard "would have passed."
 
 ## Absent: state.json
 
-Condition: `.wabblespec/session/state.json` does not exist when Executor begins.
+Condition: `.wabblespec/state/session/state.json` does not exist when Executor begins.
 Detection: File read returns 404.
 Action: Write the pre-execution prologue immediately (see state-protocol.md). Do not proceed without writing state first.
 Do NOT: Execute any wave before state.json has `enforcement_active: true` and the planning receipt stems.

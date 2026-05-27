@@ -16,7 +16,7 @@ Instinct reads the receipt corpus and detects three types of recurring patterns:
 | `co-occurrence-cluster` | Two modules failing in the same execution wave | ≥ 3 co-occurrences across distinct waves |
 | `recurring-gap` | A topic appearing repeatedly in Dream's gap-map.md | ≥ 3 distinct sessions |
 
-Instinct is **read-only** except for writing to `.wabblespec/memory/instinct-observations.md`. It does not alter any module, framework.yaml, or live framework files.
+Instinct is **read-only** except for writing to `.wabblespec/state/memory/instinct-observations.md`. It does not alter any module, framework.yaml, or live framework files.
 
 ---
 
@@ -25,8 +25,8 @@ Instinct is **read-only** except for writing to `.wabblespec/memory/instinct-obs
 Before running Instinct, verify:
 
 1. **Receipt count ≥ 100.** The script enforces this internally and will exit with `GATE_NOT_MET` if not met.
-2. **entity-graph.json exists** at `.wabblespec/memory/entity-graph.json`. If absent, populate it via EntityGraph first.
-3. **No executor PID lock.** The script checks for `.wabblespec/memory/.executor.pid`. Do not run Instinct during an active execution session.
+2. **entity-graph.json exists** at `.wabblespec/state/memory/entity-graph.json`. If absent, populate it via EntityGraph first.
+3. **No executor PID lock.** The script checks for `.wabblespec/state/memory/.executor.pid`. Do not run Instinct during an active execution session.
 
 ---
 
@@ -73,11 +73,11 @@ Dry run — N pattern(s) detected (not written)
 python modules/l8/instinct/scripts/instinct.py --activate
 ```
 
-This writes `.wabblespec/memory/instinct-observations.md`. If the file already exists from a prior run, it is overwritten with the latest analysis.
+This writes `.wabblespec/state/memory/instinct-observations.md`. If the file already exists from a prior run, it is overwritten with the latest analysis.
 
 Expected output:
 ```
-Written: .wabblespec/memory/instinct-observations.md
+Written: .wabblespec/state/memory/instinct-observations.md
 Patterns detected: N
 Human validation required before any pattern can be submitted to Synth.
 ```
@@ -86,7 +86,7 @@ Human validation required before any pattern can be submitted to Synth.
 
 ## Step 4 — Review instinct-observations.md
 
-Open `.wabblespec/memory/instinct-observations.md`. Each detected pattern has this structure:
+Open `.wabblespec/state/memory/instinct-observations.md`. Each detected pattern has this structure:
 
 ```markdown
 ### Pattern N: {name}
@@ -113,7 +113,7 @@ For each pattern, evaluate:
 The `evidence` field lists up to 5 receipt paths. Open each:
 ```bash
 # Windows PowerShell
-Get-Content ".wabblespec/receipts/{receipt-filename}"
+Get-Content ".wabblespec/state/receipts/{receipt-filename}"
 ```
 Verify the listed receipts actually have `"status": "FAIL"` or `"status": "PARTIAL"` and that the failure was genuine (not a test artifact).
 
@@ -123,7 +123,7 @@ Check whether the two co-failing modules have a known dependency relationship. I
 
 **How to inspect evidence for recurring-gap patterns:**
 
-Open `.wabblespec/memory/gap-map.md`. Verify the topic appears with low confidence across multiple session entries, not just once or in a single burst.
+Open `.wabblespec/state/memory/gap-map.md`. Verify the topic appears with low confidence across multiple session entries, not just once or in a single burst.
 
 ---
 
@@ -162,7 +162,7 @@ After validating at least 3 patterns, update `.wabblespec/engine/shared/referenc
 
 ```bash
 # Verify the count of validated patterns before updating the gate document
-grep "Human-validated: true" .wabblespec/memory/instinct-observations.md | wc -l
+grep "Human-validated: true" .wabblespec/state/memory/instinct-observations.md | wc -l
 ```
 
 ---
@@ -219,7 +219,7 @@ Cannot validate 3 patterns if fewer than 3 are detected. See "No patterns detect
 
 - `modules/l8/instinct/scripts/instinct.py` — the implementation
 - `.wabblespec/engine/shared/references/l8-corpus-gate.md` — gate conditions; update after validation
-- `.wabblespec/memory/instinct-observations.md` — written by --activate; edit to add Human-validated: true
-- `.wabblespec/memory/gap-map.md` — Dream's gap map; source for recurring-gap pattern detection
-- `.wabblespec/memory/entity-graph.json` — required for Instinct gate check
+- `.wabblespec/state/memory/instinct-observations.md` — written by --activate; edit to add Human-validated: true
+- `.wabblespec/state/memory/gap-map.md` — Dream's gap map; source for recurring-gap pattern detection
+- `.wabblespec/state/memory/entity-graph.json` — required for Instinct gate check
 - `modules/l8/synth/SKILL.md` — what Synth does with validated patterns

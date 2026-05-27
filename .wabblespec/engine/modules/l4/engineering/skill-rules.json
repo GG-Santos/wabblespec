@@ -46,11 +46,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/engineering-receipt-*.json"
+      ".wabblespec/state/receipts/engineering-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

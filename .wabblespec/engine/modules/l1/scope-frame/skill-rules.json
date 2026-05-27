@@ -30,7 +30,7 @@
   "authority": {
     "owns": [
       ".wabblespec/scope.md",
-      ".wabblespec/receipts/scopeframe-receipt.json"
+      ".wabblespec/state/receipts/scopeframe-receipt.json"
     ],
     "reads": [
       ".wabblespec/recipe.json"

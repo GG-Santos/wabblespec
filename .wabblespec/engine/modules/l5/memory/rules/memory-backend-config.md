@@ -2,7 +2,7 @@
 
 ## Design Constraint
 
-WabbleSpec is single-project. All memory store state lives under `.wabblespec/memory/`; nothing in the backend runtime should write to user home directories. ConvoMiner scopes to the current project's sessions only.
+WabbleSpec is single-project. All memory store state lives under `.wabblespec/state/memory/`; nothing in the backend runtime should write to user home directories. ConvoMiner scopes to the current project's sessions only.
 
 ## Runtime Configuration
 
@@ -14,12 +14,12 @@ from _shared.memory_backend import get_collection
 
 Runtime configuration does:
 
-- Sets `WABBLESPEC_MEMORY_PATH` to `.wabblespec/memory/`
+- Sets `WABBLESPEC_MEMORY_PATH` to `.wabblespec/state/memory/`
 - Prepends the repo root and `packages/memory/src/` to `sys.path`
-- Sets `WABBLESPEC_MEMORY_STATE_DIR` to `.wabblespec/memory/.runtime/hook_state/`
-- Sets `WABBLESPEC_MEMORY_LOCK_DIR` to `.wabblespec/memory/.runtime/locks/`
-- Sets `WABBLESPEC_MEMORY_WAL_DIR` to `.wabblespec/memory/.runtime/wal/`
-- Creates `.wabblespec/memory/` and `.wabblespec/memory/.runtime/` if absent
+- Sets `WABBLESPEC_MEMORY_STATE_DIR` to `.wabblespec/state/memory/.runtime/hook_state/`
+- Sets `WABBLESPEC_MEMORY_LOCK_DIR` to `.wabblespec/state/memory/.runtime/locks/`
+- Sets `WABBLESPEC_MEMORY_WAL_DIR` to `.wabblespec/state/memory/.runtime/wal/`
+- Creates `.wabblespec/state/memory/` and `.wabblespec/state/memory/.runtime/` if absent
 - Uses `wabblespec_drawers` and `wabblespec_closets` as collection names
 
 Optional graph helpers such as hallways are backend capabilities. Use `_shared.memory_backend.has_hallways()` before calling them.
@@ -31,7 +31,7 @@ The backend is a shared internal Python package at `packages/memory/`. WabbleSpe
 ## Directory Structure
 
 ```text
-.wabblespec/memory/
+.wabblespec/state/memory/
   chroma.sqlite3
   chroma/
   knowledge_graph.sqlite3

@@ -64,11 +64,11 @@ If `challenger_mode = spec-bound`: also assess whether the artifact meets criter
 
 ### Step 3 — Write adversary receipt
 
-Write receipt to `.wabblespec/receipts/adversary-receipt-<timestamp>.json`. Schema: `modules/l2/adversary/schemas/adversary-receipt.schema.json`.
+Write receipt to `.wabblespec/state/receipts/adversary-receipt-<timestamp>.json`. Schema: `modules/l2/adversary/schemas/adversary-receipt.schema.json`.
 
 ## Output contract
 
-**adversary-receipt.json** (`.wabblespec/receipts/adversary-receipt-<timestamp>.json`):
+**adversary-receipt.json** (`.wabblespec/state/receipts/adversary-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/adversary-receipt.schema.json`. Key extension fields:
 

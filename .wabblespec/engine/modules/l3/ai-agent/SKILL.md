@@ -68,7 +68,7 @@ capability_handoff:
 
 ## Output contract
 
-**Platform activation receipt** (`.wabblespec/receipts/platform-ai-agent-{timestamp}.json`)
+**Platform activation receipt** (`.wabblespec/state/receipts/platform-ai-agent-{timestamp}.json`)
 
 ## Files loaded by this module
 

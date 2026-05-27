@@ -14,7 +14,7 @@ When Organize runs,
 Then all 5 audit dimensions are checked: Naming, Depth, Orphans, Duplicates, Structure.
 Then each finding is classified as AUTO or CONFIRM.
 Then an organize report is written to `.wabblespec/organize/report-<timestamp>.md`.
-Then an organize receipt is written to `.wabblespec/receipts/organize-receipt-<timestamp>.json`.
+Then an organize receipt is written to `.wabblespec/state/receipts/organize-receipt-<timestamp>.json`.
 
 ## AUTO actions: taken immediately
 

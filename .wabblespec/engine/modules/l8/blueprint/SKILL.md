@@ -17,7 +17,7 @@ Blueprint does not write implementations. It does not modify modules. It produce
 ## When to use
 
 Blueprint activates when:
-1. A `candidate.json` exists in `.wabblespec/experiments/candidates/` with `status: pending`
+1. A `candidate.json` exists in `.wabblespec/state/experiments/candidates/` with `status: pending`
 2. Human explicitly invokes Blueprint with the candidate ID
 3. The affected module's SKILL.md is readable
 
@@ -25,7 +25,7 @@ Blueprint activates when:
 
 | Input | Path | Required |
 |---|---|---|
-| Candidate | `.wabblespec/experiments/candidates/{id}.candidate.json` | Yes |
+| Candidate | `.wabblespec/state/experiments/candidates/{id}.candidate.json` | Yes |
 | Module SKILL.md | `modules/{layer}/{module}/SKILL.md` | Yes — read before/after states from here |
 | Module skill-rules.json | `modules/{layer}/{module}/skill-rules.json` | Yes — verification_mode and authority |
 | Framework manifest | `framework.yaml` | Yes — confirms module ID and layer |
@@ -45,7 +45,7 @@ Surface open questions to the human before writing if any of the above cannot be
 
 ## Output contract
 
-**One file:** `.wabblespec/experiments/blueprints/{candidate-id}.blueprint.json`
+**One file:** `.wabblespec/state/experiments/blueprints/{candidate-id}.blueprint.json`
 
 ```json
 {

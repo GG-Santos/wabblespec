@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/audit", "compliance audit", "accessibility audit", "wcag audit", "gdpr audit", "license audit"],
   "authority": {
-    "owns": [".wabblespec/receipts/audit-receipt-*.json", ".wabblespec/audits/compliance-*.md"],
+    "owns": [".wabblespec/state/receipts/audit-receipt-*.json", ".wabblespec/audits/compliance-*.md"],
     "reads": [
       "modules/l2/audit/rules/audit-dimensions.md",
       "modules/l2/audit/rules/guard-log-consumption.md",

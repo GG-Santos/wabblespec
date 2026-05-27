@@ -51,7 +51,7 @@
 ## AT-FORGET-07: Forget receipt contains required fields
 
 **Given** a completed Forget operation
-**Then** the receipt at `.wabblespec/receipts/forget-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/forget-receipt-{timestamp}.json` contains:
 - `deletion_type`
 - `drawers_deleted`
 - `provenance_records_written`

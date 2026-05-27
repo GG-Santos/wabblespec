@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/organize", "organize files", "audit file structure", "fix naming", "file organization"],
   "authority": {
-    "owns": [".wabblespec/receipts/organize-receipt-*.json", ".wabblespec/organize/report-*.md"],
+    "owns": [".wabblespec/state/receipts/organize-receipt-*.json", ".wabblespec/organize/report-*.md"],
     "reads": [
       "modules/l1/organize/rules/audit-dimensions.md",
       "modules/l1/organize/rules/repair-policy.md"

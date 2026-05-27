@@ -31,8 +31,8 @@ Each stage is a discrete module invocation. Stages are ordered — a stage does 
 
 ### Decompose (L1)
 **Activator:** After Specify receipt PASS.
-**Does:** Breaks the spec into an ordered wave plan. Each wave has a declared checkpoint and rollback target. Assigns a complexity score (1–10) to the overall plan. Writes the wave plan to `.wabblespec/plans/wave-current.md`.
-**Writes:** `decompose-receipt-{run-id}.json`, `.wabblespec/plans/wave-current.md`
+**Does:** Breaks the spec into an ordered wave plan. Each wave has a declared checkpoint and rollback target. Assigns a complexity score (1–10) to the overall plan. Writes the wave plan to `.wabblespec/state/plans/wave-current.md`.
+**Writes:** `decompose-receipt-{run-id}.json`, `.wabblespec/state/plans/wave-current.md`
 
 ### Gateway checks (L4) — conditional
 **Activator:** Triggered by platform declaration + task tags. Not every run requires a gateway.

@@ -17,7 +17,7 @@ Then only after human confirmation does restoration proceed.
 
 ## Wave checkpoint rollback
 
-Given a wave checkpoint at `.wabblespec/checkpoints/<wave-id>/` is the declared target,
+Given a wave checkpoint at `.wabblespec/state/checkpoints/<wave-id>/` is the declared target,
 When Rollback executes with Attestation received,
 Then Rollback restores the project to the state snapshotted before that wave.
 Then hash verification is performed on all restored files against the checkpoint manifest.
@@ -33,7 +33,7 @@ Then the rollback receipt is written.
 
 ## Forge pre-promotion rollback
 
-Given a Forge pre-promotion snapshot at `.wabblespec/experiments/rollback-<timestamp>/` is the declared target,
+Given a Forge pre-promotion snapshot at `.wabblespec/state/experiments/rollback-<timestamp>/` is the declared target,
 When Rollback executes with Attestation received,
 Then Rollback restores framework files to the pre-promotion state.
 Then hash verification is performed.
@@ -74,5 +74,5 @@ Then Rollback does not decide to restore — Executor or Deploy detects the roll
 ## Receipt fields
 
 Given any successful Rollback run,
-Then the receipt is written to `.wabblespec/receipts/`.
+Then the receipt is written to `.wabblespec/state/receipts/`.
 Then the receipt contains: rollback target type, target path, timestamp, files restored, hash verification result.

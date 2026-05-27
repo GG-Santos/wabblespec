@@ -35,7 +35,7 @@ Status: FAIL per mismatched file. PASS if all 59 files match.
 
 **Check 1.3 — receipt schema required fields**
 
-Sample up to 10 most recent receipts from `.wabblespec/receipts/`. Validate each against `.wabblespec/engine/shared/schemas/receipt.base.schema.json`.
+Sample up to 10 most recent receipts from `.wabblespec/state/receipts/`. Validate each against `.wabblespec/engine/shared/schemas/receipt.base.schema.json`.
 
 Status: FAIL if any sampled receipt missing required fields. WARN if receipt count < 3 (too few to sample).
 
@@ -79,7 +79,7 @@ Status: PASS if count = 0. WARN if 1–3. FAIL if > 3 (staleness pressure on evi
 
 **Check 3.2 — Dream log recency**
 
-Read `.wabblespec/memory/dream-log.json`. Report last Dream run date and run count.
+Read `.wabblespec/state/memory/dream-log.json`. Report last Dream run date and run count.
 
 Status: PASS if last run within 20 receipts of current receipt count. WARN if Dream has never run. WARN if behavior-change evidence missing after 5+ runs.
 
@@ -95,7 +95,7 @@ Status: INFO only — not PASS/FAIL. Reports: "N drawers — MemoryMine gate at 
 
 **Check 4.1 — Recent receipt chain completeness**
 
-Read `.wabblespec/archive/receipt-index.json` (or equivalent). For the most recent archived task, verify the full chain exists: recipe → scopeframe → specify → decompose → executor → verifier → archive.
+Read `.wabblespec/state/archive/receipt-index.json` (or equivalent). For the most recent archived task, verify the full chain exists: recipe → scopeframe → specify → decompose → executor → verifier → archive.
 
 Status: FAIL if any link missing. WARN if index is empty (no archived tasks yet).
 

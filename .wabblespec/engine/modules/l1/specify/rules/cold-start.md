@@ -11,7 +11,7 @@ Output: `specs/<first-capability>/spec.md` at P1 priority.
 
 ## Absent: prior receipts
 
-Condition: No `recipe-receipt.json` or `scopeframe-receipt.json` in `.wabblespec/receipts/`.
+Condition: No `recipe-receipt.json` or `scopeframe-receipt.json` in `.wabblespec/state/receipts/`.
 Detection: Required receipt stems missing from `required_receipts` in state.json, or files absent.
 Action: Surface DEPENDENCY error naming the missing upstream module (Recipe or ScopeFrame).
 Do NOT: Proceed without recipe.json and scope.md confirmed. Specify writes specs against a declared target — without Recipe, the target is unknown.

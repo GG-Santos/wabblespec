@@ -5,7 +5,7 @@ Defines what Interview does when its expected upstream artifacts are absent.
 ## Absent: existing spec or task card
 
 Condition: No spec artifacts and no task card when Interview runs.
-Detection: `specs/` empty and no task card in `.wabblespec/plans/`.
+Detection: `specs/` empty and no task card in `.wabblespec/state/plans/`.
 Action: Start fresh — generate opening questions from the recipe target and complexity level. Interview is designed to run before specs exist for High-complexity tasks.
 Output: Structured question list derived from recipe target, complexity, and user opening statement.
 

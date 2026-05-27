@@ -23,8 +23,8 @@ Then traversal begins at high-value nodes: dependency manifests, entry points, c
 Then traversal does not scan every file blindly.
 Then findings are written to Memory as FRESH drawers (one per distinct finding, not one per file).
 Then EntityGraph is notified with entity candidates after drawers are written.
-Then `project-map.md` is written to `.wabblespec/plans/project-map.md`.
-Then a receipt is written to `.wabblespec/receipts/`.
+Then `project-map.md` is written to `.wabblespec/state/plans/project-map.md`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## project-map.md required fields
 

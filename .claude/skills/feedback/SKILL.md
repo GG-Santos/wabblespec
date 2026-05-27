@@ -1,6 +1,6 @@
 ---
 name: feedback
-description: Captures structured human feedback on framework behavior. One feedback item per invocation. Writes to .wabblespec/memory/feedback/. Becomes additional signal for Instinct on next run. Does not trigger Synth automatically.
+description: Captures structured human feedback on framework behavior. One feedback item per invocation. Writes to .wabblespec/state/memory/feedback/. Becomes additional signal for Instinct on next run. Does not trigger Synth automatically.
 layer: L8
 ---
 
@@ -10,7 +10,7 @@ You record what humans notice. You do not act on it.
 
 ## What this skill does
 
-Feedback captures a single human observation about framework behavior — a module that behaved unexpectedly, a gate that felt wrong, a receipt that did not reflect reality. It structures the observation as a `feedback-{timestamp}.json` in `.wabblespec/memory/feedback/`. On the next Instinct run, Feedback items are read alongside receipts as additional signal.
+Feedback captures a single human observation about framework behavior — a module that behaved unexpectedly, a gate that felt wrong, a receipt that did not reflect reality. It structures the observation as a `feedback-{timestamp}.json` in `.wabblespec/state/memory/feedback/`. On the next Instinct run, Feedback items are read alongside receipts as additional signal.
 
 Feedback does not trigger Synth. It does not modify modules or receipts. It records.
 
@@ -28,7 +28,7 @@ From human invocation:
 
 ## Output contract
 
-**One file:** `.wabblespec/memory/feedback/feedback-{ISO-timestamp}.json`
+**One file:** `.wabblespec/state/memory/feedback/feedback-{ISO-timestamp}.json`
 
 ```json
 {
@@ -88,7 +88,7 @@ Status is updated by Instinct (open → incorporated) and by human decision (→
 
 All drawers from a single `--metrics` run share a `batch_id` field for traceability.
 
-**Step 3 — Contradict-check against Specify specs.** Scan `.wabblespec/receipts/` for Specify receipts containing EARS requirements with numeric thresholds. For each metric that contradicts an assumption declared in a Specify receipt (value outside stated threshold):
+**Step 3 — Contradict-check against Specify specs.** Scan `.wabblespec/state/receipts/` for Specify receipts containing EARS requirements with numeric thresholds. For each metric that contradicts an assumption declared in a Specify receipt (value outside stated threshold):
 
 - Write a `memory/feedback/contradiction-{metric}-{timestamp}.json` item with `status: open`, `instinct_signal: true`, and `contradicts_spec_receipt` pointing to the Specify receipt path.
 - Do not modify the spec. Do not trigger Synth. Record the contradiction as signal.
@@ -110,8 +110,8 @@ Product module reads these stubs on next invocation. Feedback does not invoke Pr
 ### --metrics output contract
 
 Writes to:
-- `.wabblespec/memory/evidence/` — one drawer per metric
-- `.wabblespec/memory/feedback/` — one contradiction item per contradicting metric (may be zero)
+- `.wabblespec/state/memory/evidence/` — one drawer per metric
+- `.wabblespec/state/memory/feedback/` — one contradiction item per contradicting metric (may be zero)
 - `.wabblespec/notifications/` — one product notification if contradictions found (may be omitted if zero)
 
 Does not write a separate Feedback receipt. The evidence drawers are the durable output.
@@ -145,7 +145,7 @@ Uses `.wabblespec/engine/shared/scripts/param-learner.py`. Feedback does not rei
 
 ### Persistence
 
-Learned profiles written to `.wabblespec/memory/learned-params/learned-params-{context_type}.json`.
+Learned profiles written to `.wabblespec/state/memory/learned-params/learned-params-{context_type}.json`.
 
 One file per context type (six files max):
 - `learned-params-spec-authoring.json`
@@ -179,7 +179,7 @@ Profile format:
 4. If --context-type provided: override extracted type
 5. Call param-learner.py --learn --receipt <path> --context-type <type>
 6. Script updates learned-params-{type}.json with EMA update
-7. Write learn receipt to .wabblespec/receipts/feedback-learn-{timestamp}.json
+7. Write learn receipt to .wabblespec/state/receipts/feedback-learn-{timestamp}.json
 ```
 
 ### --learn output contract
@@ -193,7 +193,7 @@ Profile format:
   "rating": 1,
   "sample_count_after": 12,
   "adjustments_count": 2,
-  "profile_path": ".wabblespec/memory/learned-params/learned-params-code-generation.json",
+  "profile_path": ".wabblespec/state/memory/learned-params/learned-params-code-generation.json",
   "timestamp": "ISO-8601"
 }
 ```

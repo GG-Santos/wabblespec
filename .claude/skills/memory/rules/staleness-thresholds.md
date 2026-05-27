@@ -13,7 +13,7 @@ Activity proxy: count of execution receipts written after drawer's `written_at`.
 | AGING → STALE | 10 execution receipts since `written_at` |
 | STALE → EXPIRED | 20 execution receipts since `written_at` |
 
-"Execution receipt" = any `.json` receipt in `.wabblespec/receipts/` with `timestamp` after the drawer's `written_at`.
+"Execution receipt" = any `.json` receipt in `.wabblespec/state/receipts/` with `timestamp` after the drawer's `written_at`.
 
 ---
 

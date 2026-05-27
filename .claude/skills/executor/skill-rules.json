@@ -34,15 +34,15 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/wave-*-receipt.json",
-      ".wabblespec/receipts/execution-receipt.json",
-      ".wabblespec/session/checkpoints/*"
+      ".wabblespec/state/receipts/wave-*-receipt.json",
+      ".wabblespec/state/receipts/execution-receipt.json",
+      ".wabblespec/state/session/checkpoints/*"
     ],
     "reads": [
-      ".wabblespec/plans/current-wave-plan.md",
-      ".wabblespec/plans/task-card.md",
+      ".wabblespec/state/plans/current-wave-plan.md",
+      ".wabblespec/state/plans/task-card.md",
       ".wabblespec/scope.md",
-      ".wabblespec/receipts/*",
+      ".wabblespec/state/receipts/*",
       "modules/*/tests/acceptance.md"
     ]
   },

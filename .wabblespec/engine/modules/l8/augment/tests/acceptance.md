@@ -43,5 +43,5 @@ Then only that change is applied — no additional improvements, refactors, or s
 
 Given any Augment invocation,
 Then no file in modules/ is created or modified.
-Then no receipt in .wabblespec/receipts/ is modified.
+Then no receipt in .wabblespec/state/receipts/ is modified.
 Then no framework.yaml entry is changed.

@@ -31,16 +31,16 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/memory/provenance/deletions/*.json"
+      ".wabblespec/state/memory/provenance/deletions/*.json"
     ],
     "reads": [
-      ".wabblespec/memory/index.json",
-      ".wabblespec/memory/wings/**/*.json",
-      ".wabblespec/memory/closets/**/*.json"
+      ".wabblespec/state/memory/index.json",
+      ".wabblespec/state/memory/wings/**/*.json",
+      ".wabblespec/state/memory/closets/**/*.json"
     ],
     "deletes": [
-      ".wabblespec/memory/wings/**/*.json",
-      ".wabblespec/memory/closets/**/*.json"
+      ".wabblespec/state/memory/wings/**/*.json",
+      ".wabblespec/state/memory/closets/**/*.json"
     ],
     "notifies": [
       "entity-graph",

@@ -55,11 +55,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/aesthetic-receipt-*.json"
+      ".wabblespec/state/receipts/aesthetic-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

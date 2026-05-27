@@ -63,7 +63,7 @@ Write merged spec to `.wabblespec/sync/result-<timestamp>.md` (or mark as escala
 
 ## Output contract
 
-**sync-receipt.json** (`.wabblespec/receipts/sync-receipt-<timestamp>.json`):
+**sync-receipt.json** (`.wabblespec/state/receipts/sync-receipt-<timestamp>.json`):
 
 ```json
 {

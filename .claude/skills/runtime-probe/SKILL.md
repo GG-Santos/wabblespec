@@ -54,7 +54,7 @@ If detection is uncertain, record as available with confidence < 0.7 and note un
 
 ## Output contract
 
-Write to `.wabblespec/runtime/runtime-state.json`:
+Write to `.wabblespec/state/runtime/runtime-state.json`:
 
 ```json
 {
@@ -77,7 +77,7 @@ Write to `.wabblespec/runtime/runtime-state.json`:
 
 ## User overrides
 
-If `.wabblespec/runtime/runtime.json` exists, apply its declarations over probe results:
+If `.wabblespec/state/runtime/runtime.json` exists, apply its declarations over probe results:
 
 ```json
 {

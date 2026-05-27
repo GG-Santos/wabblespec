@@ -27,7 +27,7 @@ Guard cannot be skipped. A wave that proceeds without Guard PASS is an I4 violat
 - Wave inputs from Executor (artifacts, task card sections, scope references)
 - `.wabblespec/scope.md`
 - `.wabblespec/engine/shared/references/invariants.md`
-- All prior wave receipts in `.wabblespec/receipts/` (for I10 chain check)
+- All prior wave receipts in `.wabblespec/state/receipts/` (for I10 chain check)
 - Module `skill-rules.json` files (for authority check)
 
 ## How to do it
@@ -49,7 +49,7 @@ Check all wave inputs against their declared schemas:
 
 **Session checkpoint detection (Wave 1 only):**
 
-When Guard is invoked for Wave 1 (the first wave of a task), check `.wabblespec/session/checkpoints/` for any existing `checkpoint-wave-*.json` files. If present:
+When Guard is invoked for Wave 1 (the first wave of a task), check `.wabblespec/state/session/checkpoints/` for any existing `checkpoint-wave-*.json` files. If present:
 
 1. Parse the most recent checkpoint by `timestamp` field.
 2. Surface to Executor: "Session checkpoint found: wave {wave_index} ({wave_label}) completed at {timestamp}. Last receipts: {receipts_written}. Confirm resume strategy before proceeding."
@@ -142,7 +142,7 @@ Any blocking error → return typed error event (see `.wabblespec/engine/shared/
 
 ## Output contract
 
-**guard receipt** (`.wabblespec/receipts/guard-wave-<N>-receipt.json`):
+**guard receipt** (`.wabblespec/state/receipts/guard-wave-<N>-receipt.json`):
 
 Base receipt schema. Extension fields:
 ```json
@@ -169,7 +169,7 @@ Three invariants added 2026-05-24 when ChromaDB memory store was activated:
 | Invariant | Check | Severity |
 |---|---|---|
 | `WABBLESPEC_MEMORY_READY` | `WABBLESPEC_MEMORY_PATH` env var must be set before any Memory module write. Bootstrap script must run first. | HARD — abort if unset |
-| `CHROMADB_EXISTS` | `.wabblespec/memory/chroma.sqlite3` must exist before MemorySearch queries are issued. Fail fast with actionable error if missing. | HARD — abort, print "Run: python scripts/migrate-json-drawers.py" |
+| `CHROMADB_EXISTS` | `.wabblespec/state/memory/chroma.sqlite3` must exist before MemorySearch queries are issued. Fail fast with actionable error if missing. | HARD — abort, print "Run: python scripts/migrate-json-drawers.py" |
 | `CLOSET_INDEX_GATE` | `wabblespec_closets` ChromaDB collection must not be built until ChromaDB drawer count >= 50. Closet indexing before this threshold produces noise, not signal. | SPEC_VIOLATION if triggered early |
 
 These are enforced as Layer 3 invariant checks within the existing invariant compliance pass. Guard reads `WABBLESPEC_MEMORY_PATH` from the environment and checks for `chroma.sqlite3` existence at wave start when any Memory, MemorySearch, MemoryMine, or EntityGraph module is in the wave plan.

@@ -54,4 +54,4 @@ Module complexity has not grown beyond this SKILL.md. No skill-rules.json activa
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

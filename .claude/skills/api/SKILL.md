@@ -48,7 +48,7 @@ Compare implementation to declared contract. Check: all declared endpoints exist
 
 ## Output contract
 
-**api-receipt.json** (`.wabblespec/receipts/api-receipt-<timestamp>.json`):
+**api-receipt.json** (`.wabblespec/state/receipts/api-receipt-<timestamp>.json`):
 
 ```json
 {

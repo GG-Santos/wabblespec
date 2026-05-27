@@ -22,9 +22,9 @@ When Test runs,
 Then every WHEN/THEN requirement maps to at least one positive case and one boundary case.
 Then every IF/WHEN/THEN requirement maps to a positive case and a condition-not-met case.
 Then every WHILE requirement maps to a state-entry test and a state-exit test.
-Then a test plan is written to `.wabblespec/plans/test-plan-<spec-id>.md`.
+Then a test plan is written to `.wabblespec/state/plans/test-plan-<spec-id>.md`.
 Then test stubs are written to `tests/`.
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## Untestable requirements: flag, never skip
 

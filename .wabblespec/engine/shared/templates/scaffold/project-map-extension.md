@@ -86,7 +86,7 @@ _MV3 is the current standard. MV2 requires explicit justification in build-toolc
 
 | Path | Artifact type | Status |
 |---|---|---|
-| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+| `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
 
 ## Conventions
 

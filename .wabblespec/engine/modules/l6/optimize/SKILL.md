@@ -32,7 +32,7 @@ Optimize activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/optimize-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/optimize-{timestamp}.json`
 
 ```json
 {

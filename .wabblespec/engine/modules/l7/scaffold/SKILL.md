@@ -121,7 +121,7 @@ After all files written: invoke Explore to index the newly created structure. Ex
 
 ## Output contract
 
-**scaffold-receipt** (`.wabblespec/receipts/scaffold-receipt-{timestamp}.json`):
+**scaffold-receipt** (`.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json`):
 ```json
 {
   "project_name": "string",

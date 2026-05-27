@@ -72,11 +72,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/data-pipeline-receipt-*.json"
+      ".wabblespec/state/receipts/data-pipeline-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

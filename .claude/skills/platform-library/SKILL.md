@@ -77,7 +77,7 @@ capability_handoff:
 
 ## Output contract
 
-**Platform activation receipt** (`.wabblespec/receipts/platform-library-{timestamp}.json`):
+**Platform activation receipt** (`.wabblespec/state/receipts/platform-library-{timestamp}.json`):
 
 Base receipt schema with Library extension fields (see `schemas/receipt.schema.json`).
 

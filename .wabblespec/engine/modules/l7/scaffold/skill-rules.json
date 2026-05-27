@@ -34,7 +34,7 @@
       ".wabblespec/project-map.md",
       ".wabblespec/VERSION",
       ".wabblespec/CHANGELOG.md",
-      ".wabblespec/receipts/scaffold-receipt-*.json"
+      ".wabblespec/state/receipts/scaffold-receipt-*.json"
     ],
     "reads": [
       "modules/l3/*/spec-template/"

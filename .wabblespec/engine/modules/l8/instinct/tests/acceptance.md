@@ -2,15 +2,15 @@
 
 ## Gate enforcement
 
-Given receipt count < 100 in .wabblespec/receipts/,
+Given receipt count < 100 in .wabblespec/state/receipts/,
 When --activate is run,
 Then exit code is 1 and output contains "GATE_NOT_MET" with current count.
 
-Given entity-graph.json absent from .wabblespec/memory/,
+Given entity-graph.json absent from .wabblespec/state/memory/,
 When --activate is run,
 Then exit code is 1 and output names the missing file.
 
-Given an Executor PID lock at .wabblespec/memory/.executor.pid,
+Given an Executor PID lock at .wabblespec/state/memory/.executor.pid,
 When --activate is run,
 Then exit code is 1 and output names the active lock.
 
@@ -49,8 +49,8 @@ Then a recurring-gap pattern is written for topic X.
 Given any --activate run,
 Then instinct-observations.md is the only file written.
 Then no file under modules/ is modified.
-Then no file in .wabblespec/receipts/ is modified.
-Then no file in .wabblespec/experiments/ is created or modified.
+Then no file in .wabblespec/state/receipts/ is modified.
+Then no file in .wabblespec/state/experiments/ is created or modified.
 
 ## Human-validated default
 

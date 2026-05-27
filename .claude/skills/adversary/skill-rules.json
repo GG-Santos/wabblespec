@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/adversary", "challenge this", "adversarial review", "challenge output", "stress test"],
   "authority": {
-    "owns": [".wabblespec/receipts/adversary-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/adversary-receipt-*.json"],
     "reads": [
       "modules/l2/adversary/rules/budget-thresholds.md",
       "modules/l2/adversary/rules/challenge-format.md",

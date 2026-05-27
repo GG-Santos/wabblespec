@@ -34,7 +34,7 @@ Market activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/market-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/market-{timestamp}.json`
 
 ```json
 {

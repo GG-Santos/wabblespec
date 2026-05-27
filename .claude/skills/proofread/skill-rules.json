@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "polish_pipeline_step", "pre_delivery_gate", "/proofread"],
   "authority": {
-    "owns": [".wabblespec/receipts/proofread-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/proofread-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

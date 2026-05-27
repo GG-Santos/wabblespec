@@ -14,7 +14,7 @@ When Enhance runs,
 Then all 9 intent dimensions are scored as present, absent, or derived.
 Then critical dimensions (Task, Target, Format) are all present or derived before Enhance exits.
 Then the enhanced input is written to `.wabblespec/enhance/enhanced-<timestamp>.md`.
-Then the enhance receipt is written to `.wabblespec/receipts/enhance-receipt-<timestamp>.json`.
+Then the enhance receipt is written to `.wabblespec/state/receipts/enhance-receipt-<timestamp>.json`.
 Then `vague_resolved` in the receipt is true.
 
 ## Question budget: maximum 3

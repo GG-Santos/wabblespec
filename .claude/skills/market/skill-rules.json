@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "go_to_market_request", "positioning_request", "/market"],
   "authority": {
-    "owns": [".wabblespec/receipts/market-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/market-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

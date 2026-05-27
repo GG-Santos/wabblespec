@@ -88,7 +88,7 @@ _Primary and fallback models must be pinned — `latest` is a BLOCK per L4/AI ga
 
 | Path | Artifact type | Status |
 |---|---|---|
-| `.wabblespec/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
+| `.wabblespec/state/receipts/scaffold-receipt-{timestamp}.json` | scaffold-receipt | LOCKED |
 
 ## Conventions
 

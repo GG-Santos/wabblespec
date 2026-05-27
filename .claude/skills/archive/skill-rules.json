@@ -29,12 +29,12 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/delivery-receipt-*.json",
+      ".wabblespec/state/receipts/delivery-receipt-*.json",
       ".wabblespec/VERSION",
       ".wabblespec/CHANGELOG.md"
     ],
     "reads": [
-      ".wabblespec/receipts/*"
+      ".wabblespec/state/receipts/*"
     ]
   },
   "verification_mode": "Audit",

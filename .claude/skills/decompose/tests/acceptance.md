@@ -23,7 +23,7 @@ Then 2–4 waves are produced.
 Then each wave declares: inputs, expected outputs, checkpoint condition, rollback target, and verification mode.
 Then Wave 1 has `rollback_to: null`.
 Then each subsequent wave's rollback target is the previous wave's checkpoint.
-Then the wave plan is written to `.wabblespec/plans/current-wave-plan.md`.
+Then the wave plan is written to `.wabblespec/state/plans/current-wave-plan.md`.
 Then the wave plan is routed to Reviewer.
 Then a decompose receipt is written with: `wave_count`, `complexity_confirmed`, `reviewer_triggered: true`, `rollback_checkpoints`.
 

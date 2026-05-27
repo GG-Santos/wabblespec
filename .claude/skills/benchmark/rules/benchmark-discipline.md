@@ -104,7 +104,7 @@ These axes total 100 points. Blueprint authors may adjust weights for specific m
 
 ## Rule 7: Degradation analysis required before composite gate acceptance
 
-Before any composite blueprint gate is accepted into `.wabblespec/experiments/`, run a degradation analysis to verify axis weight ordering is calibrated correctly.
+Before any composite blueprint gate is accepted into `.wabblespec/state/experiments/`, run a degradation analysis to verify axis weight ordering is calibrated correctly.
 
 ### Protocol
 

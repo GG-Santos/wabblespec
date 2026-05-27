@@ -32,7 +32,7 @@ Referenced by: `modules/l2/guard/rules/`, `modules/l2/reviewer/rules/`, `modules
 
 ## DP-03 — Receipt Orphan
 
-**Symptom:** A receipt exists in `.wabblespec/receipts/` with no corresponding task card entry or wave it belongs to.
+**Symptom:** A receipt exists in `.wabblespec/state/receipts/` with no corresponding task card entry or wave it belongs to.
 
 **Detection:** Receipt filename does not match any wave ID or task slug in the active task card. Or receipt `task_id` field references a deleted task.
 
@@ -130,11 +130,11 @@ Referenced by: `modules/l2/guard/rules/`, `modules/l2/reviewer/rules/`, `modules
 
 **Symptom:** Wave N executes before Wave N-1's receipt is written, breaking the I10 chain guarantee.
 
-**Detection:** Guard Layer 3 I10 check fails. Prior wave receipt missing in `.wabblespec/receipts/`.
+**Detection:** Guard Layer 3 I10 check fails. Prior wave receipt missing in `.wabblespec/state/receipts/`.
 
 **Fix-forward:** Pause execution. Recover Wave N-1 receipt or re-run Wave N-1.
 
-**Test anchor:** Receipt filenames in `.wabblespec/receipts/` form an unbroken sequence 0…N-1 before Wave N runs.
+**Test anchor:** Receipt filenames in `.wabblespec/state/receipts/` form an unbroken sequence 0…N-1 before Wave N runs.
 
 ---
 
@@ -170,7 +170,7 @@ Referenced by: `modules/l2/guard/rules/`, `modules/l2/reviewer/rules/`, `modules
 
 **Fix-forward:** Update the module's receipt writer to match current schema. Run schema validation on all existing receipts.
 
-**Test anchor:** Validate all receipts in `.wabblespec/receipts/` against `.wabblespec/engine/shared/schemas/base-receipt.schema.json` + module extension schema.
+**Test anchor:** Validate all receipts in `.wabblespec/state/receipts/` against `.wabblespec/engine/shared/schemas/base-receipt.schema.json` + module extension schema.
 
 ---
 
@@ -286,7 +286,7 @@ Referenced by: `modules/l2/guard/rules/`, `modules/l2/reviewer/rules/`, `modules
 
 **Symptom:** A High-complexity task proceeds directly to Specify without an Interview, leaving requirement gaps that surface as defects in later waves.
 
-**Detection:** Task card shows complexity: High but no interview receipt in `.wabblespec/receipts/`.
+**Detection:** Task card shows complexity: High but no interview receipt in `.wabblespec/state/receipts/`.
 
 **Fix-forward:** Run Interview. Merge findings into the spec before re-running Specify.
 

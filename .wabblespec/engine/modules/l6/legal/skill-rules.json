@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "compliance_document_request", "/legal"],
   "authority": {
-    "owns": [".wabblespec/receipts/legal-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/legal-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

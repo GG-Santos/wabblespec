@@ -33,10 +33,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/release-receipt-*.json"
+      ".wabblespec/state/receipts/release-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/receipts/deploy-receipt-production-*.json",
+      ".wabblespec/state/receipts/deploy-receipt-production-*.json",
       ".wabblespec/CHANGELOG.md",
       ".wabblespec/VERSION",
       ".wabblespec/artifacts/manifest-*.json"

@@ -73,16 +73,16 @@ Before touching any drawer file:
 }
 ```
 
-Write to `.wabblespec/memory/provenance/deletions/{drawer-id}-{timestamp}.json`.
+Write to `.wabblespec/state/memory/provenance/deletions/{drawer-id}-{timestamp}.json`.
 
 **Step 2 — Delete the drawer file.**
 
-Remove from `.wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{id}.json`.
-If drawer was in closets (EXPIRED archive): remove from `.wabblespec/memory/closets/` as well.
+Remove from `.wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{id}.json`.
+If drawer was in closets (EXPIRED archive): remove from `.wabblespec/state/memory/closets/` as well.
 
 **Step 3 — Remove from index.json.**
 
-Remove drawer entry from `.wabblespec/memory/index.json`. Drawer becomes invisible to MemorySearch.
+Remove drawer entry from `.wabblespec/state/memory/index.json`. Drawer becomes invisible to MemorySearch.
 
 **Step 4 — Notify EntityGraph.**
 
@@ -105,7 +105,7 @@ Send deletion event to EntityGraph with drawer_id and topic. EntityGraph removes
 
 ## Output contract
 
-**forget-receipt** (`.wabblespec/receipts/forget-receipt-{timestamp}.json`):
+**forget-receipt** (`.wabblespec/state/receipts/forget-receipt-{timestamp}.json`):
 ```json
 {
   "deletion_type": "single | bulk-expired | compliance",

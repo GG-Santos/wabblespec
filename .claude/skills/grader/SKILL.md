@@ -67,11 +67,11 @@ See rules/anti-inflation.md for constraints on ACCEPT verdicts.
 
 ### Step 5 — Write grader receipt
 
-Write receipt to `.wabblespec/receipts/grader-receipt-<timestamp>.json`. Schema: `modules/l2/grader/schemas/grader-receipt.schema.json`.
+Write receipt to `.wabblespec/state/receipts/grader-receipt-<timestamp>.json`. Schema: `modules/l2/grader/schemas/grader-receipt.schema.json`.
 
 ## Output contract
 
-**grader-receipt.json** (`.wabblespec/receipts/grader-receipt-<timestamp>.json`):
+**grader-receipt.json** (`.wabblespec/state/receipts/grader-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/grader-receipt.schema.json`. Key extension fields:
 

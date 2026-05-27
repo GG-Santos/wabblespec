@@ -2,7 +2,7 @@
 
 ## BLOCK: absent runtime-state.json
 
-Given `.wabblespec/runtime/runtime-state.json` is missing or EXPIRED,
+Given `.wabblespec/state/runtime/runtime-state.json` is missing or EXPIRED,
 When ModelRouter is invoked,
 Then ModelRouter surfaces: "runtime-state.json is missing or EXPIRED — cannot route without capability state."
 Then ModelRouter does not proceed with routing.

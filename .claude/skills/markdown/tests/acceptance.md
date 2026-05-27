@@ -30,7 +30,7 @@
 ## AT-MD-04: Receipt confirms format and output path
 
 **Given** a completed Markdown run
-**Then** the receipt at `.wabblespec/receipts/markdown-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/markdown-{timestamp}.json` contains:
 - `target_format`
 - `artifact_path`
 - `output_path`

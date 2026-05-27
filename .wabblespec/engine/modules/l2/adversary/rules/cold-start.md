@@ -42,4 +42,4 @@ Do NOT: Suppress the challenge because isolation is imperfect. Proceed and flag.
 | `challenge_domains` | Weaknesses, Missed alternatives, Unstated assumptions, Failure scenarios — all four always evaluated |
 | `isolation` | Best-effort within session; noted in receipt |
 | `challenge_depth` | Match artifact complexity (Low: 3+ points; Medium: 5+ points; High: 8+ points) |
-| `output_path` | `.wabblespec/receipts/adversary-receipt-<timestamp>.json` |
+| `output_path` | `.wabblespec/state/receipts/adversary-receipt-<timestamp>.json` |

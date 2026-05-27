@@ -18,15 +18,15 @@
   ],
   "preconditions": [
     "No Executor PID lock active",
-    "At least one complete execution chain present in .wabblespec/receipts/"
+    "At least one complete execution chain present in .wabblespec/state/receipts/"
   ],
   "build_targets": [],
   "phases": [],
   "stages": ["post-execution", "post-session"],
   "authority": {
-    "owns": [".wabblespec/memory/retro/"],
+    "owns": [".wabblespec/state/memory/retro/"],
     "reads": [
-      ".wabblespec/receipts/",
+      ".wabblespec/state/receipts/",
       "framework.yaml"
     ]
   },
@@ -39,7 +39,7 @@
     "Does not invoke Synth or any promotion module",
     "Does not run during active Executor"
   ],
-  "produces": [".wabblespec/memory/retro/"],
+  "produces": [".wabblespec/state/memory/retro/"],
   "depends_on": ["archive", "verifier"],
   "consumed_by": ["instinct"],
   "loading_gate": "activation",

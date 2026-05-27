@@ -17,7 +17,7 @@ Passive receipt pattern observer. Reads execution receipts and entity graph to s
 
 **Do not activate until ALL of the following are true:**
 
-1. `≥ 100` verified receipts exist in `.wabblespec/receipts/` (across all module types)
+1. `≥ 100` verified receipts exist in `.wabblespec/state/receipts/` (across all module types)
 2. EntityGraph has run at least once with ≥ 50 drawers (produces `entity-graph.json`)
 3. A human has explicitly invoked Instinct with `--activate` after confirming gate conditions are met
 
@@ -29,9 +29,9 @@ Instinct reads three inputs and nothing else:
 
 | Input | Location | What it looks for |
 |---|---|---|
-| Receipts | `.wabblespec/receipts/*.json` | Recurring verdict patterns, modules that frequently REVISE or ESCALATE, co-occurrence of module failures |
-| Entity graph | `.wabblespec/memory/entity-graph.json` | High-degree entities (god nodes), entity pairs that co-occur across many receipts |
-| Dream gap-map | `.wabblespec/memory/gap-map.md` | Topics flagged repeatedly across sessions as gaps or low-confidence |
+| Receipts | `.wabblespec/state/receipts/*.json` | Recurring verdict patterns, modules that frequently REVISE or ESCALATE, co-occurrence of module failures |
+| Entity graph | `.wabblespec/state/memory/entity-graph.json` | High-degree entities (god nodes), entity pairs that co-occur across many receipts |
+| Dream gap-map | `.wabblespec/state/memory/gap-map.md` | Topics flagged repeatedly across sessions as gaps or low-confidence |
 
 ## Pattern types (adapted from graphify-7 analyze.py)
 
@@ -59,7 +59,7 @@ A topic appearing in Dream's gap-map across ≥ 3 distinct sessions with confide
 
 ## Output contract
 
-**One file only:** `.wabblespec/memory/instinct-observations.md`
+**One file only:** `.wabblespec/state/memory/instinct-observations.md`
 
 Format:
 
@@ -91,7 +91,7 @@ Human-validated: false
 
 **Instinct MUST NOT:**
 
-- Write to any file outside `.wabblespec/memory/instinct-observations.md`
+- Write to any file outside `.wabblespec/state/memory/instinct-observations.md`
 - Invoke or reference Synth, Blueprint, Factory, Augment, or Forge
 - Produce improvement proposals, change recommendations, or module patches
 - Modify any receipt, task card, skill file, or schema

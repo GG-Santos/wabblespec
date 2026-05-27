@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/plan", "plan approach", "design approach", "architectural plan", "implementation plan"],
   "authority": {
-    "owns": [".wabblespec/receipts/plan-receipt-*.json", ".wabblespec/plans/plan-*.md"],
+    "owns": [".wabblespec/state/receipts/plan-receipt-*.json", ".wabblespec/state/plans/plan-*.md"],
     "reads": [
       "modules/l1/plan/rules/plan-completeness.md",
       "modules/l1/plan/rules/expert-roles.md",

@@ -100,7 +100,7 @@ Check Memory for prior triage records on the same topic before classifying:
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

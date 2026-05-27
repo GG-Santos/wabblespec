@@ -36,12 +36,12 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/deploy-receipt-*.json"
+      ".wabblespec/state/receipts/deploy-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/receipts/package-receipt-*.json",
+      ".wabblespec/state/receipts/package-receipt-*.json",
       ".wabblespec/artifacts/manifest-*.json",
-      ".wabblespec/receipts/deploy-receipt-*.json"
+      ".wabblespec/state/receipts/deploy-receipt-*.json"
     ]
   },
   "verification_mode": "Audit",

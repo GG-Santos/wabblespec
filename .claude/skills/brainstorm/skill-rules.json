@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/brainstorm", "generate options", "explore alternatives", "brainstorm", "ideate"],
   "authority": {
-    "owns": [".wabblespec/receipts/brainstorm-receipt-*.json", ".wabblespec/brainstorm/options-*.md"],
+    "owns": [".wabblespec/state/receipts/brainstorm-receipt-*.json", ".wabblespec/brainstorm/options-*.md"],
     "reads": [
       "modules/l1/brainstorm/rules/divergence-rules.md",
       "modules/l1/brainstorm/rules/convergence-gate.md"

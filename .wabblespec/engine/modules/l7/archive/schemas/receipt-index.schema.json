@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Archive Receipt Index",
-  "description": "Queryable index of all archived task executions. Stored at .wabblespec/archive/receipt-index.json. Append-only task entries; status fields updated in place as execution progresses.",
+  "description": "Queryable index of all archived task executions. Stored at .wabblespec/state/archive/receipt-index.json. Append-only task entries; status fields updated in place as execution progresses.",
   "type": "object",
   "required": ["index_version", "last_updated", "tasks"],
   "properties": {
@@ -125,9 +125,9 @@
             },
             "examples": [
               {
-                "scopeframe": { "status": "PASS", "receipt_path": ".wabblespec/receipts/scopeframe-receipt.json", "completed_at": "2026-05-22T10:00:00Z" },
-                "specify":    { "status": "PASS", "receipt_path": ".wabblespec/receipts/specify-receipt.json", "completed_at": "2026-05-22T10:05:00Z" },
-                "decompose":  { "status": "PASS", "receipt_path": ".wabblespec/receipts/decompose-receipt.json", "completed_at": "2026-05-22T10:10:00Z" },
+                "scopeframe": { "status": "PASS", "receipt_path": ".wabblespec/state/receipts/scopeframe-receipt.json", "completed_at": "2026-05-22T10:00:00Z" },
+                "specify":    { "status": "PASS", "receipt_path": ".wabblespec/state/receipts/specify-receipt.json", "completed_at": "2026-05-22T10:05:00Z" },
+                "decompose":  { "status": "PASS", "receipt_path": ".wabblespec/state/receipts/decompose-receipt.json", "completed_at": "2026-05-22T10:10:00Z" },
                 "executor":   { "status": "IN_PROGRESS", "receipt_path": null, "completed_at": null },
                 "verifier":   { "status": "PENDING", "receipt_path": null, "completed_at": null },
                 "reviewer":   { "status": "SKIP", "receipt_path": null, "completed_at": null }

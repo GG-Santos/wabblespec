@@ -18,7 +18,7 @@ Routes tasks to runtime lanes by capability descriptor. Reads runtime-state.json
 
 ## Routing process
 
-1. Read `.wabblespec/runtime/runtime-state.json` — get available capabilities with confidence scores
+1. Read `.wabblespec/state/runtime/runtime-state.json` — get available capabilities with confidence scores
 2. Classify current task shape (see `rules/task-shapes.md`)
 3. Match task shape to required capability descriptors
 4. Select capability with highest confidence that covers the task shape
@@ -58,7 +58,7 @@ No chaotic type. G0DM0D3's chaotic type has 66.7% precision and systematically m
 
 ### Learned parameter adjustment
 
-If `.wabblespec/memory/learned-params/learned-params-{context_type}.json` exists with `sample_count >= 3` and `freshness: FRESH | AGING`: apply adjustments from the `adjustments` field to the base parameters. Never exceed MAX_WEIGHT (50% of base profile) regardless of sample count.
+If `.wabblespec/state/memory/learned-params/learned-params-{context_type}.json` exists with `sample_count >= 3` and `freshness: FRESH | AGING`: apply adjustments from the `adjustments` field to the base parameters. Never exceed MAX_WEIGHT (50% of base profile) regardless of sample count.
 
 Read learned params as input only. ParamLearner (Feedback module) owns all writes.
 

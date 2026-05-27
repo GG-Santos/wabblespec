@@ -194,7 +194,7 @@ After each major execution wave: trigger Dream (non-blocking — does not wait f
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

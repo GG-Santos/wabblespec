@@ -112,11 +112,11 @@ Check all of the following. Fix any that fail before writing the task card:
 
 ### Step 5 — Write task card and receipt
 
-Write task card to `.wabblespec/plans/task-card.md`. Receipt to `.wabblespec/receipts/specify-receipt.json`. Report goal statement and criteria count to user, ask for confirmation before locking.
+Write task card to `.wabblespec/state/plans/task-card.md`. Receipt to `.wabblespec/state/receipts/specify-receipt.json`. Report goal statement and criteria count to user, ask for confirmation before locking.
 
 ### Step 5b — Write decisions artifact
 
-After user confirms the task card is locked, write `.wabblespec/plans/decisions.md`. This is a planning reference artifact, not a receipt — it is not validated by Guard or required by the receipt chain.
+After user confirms the task card is locked, write `.wabblespec/state/plans/decisions.md`. This is a planning reference artifact, not a receipt — it is not validated by Guard or required by the receipt chain.
 
 ```markdown
 # Decisions — [goal statement from task card]
@@ -148,7 +148,7 @@ Rules:
 
 ## Output contract
 
-**task-card.md** (`.wabblespec/plans/task-card.md`):
+**task-card.md** (`.wabblespec/state/plans/task-card.md`):
 
 ```markdown
 # Task Card
@@ -181,7 +181,7 @@ When <action>
 Then <expected outcome>
 ```
 
-**receipt** (`.wabblespec/receipts/specify-receipt.json`): base receipt schema. Extension fields per `.wabblespec/engine/shared/schemas/specify-receipt.extension.schema.json`:
+**receipt** (`.wabblespec/state/receipts/specify-receipt.json`): base receipt schema. Extension fields per `.wabblespec/engine/shared/schemas/specify-receipt.extension.schema.json`:
 - `criteria_count` (integer — minimum 1)
 - `gwt_violations` (integer — target 0; non-zero = PARTIAL)
 - `open_questions_resolved` (boolean — must be true for PASS)

@@ -48,7 +48,7 @@
         },
         "archive_path": {
           "type": "string",
-          "description": "Path in .wabblespec/experiments/archive/ where experiment was archived."
+          "description": "Path in .wabblespec/state/experiments/archive/ where experiment was archived."
         },
         "provenance_record": {
           "type": "string",

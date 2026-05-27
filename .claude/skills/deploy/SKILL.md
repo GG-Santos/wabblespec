@@ -101,7 +101,7 @@ If health check fails: execute rollback immediately. Write deploy receipt with `
 
 ## Output contract
 
-**deploy-receipt** (`.wabblespec/receipts/deploy-receipt-{env}-{timestamp}.json`):
+**deploy-receipt** (`.wabblespec/state/receipts/deploy-receipt-{env}-{timestamp}.json`):
 ```json
 {
   "environment": "dev | staging | production",

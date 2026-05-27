@@ -19,7 +19,7 @@ Do NOT: Track costs without a target.
 ## Absent: prior receipts
 
 Condition: No wave receipts to cost when Economy runs.
-Detection: No `wave-*-receipt.json` in `.wabblespec/receipts/`.
+Detection: No `wave-*-receipt.json` in `.wabblespec/state/receipts/`.
 Action: No error — Economy can initialize and wait. Cost tracking starts when waves complete.
 Do NOT: Surface DEPENDENCY error when no waves have run yet.
 

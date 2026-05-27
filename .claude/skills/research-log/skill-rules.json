@@ -38,11 +38,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/research-log-receipt-*.json"
+      ".wabblespec/state/receipts/research-log-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Observation",

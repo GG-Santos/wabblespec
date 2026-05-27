@@ -4,7 +4,7 @@
 
 Given RuntimeProbe is invoked with no existing runtime-state.json,
 When detection completes,
-Then runtime-state.json is written to `.wabblespec/runtime/runtime-state.json`.
+Then runtime-state.json is written to `.wabblespec/state/runtime/runtime-state.json`.
 Then the file contains all nine capability descriptors: code-generation, analysis, synthesis, instruction-following, reasoning, tool-use, vision, embedding, context7.
 Then `probed_at` is a valid ISO 8601 timestamp.
 Then `overrides_applied` is false and `override_source` is null.
@@ -61,7 +61,7 @@ Then no model name, provider name, or API version identifier appears in the file
 
 ## Overrides applied
 
-Given `.wabblespec/runtime/runtime.json` exists with an override for a capability,
+Given `.wabblespec/state/runtime/runtime.json` exists with an override for a capability,
 When RuntimeProbe reads overrides and writes runtime-state.json,
 Then the overridden capability reflects the declared value, not the probed value.
 Then `overrides_applied: true` and `override_source: "runtime.json"` are recorded.

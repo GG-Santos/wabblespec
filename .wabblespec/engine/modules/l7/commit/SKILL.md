@@ -31,7 +31,7 @@ Commit activates:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/commit-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/commit-{timestamp}.json`
 
 ```json
 {

@@ -47,7 +47,7 @@
 ## AT-LEGAL-06: Receipt contains required fields
 
 **Given** a completed Legal run
-**Then** the receipt at `.wabblespec/receipts/legal-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/legal-{timestamp}.json` contains:
 - `document_type`
 - `output_path`
 - `review_required_markers_count`

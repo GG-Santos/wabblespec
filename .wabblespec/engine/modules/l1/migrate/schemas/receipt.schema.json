@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Migrate Receipt",
-  "description": "Extension fields for migrate-receipt.json in .wabblespec/receipts/",
+  "description": "Extension fields for migrate-receipt.json in .wabblespec/state/receipts/",
   "type": "object",
   "required": ["change_ref", "migration_type", "script_generated", "phase1_wave", "phase2_gate_confirmed"],
   "properties": {

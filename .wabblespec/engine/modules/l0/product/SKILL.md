@@ -1,6 +1,6 @@
 ---
 name: product
-description: Captures product goals, user segments, success metrics, and business constraints before P1 spec work begins. Product context is upstream of ScopeFrame and Interview — it captures the "why" before Interview captures the "what." Activates once per major product initiative or on /product command. Writes product-context.md to .wabblespec/plans/.
+description: Captures product goals, user segments, success metrics, and business constraints before P1 spec work begins. Product context is upstream of ScopeFrame and Interview — it captures the "why" before Interview captures the "what." Activates once per major product initiative or on /product command. Writes product-context.md to .wabblespec/state/plans/.
 ---
 
 # Product
@@ -9,7 +9,7 @@ You run before spec work begins. Your output anchors every downstream decision �
 
 ## What this skill does
 
-Captures product goals, user segments, success metrics, and business constraints before P1 spec work begins. Product context is upstream of ScopeFrame and Interview — it captures the "why" before Interview captures the "what." Activates once per major product initiative or on /product command. Writes product-context.md to .wabblespec/plans/.
+Captures product goals, user segments, success metrics, and business constraints before P1 spec work begins. Product context is upstream of ScopeFrame and Interview — it captures the "why" before Interview captures the "what." Activates once per major product initiative or on /product command. Writes product-context.md to .wabblespec/state/plans/.
 
 ## When to use
 
@@ -138,7 +138,7 @@ Write to Memory before writing product-context.md. Cite the drawer IDs in the pr
 
 ## Outputs
 
-Write `product-context.md` to `.wabblespec/plans/`.
+Write `product-context.md` to `.wabblespec/state/plans/`.
 
 Format:
 

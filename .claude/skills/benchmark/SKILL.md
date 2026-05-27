@@ -10,7 +10,7 @@ You measure whether the experiment earned promotion. Not whether it looks good �
 
 ## What this skill does
 
-Benchmark reads an Augment output and a blueprint.json benchmark_gate definition, then runs the experimental module against a committed fixture set. It computes the held-out metric only (never the tuning-set metric), compares against the blueprint threshold, and records the result in `.wabblespec/experiments/tracker.json`. Pass: promotion proceeds. Fail: promotion halts, failure note appended to tracker.json, no requeue without human decision.
+Benchmark reads an Augment output and a blueprint.json benchmark_gate definition, then runs the experimental module against a committed fixture set. It computes the held-out metric only (never the tuning-set metric), compares against the blueprint threshold, and records the result in `.wabblespec/state/experiments/tracker.json`. Pass: promotion proceeds. Fail: promotion halts, failure note appended to tracker.json, no requeue without human decision.
 
 See `rules/benchmark-discipline.md` for integrity rules. Load it before running any benchmark.
 
@@ -26,9 +26,9 @@ Benchmark activates when:
 
 | Input | Path | Required |
 |---|---|---|
-| Augment output | `.wabblespec/experiments/augments/{blueprint-id}/` | Yes |
-| Blueprint | `.wabblespec/experiments/blueprints/{id}.blueprint.json` | Yes |
-| Augment receipt | `.wabblespec/receipts/augment-*.json` | Yes |
+| Augment output | `.wabblespec/state/experiments/augments/{blueprint-id}/` | Yes |
+| Blueprint | `.wabblespec/state/experiments/blueprints/{id}.blueprint.json` | Yes |
+| Augment receipt | `.wabblespec/state/receipts/augment-*.json` | Yes |
 | Fixture set | Path from blueprint benchmark_gates[].reproducible.fixtures_path | Yes — must be committed |
 
 ## Thresholds (from I8)
@@ -95,8 +95,8 @@ For evolution candidates that modify probabilistic or stylistic behavior — phr
 
 ## Output contract
 
-**Mutates:** `.wabblespec/experiments/tracker.json` (append only)
-**Mutates:** `.wabblespec/experiments/blueprints/{id}.blueprint.json` status field (PASS only)
+**Mutates:** `.wabblespec/state/experiments/tracker.json` (append only)
+**Mutates:** `.wabblespec/state/experiments/blueprints/{id}.blueprint.json` status field (PASS only)
 
 **Good outcome:** held-out metric meets threshold, verdict PASS, blueprint status updated, Forge unblocked.
 **Bad outcome:** held-out metric below threshold, verdict FAIL, failure_note written, blueprint status unchanged, Forge blocked.

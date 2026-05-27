@@ -32,7 +32,7 @@
 
 **Given:** Any InferenceGuard execution  
 **When:** Module completes  
-**Then:** A receipt file exists at `.wabblespec/receipts/inference-guard-receipt-<timestamp>.json`  
+**Then:** A receipt file exists at `.wabblespec/state/receipts/inference-guard-receipt-<timestamp>.json`  
 **And:** Receipt contains `"module": "inference-guard"` and `"activated": true|false`  
 **And:** No execution completes without a receipt (implied completion prohibited)
 

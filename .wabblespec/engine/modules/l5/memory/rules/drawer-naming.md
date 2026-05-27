@@ -56,12 +56,12 @@ Rooms are free-form within each wing. Use lowercase-hyphen format matching the w
 ## File Path
 
 ```
-.wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{drawer-id}.json
+.wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{drawer-id}.json
 ```
 
 Example:
 ```
-.wabblespec/memory/wings/architecture/rooms/auth/drawers/jwt-token-expiry-20260521.json
+.wabblespec/state/memory/wings/architecture/rooms/auth/drawers/jwt-token-expiry-20260521.json
 ```
 
 ---

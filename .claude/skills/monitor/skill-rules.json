@@ -36,7 +36,7 @@
       ".wabblespec/observability/log-schema.json",
       ".wabblespec/observability/healthcheck.yml",
       ".wabblespec/observability/dashboard-template.json",
-      ".wabblespec/receipts/monitor-receipt-*.json"
+      ".wabblespec/state/receipts/monitor-receipt-*.json"
     ],
     "reads": [
       "engineering/performance-budgets.md",

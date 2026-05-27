@@ -23,7 +23,7 @@
   "authority": {
     "owns": [
       ".wabblespec/recipe.json",
-      ".wabblespec/receipts/recipe-receipt.json"
+      ".wabblespec/state/receipts/recipe-receipt.json"
     ],
     "reads": [
       "modules/*/rules/cold-start.md"

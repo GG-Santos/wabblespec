@@ -86,5 +86,5 @@ Then platform-ai-agent does not treat AI success signal as HTTP 200 — eval pas
 ## Receipt fields
 
 Given any successful platform-ai-agent activation,
-Then a receipt is written to `.wabblespec/receipts/platform-ai-agent-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-ai-agent-<timestamp>.json`.
 Then the receipt contains: platform, ai_gateway_loaded, model_pinning_declared, eval_harness_declared, cost_safeguards_declared, safety_boundaries_declared, gates_registered, capability_handoff.

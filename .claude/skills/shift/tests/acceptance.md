@@ -22,7 +22,7 @@ Then the semantic diff classifies the change as BREAKING, DEPRECATION, ADDITIVE,
 Then `reverse_drift_detected` is evaluated by comparing spec_after against the implementation path.
 Then a compatibility report is written to `.wabblespec/shift/compat-<timestamp>.md`.
 Then a semantic diff is written to `.wabblespec/shift/diff-<timestamp>.md`.
-Then a shift receipt is written to `.wabblespec/receipts/shift-receipt-<timestamp>.json`.
+Then a shift receipt is written to `.wabblespec/state/receipts/shift-receipt-<timestamp>.json`.
 
 ## Multiple classifications
 

@@ -24,7 +24,7 @@ Reads the locked task card. Confirms complexity (Low/Medium/High). Produces a wa
 
 ## Inputs
 
-- `.wabblespec/plans/task-card.md` (locked task card)
+- `.wabblespec/state/plans/task-card.md` (locked task card)
 - `.wabblespec/scope.md` (boundary enforcement)
 - `.wabblespec/recipe.json` (target, collapse_eligible)
 - `.wabblespec/engine/shared/references/invariants.md`
@@ -53,7 +53,7 @@ Rules:
 | Rollback type | When to assign |
 |---|---|
 | `null` | Wave 1 only |
-| `wave-checkpoint` | Default for all other waves — Executor writes file copies to `.wabblespec/checkpoints/<wave-id>/` |
+| `wave-checkpoint` | Default for all other waves — Executor writes file copies to `.wabblespec/state/checkpoints/<wave-id>/` |
 | `worktree` | High complexity AND wave contains irreversible operations (migrations, breaking schema changes, framework file edits). Target project must be a git repo. Fallback to `wave-checkpoint` if git worktree unavailable. |
 
 Assign `worktree` only when all three conditions hold: (1) complexity is High, (2) the wave's outputs include at least one irreversible operation, (3) target project has a git repository. If uncertain, default to `wave-checkpoint` — do not assign `worktree` speculatively.
@@ -78,7 +78,7 @@ For each wave, declare the mode Verifier will use. Pick the strongest mode that 
 
 ### Step 5 — Write wave plan
 
-Write to `.wabblespec/plans/current-wave-plan.md`. See output contract.
+Write to `.wabblespec/state/plans/current-wave-plan.md`. See output contract.
 
 ### Step 6 — Route to Reviewer
 
@@ -86,16 +86,16 @@ Wave plan is a HIGH-impact decision (execution contract). Route to Reviewer. Rev
 
 ### Step 7 — Write receipt
 
-Write to `.wabblespec/receipts/decompose-receipt.json`.
+Write to `.wabblespec/state/receipts/decompose-receipt.json`.
 
 ## Output contract
 
-**current-wave-plan.md** (`.wabblespec/plans/current-wave-plan.md`):
+**current-wave-plan.md** (`.wabblespec/state/plans/current-wave-plan.md`):
 
 ```markdown
 # Wave Plan
 
-**task_card:** .wabblespec/plans/task-card.md
+**task_card:** .wabblespec/state/plans/task-card.md
 **target:** <from recipe.json>
 **complexity:** Low|Medium|High
 **collapse_eligible:** true|false
@@ -130,7 +130,7 @@ Write to `.wabblespec/receipts/decompose-receipt.json`.
 | Wave 2 fails | Wave 1 checkpoint | HARD error or BLOCKED after 3 REVISE cycles |
 ```
 
-**receipt** (`.wabblespec/receipts/decompose-receipt.json`): base receipt. Extension: `wave_count` (integer), `complexity_confirmed` (Low|Medium|High), `reviewer_triggered` (boolean), `rollback_checkpoints` (integer).
+**receipt** (`.wabblespec/state/receipts/decompose-receipt.json`): base receipt. Extension: `wave_count` (integer), `complexity_confirmed` (Low|Medium|High), `reviewer_triggered` (boolean), `rollback_checkpoints` (integer).
 
 ## A note on common failure modes
 

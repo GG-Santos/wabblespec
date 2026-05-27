@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/sharpen", "broad input", "ambiguous input", "interpret input", "disambiguate"],
   "authority": {
-    "owns": [".wabblespec/receipts/sharpen-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/sharpen-receipt-*.json"],
     "reads": [
       "modules/l1/sharpen/rules/breadth-detection.md",
       "modules/l1/sharpen/rules/interpretation-ranking.md"

@@ -25,8 +25,8 @@
       ".wabblespec/meta.md"
     ],
     "reads": [
-      ".wabblespec/receipts/",
-      ".wabblespec/plans/"
+      ".wabblespec/state/receipts/",
+      ".wabblespec/state/plans/"
     ]
   },
   "verification_mode": "Observation",

@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/shift", "classify change", "breaking change", "compatibility check", "change classification"],
   "authority": {
-    "owns": [".wabblespec/receipts/shift-receipt-*.json", ".wabblespec/shift/compat-*.md", ".wabblespec/shift/diff-*.md"],
+    "owns": [".wabblespec/state/receipts/shift-receipt-*.json", ".wabblespec/shift/compat-*.md", ".wabblespec/shift/diff-*.md"],
     "reads": [
       "modules/l1/shift/rules/change-classification.md",
       "modules/l1/shift/rules/reverse-drift-triggers.md"

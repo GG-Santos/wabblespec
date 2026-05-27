@@ -6,7 +6,7 @@ Monitor derives all observability config from declared SLOs. It never invents me
 
 ## Source of Truth
 
-SLOs are declared in the Engineering gateway output: `modules/l4/engineering/` SLO declarations section and any project-level SLO document in `.wabblespec/plans/`.
+SLOs are declared in the Engineering gateway output: `modules/l4/engineering/` SLO declarations section and any project-level SLO document in `.wabblespec/state/plans/`.
 
 Monitor reads declared SLOs only. It does not infer SLOs from code, logs, or past receipts.
 

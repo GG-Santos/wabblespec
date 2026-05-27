@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "ui_component_text_request", "/copy"],
   "authority": {
-    "owns": [".wabblespec/receipts/copy-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/copy-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

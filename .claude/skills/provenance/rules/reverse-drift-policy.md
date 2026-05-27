@@ -11,7 +11,7 @@ This is the opposite of the normal drift direction (spec ahead of implementation
 ## Detection Scope
 
 The detector compares:
-- Source: spec artifacts in `.wabblespec/plans/`, `.wabblespec/specs/`, task-card.md
+- Source: spec artifacts in `.wabblespec/state/plans/`, `.wabblespec/specs/`, task-card.md
 - Target: implementation files in product space declared in the wave plan
 
 Files outside the wave plan's declared write targets are excluded.

@@ -88,7 +88,7 @@ This recommendation is advisory. The selected option becomes the input to Specif
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

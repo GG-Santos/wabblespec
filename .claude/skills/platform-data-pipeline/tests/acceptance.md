@@ -76,5 +76,5 @@ Then platform-data-pipeline does not omit schema evolution strategy.
 ## Receipt fields
 
 Given any successful platform-data-pipeline activation,
-Then a receipt is written to `.wabblespec/receipts/platform-data-pipeline-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-data-pipeline-<timestamp>.json`.
 Then the receipt contains: platform, pipeline_type_detected, idempotency_declared, schema_evolution_declared, backfill_designed, dq_gates_declared, delivery_guarantee, gates_registered, capability_handoff.

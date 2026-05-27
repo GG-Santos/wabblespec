@@ -55,7 +55,7 @@ Write SBOM to `.wabblespec/deps/sbom-<timestamp>.json`. Format per rules/sbom-fo
 
 ## Output contract
 
-**deps-receipt.json** (`.wabblespec/receipts/deps-receipt-<timestamp>.json`):
+**deps-receipt.json** (`.wabblespec/state/receipts/deps-receipt-<timestamp>.json`):
 
 ```json
 {

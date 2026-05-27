@@ -23,10 +23,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/memory/drawers/*.json"
+      ".wabblespec/state/memory/drawers/*.json"
     ],
     "reads": [
-      ".wabblespec/memory/index.md"
+      ".wabblespec/state/memory/index.md"
     ],
     "triggers": [
       "ResearchLog",

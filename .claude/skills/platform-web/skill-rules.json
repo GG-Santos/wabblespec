@@ -90,11 +90,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/web-receipt-*.json"
+      ".wabblespec/state/receipts/web-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

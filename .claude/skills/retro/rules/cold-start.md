@@ -9,7 +9,7 @@ Action: BLOCK. Surface: "Retro requires L8 corpus gate (100+ PASS receipts)."
 
 ## Absent: completed sessions to retrospect
 
-Condition: No completed receipt chains in `.wabblespec/receipts/`.
+Condition: No completed receipt chains in `.wabblespec/state/receipts/`.
 Detection: No delivery receipts with PASS status.
 Action: Surface: "No completed sessions to retrospect. Retro requires at least one completed delivery receipt."
 

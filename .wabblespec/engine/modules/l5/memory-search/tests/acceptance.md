@@ -51,7 +51,7 @@
 ## AT-MSEARCH-07: Receipt contains query metadata
 
 **Given** a completed MemorySearch run
-**Then** the receipt at `.wabblespec/receipts/memorysearch-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/memorysearch-{timestamp}.json` contains:
 - `query_type`
 - `query_terms`
 - `results_count`

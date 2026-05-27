@@ -41,7 +41,7 @@
 ## AT-COPY-05: Receipt records copy produced
 
 **Given** a completed Copy run
-**Then** the receipt at `.wabblespec/receipts/copy-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/copy-{timestamp}.json` contains:
 - `category`
 - `context`
 - `strings_produced`

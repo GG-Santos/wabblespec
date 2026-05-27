@@ -128,7 +128,7 @@ If Apply discovers it needs to write outside declared targets, it surfaces a SPE
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
 
 ## What not to do
 

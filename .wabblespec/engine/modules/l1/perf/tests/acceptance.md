@@ -30,7 +30,7 @@ Then profiling identifies the highest-contribution bottleneck to the budget gap.
 Then exactly one optimization is applied at a time.
 Then performance is measured again after the optimization.
 Then `regressions_detected` is recorded.
-Then the receipt is written to `.wabblespec/receipts/perf-receipt-<timestamp>.json`.
+Then the receipt is written to `.wabblespec/state/receipts/perf-receipt-<timestamp>.json`.
 Then the baseline is written to `.wabblespec/perf/baseline-<timestamp>.json`.
 
 ## One optimization at a time

@@ -24,7 +24,7 @@ Entry layer. Every pipeline run starts here. L0 modules run before anything else
 - Wave plan has declared checkpoints
 - No contradictions between task card and wave plan
 
-**Runtime-probe** writes `.wabblespec/runtime/runtime-state.json`. Model-router (L2) reads this to select capabilities. User overrides via `runtime.json` at project root.
+**Runtime-probe** writes `.wabblespec/state/runtime/runtime-state.json`. Model-router (L2) reads this to select capabilities. User overrides via `runtime.json` at project root.
 
 ## Receipts
 

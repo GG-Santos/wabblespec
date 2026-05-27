@@ -59,7 +59,7 @@
 ## AT-COMMIT-08: Receipt contains commits produced with per-commit details
 
 **Given** a completed Commit run
-**Then** the receipt at `.wabblespec/receipts/commit-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/commit-{timestamp}.json` contains:
 - `mode`
 - `commits_produced` (each with type, scope, breaking, subject, body, files_included, applied)
 - `total_commits`

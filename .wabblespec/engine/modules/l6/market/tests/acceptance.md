@@ -43,7 +43,7 @@
 ## AT-MKT-06: Receipt contains required fields
 
 **Given** a completed Market run
-**Then** the receipt at `.wabblespec/receipts/market-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/market-{timestamp}.json` contains:
 - `mode`
 - `product_name`
 - `positioning_brief_path`

@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/enhance", "clarify input", "vague input", "resolve dimensions", "enhance input"],
   "authority": {
-    "owns": [".wabblespec/receipts/enhance-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/enhance-receipt-*.json"],
     "reads": [
       "modules/l1/enhance/rules/intent-dimensions.md",
       "modules/l1/enhance/rules/critical-dimensions.md",

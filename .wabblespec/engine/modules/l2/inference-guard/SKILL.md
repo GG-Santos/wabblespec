@@ -100,7 +100,7 @@ Declared in task card via `inference_guard_technique`. Default: `leetspeak`.
 }
 ```
 
-Receipt written to `.wabblespec/receipts/inference-guard-receipt-<timestamp>.json`.
+Receipt written to `.wabblespec/state/receipts/inference-guard-receipt-<timestamp>.json`.
 
 ## What not to do
 

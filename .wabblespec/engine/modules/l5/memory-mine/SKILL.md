@@ -26,7 +26,7 @@ You run between sessions, never during them. You read the full memory store and 
 MemoryMine writes a PID lock file before starting any analysis:
 
 ```
-.wabblespec/memory/.mine.pid   — lock file: contains PID + start timestamp
+.wabblespec/state/memory/.mine.pid   — lock file: contains PID + start timestamp
 ```
 
 On startup, the script checks:
@@ -120,10 +120,10 @@ qr = col.query(query_texts=[content[:200]], n_results=4)
 
 ## Outputs
 
-All five files written to `.wabblespec/memory/mine/`:
+All five files written to `.wabblespec/state/memory/mine/`:
 
 ```
-.wabblespec/memory/mine/
+.wabblespec/state/memory/mine/
   gap-map.md
   mine-clusters.md
   pattern-summary.md
@@ -131,13 +131,13 @@ All five files written to `.wabblespec/memory/mine/`:
   dedup-candidates.md
 ```
 
-Plus a mine receipt written to `.wabblespec/receipts/mine-receipt-{timestamp}.json`.
+Plus a mine receipt written to `.wabblespec/state/receipts/mine-receipt-{timestamp}.json`.
 
 Files are overwritten on each run — always reflects current store state.
 
 ## Output contract
 
-**mine-receipt** (`.wabblespec/receipts/mine-receipt-{timestamp}.json`):
+**mine-receipt** (`.wabblespec/state/receipts/mine-receipt-{timestamp}.json`):
 ```json
 {
   "drawers_analyzed": "integer",

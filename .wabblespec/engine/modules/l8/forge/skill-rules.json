@@ -31,13 +31,13 @@
     "owns": [
       "modules/",
       "framework.yaml",
-      ".wabblespec/experiments/archive/"
+      ".wabblespec/state/experiments/archive/"
     ],
     "reads": [
-      ".wabblespec/experiments/blueprints/",
-      ".wabblespec/experiments/augments/",
-      ".wabblespec/experiments/tracker.json",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/experiments/blueprints/",
+      ".wabblespec/state/experiments/augments/",
+      ".wabblespec/state/experiments/tracker.json",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Attestation",
@@ -53,7 +53,7 @@
   ],
   "produces": [
     "modules/{layer}/{module}/",
-    ".wabblespec/experiments/archive/"
+    ".wabblespec/state/experiments/archive/"
   ],
   "depends_on": ["benchmark", "augment", "blueprint", "synth", "instinct"],
   "consumed_by": [],

@@ -34,7 +34,7 @@ Then downstream_reverification_notified in Forge receipt lists all affected IDs.
 
 Given promoted module path starts with modules/l8/,
 Then attestation_verified in receipt is true.
-Then an Attestation receipt for this blueprint ID exists in .wabblespec/receipts/.
+Then an Attestation receipt for this blueprint ID exists in .wabblespec/state/receipts/.
 
 ## Boundary enforcement
 

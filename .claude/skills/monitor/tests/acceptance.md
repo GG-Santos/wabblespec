@@ -64,7 +64,7 @@
 ## AT-MON-08: Receipt contains SLO counts and stack
 
 **Given** a completed Monitor run
-**Then** the receipt at `.wabblespec/receipts/monitor-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/monitor-receipt-{timestamp}.json` contains:
 - `slos_codified`
 - `slos_undeclared`
 - `alerts_generated`

@@ -38,7 +38,7 @@ Then rollback_condition names a specific metric and threshold, not a general qua
 
 Given a candidate citing receipt paths,
 When the receipt paths are checked,
-Then each path exists in .wabblespec/receipts/.
+Then each path exists in .wabblespec/state/receipts/.
 
 ## Boundary enforcement
 

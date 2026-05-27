@@ -20,8 +20,8 @@ Refinement pass on generated prose artifacts before delivery. Enforces Homowabia
 **Do not activate on:**
 - Code files in `project/` or `repo/` (Apply owns code)
 - Schema files (`.json`, `.yaml`) — no prose
-- Receipts in `.wabblespec/receipts/` — immutable after write
-- Memory drawers in `.wabblespec/memory/wings/` — Memory owns drawer content
+- Receipts in `.wabblespec/state/receipts/` — immutable after write
+- Memory drawers in `.wabblespec/state/memory/wings/` — Memory owns drawer content
 - `Homowabian ultra` mode — ultra output is already stripped
 
 If asked to Polish an excluded type, abort and return `SPEC_VIOLATION`.
@@ -61,7 +61,7 @@ Do not remove:
 
 ### Pass 4: Spec compliance (prose)
 
-- No prose claim contradicts spec artifacts in `.wabblespec/plans/`
+- No prose claim contradicts spec artifacts in `.wabblespec/state/plans/`
 - Entity names match canonical names from EntityGraph (if EntityGraph receipt exists)
 - No deprecated terms from Specify's non-goals or anti-patterns list
 
@@ -87,8 +87,8 @@ Activates when: caller declares `--markdown` flag, OR artifact target is an Obsi
 3. Read active Homowabian register from .wabblespec/meta.md
 4. Run declared passes in sequence (Passes 1–4 always; 5 if --proofread or content type match; 6 if --markdown or Obsidian path)
 5. Write polished artifact (overwrite in place)
-6. Write polish diff to .wabblespec/receipts/polish-diff-<timestamp>.md
-7. Write Polish receipt to .wabblespec/receipts/polish-receipt-<timestamp>.json
+6. Write polish diff to .wabblespec/state/receipts/polish-diff-<timestamp>.md
+7. Write Polish receipt to .wabblespec/state/receipts/polish-receipt-<timestamp>.json
 ```
 
 ## Pass 7: STM Pipeline (integrated)
@@ -130,8 +130,8 @@ Run: `python .wabblespec/engine/shared/scripts/stm-pipeline.py --test --fixture-
 | Output | Location | Notes |
 |---|---|---|
 | Polished artifact | Overwrites source in place | Semantics unchanged |
-| Polish diff | `.wabblespec/receipts/polish-diff-<timestamp>.md` | Required — lists every change with pass type and reason |
-| Polish receipt | `.wabblespec/receipts/polish-receipt-<timestamp>.json` | Required for I10 compliance |
+| Polish diff | `.wabblespec/state/receipts/polish-diff-<timestamp>.md` | Required — lists every change with pass type and reason |
+| Polish receipt | `.wabblespec/state/receipts/polish-receipt-<timestamp>.json` | Required for I10 compliance |
 
 Polish receipt includes `stm_applied`, `char_count_before`, `char_count_after`, `reduction_pct` when STM ran.
 

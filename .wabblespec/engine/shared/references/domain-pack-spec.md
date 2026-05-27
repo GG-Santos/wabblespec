@@ -205,7 +205,7 @@ If no domain pack is installed, Recipe routing is unaffected.
 A domain pack MUST NOT:
 
 - Import from or depend on a specific core module by path
-- Write to `.wabblespec/receipts/` (receipt namespace is core-only)
+- Write to `.wabblespec/state/receipts/` (receipt namespace is core-only)
 - Override `framework.yaml` entries
 - Assume live external API connectivity (MCP connectors are deployment-optional)
 

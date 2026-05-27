@@ -51,7 +51,7 @@ Roles are not fixed — assign based on the actual wave structure. Not every tas
 
 ## Receipt chain invariant
 
-Every agent that runs under TeamPlan must write receipts to the same `.wabblespec/receipts/` directory as single-agent execution. The receipt chain must be continuous — no gaps between agents.
+Every agent that runs under TeamPlan must write receipts to the same `.wabblespec/state/receipts/` directory as single-agent execution. The receipt chain must be continuous — no gaps between agents.
 
 TeamPlan does not create a separate receipt chain. It participates in the main chain.
 
@@ -78,4 +78,4 @@ Before using TeamPlan on a new task class: run the same task in single-agent mod
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

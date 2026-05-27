@@ -21,11 +21,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/intent.md"
+      ".wabblespec/state/plans/intent.md"
     ],
     "reads": [
-      ".wabblespec/plans/product-context.md",
-      ".wabblespec/receipts/recipe-receipt.json"
+      ".wabblespec/state/plans/product-context.md",
+      ".wabblespec/state/receipts/recipe-receipt.json"
     ]
   },
   "verification_mode": "Observation",

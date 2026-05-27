@@ -39,7 +39,7 @@ Default risk tier configuration for Guard. Guard reads this at cold-start to con
 
 Guard enforces scope boundaries. A module may only write to:
 1. Its own module directory (`modules/lN/module-name/`)
-2. `.wabblespec/receipts/` (for receipts)
+2. `.wabblespec/state/receipts/` (for receipts)
 3. `.wabblespec/<module-name>/` (for module-specific outputs)
 4. Explicitly declared targets in its task card
 

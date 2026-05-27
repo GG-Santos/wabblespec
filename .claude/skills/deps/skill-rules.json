@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/deps", "dependency audit", "check dependencies", "sbom", "supply chain"],
   "authority": {
-    "owns": [".wabblespec/receipts/deps-receipt-*.json", ".wabblespec/deps/sbom-*.json"],
+    "owns": [".wabblespec/state/receipts/deps-receipt-*.json", ".wabblespec/deps/sbom-*.json"],
     "reads": [
       "modules/l1/deps/rules/health-dimensions.md",
       "modules/l1/deps/rules/risk-tiers.md",

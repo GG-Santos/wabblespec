@@ -48,7 +48,7 @@ Set `valid_until` to `explored_at + 24h` for most targets. High-churn projects (
 
 ## Output contract
 
-Write to `.wabblespec/plans/project-map.md`. Schema contract: `.wabblespec/engine/shared/schemas/project-map.schema.json`.
+Write to `.wabblespec/state/plans/project-map.md`. Schema contract: `.wabblespec/engine/shared/schemas/project-map.schema.json`.
 
 ```markdown
 # Project Map

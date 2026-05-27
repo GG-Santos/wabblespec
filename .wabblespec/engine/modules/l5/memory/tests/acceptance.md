@@ -43,7 +43,7 @@
 ## AT-MEM-06: Write receipt contains required fields
 
 **Given** any successful Write operation
-**Then** the receipt at `.wabblespec/receipts/memory-write-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/memory-write-{timestamp}.json` contains:
 - `drawer_id`
 - `operation`
 - `topic`

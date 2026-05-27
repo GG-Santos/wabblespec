@@ -4,7 +4,7 @@ Polish diff is mandatory. Polish never overwrites an artifact without a diff rec
 
 ## Diff location
 
-`.wabblespec/receipts/polish-diff-<timestamp>.md`
+`.wabblespec/state/receipts/polish-diff-<timestamp>.md`
 
 Timestamp format: `YYYYMMDDTHHMMSS`
 

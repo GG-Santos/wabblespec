@@ -93,7 +93,7 @@ Always write a receipt, whether triggered or not. If not triggered: `triggered: 
 
 ## Output contract
 
-**gate receipt** (`.wabblespec/receipts/reviewer-receipt-<timestamp>.json`):
+**gate receipt** (`.wabblespec/state/receipts/reviewer-receipt-<timestamp>.json`):
 
 Base receipt schema. Extension fields:
 ```json

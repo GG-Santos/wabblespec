@@ -49,7 +49,7 @@ No silent loading of EXPIRED sources.
 
 ### Step 0 — Project-map slice check
 
-Before declaring any external sources, check `.wabblespec/plans/project-map.md` for a named impact slice covering the reference area.
+Before declaring any external sources, check `.wabblespec/state/plans/project-map.md` for a named impact slice covering the reference area.
 
 | Map state | Action |
 |---|---|

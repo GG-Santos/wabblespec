@@ -17,10 +17,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/model-router-receipt-*.json"
+      ".wabblespec/state/receipts/model-router-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/runtime/runtime-state.json"
+      ".wabblespec/state/runtime/runtime-state.json"
     ]
   },
   "verification_mode": "Observation",

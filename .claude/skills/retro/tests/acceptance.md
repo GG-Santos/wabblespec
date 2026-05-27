@@ -2,18 +2,18 @@
 
 ## L8 corpus gate
 
-Given receipt count in .wabblespec/receipts/ is fewer than 100 PASS,
+Given receipt count in .wabblespec/state/receipts/ is fewer than 100 PASS,
 When Retro is invoked,
 Then Retro exits and outputs "GATE_NOT_MET" with the current count.
 Then no retro file is written.
 
 ## Activation gate
 
-Given Executor PID lock is active at .wabblespec/memory/.executor.pid,
+Given Executor PID lock is active at .wabblespec/state/memory/.executor.pid,
 When Retro is invoked,
 Then Retro exits and names the active lock without writing any file.
 
-Given no complete receipt chain (no delivery receipt) exists in .wabblespec/receipts/,
+Given no complete receipt chain (no delivery receipt) exists in .wabblespec/state/receipts/,
 When Retro is invoked,
 Then Retro exits and reports "no complete chain found."
 Then no retro file is written.
@@ -35,7 +35,7 @@ Then only chains with archived_at >= 2026-05-01 are included.
 
 Given a complete Recipe → Archive receipt chain,
 When Retro runs,
-Then retro-{timestamp}.md is written to .wabblespec/memory/retro/.
+Then retro-{timestamp}.md is written to .wabblespec/state/memory/retro/.
 Then the file contains all required sections: Date, Period covered, Modules in chain, Receipt chain health status, Wave Summary table, Receipt Chain section, Patterns Observed section, Unresolved Gaps section, Not Tested section.
 Then Date matches the run timestamp to within 1 minute.
 Then "Modules in chain" count matches the number of distinct module IDs in the receipt chain.
@@ -71,7 +71,7 @@ Then the table includes one row per wave in the chain.
 
 ## Memory enrichment
 
-Given .wabblespec/memory/wings/ contains drawers relevant to modules in the chain,
+Given .wabblespec/state/memory/wings/ contains drawers relevant to modules in the chain,
 When Retro runs,
 Then the Patterns Observed section references at least one drawer by topic if a relevant match exists.
 Then the drawer reference includes the drawer's staleness_state.
@@ -109,11 +109,11 @@ Then the section is not empty — at minimum it names "actual behavioral correct
 ## Boundary enforcement
 
 Given any Retro invocation,
-Then no receipt in .wabblespec/receipts/ is created or modified.
+Then no receipt in .wabblespec/state/receipts/ is created or modified.
 Then no file in modules/ is created or modified.
 Then no Synth candidate is written by Retro.
 Then no feedback item is written by Retro.
-Then only .wabblespec/memory/retro/ receives new files.
+Then only .wabblespec/state/memory/retro/ receives new files.
 Then tracker.json is not modified.
 
 ## Idempotency
@@ -127,4 +127,4 @@ Then the second invocation does not modify the first retro file.
 
 Given --dry-run flag,
 Then Retro prints the chain health, module count, and pattern count to stdout.
-Then no retro file is written to .wabblespec/memory/retro/.
+Then no retro file is written to .wabblespec/state/memory/retro/.

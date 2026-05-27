@@ -14,10 +14,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/ensemble-receipt-*.json"
+      ".wabblespec/state/receipts/ensemble-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/runtime/runtime-state.json"
+      ".wabblespec/state/runtime/runtime-state.json"
     ]
   },
   "verification_mode": "Observation",

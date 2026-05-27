@@ -4,7 +4,7 @@
   "tier": 1,
   "activators": ["explicit_invocation", "polish_pipeline_step", "post_changelog", "/commit"],
   "authority": {
-    "owns": [".wabblespec/receipts/commit-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/commit-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

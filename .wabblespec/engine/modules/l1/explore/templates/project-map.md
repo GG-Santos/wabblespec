@@ -24,9 +24,9 @@
 
 | File | Type | Status |
 |---|---|---|
-| `.wabblespec/plans/task-card.md` | Task card | exists / missing |
-| `.wabblespec/plans/current-wave-plan.md` | Wave plan | exists / missing |
-| `.wabblespec/receipts/` | Receipt chain | N receipts |
+| `.wabblespec/state/plans/task-card.md` | Task card | exists / missing |
+| `.wabblespec/state/plans/current-wave-plan.md` | Wave plan | exists / missing |
+| `.wabblespec/state/receipts/` | Receipt chain | N receipts |
 
 ---
 

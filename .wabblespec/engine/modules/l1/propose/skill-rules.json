@@ -30,9 +30,9 @@
       ".wabblespec/options-<stage>-<timestamp>.md"
     ],
     "reads": [
-      ".wabblespec/plans/scope.md",
-      ".wabblespec/plans/intent.md",
-      ".wabblespec/plans/project-map.md"
+      ".wabblespec/state/plans/scope.md",
+      ".wabblespec/state/plans/intent.md",
+      ".wabblespec/state/plans/project-map.md"
     ],
     "notifies": [
       "Reviewer",

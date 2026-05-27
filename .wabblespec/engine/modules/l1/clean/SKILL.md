@@ -56,7 +56,7 @@ Renames are always ADDITIVE minimum. Dead code removal is COSMETIC only if the s
 4. For each identified item: classify COSMETIC|ADDITIVE|BREAKING
    - BREAKING: halt and report — do not apply
 5. Apply COSMETIC and ADDITIVE changes
-6. Write before/after diff to `.wabblespec/receipts/clean-diff-<timestamp>.md`
+6. Write before/after diff to `.wabblespec/state/receipts/clean-diff-<timestamp>.md`
 7. Write Clean receipt
 
 ## STM Pipeline integration (receipt artifacts)
@@ -85,7 +85,7 @@ STM only runs when scope includes receipt artifacts or code comment targets. STM
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/receipts/` on successful completion. Receipt includes `stm_applied` field when STM transforms were applied.
+Writes a receipt to `.wabblespec/state/receipts/` on successful completion. Receipt includes `stm_applied` field when STM transforms were applied.
 
 ## What not to do
 

@@ -37,4 +37,4 @@ When a BREAKING change is identified:
 
 ## Diff record
 
-Every applied change (COSMETIC or ADDITIVE) appears in the before/after diff written to `.wabblespec/receipts/clean-diff-<timestamp>.md`. The diff record is mandatory — Clean does not make silent changes.
+Every applied change (COSMETIC or ADDITIVE) appears in the before/after diff written to `.wabblespec/state/receipts/clean-diff-<timestamp>.md`. The diff record is mandatory — Clean does not make silent changes.

@@ -87,5 +87,5 @@ Then platform-game does not treat a game target as equivalent to a Web or Deskto
 ## Receipt fields
 
 Given any successful platform-game activation,
-Then a receipt is written to `.wabblespec/receipts/platform-game-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-game-<timestamp>.json`.
 Then the receipt contains: platform, engine_detected, frame_budget_declared, multiplayer_authority_declared, save_system_declared, platform_cert_scope, gates_registered, capability_handoff.

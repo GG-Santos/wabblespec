@@ -31,7 +31,7 @@
 ## AT-DOC-04: Receipt confirms documentation artifacts
 
 **Given** a completed Document run
-**Then** the receipt at `.wabblespec/receipts/document-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/document-{timestamp}.json` contains:
 - `archive_receipt_verified`
 - `artifacts_documented`
 - `output_paths`

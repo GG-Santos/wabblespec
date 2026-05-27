@@ -31,8 +31,8 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/task-card.md",
-      ".wabblespec/receipts/specify-receipt.json"
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/receipts/specify-receipt.json"
     ],
     "reads": [
       ".wabblespec/scope.md",

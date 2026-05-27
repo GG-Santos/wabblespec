@@ -12,7 +12,7 @@ Output: Fresh `runtime-state.json` with all eight capability descriptors set to 
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules.
-Detection: `.wabblespec/receipts/` is empty or missing expected stems.
+Detection: `.wabblespec/state/receipts/` is empty or missing expected stems.
 Action: Runtime Probe has no upstream receipt dependencies — proceed normally.
 Do NOT: Pause or surface DEPENDENCY errors.
 

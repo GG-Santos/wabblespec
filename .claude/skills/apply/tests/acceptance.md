@@ -21,7 +21,7 @@ Then `always_load` files from the platform's capability_handoff are loaded uncon
 Then `conditional_load` signals are evaluated against the project repo; matching files are loaded.
 Then active gateway `references/` files are loaded for each active L4 gateway.
 Then context is assembled in three zones: Constraints (top), References (middle), Active task (end).
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## Engineering infrastructure load
 

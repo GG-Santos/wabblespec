@@ -24,8 +24,8 @@ from datetime import datetime, timezone
 
 
 SPEC_PATHS = [
-    ".wabblespec/plans/task-card.md",
-    ".wabblespec/plans/wave-plan.md",
+    ".wabblespec/state/plans/task-card.md",
+    ".wabblespec/state/plans/wave-plan.md",
     ".wabblespec/specs",
 ]
 
@@ -102,7 +102,7 @@ def classify_drift(delta_seconds: float, spec_has_breaking: bool) -> str:
 
 
 def check_spec_has_breaking(root: Path) -> bool:
-    task_card = root / ".wabblespec/plans/task-card.md"
+    task_card = root / ".wabblespec/state/plans/task-card.md"
     if not task_card.exists():
         return False
     content = task_card.read_text(encoding="utf-8", errors="replace")

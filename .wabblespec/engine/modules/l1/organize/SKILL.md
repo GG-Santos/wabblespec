@@ -72,7 +72,7 @@ Write organize report to `.wabblespec/organize/report-<timestamp>.md`. Write rec
 
 ## Output contract
 
-**organize-receipt.json** (`.wabblespec/receipts/organize-receipt-<timestamp>.json`):
+**organize-receipt.json** (`.wabblespec/state/receipts/organize-receipt-<timestamp>.json`):
 
 ```json
 {

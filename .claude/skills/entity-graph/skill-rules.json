@@ -41,11 +41,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/entity-graph-receipt-*.json"
+      ".wabblespec/state/receipts/entity-graph-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Observation",

@@ -10,7 +10,7 @@ Per-wave reference. Guard checks these invariants in Layer 3. Full invariant def
 
 Check: A locked task card (`task-card.md`) exists. Executor is not running against informal notes or conversation context alone.
 
-Pass condition: `.wabblespec/plans/task-card.md` exists AND `specify-receipt.json` has `status: "PASS"`.
+Pass condition: `.wabblespec/state/plans/task-card.md` exists AND `specify-receipt.json` has `status: "PASS"`.
 
 Violation action: SPEC_VIOLATION — route to Reviewer. Execution cannot proceed without a locked spec.
 

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Triage Receipt",
-  "description": "Extension fields for triage-receipt.json in .wabblespec/receipts/",
+  "description": "Extension fields for triage-receipt.json in .wabblespec/state/receipts/",
   "type": "object",
   "required": ["issue_id", "severity", "type", "recurrence_count", "route_to", "escalated"],
   "properties": {

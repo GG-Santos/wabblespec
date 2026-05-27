@@ -4,9 +4,9 @@ Audit reads Guard operation logs as a primary signal source. This document defin
 
 ## Log location
 
-Guard writes operation logs to `.wabblespec/receipts/` with names matching `guard-wave-*-receipt.json` and to session-level logs if the runtime supports PostToolUse hooks.
+Guard writes operation logs to `.wabblespec/state/receipts/` with names matching `guard-wave-*-receipt.json` and to session-level logs if the runtime supports PostToolUse hooks.
 
-For cross-session Guard log consumption, Audit reads all `guard-*-receipt.json` files in `.wabblespec/receipts/` scoped to the current task (matching `task_id` if present, or by timestamp proximity).
+For cross-session Guard log consumption, Audit reads all `guard-*-receipt.json` files in `.wabblespec/state/receipts/` scoped to the current task (matching `task_id` if present, or by timestamp proximity).
 
 ## Parsing Guard receipts
 

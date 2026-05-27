@@ -63,7 +63,7 @@
 ## AT-TRANS-08: Receipt contains verification results
 
 **Given** a completed Translate run
-**Then** the receipt at `.wabblespec/receipts/translate-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/translate-{timestamp}.json` contains:
 - `mode`
 - `base_locale`
 - `target_locale`

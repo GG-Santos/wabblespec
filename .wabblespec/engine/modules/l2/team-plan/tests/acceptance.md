@@ -43,7 +43,7 @@ Then if no receipt is produced, the wave is treated as HARD FAIL.
 
 Given multiple specialist agents run under TeamPlan,
 When each agent writes receipts,
-Then all receipts are written to the same `.wabblespec/receipts/` directory as single-agent execution.
+Then all receipts are written to the same `.wabblespec/state/receipts/` directory as single-agent execution.
 Then the receipt chain has no gaps between agents.
 Then TeamPlan does not create a separate receipt chain.
 
@@ -73,7 +73,7 @@ Then the user is informed that single-agent is sufficient.
 Given any TeamPlan run,
 Then TeamPlan does not execute waves directly — it delegates to specialists.
 Then TeamPlan does not silently re-try a FAIL specialist receipt without human guidance.
-Then TeamPlan does not produce separate receipt chains outside `.wabblespec/receipts/`.
+Then TeamPlan does not produce separate receipt chains outside `.wabblespec/state/receipts/`.
 Then TeamPlan does not activate for Medium or Low complexity tasks.
 Then TeamPlan does not activate when coordination overhead exceeds parallelism benefit.
 
@@ -87,5 +87,5 @@ Then TeamPlan logs: "Role definitions absent — deriving from Decompose receipt
 ## Receipt fields
 
 Given any successful TeamPlan run,
-Then a final TeamPlan receipt is written to `.wabblespec/receipts/` after all waves complete.
+Then a final TeamPlan receipt is written to `.wabblespec/state/receipts/` after all waves complete.
 Then the receipt contains: orchestrator identity, total agents coordinated, waves completed, waves failed, receipt chain integrity status.

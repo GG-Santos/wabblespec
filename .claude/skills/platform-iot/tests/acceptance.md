@@ -78,5 +78,5 @@ Then platform-iot does not treat IoT as equivalent to a Web or Desktop target.
 ## Receipt fields
 
 Given any successful platform-iot activation,
-Then a receipt is written to `.wabblespec/receipts/platform-iot-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-iot-<timestamp>.json`.
 Then the receipt contains: platform, toolchain_detected, flash_budget_declared, ram_budget_declared, watchdog_declared, signed_ota_declared, fail_safe_declared, gates_registered, capability_handoff.

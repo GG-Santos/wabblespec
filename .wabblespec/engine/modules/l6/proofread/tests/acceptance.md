@@ -34,7 +34,7 @@
 ## AT-PROOF-04: Receipt contains required fields
 
 **Given** a completed Proofread run
-**Then** the receipt at `.wabblespec/receipts/proofread-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/proofread-{timestamp}.json` contains:
 - `artifact_path`
 - `content_type`
 - `readability_score`

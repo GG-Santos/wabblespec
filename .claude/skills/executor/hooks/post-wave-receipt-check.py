@@ -41,8 +41,8 @@ def load_json_safe(path: Path) -> dict | None:
 
 
 def receipt_exists_for_wave(ws_root: Path, task_id: str, wave: int) -> bool:
-    """Check .wabblespec/receipts/ for a verifier receipt matching task+wave."""
-    receipts_dir = ws_root / "receipts"
+    """Check .wabblespec/state/receipts/ for a verifier receipt matching task+wave."""
+    receipts_dir = ws_root / "state" / "receipts"
     if not receipts_dir.exists():
         return False
 
@@ -85,7 +85,7 @@ def main() -> None:
     if ws_root is None:
         sys.exit(0)  # not in a WabbleSpec workspace — pass through
 
-    state_path = ws_root / "session" / "state.json"
+    state_path = ws_root / "state" / "session" / "state.json"
     state = load_json_safe(state_path)
     if not isinstance(state, dict):
         sys.exit(0)
@@ -114,7 +114,7 @@ def main() -> None:
         f"\n[EXECUTOR WAVE GATE] Wave {wave}/{waves_planned} complete "
         f"but no Verifier receipt found for task '{task_id}' wave {wave}.\n"
         f"  Required: a Verifier receipt with task_id='{task_id}' and wave={wave}\n"
-        f"  in .wabblespec/receipts/\n"
+        f"  in .wabblespec/state/receipts/\n"
         f"  Run /verify before proceeding to wave {wave + 1}.",
         file=sys.stderr
     )

@@ -32,7 +32,7 @@ Translate activates when:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/translate-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/translate-{timestamp}.json`
 
 ```json
 {

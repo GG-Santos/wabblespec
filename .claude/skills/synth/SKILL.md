@@ -1,6 +1,6 @@
 ---
 name: synth
-description: Converts a human-validated Instinct observation into a structured improvement hypothesis. One pattern in, one candidate.json out. Writes to .wabblespec/experiments/candidates/. Requires 3 validated patterns before first activation.
+description: Converts a human-validated Instinct observation into a structured improvement hypothesis. One pattern in, one candidate.json out. Writes to .wabblespec/state/experiments/candidates/. Requires 3 validated patterns before first activation.
 layer: L8
 ---
 
@@ -10,7 +10,7 @@ You turn one observation into one hypothesis. No more, no less.
 
 ## What this skill does
 
-Synth reads a single human-validated pattern from `instinct-observations.md`, reads the current SKILL.md of the affected module, and produces one `candidate.json` in `.wabblespec/experiments/candidates/`. The candidate is a structured claim: what the module currently does, what it should do differently, why, what the risk is, and when to roll back.
+Synth reads a single human-validated pattern from `instinct-observations.md`, reads the current SKILL.md of the affected module, and produces one `candidate.json` in `.wabblespec/state/experiments/candidates/`. The candidate is a structured claim: what the module currently does, what it should do differently, why, what the risk is, and when to roll back.
 
 Synth does not write code. It does not propose implementations. It states the hypothesis clearly enough that Blueprint can define benchmark gates without asking Synth again.
 
@@ -28,9 +28,9 @@ Process one pattern per invocation. Do not batch.
 
 | Input | Path | Required |
 |---|---|---|
-| Validated pattern | `.wabblespec/memory/instinct-observations.md` | Yes — must have `Human-validated: true` |
+| Validated pattern | `.wabblespec/state/memory/instinct-observations.md` | Yes — must have `Human-validated: true` |
 | Module SKILL.md | `modules/{layer}/{module}/SKILL.md` | Yes — read fully before writing |
-| Instinct receipt | `.wabblespec/receipts/instinct-*.json` | Yes — confirms corpus was current |
+| Instinct receipt | `.wabblespec/state/receipts/instinct-*.json` | Yes — confirms corpus was current |
 
 Read the module's SKILL.md before writing anything. A hypothesis about behavior you have not read is invalid.
 
@@ -46,7 +46,7 @@ If any answer is no: stop, write a one-paragraph note to the user explaining wha
 
 ## Output contract
 
-**One file:** `.wabblespec/experiments/candidates/{candidate-id}.candidate.json`
+**One file:** `.wabblespec/state/experiments/candidates/{candidate-id}.candidate.json`
 
 ```json
 {

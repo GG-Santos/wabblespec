@@ -4,7 +4,7 @@ Defines what Memory Mine does when session receipts or memory artifacts are abse
 
 ## Absent: session receipts to mine
 
-Condition: `.wabblespec/receipts/` is empty or contains no completed run receipts.
+Condition: `.wabblespec/state/receipts/` is empty or contains no completed run receipts.
 Detection: Receipt directory scan returns empty or only in-progress entries.
 Action: Return empty mining result. Log: "No completed receipts to mine — memory store will not be updated."
 Do NOT: Mine from in-progress or failed receipts. Mining is a post-completion operation.

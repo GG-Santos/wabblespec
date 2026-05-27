@@ -2,7 +2,7 @@
 
 ## AT-PKG-01: Delivery receipt required before Package runs
 
-**Given** a Package invocation when no `delivery-receipt-*.json` exists in `.wabblespec/receipts/`
+**Given** a Package invocation when no `delivery-receipt-*.json` exists in `.wabblespec/state/receipts/`
 **When** Package checks its prerequisite
 **Then** Package FAILs with `MISSING_DELIVERY_RECEIPT` — Archive must have run before Package
 
@@ -56,7 +56,7 @@
 ## AT-PKG-07: Package receipt contains required fields
 
 **Given** a completed Package run
-**Then** the receipt at `.wabblespec/receipts/package-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/package-receipt-{timestamp}.json` contains:
 - `version`
 - `artifacts_packaged`
 - `all_signed`

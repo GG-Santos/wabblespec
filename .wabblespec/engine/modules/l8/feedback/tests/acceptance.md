@@ -2,7 +2,7 @@
 
 ## L8 corpus gate
 
-Given receipt count in .wabblespec/receipts/ is fewer than 100 PASS,
+Given receipt count in .wabblespec/state/receipts/ is fewer than 100 PASS,
 When Feedback is invoked,
 Then Feedback exits and outputs "GATE_NOT_MET" with the current count.
 Then no feedback file is written.
@@ -11,7 +11,7 @@ Then no feedback file is written.
 
 Given human provides observed_behavior and expected_behavior and module,
 When Feedback is invoked,
-Then feedback-{timestamp}.json is written to .wabblespec/memory/feedback/.
+Then feedback-{timestamp}.json is written to .wabblespec/state/memory/feedback/.
 
 Given human does not provide expected_behavior,
 When Feedback is invoked,
@@ -110,9 +110,9 @@ Then Feedback does not invoke Instinct.
 
 Given any Feedback invocation,
 Then no file in modules/ is created or modified.
-Then no receipt in .wabblespec/receipts/ is created or modified.
+Then no receipt in .wabblespec/state/receipts/ is created or modified.
 Then no framework.yaml entry is changed.
-Then only .wabblespec/memory/feedback/ receives new files.
+Then only .wabblespec/state/memory/feedback/ receives new files.
 
 ## Dry-run
 

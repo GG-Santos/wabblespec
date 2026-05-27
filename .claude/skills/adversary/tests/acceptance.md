@@ -27,7 +27,7 @@ When Adversary runs,
 Then analysis is produced across all four domains: Weaknesses, Missed alternatives, Unstated assumptions, Failure scenarios.
 Then each domain in `challenge_domains_covered` is true.
 Then `anchoring_prevention_applied` is true in the receipt.
-Then an adversary receipt is written to `.wabblespec/receipts/adversary-receipt-<timestamp>.json`.
+Then an adversary receipt is written to `.wabblespec/state/receipts/adversary-receipt-<timestamp>.json`.
 
 ## Happy path: spec-bound mode challenge
 

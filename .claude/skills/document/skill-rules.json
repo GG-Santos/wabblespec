@@ -39,11 +39,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/document-receipt-*.json"
+      ".wabblespec/state/receipts/document-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "error_types_emitted": [

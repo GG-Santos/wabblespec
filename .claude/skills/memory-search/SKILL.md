@@ -9,13 +9,13 @@ You are the query interface for the evidence store. You find drawers, rank them,
 
 ## Backend
 
-WabbleSpec memory store — ChromaDB vector index at `.wabblespec/memory/`. Semantic queries use vector embeddings; metadata queries use ChromaDB `where` filters.
+WabbleSpec memory store — ChromaDB vector index at `.wabblespec/state/memory/`. Semantic queries use vector embeddings; metadata queries use ChromaDB `where` filters.
 
-**Dependency:** shared internal package at `packages/memory/`. `WABBLESPEC_MEMORY_PATH` must point to `.wabblespec/memory/`; import through `_shared.memory_backend` so runtime configuration runs first.
+**Dependency:** shared internal package at `packages/memory/`. `WABBLESPEC_MEMORY_PATH` must point to `.wabblespec/state/memory/`; import through `_shared.memory_backend` so runtime configuration runs first.
 
 ## What this skill does
 
-Queries the memory store at `.wabblespec/memory/`. Supports semantic, topic-filter, staleness-filter, and recency queries. Post-filters results by WabbleSpec staleness metadata. Ranks by confidence + staleness + recency. Writes a MemorySearch receipt.
+Queries the memory store at `.wabblespec/state/memory/`. Supports semantic, topic-filter, staleness-filter, and recency queries. Post-filters results by WabbleSpec staleness metadata. Ranks by confidence + staleness + recency. Writes a MemorySearch receipt.
 
 ## When to use / when not to use
 
@@ -145,7 +145,7 @@ results_flagged: N
 
 ## Output contract
 
-**MemorySearch receipt** (`.wabblespec/receipts/memorysearch-{timestamp}.json`):
+**MemorySearch receipt** (`.wabblespec/state/receipts/memorysearch-{timestamp}.json`):
 
 ```json
 {

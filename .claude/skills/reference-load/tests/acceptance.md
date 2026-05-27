@@ -29,10 +29,10 @@ Given no matching FRESH drawer exists and the source path is valid,
 When ReferenceLoad runs,
 Then the source is mapped (top-level directory listed, README/project-map/CLAUDE.md read — at most 3 files).
 Then concepts relevant to `purpose` are extracted from at most 5 files.
-Then a reference card drawer is written to `.wabblespec/memory/wings/references/rooms/<source-slug>/drawers/<id>.json`.
+Then a reference card drawer is written to `.wabblespec/state/memory/wings/references/rooms/<source-slug>/drawers/<id>.json`.
 Then `index.json` is updated with the new drawer entry.
 Then Provenance is notified of the write.
-Then a receipt is written to `.wabblespec/receipts/reference-load-<source-slug>-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/reference-load-<source-slug>-<timestamp>.json`.
 
 ## File read limit: maximum 5
 

@@ -24,9 +24,9 @@ Then acceptance criteria are written in GWT format (Given/When/Then).
 Then each "Then" clause is observable and testable.
 Then non-goals and assumptions are copied verbatim from scope.md.
 Then `change_class` is declared as BREAKING, ADDITIVE, or COSMETIC.
-Then the task card is written to `.wabblespec/plans/task-card.md`.
+Then the task card is written to `.wabblespec/state/plans/task-card.md`.
 Then the user is asked to confirm before the task card is locked.
-Then a receipt is written to `.wabblespec/receipts/specify-receipt.json`.
+Then a receipt is written to `.wabblespec/state/receipts/specify-receipt.json`.
 
 ## GWT criteria count by complexity
 
@@ -85,7 +85,7 @@ Then any check failure is fixed before the task card is written.
 
 Given the user confirms the task card is locked,
 When Step 5b runs,
-Then `.wabblespec/plans/decisions.md` is written with the goal statement and locked_at timestamp.
+Then `.wabblespec/state/plans/decisions.md` is written with the goal statement and locked_at timestamp.
 Then at least one populated section (Key Decisions, Alternatives Rejected, Constraints Discovered, or Open Questions Resolved) is present.
 Then decisions.md is not written before lock confirmation.
 

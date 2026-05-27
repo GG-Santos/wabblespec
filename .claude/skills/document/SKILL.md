@@ -67,7 +67,7 @@ A cross-references section must contain at least one real entry. An empty sectio
 
 ## Receipt
 
-Document writes a receipt to `.wabblespec/receipts/document-{timestamp}.json` confirming:
+Document writes a receipt to `.wabblespec/state/receipts/document-{timestamp}.json` confirming:
 - Which artifacts were documented
 - Which outputs were produced
 - Whether all declared documentation deliverables are complete

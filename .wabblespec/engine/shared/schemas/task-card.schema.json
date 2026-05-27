@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "WabbleSpec Task Card Contract",
-  "description": "Contract schema for .wabblespec/plans/task-card.md. Task-card is markdown — this schema is a machine-readable reference contract for Guard Layer 1 prose validation and human authoring. Required sections and fields are listed here; Guard checks presence of each required field by name in the markdown frontmatter block.",
+  "description": "Contract schema for .wabblespec/state/plans/task-card.md. Task-card is markdown — this schema is a machine-readable reference contract for Guard Layer 1 prose validation and human authoring. Required sections and fields are listed here; Guard checks presence of each required field by name in the markdown frontmatter block.",
   "type": "object",
   "required": [
     "goal",

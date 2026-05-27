@@ -91,7 +91,7 @@ Attach: all artifacts from the package manifest + their SHA-256 files + signatur
 
 ## Output contract
 
-**release-receipt** (`.wabblespec/receipts/release-receipt-{timestamp}.json`):
+**release-receipt** (`.wabblespec/state/receipts/release-receipt-{timestamp}.json`):
 ```json
 {
   "version": "string",

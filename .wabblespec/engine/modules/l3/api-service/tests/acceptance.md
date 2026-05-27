@@ -82,5 +82,5 @@ Then platform-api-service does not omit auth scheme declaration for any HTTP end
 ## Receipt fields
 
 Given any successful platform-api-service activation,
-Then a receipt is written to `.wabblespec/receipts/platform-api-service-<timestamp>.json`.
+Then a receipt is written to `.wabblespec/state/receipts/platform-api-service-<timestamp>.json`.
 Then the receipt contains: platform, language_module_loaded, framework_detected, templates_activated, engineering_files_loaded, security_files_loaded, gates_registered, capability_handoff.

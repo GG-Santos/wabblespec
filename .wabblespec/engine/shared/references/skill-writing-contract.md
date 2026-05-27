@@ -86,7 +86,7 @@ The agent pattern-matches against the example, not an abstraction.
 
 **Good:**
 ```
-Receipt path: .wabblespec/receipts/{module}-receipt.md
+Receipt path: .wabblespec/state/receipts/{module}-receipt.md
 Required fields: module, layer, runtime, inputs (list), outputs (list),
   confidence (0.0–1.0), not_tested (list, never empty).
 

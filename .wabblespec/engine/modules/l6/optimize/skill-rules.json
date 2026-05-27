@@ -4,7 +4,7 @@
   "tier": 3,
   "activators": ["explicit_invocation", "pre_launch_audit", "discoverability_request", "/optimize"],
   "authority": {
-    "owns": [".wabblespec/receipts/optimize-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/optimize-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

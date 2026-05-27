@@ -24,7 +24,7 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/plans/product-context.md"
+      ".wabblespec/state/plans/product-context.md"
     ],
     "reads": []
   },

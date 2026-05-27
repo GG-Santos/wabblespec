@@ -4,7 +4,7 @@
   "tier": 1,
   "activators": ["explicit_invocation", "pre_release", "polish_pipeline_step", "/changelog"],
   "authority": {
-    "owns": [".wabblespec/receipts/changelog-receipt-*.json", ".wabblespec/CHANGELOG.md"],
+    "owns": [".wabblespec/state/receipts/changelog-receipt-*.json", ".wabblespec/CHANGELOG.md"],
     "reads": []
   },
   "verification_mode": "Observation",

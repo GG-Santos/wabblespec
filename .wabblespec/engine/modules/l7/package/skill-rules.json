@@ -19,7 +19,7 @@
     "execution still in progress"
   ],
   "preconditions": [
-    "delivery-receipt-*.json exists in .wabblespec/receipts/",
+    "delivery-receipt-*.json exists in .wabblespec/state/receipts/",
     "Signing key available in CI secrets"
   ],
   "build_targets": [
@@ -34,10 +34,10 @@
   "authority": {
     "owns": [
       ".wabblespec/artifacts/manifest-*.json",
-      ".wabblespec/receipts/package-receipt-*.json"
+      ".wabblespec/state/receipts/package-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/receipts/delivery-receipt-*.json",
+      ".wabblespec/state/receipts/delivery-receipt-*.json",
       ".wabblespec/VERSION",
       "dist/**/*"
     ]

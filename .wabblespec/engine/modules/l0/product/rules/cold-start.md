@@ -12,7 +12,7 @@ Output: None until user provides product intent.
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules.
-Detection: `.wabblespec/receipts/` is empty.
+Detection: `.wabblespec/state/receipts/` is empty.
 Action: Surface DEPENDENCY error naming Recipe — Product requires a declared build target before it can structure requirements.
 Do NOT: Proceed without recipe.json confirmed.
 

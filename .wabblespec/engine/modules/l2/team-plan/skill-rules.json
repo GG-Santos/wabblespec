@@ -3,7 +3,7 @@
   "invariants": [
     "TeamPlan only activates at L4 (High) complexity declared by Recipe",
     "Single-agent validation must precede TeamPlan for any new task class",
-    "All specialist agents write receipts to the same .wabblespec/receipts/ directory",
+    "All specialist agents write receipts to the same .wabblespec/state/receipts/ directory",
     "Orchestrator validates every receipt before unblocking the next specialist",
     "Receipt FAIL blocks the chain — Orchestrator surfaces to human, does not auto-retry"
   ],
@@ -40,11 +40,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/team-plan-receipt-*.json"
+      ".wabblespec/state/receipts/team-plan-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

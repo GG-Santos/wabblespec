@@ -9,7 +9,7 @@ You are the trust infrastructure. Every drawer written to Memory has a provenanc
 
 ## What this skill does
 
-Maintains `.wabblespec/memory/provenance/`. Three operations: **Record** (on Memory write), **Cascade** (on BREAKING spec change), **Delete-record** (on Forget archiving a drawer). Writes an append-only `ledger.md` and a machine-readable `index.json`.
+Maintains `.wabblespec/state/memory/provenance/`. Three operations: **Record** (on Memory write), **Cascade** (on BREAKING spec change), **Delete-record** (on Forget archiving a drawer). Writes an append-only `ledger.md` and a machine-readable `index.json`.
 
 ## When to use / when not to use
 
@@ -26,7 +26,7 @@ Maintains `.wabblespec/memory/provenance/`. Three operations: **Record** (on Mem
 ## Storage
 
 ```
-.wabblespec/memory/provenance/
+.wabblespec/state/memory/provenance/
   ledger.md          <- append-only human-readable log (never edit existing entries)
   index.json         <- drawer_id -> provenance record map
   contradictions.md  <- active contradiction list (Dream resolves these)
@@ -114,7 +114,7 @@ Cascade depth limit: 2 hops. See `rules/cascade-policy.md`.
 
 ## Output contract
 
-**Provenance receipt** (`.wabblespec/receipts/provenance-{timestamp}.json`):
+**Provenance receipt** (`.wabblespec/state/receipts/provenance-{timestamp}.json`):
 
 Base receipt schema with extensions:
 ```json

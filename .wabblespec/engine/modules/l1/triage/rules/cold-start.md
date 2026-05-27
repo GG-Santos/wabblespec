@@ -12,7 +12,7 @@ Do NOT: Invent defect scenarios to triage.
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules when Triage is called.
-Detection: `.wabblespec/receipts/` empty.
+Detection: `.wabblespec/state/receipts/` empty.
 Action: Triage can run at the start of a session (before Recipe) when an urgent defect requires immediate classification. Surface a SOFT warning that Recipe should follow. Do not block Triage — it is designed for reactive use.
 
 ## Absent: defect-patterns reference

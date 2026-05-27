@@ -47,7 +47,7 @@
 ## AT-OPT-06: Receipt contains findings with priority and fix status
 
 **Given** a completed Optimize run
-**Then** the receipt at `.wabblespec/receipts/optimize-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/optimize-{timestamp}.json` contains:
 - `modes_run`
 - `target_path`
 - `findings` (each with `mode`, `priority`, `issue`, `fix_applied`, `fix_description`)

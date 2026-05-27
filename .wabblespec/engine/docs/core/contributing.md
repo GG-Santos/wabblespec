@@ -43,7 +43,7 @@ Required fields:
   "tier": 1,
   "activators": ["/module-name", "trigger phrase"],
   "authority": {
-    "owns": [".wabblespec/receipts/{module}-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/{module}-receipt-*.json"],
     "reads": []
   },
   "verification_mode": "Observation",

@@ -18,7 +18,7 @@ Do NOT: Assume authority based on module name or past behavior.
 
 ## Absent: prior receipts
 
-Condition: Wave N has no Wave N-1 receipt in `.wabblespec/receipts/`.
+Condition: Wave N has no Wave N-1 receipt in `.wabblespec/state/receipts/`.
 Detection: Expected receipt stem missing.
 Action: DEPENDENCY error — surface I10 violation, pause wave, name the missing upstream receipt.
 Do NOT: Skip the I10 check because Wave N-1 "probably ran."

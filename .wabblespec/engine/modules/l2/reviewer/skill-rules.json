@@ -29,10 +29,10 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/reviewer-receipt-*.json"
+      ".wabblespec/state/receipts/reviewer-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/task-card.md",
+      ".wabblespec/state/plans/task-card.md",
       ".wabblespec/scope.md",
       ".wabblespec/recipe.json"
     ]

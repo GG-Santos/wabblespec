@@ -37,7 +37,7 @@ Read `.wabblespec/recipe.json`. If it exists and `session_id` matches the curren
 
 ### Step 1b — Check for session checkpoints
 
-After Step 1, check `.wabblespec/session/checkpoints/` for any `checkpoint-wave-*.json` files.
+After Step 1, check `.wabblespec/state/session/checkpoints/` for any `checkpoint-wave-*.json` files.
 
 If checkpoint files exist:
 1. Parse the most recent checkpoint by `timestamp`.
@@ -142,7 +142,7 @@ Write to `.wabblespec/recipe.json`. Structure in output contract below.
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/receipts/recipe-receipt.json`. All base receipt fields required. Status PASS = target declared with confidence ≥ 0.8 and all selected modules have cold-start files.
+Write to `.wabblespec/state/receipts/recipe-receipt.json`. All base receipt fields required. Status PASS = target declared with confidence ≥ 0.8 and all selected modules have cold-start files.
 
 Report to user: target, detection method, confidence, complexity level. One paragraph. If target is ambiguous, ask before writing anything.
 
@@ -177,7 +177,7 @@ Report to user: target, detection method, confidence, complexity level. One para
 }
 ```
 
-**receipt** (`.wabblespec/receipts/recipe-receipt.json`): base receipt schema + extension fields `target`, `detection_method`, `confidence`, `complexity`, `collapse_eligible`, `cold_start_verified`, `input_quality`, `collapse_assessment`.
+**receipt** (`.wabblespec/state/receipts/recipe-receipt.json`): base receipt schema + extension fields `target`, `detection_method`, `confidence`, `complexity`, `collapse_eligible`, `cold_start_verified`, `input_quality`, `collapse_assessment`.
 
 ## A note on common failure modes
 

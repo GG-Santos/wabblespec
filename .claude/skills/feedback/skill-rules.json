@@ -22,10 +22,10 @@
   "phases": [],
   "stages": ["any"],
   "authority": {
-    "owns": [".wabblespec/memory/feedback/"],
+    "owns": [".wabblespec/state/memory/feedback/"],
     "reads": [
-      ".wabblespec/memory/feedback/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/memory/feedback/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Observation",
@@ -38,7 +38,7 @@
     "Does not modify receipts or modules",
     "Duplicate check before writing"
   ],
-  "produces": [".wabblespec/memory/feedback/"],
+  "produces": [".wabblespec/state/memory/feedback/"],
   "depends_on": [],
   "consumed_by": ["instinct"],
   "loading_gate": "activation",

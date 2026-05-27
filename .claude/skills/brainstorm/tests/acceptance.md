@@ -14,7 +14,7 @@ When Brainstorm runs,
 Then options are generated without evaluation or filtering during the generation phase.
 Then at least 3 distinct options are generated before the convergence gate is evaluated.
 Then a top options file is written to `.wabblespec/brainstorm/options-<timestamp>.md`.
-Then a brainstorm receipt is written to `.wabblespec/receipts/brainstorm-receipt-<timestamp>.json`.
+Then a brainstorm receipt is written to `.wabblespec/state/receipts/brainstorm-receipt-<timestamp>.json`.
 
 ## evaluation_deferred invariant
 

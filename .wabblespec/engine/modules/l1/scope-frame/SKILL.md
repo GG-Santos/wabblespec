@@ -66,7 +66,7 @@ Write to `.wabblespec/scope.md`. See output contract for structure.
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/receipts/scopeframe-receipt.json`. Extension fields: `in_scope_count`, `out_of_scope_count`, `assumptions_count`, `user_confirmed` (must be `true` — never write receipt with false).
+Write to `.wabblespec/state/receipts/scopeframe-receipt.json`. Extension fields: `in_scope_count`, `out_of_scope_count`, `assumptions_count`, `user_confirmed` (must be `true` — never write receipt with false).
 
 ## Output contract
 

@@ -21,10 +21,10 @@ Given a Specify receipt with `delta_class: BREAKING`, `change_summary`, and `aff
 When Migrate runs,
 Then `migration_type` is `two-phase` by default.
 Then the migration plan declares Phase 1 (ADDITIVE — new alongside old, old deprecated) and Phase 2 (REMOVING — old removed after gate).
-Then the migration plan is written to `.wabblespec/plans/migration-plan-<id>.md`.
+Then the migration plan is written to `.wabblespec/state/plans/migration-plan-<id>.md`.
 Then Phase 1 is routed to Executor as an ADDITIVE wave.
 Then Phase 2 is gated on human confirmation that all known consumers have migrated.
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## Phase 2 gate: no auto-advance
 

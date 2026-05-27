@@ -30,7 +30,7 @@ Proofread is invoked:
 
 ## Output contract
 
-**Receipt:** `.wabblespec/receipts/proofread-{timestamp}.json`
+**Receipt:** `.wabblespec/state/receipts/proofread-{timestamp}.json`
 
 ```json
 {
@@ -78,7 +78,7 @@ Read the artifact as a whole. Check:
 - No orphaned references (e.g., "see section 3" when section 3 does not exist or was renumbered)
 
 **Step 4 — Write receipt.**
-Aggregate all findings. Assign verdict. Write receipt to `.wabblespec/receipts/`.
+Aggregate all findings. Assign verdict. Write receipt to `.wabblespec/state/receipts/`.
 
 ## Failure modes
 

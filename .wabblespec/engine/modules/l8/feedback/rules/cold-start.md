@@ -10,7 +10,7 @@ Action: BLOCK. Surface: "Feedback requires L8 corpus gate (100+ PASS receipts)."
 ## Absent: session receipts to analyze
 
 Condition: No completed session receipts to evaluate.
-Detection: `.wabblespec/receipts/` empty or all receipts in-progress.
+Detection: `.wabblespec/state/receipts/` empty or all receipts in-progress.
 Action: Surface: "No completed session data to analyze. Feedback operates on completed runs."
 
 ## Absent: --metrics flag declaration

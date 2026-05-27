@@ -4,7 +4,7 @@
   "tier": 2,
   "activators": ["/grader", "grade this", "evaluate output", "score against spec", "verdict"],
   "authority": {
-    "owns": [".wabblespec/receipts/grader-receipt-*.json"],
+    "owns": [".wabblespec/state/receipts/grader-receipt-*.json"],
     "reads": [
       "modules/l2/grader/rules/verdict-matrix.md",
       "modules/l2/grader/rules/revision-guidance.md",

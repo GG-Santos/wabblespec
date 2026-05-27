@@ -9,7 +9,7 @@ last_evaluated: 2026-05-25
 
 ## Current Status: MET — All conditions satisfied
 
-All gate conditions are met as of 2026-05-25. The receipt corpus was cleared at seed-run-20260525ac (receipt #100). Three human-validated Instinct patterns were written to `.wabblespec/memory/instinct-observations.md` and confirmed on 2026-05-25. Synth is now authorized to propose framework evolution candidates.
+All gate conditions are met as of 2026-05-25. The receipt corpus was cleared at seed-run-20260525ac (receipt #100). Three human-validated Instinct patterns were written to `.wabblespec/state/memory/instinct-observations.md` and confirmed on 2026-05-25. Synth is now authorized to propose framework evolution candidates.
 
 L8 module folders exist, are registered in `framework.yaml`, and are **structurally built** and **operationally authorized**.
 
@@ -19,10 +19,10 @@ All conditions must be simultaneously true. Partial satisfaction does not unlock
 
 | Condition | Requirement | Current State | Met? |
 |---|---|---|---|
-| Receipt corpus | 100+ verified receipts in `.wabblespec/receipts/` | 100 receipts (32 task entries in receipt-index.json) | **YES** |
-| Human-validated patterns | 3 non-spurious patterns from Instinct runs, each attested by a human in writing | 3 patterns validated in `.wabblespec/memory/instinct-observations.md` (2026-05-25) | **YES** |
+| Receipt corpus | 100+ verified receipts in `.wabblespec/state/receipts/` | 100 receipts (32 task entries in receipt-index.json) | **YES** |
+| Human-validated patterns | 3 non-spurious patterns from Instinct runs, each attested by a human in writing | 3 patterns validated in `.wabblespec/state/memory/instinct-observations.md` (2026-05-25) | **YES** |
 | Benchmark schema | `benchmark` module has a schema with `developer_outcome` field declared | CONFIRMED: `modules/l8/benchmark/schemas/benchmark.schema.json` has `developer_outcome` as a required field with four enum values | YES |
-| No open contradictions | `contradictions.md` must have zero unresolved entries | CONFIRMED: `.wabblespec/memory/provenance/contradictions.md` has empty table | YES |
+| No open contradictions | `contradictions.md` must have zero unresolved entries | CONFIRMED: `.wabblespec/state/memory/provenance/contradictions.md` has empty table | YES |
 | Forge attestation | Any Blueprint → Forge promotion requires explicit human sign-off outside the wave plan | Gate not exercised (Forge not yet invoked) | N/A |
 
 ## What Changed Since Last Evaluation

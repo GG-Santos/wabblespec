@@ -11,7 +11,7 @@ Do NOT: Synthesize from training data to compensate for sparse memory.
 
 ## Absent: prior Dream receipt
 
-Condition: No `dream-receipt.json` in `.wabblespec/receipts/`.
+Condition: No `dream-receipt.json` in `.wabblespec/state/receipts/`.
 Detection: Receipt file absent.
 Action: Treat as first Dream run. No prior patterns to compare against — fresh synthesis from current memory store state.
 

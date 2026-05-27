@@ -4,7 +4,7 @@
   "tier": 1,
   "activators": ["/ground", "ground check", "verify task card", "pre-execution check"],
   "authority": {
-    "owns": [".wabblespec/receipts/ground-receipt.json"],
+    "owns": [".wabblespec/state/receipts/ground-receipt.json"],
     "reads": [
       ".wabblespec/state/plans/task-card.md",
       ".wabblespec/state/plans/wave-plan.md",

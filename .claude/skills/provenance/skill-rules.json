@@ -30,14 +30,14 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/memory/provenance/ledger.md",
-      ".wabblespec/memory/provenance/index.json",
-      ".wabblespec/memory/provenance/contradictions.md",
-      ".wabblespec/receipts/provenance-*.json"
+      ".wabblespec/state/memory/provenance/ledger.md",
+      ".wabblespec/state/memory/provenance/index.json",
+      ".wabblespec/state/memory/provenance/contradictions.md",
+      ".wabblespec/state/receipts/provenance-*.json"
     ],
     "reads": [
-      ".wabblespec/memory/index.json",
-      ".wabblespec/memory/wings/**/*.json",
+      ".wabblespec/state/memory/index.json",
+      ".wabblespec/state/memory/wings/**/*.json",
       ".wabblespec/engine/shared/references/staleness-states.md"
     ],
     "notifies": [

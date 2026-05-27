@@ -98,11 +98,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/receipts/api-service-receipt-*.json"
+      ".wabblespec/state/receipts/api-service-receipt-*.json"
     ],
     "reads": [
-      ".wabblespec/plans/",
-      ".wabblespec/receipts/"
+      ".wabblespec/state/plans/",
+      ".wabblespec/state/receipts/"
     ]
   },
   "verification_mode": "Audit",

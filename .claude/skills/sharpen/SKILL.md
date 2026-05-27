@@ -57,13 +57,13 @@ Sharpened input must make explicit which interpretation was selected. Open alter
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/receipts/sharpen-receipt-<timestamp>.json`. Schema: `modules/l1/sharpen/schemas/sharpen-receipt.schema.json`.
+Write to `.wabblespec/state/receipts/sharpen-receipt-<timestamp>.json`. Schema: `modules/l1/sharpen/schemas/sharpen-receipt.schema.json`.
 
 Pass sharpened input path to ScopeFrame as next step.
 
 ## Output contract
 
-**sharpen-receipt.json** (`.wabblespec/receipts/sharpen-receipt-<timestamp>.json`):
+**sharpen-receipt.json** (`.wabblespec/state/receipts/sharpen-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/sharpen-receipt.schema.json`. Key extension fields:
 

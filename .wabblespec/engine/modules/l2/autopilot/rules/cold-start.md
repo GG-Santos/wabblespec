@@ -4,7 +4,7 @@ Defines what Autopilot does when its expected upstream artifacts are absent.
 
 ## Absent: session state
 
-Condition: `.wabblespec/session/state.json` does not exist when Autopilot initializes.
+Condition: `.wabblespec/state/session/state.json` does not exist when Autopilot initializes.
 Detection: File read returns 404.
 Action: Write the initial state.json immediately. Autopilot is the session owner — it creates the session, not inherits it.
 Output: Fresh `state.json` with `enforcement_active: true`, `required_receipts: []`, `active_module: "recipe"`.
@@ -19,7 +19,7 @@ Output: Fresh `meta.md` with session count: 0 and empty milestone log.
 ## Absent: prior receipts
 
 Condition: No receipts from any prior session.
-Detection: `.wabblespec/receipts/` empty.
+Detection: `.wabblespec/state/receipts/` empty.
 Action: Start a fresh session. No DEPENDENCY error — Autopilot is designed to bootstrap from zero.
 Do NOT: Refuse to initialize because no prior work exists.
 

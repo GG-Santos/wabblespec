@@ -83,7 +83,7 @@ Write response to `.wabblespec/nexus/response-<timestamp>.json`. Write receipt. 
 
 **response-<timestamp>.json** (`.wabblespec/nexus/`): schema per `schemas/why-query-response.schema.json`.
 
-**nexus-receipt.json** (`.wabblespec/receipts/nexus-receipt-<timestamp>.json`):
+**nexus-receipt.json** (`.wabblespec/state/receipts/nexus-receipt-<timestamp>.json`):
 
 Base receipt schema extended with fields per `schemas/nexus-receipt.schema.json`. Key extension fields:
 

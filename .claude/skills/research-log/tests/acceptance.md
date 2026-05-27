@@ -51,7 +51,7 @@
 ## AT-RLOG-07: Receipt confirms drawer count and confidence range
 
 **Given** a completed Research Log run
-**Then** the receipt at `.wabblespec/receipts/research-log-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/research-log-{timestamp}.json` contains:
 - `drawers_written`
 - `topics`
 - `confidence_range`

@@ -9,7 +9,7 @@ Then meta.md is not modified.
 
 ## Cold start: creates state.json and meta.md
 
-Given Autopilot is invoked and neither `.wabblespec/session/state.json` nor `.wabblespec/meta.md` exist,
+Given Autopilot is invoked and neither `.wabblespec/state/session/state.json` nor `.wabblespec/meta.md` exist,
 When Autopilot performs cold start,
 Then state.json is created with `enforcement_active: true`.
 Then meta.md is created from scratch with all required fields populated.
@@ -112,5 +112,5 @@ Then Autopilot does not enter peer-mode with runtime orchestration workflows.
 ## Receipt fields
 
 Given any successful Autopilot run,
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 Then meta.md records the completed session_id, final autonomy_level, waves_completed, stages_completed, and last_updated timestamp.

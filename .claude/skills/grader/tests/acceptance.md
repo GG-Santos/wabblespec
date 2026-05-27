@@ -38,7 +38,7 @@ Then `score` is >= 0.7.
 Then `score_rationale` references the spec (not aesthetics).
 Then `revision_guidance` is null.
 Then `escalation_reason` is null.
-Then a grader receipt is written to `.wabblespec/receipts/grader-receipt-<timestamp>.json`.
+Then a grader receipt is written to `.wabblespec/state/receipts/grader-receipt-<timestamp>.json`.
 
 ## REVISE verdict
 

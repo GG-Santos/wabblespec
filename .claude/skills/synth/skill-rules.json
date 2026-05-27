@@ -25,10 +25,10 @@
   "phases": [],
   "stages": ["post-instinct"],
   "authority": {
-    "owns": [".wabblespec/experiments/candidates/"],
+    "owns": [".wabblespec/state/experiments/candidates/"],
     "reads": [
-      ".wabblespec/memory/instinct-observations.md",
-      ".wabblespec/receipts/instinct-*.json",
+      ".wabblespec/state/memory/instinct-observations.md",
+      ".wabblespec/state/receipts/instinct-*.json",
       "modules/"
     ]
   },
@@ -42,7 +42,7 @@
     "behavior_change must be a single sentence",
     "rollback_condition must name a metric and threshold"
   ],
-  "produces": [".wabblespec/experiments/candidates/"],
+  "produces": [".wabblespec/state/experiments/candidates/"],
   "depends_on": ["instinct", "archive", "memory"],
   "consumed_by": ["blueprint"],
   "loading_gate": "activation",

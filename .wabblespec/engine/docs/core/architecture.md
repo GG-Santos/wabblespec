@@ -67,10 +67,10 @@ Full invariant list: `.wabblespec/engine/shared/references/invariants.md`.
 |------|---------|
 | `framework.yaml` | Module registry — layer, tier, build_status, depends_on, schemas |
 | `.wabblespec/VERSION` | Single-line semver. Archive has exclusive write authority. |
-| `.wabblespec/receipts/` | All receipt JSON files from every pipeline run |
-| `.wabblespec/plans/` | Task cards, wave plans, decision records |
-| `.wabblespec/health/` | Health reports from wabble-health.py runs |
-| `.wabblespec/memory/` | Session memory: index, tracker, dream log, staleness map |
+| `.wabblespec/state/receipts/` | All receipt JSON files from every pipeline run |
+| `.wabblespec/state/plans/` | Task cards, wave plans, decision records |
+| `.wabblespec/state/health/` | Health reports from wabble-health.py runs |
+| `.wabblespec/state/memory/` | Session memory: index, tracker, dream log, staleness map |
 | `.wabblespec/engine/shared/infrastructure/` | Cross-module policy docs (gateway pattern, guard policy, economy, version tracking) |
 | `.wabblespec/engine/shared/schemas/` | Shared JSON schemas (receipt base, etc.) |
 | `.wabblespec/engine/shared/scripts/` | Analysis and validation scripts |

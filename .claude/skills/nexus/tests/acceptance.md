@@ -31,7 +31,7 @@
 ## AT-NEXUS-04: Receipt contains traversal metadata
 
 **Given** a completed Nexus run
-**Then** the receipt at `.wabblespec/receipts/nexus-receipt-{timestamp}.json` contains:
+**Then** the receipt at `.wabblespec/state/receipts/nexus-receipt-{timestamp}.json` contains:
 - `query_type`
 - `domain`
 - `drawers_queried`

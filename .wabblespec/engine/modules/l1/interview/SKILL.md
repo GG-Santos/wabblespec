@@ -50,7 +50,7 @@ See `rules/ambiguity-dimensions.md` for full definitions. Cover only dimensions 
 
 ## Outputs
 
-Write `.wabblespec/plans/intent.md`:
+Write `.wabblespec/state/plans/intent.md`:
 
 ```markdown
 # Intent

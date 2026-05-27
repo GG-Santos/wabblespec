@@ -20,8 +20,8 @@ Given Propose has produced a recommendation and recipe.json declares complexity 
 When Plan runs,
 Then at least 2 expert perspectives are applied (Architecture, Security, Operability, Performance, Maintainability).
 Then open risks identified during expert review are listed in the plan artifact.
-Then a plan artifact is written to `.wabblespec/plans/plan-<timestamp>.md`.
-Then a receipt is written to `.wabblespec/receipts/plan-receipt-<timestamp>.json`.
+Then a plan artifact is written to `.wabblespec/state/plans/plan-<timestamp>.md`.
+Then a receipt is written to `.wabblespec/state/receipts/plan-receipt-<timestamp>.json`.
 Then `adversary_triggered` is false (budget gate does not fire at Medium complexity without additional triggers).
 
 ## Adversary: mandatory at High complexity

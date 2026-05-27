@@ -18,7 +18,7 @@ Then type is classified as one of: Bug, Feature, Debt, Question, Security.
 Then routing is determined from the routing table.
 Then a triage record is written to Memory as a FRESH drawer.
 Then the issue is routed to the declared module with the triage record as context.
-Then a receipt is written to `.wabblespec/receipts/`.
+Then a receipt is written to `.wabblespec/state/receipts/`.
 
 ## Recurrence escalation
 
@@ -52,7 +52,7 @@ Then Triage does not apply fixes, write code, or modify spec artifacts.
 
 ## Triage without prior receipts: allowed with SOFT warning
 
-Given `.wabblespec/receipts/` is empty (session start before Recipe),
+Given `.wabblespec/state/receipts/` is empty (session start before Recipe),
 When Triage is invoked for an urgent defect,
 Then Triage runs and classifies the issue.
 Then a SOFT warning is surfaced that Recipe should follow.
@@ -75,4 +75,4 @@ Then the record contains: `timestamp`, `severity`, `type`, `recurrence_count`, `
 
 Given any Triage invocation,
 Then triage records are written to Memory only.
-Then no triage record is written to `.wabblespec/plans/` or product space.
+Then no triage record is written to `.wabblespec/state/plans/` or product space.
