@@ -13,7 +13,7 @@ const FLAG_PATH = path.join(claudeDir, '.wabblespec-session');
 
 // Session state path is relative to the CWD where hooks are invoked (the repo root)
 const SESSION_STATE_PATH = path.join(
-  process.cwd(), '.wabblespec', 'session', 'state.json'
+  process.cwd(), '.wabblespec', 'state', 'session', 'state.json'
 );
 
 /**

@@ -23,7 +23,7 @@ function readVersion() {
 function readLastReceiptTimestamp() {
   try {
     const indexPath = path.join(
-      process.cwd(), '.wabblespec', 'archive', 'receipt-index.json'
+      process.cwd(), '.wabblespec', 'state', 'archive', 'receipt-index.json'
     );
     const data = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
     // Handle both array and {entries: [...]} shapes
