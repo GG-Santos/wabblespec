@@ -20,6 +20,9 @@ compression-discipline:
 context-budget:
   description: Context window health tiers (PEAK/GOOD/DEGRADING/POOR) with observable signals and recommended actions per tier
 
+context-compression-bounds:
+  description: Protected-bounds invariant for conversation compression — what to protect (head/tail), what to summarize (middle), sentinel text, trigger threshold, and receipt chain interaction
+
 context-engineering:
   description: Context window load discipline — what to load (signal), what to exclude (noise), placement rules, and wave isolation
 
@@ -129,6 +132,10 @@ staleness-states:
   description: Evidence staleness states (FRESH/AGING/STALE/EXPIRED/NEEDS_REVERIFICATION/SUPERSEDED), decay rules, and hook enforcement
 
 state-protocol:
+  description: Rules for reading and writing session state.json — enforcement_active lifecycle, required_receipts chain, and wave transitions
+
+system-prompt-tiers:
+  description: Three-tier system prompt naming convention (stable/context/volatile) — what belongs in each tier, assembly order, cache lifetime, and anti-patterns
   description: Rules for reading and writing session state.json — enforcement_active lifecycle, required_receipts chain, and wave transitions
 
 version-policy:
