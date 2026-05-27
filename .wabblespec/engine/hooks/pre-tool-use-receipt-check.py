@@ -71,12 +71,12 @@ def main() -> None:
     if ws_root is None:
         sys.exit(0)
 
-    state = load_json_safe(ws_root / "session" / "state.json")
+    state = load_json_safe(ws_root / "state" / "session" / "state.json")
     if state is None or not state.get("enforcement_active", False):
         sys.exit(0)
 
     required = state.get("required_receipts", [])
-    receipts_dir = ws_root / "receipts"
+    receipts_dir = ws_root / "state" / "receipts"
     missing = [m for m in required if not (receipts_dir / f"{m}.json").exists()]
 
     if missing:

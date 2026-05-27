@@ -133,7 +133,7 @@ def main() -> int:
         return 0
 
     # Unstage session/ — machine-specific state must not propagate
-    _git("restore", "--staged", ".wabblespec/session/", cwd=ROOT)
+    _git("restore", "--staged", ".wabblespec/state/session/", cwd=ROOT)
 
     # Check if anything remains staged
     rc, staged, _ = _git("diff", "--cached", "--name-only", "--", ".wabblespec/", cwd=ROOT)
