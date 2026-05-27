@@ -109,3 +109,6 @@
 [2026-05-27T14:06:27Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-27T14:06:27Z
 [2026-05-27T14:06:31Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
 [2026-05-27T14:16:50Z] [LAPTOP-AHBS9745] [push] 4 file(s) changed: .wabblespec/engine/shared/references/guard-policy-reference.md, .wabblespec/engine/shared/references/index.yml, .wabblespec/state/logs/sync.log, .wabblespec/engine/shared/references/prompt-injection-patterns.md
+[2026-05-27T14:16:51Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-27T14:16:51Z
+[2026-05-27T14:16:54Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
+[2026-05-27T14:23:12Z] [LAPTOP-AHBS9745] [push] 3 file(s) changed: .wabblespec/state/logs/sync.log, .wabblespec/wabblespec.yaml, .wabblespec/engine/shared/scripts/validate-module-registry.py

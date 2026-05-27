@@ -108,6 +108,12 @@ shared:
       consumers: [guard, gateway-security, gateway-engineering, executor]
     - path: .wabblespec/engine/shared/references/compaction-behavior.md
       consumers: [economy, autopilot, memory]
+    - path: .wabblespec/engine/shared/references/system-prompt-tiers.md
+      consumers: [apply, executor, economy, autopilot]
+    - path: .wabblespec/engine/shared/references/context-compression-bounds.md
+      consumers: [executor, autopilot, economy]
+    - path: .wabblespec/engine/shared/references/prompt-injection-patterns.md
+      consumers: [guard, verifier]
   infrastructure:
     - path: .wabblespec/engine/shared/infrastructure/economy-principles.md
       consumers: [economy]
@@ -126,6 +132,8 @@ shared:
       consumers: [nexus, explore]
     - path: .wabblespec/engine/shared/scripts/markdown-extract.py
       consumers: [verifier, document]
+    - path: .wabblespec/engine/shared/scripts/validate-module-registry.py
+      consumers: [factory, guard]
   templates:
     - path: .wabblespec/engine/shared/templates/legal/privacy-policy-gdpr.md
       consumers: [legal]
