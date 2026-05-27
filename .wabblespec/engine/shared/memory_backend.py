@@ -73,7 +73,7 @@ def memory_path() -> str:
     path = os.environ.get("WABBLESPEC_MEMORY_PATH")
     if path:
         return path
-    return str(repo_root() / ".wabblespec" / "memory")
+    return str(repo_root() / ".wabblespec" / "state" / "memory")
 
 
 def runtime_path() -> str:

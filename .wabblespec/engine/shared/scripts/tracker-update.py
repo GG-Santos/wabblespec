@@ -73,7 +73,7 @@ from datetime import datetime, timezone
 def find_tracker(start=None):
     candidate = start or os.getcwd()
     for _ in range(12):
-        path = os.path.join(candidate, ".wabblespec", "experiments", "tracker.json")
+        path = os.path.join(candidate, ".wabblespec", "state", "experiments", "tracker.json")
         if os.path.isfile(path):
             return path
         parent = os.path.dirname(candidate)
@@ -85,7 +85,7 @@ def find_tracker(start=None):
     for _ in range(12):
         ws = os.path.join(ws_candidate, ".wabblespec")
         if os.path.isdir(ws):
-            return os.path.join(ws, "experiments", "tracker.json")
+            return os.path.join(ws, "state", "experiments", "tracker.json")
         parent = os.path.dirname(ws_candidate)
         if parent == ws_candidate:
             break

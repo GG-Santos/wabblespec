@@ -235,7 +235,7 @@ def scaffold(module_id, layer, path, tier, description, activators,
     rules["anti_activators"] = anti_activators
     rules["build_targets"] = build_targets
     rules["authority"] = {
-        "owns": [f".wabblespec/receipts/{module_id}-receipt-*.json"],
+        "owns": [f".wabblespec/state/receipts/{module_id}-receipt-*.json"],
         "reads": [],
     }
 

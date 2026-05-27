@@ -119,7 +119,7 @@ def main() -> None:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
 
-    receipts_dir = ws_root / "receipts"
+    receipts_dir = ws_root / "state" / "receipts"
     memory_root = ws_root / "memory"
     wings_root = memory_root / "wings"
     index_path = memory_root / "index.json"

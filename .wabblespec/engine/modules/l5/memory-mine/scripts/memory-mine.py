@@ -701,7 +701,7 @@ def main() -> None:
         sys.exit(0)
 
     # Run analyses
-    receipts_dir = ws_root / "receipts"
+    receipts_dir = ws_root / "state" / "receipts"
     gaps = detect_gaps(valid_drawers, receipts_dir)
     clusters = detect_clusters(valid_drawers)
     patterns = extract_patterns(valid_drawers)

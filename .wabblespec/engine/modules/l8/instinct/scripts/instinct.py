@@ -13,11 +13,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 GATE_RECEIPT_MIN = 100
-RECEIPTS_DIR = Path(".wabblespec/receipts")
-ENTITY_GRAPH_PATH = Path(".wabblespec/memory/entity-graph.json")
-GAP_MAP_PATH = Path(".wabblespec/memory/gap-map.md")
-OBSERVATIONS_PATH = Path(".wabblespec/memory/instinct-observations.md")
-EXECUTOR_PID_PATH = Path(".wabblespec/memory/.executor.pid")
+RECEIPTS_DIR = Path(".wabblespec/state/receipts")
+ENTITY_GRAPH_PATH = Path(".wabblespec/state/memory/entity-graph.json")
+GAP_MAP_PATH = Path(".wabblespec/state/memory/gap-map.md")
+OBSERVATIONS_PATH = Path(".wabblespec/state/memory/instinct-observations.md")
+EXECUTOR_PID_PATH = Path(".wabblespec/state/memory/.executor.pid")
 
 # Minimum distinct receipts/waves backing a pattern before it is eligible
 # for emission. Per-detector thresholds may be stricter; none may be lower.

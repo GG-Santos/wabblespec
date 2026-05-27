@@ -21,7 +21,7 @@ def test_configure_project_uses_project_local_runtime(tmp_path, monkeypatch):
 
     config = configure_project(repo)
 
-    assert config.memory_path == repo / ".wabblespec" / "memory"
+    assert config.memory_path == repo / ".wabblespec" / "state" / "memory"
     assert config.runtime_path == config.memory_path / ".runtime"
     assert config.lock_dir == config.runtime_path / "locks"
     assert config.wal_dir == config.runtime_path / "wal"

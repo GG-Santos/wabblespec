@@ -63,7 +63,7 @@ def find_receipts_dir(start_dir=None):
         start_dir = os.getcwd()
     candidate = start_dir
     for _ in range(10):
-        path = os.path.join(candidate, ".wabblespec", "receipts")
+        path = os.path.join(candidate, ".wabblespec", "state", "receipts")
         if os.path.isdir(path):
             return path
         parent = os.path.dirname(candidate)

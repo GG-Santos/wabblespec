@@ -331,8 +331,8 @@ def main():
         sys.exit(2)
 
     wabble = os.path.join(root, ".wabblespec")
-    receipts_dir = args.receipts_dir or os.path.join(wabble, "receipts")
-    index_path = os.path.join(wabble, "archive", "receipt-index.json")
+    receipts_dir = args.receipts_dir or os.path.join(wabble, "state", "receipts")
+    index_path = os.path.join(wabble, "state", "archive", "receipt-index.json")
     cl_path = os.path.join(wabble, "CHANGELOG.md")
     ver_path = os.path.join(wabble, "VERSION")
 

@@ -76,7 +76,7 @@ from datetime import datetime, timezone
 def find_provenance_dir(start=None):
     candidate = start or os.getcwd()
     for _ in range(12):
-        path = os.path.join(candidate, ".wabblespec", "memory", "provenance")
+        path = os.path.join(candidate, ".wabblespec", "state", "memory", "provenance")
         if os.path.isdir(path):
             return path
         parent = os.path.dirname(candidate)

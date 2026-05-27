@@ -275,7 +275,7 @@ def _normalize_context_type(raw: str) -> Optional[str]:
 # ---------------------------------------------------------------------------
 
 def profiles_dir(base_dir: Path) -> Path:
-    d = base_dir / ".wabblespec" / "memory" / "learned-params"
+    d = base_dir / ".wabblespec" / "state" / "memory" / "learned-params"
     d.mkdir(parents=True, exist_ok=True)
     return d
 

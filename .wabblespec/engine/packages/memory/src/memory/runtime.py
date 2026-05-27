@@ -44,7 +44,7 @@ def configure_project(
     """Configure env vars and runtime directories for project-local memory state."""
 
     root = find_repo_root(repo_root) if repo_root is not None else find_repo_root()
-    memory_path = Path(memory_dir).expanduser().resolve() if memory_dir else root / ".wabblespec" / "memory"
+    memory_path = Path(memory_dir).expanduser().resolve() if memory_dir else root / ".wabblespec" / "state" / "memory"
     runtime_path = memory_path / ".runtime"
     lock_dir = runtime_path / "locks"
     wal_dir = runtime_path / "wal"

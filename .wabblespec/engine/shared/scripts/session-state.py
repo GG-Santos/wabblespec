@@ -61,7 +61,7 @@ def find_wabblespec(start_dir=None):
 
 
 def state_path(ws):
-    return os.path.join(ws, "session", "state.json")
+    return os.path.join(ws, "state", "session", "state.json")
 
 
 def load_state(path):

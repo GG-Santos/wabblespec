@@ -141,8 +141,8 @@ def gather_quality(ws):
 
 def gather_receipts(ws):
     """Count receipt-index.json entries and receipts/ directory files."""
-    index_path = os.path.join(ws, "archive", "receipt-index.json")
-    receipts_dir = os.path.join(ws, "receipts")
+    index_path = os.path.join(ws, "state", "archive", "receipt-index.json")
+    receipts_dir = os.path.join(ws, "state", "receipts")
 
     index_count = None
     receipts_count = None
@@ -172,7 +172,7 @@ def gather_receipts(ws):
 
 def gather_witness(ws):
     """Read archive/witness.json for module count and date."""
-    witness_path = os.path.join(ws, "archive", "witness.json")
+    witness_path = os.path.join(ws, "state", "archive", "witness.json")
     if not os.path.isfile(witness_path):
         return None, None
     try:

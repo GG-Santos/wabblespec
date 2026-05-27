@@ -478,7 +478,7 @@ def main():
     if args.witness:
         witness_path = os.path.abspath(args.witness)
     else:
-        witness_path = os.path.join(framework_dir, ".wabblespec", "archive", "witness.json")
+        witness_path = os.path.join(framework_dir, ".wabblespec", "state", "archive", "witness.json")
 
     data = load_framework(framework_path)
 
