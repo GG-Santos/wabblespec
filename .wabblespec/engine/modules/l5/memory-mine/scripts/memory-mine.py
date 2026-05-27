@@ -6,7 +6,7 @@ Runs offline only — never during active execution.
 PID-locked to prevent concurrent runs.
 Schema-version-aware — flags drawers with mismatched version as NEEDS_REBUILD.
 
-Produces four analysis files in .wabblespec/memory/mine/:
+Produces four analysis files in .wabblespec/state/memory/mine/:
   gap-map.md
   mine-clusters.md
   pattern-summary.md

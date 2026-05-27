@@ -2,7 +2,7 @@
 """
 WabbleSpec staleness-checker.
 
-Reads all drawers in .wabblespec/memory/wings/.
+Reads all drawers in .wabblespec/state/memory/wings/.
 Counts execution receipts written after each drawer's written_at.
 Applies staleness transitions per rules/staleness-thresholds.md.
 Writes transitions back to drawer files and index.json.

@@ -42,7 +42,7 @@ Usage:
     # Pre-wave guard check:
     python .wabblespec/engine/shared/scripts/pipeline.py guard \\
         --module executor \\
-        --files ".wabblespec/receipts/wave-1-receipt.json" \\
+        --files ".wabblespec/state/receipts/wave-1-receipt.json" \\
         --commands "git add -A" "python validate.py"
 
     # Dry run (start or close):

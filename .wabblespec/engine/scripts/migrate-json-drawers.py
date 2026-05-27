@@ -2,7 +2,7 @@
 migrate-json-drawers.py
 
 One-time migration: reads all JSON drawers from
-.wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{id}.json
+.wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{id}.json
 and upserts them into ChromaDB with WabbleSpec metadata fields preserved.
 
 Also creates synthetic preference-pattern pointer documents for drawers

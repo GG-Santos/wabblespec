@@ -1,7 +1,7 @@
 """
 receipt-chain-validate.py — Verify a session's receipt chain before Archive.
 
-Scans .wabblespec/receipts/ for all receipts matching a session_id, checks
+Scans .wabblespec/state/receipts/ for all receipts matching a session_id, checks
 that required receipt types are present and all have status=PASS. Replaces
 the manual read-each-receipt-and-check cycle that costs 2-5K tokens before
 every Archive run.
@@ -272,7 +272,7 @@ def main():
     # Locate receipts dir
     rd = args.receipts_dir or find_receipts_dir()
     if rd is None or not os.path.isdir(rd):
-        print("ERROR: Cannot find .wabblespec/receipts/. Run from inside the repo.",
+        print("ERROR: Cannot find .wabblespec/state/receipts/. Run from inside the repo.",
               file=sys.stderr)
         sys.exit(2)
 

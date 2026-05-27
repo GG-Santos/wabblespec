@@ -90,7 +90,7 @@ and decision rules. Avoid vague directives like "process the input".]
 
 ### Step 2 — Write receipt
 
-Write to `.wabblespec/receipts/{id}-receipt-{{session_id}}.json`. All base receipt
+Write to `.wabblespec/state/receipts/{id}-receipt-{{session_id}}.json`. All base receipt
 fields required (see `.wabblespec/engine/shared/schemas/receipt.base.schema.json`). Status PASS =
 [TODO: define what constitutes a passing execution].
 
@@ -136,7 +136,7 @@ Defines what {title} does when its expected upstream artifacts are absent.
 ## Absent: prior receipts
 
 Condition: No receipts from upstream modules exist for the current session.
-Detection: `.wabblespec/receipts/` does not contain expected upstream receipt files.
+Detection: `.wabblespec/state/receipts/` does not contain expected upstream receipt files.
 Action: [TODO: describe behavior — surface error, proceed anyway, or ask user].
 
 ## Absent: [TODO: primary input artifact]
@@ -164,7 +164,7 @@ ACCEPTANCE_TEMPLATE = """\
 Given {title} is invoked with valid inputs,
 When execution completes,
 Then status is PASS,
-And a receipt is written to `.wabblespec/receipts/{id}-receipt-{{session_id}}.json`,
+And a receipt is written to `.wabblespec/state/receipts/{id}-receipt-{{session_id}}.json`,
 And all required output fields are present.
 
 ## Gate: [TODO: describe a specific behavioral gate]

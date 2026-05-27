@@ -13,7 +13,7 @@ Usage:
         --changed "Added X" "Added Y" \\
         --fixed "Fixed Z" \\
         --not-tested "item A" "item B" \\
-        --delivery-receipt ".wabblespec/receipts/delivery-receipt-xxx.json" \\
+        --delivery-receipt ".wabblespec/state/receipts/delivery-receipt-xxx.json" \\
         --waves-planned 1 \\
         --waves-completed 1 \\
         --waves-failed 0
@@ -26,7 +26,7 @@ Usage:
 
     # Read entry data from a delivery receipt JSON:
     python .wabblespec/engine/shared/scripts/changelog-append.py \\
-        --from-receipt .wabblespec/receipts/delivery-receipt-xxx.json
+        --from-receipt .wabblespec/state/receipts/delivery-receipt-xxx.json
 
 Exit codes:
     0  success

@@ -10,7 +10,7 @@ Witness mode (--record-witness / --check-hashes):
   skill-rules.json. Detects file drift between framework runs without
   requiring a full quality-floor check.
 
-  Witness file default: .wabblespec/archive/witness.json
+  Witness file default: .wabblespec/state/archive/witness.json
   (relative to framework.yaml's directory; override with --witness)
 
 Exit codes:
@@ -433,7 +433,7 @@ def main():
     parser.add_argument(
         "--witness",
         default=None,
-        help="Path to witness.json (default: .wabblespec/archive/witness.json relative to framework.yaml)"
+        help="Path to witness.json (default: .wabblespec/state/archive/witness.json relative to framework.yaml)"
     )
     parser.add_argument(
         "--record-witness",

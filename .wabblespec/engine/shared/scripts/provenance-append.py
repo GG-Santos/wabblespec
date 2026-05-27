@@ -6,8 +6,8 @@ The ledger (ledger.md) is append-only — this script never reads it before writ
 index.json is loaded, updated, and atomically written back.
 
 Writes:
-    .wabblespec/memory/provenance/ledger.md  — appended (open 'a', never read)
-    .wabblespec/memory/provenance/index.json — load → update → atomic write
+    .wabblespec/state/memory/provenance/ledger.md  — appended (open 'a', never read)
+    .wabblespec/state/memory/provenance/index.json — load → update → atomic write
 
 Subcommands:
     record        Record a Memory write event (new drawer written)
@@ -381,7 +381,7 @@ def main():
 
     prov_dir = args.provenance_dir or find_provenance_dir()
     if prov_dir is None:
-        print("ERROR: Cannot find .wabblespec/memory/provenance/. "
+        print("ERROR: Cannot find .wabblespec/state/memory/provenance/. "
               "Run from inside the repo or use --provenance-dir.", file=sys.stderr)
         sys.exit(2)
 

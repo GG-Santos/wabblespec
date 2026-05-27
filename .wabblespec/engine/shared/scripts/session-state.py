@@ -1,5 +1,5 @@
 """
-session-state.py — CRUD for .wabblespec/session/state.json.
+session-state.py — CRUD for .wabblespec/state/session/state.json.
 
 Replaces manual reads and writes of the session state file. The file is
 small (~200 bytes) so the token saving per operation is modest (~200 tokens),
@@ -196,7 +196,7 @@ def cmd_check(args, sp, ws):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="CRUD for .wabblespec/session/state.json.",
+        description="CRUD for .wabblespec/state/session/state.json.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )

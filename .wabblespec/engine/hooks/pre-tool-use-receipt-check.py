@@ -2,8 +2,8 @@
 """
 WabbleSpec pre-tool-use receipt enforcement hook.
 
-Reads .wabblespec/session/state.json. Blocks tool execution when:
-  1. Required upstream receipts are absent from .wabblespec/receipts/
+Reads .wabblespec/state/session/state.json. Blocks tool execution when:
+  1. Required upstream receipts are absent from .wabblespec/state/receipts/
   2. Any evidence drawer listed in evidence_drawers has staleness_state == EXPIRED
      (emits STALENESS_VIOLATION per I9)
 

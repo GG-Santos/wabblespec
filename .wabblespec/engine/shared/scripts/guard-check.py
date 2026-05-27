@@ -19,14 +19,14 @@ Usage:
     # Layer 4: does the module own the proposed output files?
     python .wabblespec/engine/shared/scripts/guard-check.py authority \\
         --module executor \\
-        --files ".wabblespec/receipts/wave-1-receipt.json" \\
-                ".wabblespec/checkpoints/cp1.json"
+        --files ".wabblespec/state/receipts/wave-1-receipt.json" \\
+                ".wabblespec/state/checkpoints/cp1.json"
 
     # Layer 4 with misactivation check (file_path_patterns vs wave input files):
     python .wabblespec/engine/shared/scripts/guard-check.py authority \\
         --module archive \\
-        --files ".wabblespec/receipts/archive-receipt-aa.json" \\
-        --wave-files "src/foo.ts" ".wabblespec/plans/task-card.md"
+        --files ".wabblespec/state/receipts/archive-receipt-aa.json" \\
+        --wave-files "src/foo.ts" ".wabblespec/state/plans/task-card.md"
 
     # Layer 5: classify commands only
     python .wabblespec/engine/shared/scripts/guard-check.py commands \\
@@ -35,14 +35,14 @@ Usage:
     # Combined wave check (most common use):
     python .wabblespec/engine/shared/scripts/guard-check.py wave \\
         --module executor \\
-        --files ".wabblespec/receipts/execution-receipt.json" \\
+        --files ".wabblespec/state/receipts/execution-receipt.json" \\
         --commands "git add -A" "python .wabblespec/engine/shared/scripts/validate-graph.py" \\
         --json
 
     # Explicit path to skill-rules.json (auto-discovered if omitted):
     python .wabblespec/engine/shared/scripts/guard-check.py authority \\
         --module guard \\
-        --files ".wabblespec/receipts/guard-wave-1-receipt.json" \\
+        --files ".wabblespec/state/receipts/guard-wave-1-receipt.json" \\
         --rules-file modules/l2/guard/skill-rules.json
 
 Exit codes:

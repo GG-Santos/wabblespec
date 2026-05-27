@@ -230,10 +230,10 @@ def build_receipts_content(ws):
     index_count, receipts_count = gather_receipts(ws)
     parts = []
     if index_count is not None:
-        parts.append(f"Completed tasks: `.wabblespec/archive/receipt-index.json` ({index_count} entries).")
+        parts.append(f"Completed tasks: `.wabblespec/state/archive/receipt-index.json` ({index_count} entries).")
     if receipts_count is not None:
         parts.append(
-            f"Seed pipeline receipts: `.wabblespec/receipts/` — "
+            f"Seed pipeline receipts: `.wabblespec/state/receipts/` — "
             f"{receipts_count} individual receipts accumulated."
         )
     if not parts:
@@ -245,12 +245,12 @@ def build_witness_content(ws):
     count, recorded_at = gather_witness(ws)
     if count is None:
         return (
-            "Module file integrity witness: `.wabblespec/archive/witness.json` (not yet recorded). "
+            "Module file integrity witness: `.wabblespec/state/archive/witness.json` (not yet recorded). "
             "Run `python .wabblespec/engine/shared/scripts/validate-graph.py --record-witness` to create."
         ), True
     date_str = recorded_at[:10] if recorded_at and len(recorded_at) >= 10 else recorded_at
     return (
-        f"Module file integrity witness recorded at `.wabblespec/archive/witness.json` "
+        f"Module file integrity witness recorded at `.wabblespec/state/archive/witness.json` "
         f"({count} modules, {date_str}). "
         f"Re-record after any intentional module file change with "
         f"`python .wabblespec/engine/shared/scripts/validate-graph.py --record-witness`. "

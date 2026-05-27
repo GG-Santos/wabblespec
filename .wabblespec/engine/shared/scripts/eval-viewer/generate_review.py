@@ -13,7 +13,7 @@ Usage:
     python .wabblespec/engine/shared/scripts/eval-viewer/generate_review.py <workspace-path> --previous-workspace /path/to/previous/workspace
 
 Typical WabbleSpec usage — benchmark run review:
-    python .wabblespec/engine/shared/scripts/eval-viewer/generate_review.py .wabblespec/experiments/benchmark-run-01 --skill-name "benchmark-01"
+    python .wabblespec/engine/shared/scripts/eval-viewer/generate_review.py .wabblespec/state/experiments/benchmark-run-01 --skill-name "benchmark-01"
 
 Headless / no browser:
     python .wabblespec/engine/shared/scripts/eval-viewer/generate_review.py <workspace> --static review.html

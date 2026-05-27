@@ -17,7 +17,7 @@ Usage:
 
     # Read commands from a wave plan file (extracts bash_command fields):
     python .wabblespec/engine/shared/scripts/command-risk-check.py \\
-        --from-wave-plan .wabblespec/plans/wave-current.md
+        --from-wave-plan .wabblespec/state/plans/wave-current.md
 
     # Stdin mode (one command per line):
     echo "git push --force" | python .wabblespec/engine/shared/scripts/command-risk-check.py --stdin

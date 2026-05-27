@@ -20,14 +20,14 @@ Usage:
 
     # Specify exact output path:
     python .wabblespec/engine/shared/scripts/drawer-writer.py ... \\
-        --out .wabblespec/memory/wings/architecture/rooms/layer-architecture/drawers/arch-layer-overview-20260526.json
+        --out .wabblespec/state/memory/wings/architecture/rooms/layer-architecture/drawers/arch-layer-overview-20260526.json
 
     # Dry run — print JSON without writing:
     python .wabblespec/engine/shared/scripts/drawer-writer.py ... --dry-run
 
     # Update fields on an existing drawer (adds an UPDATED provenance event):
     python .wabblespec/engine/shared/scripts/drawer-writer.py \\
-        --update .wabblespec/memory/wings/architecture/rooms/layer-architecture/drawers/arch-layer-overview-20260526.json \\
+        --update .wabblespec/state/memory/wings/architecture/rooms/layer-architecture/drawers/arch-layer-overview-20260526.json \\
         --confidence 0.95 \\
         --staleness-state FRESH \\
         --note "Re-verified 2026-05-26"
@@ -49,7 +49,7 @@ Valid wings: architecture, implementation, decisions, operations
 Valid staleness states: FRESH, AGING, STALE, EXPIRED, NEEDS_REVERIFICATION, SUPERSEDED
 
 Output path derivation (when --out is omitted):
-    .wabblespec/memory/wings/{wing}/rooms/{room}/drawers/{id}.json
+    .wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{id}.json
 
 Exit codes:
     0  success

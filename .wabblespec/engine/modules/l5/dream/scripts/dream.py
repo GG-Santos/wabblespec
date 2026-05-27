@@ -3,9 +3,9 @@
 WabbleSpec Dream script.
 
 Reads all drawers, applies EMA decay to confidence scores, writes:
-  .wabblespec/memory/gap-map.md        -- actionable findings
-  .wabblespec/memory/staleness-map.md  -- full drawer state table
-  .wabblespec/memory/dream-log.json    -- run history (Phase 4 validation gate)
+  .wabblespec/state/memory/gap-map.md        -- actionable findings
+  .wabblespec/state/memory/staleness-map.md  -- full drawer state table
+  .wabblespec/state/memory/dream-log.json    -- run history (Phase 4 validation gate)
 
 EMA formula: new_confidence = old_confidence * 0.9 + base_freshness * 0.1
 base_freshness by staleness_state:

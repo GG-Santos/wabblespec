@@ -1,5 +1,5 @@
 """
-tracker-update.py — CRUD for .wabblespec/experiments/tracker.json.
+tracker-update.py — CRUD for .wabblespec/state/experiments/tracker.json.
 
 Replaces Claude reading tracker.json (~13K tokens in a mature tracker), finding an
 entry by blueprint_id, patching fields, and rewriting. Pure JSON CRUD — no reasoning
@@ -32,8 +32,8 @@ Usage:
         --developer-outcome false_completion \\
         --threshold 0.0 \\
         --direction lower_is_better \\
-        --fixture-set .wabblespec/experiments/fixtures/my-new-candidate-v1/ \\
-        --golden-ref .wabblespec/experiments/fixtures/my-new-candidate-v1/golden.json
+        --fixture-set .wabblespec/state/experiments/fixtures/my-new-candidate-v1/ \\
+        --golden-ref .wabblespec/state/experiments/fixtures/my-new-candidate-v1/golden.json
 
     # Record benchmark result:
     python .wabblespec/engine/shared/scripts/tracker-update.py set \\
@@ -47,7 +47,7 @@ Usage:
     python .wabblespec/engine/shared/scripts/tracker-update.py forge \\
         --blueprint-id my-new-candidate-v1 \\
         --forge-status PROMOTED \\
-        --forge-receipt .wabblespec/receipts/forge-my-new-candidate-v1-receipt.json
+        --forge-receipt .wabblespec/state/receipts/forge-my-new-candidate-v1-receipt.json
 
     # Dry run (add or set):
     python .wabblespec/engine/shared/scripts/tracker-update.py add ... --dry-run
@@ -312,7 +312,7 @@ def cmd_delete(args, tracker_path):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="CRUD for .wabblespec/experiments/tracker.json.",
+        description="CRUD for .wabblespec/state/experiments/tracker.json.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
@@ -377,7 +377,7 @@ def main():
 
     tracker_path = args.tracker or find_tracker()
     if tracker_path is None:
-        print("ERROR: Cannot find .wabblespec/experiments/tracker.json and no .wabblespec/ "
+        print("ERROR: Cannot find .wabblespec/state/experiments/tracker.json and no .wabblespec/ "
               "directory found. Run from inside the repo.", file=sys.stderr)
         sys.exit(2)
 

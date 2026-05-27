@@ -37,9 +37,9 @@ Usage:
     python .wabblespec/engine/shared/scripts/archive.py --sweep
 
 Output (written):
-    .wabblespec/receipts/delivery-receipt-{session_id}.json
+    .wabblespec/state/receipts/delivery-receipt-{session_id}.json
     .wabblespec/CHANGELOG.md        (appended, never read)
-    .wabblespec/archive/receipt-index.json  (patched in place)
+    .wabblespec/state/archive/receipt-index.json  (patched in place)
     .wabblespec/VERSION             (bumped)
 
 Exit codes:
@@ -299,7 +299,7 @@ def main():
     parser.add_argument(
         "--receipts-dir",
         metavar="PATH",
-        help="Directory containing session receipts. Default: .wabblespec/receipts/",
+        help="Directory containing session receipts. Default: .wabblespec/state/receipts/",
     )
     parser.add_argument(
         "--root",

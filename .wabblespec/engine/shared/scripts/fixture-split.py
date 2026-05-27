@@ -17,26 +17,26 @@ Subcommands:
 Usage:
     # Generate split.json:
     python .wabblespec/engine/shared/scripts/fixture-split.py split \\
-        --fixtures .wabblespec/experiments/fixtures/my-candidate-v1/fixtures.json \\
+        --fixtures .wabblespec/state/experiments/fixtures/my-candidate-v1/fixtures.json \\
         --seed 4202 \\
         --dev-ratio 0.2
 
     # Generate golden.json scaffold:
     python .wabblespec/engine/shared/scripts/fixture-split.py golden \\
-        --fixtures .wabblespec/experiments/fixtures/my-candidate-v1/fixtures.json \\
+        --fixtures .wabblespec/state/experiments/fixtures/my-candidate-v1/fixtures.json \\
         --outcome-field expected_outcome \\
         --developer-outcome false_completion \\
         --metric false_completion_rate
 
     # Both in one pass:
     python .wabblespec/engine/shared/scripts/fixture-split.py all \\
-        --fixtures .wabblespec/experiments/fixtures/my-candidate-v1/fixtures.json \\
+        --fixtures .wabblespec/state/experiments/fixtures/my-candidate-v1/fixtures.json \\
         --seed 4202 \\
         --dev-ratio 0.2
 
     # Validate an existing split:
     python .wabblespec/engine/shared/scripts/fixture-split.py validate \\
-        --fixtures .wabblespec/experiments/fixtures/my-candidate-v1/fixtures.json
+        --fixtures .wabblespec/state/experiments/fixtures/my-candidate-v1/fixtures.json
 
     # Dry run:
     python .wabblespec/engine/shared/scripts/fixture-split.py all ... --dry-run

@@ -25,7 +25,7 @@ Usage:
         --check "V-01:PASS:File exists and parses" \\
         --check "V-02:PASS:All required sections present" \\
         --verified-at 2026-05-25T14:00:00Z \\
-        --out .wabblespec/receipts/verifier-receipt-seed-run-20260525xx.json
+        --out .wabblespec/state/receipts/verifier-receipt-seed-run-20260525xx.json
 
     # Executor receipt:
     python .wabblespec/engine/shared/scripts/receipt-writer.py \\
@@ -38,7 +38,7 @@ Usage:
         --files-written ".wabblespec/engine/shared/references/foo.md" \\
         --delta-class ADDITIVE \\
         --summary "Wrote foo.md and bar.md" \\
-        --out .wabblespec/receipts/executor-receipt-seed-run-20260525xx.json
+        --out .wabblespec/state/receipts/executor-receipt-seed-run-20260525xx.json
 
     # Recipe receipt:
     python .wabblespec/engine/shared/scripts/receipt-writer.py \\
@@ -48,7 +48,7 @@ Usage:
         --target Framework --platform CLI \\
         --complexity Low --confidence 0.97 \\
         --detection-method explicit-instruction \\
-        --out .wabblespec/receipts/recipe-receipt-seed-run-20260525xx.json
+        --out .wabblespec/state/receipts/recipe-receipt-seed-run-20260525xx.json
 
     # Print to stdout instead of writing:
     python .wabblespec/engine/shared/scripts/receipt-writer.py --type verifier ... --out -

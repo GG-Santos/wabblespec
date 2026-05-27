@@ -7,7 +7,7 @@ License-safe: implements algorithm from paper formulas, not from source code.
 
 WabbleSpec adaptation:
   - Learning signal: Verifier PASS/FAIL receipt instead of thumbs up/down
-  - Persists learned profiles to .wabblespec/memory/learned-params/
+  - Persists learned profiles to .wabblespec/state/memory/learned-params/
   - Context types: six WabbleSpec types (from context-tuner.py)
   - No model names anywhere (I6 compliance)
   - Cold start: 3 receipts minimum per context type before adjustments apply

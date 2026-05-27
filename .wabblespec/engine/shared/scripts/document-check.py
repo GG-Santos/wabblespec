@@ -29,7 +29,7 @@ Usage:
 
     # Check a spec file for required sections:
     python .wabblespec/engine/shared/scripts/document-check.py \\
-        --file .wabblespec/plans/task-card.md \\
+        --file .wabblespec/state/plans/task-card.md \\
         --type spec
 
     # Check a SKILL.md for quality-floor structure:

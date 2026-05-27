@@ -6,7 +6,7 @@ requiring Claude to reason about the JSON structure from scratch).
 
 Writes:
   .wabblespec/recipe.json
-  .wabblespec/receipts/recipe-receipt-{session_id}.json
+  .wabblespec/state/receipts/recipe-receipt-{session_id}.json
 
 Usage:
     python .wabblespec/engine/shared/scripts/recipe-writer.py \\
