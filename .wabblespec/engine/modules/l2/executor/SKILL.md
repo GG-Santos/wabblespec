@@ -26,6 +26,17 @@ Works through the wave plan from Decompose, wave by wave in order. Before each w
 
 ## Inputs
 
+Load inputs in tier order to keep the KV-cache warm across waves:
+
+| Tier | Content |
+|---|---|
+| stable | Framework invariants, Guard policy — loaded once, never evicted |
+| context | Task card, wave plan, scope.md — loaded at session start, refreshed if updated |
+| volatile | Prior wave receipts, active evidence drawers — loaded per wave, cleared after |
+
+Full tier placement rules: `.wabblespec/engine/shared/references/system-prompt-tiers.md`.
+
+Canonical input paths:
 - `.wabblespec/state/plans/current-wave-plan.md` (locked wave plan)
 - `.wabblespec/state/plans/task-card.md` (spec ground truth)
 - `.wabblespec/scope.md`
@@ -167,8 +178,20 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 | SOFT | Retry once. If retry fails, escalate to HARD. |
 | HARD | Halt wave. Human-confirmed rollback to prior checkpoint. |
 | DEPENDENCY | Pause. Surface upstream failure. Await resolution. |
-| CONTEXT_EXHAUSTION | Compress context. Resume from last saved checkpoint. |
+| CONTEXT_EXHAUSTION | Compress context using protected-bounds rules (see below). Resume from last saved checkpoint. |
 | SPEC_VIOLATION | Pause. Loop back to Specify or ScopeFrame depending on violation. ACCEPTANCE_NOT_COVERED routes to acceptance test authorship. |
+
+### CONTEXT_EXHAUSTION — compression protocol
+
+When CONTEXT_EXHAUSTION fires, compress the conversation before resuming. Protected-bounds invariant:
+
+1. **Protect head** — task card, invariants, wave plan, Guard receipts. Never summarize.
+2. **Summarize middle** — completed prior turns. Prefix the summary with the compression sentinel (exact text in `.wabblespec/engine/shared/references/context-compression-bounds.md`).
+3. **Protect tail** — last 3+ turns. Never summarize. The most recent wave receipt and active tool calls must remain verbatim.
+
+Compression does not produce a receipt and does not advance the wave plan. The receipt chain continues from the last wave receipt written before compression. Resume at the step that was in progress when CONTEXT_EXHAUSTION was emitted.
+
+Full invariant: `.wabblespec/engine/shared/references/context-compression-bounds.md`
 | STALENESS_VIOLATION | Quarantine the evidence. Surface for fresh fetch before continuing. |
 
 ## Output contract
@@ -182,7 +205,9 @@ Base receipt schema. Extension fields:
   "verification_mode_used": "string",
   "revise_cycles": "integer — 0 to 3",
   "checkpoint_path": ".wabblespec/state/checkpoints/wave-N-timestamp/",
-  "deviations_found": ["string — ADDITIVE/COSMETIC deviations if any"]
+  "deviations_found": ["string — ADDITIVE/COSMETIC deviations if any"],
+  "compression_occurred": "boolean — true if CONTEXT_EXHAUSTION fired and compression was applied during this wave; omit or false otherwise",
+  "compression_count": "integer — number of compression events in this wave; omit when compression_occurred is false"
 }
 ```
 

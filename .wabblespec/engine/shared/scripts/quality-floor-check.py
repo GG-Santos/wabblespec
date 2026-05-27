@@ -217,7 +217,15 @@ def main():
     args = parser.parse_args()
 
     framework_path = args.framework
-    framework_dir = os.path.dirname(os.path.abspath(framework_path))
+    # Module paths in wabblespec.yaml are relative to the repo root (the directory
+    # that contains .wabblespec/), not to .wabblespec/ itself.  Using the yaml's
+    # parent directory as the base would double the .wabblespec/ prefix.
+    _yaml_abs = os.path.abspath(framework_path)
+    _yaml_dir = os.path.dirname(_yaml_abs)
+    # Repo root is one level above .wabblespec/ when using the default path.
+    # Fall back to _yaml_dir if the parent doesn't contain a .wabblespec/ marker.
+    _parent = os.path.dirname(_yaml_dir)
+    framework_dir = _parent if os.path.isdir(os.path.join(_parent, ".wabblespec")) else _yaml_dir
     data = load_framework(framework_path)
 
     qf = data.get("quality_floor", {})
