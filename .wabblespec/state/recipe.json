@@ -6,12 +6,13 @@
   "complexity": "Medium",
   "secondary_targets": [],
   "collapse_eligible": false,
+  "active_skills": [],
   "input_quality": {
     "vague": false,
     "broad": false,
     "enhanced": false,
     "sharpened": false
   },
-  "locked_at": "2026-05-28T12:05:22Z",
-  "session_id": "selective-skills-20260528"
+  "locked_at": "2026-05-28T12:21:54Z",
+  "session_id": "queue-orchestrator-20260528"
 }

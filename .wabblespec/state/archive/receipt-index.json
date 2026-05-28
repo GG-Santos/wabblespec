@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T12:19:43Z",
+  "last_updated": "2026-05-28T12:27:44Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -858,6 +858,20 @@
       "waves_planned": 2,
       "not_tested_items": 0,
       "summary": "Added --skills flag to recipe-writer.py (writes active_skills to recipe.json) and --filter-recipe flag to wabblespec-sync-skills.py (filters sync to declared skills only). Sessions without --skills default to all 100 skills."
+    },
+    {
+      "task_id": "queue-orchestrator-20260528",
+      "session_id": "queue-orchestrator-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T12:27:44Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-queue-orchestrator-20260528.json",
+      "version_previous": "0.43.0",
+      "version_new": "0.44.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 2,
+      "waves_planned": 2,
+      "not_tested_items": 0,
+      "summary": "Built queue-orchestrator.py: populate loads wave plan into queue, ready surfaces parallel-dispatchable tasks as JSON for Executor Agent calls, advance tracks wave completion (exit 0/1/2), run provides sequential fallback."
     }
   ]
 }

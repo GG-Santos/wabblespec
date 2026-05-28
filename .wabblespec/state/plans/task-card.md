@@ -1,44 +1,45 @@
 # Task Card
 
-**goal:** recipe-writer.py and wabblespec-sync-skills.py support selective skill preloading: a skills list in recipe.json filters which WabbleSpec skills are synced to .claude/skills/ for the session.
+**goal:** queue-orchestrator.py exists and provides populate/ready/advance subcommands that enable parallel wave task execution from a Claude Code Executor.
 **target:** Library-Package
 **complexity:** Medium
 **change_class:** ADDITIVE
-**locked_at:** 2026-05-28T15:30:00Z
-**session_id:** selective-skills-20260528
+**locked_at:** 2026-05-28T16:00:00Z
+**session_id:** queue-orchestrator-20260528
 
 ## Non-Goals
 
-- Session-start or stop-hook modifications
-- Modifying wabblespec.yaml schema or any SKILL.md files
+- SKILL.md modifications
+- Changes to wave-queue.py
+- Actual Agent tool invocation
 
 ## Assumptions
 
-- active_skills: [] means all skills — backward compatible default
-- Filter does not affect unmanaged external skills in .claude/skills/
+- queue-orchestrator.py delegates all queue writes to wave-queue.py
+- ready output is consumed by Executor to fire parallel Agent calls
 
 ## Acceptance Criteria
 
-### AC1 — recipe-writer writes active_skills
+### AC1 — ready outputs parallel manifest
 
-Given recipe-writer.py is invoked with --skills executor --skills verifier
-When recipe.json is written
-Then active_skills field contains exactly executor and verifier
+Given a queue exists with wave 1 all PASS and wave 2 PENDING
+When ready is run
+Then outputs JSON array of wave-2 tasks ready to claim in parallel
 
-### AC2 — sync honors filter
+### AC2 — advance reports wave status
 
-Given wabblespec-sync-skills.py is invoked with --filter-recipe pointing to a recipe with active_skills=[executor,verifier]
-When sync runs
-Then only executor and verifier are synced; other WabbleSpec skills are not copied; external skills untouched
+Given queue exists with all waves PASS
+When advance is run
+Then exits 0 and prints DONE; exits 1 when work remains; exits 2 on any FAIL
 
-### AC3 — sync default unchanged
+### AC3 — populate wraps wave-queue
 
-Given wabblespec-sync-skills.py is invoked without --filter-recipe
-When sync runs
-Then all 100 WabbleSpec skills are synced exactly as before
+Given a wave plan exists
+When populate is run with session-id and wave-plan path
+Then queue is created with correct task count and all tasks PENDING
 
-### AC4 — CLAUDE.md documented
+### AC4 — script parses cleanly
 
-Given CLAUDE.md is opened for edit
-When the selective preloading pattern is added
-Then --filter-recipe usage and the active_skills field are described in the Key Scripts section
+Given no queue exists
+When queue-orchestrator.py --help is run
+Then exits 0 with all subcommands listed; no import errors

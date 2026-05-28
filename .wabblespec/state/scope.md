@@ -2,25 +2,24 @@
 
 **target:** Library-Package
 **complexity:** Medium
-**locked_at:** 2026-05-28T15:30:00Z
-**session_id:** selective-skills-20260528
+**locked_at:** 2026-05-28T16:00:00Z
+**session_id:** queue-orchestrator-20260528
 
 ## In Scope
 
-- Add --skills flag to recipe-writer.py writing active_skills to recipe.json
-- Add --filter-recipe flag to wabblespec-sync-skills.py to honor active_skills list
-- Update CLAUDE.md to document the selective preloading pattern
+- queue-orchestrator.py with populate/ready/advance/status/run subcommands
+- CLAUDE.md entry for the new script
 
 ## Out of Scope
 
-- Session-start or stop-hook modifications
-- Modifying wabblespec.yaml schema or any SKILL.md files
+- SKILL.md modifications
+- Changes to wave-queue.py
+- Actual Agent tool invocation (that remains in Claude Code Executor)
 
 ## Assumptions
 
-- active_skills: [] (empty) means all skills — backward compatible default
-- Filter does not remove unmanaged external skills from .claude/skills/
-- Stale removal still applies only to WabbleSpec-managed skills not in the filter list
+- queue-orchestrator.py delegates queue writes to wave-queue.py — no duplicate lock logic
+- ready command output is consumed by Executor skill to fire parallel Agent calls
 
 ## Scope Change Log
 
