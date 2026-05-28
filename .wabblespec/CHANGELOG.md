@@ -1724,3 +1724,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-selective-skills-20260528.json
 - waves: 2 completed
 - verification: all waves PASS
+
+---
+
+## [0.44.0] — 2026-05-28T12:27:44Z
+
+### queue-orchestrator.py — parallel wave coordinator
+
+### Changed
+- Built queue-orchestrator.py: populate loads wave plan into queue, ready surfaces parallel-dispatchable tasks as JSON for Executor Agent calls, advance tracks wave completion (exit 0/1/2), run provides sequential fallback.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-queue-orchestrator-20260528.json
+- waves: 2 completed
+- verification: all waves PASS

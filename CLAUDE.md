@@ -28,6 +28,7 @@ All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Requ
 **Receipt store:**
 - `receipt-db.py` — DuckDB store; `init`, `import`, `query`, `stats`, `export` subcommands
 - `wave-queue.py` — file-locked parallel wave task queue
+- `queue-orchestrator.py` — parallel wave coordinator; `populate` loads queue from wave plan, `ready` outputs JSON of tasks for parallel Agent dispatch, `advance` checks progress (exit 0=done, 1=pending, 2=fail), `run` for sequential fallback
 
 **Analysis and validation:**
 - `quality-floor-check.py` — Gate 1 + Gate 2 for all 100 modules; `--verbose` for full detail
