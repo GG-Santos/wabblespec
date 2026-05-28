@@ -1,27 +1,17 @@
 {
   "target": "Library-Package",
-  "detection_method": "user-declaration",
-  "confidence": 0.95,
-  "complexity": "Medium",
+  "platform": "Library-Package",
+  "detection_method": "explicit-instruction",
+  "confidence": 0.97,
+  "complexity": "Low",
   "secondary_targets": [],
-  "collapse_eligible": false,
-  "locked_at": "2026-05-28T11:20:00Z",
-  "session_id": "toprank-integration-phase2-T3",
-  "cold_start_verified": true,
+  "collapse_eligible": true,
   "input_quality": {
     "vague": false,
     "broad": false,
     "enhanced": false,
     "sharpened": false
   },
-  "collapse_assessment": [
-    { "module_id": "ground",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "recipe",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "scope-frame", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "specify",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "executor",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "guard",       "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
-  ]
+  "locked_at": "2026-05-28T03:48:15Z",
+  "session_id": "phase1-root-cleanup-20260528"
 }
