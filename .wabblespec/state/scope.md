@@ -15,6 +15,7 @@
 - Fix C3 archive.py wabble-sound.py path and C4 CLAUDE.md version/module-count drift
 - Fix high tier: CLI flag unification, entity-graph regen, doc/skill path drift, orphan template disposition, memory-bootstrap dedup
 - Wire doctor as on_archive daemon job and advisory (non-blocking) Guard layer
+- Establish a permanent authority owner for shared framework infrastructure (engine/shared/**, wabblespec.yaml, CLAUDE.md, daemon-config, the Guard module) so Framework self-builds pass Guard Layer 4 (finding #29, surfaced by Executor Wave 1)
 
 ## Out of Scope
 
@@ -29,8 +30,10 @@
 - Python 3.8+ with pyyaml and duckdb available
 - Reviewer gates the Plan stage before Executor since Guard is invariant-enforcing
 - H1 confidence unification is done additively with a deprecation window, keeping the overall delta ADDITIVE
+- Finding #29's authority bootstrap needs a one-time human Attestation (root of trust cannot be self-granted); rescope makes the owner permanent and scopes the Attestation to a single governance edit
 
 ## Scope Change Log
 
 | timestamp | change | triggered_by |
 |---|---|---|
+| 2026-05-28T14:18:38Z | Added finding #29 (shared-infra authority owner) + AC8 to scope | Executor Wave 1 blocked at Guard Layer 4; human chose Pause + rescope |

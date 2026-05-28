@@ -1,6 +1,7 @@
 # Task Card
 
-**goal:** A wabblespec-doctor.py drift detector exists and is wired as an on_archive daemon and an advisory Guard layer, all five schema gaps are closed, and findings C1-C4 plus the high-tier drift items are fixed and verified.
+**goal:** A wabblespec-doctor.py drift detector exists and is wired as an on_archive daemon and an advisory Guard layer, all five schema gaps are closed, findings C1-C4 plus the high-tier drift items are fixed and verified, and a permanent authority owner for shared framework infrastructure (finding #29) is established so Framework self-builds pass Guard Layer 4.
+**revised_at:** 2026-05-28T14:18:38Z (rescope: finding #29 added after Executor Wave 1 blocked at Guard Layer 4 — no authority owner for shared framework infra)
 **target:** Framework
 **complexity:** High
 **change_class:** ADDITIVE
@@ -20,6 +21,7 @@
 - Python 3.8+ with pyyaml and duckdb available
 - Reviewer gates the Plan stage before Executor since Guard is invariant-enforcing
 - H1 confidence unification is additive with a deprecation window, keeping the overall delta ADDITIVE
+- Establishing the shared-infra authority owner (finding #29) requires a one-time human Attestation for the first governance edit — a root of trust cannot be self-granted. Rescope scopes that Attestation to a single authority-defining edit and makes the owner permanent (vs. a blanket session grant).
 
 ## Acceptance Criteria
 
@@ -64,3 +66,9 @@ Then archive.py resolves wabble-sound.py and CLAUDE.md states version 0.45.0 and
 Given no automated drift detection exists
 When doctor is added to daemon-config on_archive and as an advisory Guard layer
 Then an Archive run triggers the doctor and Guard surfaces its findings without blocking
+
+### AC8 — shared-infra authority owner established (finding #29)
+
+Given no module's authority.owns covers shared framework infrastructure (engine/shared/**, wabblespec.yaml, CLAUDE.md, daemon-config, the Guard module), so a Framework self-build fails Guard Layer 4
+When a permanent framework-maintenance authority owner is defined (bootstrapped by a one-time Attestation) covering the shared-infra paths the hardening waves must write
+Then guard-check.py authority --module <framework-maintenance owner> --files <each subsequent wave's shared-infra outputs> returns PASS for every remaining wave
