@@ -4,7 +4,7 @@ Defines what Recipe does when its expected upstream artifacts are absent.
 
 ## Absent: recipe.json
 
-Condition: `.wabblespec/recipe.json` does not exist, or `session_id` does not match the current session.
+Condition: `.wabblespec/state/recipe.json` does not exist, or `session_id` does not match the current session.
 Detection: File read returns 404, or `session_id` field mismatches.
 Action: Run detection scan from scratch (Step 2 in SKILL.md). Do not error — Recipe is the entry gate, not a consumer.
 Output: Fresh `recipe.json` with detection_method reflecting how target was found.

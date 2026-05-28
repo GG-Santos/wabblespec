@@ -4,7 +4,7 @@ Defines what ScopeFrame does when its expected upstream artifacts are absent.
 
 ## Absent: recipe.json
 
-Condition: `.wabblespec/recipe.json` does not exist or is stale.
+Condition: `.wabblespec/state/recipe.json` does not exist or is stale.
 Detection: File read returns 404 or session_id mismatch.
 Action: Surface DEPENDENCY error naming Recipe. ScopeFrame cannot declare scope boundaries without a declared build target.
 Do NOT: Infer scope from the user message alone.
@@ -18,7 +18,7 @@ Do NOT: Proceed without recipe-receipt confirmed.
 
 ## Absent: scope.md
 
-Condition: `.wabblespec/scope.md` does not exist (first run).
+Condition: `.wabblespec/state/scope.md` does not exist (first run).
 Detection: File read returns 404.
 Action: This is the expected cold-start condition — ScopeFrame creates scope.md on first run. Derive scope from recipe.json target and task card input.
 Output: Fresh `scope.md` with in-scope and out-of-scope sections populated from first principles.

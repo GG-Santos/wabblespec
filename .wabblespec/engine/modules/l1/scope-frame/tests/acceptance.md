@@ -25,7 +25,7 @@ Then Out of Scope contains at least one explicitly excluded item (never empty).
 Then Assumptions contains at least one entry (every task has at least one assumption).
 Then the drafted scope is presented to the user for confirmation.
 Then scope.md is NOT written until the user explicitly confirms.
-Then scope.md is written to `.wabblespec/scope.md` after confirmation.
+Then scope.md is written to `.wabblespec/state/scope.md` after confirmation.
 Then a receipt is written with `user_confirmed: true`.
 
 ## user_confirmed must be true

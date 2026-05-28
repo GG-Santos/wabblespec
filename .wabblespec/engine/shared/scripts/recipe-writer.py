@@ -5,7 +5,7 @@ Replaces the manual Recipe phase file writes (two Write tool calls, each
 requiring Claude to reason about the JSON structure from scratch).
 
 Writes:
-  .wabblespec/recipe.json
+  .wabblespec/state/recipe.json
   .wabblespec/state/receipts/recipe-receipt-{session_id}.json
 
 Usage:

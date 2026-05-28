@@ -33,13 +33,13 @@ Scans the project for detection signals in priority order. Declares a build targ
 
 - Project directory (file structure, config files, design documents)
 - Opening user message
-- `.wabblespec/recipe.json` (if it exists)
+- `.wabblespec/state/recipe.json` (if it exists)
 
 ## How to do it
 
 ### Step 1 — Check for existing recipe
 
-Read `.wabblespec/recipe.json`. If it exists and `session_id` matches the current session, load it, write a receipt, and stop. Target already declared.
+Read `.wabblespec/state/recipe.json`. If it exists and `session_id` matches the current session, load it, write a receipt, and stop. Target already declared.
 
 ### Step 1b — Check for session checkpoints
 
@@ -60,7 +60,7 @@ Work through signals in priority order. Stop at the first confident match (confi
 
 | Priority | Signal | Action |
 |---|---|---|
-| 1 | Existing `.wabblespec/recipe.json` | Load if session_id matches |
+| 1 | Existing `.wabblespec/state/recipe.json` | Load if session_id matches |
 | 2 | Design document present (`GDD.md`, `PRD.md`, `FDS.md`) | Declare target from document type |
 | 3 | Platform config files | See `rules/target-detection.md` |
 | 4 | Directory structure patterns | See `rules/target-detection.md` |
@@ -144,7 +144,7 @@ Read `collapse_eligible` from each module's `skill-rules.json`. Write `collapse_
 
 ### Step 4 — Write recipe.json
 
-Write to `.wabblespec/recipe.json`. Structure in output contract below.
+Write to `.wabblespec/state/recipe.json`. Structure in output contract below.
 
 ### Step 5 — Write receipt
 
@@ -167,7 +167,7 @@ Report to user: target, detection method, confidence, complexity level. One para
 
 ## Output contract
 
-**recipe.json** (`.wabblespec/recipe.json`):
+**recipe.json** (`.wabblespec/state/recipe.json`):
 
 ```json
 {

@@ -25,7 +25,7 @@ Reads the recipe.json target and any opening context. Produces `scope.md` declar
 
 ## Inputs
 
-- `.wabblespec/recipe.json` (target, complexity)
+- `.wabblespec/state/recipe.json` (target, complexity)
 - Opening user message and any attached documents
 - Any existing spec artifacts (if re-triggering at P2+ stage)
 
@@ -62,7 +62,7 @@ Show the drafted scope to the user. Ask: "Does this match what you intended?" Ac
 
 ### Step 4 — Write scope.md
 
-Write to `.wabblespec/scope.md`. See output contract for structure.
+Write to `.wabblespec/state/scope.md`. See output contract for structure.
 
 ### Step 5 — Write receipt
 
@@ -70,7 +70,7 @@ Write to `.wabblespec/state/receipts/scopeframe-receipt.json`. Extension fields:
 
 ## Output contract
 
-**scope.md** (`.wabblespec/scope.md`):
+**scope.md** (`.wabblespec/state/scope.md`):
 
 ```markdown
 # Session Scope

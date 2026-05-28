@@ -41,7 +41,7 @@
     "reads": [
       ".wabblespec/state/plans/current-wave-plan.md",
       ".wabblespec/state/plans/task-card.md",
-      ".wabblespec/scope.md",
+      ".wabblespec/state/scope.md",
       ".wabblespec/state/receipts/*",
       "modules/*/tests/acceptance.md"
     ]

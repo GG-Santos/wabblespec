@@ -32,7 +32,7 @@ Guard cannot be skipped. A wave that proceeds without Guard PASS is an I4 violat
 ## Inputs
 
 - Wave inputs from Executor (artifacts, task card sections, scope references)
-- `.wabblespec/scope.md`
+- `.wabblespec/state/scope.md`
 - `.wabblespec/engine/shared/references/invariants.md`
 - All prior wave receipts in `.wabblespec/state/receipts/` (for I10 chain check)
 - Module `skill-rules.json` files (for authority check)

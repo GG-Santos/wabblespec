@@ -31,8 +31,8 @@ Reads the locked task card. Confirms complexity (Low/Medium/High). Produces a wa
 ## Inputs
 
 - `.wabblespec/state/plans/task-card.md` (locked task card)
-- `.wabblespec/scope.md` (boundary enforcement)
-- `.wabblespec/recipe.json` (target, collapse_eligible)
+- `.wabblespec/state/scope.md` (boundary enforcement)
+- `.wabblespec/state/recipe.json` (target, collapse_eligible)
 - `.wabblespec/engine/shared/references/invariants.md`
 
 ## How to do it

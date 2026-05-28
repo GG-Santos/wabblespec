@@ -31,7 +31,7 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 - Wave output artifacts (produced by the completed wave)
 - Wave plan entry (declared `outputs`, `verification_mode`, `checkpoint`)
 - `.wabblespec/state/plans/task-card.md` (spec ground truth — acceptance criteria)
-- `.wabblespec/scope.md` (boundary reference)
+- `.wabblespec/state/scope.md` (boundary reference)
 
 ## How to do it
 

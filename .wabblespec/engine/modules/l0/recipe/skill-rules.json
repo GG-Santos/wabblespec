@@ -22,7 +22,7 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/recipe.json",
+      ".wabblespec/state/recipe.json",
       ".wabblespec/state/receipts/recipe-receipt.json"
     ],
     "reads": [

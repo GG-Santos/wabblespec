@@ -30,8 +30,8 @@ Reads the locked scope and user intent. Produces a one-page task card with: goal
 
 ## Inputs
 
-- `.wabblespec/scope.md` (locked scope)
-- `.wabblespec/recipe.json` (target, complexity)
+- `.wabblespec/state/scope.md` (locked scope)
+- `.wabblespec/state/recipe.json` (target, complexity)
 - User task description
 
 ## How to do it

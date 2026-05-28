@@ -30,7 +30,7 @@ Violation action: SPEC_VIOLATION — route to Reviewer. Collapse is only permitt
 
 Check: `recipe.json` exists and `target` field is set.
 
-Pass condition: `.wabblespec/recipe.json` exists, `target` is a valid enum value, `confidence >= 0.8`.
+Pass condition: `.wabblespec/state/recipe.json` exists, `target` is a valid enum value, `confidence >= 0.8`.
 
 Violation action: SPEC_VIOLATION — stop, run Recipe.
 

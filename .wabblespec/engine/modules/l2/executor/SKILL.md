@@ -46,7 +46,7 @@ Full tier placement rules: `.wabblespec/engine/shared/references/system-prompt-t
 Canonical input paths:
 - `.wabblespec/state/plans/current-wave-plan.md` (locked wave plan)
 - `.wabblespec/state/plans/task-card.md` (spec ground truth)
-- `.wabblespec/scope.md`
+- `.wabblespec/state/scope.md`
 - All prior wave receipts (for I10 chain)
 
 ## How to do it
