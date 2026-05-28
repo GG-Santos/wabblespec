@@ -1,7 +1,7 @@
 {
   "module": "recipe",
   "layer": "L0",
-  "session_id": "toprank-integration-phase1",
+  "session_id": "toprank-integration-phase2-T2",
   "status": "PASS",
   "target": "Library-Package",
   "detection_method": "user-declaration",
@@ -9,6 +9,7 @@
   "complexity": "Medium",
   "collapse_eligible": false,
   "cold_start_verified": true,
+  "checkpoint_note": "checkpoints from prior session toprank-integration-phase1 exist but that task is archived; starting fresh",
   "input_quality": {
     "vague": true,
     "broad": false,
@@ -25,5 +26,5 @@
     { "module_id": "verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
   ],
-  "timestamp": "2026-05-28T10:30:00Z"
+  "timestamp": "2026-05-28T11:00:00Z"
 }

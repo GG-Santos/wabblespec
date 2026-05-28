@@ -11,7 +11,7 @@
   "input_quality": {
     "vague": true,
     "broad": false,
-    "enhanced": false,
+    "enhanced": true,
     "sharpened": false
   },
   "collapse_assessment": [
