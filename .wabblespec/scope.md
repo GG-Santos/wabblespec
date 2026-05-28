@@ -2,32 +2,32 @@
 
 **target:** Library-Package
 **complexity:** Medium
-**locked_at:** 2026-05-28T11:02:00Z
-**session_id:** toprank-integration-phase2-T2
+**locked_at:** 2026-05-28T11:25:00Z
+**session_id:** toprank-integration-phase2-T3
 
 ## In Scope
 
-- Create `.wabblespec/engine/shared/scripts/llm-eval.py` — three-dimension skill-section quality scorer (clarity / completeness / actionability, 1–5, min gate 4/5). Model resolved from `WS_ANALYSIS_MODEL` env var or `--model` flag — no hardcoded model name.
-- Create `.wabblespec/state/evals/` directory and append-only `eval-log.json` (initialized empty on first script run)
-- Add `## Reference Routing` section to `.claude/skills/benchmark/SKILL.md` with one entry pointing to `llm-eval.py`
+- Extend Instinct SKILL.md `## Output contract` pattern block with three new fields: `Expected impact`, `Actionability score`, `Learned multiplier` — each with documented value vocabulary
+- Add note in Instinct SKILL.md that `Expected impact` is populated by the human reviewer at validation time, not by automated scoring
+- Add all three new fields (null defaults) to each of the 4 existing patterns in `instinct-observations.md`
+- Mark each existing pattern with `requires_scoring: true` on the new fields to signal they need human scoring before Synth can read them
 
 ## Out of Scope
 
-- Hardcoding any model name in `llm-eval.py` (I6 violation)
-- Copying toprank `call_judge` or `_get_client` verbatim
-- Integrating `llm-eval.py` into Benchmark's automated execution path (follow-on task)
-- T3 (Instinct drawer field rename) — separate session
-- T6 (Guard safety taxonomy) — Guard SKILL.md still locked under wave-checkpoint-v1
-- Any writes outside the three declared paths above
+- Retroactive scoring of existing patterns (null defaults only; no human scoring applied in this task)
+- Modifying Synth SKILL.md or any Synth-side gate logic
+- Updating memory-mine.py or any Instinct automation to emit the new fields (separate task)
+- Touching any existing field (Human-validated, Confidence, Type, Evidence, Occurrences)
+- Guard SKILL.md, T5 (allowed-tools enforcement), T6 (Guard safety taxonomy)
 
 ## Assumptions
 
-- `runtime-state.json` at `.wabblespec/state/runtime/runtime-state.json` confirms `analysis: available=true` (verified)
-- Model name is supplied externally via `WS_ANALYSIS_MODEL` env var or `--model` flag; script exits with a clear error if neither is provided
-- Python `anthropic` SDK available in the environment where `llm-eval.py` runs
-- Benchmark SKILL.md has no existing `## Reference Routing` section (confirmed from prior session)
-- Eval-log schema: `[{timestamp, skill_path, section, scores: {clarity, completeness, actionability}, reasoning, passed}, ...]`
-- This is a framework authoring task — writes to `.wabblespec/` are permitted (not a product-space task; I11 does not apply)
+- Synth SKILL.md audit (completed during ScopeFrame): only hardcoded field reference is `Human-validated` — adding three new fields is safe
+- instinct-observations.md contains exactly 4 patterns — confirmed
+- No active Instinct run is concurrently writing to instinct-observations.md
+- `requires_scoring: true` is a documentation convention, not a machine-enforced field
+- This is a framework authoring task — writes to `.wabblespec/state/memory/` and `.claude/skills/instinct/` are permitted (I11 product-space restriction does not apply)
+- VERSION bump to 0.27.0 on Archive (ADDITIVE)
 
 ## Scope Change Log
 
