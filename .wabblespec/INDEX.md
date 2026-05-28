@@ -7,7 +7,7 @@ Module registry and session index.
 ## Active Modules
 
 <!-- auto-updated: index-update.py -->
-104 modules registered in `framework.yaml`. See `framework.yaml` for canonical registry — this file tracks session-level state only.
+103 modules registered in `framework.yaml`. See `framework.yaml` for canonical registry — this file tracks session-level state only.
 <!-- end auto-updated -->
 
 ## Session State
@@ -39,7 +39,7 @@ All 99 modules across L0-L8 have `rules/cold-start.md`. Coverage complete as of 
 ## Quality Floor
 
 <!-- auto-updated: index-update.py -->
-Quality floor status: see `quality-floor-check.py` output. (104 modules registered)
+Quality floor status: see `quality-floor-check.py` output. (103 modules registered)
 <!-- end auto-updated -->
 
 ## Witness

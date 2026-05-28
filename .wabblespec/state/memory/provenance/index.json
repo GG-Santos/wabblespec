@@ -48,7 +48,7 @@
       },
       "written_by": "memory",
       "written_at": "2026-05-19T09:00:00Z",
-      "last_updated": "2026-05-21T12:15:00Z",
+      "last_updated": "2026-05-28T23:15:27Z",
       "confidence": 0.3312,
       "staleness_state": "SUPERSEDED",
       "last_verified": null,
@@ -58,10 +58,10 @@
       "cascade_events": [],
       "contradiction_with": [],
       "deletion": {
-        "deleted": false,
-        "deleted_at": null,
-        "deleted_by": null,
-        "reason": null,
+        "deleted": true,
+        "deleted_at": "2026-05-28T23:15:27Z",
+        "deleted_by": "forget",
+        "reason": "SUPERSEDED by receipt-schema-design-20260521; confidence 0.0005; closet archive retained",
         "archived_to": null
       }
     },

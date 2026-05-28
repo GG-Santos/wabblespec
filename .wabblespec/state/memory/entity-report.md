@@ -1,8 +1,8 @@
 # Entity Graph Report
 
-> Generated: 2026-05-28T23:02:05.755642+00:00
-> Drawers scanned: 50
-> Nodes: 159  Edges: 839
+> Generated: 2026-05-28T23:42:10.859593+00:00
+> Drawers scanned: 49
+> Nodes: 159  Edges: 835
 
 ## Entity Type Breakdown
 
@@ -18,13 +18,13 @@
 | executor | module | 50 | 10 |
 | instinct | module | 49 | 10 |
 | specify | module | 45 | 7 |
-| recipe | module | 42 | 7 |
 | gateway-security | module | 42 | 4 |
 | augment | module | 41 | 7 |
 | verifier | module | 40 | 7 |
 | polish | module | 40 | 4 |
+| recipe | module | 40 | 6 |
 | autopilot | module | 38 | 4 |
-| archive | module | 38 | 7 |
+| archive | module | 36 | 6 |
 | document | module | 34 | 6 |
 | memory | module | 33 | 4 |
 | synth | module | 29 | 4 |

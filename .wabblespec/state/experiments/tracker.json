@@ -35,7 +35,7 @@
       "requeue_decision": null,
       "fixture_set": ".wabblespec/experiments/fixtures/acceptance-test-executor-enforcement-v1/",
       "golden_ref": ".wabblespec/experiments/fixtures/acceptance-test-executor-enforcement-v1/golden.json",
-      "notes": "All 8 held-out cases passed. Augmented executor correctly blocks module-build tasks without acceptance.md and correctly skips the check for non-module-build task types. Null task_type handled gracefully. Empty acceptance.md (file exists, content empty) passes the existence check correctly \u2014 content validation is Verifier's concern. Missed test rate on held-out set: 0/8 = 0.0. Threshold met.",
+      "notes": "All 8 held-out cases passed. Augmented executor correctly blocks module-build tasks without acceptance.md and correctly skips the check for non-module-build task types. Null task_type handled gracefully. Empty acceptance.md (file exists, content empty) passes the existence check correctly — content validation is Verifier's concern. Missed test rate on held-out set: 0/8 = 0.0. Threshold met.",
       "forge_status": "PROMOTED",
       "forge_at": "2026-05-25T14:37:42Z",
       "forge_receipt": ".wabblespec/receipts/forge-acceptance-test-executor-enforcement-v1-receipt.json"
@@ -118,7 +118,7 @@
       "notes": null,
       "forge_status": "PROMOTED",
       "forge_at": "2026-05-26T02:29:30Z",
-      "forge_receipt": null
+      "forge_receipt": ".wabblespec/state/receipts/forge-archive-conditional-nexus-refresh-v1-receipt.json"
     },
     {
       "blueprint_id": "recipe-collapse-assessment-v1",
@@ -138,7 +138,7 @@
       "notes": null,
       "forge_status": "PROMOTED",
       "forge_at": "2026-05-26T02:35:57Z",
-      "forge_receipt": null
+      "forge_receipt": ".wabblespec/state/receipts/forge-recipe-collapse-assessment-v1-receipt.json"
     }
   ]
 }

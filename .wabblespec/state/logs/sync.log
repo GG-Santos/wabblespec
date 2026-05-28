@@ -371,3 +371,6 @@
 [2026-05-28T23:00:35Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-28T23:00:35Z
 [2026-05-28T23:00:40Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
 [2026-05-28T23:02:08Z] [LAPTOP-AHBS9745] [push] 33 file(s) changed: .wabblespec/engine/modules/l0/recipe/SKILL.md, .wabblespec/engine/modules/l0/recipe/rules/cold-start.md, .wabblespec/engine/modules/l0/recipe/rules/target-detection.md, .wabblespec/engine/modules/l0/recipe/skill-rules.json, .wabblespec/engine/modules/l1/decompose/SKILL.md ...
+[2026-05-28T23:02:09Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-28T23:02:09Z
+[2026-05-28T23:02:12Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
+[2026-05-28T23:42:21Z] [LAPTOP-AHBS9745] [push] 19 file(s) changed: .wabblespec/INDEX.md, .wabblespec/engine/modules/l2/framework-maintenance/SKILL.md, .wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py, .wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json, .wabblespec/recipe.json ...

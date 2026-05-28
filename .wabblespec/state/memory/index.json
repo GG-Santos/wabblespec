@@ -2,22 +2,12 @@
   "version": "1.0",
   "drawers": [
     {
-      "id": "receipt-schema-design-20260519",
-      "topic": "Receipt Schema Design",
-      "wing": "architecture",
-      "room": "receipt-schema",
-      "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260519.json",
-      "staleness_state": "SUPERSEDED",
-      "confidence": 0.0005,
-      "written_at": "2026-05-19T09:00:00Z"
-    },
-    {
       "id": "receipt-schema-design-20260521",
       "topic": "Receipt Schema Design",
       "wing": "architecture",
       "room": "receipt-schema",
       "path": "memory/wings/architecture/rooms/receipt-schema/drawers/receipt-schema-design-20260521.json",
-      "staleness_state": "NEEDS_REVERIFICATION",
+      "staleness_state": "FRESH",
       "confidence": 1.0,
       "written_at": "2026-05-21T12:15:00Z"
     },

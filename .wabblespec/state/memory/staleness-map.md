@@ -1,13 +1,12 @@
 # Staleness Map
 
-> Generated: 2026-05-28T23:02:05.503325+00:00
-> Drawers: 50
+> Generated: 2026-05-28T23:42:10.431803+00:00
+> Drawers: 49
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| receipt-schema-design-20260519 | Receipt Schema Design | architecture/receipt-schema | SUPERSEDED | 0.0005 | 2026-05-19T09:00:00Z |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
@@ -60,5 +59,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- SUPERSEDED: 1
 - FRESH: 49
