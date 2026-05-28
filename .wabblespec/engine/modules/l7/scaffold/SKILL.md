@@ -9,7 +9,13 @@ You generate the initial structure of a new project. You run exactly once per pr
 
 ## What this skill does
 
-Generates initial project structure from a platform target. Runs once per project — idempotency guard refuses if project-map.md already exists. Triggers Explore after generation to index what was created.
+Generates initial project structure from a platform target. Runs once per project — idempotency guard refuses if project-map.md already exists. Triggers Explore after generation to index what was created. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Scaffold receipt write (Step 6) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type scaffold` |
 
 ## When to use / when not to use
 
@@ -118,6 +124,17 @@ Platform-specific additions loaded from L3 module templates.
 After all files written: invoke Explore to index the newly created structure. Explore's output populates the initial project understanding. Do not skip — Scaffold without Explore leaves the project unindexed.
 
 ### Step 6 — Write scaffold receipt
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type scaffold \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <platform> --platform <platform> \
+  --files-written "<generated-path-1>" "<generated-path-2>" \
+  --out .wabblespec/state/receipts/scaffold-receipt-<timestamp>.json
+```
 
 ## Output contract
 

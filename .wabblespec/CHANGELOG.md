@@ -1632,3 +1632,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase10-standards-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.37.0] — 2026-05-28T09:03:20Z
+
+### Changed
+- Gap closure: skill-rules.json for ref-eval/comp/plan (100/100 quality floor); receipt-writer.py extended with scaffold/package/release/monitor/deploy types; scaffold/package/deploy/monitor SKILL.md wired to receipt-writer.py; Executor subagent calling pattern documented
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase-cleanup-20260528.json
+- waves: 1 completed
+- verification: all waves PASS

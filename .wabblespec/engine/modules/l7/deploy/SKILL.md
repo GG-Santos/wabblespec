@@ -9,6 +9,8 @@ You move a signed artifact from Package into a running environment. You verify t
 
 ## What this skill does
 
+Deploys a signed artifact to a target environment. Verifies artifact, checks prior environment receipt, runs health checks, and writes a deploy receipt via `receipt-writer.py`.
+
 ```
 dev → staging → production
 
@@ -18,6 +20,12 @@ Each hop requires:
   - Rollback plan declared in this invocation
   - Attestation required for production hop only
 ```
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Deploy receipt write (Step 6) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type deploy` |
 
 ## When to use
 
@@ -98,6 +106,17 @@ After deployment, run health checks before declaring success:
 If health check fails: execute rollback immediately. Write deploy receipt with `status: ROLLED_BACK`.
 
 ### Step 6 — Write deploy receipt
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type deploy \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS|FAIL \
+  --target <environment> \
+  --files-written "<artifact-deployed>" \
+  --out .wabblespec/state/receipts/deploy-receipt-<environment>-<timestamp>.json
+```
 
 ## Output contract
 

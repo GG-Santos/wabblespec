@@ -18,6 +18,7 @@ Works through the wave plan from Decompose, wave by wave in order. Before each w
 | Situation | Reference |
 |---|---|
 | Wave receipt write (step 5 per wave) and execution receipt write | `engine/shared/references/script-delegation-contract.md` |
+| Running Guard, Verifier, or Archive as subagents (optional — reduces orchestrator context) | `engine/shared/references/agents-architecture.md` |
 
 ## When to use / when not to use
 
@@ -88,7 +89,11 @@ The locked wave plan at `.wabblespec/state/plans/current-wave-plan.md` is the ro
 
 **2. Run Guard**
 
-Pass wave inputs to Guard. Wait for Guard receipt with `overall: "PASS"`. If Guard returns an error:
+**Option A — Inline (default):** Pass wave inputs to Guard. Wait for Guard receipt with `overall: "PASS"`.
+
+**Option B — Subagent (reduces orchestrator context):** Invoke the `wabblespec-guard` agent via the Agent tool with wave inputs as the prompt. Parse the returned JSON receipt with `agent-output-validator.py --type guard`. Write the validated JSON to the receipts directory.
+
+If Guard returns an error:
 - HARD → abort wave, do not proceed
 - SPEC_VIOLATION → surface to user, pause execution pending resolution
 - DEPENDENCY → surface upstream failure, pause and await resolution
@@ -119,7 +124,11 @@ If a deviation is discovered mid-wave:
 
 **4. Run Verifier**
 
-Invoke Verifier with: wave output artifacts + wave plan entry + task card. Verifier uses the `verification_mode` declared in the wave plan for this wave.
+**Option A — Inline (default):** Invoke Verifier with: wave output artifacts + wave plan entry + task card.
+
+**Option B — Subagent:** Invoke the `wabblespec-verifier` agent via the Agent tool. Parse returned JSON with `agent-output-validator.py --type verifier`. Write validated JSON to receipts directory.
+
+Verifier uses the `verification_mode` declared in the wave plan for this wave.
 
 Handle Verifier result:
 - PASS → write wave receipt, then append `"wave-<N>"` and the verification receipt stem to `required_receipts` in state.json, then advance to next wave

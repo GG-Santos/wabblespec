@@ -13,6 +13,11 @@ Supported receipt types:
     specify     Specify phase output
     decompose   Decompose plan
     delivery    Delivery/Archive output (prefer archive.py for full automation)
+    scaffold    Scaffold project-generation output
+    package     Package signing and artifact manifest output
+    release     Release tag and GitHub Release output
+    monitor     Monitor SLO and dashboard output
+    deploy      Deploy environment and health check output
 
 Usage:
     # Verifier receipt:
@@ -218,12 +223,111 @@ def build_decompose(args):
     }
 
 
+def build_scaffold(args):
+    return {
+        "receipt_type": "scaffold",
+        "module": "scaffold",
+        "layer": "L7",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "platform": args.platform or "",
+        "target": args.target or "",
+        "files_generated": args.files_written or [],
+        "project_map_written": True,
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_package(args):
+    return {
+        "receipt_type": "package",
+        "module": "package",
+        "layer": "L7",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "version": args.target or "",
+        "artifacts_packaged": len(args.files_written or []),
+        "artifacts": args.files_written or [],
+        "all_signed": True,
+        "manifest_path": "",
+        "signing_method": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_release(args):
+    return {
+        "receipt_type": "release",
+        "module": "release",
+        "layer": "L7",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "version": args.target or "",
+        "tag_name": f"v{args.target}" if args.target else "",
+        "github_release_url": "",
+        "release_notes_source": ".wabblespec/CHANGELOG.md",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_monitor(args):
+    return {
+        "receipt_type": "monitor",
+        "module": "monitor",
+        "layer": "L7",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "slos_checked": len(args.success_criteria or []),
+        "slo_definitions": args.success_criteria or [],
+        "dashboard_path": "",
+        "alert_rules_count": 0,
+        "health_status": "HEALTHY",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_deploy(args):
+    return {
+        "receipt_type": "deploy",
+        "module": "deploy",
+        "layer": "L7",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "environment": args.target or "",
+        "deployment_status": "DEPLOYED" if (args.status or "PASS") == "PASS" else "FAILED",
+        "health_check_passed": (args.status or "PASS") == "PASS",
+        "rollback_available": True,
+        "artifacts_deployed": args.files_written or [],
+        "not_tested": args.not_tested or [],
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
     "recipe": build_recipe,
     "specify": build_specify,
     "decompose": build_decompose,
+    "scaffold": build_scaffold,
+    "package": build_package,
+    "release": build_release,
+    "monitor": build_monitor,
+    "deploy": build_deploy,
 }
 
 

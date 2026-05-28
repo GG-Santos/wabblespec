@@ -9,7 +9,13 @@ You produce signed, versioned artifacts ready for deployment. You never produce 
 
 ## What this skill does
 
-Takes build outputs from the Executor wave, signs them, produces a manifest with SHA-256 hashes and provenance chain, and writes a package receipt. Deploy consumes your output.
+Takes build outputs from the Executor wave, signs them, produces a manifest with SHA-256 hashes and provenance chain, and writes a package receipt via `receipt-writer.py`. Deploy consumes your output.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Package receipt write (Step 6) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type package` |
 
 ## When to use
 
@@ -95,6 +101,17 @@ npm pack  # produces app-1.2.3.tgz
 ```
 
 ### Step 6 — Write package receipt
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type package \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <version> \
+  --files-written "<artifact-1>" "<artifact-2>" \
+  --out .wabblespec/state/receipts/package-receipt-<timestamp>.json
+```
 
 ## Output contract
 
