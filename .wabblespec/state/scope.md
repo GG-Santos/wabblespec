@@ -2,29 +2,25 @@
 
 **target:** Library-Package
 **complexity:** Medium
-**locked_at:** 2026-05-28T15:00:00Z
-**session_id:** ref-receipt-schemas-20260528
+**locked_at:** 2026-05-28T15:30:00Z
+**session_id:** selective-skills-20260528
 
 ## In Scope
 
-- Fix build_ref_eval field names and add missing defaulted fields
-- Fix build_ref_comp field names (execution_classification, coverage_rate, execution_gaps as dict)
-- Fix build_ref_plan field names (signal_items_found, backlog_size, ref_eval_verdict, integration_goal, risk_appetite)
-- Create ref-eval-receipt.extension.schema.json
-- Create ref-comp-receipt.extension.schema.json
-- Create ref-plan-receipt.extension.schema.json
+- Add --skills flag to recipe-writer.py writing active_skills to recipe.json
+- Add --filter-recipe flag to wabblespec-sync-skills.py to honor active_skills list
+- Update CLAUDE.md to document the selective preloading pattern
 
 ## Out of Scope
 
-- Adding new dedicated CLI flags for type-specific fields (SKILL.md CLIs use generic flags intentionally)
-- Modifying SKILL.md files or base receipt schema
-- Changes to any other receipt type
+- Session-start or stop-hook modifications
+- Modifying wabblespec.yaml schema or any SKILL.md files
 
 ## Assumptions
 
-- SKILL.md schemas are the authoritative field spec — no external schema files exist yet
-- All new fields use sensible defaults (0, false, empty string) when not settable via current CLI
-- receipt-writer.py runs without duckdb installed — upsert is silent-fail
+- active_skills: [] (empty) means all skills — backward compatible default
+- Filter does not remove unmanaged external skills from .claude/skills/
+- Stale removal still applies only to WabbleSpec-managed skills not in the filter list
 
 ## Scope Change Log
 

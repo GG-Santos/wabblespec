@@ -1,45 +1,44 @@
 # Task Card
 
-**goal:** receipt-writer.py correctly outputs all schema-declared fields for ref-eval, ref-comp, and ref-plan types with matching field names, types, and three schema JSON files created.
+**goal:** recipe-writer.py and wabblespec-sync-skills.py support selective skill preloading: a skills list in recipe.json filters which WabbleSpec skills are synced to .claude/skills/ for the session.
 **target:** Library-Package
 **complexity:** Medium
 **change_class:** ADDITIVE
-**locked_at:** 2026-05-28T15:00:00Z
-**session_id:** ref-receipt-schemas-20260528
+**locked_at:** 2026-05-28T15:30:00Z
+**session_id:** selective-skills-20260528
 
 ## Non-Goals
 
-- Adding new dedicated CLI flags for type-specific fields
-- Modifying SKILL.md files or base receipt schema
-- Changes to any other receipt type
+- Session-start or stop-hook modifications
+- Modifying wabblespec.yaml schema or any SKILL.md files
 
 ## Assumptions
 
-- SKILL.md schemas are the authoritative field spec
-- All new fields use sensible defaults when not settable via current CLI
+- active_skills: [] means all skills — backward compatible default
+- Filter does not affect unmanaged external skills in .claude/skills/
 
 ## Acceptance Criteria
 
-### AC1 — ref-eval fields correct
+### AC1 — recipe-writer writes active_skills
 
-Given receipt-writer.py --type ref-eval is invoked
-When output JSON is inspected
-Then all 16 SKILL.md fields present with correct names including reference_path, reference_type, benefits_identified, risks_identified, adapt_items, avoid_items, drawers_written, depth, report_path
+Given recipe-writer.py is invoked with --skills executor --skills verifier
+When recipe.json is written
+Then active_skills field contains exactly executor and verifier
 
-### AC2 — ref-comp fields correct
+### AC2 — sync honors filter
 
-Given receipt-writer.py --type ref-comp is invoked
-When output JSON is inspected
-Then fields are execution_classification (not verdict), coverage_rate (not coverage_score), execution_gaps as dict with critical/major/minor keys, improvements_beyond_plan as int
+Given wabblespec-sync-skills.py is invoked with --filter-recipe pointing to a recipe with active_skills=[executor,verifier]
+When sync runs
+Then only executor and verifier are synced; other WabbleSpec skills are not copied; external skills untouched
 
-### AC3 — ref-plan fields correct
+### AC3 — sync default unchanged
 
-Given receipt-writer.py --type ref-plan is invoked
-When output JSON is inspected
-Then fields are signal_items_found (not total_items_extracted), backlog_size, ref_eval_verdict, integration_goal, risk_appetite all present
+Given wabblespec-sync-skills.py is invoked without --filter-recipe
+When sync runs
+Then all 100 WabbleSpec skills are synced exactly as before
 
-### AC4 — schema files created
+### AC4 — CLAUDE.md documented
 
-Given no schema files existed before this session
-When three schema JSON files are written
-Then ref-eval-receipt.extension.schema.json, ref-comp-receipt.extension.schema.json, and ref-plan-receipt.extension.schema.json exist under .wabblespec/engine/shared/schemas/
+Given CLAUDE.md is opened for edit
+When the selective preloading pattern is added
+Then --filter-recipe usage and the active_skills field are described in the Key Scripts section
