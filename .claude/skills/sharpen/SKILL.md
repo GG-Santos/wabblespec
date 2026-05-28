@@ -9,7 +9,13 @@ Broad input produces scope drift. When the user's intent splits across multiple 
 
 ## What this skill does
 
-Receives the opening user message (already classified as broad by Recipe). Identifies competing interpretations of user intent (up to 3). Ranks them by specificity, feasibility, and available user signals. Presents them to the user for confirmation or selection. Produces a sharpened input statement and writes a sharpen receipt.
+Receives the opening user message (already classified as broad by Recipe). Identifies competing interpretations of user intent (up to 3). Ranks them by specificity, feasibility, and available user signals. Presents them to the user for confirmation or selection. Produces a sharpened input statement and delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Sharpen receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type sharpen` |
 
 ## When to use / when not to use
 
@@ -57,7 +63,15 @@ Sharpened input must make explicit which interpretation was selected. Open alter
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/state/receipts/sharpen-receipt-<timestamp>.json`. Schema: `modules/l1/sharpen/schemas/sharpen-receipt.schema.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type sharpen \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --summary "<interpretation selected>" \
+  --out .wabblespec/state/receipts/sharpen-receipt-<timestamp>.json
+```
 
 Pass sharpened input path to ScopeFrame as next step.
 

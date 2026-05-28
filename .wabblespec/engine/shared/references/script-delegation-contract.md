@@ -202,12 +202,17 @@ python .wabblespec/engine/shared/scripts/version-bump.py --set 1.0.0
 | release | L7 | Step 6 (release receipt) | `receipt-writer.py --type release` |
 | monitor | L7 | Step 7 (monitor receipt) | `receipt-writer.py --type monitor` |
 | deploy | L7 | Step 6 (deploy receipt) | `receipt-writer.py --type deploy` |
+| adversary | L2 | Step 3 (adversary receipt) | `receipt-writer.py --type adversary` |
+| grader | L2 | Step 5 (grader receipt) | `receipt-writer.py --type grader` |
+| nexus | L5 | Step 5 (nexus receipt) | `receipt-writer.py --type nexus` |
+| brainstorm | L1 | Step 4 (brainstorm receipt) | `receipt-writer.py --type brainstorm` |
+| enhance | L1 | Step 5 (enhance receipt) | `receipt-writer.py --type enhance` |
+| sharpen | L1 | Step 5 (sharpen receipt) | `receipt-writer.py --type sharpen` |
+| audit | L2 | Step 7 (audit receipt) | `receipt-writer.py --type audit` |
 
 ## Non-Delegated Receipt Types
 
-The following skills write module-specific receipts but their receipt types require custom schema support not yet in `receipt-writer.py`:
-
-`audit`, `adversary`, `grader`, `nexus`, `brainstorm`, `enhance`, `sharpen`
+All framework pipeline skills are now fully delegated. The only remaining non-delegated writes are bespoke schemas used by specialized research infrastructure (ref-eval, ref-comp, ref-plan) — these write to custom paths and their receipt formats are not in the standard pipeline.
 
 ---
 

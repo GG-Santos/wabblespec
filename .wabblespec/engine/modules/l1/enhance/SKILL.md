@@ -9,7 +9,13 @@ Vague input produces bad specs. Bad specs produce bad execution. You catch vague
 
 ## What this skill does
 
-Receives the opening user message (already classified as vague by Recipe). Scores it across 9 intent dimensions. Asks targeted clarifying questions for critical missing dimensions (max 3). Produces an enhanced input statement and writes an enhance receipt.
+Receives the opening user message (already classified as vague by Recipe). Scores it across 9 intent dimensions. Asks targeted clarifying questions for critical missing dimensions (max 3). Produces an enhanced input statement and delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Enhance receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type enhance` |
 
 ## When to use / when not to use
 
@@ -72,7 +78,14 @@ Do not invent specifics the user did not provide. If a dimension remains unclear
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/state/receipts/enhance-receipt-<timestamp>.json`. Schema: `modules/l1/enhance/schemas/enhance-receipt.schema.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type enhance \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --out .wabblespec/state/receipts/enhance-receipt-<timestamp>.json
+```
 
 Pass enhanced input path to ScopeFrame as next step.
 

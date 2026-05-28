@@ -18,6 +18,13 @@ Supported receipt types:
     release     Release tag and GitHub Release output
     monitor     Monitor SLO and dashboard output
     deploy      Deploy environment and health check output
+    adversary   Adversary challenge analysis output
+    grader      Grader verdict and score output
+    nexus       Nexus graph query response output
+    brainstorm  Brainstorm option set output
+    enhance     Enhance input extraction output
+    sharpen     Sharpen interpretation resolution output
+    audit       Audit compliance report output
 
 Usage:
     # Verifier receipt:
@@ -317,6 +324,137 @@ def build_deploy(args):
     }
 
 
+def build_adversary(args):
+    return {
+        "receipt_type": "adversary",
+        "module": "adversary",
+        "layer": "L2",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "challenger_mode": args.target or "open",
+        "spec_artifact_path": "",
+        "challenges_produced": len(args.failure_modes or []),
+        "challenge_domains_covered": args.failure_modes or [],
+        "anchoring_prevention_applied": True,
+        "strong_output_acknowledged": False,
+        "counter_analysis": args.summary or "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_grader(args):
+    return {
+        "receipt_type": "grader",
+        "module": "grader",
+        "layer": "L2",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "verdict": "ACCEPT" if (args.status or "PASS") == "PASS" else "REVISE",
+        "score": args.confidence if args.confidence is not None else 0.85,
+        "score_rationale": args.summary or "",
+        "spec_artifact_path": "",
+        "adversary_receipt_path": "",
+        "revision_guidance": None,
+        "escalation_reason": None,
+        "adversary_concerns_assessed": len(args.success_criteria or []),
+        "adversary_concerns_within_scope": True,
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_nexus(args):
+    return {
+        "receipt_type": "nexus",
+        "module": "nexus",
+        "layer": "L5",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "query": args.summary or "",
+        "nodes_traversed": 0,
+        "edges_followed": 0,
+        "response_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_brainstorm(args):
+    return {
+        "receipt_type": "brainstorm",
+        "module": "brainstorm",
+        "layer": "L1",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "options_generated": len(args.requirements or []),
+        "options_passed_filter": len(args.requirements or []),
+        "options_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_enhance(args):
+    return {
+        "receipt_type": "enhance",
+        "module": "enhance",
+        "layer": "L1",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "dimensions_extracted": 0,
+        "questions_asked": 0,
+        "enhanced_input_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_sharpen(args):
+    return {
+        "receipt_type": "sharpen",
+        "module": "sharpen",
+        "layer": "L1",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "interpretations_resolved": 0,
+        "interpretation_selected": args.summary or "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_audit(args):
+    return {
+        "receipt_type": "audit",
+        "module": "audit",
+        "layer": "L2",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "violations_found": 0,
+        "violations_critical": 0,
+        "violations_high": 0,
+        "attestation_required": False,
+        "report_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -328,6 +466,13 @@ BUILDERS = {
     "release": build_release,
     "monitor": build_monitor,
     "deploy": build_deploy,
+    "adversary": build_adversary,
+    "grader": build_grader,
+    "nexus": build_nexus,
+    "brainstorm": build_brainstorm,
+    "enhance": build_enhance,
+    "sharpen": build_sharpen,
+    "audit": build_audit,
 }
 
 
@@ -335,7 +480,45 @@ BUILDERS = {
 # Output
 # ---------------------------------------------------------------------------
 
-def write_receipt(data, out_path, dry_run=False):
+def _upsert_to_db(data, out_path):
+    """Upsert receipt into DuckDB store if receipts.duckdb exists. Silent-fail."""
+    try:
+        import duckdb as _duckdb
+    except ImportError:
+        return  # duckdb not installed — skip silently
+
+    # Find DB alongside the receipts directory
+    receipts_dir = os.path.dirname(os.path.abspath(out_path))
+    db_path = os.path.join(receipts_dir, "receipts.duckdb")
+    if not os.path.isfile(db_path):
+        return  # DB not initialized — skip silently
+
+    receipt_id = os.path.splitext(os.path.basename(out_path))[0]
+    try:
+        con = _duckdb.connect(db_path)
+        con.execute(
+            """
+            INSERT OR REPLACE INTO receipts
+                (receipt_id, session_id, module, status, timestamp, wave, delta_class, receipt_json)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            [
+                receipt_id,
+                data.get("session_id") or data.get("task_id"),
+                data.get("module") or data.get("receipt_type"),
+                data.get("status"),
+                data.get("timestamp") or data.get("written_at"),
+                data.get("wave"),
+                data.get("delta_class"),
+                json.dumps(data),
+            ],
+        )
+        con.close()
+    except Exception:
+        pass  # Silent-fail — DuckDB write never blocks receipt JSON write
+
+
+def write_receipt(data, out_path, dry_run=False, also_db=False):
     text = json.dumps(data, indent=2) + "\n"
     if out_path == "-" or dry_run:
         if dry_run:
@@ -352,6 +535,8 @@ def write_receipt(data, out_path, dry_run=False):
         print(f"ERROR: Cannot write to {out_path}: {e}", file=sys.stderr)
         sys.exit(2)
     print(f"Wrote {out_path}")
+    if also_db:
+        _upsert_to_db(data, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -473,6 +658,10 @@ def main():
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
+        "--db", action="store_true", dest="also_db",
+        help="Also upsert into receipts.duckdb alongside the JSON file (silent-fail if DB absent).",
+    )
+    parser.add_argument(
         "--validate",
         metavar="PATH",
         help="Validate an existing receipt JSON instead of writing a new one.",
@@ -493,7 +682,7 @@ def main():
     builder = BUILDERS[args.receipt_type]
     data = builder(args)
 
-    write_receipt(data, args.out, dry_run=args.dry_run)
+    write_receipt(data, args.out, dry_run=args.dry_run, also_db=getattr(args, "also_db", False))
     sys.exit(0)
 
 

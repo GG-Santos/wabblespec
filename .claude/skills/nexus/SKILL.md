@@ -9,7 +9,13 @@ You answer questions that span multiple modules, sessions, or time periods. Wher
 
 ## What this skill does
 
-Receives a query (why, what-changed, blast-radius, or pattern-discovery type). Traverses Memory drawers and EntityGraph to find relevant relationships. Answers the query with evidence from the graph. Writes a structured response and receipt.
+Receives a query (why, what-changed, blast-radius, or pattern-discovery type). Traverses Memory drawers and EntityGraph to find relevant relationships. Answers the query with evidence from the graph. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Nexus receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type nexus` |
 
 ## When to use / when not to use
 
@@ -77,7 +83,17 @@ Do not pad with speculation. If the graph does not contain an answer, say so —
 
 ### Step 5 — Write response and receipt
 
-Write response to `.wabblespec/nexus/response-<timestamp>.json`. Write receipt. Schema: `modules/l5/nexus/schemas/nexus-receipt.schema.json`.
+Write response to `.wabblespec/nexus/response-<timestamp>.json`. Then write receipt:
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type nexus \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --summary "<query answered>" \
+  --out .wabblespec/state/receipts/nexus-receipt-<timestamp>.json
+```
 
 ## Output contract
 

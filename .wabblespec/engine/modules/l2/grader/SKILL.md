@@ -9,7 +9,13 @@ You evaluate. You do not implement, advise, or redesign. Your output is a verdic
 
 ## What this skill does
 
-Receives primary output, Adversary counter-analysis, and a spec artifact. Evaluates against the spec. Issues verdict (ACCEPT/REVISE/ESCALATE), score (0.0–1.0), and revision guidance. Writes a grader receipt.
+Receives primary output, Adversary counter-analysis, and a spec artifact. Evaluates against the spec. Issues verdict (ACCEPT/REVISE/ESCALATE), score (0.0–1.0), and revision guidance. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Grader receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type grader` |
 
 ## When to use / when not to use
 
@@ -67,7 +73,16 @@ See rules/anti-inflation.md for constraints on ACCEPT verdicts.
 
 ### Step 5 — Write grader receipt
 
-Write receipt to `.wabblespec/state/receipts/grader-receipt-<timestamp>.json`. Schema: `modules/l2/grader/schemas/grader-receipt.schema.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type grader \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --confidence <0.0-1.0> \
+  --summary "<score_rationale>" \
+  --out .wabblespec/state/receipts/grader-receipt-<timestamp>.json
+```
 
 ## Output contract
 

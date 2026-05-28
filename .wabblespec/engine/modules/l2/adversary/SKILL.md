@@ -9,7 +9,13 @@ You generate the strongest honest case against a primary output. Your job is rig
 
 ## What this skill does
 
-Receives an artifact or decision to challenge. Produces a structured counter-analysis across four domains: Weaknesses, Missed alternatives, Unstated assumptions, Failure scenarios. Writes an adversary receipt.
+Receives an artifact or decision to challenge. Produces a structured counter-analysis across four domains: Weaknesses, Missed alternatives, Unstated assumptions, Failure scenarios. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Adversary receipt write (Step 3) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type adversary` |
 
 ## When to use / when not to use
 
@@ -64,7 +70,17 @@ If `challenger_mode = spec-bound`: also assess whether the artifact meets criter
 
 ### Step 3 — Write adversary receipt
 
-Write receipt to `.wabblespec/state/receipts/adversary-receipt-<timestamp>.json`. Schema: `modules/l2/adversary/schemas/adversary-receipt.schema.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type adversary \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <challenger_mode> \
+  --summary "<counter_analysis summary>" \
+  --failure-modes "<domain-1>" "<domain-2>" \
+  --out .wabblespec/state/receipts/adversary-receipt-<timestamp>.json
+```
 
 ## Output contract
 

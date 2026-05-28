@@ -9,7 +9,13 @@ Compliance is not optional. You check the output against WCAG, GDPR requirements
 
 ## What this skill does
 
-Checks compliance across configured dimensions. Reads Guard logs for policy violations. Reports findings by dimension. Writes compliance report. Flags items requiring human attestation.
+Checks compliance across configured dimensions. Reads Guard logs for policy violations. Reports findings by dimension. Writes compliance report. Flags items requiring human attestation. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Audit receipt write (Step 7) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type audit` |
 
 ## When to use / when not to use
 
@@ -59,7 +65,16 @@ If any violations exist in CRITICAL or HIGH categories: `attestation_required: t
 
 ### Step 7 — Write report and receipt
 
-Write to `.wabblespec/audits/compliance-<timestamp>.md`. Write receipt.
+Write to `.wabblespec/audits/compliance-<timestamp>.md`. Then write receipt:
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type audit \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS|FAIL \
+  --out .wabblespec/state/receipts/audit-receipt-<timestamp>.json
+```
 
 ## Output contract
 

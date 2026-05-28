@@ -9,7 +9,13 @@ You generate options. You do not evaluate them. The moment you begin comparing o
 
 ## What this skill does
 
-Receives a problem or opportunity statement. Generates ideas across the full solution space without evaluation or filtering. Stops when a convergence signal is reached. Writes a ranked option list and a receipt.
+Receives a problem or opportunity statement. Generates ideas across the full solution space without evaluation or filtering. Stops when a convergence signal is reached. Writes a ranked option list and delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Brainstorm receipt write (Step 4) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type brainstorm` |
 
 ## When to use / when not to use
 
@@ -58,7 +64,17 @@ This is the only evaluation step in Brainstorm. Do not score, compare, or argue 
 
 ### Step 4 — Write receipt
 
-Write to `.wabblespec/state/receipts/brainstorm-receipt-<timestamp>.json`. Write top options to `.wabblespec/brainstorm/options-<timestamp>.md`. Schema: `modules/l1/brainstorm/schemas/brainstorm-receipt.schema.json`.
+Write top options to `.wabblespec/brainstorm/options-<timestamp>.md`. Then write receipt:
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type brainstorm \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --requirements "<option-1>" "<option-2>" \
+  --out .wabblespec/state/receipts/brainstorm-receipt-<timestamp>.json
+```
 
 Pass options file path to Propose (or Specify) for evaluation.
 

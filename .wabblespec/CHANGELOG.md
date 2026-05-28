@@ -1656,3 +1656,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-final-gap-closure-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.39.0] — 2026-05-28T09:27:08Z
+
+### Changed
+- Full delegation complete: receipt-writer.py now covers all 17 skill types; adversary/grader/nexus/brainstorm/enhance/sharpen/audit SKILL.md wired; memory-mine + entity-graph daemons enabled (50-drawer gate MET); receipt-db --db flag bridges JSON and DuckDB writes; --db flag on receipt-writer.py; script-delegation-contract.md fully updated
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-complete-delegation-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
