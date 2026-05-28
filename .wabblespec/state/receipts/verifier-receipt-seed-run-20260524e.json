@@ -29,12 +29,14 @@
       "result": "PASS"
     },
     {
-      "check": "validate-graph.py uses dynamic section iteration — no hardcoded section names",
+      "check": "validate-graph.py uses dynamic section iteration \u00e2\u20ac\u201d no hardcoded section names",
       "result": "PASS"
     },
     {
       "check": "All 41 new consumer IDs resolve to known module IDs (0 violations)",
       "result": "PASS"
     }
-  ]
+  ],
+  "task_id": "seed-run-20260524e",
+  "not_tested": []
 }

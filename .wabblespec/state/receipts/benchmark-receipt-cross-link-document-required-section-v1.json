@@ -9,5 +9,7 @@
   "verdict": "PASS",
   "fixture_set": ".wabblespec/experiments/fixtures/cross-link-document-required-section-v1/",
   "status": "PASS",
-  "timestamp": "2026-05-25T09:04:00+00:00"
+  "timestamp": "2026-05-25T09:04:00+00:00",
+  "task_id": "benchmark-receipt-cross-link-document-required-section-v1",
+  "not_tested": []
 }

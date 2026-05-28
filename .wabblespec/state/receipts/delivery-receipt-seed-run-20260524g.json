@@ -13,5 +13,7 @@
   "l8_gate_progress": "31/100 PASS receipts",
   "integration_gate_progress": "7/10 runs",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "Cold-start coverage for L3 (11 platform modules) and L4 (6 gateway modules). Each file defines absent-artifact behavior, platform/gateway invariants enforced unconditionally, and default state tables. L0-L4 cold-start coverage now complete (44 files total). L5-L8 pending. VERSION 0.4.0."
+  "summary": "Cold-start coverage for L3 (11 platform modules) and L4 (6 gateway modules). Each file defines absent-artifact behavior, platform/gateway invariants enforced unconditionally, and default state tables. L0-L4 cold-start coverage now complete (44 files total). L5-L8 pending. VERSION 0.4.0.",
+  "task_id": "seed-run-20260524g",
+  "not_tested": []
 }

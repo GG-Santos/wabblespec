@@ -4,22 +4,54 @@
   "phase": "Execute",
   "wave": 0,
   "timestamp": "2026-05-21T10:08:00Z",
-  "checks_run": ["all-receipts-present", "not-tested-compiled", "version-bumped", "changelog-appended"],
-  "checks_passed": ["all-receipts-present", "not-tested-compiled", "version-bumped", "changelog-appended"],
-  "evidence": [".wabblespec/receipts/recipe-receipt.json", ".wabblespec/receipts/scopeframe-receipt.json", ".wabblespec/receipts/specify-receipt.json", ".wabblespec/receipts/decompose-receipt.json", ".wabblespec/receipts/guard-wave-1-receipt.json", ".wabblespec/receipts/wave-1-receipt.json", ".wabblespec/receipts/verification-wave-1-20260521.json", ".wabblespec/receipts/execution-receipt.json"],
+  "checks_run": [
+    "all-receipts-present",
+    "not-tested-compiled",
+    "version-bumped",
+    "changelog-appended"
+  ],
+  "checks_passed": [
+    "all-receipts-present",
+    "not-tested-compiled",
+    "version-bumped",
+    "changelog-appended"
+  ],
+  "evidence": [
+    ".wabblespec/receipts/recipe-receipt.json",
+    ".wabblespec/receipts/scopeframe-receipt.json",
+    ".wabblespec/receipts/specify-receipt.json",
+    ".wabblespec/receipts/decompose-receipt.json",
+    ".wabblespec/receipts/guard-wave-1-receipt.json",
+    ".wabblespec/receipts/wave-1-receipt.json",
+    ".wabblespec/receipts/verification-wave-1-20260521.json",
+    ".wabblespec/receipts/execution-receipt.json"
+  ],
   "status": "PASS",
   "not_tested": [],
   "confidence": 1.0,
   "inputs": [
-    {"module": "executor", "receipt_path": ".wabblespec/receipts/execution-receipt.json", "staleness_state": "FRESH"},
-    {"module": "verifier", "receipt_path": ".wabblespec/receipts/verification-wave-1-20260521.json", "staleness_state": "FRESH"}
+    {
+      "module": "executor",
+      "receipt_path": ".wabblespec/receipts/execution-receipt.json",
+      "staleness_state": "FRESH"
+    },
+    {
+      "module": "verifier",
+      "receipt_path": ".wabblespec/receipts/verification-wave-1-20260521.json",
+      "staleness_state": "FRESH"
+    }
   ],
-  "outputs": [".wabblespec/receipts/delivery-receipt-20260521.json", ".wabblespec/VERSION", ".wabblespec/CHANGELOG.md"],
+  "outputs": [
+    ".wabblespec/receipts/delivery-receipt-20260521.json",
+    ".wabblespec/VERSION",
+    ".wabblespec/CHANGELOG.md"
+  ],
   "receipts_aggregated": 8,
   "not_tested_items": 9,
   "version_previous": "0.0.0",
   "version_new": "0.1.0",
   "version_bump_reason": "ADDITIVE",
   "waves_completed": 1,
-  "all_waves_passed": true
+  "all_waves_passed": true,
+  "task_id": "20260521"
 }

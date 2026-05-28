@@ -48,5 +48,7 @@
       "check": "VERSION 0.4.1",
       "result": "PASS"
     }
-  ]
+  ],
+  "task_id": "seed-run-20260524h",
+  "not_tested": []
 }

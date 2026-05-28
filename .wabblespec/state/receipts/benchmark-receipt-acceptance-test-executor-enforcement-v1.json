@@ -9,5 +9,7 @@
   "verdict": "PASS",
   "fixture_set": ".wabblespec/experiments/fixtures/acceptance-test-executor-enforcement-v1/",
   "status": "PASS",
-  "timestamp": "2026-05-25T09:02:00+00:00"
+  "timestamp": "2026-05-25T09:02:00+00:00",
+  "task_id": "benchmark-receipt-acceptance-test-executor-enforcement-v1",
+  "not_tested": []
 }

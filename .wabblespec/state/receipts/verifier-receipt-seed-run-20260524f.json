@@ -35,5 +35,7 @@
       "result": "PASS"
     }
   ],
-  "quality_floor": "98/98 shared files registered, 0 violations"
+  "quality_floor": "98/98 shared files registered, 0 violations",
+  "task_id": "seed-run-20260524f",
+  "not_tested": []
 }

@@ -7,7 +7,7 @@
   "waves": [
     {
       "wave": 1,
-      "label": "Archive sync — receipt-index.json updated",
+      "label": "Archive sync \u00e2\u20ac\u201d receipt-index.json updated",
       "files_modified": [
         ".wabblespec/archive/receipt-index.json"
       ],
@@ -33,9 +33,13 @@
     {
       "wave": 4,
       "label": "VERSION bump",
-      "files_modified": [".wabblespec/VERSION"],
+      "files_modified": [
+        ".wabblespec/VERSION"
+      ],
       "notes": "0.4.1 -> 0.4.2"
     }
   ],
-  "validate_graph": "99 modules, 98 shared files, 0 violations (unchanged)"
+  "validate_graph": "99 modules, 98 shared files, 0 violations (unchanged)",
+  "task_id": "seed-run-20260524i",
+  "not_tested": []
 }

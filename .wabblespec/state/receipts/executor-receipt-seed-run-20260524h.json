@@ -73,7 +73,9 @@
     {
       "wave": 5,
       "label": "VERSION bump",
-      "files_modified": [".wabblespec/VERSION"],
+      "files_modified": [
+        ".wabblespec/VERSION"
+      ],
       "notes": "0.4.0 -> 0.4.1 (cold-start coverage complete: all L0-L8 modules)"
     }
   ],
@@ -89,5 +91,7 @@
     "L8": "9/9",
     "total": "81/81 modules"
   },
-  "validate_graph": "99 modules, 98 shared files, 0 violations"
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "task_id": "seed-run-20260524h",
+  "not_tested": []
 }

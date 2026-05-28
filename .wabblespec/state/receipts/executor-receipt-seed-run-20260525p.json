@@ -24,8 +24,11 @@
   ],
   "total_files": 11,
   "violations": [],
-  "notes": "L3 acceptance tests complete: all 11 platform modules covered. Each test derived from SKILL.md content. Version bump: 0.5.0 → 0.5.1.",
+  "notes": "L3 acceptance tests complete: all 11 platform modules covered. Each test derived from SKILL.md content. Version bump: 0.5.0 \u00e2\u2020\u2019 0.5.1.",
   "guard_receipt_path": ".wabblespec/receipts/guard-wave-1-seed-run-20260525p.json",
   "version_previous": "0.5.0",
-  "version_new": "0.5.1"
+  "version_new": "0.5.1",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T02:00:00Z"
 }

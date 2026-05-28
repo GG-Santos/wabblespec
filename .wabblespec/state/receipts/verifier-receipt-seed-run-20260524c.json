@@ -14,5 +14,9 @@
   },
   "root_cause_confirmed": "UTF-8 BOM in SKILL.md files caused FRONTMATTER regex to fail; fixed by switching load_skill() to utf-8-sig encoding",
   "quality_floor_failures_before": 30,
-  "quality_floor_failures_after": 0
+  "quality_floor_failures_after": 0,
+  "task_id": "seed-run-20260524c",
+  "not_tested": [],
+  "checks": [],
+  "verified_at": "2026-05-23T17:00:47Z"
 }

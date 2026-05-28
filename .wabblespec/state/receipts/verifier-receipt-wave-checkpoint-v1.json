@@ -43,10 +43,13 @@
   "findings": [
     {
       "severity": "NOTE",
-      "message": "Task card AC-1 specifies field name 'wave_number'; actual schema uses 'wave_index'. Pre-existing naming discrepancy from prior session — outside this session's scope."
+      "message": "Task card AC-1 specifies field name 'wave_number'; actual schema uses 'wave_index'. Pre-existing naming discrepancy from prior session \u00e2\u20ac\u201d outside this session's scope."
     }
   ],
   "revise_cycles": 0,
   "verdict": "PASS",
-  "prior_receipt": "executor-receipt-wave-checkpoint-v1.json"
+  "prior_receipt": "executor-receipt-wave-checkpoint-v1.json",
+  "not_tested": [],
+  "checks": [],
+  "verified_at": "2026-05-26T00:04:00Z"
 }

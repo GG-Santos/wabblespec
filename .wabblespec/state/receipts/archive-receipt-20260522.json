@@ -30,5 +30,8 @@
   ],
   "all_waves_passed": true,
   "not_tested": [],
-  "confidence": 0.9
+  "confidence": 0.9,
+  "task_id": "e2e-validation-20260522",
+  "version_new": "unknown",
+  "version_previous": "unknown"
 }

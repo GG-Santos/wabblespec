@@ -6,66 +6,150 @@
   "checks": [
     {
       "file": "modules/l1/analyze/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "happy path present", "confidence levels covered", "Nexus absent scenario present", "receipt fields verified", "Do NOT scenario present"],
+      "checks": [
+        "BLOCK condition present",
+        "happy path present",
+        "confidence levels covered",
+        "Nexus absent scenario present",
+        "receipt fields verified",
+        "Do NOT scenario present"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/api/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "all 4 modes covered (version/deprecate/contract/audit)", "sunset date constraint present", "absent consumer list scenario present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "all 4 modes covered (version/deprecate/contract/audit)",
+        "sunset date constraint present",
+        "absent consumer list scenario present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/brainstorm/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "evaluation_deferred invariant present", "convergence trigger present", "Do NOT re-invoke scenario present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "evaluation_deferred invariant present",
+        "convergence trigger present",
+        "Do NOT re-invoke scenario present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/deps/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "lock file absent scenario present", "risk tier classification covered", "CRITICAL CVE = FAIL present", "audit tool unavailable scenario present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "lock file absent scenario present",
+        "risk tier classification covered",
+        "CRITICAL CVE = FAIL present",
+        "audit tool unavailable scenario present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/enhance/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "critical dimensions covered", "question budget max 3 present", "Do NOT change target/complexity present", "Do NOT invent specifics present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "critical dimensions covered",
+        "question budget max 3 present",
+        "Do NOT change target/complexity present",
+        "Do NOT invent specifics present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/flag/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "all 4 modes covered (create/rollout/audit/retire)", "state machine enforced", "missing removal date scenario present", "Do NOT delete on retire present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "all 4 modes covered (create/rollout/audit/retire)",
+        "state machine enforced",
+        "missing removal date scenario present",
+        "Do NOT delete on retire present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/organize/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "AUTO vs CONFIRM classification present", "no-write-auth scenario present", "depth/orphan detection present", "Do NOT auto-act on ambiguous moves present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "AUTO vs CONFIRM classification present",
+        "no-write-auth scenario present",
+        "depth/orphan detection present",
+        "Do NOT auto-act on ambiguous moves present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/perf/tests/acceptance.md",
-      "checks": ["BLOCK condition present", "baseline_measured invariant present", "one optimization at a time present", "regression detection present", "profiling tool unavailable scenario present", "receipt fields verified"],
+      "checks": [
+        "BLOCK condition present",
+        "baseline_measured invariant present",
+        "one optimization at a time present",
+        "regression detection present",
+        "profiling tool unavailable scenario present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/plan/tests/acceptance.md",
-      "checks": ["BLOCK missing Propose present", "BLOCK missing recipe.json present", "Adversary mandatory at High complexity present", "Adversary for security/infra scope present", "GO with BLOCKING risk blocked present", "receipt fields verified"],
+      "checks": [
+        "BLOCK missing Propose present",
+        "BLOCK missing recipe.json present",
+        "Adversary mandatory at High complexity present",
+        "Adversary for security/infra scope present",
+        "GO with BLOCKING risk blocked present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/sharpen/tests/acceptance.md",
-      "checks": ["BLOCK unambiguous input present", "user confirmation required present", "auto-select threshold (0.85/0.4) present", "rejected interpretations discarded present", "Do NOT change target/complexity present", "receipt fields verified"],
+      "checks": [
+        "BLOCK unambiguous input present",
+        "user confirmation required present",
+        "auto-select threshold (0.85/0.4) present",
+        "rejected interpretations discarded present",
+        "Do NOT change target/complexity present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/shift/tests/acceptance.md",
-      "checks": ["BLOCK absent spec present", "BLOCK absent change description present", "loop_back_required for BREAKING+consumers present", "reverse drift detection present", "multiple classifications scenario present", "receipt fields verified"],
+      "checks": [
+        "BLOCK absent spec present",
+        "BLOCK absent change description present",
+        "loop_back_required for BREAKING+consumers present",
+        "reverse drift detection present",
+        "multiple classifications scenario present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     },
     {
       "file": "modules/l1/sync/tests/acceptance.md",
-      "checks": ["BLOCK absent target present", "BLOCK one side missing present", "MINOR auto merge present", "MAJOR escalate no partial merge present", "idempotency present", "receipt fields verified"],
+      "checks": [
+        "BLOCK absent target present",
+        "BLOCK one side missing present",
+        "MINOR auto merge present",
+        "MAJOR escalate no partial merge present",
+        "idempotency present",
+        "receipt fields verified"
+      ],
       "status": "PASS"
     }
   ],
   "files_verified": 12,
   "files_failed": 0,
-  "violations": []
+  "violations": [],
+  "task_id": "seed-run-20260524l",
+  "not_tested": []
 }

@@ -13,5 +13,7 @@
   "misactivation_risk": false,
   "overall": "PASS",
   "violations": [],
-  "notes": "Framework authoring task — writes to .wabblespec/ are permitted; I11 does not apply"
+  "notes": "Framework authoring task \u00e2\u20ac\u201d writes to .wabblespec/ are permitted; I11 does not apply",
+  "task_id": "toprank-integration-phase2-T2",
+  "not_tested": []
 }

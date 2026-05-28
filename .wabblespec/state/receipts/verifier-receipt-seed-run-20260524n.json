@@ -15,67 +15,67 @@
   "fix_recommendation": null,
   "checks_run": [
     {
-      "check": "guard/tests/acceptance.md — BLOCK conditions, five layers, memory backend invariants, receipt fields",
+      "check": "guard/tests/acceptance.md \u00e2\u20ac\u201d BLOCK conditions, five layers, memory backend invariants, receipt fields",
       "result": "PASS",
       "evidence": "modules/l2/guard/tests/acceptance.md"
     },
     {
-      "check": "executor/tests/acceptance.md — BLOCK absent decompose-receipt.json, checkpoint before Guard, REVISE loop, error routing, receipt fields",
+      "check": "executor/tests/acceptance.md \u00e2\u20ac\u201d BLOCK absent decompose-receipt.json, checkpoint before Guard, REVISE loop, error routing, receipt fields",
       "result": "PASS",
       "evidence": "modules/l2/executor/tests/acceptance.md"
     },
     {
-      "check": "reviewer/tests/acceptance.md — budget gate, Adversary/Grader chain, REVISE max 3, findings confidence threshold, role boundary",
+      "check": "reviewer/tests/acceptance.md \u00e2\u20ac\u201d budget gate, Adversary/Grader chain, REVISE max 3, findings confidence threshold, role boundary",
       "result": "PASS",
       "evidence": "modules/l2/reviewer/tests/acceptance.md"
     },
     {
-      "check": "autopilot/tests/acceptance.md — autonomy levels, meta.md sole ownership, phase transitions, deny-without-mutation, Dream trigger",
+      "check": "autopilot/tests/acceptance.md \u00e2\u20ac\u201d autonomy levels, meta.md sole ownership, phase transitions, deny-without-mutation, Dream trigger",
       "result": "PASS",
       "evidence": "modules/l2/autopilot/tests/acceptance.md"
     },
     {
-      "check": "economy/tests/acceptance.md — output size thresholds (Rules 1-5), exact-error preservation, --budget mode, non-blocking advisory",
+      "check": "economy/tests/acceptance.md \u00e2\u20ac\u201d output size thresholds (Rules 1-5), exact-error preservation, --budget mode, non-blocking advisory",
       "result": "PASS",
       "evidence": "modules/l2/economy/tests/acceptance.md"
     },
     {
-      "check": "rollback/tests/acceptance.md — four target types, Attestation required, hash verification, release rollback commands-only",
+      "check": "rollback/tests/acceptance.md \u00e2\u20ac\u201d four target types, Attestation required, hash verification, release rollback commands-only",
       "result": "PASS",
       "evidence": "modules/l2/rollback/tests/acceptance.md"
     },
     {
-      "check": "ensemble/tests/acceptance.md — ModelRouter-only trigger, three modes, Cross-check mandatory for Attestation/Audit, one combined receipt",
+      "check": "ensemble/tests/acceptance.md \u00e2\u20ac\u201d ModelRouter-only trigger, three modes, Cross-check mandatory for Attestation/Audit, one combined receipt",
       "result": "PASS",
       "evidence": "modules/l2/ensemble/tests/acceptance.md"
     },
     {
-      "check": "model-router/tests/acceptance.md — capability descriptor routing, no model names, 0.5 confidence threshold, Ensemble conditions",
+      "check": "model-router/tests/acceptance.md \u00e2\u20ac\u201d capability descriptor routing, no model names, 0.5 confidence threshold, Ensemble conditions",
       "result": "PASS",
       "evidence": "modules/l2/model-router/tests/acceptance.md"
     },
     {
-      "check": "team-plan/tests/acceptance.md — L4 only, single-agent validated first, receipt chain continuity, FAIL surfaces to human",
+      "check": "team-plan/tests/acceptance.md \u00e2\u20ac\u201d L4 only, single-agent validated first, receipt chain continuity, FAIL surfaces to human",
       "result": "PASS",
       "evidence": "modules/l2/team-plan/tests/acceptance.md"
     },
     {
-      "check": "verifier/tests/acceptance.md — spec compliance first, seven modes, REVISE max 3, BLOCKED conditions, evidence capture rule (I10)",
+      "check": "verifier/tests/acceptance.md \u00e2\u20ac\u201d spec compliance first, seven modes, REVISE max 3, BLOCKED conditions, evidence capture rule (I10)",
       "result": "PASS",
       "evidence": "modules/l2/verifier/tests/acceptance.md"
     },
     {
-      "check": "adversary/tests/acceptance.md (from prior session) — content verified present",
+      "check": "adversary/tests/acceptance.md (from prior session) \u00e2\u20ac\u201d content verified present",
       "result": "PASS",
       "evidence": "modules/l2/adversary/tests/acceptance.md"
     },
     {
-      "check": "audit/tests/acceptance.md (from prior session) — content verified present",
+      "check": "audit/tests/acceptance.md (from prior session) \u00e2\u20ac\u201d content verified present",
       "result": "PASS",
       "evidence": "modules/l2/audit/tests/acceptance.md"
     },
     {
-      "check": "grader/tests/acceptance.md (from prior session) — content verified present",
+      "check": "grader/tests/acceptance.md (from prior session) \u00e2\u20ac\u201d content verified present",
       "result": "PASS",
       "evidence": "modules/l2/grader/tests/acceptance.md"
     }
@@ -83,5 +83,7 @@
   "checks_passed": 13,
   "checks_failed": 0,
   "not_tested": [],
-  "confidence": 0.97
+  "confidence": 0.97,
+  "checks": [],
+  "verified_at": "2026-05-25T00:01:00Z"
 }

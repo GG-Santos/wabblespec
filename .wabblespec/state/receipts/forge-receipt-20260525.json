@@ -3,14 +3,18 @@
   "layer": "L8",
   "timestamp": "2026-05-25T09:15:00+00:00",
   "attested_by": "Gino Santos",
-  "attestation_statement": "I attest Forge promotion for all three — recipe, executor, document.",
+  "attestation_statement": "I attest Forge promotion for all three \u00e2\u20ac\u201d recipe, executor, document.",
   "promotions": [
     {
       "blueprint_id": "cold-start-coverage-recipe-gate-v1",
       "module": "recipe",
       "layer": "L0",
       "status": "PROMOTED",
-      "files_written": ["modules/l0/recipe/SKILL.md", "modules/l0/recipe/skill-rules.json", "modules/l0/recipe/tests/acceptance.md"],
+      "files_written": [
+        "modules/l0/recipe/SKILL.md",
+        "modules/l0/recipe/skill-rules.json",
+        "modules/l0/recipe/tests/acceptance.md"
+      ],
       "needs_reverification_count": 16
     },
     {
@@ -18,7 +22,11 @@
       "module": "executor",
       "layer": "L2",
       "status": "PROMOTED",
-      "files_written": ["modules/l2/executor/SKILL.md", "modules/l2/executor/skill-rules.json", "modules/l2/executor/tests/acceptance.md"],
+      "files_written": [
+        "modules/l2/executor/SKILL.md",
+        "modules/l2/executor/skill-rules.json",
+        "modules/l2/executor/tests/acceptance.md"
+      ],
       "needs_reverification_count": 3
     },
     {
@@ -26,10 +34,16 @@
       "module": "document",
       "layer": "L6",
       "status": "PROMOTED",
-      "files_written": ["modules/l6/document/SKILL.md", "modules/l6/document/skill-rules.json", "modules/l6/document/tests/acceptance.md"],
+      "files_written": [
+        "modules/l6/document/SKILL.md",
+        "modules/l6/document/skill-rules.json",
+        "modules/l6/document/tests/acceptance.md"
+      ],
       "needs_reverification_count": 0
     }
   ],
   "archive_path": ".wabblespec/experiments/archive/provenance.json",
-  "status": "PASS"
+  "status": "PASS",
+  "task_id": "forge-receipt-20260525",
+  "not_tested": []
 }

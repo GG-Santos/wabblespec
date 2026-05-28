@@ -13,5 +13,7 @@
   "l8_gate_progress": "40/100 PASS receipts",
   "integration_gate_progress": "9/10 runs",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "Maintenance run: receipt-index.json synced (11 entries), l8-corpus-gate.md updated, INDEX.md current (99 modules, cold-start coverage, quality floor). dream.py --background flag fixed. VERSION 0.4.2."
+  "summary": "Maintenance run: receipt-index.json synced (11 entries), l8-corpus-gate.md updated, INDEX.md current (99 modules, cold-start coverage, quality floor). dream.py --background flag fixed. VERSION 0.4.2.",
+  "task_id": "seed-run-20260524i",
+  "not_tested": []
 }

@@ -14,5 +14,7 @@
   "live_module_verified": true,
   "augment_label_retained": "(AUGMENT: new step) retained in SKILL.md for provenance",
   "timestamp": "2026-05-25T14:37:42Z",
-  "status": "PASS"
+  "status": "PASS",
+  "task_id": "forge-acceptance-test-executor-enforcement-v1-receipt",
+  "not_tested": []
 }

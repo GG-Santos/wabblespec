@@ -14,5 +14,7 @@
   "integration_gate_progress": "5/10 runs",
   "quality_floor": "96/96 PASS",
   "validate_graph": "96 shared files, 0 violations",
-  "summary": "framework.yaml registration complete. 41 new shared files registered across dev_frameworks (37) and dev_infrastructure (4). validate-graph.py fixed to enumerate sections dynamically — no longer requires manual updates when new sections are added. gateway-ai added to gateway-pattern.md consumers. VERSION 0.3.8."
+  "summary": "framework.yaml registration complete. 41 new shared files registered across dev_frameworks (37) and dev_infrastructure (4). validate-graph.py fixed to enumerate sections dynamically \u00e2\u20ac\u201d no longer requires manual updates when new sections are added. gateway-ai added to gateway-pattern.md consumers. VERSION 0.3.8.",
+  "task_id": "seed-run-20260524e",
+  "not_tested": []
 }

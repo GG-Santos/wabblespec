@@ -11,5 +11,8 @@
   "dedup_candidates_found": 0,
   "staleness_critical": 2919,
   "output_dir": "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\memory\\mine",
-  "dry_run": false
+  "dry_run": false,
+  "task_id": "2026-05-24T13-12-46",
+  "not_tested": [],
+  "status": "PASS"
 }

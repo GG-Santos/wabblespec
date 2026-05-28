@@ -5,20 +5,29 @@
   "timestamp": "2026-05-26T00:00:00Z",
   "module": "decompose",
   "phase": "Decompose",
-  "status": "COMPLETE",
+  "status": "PASS",
   "wave_count": 2,
   "waves": [
     {
       "wave_number": 1,
       "label": "Fix executor authority.owns and produces_schemas",
-      "files": ["modules/l2/executor/skill-rules.json"],
-      "acceptance_criteria": ["AC-7"]
+      "files": [
+        "modules/l2/executor/skill-rules.json"
+      ],
+      "acceptance_criteria": [
+        "AC-7"
+      ]
     },
     {
       "wave_number": 2,
       "label": "Update framework.yaml executor produces_schemas",
-      "files": ["framework.yaml"],
-      "acceptance_criteria": ["AC-1", "AC-7"]
+      "files": [
+        "framework.yaml"
+      ],
+      "acceptance_criteria": [
+        "AC-1",
+        "AC-7"
+      ]
     }
   ],
   "research_findings": [
@@ -33,5 +42,6 @@
     "gap confirmed: framework.yaml executor produces_schemas missing wave-checkpoint.schema.json"
   ],
   "prior_receipt": "specify-receipt-wave-checkpoint-v1.json",
-  "collapse_eligible": false
+  "collapse_eligible": false,
+  "not_tested": []
 }

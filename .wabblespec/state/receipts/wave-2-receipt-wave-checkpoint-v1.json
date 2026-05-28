@@ -5,7 +5,7 @@
   "wave_number": 2,
   "wave_label": "Update framework.yaml executor produces_schemas",
   "timestamp": "2026-05-26T00:02:00Z",
-  "status": "COMPLETE",
+  "status": "PASS",
   "files_modified": [
     "framework.yaml"
   ],
@@ -18,5 +18,9 @@
     "command": "python -c \"import yaml; d=yaml.safe_load(open('framework.yaml')); ex=[m for m in d['modules'] if m['id']=='executor'][0]; print(ex['produces_schemas'])\"",
     "result": "['shared/schemas/receipt.base.schema.json', '_shared/schemas/wave-checkpoint.schema.json']"
   },
-  "acceptance_criteria_covered": ["AC-1", "AC-7"]
+  "acceptance_criteria_covered": [
+    "AC-1",
+    "AC-7"
+  ],
+  "not_tested": []
 }

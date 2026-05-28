@@ -13,5 +13,7 @@
   "l8_gate_progress": "37/100 PASS receipts",
   "integration_gate_progress": "8/10 runs",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "Cold-start coverage complete: all 81 modules across L0-L8 now have cold-start.md files (37 new in this run: 8 L5 + 12 L6 + 8 L7 + 9 L8). L8 corpus gate enforced in all L8 modules. L8 activation chain (Instinct -> Synth -> Blueprint -> Forge) dependencies declared. VERSION 0.4.1."
+  "summary": "Cold-start coverage complete: all 81 modules across L0-L8 now have cold-start.md files (37 new in this run: 8 L5 + 12 L6 + 8 L7 + 9 L8). L8 corpus gate enforced in all L8 modules. L8 activation chain (Instinct -> Synth -> Blueprint -> Forge) dependencies declared. VERSION 0.4.1.",
+  "task_id": "seed-run-20260524h",
+  "not_tested": []
 }

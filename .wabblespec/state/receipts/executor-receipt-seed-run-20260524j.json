@@ -7,39 +7,49 @@
   "waves": [
     {
       "wave": 1,
-      "label": "L8 acceptance test expansion — Retro",
-      "files_modified": ["modules/l8/retro/tests/acceptance.md"],
+      "label": "L8 acceptance test expansion \u00e2\u20ac\u201d Retro",
+      "files_modified": [
+        "modules/l8/retro/tests/acceptance.md"
+      ],
       "notes": "28 lines -> 90+ lines. Added: L8 corpus gate check, period declaration (default 10, --period N, --since date), required document structure (all 8 sections), chain health classification (INTACT/BROKEN/FAIL status), observation-only language constraint (banned: should/must/recommend/fix; required: observed/occurred/was present), wave summary accuracy, memory enrichment with drawer references, recurring pattern detection (threshold: 3 occurrences), unresolved gaps carry-forward, Not Tested section required non-empty, idempotency, dry-run."
     },
     {
       "wave": 2,
-      "label": "L8 acceptance test expansion — Feedback",
-      "files_modified": ["modules/l8/feedback/tests/acceptance.md"],
+      "label": "L8 acceptance test expansion \u00e2\u20ac\u201d Feedback",
+      "files_modified": [
+        "modules/l8/feedback/tests/acceptance.md"
+      ],
       "notes": "45 lines -> 90+ lines. Added: L8 corpus gate check, --metrics flag required (surfaces error without it), --metrics cost,budget=N (budget target + over-budget flagging), latency p50/p95, trend analysis (improving/degrading/stable/insufficient_data), first-run message, analysis period (default all, --period 30d, insufficient-data warning at <5 receipts), dry-run (still shows duplicate warnings)."
     },
     {
       "wave": 3,
-      "label": "L8 acceptance test expansion — Factory",
-      "files_modified": ["modules/l8/factory/tests/acceptance.md"],
+      "label": "L8 acceptance test expansion \u00e2\u20ac\u201d Factory",
+      "files_modified": [
+        "modules/l8/factory/tests/acceptance.md"
+      ],
       "notes": "45 lines -> 100+ lines. Added: L8 corpus gate check, stub version tracking (factory_version in skill-rules.json, factory_generated_at in SKILL.md frontmatter), stub content validation per file (SKILL.md: [FILL] markers with hints not bare; skill-rules.json: layer/authority/verification_mode from blueprint not [FILL]; receipt.schema.json: valid JSON Schema with 4 base fields; tests/acceptance.md: 3+ Given/When/Then placeholders), dry-run (idempotency guard does not fire on dry-run)."
     },
     {
       "wave": 4,
       "label": "VERSION bump",
-      "files_modified": [".wabblespec/VERSION"],
+      "files_modified": [
+        ".wabblespec/VERSION"
+      ],
       "notes": "0.4.2 -> 0.4.3"
     }
   ],
   "l8_acceptance_coverage": {
-    "instinct": "50 lines — complete (pre-existing)",
-    "synth": "50 lines — complete (pre-existing)",
-    "blueprint": "54 lines — complete (pre-existing)",
-    "benchmark": "57 lines — complete (pre-existing)",
-    "augment": "48 lines — complete (pre-existing)",
-    "forge": "50 lines — complete (pre-existing)",
-    "retro": "90+ lines — expanded this run",
-    "feedback": "90+ lines — expanded this run",
-    "factory": "100+ lines — expanded this run"
+    "instinct": "50 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "synth": "50 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "blueprint": "54 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "benchmark": "57 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "augment": "48 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "forge": "50 lines \u00e2\u20ac\u201d complete (pre-existing)",
+    "retro": "90+ lines \u00e2\u20ac\u201d expanded this run",
+    "feedback": "90+ lines \u00e2\u20ac\u201d expanded this run",
+    "factory": "100+ lines \u00e2\u20ac\u201d expanded this run"
   },
-  "validate_graph": "99 modules, 98 shared files, 0 violations"
+  "validate_graph": "99 modules, 98 shared files, 0 violations",
+  "task_id": "seed-run-20260524j",
+  "not_tested": []
 }

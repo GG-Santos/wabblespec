@@ -22,6 +22,8 @@
   "files_count": 12,
   "violation_count": 0,
   "wave": 1,
-  "wave_description": "L1 acceptance tests batch 2 — 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage",
-  "notes": "Completes full L1 acceptance test coverage (24/24 modules). Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, Do NOT scenarios, write authority invariants, receipt field requirements."
+  "wave_description": "L1 acceptance tests batch 2 \u00e2\u20ac\u201d 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage",
+  "notes": "Completes full L1 acceptance test coverage (24/24 modules). Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, Do NOT scenarios, write authority invariants, receipt field requirements.",
+  "task_id": "seed-run-20260524m",
+  "not_tested": []
 }

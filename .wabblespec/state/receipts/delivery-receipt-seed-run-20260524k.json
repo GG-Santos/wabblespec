@@ -11,7 +11,9 @@
   ],
   "total_receipts_accumulated": 46,
   "l8_gate_progress": "46/100 PASS receipts",
-  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "integration_gate_progress": "10/10 runs \u00e2\u20ac\u201d GATE CLEARED",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "Cold-start coverage corrected: 15 missing files written (L1: 12 modules, L2: 3 modules). L1 now 24/24, L2 now 13/13. Total cold-start coverage: 99/99 modules. VERSION 0.4.4."
+  "summary": "Cold-start coverage corrected: 15 missing files written (L1: 12 modules, L2: 3 modules). L1 now 24/24, L2 now 13/13. Total cold-start coverage: 99/99 modules. VERSION 0.4.4.",
+  "task_id": "seed-run-20260524k",
+  "not_tested": []
 }

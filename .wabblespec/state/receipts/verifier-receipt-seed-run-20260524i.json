@@ -39,5 +39,7 @@
       "check": "VERSION 0.4.2",
       "result": "PASS"
     }
-  ]
+  ],
+  "task_id": "seed-run-20260524i",
+  "not_tested": []
 }

@@ -22,6 +22,8 @@
   "files_count": 12,
   "violation_count": 0,
   "wave": 1,
-  "wave_description": "L1 acceptance tests batch 1 — 12 modules: analyze, api, brainstorm, deps, enhance, flag, organize, perf, plan, sharpen, shift, sync",
-  "notes": "Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, boundary/Do NOT scenarios, evidence handling, missing rules fallback, and receipt field validation."
+  "wave_description": "L1 acceptance tests batch 1 \u00e2\u20ac\u201d 12 modules: analyze, api, brainstorm, deps, enhance, flag, organize, perf, plan, sharpen, shift, sync",
+  "notes": "Each file derived from module SKILL.md + cold-start.md. Covers: BLOCK conditions, happy path, boundary/Do NOT scenarios, evidence handling, missing rules fallback, and receipt field validation.",
+  "task_id": "seed-run-20260524l",
+  "not_tested": []
 }

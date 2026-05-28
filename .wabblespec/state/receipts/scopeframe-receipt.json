@@ -11,5 +11,8 @@
   "assumptions_count": 6,
   "user_confirmed": true,
   "scope_changes": 0,
-  "outputs": [".wabblespec/state/scope.md"]
+  "outputs": [
+    ".wabblespec/state/scope.md"
+  ],
+  "not_tested": []
 }

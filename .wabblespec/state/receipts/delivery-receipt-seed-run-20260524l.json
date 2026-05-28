@@ -11,7 +11,9 @@
   ],
   "total_receipts_accumulated": 49,
   "l8_gate_progress": "49/100 PASS receipts",
-  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "integration_gate_progress": "10/10 runs \u00e2\u20ac\u201d GATE CLEARED",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "L1 acceptance tests batch 1 complete. 12 modules covered: analyze, api, brainstorm, deps, enhance, flag, organize, perf, plan, sharpen, shift, sync. Each file derived from SKILL.md + cold-start.md. 12 remaining L1 modules are batch 2 (run m). VERSION 0.4.6."
+  "summary": "L1 acceptance tests batch 1 complete. 12 modules covered: analyze, api, brainstorm, deps, enhance, flag, organize, perf, plan, sharpen, shift, sync. Each file derived from SKILL.md + cold-start.md. 12 remaining L1 modules are batch 2 (run m). VERSION 0.4.6.",
+  "task_id": "seed-run-20260524l",
+  "not_tested": []
 }

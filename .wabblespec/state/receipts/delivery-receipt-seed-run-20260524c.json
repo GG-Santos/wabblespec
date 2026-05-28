@@ -19,5 +19,9 @@
     "verifier-receipt-seed-run-20260524c.json",
     "delivery-receipt-seed-run-20260524c.json"
   ],
-  "total_receipts_accumulated": 19
+  "total_receipts_accumulated": 19,
+  "task_id": "seed-run-20260524c",
+  "not_tested": [],
+  "version_new": "unknown",
+  "version_previous": "unknown"
 }

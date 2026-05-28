@@ -11,7 +11,9 @@
   ],
   "total_receipts_accumulated": 43,
   "l8_gate_progress": "43/100 PASS receipts",
-  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "integration_gate_progress": "10/10 runs \u00e2\u20ac\u201d GATE CLEARED",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "L8 acceptance tests expanded: retro (28->90+ lines), feedback (45->90+ lines), factory (45->100+ lines). All 9 L8 modules now have thorough acceptance criteria including L8 corpus gate enforcement. Integration Phase 5-6 gate cleared (10/10 complete runs). VERSION 0.4.3."
+  "summary": "L8 acceptance tests expanded: retro (28->90+ lines), feedback (45->90+ lines), factory (45->100+ lines). All 9 L8 modules now have thorough acceptance criteria including L8 corpus gate enforcement. Integration Phase 5-6 gate cleared (10/10 complete runs). VERSION 0.4.3.",
+  "task_id": "seed-run-20260524j",
+  "not_tested": []
 }

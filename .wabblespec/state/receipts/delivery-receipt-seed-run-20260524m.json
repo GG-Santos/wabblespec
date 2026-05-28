@@ -11,7 +11,9 @@
   ],
   "total_receipts_accumulated": 52,
   "l8_gate_progress": "52/100 PASS receipts",
-  "integration_gate_progress": "10/10 runs — GATE CLEARED",
+  "integration_gate_progress": "10/10 runs \u00e2\u20ac\u201d GATE CLEARED",
   "validate_graph": "99 modules, 98 shared files, 0 violations",
-  "summary": "L1 acceptance tests batch 2 complete. 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage. L1 acceptance test coverage now 24/24 COMPLETE. Next: L2 acceptance tests (run n). VERSION 0.4.7."
+  "summary": "L1 acceptance tests batch 2 complete. 12 modules: apply, clean, decompose, explore, interview, migrate, propose, reference-load, scope-frame, specify, test, triage. L1 acceptance test coverage now 24/24 COMPLETE. Next: L2 acceptance tests (run n). VERSION 0.4.7.",
+  "task_id": "seed-run-20260524m",
+  "not_tested": []
 }

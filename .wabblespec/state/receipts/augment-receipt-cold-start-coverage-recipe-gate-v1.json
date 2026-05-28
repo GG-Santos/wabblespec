@@ -13,5 +13,7 @@
   "structural_check_passed": true,
   "placeholders_remaining": 0,
   "status": "PASS",
-  "timestamp": "2026-05-25T08:40:00+00:00"
+  "timestamp": "2026-05-25T08:40:00+00:00",
+  "task_id": "augment-receipt-cold-start-coverage-recipe-gate-v1",
+  "not_tested": []
 }

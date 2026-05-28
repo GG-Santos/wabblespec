@@ -28,8 +28,11 @@
   ],
   "total_files_in_run": 13,
   "violations": [],
-  "notes": "L2 acceptance tests complete: all 13 modules covered. Each test derived from module SKILL.md and cold-start.md. Version bump: 0.4.8 → 0.4.9.",
+  "notes": "L2 acceptance tests complete: all 13 modules covered. Each test derived from module SKILL.md and cold-start.md. Version bump: 0.4.8 \u00e2\u2020\u2019 0.4.9.",
   "guard_receipt_path": ".wabblespec/receipts/guard-wave-1-seed-run-20260524n.json",
   "version_previous": "0.4.8",
-  "version_new": "0.4.9"
+  "version_new": "0.4.9",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-25T00:00:00Z"
 }

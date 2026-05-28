@@ -50,5 +50,7 @@
       "result": "PASS"
     }
   ],
-  "notes": "All behavioral checks PASS. No quality floor regressions from integration work."
+  "notes": "All behavioral checks PASS. No quality floor regressions from integration work.",
+  "task_id": "seed-run-20260524d",
+  "not_tested": []
 }

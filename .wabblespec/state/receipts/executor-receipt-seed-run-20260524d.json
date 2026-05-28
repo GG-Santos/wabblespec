@@ -26,7 +26,7 @@
     },
     {
       "wave": 2,
-      "title": "_shared/dev/frameworks/ — 28 knowledge files across 11 platform directories",
+      "title": "_shared/dev/frameworks/ \u00e2\u20ac\u201d 28 knowledge files across 11 platform directories",
       "files_written": [
         "_shared/dev/frameworks/web/core.md",
         "_shared/dev/frameworks/web/security.md",
@@ -70,7 +70,7 @@
     },
     {
       "wave": 3,
-      "title": "_shared/dev/infrastructure/ — 4 engineering infrastructure files",
+      "title": "_shared/dev/infrastructure/ \u00e2\u20ac\u201d 4 engineering infrastructure files",
       "files_written": [
         "_shared/dev/infrastructure/cicd.md",
         "_shared/dev/infrastructure/containers.md",
@@ -81,7 +81,7 @@
     },
     {
       "wave": 4,
-      "title": "Gateway references/ directories — 24 files across 6 gateways",
+      "title": "Gateway references/ directories \u00e2\u20ac\u201d 24 files across 6 gateways",
       "files_written": [
         "modules/l4/security/references/threat-modeling.md",
         "modules/l4/security/references/owasp.md",
@@ -110,7 +110,7 @@
     },
     {
       "wave": 5,
-      "title": "Two-phase gateway activation — all 6 gateway SKILL.md files + gateway-pattern.md + docs",
+      "title": "Two-phase gateway activation \u00e2\u20ac\u201d all 6 gateway SKILL.md files + gateway-pattern.md + docs",
       "files_written": [
         "modules/l4/security/SKILL.md",
         "modules/l4/engineering/SKILL.md",
@@ -126,5 +126,7 @@
     }
   ],
   "quality_floor_result": "96/96 PASS",
-  "notes": "Complete implementation of v6.1's intended three-axis routing architecture. Apply routing table, 11 platform capability_handoff declarations, 37 framework files, 4 infrastructure files, 24 gateway reference files. Red/Blue/Purple cycling fully restored in security/references/cycling/."
+  "notes": "Complete implementation of v6.1's intended three-axis routing architecture. Apply routing table, 11 platform capability_handoff declarations, 37 framework files, 4 infrastructure files, 24 gateway reference files. Red/Blue/Purple cycling fully restored in security/references/cycling/.",
+  "task_id": "seed-run-20260524d",
+  "not_tested": []
 }

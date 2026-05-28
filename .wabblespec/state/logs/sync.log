@@ -353,3 +353,6 @@
 [2026-05-28T14:51:07Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-28T14:51:07Z
 [2026-05-28T14:51:11Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
 [2026-05-28T17:24:42Z] [LAPTOP-AHBS9745] [push] 4 file(s) changed: .wabblespec/engine/shared/scripts/receipt-writer.py, .wabblespec/state/logs/sync.log, .wabblespec/state/plans/current-wave-plan.md, .wabblespec/state/session/state.json
+[2026-05-28T17:24:43Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-28T17:24:43Z
+[2026-05-28T17:24:48Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
+[2026-05-28T17:30:16Z] [LAPTOP-AHBS9745] [push] 67 file(s) changed: .wabblespec/state/archive/receipt-index.json, .wabblespec/state/logs/sync.log, .wabblespec/state/receipts/archive-receipt-20260522.json, .wabblespec/state/receipts/augment-receipt-acceptance-test-executor-enforcement-v1.json, .wabblespec/state/receipts/augment-receipt-cold-start-coverage-recipe-gate-v1.json ...

@@ -5,7 +5,7 @@
   "wave": "post-execution",
   "timestamp": "2026-05-24T00:36:00Z",
   "session_id": "seed-run-20260524a",
-  "task": "Write _shared/scripts/validate-graph.py — framework module graph integrity validator",
+  "task": "Write _shared/scripts/validate-graph.py \u00e2\u20ac\u201d framework module graph integrity validator",
   "version": "0.3.3",
   "status": "PASS",
   "receipts_aggregated": [
@@ -29,6 +29,17 @@
     "Python < 3.8 compatibility"
   ],
   "evolution_signals": [],
-  "checks_run": ["all-receipts-pass", "no-breaking-changes", "side-effects-documented"],
-  "checks_passed": ["all-receipts-pass", "no-breaking-changes", "side-effects-documented"]
+  "checks_run": [
+    "all-receipts-pass",
+    "no-breaking-changes",
+    "side-effects-documented"
+  ],
+  "checks_passed": [
+    "all-receipts-pass",
+    "no-breaking-changes",
+    "side-effects-documented"
+  ],
+  "task_id": "seed-run-20260524a",
+  "version_new": "0.3.3",
+  "version_previous": "0.3.2"
 }

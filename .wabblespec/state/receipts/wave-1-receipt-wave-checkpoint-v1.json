@@ -5,7 +5,7 @@
   "wave_number": 1,
   "wave_label": "Fix executor authority.owns and produces_schemas",
   "timestamp": "2026-05-26T00:01:00Z",
-  "status": "COMPLETE",
+  "status": "PASS",
   "files_modified": [
     "modules/l2/executor/skill-rules.json"
   ],
@@ -19,5 +19,8 @@
     "result": "PASS",
     "unauthorized_files": []
   },
-  "acceptance_criteria_covered": ["AC-7"]
+  "acceptance_criteria_covered": [
+    "AC-7"
+  ],
+  "not_tested": []
 }

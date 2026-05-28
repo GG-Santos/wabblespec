@@ -8,5 +8,7 @@
   "attested_by": "Gino Santos",
   "attested_at": "2026-05-25T08:30:00+00:00",
   "status": "PASS",
-  "timestamp": "2026-05-25T08:20:00+00:00"
+  "timestamp": "2026-05-25T08:20:00+00:00",
+  "task_id": "blueprint-receipt-cold-start-coverage-recipe-gate-v1",
+  "not_tested": []
 }

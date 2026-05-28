@@ -9,5 +9,7 @@
   "verdict": "PASS",
   "fixture_set": ".wabblespec/experiments/fixtures/cold-start-coverage-recipe-gate-v1/",
   "status": "PASS",
-  "timestamp": "2026-05-25T09:00:00+00:00"
+  "timestamp": "2026-05-25T09:00:00+00:00",
+  "task_id": "benchmark-receipt-cold-start-coverage-recipe-gate-v1",
+  "not_tested": []
 }

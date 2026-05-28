@@ -32,5 +32,7 @@
     }
   ],
   "platform_security_status": "All 22 platform security files confirmed populated (pre-existing content from prior sessions)",
-  "validate_graph": "98 shared files, 0 violations"
+  "validate_graph": "98 shared files, 0 violations",
+  "task_id": "seed-run-20260524f",
+  "not_tested": []
 }
