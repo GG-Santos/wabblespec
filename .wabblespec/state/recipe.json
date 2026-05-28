@@ -1,9 +1,9 @@
 {
-  "target": "Library-Package",
-  "platform": "Library-Package",
+  "target": "Framework",
+  "platform": "Framework",
   "detection_method": "explicit-instruction",
-  "confidence": 0.97,
-  "complexity": "Low",
+  "confidence": 0.95,
+  "complexity": "High",
   "secondary_targets": [],
   "collapse_eligible": false,
   "active_skills": [],
@@ -13,6 +13,6 @@
     "enhanced": false,
     "sharpened": false
   },
-  "locked_at": "2026-05-28T12:30:06Z",
-  "session_id": "wave-plan-writer-fix-20260528"
+  "locked_at": "2026-05-28T13:28:55Z",
+  "session_id": "foundation-hardening-20260528"
 }

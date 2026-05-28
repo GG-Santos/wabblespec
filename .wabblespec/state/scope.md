@@ -1,25 +1,34 @@
 # Session Scope
 
-**target:** Library-Package
-**complexity:** Medium
-**locked_at:** 2026-05-28T16:00:00Z
-**session_id:** queue-orchestrator-20260528
+**target:** Framework
+**complexity:** High
+**locked_at:** 2026-05-28T13:02:20Z
+**session_id:** foundation-hardening-20260528
 
 ## In Scope
 
-- queue-orchestrator.py with populate/ready/advance/status/run subcommands
-- CLAUDE.md entry for the new script
+- Build wabblespec-doctor.py consolidating all 28 audit finding checks
+- Close schema gaps: recipe.json, wave-queue.json, delivery-receipt, brainstorm options_path, propose receipt builder
+- Unify confidence field across receipt builders (additive, back-compat reads of legacy names)
+- Fix C1 receipt-index path normalization (.wabblespec/state/receipts/)
+- Fix C2 platform skill ID alignment (registry full IDs vs .claude/skills short forms)
+- Fix C3 archive.py wabble-sound.py path and C4 CLAUDE.md version/module-count drift
+- Fix high tier: CLI flag unification, entity-graph regen, doc/skill path drift, orphan template disposition, memory-bootstrap dedup
+- Wire doctor as on_archive daemon job and advisory (non-blocking) Guard layer
 
 ## Out of Scope
 
-- SKILL.md modifications
-- Changes to wave-queue.py
-- Actual Agent tool invocation (that remains in Claude Code Executor)
+- Exhaustive resolution of all medium/low tier findings (left for doctor to surface)
+- Full unit-test harness for the 42 shared scripts (deferred to fast-follow task card)
+- Promoting the doctor Guard layer to blocking (stays advisory until clean across several Archives)
+- Any product-space changes (framework self-build only, I11)
 
 ## Assumptions
 
-- queue-orchestrator.py delegates queue writes to wave-queue.py — no duplicate lock logic
-- ready command output is consumed by Executor skill to fire parallel Agent calls
+- Brainstorm + Propose artifacts are the source of the 28 findings and Option 2 was human-selected
+- Python 3.8+ with pyyaml and duckdb available
+- Reviewer gates the Plan stage before Executor since Guard is invariant-enforcing
+- H1 confidence unification is done additively with a deprecation window, keeping the overall delta ADDITIVE
 
 ## Scope Change Log
 
