@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T12:27:44Z",
+  "last_updated": "2026-05-28T12:30:06Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -872,6 +872,20 @@
       "waves_planned": 2,
       "not_tested_items": 0,
       "summary": "Built queue-orchestrator.py: populate loads wave plan into queue, ready surfaces parallel-dispatchable tasks as JSON for Executor Agent calls, advance tracks wave completion (exit 0/1/2), run provides sequential fallback."
+    },
+    {
+      "task_id": "wave-plan-writer-fix-20260528",
+      "session_id": "wave-plan-writer-fix-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T12:30:06Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-wave-plan-writer-fix-20260528.json",
+      "version_previous": "0.44.0",
+      "version_new": "0.45.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Added --waves-file PATH to wave-plan-writer.py to accept wave definitions from a JSON file, bypassing shell quoting issues with complex verification_command strings."
     }
   ]
 }
