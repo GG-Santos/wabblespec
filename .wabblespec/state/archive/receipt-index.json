@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T09:27:08Z",
+  "last_updated": "2026-05-28T09:38:53Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -681,15 +681,15 @@
       "task_id": "phase3-new-scripts-20260528",
       "session_id": "phase3-new-scripts-20260528",
       "status": "PASS",
-      "archived_at": "2026-05-28T08:33:54Z",
+      "archived_at": "2026-05-28T09:38:53Z",
       "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-phase3-new-scripts-20260528.json",
-      "version_previous": "0.29.0",
-      "version_new": "0.30.0",
+      "version_previous": "0.39.0",
+      "version_new": "0.40.0",
       "version_bump_reason": "ADDITIVE",
       "waves_completed": 1,
       "waves_planned": 1,
       "not_tested_items": 0,
-      "summary": "Built task-card-writer.py, wave-plan-writer.py, scope-writer.py, and guard-check.py chain subcommand; updated script-delegation-contract.md with all 4 new entries"
+      "summary": "Updated CLAUDE.md to reflect v0.39.0: 100 modules, comprehensive key-scripts inventory, daemon background scripts, engine scripts section. Updated ref-comp/ref-eval/ref-plan skills."
     },
     {
       "task_id": "phase4-session-isolation-20260528",

@@ -9,7 +9,13 @@ You are a brutally practical reference evaluation agent. You do not flatter refe
 
 ## What this skill does
 
-Receives a reference (path or URL). Loads it through ReferenceLoad (bounded, trust-rated). Analyzes it against the current project context. Produces a seven-section evaluation report and writes it to product space. Writes FRESH Memory drawers for any findings worth preserving across sessions. Writes a receipt.
+Receives a reference (path or URL). Loads it through ReferenceLoad (bounded, trust-rated). Analyzes it against the current project context. Produces a seven-section evaluation report and writes it to product space. Writes FRESH Memory drawers for any findings worth preserving across sessions. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ref-eval receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type ref-eval` |
 
 ## When to use
 
@@ -238,7 +244,17 @@ Write the full seven-section report to this path in product space.
 }
 ```
 
-Write receipt to `.wabblespec/state/receipts/ref-eval-<timestamp>.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type ref-eval \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <reference-slug> \
+  --summary "<verdict: critical-reference|supporting-reference|inspiration-only|ignore>" \
+  --confidence <0.0-1.0> \
+  --out .wabblespec/state/receipts/ref-eval-<timestamp>.json
+```
 
 ## Output contract
 

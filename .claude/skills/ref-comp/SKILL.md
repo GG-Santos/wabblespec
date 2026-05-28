@@ -17,7 +17,13 @@ ref-comp is the final step. Running it before implementation is a different task
 
 ## What this skill does
 
-Takes the current project's implementation and a reference. Optionally reads the ref-plan to understand what was intended. Compares what was built against what the reference does -- section by section, feature by feature. Produces a six-section audit report: implementation coverage, execution gaps, improvements beyond the plan, architecture divergence, quality delta, and verdict. Writes Memory drawers for critical misses. Writes a receipt.
+Takes the current project's implementation and a reference. Optionally reads the ref-plan to understand what was intended. Compares what was built against what the reference does -- section by section, feature by feature. Produces a six-section audit report: implementation coverage, execution gaps, improvements beyond the plan, architecture divergence, quality delta, and verdict. Writes Memory drawers for critical misses. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ref-comp receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type ref-comp` |
 
 ## When to use
 
@@ -184,7 +190,17 @@ For each protected win from Section 3: write one drawer in the same room, tagged
 }
 ```
 
-Write receipt to `.wabblespec/state/receipts/ref-comp-<timestamp>.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type ref-comp \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <reference-slug> \
+  --summary "<verdict>" \
+  --confidence <coverage-score-0.0-1.0> \
+  --out .wabblespec/state/receipts/ref-comp-<timestamp>.json
+```
 
 ## Output contract
 

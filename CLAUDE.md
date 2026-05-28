@@ -4,13 +4,51 @@ Guidance for Claude Code (claude.ai/code) in this repository.
 
 ## What This Repository Is
 
-WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 99 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
+WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 100 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
 
-Current version: **0.23.0** (see `.wabblespec/VERSION`)
+Current version: **0.39.0** (see `.wabblespec/VERSION`)
 
 ## Key Scripts
 
-All scripts require `pip install pyyaml pytest jinja2` (see `.claude/skills/factory/requirements.txt`). All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help` for flags.
+All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Required deps: `pip install pyyaml duckdb` (duckdb for receipt-db.py).
+
+**Pipeline automation (all sessions):**
+- `archive.py` — CHANGELOG + VERSION + delivery receipt + receipt-index (replaces manual Archive steps)
+- `receipt-writer.py` — 17 receipt types; auto-upserts into DuckDB if DB exists; use `--no-db` to skip
+- `guard-check.py` — Layers 4+5 (authority + command risk + receipt chain via `chain` subcommand)
+
+**Session lifecycle:**
+- `session-state.py` — init/show/set/complete/clear session state.json
+- `session-registry.py` — create/list/close/purge namespaced session directories
+- `recipe-writer.py` — write recipe.json
+- `task-card-writer.py` — write task-card.md from CLI args
+- `wave-plan-writer.py` — write current-wave-plan.md from wave JSON
+- `scope-writer.py` — write scope.md from CLI args
+
+**Receipt store:**
+- `receipt-db.py` — DuckDB store; `init`, `import`, `query`, `stats`, `export` subcommands
+- `wave-queue.py` — file-locked parallel wave task queue
+
+**Analysis and validation:**
+- `quality-floor-check.py` — Gate 1 + Gate 2 for all 100 modules; `--verbose` for full detail
+- `validate-graph.py` — module registry integrity
+- `agent-output-validator.py` — validate JSON output from skill subagents
+
+**Memory layer:**
+- `drawer-writer.py` — write file-based drawer JSON
+- `provenance-append.py` — append to provenance ledger
+
+**Background scripts (fired by stop-hook via daemon-config.json):**
+- `dream.py` — EMA decay + gap-map + staleness-map (on_stop)
+- `quality-floor-check.py` — regression check (on_archive)
+- `index-update.py` — regenerate INDEX.md managed sections (on_archive)
+- `receipt-db.py import` — sync JSON receipts to DuckDB (on_archive)
+- `memory-mine.py` — closet indexing (on_stop, enabled at 50+ drawers)
+- `entity-graph.py` — graph update (on_stop)
+
+**Engine scripts (not in shared/scripts/):**
+- `.wabblespec/engine/scripts/wabblespec-sync-skills.py` — sync engine/modules/ → .claude/skills/
+- `.wabblespec/engine/scripts/stop-hook.py` — Stop hook orchestrator
 
 ## The 12 Invariants
 

@@ -270,3 +270,5 @@
 [2026-05-28T09:29:23Z] [LAPTOP-AHBS9745] [push] pushed to origin/main
 [2026-05-28T09:36:25Z] [LAPTOP-AHBS9745] [pull] fetch failed: fatal: unable to access 'https://github.com/GG-Santos/wabblespec.git/': Could not resolve host: github.com
 [2026-05-28T09:36:56Z] [LAPTOP-AHBS9745] [push] 5 file(s) changed: .wabblespec/engine/scripts/__pycache__/stop-hook.cpython-313.pyc, .wabblespec/engine/scripts/stop-hook.py, .wabblespec/engine/shared/references/script-delegation-contract.md, .wabblespec/engine/shared/scripts/receipt-writer.py, .wabblespec/state/logs/sync.log
+[2026-05-28T09:36:56Z] [LAPTOP-AHBS9745] [push] committed: wabblespec: sync LAPTOP-AHBS9745 2026-05-28T09:36:56Z
+[2026-05-28T09:37:08Z] [LAPTOP-AHBS9745] [push] push failed (will retry next session): fatal: unable to access 'https://github.com/GG-Santos/wabblespec.git/': Could not resolve host: github.com

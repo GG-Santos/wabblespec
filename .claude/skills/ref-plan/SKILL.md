@@ -17,7 +17,13 @@ ref-eval -> ref-plan -> IMPLEMENT -> ref-comp
 
 ## What this skill does
 
-Reads a ref-eval report. Synthesizes its findings into a ranked integration backlog. Applies an exclusion filter. Assigns remaining items to four phases by impact/risk profile. Writes a phased integration plan with explicit exclusions and execution notes. Writes a receipt.
+Reads a ref-eval report. Synthesizes its findings into a ranked integration backlog. Applies an exclusion filter. Assigns remaining items to four phases by impact/risk profile. Writes a phased integration plan with explicit exclusions and execution notes. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ref-plan receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type ref-plan` |
 
 ## When to use
 
@@ -187,7 +193,16 @@ Same structure, plus:
 }
 ```
 
-Write receipt to `.wabblespec/state/receipts/ref-plan-<timestamp>.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type ref-plan \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <reference-slug> \
+  --requirements "<adopted-item-1>" "<adopted-item-2>" \
+  --out .wabblespec/state/receipts/ref-plan-<timestamp>.json
+```
 
 ## Handoff to execution
 
