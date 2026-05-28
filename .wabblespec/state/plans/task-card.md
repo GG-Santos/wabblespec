@@ -1,87 +1,77 @@
-# Task Card: wave-checkpoint-v1
+# Task Card: toprank-integration-phase1
 
-**Session ID:** wave-checkpoint-v1
-**Created:** 2026-05-26
+**Session ID:** toprank-integration-phase1
+**Created:** 2026-05-28
 **Delta class:** ADDITIVE
 **Complexity:** Medium
 **Status:** LOCKED
+**Task type:** content-edit
+**Prior task (suspended):** wave-checkpoint-v1
 
 ---
 
 ## Goal
 
-After each Executor wave completes successfully, a checkpoint file is written to `.wabblespec/session/checkpoints/` so that interrupted multi-wave sessions can identify the last completed wave at the next session start without restarting from wave 1.
+Implement Phase 1 Safe Wins from the toprank-main integration plan. Two changes:
+1. Document the `~~capability-name` connector placeholder convention in `CLAUDE.md` (T4).
+2. Add a `## Reference Routing` section to `.claude/skills/executor/SKILL.md`, routing the inline tier table to `system-prompt-tiers.md` and the inline error routing table to `rules/error-routing.md`, removing the corresponding inline blocks so the SKILL.md body shrinks (T1 — Executor only this pass).
 
 ---
 
 ## Non-Goals
 
-- Automatic wave re-execution from checkpoint (requires separate spec)
-- Cross-session checkpoint transfer
-- Checkpoint expiry or cleanup policy (follow-on)
+- Modifying Guard SKILL.md (locked under wave-checkpoint-v1)
+- Creating new reference files
+- Applying routing tables to Benchmark or Verifier SKILL.md this pass
+- Phase 2 items (T2 LLM-as-judge, T3 instinct drawer rename)
 
 ---
 
 ## Assumptions
 
-- Checkpoint files are written only on successful wave completion; failed waves produce no checkpoint
-- Guard detection is informational — surfaces last completed wave to human; does not auto-resume
-- The checkpoint schema is new; Executor writes, Guard reads, Recipe reads
-- Recipe detection is read-only; does not modify session behavior
+- `.wabblespec/engine/shared/references/system-prompt-tiers.md` exists and its content covers the inline tier table in Executor SKILL.md
+- `.claude/skills/executor/rules/error-routing.md` exists and covers the inline error routing table in Executor SKILL.md
+- Executor SKILL.md line count before edits is the ground truth; ≥10 line reduction is verified against it
+- No model names are introduced in any edited file
 
 ---
 
 ## Acceptance Criteria
 
-### 1 — Executor writes checkpoint on wave completion
+### 1 — CLAUDE.md contains the capability placeholder convention
 
-Given a wave plan with N waves and wave K completes all steps successfully,
-When Executor finishes executing wave K,
-Then `.wabblespec/session/checkpoints/checkpoint-wave-K.json` is written.
-Then the checkpoint contains: `session_id`, `wave_number`, `wave_receipt_path`, `modules_activated`, `outputs_written`, `timestamp`.
-Then the checkpoint validates against `_shared/schemas/wave-checkpoint.schema.json`.
+Given `CLAUDE.md` in the project root,
+When this task completes,
+Then `CLAUDE.md` contains a section or paragraph documenting the `~~capability-name` placeholder convention for tool references in SKILL.md files.
+Then that section includes at least one concrete example (e.g. `~~search-console`, `~~vector-store`).
+Then no model names are introduced in the added text.
 
-### 2 — No checkpoint written on failed wave
+### 2 — Executor SKILL.md has a Reference Routing section
 
-Given a wave plan where wave K fails mid-execution,
-When Executor encounters the failure,
-Then no `checkpoint-wave-K.json` is written.
-Then checkpoints from successfully completed prior waves are not modified.
+Given `.claude/skills/executor/SKILL.md`,
+When this task completes,
+Then the file contains a `## Reference Routing` section.
+Then the section has a table with at least two entries: one routing to `system-prompt-tiers.md` and one routing to `rules/error-routing.md`.
 
-### 3 — Multiple waves accumulate independent checkpoints
+### 3 — Executor SKILL.md is shorter
 
-Given a 3-wave plan where waves 1 and 2 complete successfully and wave 3 has not run,
-When Executor has completed wave 2,
-Then `checkpoint-wave-1.json` and `checkpoint-wave-2.json` both exist.
-Then `checkpoint-wave-3.json` does not exist.
+Given `.claude/skills/executor/SKILL.md` before and after this task,
+When this task completes,
+Then the post-edit line count is at least 10 lines fewer than the pre-edit line count.
+Then the inline tier table (stable/context/volatile rows) has been removed from the Inputs section.
+Then the inline error routing summary table has been removed from the Error routing section.
 
-### 4 — Guard detects checkpoint at session start
+### 4 — No new reference files created
 
-Given `.wabblespec/session/checkpoints/` contains one or more checkpoint files from a prior open session,
-When Guard Layer 1 runs at the start of a new execution request,
-Then Guard surfaces the last completed wave number (`wave_number` from the highest-numbered checkpoint) to the human before any wave executes.
-Then Guard does not auto-resume execution.
-Then Guard continues normally after surfacing the checkpoint state.
+Given the set of files in `.claude/skills/executor/rules/` and `.wabblespec/engine/shared/references/` before this task,
+When this task completes,
+Then no new files exist in those directories that did not exist before.
 
-### 5 — Guard passes cleanly when no checkpoints exist
+### 5 — Benchmark and Guard SKILL.md untouched
 
-Given `.wabblespec/session/checkpoints/` is empty or does not exist,
-When Guard Layer 1 runs,
-Then Guard does not emit any checkpoint-related output.
-Then Guard proceeds to Layer 2 normally.
-
-### 6 — Recipe cold-start surfaces checkpoint state
-
-Given checkpoint files exist in `.wabblespec/session/checkpoints/`,
-When Recipe runs its cold-start procedure,
-Then Recipe includes `checkpoint_detected: true` and `last_checkpoint_wave: N` in its output section.
-Then the cold-start output names the last completed wave.
-
-### 7 — Executor authority covers checkpoint path
-
-Given `guard-check.py` is run for the executor module with proposed files including `.wabblespec/session/checkpoints/checkpoint-wave-1.json`,
-When Layer 4 authority check runs,
-Then the check returns PASS (the path matches a pattern in `executor.authority.owns`).
+Given `.claude/skills/benchmark/SKILL.md` and `.claude/skills/guard/SKILL.md`,
+When this task completes,
+Then both files are byte-for-byte identical to their pre-task state.
 
 ---
 
@@ -89,11 +79,5 @@ Then the check returns PASS (the path matches a pattern in `executor.authority.o
 
 | File | Operation |
 |---|---|
-| `_shared/schemas/wave-checkpoint.schema.json` | CREATE |
-| `modules/l2/executor/SKILL.md` | MODIFY — add checkpoint write step |
-| `modules/l2/executor/skill-rules.json` | MODIFY — add authority.owns and produces_schemas |
-| `modules/l2/executor/tests/acceptance.md` | MODIFY — add checkpoint criteria |
-| `modules/l2/guard/SKILL.md` | MODIFY — add checkpoint detection to Layer 1 |
-| `modules/l2/guard/tests/acceptance.md` | MODIFY — update for checkpoint check |
-| `modules/l0/recipe/SKILL.md` | MODIFY — surface checkpoint state in cold-start |
-| `framework.yaml` | MODIFY — executor schema registration |
+| `CLAUDE.md` | MODIFY — add Skill Authoring Conventions section |
+| `.claude/skills/executor/SKILL.md` | MODIFY — add Reference Routing section, remove inline tier table and error routing table |

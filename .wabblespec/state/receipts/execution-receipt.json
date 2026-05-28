@@ -1,29 +1,17 @@
 {
+  "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
   "module": "executor",
   "layer": "L2",
-  "phase": "Execute",
-  "wave": 1,
-  "timestamp": "2026-05-21T10:07:00Z",
-  "checks_run": ["all-waves-complete", "all-verifier-pass", "no-blocked-waves"],
-  "checks_passed": ["all-waves-complete", "all-verifier-pass", "no-blocked-waves"],
-  "evidence": [".wabblespec/receipts/wave-1-receipt.json", ".wabblespec/receipts/verification-wave-1-20260521.json"],
+  "session_id": "toprank-integration-phase1",
   "status": "PASS",
-  "not_tested": ["rollback restore path", "error recovery paths (SOFT/HARD/DEPENDENCY)", "multi-wave execution"],
-  "confidence": 1.0,
-  "inputs": [
-    {"module": "verifier", "receipt_path": ".wabblespec/receipts/verification-wave-1-20260521.json", "staleness_state": "FRESH"}
-  ],
-  "outputs": [".wabblespec/receipts/execution-receipt.json"],
-  "waves_planned": 1,
-  "waves_completed": 1,
+  "timestamp": "2026-05-28T10:51:00Z",
+  "waves_planned": 2,
+  "waves_completed": 2,
   "waves_failed": 0,
   "rollbacks_triggered": 0,
+  "acceptance_verified": null,
   "errors_by_type": {
-    "SOFT": 0,
-    "HARD": 0,
-    "DEPENDENCY": 0,
-    "CONTEXT_EXHAUSTION": 0,
-    "SPEC_VIOLATION": 0,
-    "STALENESS_VIOLATION": 0
+    "SOFT": 0, "HARD": 0, "DEPENDENCY": 0,
+    "CONTEXT_EXHAUSTION": 0, "SPEC_VIOLATION": 0, "STALENESS_VIOLATION": 0
   }
 }

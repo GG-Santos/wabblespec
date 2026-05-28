@@ -1,69 +1,69 @@
-# Wave Plan: wave-checkpoint-v1
+# Wave Plan: toprank-integration-phase1
 
-**Session ID:** wave-checkpoint-v1
-**Created:** 2026-05-26
-**Waves:** 2
-**Complexity:** Medium
-
----
-
-## Research Summary
-
-Prior-session audit confirmed that the core checkpoint implementation already exists across
-SKILL.md files, the schema, and acceptance tests. The only remaining gap is a path mismatch
-in the Executor authority list (`.wabblespec/checkpoints/*` vs
-`.wabblespec/session/checkpoints/*`) and a missing `produces_schemas` entry in framework.yaml.
-
-Verified via `guard-check.py authority --module executor --files
-".wabblespec/session/checkpoints/checkpoint-wave-1.json" --json` → FAIL,
-`unauthorized_files: [".wabblespec/session/checkpoints/checkpoint-wave-1.json"]`.
+**session_id:** toprank-integration-phase1
+**task_card:** .wabblespec/state/plans/task-card.md
+**locked_at:** 2026-05-28T10:42:00Z
+**total_waves:** 2
 
 ---
 
-## Wave 1 — Fix executor authority.owns and produces_schemas
+## Wave 1 — T4: Capability Placeholder Convention in CLAUDE.md
 
-**Files:** `modules/l2/executor/skill-rules.json`
+**label:** claude-md-convention
+**verification_mode:** Audit
 
-**Steps:**
+### Steps
 
-1. Add `.wabblespec/session/checkpoints/*` to `authority.owns` array.
-2. Add `_shared/schemas/wave-checkpoint.schema.json` to `produces_schemas` array
-   (field does not exist yet in skill-rules.json; create it).
+1. Read `CLAUDE.md` in full to locate the correct insertion point.
+2. Add a `## Skill Authoring Conventions` section documenting the `~~capability-name` placeholder convention with at least two examples.
+3. Verify no model names were introduced.
 
-**Verification:** Run `guard-check.py authority --module executor --files
-".wabblespec/session/checkpoints/checkpoint-wave-1.json" --json` → expect PASS.
+### Outputs
 
-**Acceptance criteria covered:** AC-7 (Executor authority covers checkpoint path)
-
----
-
-## Wave 2 — Update framework.yaml executor produces_schemas
-
-**Files:** `framework.yaml`
-
-**Steps:**
-
-1. In the executor module entry (`modules/l2/executor/`), update `produces_schemas`
-   from `[shared/schemas/receipt.base.schema.json]` to
-   `[shared/schemas/receipt.base.schema.json, _shared/schemas/wave-checkpoint.schema.json]`.
-
-**Verification:** `grep produces_schemas framework.yaml | grep wave-checkpoint` returns match.
-
-**Acceptance criteria covered:** AC-1 (schema referenced in executor module registry),
-AC-7 (schema authority declared)
-
----
-
-## Non-wave items (already implemented — no action required)
-
-The following task card deliverables were confirmed present in prior sessions:
-
-| File | Status |
+| Path | Operation |
 |---|---|
-| `_shared/schemas/wave-checkpoint.schema.json` | EXISTS — all required fields present |
-| `modules/l2/executor/SKILL.md` Step 5b | EXISTS — checkpoint write spec complete |
-| `modules/l2/executor/tests/acceptance.md` | EXISTS — "Session checkpoint written after each wave" |
-| `modules/l2/guard/SKILL.md` Layer 1 | EXISTS — checkpoint detection written |
-| `modules/l2/guard/tests/acceptance.md` | EXISTS — "Layer 1 — Checkpoint detection on Wave 1" |
-| `modules/l0/recipe/SKILL.md` Step 1b | EXISTS — checkpoint surface logic present |
-| `framework.yaml` schema consumers list | EXISTS — wave-checkpoint.schema.json registered |
+| `CLAUDE.md` | MODIFY |
+
+### Verification gate (Audit)
+
+- `CLAUDE.md` contains `~~capability-name` text with at least one example placeholder
+- No model names in the added section
+- Acceptance criterion 1 "Then" clauses satisfied
+
+### Rollback
+
+Revert `CLAUDE.md` to pre-wave state.
+
+---
+
+## Wave 2 — T1: Reference Routing Table in Executor SKILL.md
+
+**label:** executor-routing-table
+**verification_mode:** Audit
+
+### Steps
+
+1. Count lines in `.claude/skills/executor/SKILL.md` before editing. Record as `pre_edit_lines`.
+2. Remove the 3-row tier table (stable/context/volatile) from the Inputs section; replace with a one-line pointer to the existing "Full tier placement rules" line already present.
+3. Remove the 5-row inline error routing summary table from the "### Error routing" section; replace with "See `rules/error-routing.md` for the full routing table, decision tree, and rollback protocol."
+4. Add a `## Reference Routing` section with a 2-entry table pointing to `system-prompt-tiers.md` and `rules/error-routing.md`.
+5. Count lines after editing. Confirm reduction ≥ 10.
+
+### Outputs
+
+| Path | Operation |
+|---|---|
+| `.claude/skills/executor/SKILL.md` | MODIFY |
+
+### Verification gate (Audit)
+
+- `## Reference Routing` section exists with 2-entry table
+- Both referenced files exist
+- Inline tier table rows absent from Inputs section
+- Inline error routing table absent from Error routing section
+- Line count ≥ 10 fewer than pre-edit
+- Acceptance criteria 2, 3, 4, 5 "Then" clauses satisfied
+
+### Rollback
+
+Revert `.claude/skills/executor/SKILL.md` to pre-wave state.

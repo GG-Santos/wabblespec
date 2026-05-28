@@ -1,5 +1,31 @@
 # WabbleSpec Changelog
 
+## [0.25.0] — 2026-05-28
+
+### toprank-integration-phase1 — Reference routing pattern + skill authoring convention (T4, T1)
+
+**`CLAUDE.md` — ADDITIVE: `## Skill Authoring Conventions` section**
+
+New section documents the `~~capability-name` placeholder convention for tool references in SKILL.md files, extending I6 (RUNTIME IS VENDOR-NEUTRAL) to skill authoring. Skills must use `~~search-console`, `~~vector-store`, etc. rather than hardcoded provider names. Also documents the reference routing discipline: `## Reference Routing` tables replace inline content — SKILL.md line counts must decrease when routing tables are added.
+
+**`.claude/skills/executor/SKILL.md` — ADDITIVE: `## Reference Routing` section; COSMETIC: inline table removals**
+
+New `## Reference Routing` section with 3 entries: input tier placement rules → `system-prompt-tiers.md`; error type routing → `rules/error-routing.md`; CONTEXT_EXHAUSTION compression → `context-compression-bounds.md`. Corresponding inline blocks removed: 3-row tier table, 5-row error routing summary table, 12-line compression protocol section. Line count: 249 → 234 (−15 lines).
+
+### Not Tested
+- Separate verification-wave-*-*.json files (verification embedded in wave receipts this session)
+- Benchmark SKILL.md routing (excluded: ≤8 line savings with existing-files-only constraint)
+- Verifier SKILL.md routing (excluded: pre-emit-critique.md has no inline counterpart to remove)
+- T6 Guard safety taxonomy addition (deferred: Guard SKILL.md locked under wave-checkpoint-v1)
+- T2 LLM-as-judge eval script (Phase 2 — requires separate Specify cycle)
+- T3 Instinct drawer field rename (Phase 2 — requires separate Specify cycle)
+- T5 allowed-tools: frontmatter enforcement (Phase 3 — gated on wave-checkpoint-v1 + adversarial review)
+
+### Receipts
+- execution-receipt: .wabblespec/state/receipts/execution-receipt.json
+- waves: 2 planned, 2 completed, 0 failed
+- verification: all waves PASS
+
 ## [0.9.0] — 2026-05-25
 
 ### G0DM0D3 Wave 5 — ParamLearner AUGMENT Feedback

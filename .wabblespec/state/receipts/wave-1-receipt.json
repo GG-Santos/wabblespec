@@ -1,23 +1,16 @@
 {
+  "_self_critique": "IC5 RC4 EF5 SS5 SR5 OV4",
   "module": "executor",
   "layer": "L2",
-  "phase": "Execute",
-  "wave": 1,
-  "timestamp": "2026-05-21T10:05:00Z",
-  "checks_run": ["checkpoint-saved", "guard-passed", "outputs-produced", "verifier-invoked"],
-  "checks_passed": ["checkpoint-saved", "guard-passed", "outputs-produced", "verifier-invoked"],
-  "evidence": [".wabblespec/plans/current-wave-plan.md", "_shared/references/error-taxonomy.md"],
-  "status": "PASS",
-  "not_tested": ["SOFT error retry path", "HARD rollback path", "CONTEXT_EXHAUSTION compress path"],
-  "confidence": 1.0,
-  "inputs": [
-    {"module": "guard", "receipt_path": ".wabblespec/receipts/guard-wave-1-receipt.json", "staleness_state": "FRESH"},
-    {"module": "decompose", "receipt_path": ".wabblespec/receipts/decompose-receipt.json", "staleness_state": "FRESH"}
-  ],
-  "outputs": ["modules/l2/executor/rules/error-routing.md"],
+  "session_id": "toprank-integration-phase1",
   "wave_number": 1,
+  "wave_label": "claude-md-convention",
+  "status": "PASS",
+  "timestamp": "2026-05-28T10:45:00Z",
   "verification_mode_used": "Audit",
+  "verdict": "PASS",
   "revise_cycles": 0,
-  "checkpoint_path": ".wabblespec/checkpoints/wave-1-20260521/",
-  "deviations_found": []
+  "files_modified": [{"path": "CLAUDE.md", "action": "modified"}],
+  "deviations_found": [],
+  "acceptance_criteria_covered": ["AC1"]
 }
