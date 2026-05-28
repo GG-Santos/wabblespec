@@ -661,6 +661,30 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+
+  - id: ref-comp
+    path: .claude/skills/ref-comp/
+    type: skill
+    layer: L2
+    tags: [reference, comparison, audit, implementation-verification, post-implementation]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [ref-eval, ref-plan, memory]
+    last_validated: "2026-05-28"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: ref-plan
+    path: .claude/skills/ref-plan/
+    type: skill
+    layer: L2
+    tags: [reference, planning, integration, phasing, adaptation]
+    produces_schemas: []
+    consumes_schemas: [.wabblespec/engine/shared/schemas/receipt.base.schema.json]
+    depends_on: [ref-eval, memory]
+    last_validated: "2026-05-28"
+    quality_floor_passed: true
+    build_status: built
   - id: ensemble
     path: .wabblespec/engine/modules/l2/ensemble/
     type: skill
