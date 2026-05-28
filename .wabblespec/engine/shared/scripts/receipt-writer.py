@@ -42,6 +42,11 @@ Supported receipt types:
     forget              Memory deletion receipt (L5)
     inference-guard     InferenceGuard activation/bypass receipt (L2)
     model-router        ModelRouter capability selection receipt (L2)
+    forge               Forge L8 promotion output (L8)
+    augment             Augment module file generation output (L8)
+    blueprint           Blueprint attestation and plan output (L8)
+    benchmark           Benchmark metric evaluation output (L8)
+    synth               Synth candidate generation output (L8)
 
 Usage:
     # Verifier receipt:
@@ -938,6 +943,112 @@ def build_model_router(args):
     }
 
 
+def build_forge(args):
+    promotions = args.promotions_json or []
+    return {
+        "receipt_type": "forge",
+        "module": "forge",
+        "layer": "L8",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "attested_by": args.attested_by or "",
+        "attestation_statement": args.attestation_statement or "",
+        "promotions": promotions,
+        "promotions_count": len(promotions),
+        "archive_path": args.forge_archive_path or ".wabblespec/experiments/archive/provenance.json",
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.95,
+    }
+
+
+def build_augment(args):
+    return {
+        "receipt_type": "augment",
+        "module": "augment",
+        "layer": "L8",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "blueprint_id": args.blueprint_id or "",
+        "affected_module": args.affected_module or "",
+        "change_type": args.change_type or "AUGMENT",
+        "output_path": args.augment_output_path or "",
+        "files_written": args.files_written or [],
+        "structural_check_passed": not args.structural_check_failed,
+        "placeholders_remaining": args.placeholders_remaining if args.placeholders_remaining is not None else 0,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.95,
+    }
+
+
+def build_blueprint(args):
+    return {
+        "receipt_type": "blueprint",
+        "module": "blueprint",
+        "layer": "L8",
+        "phase": "Plan",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "blueprint_id": args.blueprint_id or "",
+        "affected_module": args.affected_module or "",
+        "change_type": args.change_type or "AUGMENT",
+        "attestation_confirmed": not args.attestation_not_confirmed,
+        "attested_by": args.attested_by or "",
+        "attested_at": args.attested_at or NOW,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.95,
+    }
+
+
+def build_benchmark(args):
+    return {
+        "receipt_type": "benchmark",
+        "module": "benchmark",
+        "layer": "L8",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "blueprint_id": args.blueprint_id or "",
+        "metric_name": args.metric_name or "",
+        "held_out_cases": args.held_out_cases if args.held_out_cases is not None else 0,
+        "held_out_value": args.held_out_value if args.held_out_value is not None else 0.0,
+        "threshold": args.threshold if args.threshold is not None else 0.0,
+        "verdict": "PASS" if (args.held_out_value or 0.0) >= (args.threshold or 0.0) else "FAIL",
+        "fixture_set": args.fixture_set or "",
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.95,
+    }
+
+
+def build_synth(args):
+    return {
+        "receipt_type": "synth",
+        "module": "synth",
+        "layer": "L8",
+        "phase": "Plan",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "instinct_observation_id": args.instinct_observation_id or "",
+        "candidate_id": args.candidate_id or "",
+        "candidate_path": args.candidate_path or "",
+        "pattern_occurrence_count": args.pattern_occurrence_count if args.pattern_occurrence_count is not None else 0,
+        "hypothesis": args.summary or "",
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.85,
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -973,6 +1084,11 @@ BUILDERS = {
     "forget": build_forget,
     "inference-guard": build_inference_guard,
     "model-router": build_model_router,
+    "forge": build_forge,
+    "augment": build_augment,
+    "blueprint": build_blueprint,
+    "benchmark": build_benchmark,
+    "synth": build_synth,
 }
 
 
@@ -1323,6 +1439,44 @@ def main():
     parser.add_argument("--ensemble-trigger-reason", metavar="TEXT", help="Model-router: reason ensemble was triggered.")
     parser.add_argument("--verification-mode", metavar="TEXT", help="Model-router: verification mode selected.")
     parser.add_argument("--inference-guard-eligible", action="store_true", help="Model-router: whether task is inference-guard eligible.")
+
+    # Forge/augment/blueprint shared args
+    parser.add_argument("--attested-by", metavar="TEXT", help="Forge/blueprint: name of the attesting human.")
+    parser.add_argument("--attestation-statement", metavar="TEXT", help="Forge: free-text attestation statement.")
+    parser.add_argument(
+        "--promotions-json",
+        type=json.loads,
+        metavar="JSON",
+        help="Forge: JSON array of promotion objects.",
+    )
+    parser.add_argument("--forge-archive-path", metavar="PATH", help="Forge: archive provenance path.")
+    parser.add_argument("--blueprint-id", metavar="TEXT", help="Augment/blueprint/benchmark: blueprint identifier.")
+    parser.add_argument("--affected-module", metavar="TEXT", help="Augment/blueprint: module being augmented.")
+    parser.add_argument(
+        "--change-type",
+        choices=["AUGMENT", "NEW"],
+        help="Augment/blueprint: change classification.",
+    )
+    parser.add_argument("--augment-output-path", metavar="PATH", help="Augment: output directory path.")
+    parser.add_argument("--structural-check-failed", action="store_true", help="Augment: structural check did NOT pass (inverts default passed=True).")
+    parser.add_argument("--placeholders-remaining", type=int, metavar="N", help="Augment: number of unfilled placeholders.")
+
+    # Blueprint-specific args
+    parser.add_argument("--attestation-not-confirmed", action="store_true", help="Blueprint: attestation was NOT confirmed (inverts default confirmed=True).")
+    parser.add_argument("--attested-at", metavar="ISO8601", help="Blueprint: ISO-8601 timestamp of attestation.")
+
+    # Benchmark-specific args
+    parser.add_argument("--metric-name", metavar="TEXT", help="Benchmark: metric being measured.")
+    parser.add_argument("--held-out-cases", type=int, metavar="N", help="Benchmark: number of held-out test cases.")
+    parser.add_argument("--held-out-value", type=float, metavar="FLOAT", help="Benchmark: measured value on held-out set.")
+    parser.add_argument("--threshold", type=float, metavar="FLOAT", help="Benchmark: pass/fail threshold.")
+    parser.add_argument("--fixture-set", metavar="PATH", help="Benchmark: fixture set directory path.")
+
+    # Synth-specific args
+    parser.add_argument("--instinct-observation-id", metavar="TEXT", help="Synth: instinct observation identifier.")
+    parser.add_argument("--candidate-id", metavar="TEXT", help="Synth: candidate identifier.")
+    parser.add_argument("--candidate-path", metavar="PATH", help="Synth: path to candidate JSON file.")
+    parser.add_argument("--pattern-occurrence-count", type=int, metavar="N", help="Synth: number of times the pattern was observed.")
 
     parser.add_argument(
         "--out",
