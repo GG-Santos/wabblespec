@@ -7,35 +7,41 @@ serialization — eliminating the per-receipt "which fields does this type need?
 reasoning overhead (~300-1000 tokens per receipt).
 
 Supported receipt types:
-    verifier    Verifier gate output
-    executor    Executor wave output
-    recipe      Recipe intake
-    specify     Specify phase output
-    decompose   Decompose plan
-    delivery    Delivery/Archive output (prefer archive.py for full automation)
-    scaffold    Scaffold project-generation output
-    package     Package signing and artifact manifest output
-    release     Release tag and GitHub Release output
-    monitor     Monitor SLO and dashboard output
-    deploy      Deploy environment and health check output
-    adversary   Adversary challenge analysis output
-    grader      Grader verdict and score output
-    nexus       Nexus graph query response output
-    brainstorm  Brainstorm option set output
-    enhance     Enhance input extraction output
-    sharpen     Sharpen interpretation resolution output
-    audit       Audit compliance report output
-    ref-eval    Reference evaluation verdict and scores
-    ref-comp    Post-implementation reference audit
-    ref-plan    Reference integration plan output
-    reviewer    Reviewer gate receipt (triggered or not)
-    scopeframe  ScopeFrame session scope receipt
-    propose     Propose option set receipt
-    generic     Generic base-schema receipt for any module (use with --extra-json)
-    reviewer    Reviewer budget-gated adversarial review output
-    scopeframe  ScopeFrame session boundary declaration output
-    propose     Propose option set output
-    generic     Generic receipt for any module not covered above
+    verifier            Verifier gate output
+    executor            Executor wave output
+    recipe              Recipe intake
+    specify             Specify phase output
+    decompose           Decompose plan
+    delivery            Delivery/Archive output (prefer archive.py for full automation)
+    scaffold            Scaffold project-generation output
+    package             Package signing and artifact manifest output
+    release             Release tag and GitHub Release output
+    monitor             Monitor SLO and dashboard output
+    deploy              Deploy environment and health check output
+    adversary           Adversary challenge analysis output
+    grader              Grader verdict and score output
+    nexus               Nexus graph query response output
+    brainstorm          Brainstorm option set output
+    enhance             Enhance input extraction output
+    sharpen             Sharpen interpretation resolution output
+    audit               Audit compliance report output
+    ref-eval            Reference evaluation verdict and scores
+    ref-comp            Post-implementation reference audit
+    ref-plan            Reference integration plan output
+    reviewer            Reviewer budget-gated adversarial review output
+    scopeframe          ScopeFrame session boundary declaration output
+    propose             Propose option set output
+    generic             Generic receipt for any module not covered above
+    ground              Ground claim verification output (L0)
+    runtime-probe       Runtime capability detection output (L0)
+    platform-activation Platform module activation receipt (L3, all 11 platforms)
+    gateway-spec        Gateway Phase A spec declaration receipt (L4, all 6 gateways)
+    gateway-verdict     Gateway Phase B verdict receipt (L4, all 6 gateways)
+    memory-write        Memory drawer write/update/transition receipt (L5)
+    memory-search       Memory search query receipt (L5)
+    forget              Memory deletion receipt (L5)
+    inference-guard     InferenceGuard activation/bypass receipt (L2)
+    model-router        ModelRouter capability selection receipt (L2)
 
 Usage:
     # Verifier receipt:
@@ -703,6 +709,235 @@ def build_generic(args):
     }
 
 
+# ---------------------------------------------------------------------------
+# New builders: ground, runtime-probe, platform-activation, gateway-spec,
+# gateway-verdict, memory-write, memory-search, forget, inference-guard,
+# model-router
+# ---------------------------------------------------------------------------
+
+def build_ground(args):
+    return {
+        "receipt_type": "ground",
+        "module": "ground",
+        "layer": "L0",
+        "phase": "Research",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "task_card_path": args.task_card_path or ".wabblespec/state/plans/task-card.md",
+        "claims_total": args.claims_total if args.claims_total is not None else 0,
+        "verified": args.verified_claims or [],
+        "unverified": args.unverified_claims or [],
+        "assumed": args.assumed_claims or [],
+        "missing": args.missing_claims or [],
+        "block_reason": args.block_reason or None,
+        "grounded_at": args.timestamp or NOW,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_runtime_probe(args):
+    return {
+        "receipt_type": "runtime-probe",
+        "module": "runtime-probe",
+        "layer": "L0",
+        "phase": "Research",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [".wabblespec/runtime/runtime-state.json"],
+        "outputs": args.files_written or [".wabblespec/runtime/runtime-state.json"],
+        "overrides_applied": args.overrides_applied,
+        "capabilities_detected": args.capabilities_detected or [],
+        "capabilities_unavailable": args.capabilities_unavailable or [],
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_platform_activation(args):
+    return {
+        "receipt_type": "platform-activation",
+        "module": "platform-{}".format(args.platform_id) if args.platform_id else "platform",
+        "layer": "L3",
+        "phase": "Research",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "platform_id": args.platform_id or "",
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "spec_templates_loaded": args.spec_templates_loaded or [],
+        "security_controls_loaded": args.security_controls_loaded or [],
+        "gateway_refs_loaded": args.gateway_refs_loaded or [],
+        "language_modules_activated": args.language_modules_activated or [],
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_gateway_spec(args):
+    return {
+        "receipt_type": "gateway-spec",
+        "module": "gateway-{}".format(args.gateway_id) if args.gateway_id else "gateway",
+        "layer": "L4",
+        "phase": "Research",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "gateway_id": args.gateway_id or "",
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "gates_declared": args.gates_declared or [],
+        "blocking_gates": args.blocking_gates or [],
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_gateway_verdict(args):
+    return {
+        "receipt_type": "gateway-verdict",
+        "module": "gateway-{}".format(args.gateway_id) if args.gateway_id else "gateway",
+        "layer": "L4",
+        "phase": "Execute",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "gateway_id": args.gateway_id or "",
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "verdict": args.gateway_verdict or "PASS",
+        "violations": args.violations or [],
+        "attestation_required": args.attestation_required,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_memory_write(args):
+    return {
+        "receipt_type": "memory-write",
+        "module": "memory",
+        "layer": "L5",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "drawer_id": args.drawer_id or "",
+        "operation": args.memory_operation or "write",
+        "topic": args.topic or "",
+        "wing": args.wing or "",
+        "room": args.room or "",
+        "staleness_before": args.staleness_before or None,
+        "staleness_after": args.staleness_after or "FRESH",
+        "provenance_notified": not args.provenance_not_notified,
+        "backend": args.backend or "memory/chromadb",
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_memory_search(args):
+    return {
+        "receipt_type": "memory-search",
+        "module": "memory-search",
+        "layer": "L5",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "query": args.summary or "",
+        "results_returned": args.results_returned if args.results_returned is not None else 0,
+        "max_results": args.max_results if args.max_results is not None else 10,
+        "staleness_filters_applied": args.staleness_filters or [],
+        "dedup_applied": args.dedup_applied,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_forget(args):
+    return {
+        "receipt_type": "forget",
+        "module": "forget",
+        "layer": "L5",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "deletion_type": args.deletion_type or "single",
+        "drawer_ids_deleted": args.drawer_ids_deleted or [],
+        "drawers_deleted_count": len(args.drawer_ids_deleted or []),
+        "provenance_record_path": args.provenance_record_path or "",
+        "entity_graph_notified": not args.entity_graph_not_notified,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_inference_guard(args):
+    return {
+        "receipt_type": "inference-guard",
+        "module": "inference-guard",
+        "layer": "L2",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "activated": args.activated,
+        "tier_applied": args.tier_applied or "light",
+        "triggers_detected": args.triggers_detected or [],
+        "transforms_applied": args.transforms_applied or [],
+        "reason": args.non_activation_reason or None,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_model_router(args):
+    return {
+        "receipt_type": "model-router",
+        "module": "model-router",
+        "layer": "L2",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "selected_capability": args.selected_capability or "",
+        "task_shape": args.task_shape or "",
+        "fallback_capability": args.fallback_capability or None,
+        "ensemble_triggered": args.ensemble_triggered,
+        "ensemble_trigger_reason": args.ensemble_trigger_reason or None,
+        "verification_mode": args.verification_mode or "",
+        "inference_guard_eligible": args.inference_guard_eligible,
+        "routing_reason": args.summary or "",
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -728,6 +963,16 @@ BUILDERS = {
     "scopeframe": build_scopeframe,
     "propose": build_propose,
     "generic": build_generic,
+    "ground": build_ground,
+    "runtime-probe": build_runtime_probe,
+    "platform-activation": build_platform_activation,
+    "gateway-spec": build_gateway_spec,
+    "gateway-verdict": build_gateway_verdict,
+    "memory-write": build_memory_write,
+    "memory-search": build_memory_search,
+    "forget": build_forget,
+    "inference-guard": build_inference_guard,
+    "model-router": build_model_router,
 }
 
 
@@ -984,6 +1229,100 @@ def main():
     parser.add_argument("--module", metavar="TEXT", help="Generic: module name (sets receipt_type and module fields).")
     parser.add_argument("--layer-override", metavar="TEXT", help="Generic: layer override (e.g. L1, L2).")
     parser.add_argument("--phase-override", metavar="TEXT", help="Generic: phase override (e.g. Research, Plan, Execute).")
+
+    # Ground-specific args
+    parser.add_argument("--task-card-path", metavar="PATH", help="Ground: path to task-card.md.")
+    parser.add_argument("--claims-total", type=int, metavar="N", help="Ground: total number of claims evaluated.")
+    parser.add_argument("--verified-claims", nargs="*", metavar="CLAIM", help="Ground: list of verified claims.")
+    parser.add_argument("--unverified-claims", nargs="*", metavar="CLAIM", help="Ground: list of unverified claims.")
+    parser.add_argument("--assumed-claims", nargs="*", metavar="CLAIM", help="Ground: list of assumed claims.")
+    parser.add_argument("--missing-claims", nargs="*", metavar="CLAIM", help="Ground: list of missing claims.")
+    parser.add_argument("--block-reason", metavar="TEXT", help="Ground: reason for BLOCK status.")
+
+    # Runtime-probe-specific args
+    parser.add_argument("--overrides-applied", action="store_true", help="Runtime-probe: whether overrides were applied.")
+    parser.add_argument("--capabilities-detected", nargs="*", metavar="CAP", help="Runtime-probe: detected capabilities list.")
+    parser.add_argument("--capabilities-unavailable", nargs="*", metavar="CAP", help="Runtime-probe: unavailable capabilities list.")
+
+    # Platform-activation-specific args
+    parser.add_argument(
+        "--platform-id",
+        choices=["web", "mobile", "cli", "api-service", "library", "ai-agent", "desktop", "extension", "game", "iot", "data-pipeline"],
+        help="Platform-activation: platform identifier.",
+    )
+    parser.add_argument("--spec-templates-loaded", nargs="*", metavar="TEMPLATE", help="Platform-activation: spec templates loaded.")
+    parser.add_argument("--security-controls-loaded", nargs="*", metavar="CONTROL", help="Platform-activation: security controls loaded.")
+    parser.add_argument("--gateway-refs-loaded", nargs="*", metavar="REF", help="Platform-activation: gateway references loaded.")
+    parser.add_argument("--language-modules-activated", nargs="*", metavar="MODULE", help="Platform-activation: language modules activated.")
+
+    # Gateway-spec and gateway-verdict shared args
+    parser.add_argument(
+        "--gateway-id",
+        choices=["aesthetic", "design", "security", "ai", "engineering", "experience"],
+        help="Gateway-spec/verdict: gateway identifier.",
+    )
+    parser.add_argument("--gates-declared", nargs="*", metavar="GATE", help="Gateway-spec: list of declared gates.")
+    parser.add_argument("--blocking-gates", nargs="*", metavar="GATE", help="Gateway-spec: list of blocking gates.")
+
+    # Gateway-verdict-specific args
+    parser.add_argument(
+        "--gateway-verdict",
+        choices=["PASS", "FLAG", "BLOCK"],
+        help="Gateway-verdict: verdict (PASS/FLAG/BLOCK). Distinct from --verdict which is for grader/reviewer.",
+    )
+    parser.add_argument("--violations", nargs="*", metavar="VIOLATION", help="Gateway-verdict: list of violations.")
+    parser.add_argument("--attestation-required", action="store_true", help="Gateway-verdict/audit: attestation required flag.")
+
+    # Memory-write-specific args
+    parser.add_argument("--drawer-id", metavar="ID", help="Memory-write/forget: drawer identifier.")
+    parser.add_argument(
+        "--memory-operation",
+        choices=["write", "update", "read", "transition"],
+        help="Memory-write: operation type.",
+    )
+    parser.add_argument("--topic", metavar="TEXT", help="Memory-write: topic of the drawer.")
+    parser.add_argument("--wing", metavar="TEXT", help="Memory-write: wing of the memory palace.")
+    parser.add_argument("--room", metavar="TEXT", help="Memory-write: room within the wing.")
+    parser.add_argument("--staleness-before", metavar="STATE", help="Memory-write: staleness state before operation.")
+    parser.add_argument("--staleness-after", metavar="STATE", help="Memory-write: staleness state after operation.")
+    parser.add_argument("--backend", metavar="TEXT", help="Memory-write: backend identifier (e.g. memory/chromadb).")
+    parser.add_argument("--provenance-not-notified", action="store_true", help="Memory-write: provenance was NOT notified (inverts default notified=True).")
+
+    # Memory-search-specific args
+    parser.add_argument("--results-returned", type=int, metavar="N", help="Memory-search: number of results returned.")
+    parser.add_argument("--max-results", type=int, metavar="N", help="Memory-search: maximum results requested.")
+    parser.add_argument("--staleness-filters", nargs="*", metavar="FILTER", help="Memory-search: staleness filters applied.")
+    parser.add_argument("--dedup-applied", action="store_true", help="Memory-search: deduplication was applied.")
+
+    # Forget-specific args
+    parser.add_argument(
+        "--deletion-type",
+        choices=["single", "bulk-expired", "compliance"],
+        help="Forget: deletion type.",
+    )
+    parser.add_argument("--drawer-ids-deleted", nargs="*", metavar="ID", help="Forget: list of drawer IDs deleted.")
+    parser.add_argument("--provenance-record-path", metavar="PATH", help="Forget: path to provenance deletion record.")
+    parser.add_argument("--entity-graph-not-notified", action="store_true", help="Forget: entity graph was NOT notified (inverts default notified=True).")
+
+    # Inference-guard-specific args
+    parser.add_argument("--activated", action="store_true", help="Inference-guard: whether inference guard was activated.")
+    parser.add_argument(
+        "--tier-applied",
+        choices=["light", "standard", "heavy"],
+        help="Inference-guard: tier applied.",
+    )
+    parser.add_argument("--triggers-detected", nargs="*", metavar="TRIGGER", help="Inference-guard: list of triggers detected.")
+    parser.add_argument("--transforms-applied", nargs="*", metavar="TRANSFORM", help="Inference-guard: list of transforms applied.")
+    parser.add_argument("--non-activation-reason", metavar="TEXT", help="Inference-guard: reason for non-activation.")
+
+    # Model-router-specific args
+    parser.add_argument("--selected-capability", metavar="TEXT", help="Model-router: selected capability descriptor.")
+    parser.add_argument("--task-shape", metavar="TEXT", help="Model-router: task shape classification.")
+    parser.add_argument("--fallback-capability", metavar="TEXT", help="Model-router: fallback capability descriptor.")
+    parser.add_argument("--ensemble-triggered", action="store_true", help="Model-router: whether ensemble was triggered.")
+    parser.add_argument("--ensemble-trigger-reason", metavar="TEXT", help="Model-router: reason ensemble was triggered.")
+    parser.add_argument("--verification-mode", metavar="TEXT", help="Model-router: verification mode selected.")
+    parser.add_argument("--inference-guard-eligible", action="store_true", help="Model-router: whether task is inference-guard eligible.")
 
     parser.add_argument(
         "--out",
