@@ -29,14 +29,11 @@ def _repo_root() -> Path:
     raise RuntimeError(f"Cannot find WabbleSpec repo root above {here}")
 
 
-def _run(script: Path, *, timeout: int, label: str) -> int:
+def _run(script: Path, *, timeout: int, label: str, extra_args: list = None) -> int:
     """Run a Python script in a subprocess. Returns the exit code."""
+    cmd = [sys.executable, str(script)] + (extra_args or [])
     try:
-        result = subprocess.run(
-            [sys.executable, str(script)],
-            timeout=timeout,
-            check=False,
-        )
+        result = subprocess.run(cmd, timeout=timeout, check=False)
         return result.returncode
     except subprocess.TimeoutExpired:
         print(f"[stop-hook] WARNING: {label} timed out after {timeout}s", flush=True)
@@ -88,7 +85,8 @@ def _run_daemons(root: Path, trigger: str) -> None:
             print(f"[stop-hook] daemon '{daemon['id']}': script not found — skipping", flush=True)
             continue
         timeout = daemon.get("timeout_seconds", 60)
-        _run(script, timeout=timeout, label=f"daemon:{daemon['id']}")
+        extra_args = daemon.get("args", [])
+        _run(script, timeout=timeout, label=f"daemon:{daemon['id']}", extra_args=extra_args)
 
 
 def main() -> int:

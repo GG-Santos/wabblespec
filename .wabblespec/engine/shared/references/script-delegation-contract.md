@@ -210,9 +210,13 @@ python .wabblespec/engine/shared/scripts/version-bump.py --set 1.0.0
 | sharpen | L1 | Step 5 (sharpen receipt) | `receipt-writer.py --type sharpen` |
 | audit | L2 | Step 7 (audit receipt) | `receipt-writer.py --type audit` |
 
+| ref-eval | L2 | Receipt write | `receipt-writer.py --type ref-eval` |
+| ref-comp | L2 | Receipt write | `receipt-writer.py --type ref-comp` |
+| ref-plan | L2 | Receipt write | `receipt-writer.py --type ref-plan` |
+
 ## Non-Delegated Receipt Types
 
-All framework pipeline skills are now fully delegated. The only remaining non-delegated writes are bespoke schemas used by specialized research infrastructure (ref-eval, ref-comp, ref-plan) — these write to custom paths and their receipt formats are not in the standard pipeline.
+**None.** All 100 WabbleSpec skills are fully delegated. receipt-writer.py covers 20 types.
 
 ---
 

@@ -25,6 +25,9 @@ Supported receipt types:
     enhance     Enhance input extraction output
     sharpen     Sharpen interpretation resolution output
     audit       Audit compliance report output
+    ref-eval    Reference evaluation verdict and scores
+    ref-comp    Post-implementation reference audit
+    ref-plan    Reference integration plan output
 
 Usage:
     # Verifier receipt:
@@ -436,6 +439,70 @@ def build_sharpen(args):
     }
 
 
+def build_ref_eval(args):
+    return {
+        "receipt_type": "ref-eval",
+        "module": "ref-eval",
+        "layer": "L2",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "reference_slug": args.target or "",
+        "verdict": args.summary or "supporting-reference",
+        "project_context_loaded": True,
+        "reference_load_drawer_id": "",
+        "integration_scores": {},
+        "dedup_hit": False,
+        "confidence": args.confidence if args.confidence is not None else 0.0,
+        "report_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_ref_comp(args):
+    return {
+        "receipt_type": "ref-comp",
+        "module": "ref-comp",
+        "layer": "L2",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "reference_slug": args.target or "",
+        "verdict": args.summary or "partial",
+        "coverage_score": args.confidence if args.confidence is not None else 0.0,
+        "critical_gaps": [],
+        "improvements_beyond_plan": [],
+        "report_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_ref_plan(args):
+    return {
+        "receipt_type": "ref-plan",
+        "module": "ref-plan",
+        "layer": "L2",
+        "phase": "Plan",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "status": args.status or "PASS",
+        "reference_slug": args.target or "",
+        "total_items_extracted": len(args.requirements or []),
+        "items_excluded": 0,
+        "phase_1_items": 0,
+        "phase_2_items": 0,
+        "phase_3_items": 0,
+        "phase_4_items": 0,
+        "plan_path": "",
+        "not_tested": args.not_tested or [],
+    }
+
+
 def build_audit(args):
     return {
         "receipt_type": "audit",
@@ -473,6 +540,9 @@ BUILDERS = {
     "enhance": build_enhance,
     "sharpen": build_sharpen,
     "audit": build_audit,
+    "ref-eval": build_ref_eval,
+    "ref-comp": build_ref_comp,
+    "ref-plan": build_ref_plan,
 }
 
 
@@ -481,7 +551,7 @@ BUILDERS = {
 # ---------------------------------------------------------------------------
 
 def _upsert_to_db(data, out_path):
-    """Upsert receipt into DuckDB store if receipts.duckdb exists. Silent-fail."""
+    """Upsert receipt into DuckDB store if receipts.duckdb exists. Auto-detects DB. Silent-fail."""
     try:
         import duckdb as _duckdb
     except ImportError:
@@ -491,7 +561,7 @@ def _upsert_to_db(data, out_path):
     receipts_dir = os.path.dirname(os.path.abspath(out_path))
     db_path = os.path.join(receipts_dir, "receipts.duckdb")
     if not os.path.isfile(db_path):
-        return  # DB not initialized — skip silently
+        return  # DB not initialized — skip silently (no error; DB is optional)
 
     receipt_id = os.path.splitext(os.path.basename(out_path))[0]
     try:
@@ -518,7 +588,8 @@ def _upsert_to_db(data, out_path):
         pass  # Silent-fail — DuckDB write never blocks receipt JSON write
 
 
-def write_receipt(data, out_path, dry_run=False, also_db=False):
+def write_receipt(data, out_path, dry_run=False, also_db=True):
+    """Write receipt JSON. also_db=True (default): auto-upsert into DuckDB if DB exists."""
     text = json.dumps(data, indent=2) + "\n"
     if out_path == "-" or dry_run:
         if dry_run:
@@ -658,9 +729,10 @@ def main():
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
-        "--db", action="store_true", dest="also_db",
-        help="Also upsert into receipts.duckdb alongside the JSON file (silent-fail if DB absent).",
+        "--no-db", action="store_false", dest="also_db",
+        help="Skip DuckDB upsert even if receipts.duckdb exists.",
     )
+    parser.set_defaults(also_db=True)
     parser.add_argument(
         "--validate",
         metavar="PATH",
