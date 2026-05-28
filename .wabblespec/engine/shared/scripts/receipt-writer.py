@@ -28,6 +28,14 @@ Supported receipt types:
     ref-eval    Reference evaluation verdict and scores
     ref-comp    Post-implementation reference audit
     ref-plan    Reference integration plan output
+    reviewer    Reviewer gate receipt (triggered or not)
+    scopeframe  ScopeFrame session scope receipt
+    propose     Propose option set receipt
+    generic     Generic base-schema receipt for any module (use with --extra-json)
+    reviewer    Reviewer budget-gated adversarial review output
+    scopeframe  ScopeFrame session boundary declaration output
+    propose     Propose option set output
+    generic     Generic receipt for any module not covered above
 
 Usage:
     # Verifier receipt:
@@ -338,17 +346,31 @@ def build_adversary(args):
         "task_id": args.task_id,
         "status": args.status or "PASS",
         "challenger_mode": args.target or "open",
-        "spec_artifact_path": "",
+        "challenge_scope": args.challenge_scope or "",
+        "spec_artifact_path": args.spec_artifact_path or "",
+        "cycle": args.cycle if args.cycle is not None else 0,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
         "challenges_produced": len(args.failure_modes or []),
         "challenge_domains_covered": args.failure_modes or [],
+        "findings_raw": args.findings_raw or [],
+        "major_count": args.major_count if args.major_count is not None else 0,
+        "minor_count": args.minor_count if args.minor_count is not None else 0,
         "anchoring_prevention_applied": True,
         "strong_output_acknowledged": False,
         "counter_analysis": args.summary or "",
         "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.0,
     }
 
 
 def build_grader(args):
+    # --verdict takes precedence; fall back to status-derived only if not supplied
+    if args.verdict:
+        verdict = args.verdict
+    else:
+        verdict = "ACCEPT" if (args.status or "PASS") == "PASS" else "REVISE"
     return {
         "receipt_type": "grader",
         "module": "grader",
@@ -358,16 +380,22 @@ def build_grader(args):
         "session_id": args.session_id,
         "task_id": args.task_id,
         "status": args.status or "PASS",
-        "verdict": "ACCEPT" if (args.status or "PASS") == "PASS" else "REVISE",
+        "cycle": args.cycle if args.cycle is not None else 0,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "verdict": verdict,
         "score": args.confidence if args.confidence is not None else 0.85,
         "score_rationale": args.summary or "",
-        "spec_artifact_path": "",
-        "adversary_receipt_path": "",
-        "revision_guidance": None,
-        "escalation_reason": None,
-        "adversary_concerns_assessed": len(args.success_criteria or []),
-        "adversary_concerns_within_scope": True,
+        "grader_reasoning": args.grader_reasoning or "",
+        "spec_artifact_path": args.spec_artifact_path or "",
+        "adversary_receipt_path": args.adversary_receipt_path_single or "",
+        "revision_guidance": args.revision_guidance or None,
+        "escalation_reason": args.escalation_reason or None,
+        "adversary_concerns_assessed": args.adversary_concerns_assessed if args.adversary_concerns_assessed is not None else 0,
+        "adversary_concerns_within_scope": args.adversary_concerns_within_scope if args.adversary_concerns_within_scope is not None else 0,
         "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.85,
     }
 
 
@@ -548,6 +576,133 @@ def build_audit(args):
     }
 
 
+# ---------------------------------------------------------------------------
+# finding_summary helper — must be defined before build_reviewer
+# ---------------------------------------------------------------------------
+
+def _compute_finding_summary(findings):
+    sev_counts = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0, "INFO": 0}
+    pi_flags = 0
+    gen_excluded = 0
+    for f in findings:
+        sev = f.get("severity", "INFO")
+        if sev in sev_counts:
+            sev_counts[sev] += 1
+        if f.get("prompt_injection_risk"):
+            pi_flags += 1
+        if f.get("generated_file_excluded"):
+            gen_excluded += 1
+    return {
+        "total": len(findings),
+        "by_severity": sev_counts,
+        "prompt_injection_flags": pi_flags,
+        "generated_files_excluded": gen_excluded,
+    }
+
+
+def build_reviewer(args):
+    findings = args.findings_json or []
+    return {
+        "receipt_type": "reviewer",
+        "module": "reviewer",
+        "layer": "L2",
+        "phase": "Plan",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "inputs": args.inputs_json or [],
+        "triggered": args.triggered,
+        "trigger_condition": args.trigger_condition or "NOT_TRIGGERED",
+        "revise_cycles": args.revise_cycles if args.revise_cycles is not None else 0,
+        "verdict": args.verdict or "NOT_TRIGGERED",
+        "grader_score": args.grader_score if args.grader_score is not None else 0.0,
+        "escalated": args.escalated,
+        "escalation_reason": args.escalation_reason or None,
+        "findings": findings,
+        "finding_summary": _compute_finding_summary(findings),
+        "adversary_receipt_path": args.adversary_receipt_paths or [],
+        "grader_receipt_path": args.grader_receipt_path or None,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.0,
+    }
+
+
+def build_scopeframe(args):
+    return {
+        "receipt_type": "scopeframe",
+        "module": "scope-frame",
+        "layer": "L1",
+        "phase": "Research",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or ["scope-boundaries-declared", "in-scope-nonempty", "out-of-scope-nonempty", "assumptions-declared"],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "outputs": args.files_written or [],
+        "in_scope_count": args.in_scope_count if args.in_scope_count is not None else 0,
+        "out_of_scope_count": args.out_of_scope_count if args.out_of_scope_count is not None else 0,
+        "assumptions_count": args.assumptions_count if args.assumptions_count is not None else 0,
+        "user_confirmed": not args.not_user_confirmed,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_propose(args):
+    return {
+        "receipt_type": "propose",
+        "module": "propose",
+        "layer": "L1",
+        "phase": "Plan",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "inputs": args.inputs_json or [],
+        "outputs": args.files_written or [],
+        "options_count": len(args.requirements or []),
+        "options": args.requirements or [],
+        "recommendation": args.summary or "",
+        "impact": args.impact or "MEDIUM",
+        "reviewer_required_at_plan": args.reviewer_required,
+        "selection_deferred": True,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_generic(args):
+    return {
+        "receipt_type": args.module or "generic",
+        "module": args.module or "generic",
+        "layer": args.layer_override or "L1",
+        "phase": args.phase_override or "Execute",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or [],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "outputs": args.files_written or [],
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -569,6 +724,10 @@ BUILDERS = {
     "ref-eval": build_ref_eval,
     "ref-comp": build_ref_comp,
     "ref-plan": build_ref_plan,
+    "reviewer": build_reviewer,
+    "scopeframe": build_scopeframe,
+    "propose": build_propose,
+    "generic": build_generic,
 }
 
 
@@ -680,6 +839,16 @@ def validate_receipt(path):
     if status in ("FAIL", "PARTIAL") and "failure_reason" not in data:
         errors.append("status FAIL/PARTIAL requires 'failure_reason'")
 
+    # Type-specific conditional validation (only when receipt declares the key,
+    # indicating it was produced by the new builder; legacy hand-authored receipts
+    # that omit the key entirely are accepted by base schema only)
+    if rtype == "grader" and "escalation_reason" in data:
+        verdict = data.get("verdict")
+        if verdict == "REVISE" and not data.get("revision_guidance"):
+            errors.append("verdict REVISE requires 'revision_guidance'")
+        if verdict == "ESCALATE" and not data.get("escalation_reason"):
+            errors.append("verdict ESCALATE requires 'escalation_reason'")
+
     if errors:
         print(f"FAIL [{rtype}] {os.path.basename(path)}:")
         for e in errors:
@@ -747,6 +916,75 @@ def main():
         type=json.loads,
         help='Decompose: JSON array of wave objects e.g. \'[{"wave":1,"name":"..."}]\'',
     )
+
+    # Global args available to all builders
+    parser.add_argument("--checks-run", nargs="*", metavar="CHECK", help="Generic checks_run list.")
+    parser.add_argument("--checks-passed", nargs="*", metavar="CHECK", help="Generic checks_passed list.")
+    parser.add_argument("--evidence", nargs="*", metavar="PATH", help="Evidence file paths.")
+    parser.add_argument("--cycle", type=int, metavar="N", help="Revision/review cycle number.")
+    parser.add_argument(
+        "--verdict",
+        choices=["ACCEPT", "REVISE", "ESCALATE", "NOT_TRIGGERED"],
+        help="Explicit verdict (grader, reviewer).",
+    )
+    parser.add_argument(
+        "--extra-json",
+        type=json.loads,
+        metavar="JSON",
+        help="Arbitrary JSON dict merged into the receipt last (escape hatch for any field no named arg covers).",
+    )
+
+    # Adversary-specific args
+    parser.add_argument("--challenge-scope", metavar="TEXT", help="Adversary: challenge scope.")
+    parser.add_argument("--spec-artifact-path", metavar="PATH", help="Adversary/grader: spec artifact path.")
+    parser.add_argument("--findings-raw", nargs="*", metavar="FINDING", help="Adversary: raw findings list.")
+    parser.add_argument("--major-count", type=int, metavar="N", help="Adversary: major finding count.")
+    parser.add_argument("--minor-count", type=int, metavar="N", help="Adversary: minor finding count.")
+
+    # Grader-specific args
+    parser.add_argument("--grader-reasoning", metavar="TEXT", help="Grader: reasoning text.")
+    parser.add_argument("--adversary-receipt-path-single", metavar="PATH", help="Grader: single adversary receipt path.")
+    parser.add_argument("--revision-guidance", metavar="TEXT", help="Grader: guidance for REVISE verdict.")
+    parser.add_argument("--escalation-reason", metavar="TEXT", help="Grader/reviewer: reason for ESCALATE verdict.")
+    parser.add_argument("--adversary-concerns-assessed", type=int, metavar="N", help="Grader: number of adversary concerns assessed.")
+    parser.add_argument("--adversary-concerns-within-scope", type=int, metavar="N", help="Grader: number of adversary concerns within scope.")
+
+    # Reviewer-specific args
+    parser.add_argument("--triggered", action="store_true", help="Reviewer: whether reviewer was triggered.")
+    parser.add_argument("--trigger-condition", metavar="TEXT", help="Reviewer: trigger condition string.")
+    parser.add_argument("--revise-cycles", type=int, metavar="N", help="Reviewer: number of revise cycles.")
+    parser.add_argument("--grader-score", type=float, metavar="0.0-1.0", help="Reviewer: grader score.")
+    parser.add_argument("--escalated", action="store_true", help="Reviewer: whether escalated.")
+    parser.add_argument(
+        "--findings-json",
+        type=json.loads,
+        metavar="JSON",
+        help="Reviewer: JSON array of finding objects.",
+    )
+    parser.add_argument(
+        "--inputs-json",
+        type=json.loads,
+        metavar="JSON",
+        help="Reviewer/propose: JSON array of input objects.",
+    )
+    parser.add_argument("--adversary-receipt-paths", nargs="*", metavar="PATH", help="Reviewer: array of adversary receipt paths.")
+    parser.add_argument("--grader-receipt-path", metavar="PATH", help="Reviewer: grader receipt path.")
+
+    # ScopeFrame-specific args
+    parser.add_argument("--in-scope-count", type=int, metavar="N", help="ScopeFrame: number of in-scope items.")
+    parser.add_argument("--out-of-scope-count", type=int, metavar="N", help="ScopeFrame: number of out-of-scope items.")
+    parser.add_argument("--assumptions-count", type=int, metavar="N", help="ScopeFrame: number of assumptions.")
+    parser.add_argument("--not-user-confirmed", action="store_true", help="ScopeFrame: scope was NOT user-confirmed (inverts default confirmed=True).")
+
+    # Propose-specific args
+    parser.add_argument("--impact", choices=["LOW", "MEDIUM", "HIGH"], help="Propose: impact level.")
+    parser.add_argument("--reviewer-required", action="store_true", help="Propose: reviewer required at plan phase.")
+
+    # Generic builder args
+    parser.add_argument("--module", metavar="TEXT", help="Generic: module name (sets receipt_type and module fields).")
+    parser.add_argument("--layer-override", metavar="TEXT", help="Generic: layer override (e.g. L1, L2).")
+    parser.add_argument("--phase-override", metavar="TEXT", help="Generic: phase override (e.g. Research, Plan, Execute).")
+
     parser.add_argument(
         "--out",
         metavar="PATH",
@@ -779,6 +1017,9 @@ def main():
 
     builder = BUILDERS[args.receipt_type]
     data = builder(args)
+
+    if getattr(args, 'extra_json', None):
+        data.update(args.extra_json)
 
     write_receipt(data, args.out, dry_run=args.dry_run, also_db=getattr(args, "also_db", False))
     sys.exit(0)
