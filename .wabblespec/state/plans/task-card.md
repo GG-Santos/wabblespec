@@ -1,49 +1,64 @@
 # Task Card
 
-**goal:** The `.wabblespec/` root contains only VERSION, CHANGELOG.md, INDEX.md, wabblespec.yaml, state/, and engine/, with all stray session artifacts relocated to canonical paths under `state/` and CLAUDE.md updated to declare the canonical locations for scope and recipe state files.
+**goal:** Every SKILL.md that previously instructed manual writes to `.wabblespec/CHANGELOG.md`, `.wabblespec/VERSION`, or receipt JSON files now delegates those writes to the appropriate existing scripts via explicit Bash calls, and `script-delegation-contract.md` documents the canonical delegation pattern.
 **target:** Library-Package
-**complexity:** Low
-**change_class:** COSMETIC
-**locked_at:** 2026-05-28T03:50:30Z
-**session_id:** phase1-root-cleanup-20260528
+**complexity:** Medium
+**change_class:** ADDITIVE
+**locked_at:** 2026-05-28T12:03:00Z
+**session_id:** phase2-script-delegation-20260528
 
 ## Non-Goals
 
-- Updating any SKILL.md files to reference new canonical paths (Phase 2 work)
-- Updating any script path resolution logic (Phase 2 work)
-- Moving or renaming anything inside `state/` or `engine/` subdirectories
-- `brainstorm-receipt` and `propose-receipt` in `state/receipts/` — correctly placed, not moving
+- Creating new Python scripts (all required scripts already exist in `engine/shared/scripts/`)
+- Modifying any script logic or CLI interfaces
+- Guard Layer intercept hook (Option 3 from options document — blocked, Guard is locked)
+- Changes to `skill-rules.json`, schemas, or any non-SKILL.md module files
+- Running live archive or receipt operations to validate scripts end-to-end
+- Skills not performing manual framework writes
 
 ## Assumptions
 
-- No skill or script reads `.wabblespec/scope.md` (root) or `.wabblespec/recipe.json` (root) at runtime in a way that breaks if absent — root files are stale session artifacts
-- `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` already exist and are up to date
-- `enhance/enhanced-*.md` files have no downstream consumers — working artifacts from brainstorm session
-- T3 checkpoint files are safe to delete — `delivery-receipt-toprank-integration-phase2-T3.json` exists with `status: PASS`
-- No project-standard drawers discovered — none cited
+- Phase 1 root cleanup (`phase1-root-cleanup-20260528`) is complete — delivery receipt confirmed at `state/receipts/`
+- All four scripts (`archive.py`, `receipt-writer.py`, `changelog-append.py`, `version-bump.py`) exist at `.wabblespec/engine/shared/scripts/` and are functional
+- The "9 affected skills" is approximate — exact count determined by audit in Wave 1; expected range 7–11
+- `.claude/skills/*/SKILL.md` files are the live copies; `engine/modules/*/SKILL.md` are source of truth; sync runs post-execution
+- Changes are ADDITIVE — no existing skill behavior removed, only write steps delegated to script calls
+- No project-standard drawers discovered — no existing standards apply to this task
 
 ## Acceptance Criteria
 
-### AC1 — Root contains only canonical items
+### AC1 — script-delegation-contract.md exists and is complete
 
-Given the `.wabblespec/` root directory,
-When cleanup completes,
-Then the root contains no items other than: `VERSION`, `CHANGELOG.md`, `INDEX.md`, `wabblespec.yaml`, `state/`, `engine/` — specifically `scope.md`, `brainstorm/`, `enhance/`, and `options-framework-script-delegation-20260528T110016Z.md` SHALL NOT be present.
+Given `.wabblespec/engine/shared/references/` exists,
+When the task completes,
+Then `script-delegation-contract.md` exists at that path and contains entries for `archive.py`, `receipt-writer.py`, `changelog-append.py`, and `version-bump.py`, each with a complete CLI example invocation showing all required args.
 
-### AC2 — Moved artifacts exist at new paths
+### AC2 — archive/SKILL.md delegates Steps 4–6b to archive.py
 
-Given the stray items previously at `.wabblespec/` root,
-When cleanup completes,
-Then `options-framework-script-delegation-20260528T110016Z.md` exists at `.wabblespec/state/working/options-framework-script-delegation-20260528T110016Z.md`, brainstorm output files exist under `.wabblespec/state/brainstorm/`, and enhanced working files exist under `.wabblespec/state/enhance/`.
+Given `archive/SKILL.md` previously contained Steps 4–6b instructing manual writes to CHANGELOG.md, VERSION, the delivery receipt, and receipt-index.json,
+When the task completes,
+Then those steps reference `archive.py` with `--session-id`, `--summary`, `--delta-class`, and `--files-delivered` args, and no prose in those steps instructs direct file writes to CHANGELOG.md, VERSION, or receipt-index.json.
 
-### AC3 — Orphaned checkpoints cleared
+### AC3 — All audited skills replace manual write prose with script calls
 
-Given `.wabblespec/state/session/checkpoints/` containing `checkpoint-wave-1.json` and `checkpoint-wave-2.json` from the archived T3 session,
-When cleanup completes,
-Then neither file exists in that directory.
+Given the audit in Wave 1 identifies N skills (expected 7–11) with manual framework write steps,
+When the task completes,
+Then each identified skill's write steps contain an explicit `python .wabblespec/engine/shared/scripts/<script>.py` call in place of the manual prose, and zero prose remains instructing "append to CHANGELOG", "write VERSION", or "construct receipt JSON and write".
 
-### AC4 — CLAUDE.md declares canonical paths
+### AC4 — Each affected SKILL.md gains a Reference Routing table
 
-Given the `CLAUDE.md` "Framework State" section listing key paths,
-When cleanup completes,
-Then CLAUDE.md contains a note stating that `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` are the canonical session state paths (not the root-level copies).
+Given each identified SKILL.md has been rewritten per AC3,
+When the task completes,
+Then each affected SKILL.md contains a `## Reference Routing` section with an entry routing to `script-delegation-contract.md` for the relevant delegation situation.
+
+### AC5 — Modified SKILL.md files synced to .claude/skills/
+
+Given `wabblespec-sync-skills.py` exists,
+When `wabblespec-sync-skills.py` is run at task close,
+Then all modified SKILL.md files in `engine/modules/` are reflected in their corresponding `.claude/skills/` counterparts.
+
+### AC6 — Skills outside the audited set are unmodified
+
+Given skills not identified by the audit perform no manual framework writes,
+When the task completes,
+Then those SKILL.md files show no diff — only the audited set is changed.
