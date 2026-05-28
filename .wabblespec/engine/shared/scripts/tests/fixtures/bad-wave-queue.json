@@ -1,0 +1,10 @@
+{
+  "schema_version": "not-an-integer",
+  "session_id": "self-test-bad-001",
+  "created_at": "2026-05-29T00:00:00Z",
+  "tasks": [
+    {
+      "wave_number": 1
+    }
+  ]
+}

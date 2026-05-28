@@ -1,59 +1,59 @@
 # Entity Graph Report
 
-> Generated: 2026-05-24T13:09:29.147163+00:00
-> Drawers scanned: 12
-> Nodes: 36  Edges: 83
+> Generated: 2026-05-28T22:59:28.469860+00:00
+> Drawers scanned: 50
+> Nodes: 159  Edges: 839
 
 ## Entity Type Breakdown
 
-- concept: 11
-- module: 13
-- file: 12
+- concept: 49
+- module: 31
+- file: 79
 
 ## Top 20 Entities by Degree (most connected)
 
 | Entity | Type | Degree | Drawer count |
 |---|---|---|---|
-| guard | module | 14 | 3 |
-| verifier | module | 10 | 2 |
-| decompose | module | 10 | 2 |
-| archive | module | 10 | 2 |
-| recipe | module | 10 | 2 |
-| memory | module | 8 | 2 |
-| phase 2 module order rationale | concept | 8 | 1 |
-| executor | module | 8 | 1 |
-| reviewer | module | 8 | 1 |
-| specify | module | 8 | 1 |
-| PASS/FAIL/PARTIAL | file | 7 | 3 |
-| receipt schema design | concept | 5 | 2 |
-| guard memory backend invariants | concept | 4 | 1 |
-| scripts/migrate-json-drawers.py | file | 4 | 1 |
-| wabblespec/memory/chroma | file | 4 | 1 |
-| memory drawer storage structure | concept | 4 | 1 |
-| EXPIRED/SUPERSEDED | file | 4 | 1 |
-| wabblespec/memory/wings | file | 4 | 1 |
-| instinct | module | 4 | 1 |
-| L0-L8/shared | file | 3 | 1 |
+| guard | module | 53 | 11 |
+| executor | module | 50 | 10 |
+| instinct | module | 49 | 10 |
+| specify | module | 45 | 7 |
+| recipe | module | 42 | 7 |
+| gateway-security | module | 42 | 4 |
+| augment | module | 41 | 7 |
+| verifier | module | 40 | 7 |
+| polish | module | 40 | 4 |
+| autopilot | module | 38 | 4 |
+| archive | module | 38 | 7 |
+| document | module | 34 | 6 |
+| memory | module | 33 | 4 |
+| synth | module | 29 | 4 |
+| gateway-ai | module | 29 | 2 |
+| gateway-engineering | module | 29 | 2 |
+| benchmark | module | 28 | 4 |
+| forge | module | 27 | 3 |
+| provenance | module | 25 | 3 |
+| blueprint | module | 25 | 2 |
 
 ## Top 15 Relationships (highest co-occurrence weight)
 
 | Entity A | Entity B | Weight |
 |---|---|---|
-| archive | recipe | 2 |
-| receipt schema design | PASS/FAIL/PARTIAL | 2 |
-| verifier check types | PASS/FAIL/PARTIAL | 1 |
-| verifier check types | verifier | 1 |
-| PASS/FAIL/PARTIAL | verifier | 1 |
-| skill factory gaps and wabblespec templates | factory | 1 |
-| skill factory gaps and wabblespec templates | scaffold | 1 |
-| factory | scaffold | 1 |
-| guard module invariant enforcement | _shared/references/invariants.md | 1 |
-| guard module invariant enforcement | guard | 1 |
-| _shared/references/invariants.md | guard | 1 |
-| guard memory backend invariants | scripts/migrate-json-drawers.py | 1 |
-| guard memory backend invariants | wabblespec/memory/chroma | 1 |
-| guard memory backend invariants | guard | 1 |
-| guard memory backend invariants | memory | 1 |
+| executor | guard | 6 |
+| executor | verifier | 5 |
+| guard | verifier | 5 |
+| archive | executor | 5 |
+| archive | guard | 5 |
+| archive | verifier | 5 |
+| executor | specify | 5 |
+| guard | instinct | 4 |
+| instinct | synth | 4 |
+| 100/100 | instinct | 4 |
+| executor | recipe | 4 |
+| augment | recipe | 3 |
+| augment | document | 3 |
+| augment | executor | 3 |
+| augment | forge | 3 |
 
 ---
 

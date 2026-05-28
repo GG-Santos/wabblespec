@@ -1,10 +1,261 @@
 {
   "version": "1.0",
-  "generated": "2026-05-24T13:09:29.147163+00:00",
-  "drawers_scanned": 12,
-  "node_count": 36,
-  "edge_count": 83,
+  "generated": "2026-05-28T22:59:28.469860+00:00",
+  "drawers_scanned": 50,
+  "node_count": 159,
+  "edge_count": 839,
   "nodes": [
+    {
+      "id": "module::guard",
+      "type": "module",
+      "label": "guard",
+      "drawer_count": 11,
+      "drawer_ids": [
+        "provenance-contradiction-tracking-20260525",
+        "guard-invariant-list-20260520",
+        "guard-mempalace-invariants-20260524",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "module-order-rationale-20260520",
+        "framework-product-separation-20260525",
+        "receipt-gating-rationale-20260525",
+        "spec-single-source-of-truth-20260525",
+        "receipt-chain-phases-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::executor",
+      "type": "module",
+      "label": "executor",
+      "drawer_count": 10,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "apply-delta-classification-20260525",
+        "module-order-rationale-20260520",
+        "error-taxonomy-key-types-20260525",
+        "receipt-gating-rationale-20260525",
+        "spec-single-source-of-truth-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::instinct",
+      "type": "module",
+      "label": "instinct",
+      "drawer_count": 10,
+      "drawer_ids": [
+        "provenance-contradiction-tracking-20260525",
+        "l8-evolution-chain-20260525",
+        "dream-module-behavior-20260525",
+        "version-progression-20260525",
+        "l8-corpus-gate-criteria-20260525",
+        "framework-product-separation-20260525",
+        "receipt-gating-rationale-20260525",
+        "seed-run-pipeline-20260525",
+        "memory-drawer-structure-20260521",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::archive",
+      "type": "module",
+      "label": "archive",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "module-order-rationale-20260520",
+        "receipt-gating-rationale-20260525",
+        "receipt-schema-design-20260519",
+        "receipt-chain-phases-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::augment",
+      "type": "module",
+      "label": "augment",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525",
+        "l8-evolution-chain-20260525",
+        "executor-wave-protocol-20260525",
+        "document-cross-link-enforcement-20260525",
+        "version-progression-20260525",
+        "wave5-param-learner-gating-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::recipe",
+      "type": "module",
+      "label": "recipe",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525",
+        "l8-evolution-chain-20260525",
+        "module-order-rationale-20260520",
+        "error-taxonomy-key-types-20260525",
+        "receipt-schema-design-20260519",
+        "layer-architecture-overview-20260525",
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
+      "id": "module::specify",
+      "type": "module",
+      "label": "specify",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "entity-graph-behavior-20260525",
+        "apply-delta-classification-20260525",
+        "module-order-rationale-20260520",
+        "error-taxonomy-key-types-20260525",
+        "gateway-pattern-routing-20260525",
+        "spec-single-source-of-truth-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::verifier",
+      "type": "module",
+      "label": "verifier",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "verifier-check-types-20260520",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "module-order-rationale-20260520",
+        "receipt-chain-phases-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::document",
+      "type": "module",
+      "label": "document",
+      "drawer_count": 6,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "document-cross-link-enforcement-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "error-taxonomy-key-types-20260525",
+        "layer-architecture-overview-20260525",
+        "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::100/100",
+      "type": "file",
+      "label": "100/100",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "version-progression-20260525",
+        "l8-corpus-gate-criteria-20260525",
+        "seed-run-pipeline-20260525"
+      ]
+    },
+    {
+      "id": "module::autopilot",
+      "type": "module",
+      "label": "autopilot",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "dream-module-behavior-20260525",
+        "autopilot-orchestration-20260525",
+        "version-progression-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::benchmark",
+      "type": "module",
+      "label": "benchmark",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "l8-corpus-gate-criteria-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::gateway-security",
+      "type": "module",
+      "label": "gateway-security",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "inference-guard-activation-20260525",
+        "parseltongue-framing-decision-20260525",
+        "gateway-pattern-routing-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::memory",
+      "type": "module",
+      "label": "memory",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "guard-mempalace-invariants-20260524",
+        "framework-product-separation-20260525",
+        "memory-drawer-structure-20260521",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::polish",
+      "type": "module",
+      "label": "polish",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525",
+        "entity-graph-behavior-20260525",
+        "autopilot-orchestration-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::synth",
+      "type": "module",
+      "label": "synth",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "provenance-contradiction-tracking-20260525",
+        "l8-evolution-chain-20260525",
+        "l8-corpus-gate-criteria-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/receipts",
+      "type": "file",
+      "label": "wabblespec/receipts",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "archive-module-behavior-20260525",
+        "seed-run-pipeline-20260525",
+        "receipt-chain-phases-20260525",
+        "hook-enforcement-pattern-20260519"
+      ]
+    },
+    {
+      "id": "file::EXPIRED/SUPERSEDED",
+      "type": "file",
+      "label": "EXPIRED/SUPERSEDED",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "memory-search-hybrid-scoring-20260525",
+        "entity-graph-behavior-20260525",
+        "memory-drawer-structure-20260521"
+      ]
+    },
     {
       "id": "file::PASS/FAIL/PARTIAL",
       "type": "file",
@@ -17,44 +268,158 @@
       ]
     },
     {
-      "id": "module::guard",
-      "type": "module",
-      "label": "guard",
-      "drawer_count": 3,
-      "drawer_ids": [
-        "guard-invariant-list-20260520",
-        "guard-mempalace-invariants-20260524",
-        "module-order-rationale-20260520"
-      ]
-    },
-    {
-      "id": "module::archive",
-      "type": "module",
-      "label": "archive",
-      "drawer_count": 2,
-      "drawer_ids": [
-        "module-order-rationale-20260520",
-        "receipt-schema-design-20260519"
-      ]
-    },
-    {
       "id": "module::decompose",
       "type": "module",
       "label": "decompose",
-      "drawer_count": 2,
+      "drawer_count": 3,
       "drawer_ids": [
+        "autopilot-orchestration-20260525",
         "phase-1-completion-20260519",
         "module-order-rationale-20260520"
       ]
     },
     {
-      "id": "module::memory",
+      "id": "module::forge",
       "type": "module",
-      "label": "memory",
+      "label": "forge",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "document-cross-link-enforcement-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "file::project/repo",
+      "type": "file",
+      "label": "project/repo",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "apply-delta-classification-20260525",
+        "framework-product-separation-20260525",
+        "twelve-invariants-20260525"
+      ]
+    },
+    {
+      "id": "module::provenance",
+      "type": "module",
+      "label": "provenance",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "provenance-contradiction-tracking-20260525",
+        "drawer-staleness-states-20260521",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory/learned-params",
+      "type": "file",
+      "label": "wabblespec/memory/learned-params",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "wave5-param-learner-gating-20260525",
+        "framework-product-separation-20260525",
+        "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::Red/Blue/Purple",
+      "type": "file",
+      "label": "Red/Blue/Purple",
       "drawer_count": 2,
       "drawer_ids": [
-        "guard-mempalace-invariants-20260524",
-        "memory-drawer-structure-20260521"
+        "red-blue-purple-9-component-20260525",
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/references/invariants.md",
+      "type": "file",
+      "label": "_shared/references/invariants.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "guard-invariant-list-20260520",
+        "twelve-invariants-20260525"
+      ]
+    },
+    {
+      "id": "module::apply",
+      "type": "module",
+      "label": "apply",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "apply-delta-classification-20260525",
+        "framework-product-separation-20260525"
+      ]
+    },
+    {
+      "id": "module::blueprint",
+      "type": "module",
+      "label": "blueprint",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::dream",
+      "type": "module",
+      "label": "dream",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "dream-module-behavior-20260525",
+        "autopilot-orchestration-20260525"
+      ]
+    },
+    {
+      "id": "module::economy",
+      "type": "module",
+      "label": "economy",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "autopilot-orchestration-20260525",
+        "shared-artifacts-structure-20260525"
+      ]
+    },
+    {
+      "id": "module::feedback",
+      "type": "module",
+      "label": "feedback",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "wave5-param-learner-gating-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::gateway-ai",
+      "type": "module",
+      "label": "gateway-ai",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::gateway-engineering",
+      "type": "module",
+      "label": "gateway-engineering",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+      "type": "file",
+      "label": "nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "g0dm0d3-integration-decisions-20260525",
+        "parseltongue-framing-decision-20260525"
       ]
     },
     {
@@ -68,32 +433,100 @@
       ]
     },
     {
-      "id": "module::recipe",
+      "id": "module::reviewer",
       "type": "module",
-      "label": "recipe",
+      "label": "reviewer",
       "drawer_count": 2,
       "drawer_ids": [
-        "module-order-rationale-20260520",
-        "receipt-schema-design-20260519"
-      ]
-    },
-    {
-      "id": "module::verifier",
-      "type": "module",
-      "label": "verifier",
-      "drawer_count": 2,
-      "drawer_ids": [
-        "verifier-check-types-20260520",
+        "autopilot-orchestration-20260525",
         "module-order-rationale-20260520"
       ]
     },
     {
-      "id": "file::EXPIRED/SUPERSEDED",
+      "id": "file::rules/cold-start.md",
       "type": "file",
-      "label": "EXPIRED/SUPERSEDED",
+      "label": "rules/cold-start.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525",
+        "module-file-structure-20260525"
+      ]
+    },
+    {
+      "id": "file::session/state.json",
+      "type": "file",
+      "label": "session/state.json",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "receipt-chain-phases-20260525",
+        "hook-enforcement-pattern-20260519"
+      ]
+    },
+    {
+      "id": "file::tests/acceptance.md",
+      "type": "file",
+      "label": "tests/acceptance.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "executor-wave-protocol-20260525",
+        "module-file-structure-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/VERSION",
+      "type": "file",
+      "label": "wabblespec/VERSION",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "version-progression-20260525",
+        "spec-single-source-of-truth-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/experiments",
+      "type": "file",
+      "label": "wabblespec/experiments",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525",
+        "l8-corpus-gate-criteria-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory/wings",
+      "type": "file",
+      "label": "wabblespec/memory/wings",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "framework-product-separation-20260525",
+        "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "file::ADDITIVE/COSMETIC",
+      "type": "file",
+      "label": "ADDITIVE/COSMETIC",
       "drawer_count": 1,
       "drawer_ids": [
-        "memory-drawer-structure-20260521"
+        "apply-delta-classification-20260525"
+      ]
+    },
+    {
+      "id": "file::ESM/CJS",
+      "type": "file",
+      "label": "ESM/CJS",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
+      "id": "file::FRESH/AGING",
+      "type": "file",
+      "label": "FRESH/AGING",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "capability-routing-design-20260525"
       ]
     },
     {
@@ -106,12 +539,201 @@
       ]
     },
     {
-      "id": "file::_shared/references/invariants.md",
+      "id": "file::L3/L4",
       "type": "file",
-      "label": "_shared/references/invariants.md",
+      "label": "L3/L4",
       "drawer_count": 1,
       "drawer_ids": [
-        "guard-invariant-list-20260520"
+        "autopilot-orchestration-20260525"
+      ]
+    },
+    {
+      "id": "file::LOW/MEDIUM/HIGH",
+      "type": "file",
+      "label": "LOW/MEDIUM/HIGH",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "dream-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::Low/Medium/High",
+      "type": "file",
+      "label": "Low/Medium/High",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::N/M",
+      "type": "file",
+      "label": "N/M",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
+      "id": "file::OMC/OpenSpec/AgentOS",
+      "type": "file",
+      "label": "OMC/OpenSpec/AgentOS",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "version-progression-20260525"
+      ]
+    },
+    {
+      "id": "file::PASS/FAIL/WARN",
+      "type": "file",
+      "label": "PASS/FAIL/WARN",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "file::PASS/FLAG/BLOCK",
+      "type": "file",
+      "label": "PASS/FLAG/BLOCK",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "file::Write/Edit",
+      "type": "file",
+      "label": "Write/Edit",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "framework-product-separation-20260525"
+      ]
+    },
+    {
+      "id": "concept::_shared/ directory structure and consumers",
+      "type": "concept",
+      "label": "_shared/ directory structure and consumers",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "shared-artifacts-structure-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/references",
+      "type": "file",
+      "label": "_shared/references",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "document-cross-link-enforcement-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/scripts",
+      "type": "file",
+      "label": "_shared/scripts",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "wave5-param-learner-gating-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/scripts/ears-validate.py",
+      "type": "file",
+      "label": "_shared/scripts/ears-validate.py",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/scripts/inference-guard.py",
+      "type": "file",
+      "label": "_shared/scripts/inference-guard.py",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "file::_shared/scripts/quality-floor-check.py",
+      "type": "file",
+      "label": "_shared/scripts/quality-floor-check.py",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "quality-floor-gates-20260525"
+      ]
+    },
+    {
+      "id": "file::aesthetic/design/UX",
+      "type": "file",
+      "label": "aesthetic/design/UX",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "concept::apply module delta classification rules",
+      "type": "concept",
+      "label": "apply module delta classification rules",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "apply-delta-classification-20260525"
+      ]
+    },
+    {
+      "id": "concept::archive module behavior and delivery receipt",
+      "type": "concept",
+      "label": "archive module behavior and delivery receipt",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "archive-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::artifact/measurable",
+      "type": "file",
+      "label": "artifact/measurable",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::as/you",
+      "type": "file",
+      "label": "as/you",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::autopilot scale-adaptive orchestration",
+      "type": "concept",
+      "label": "autopilot scale-adaptive orchestration",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "autopilot-orchestration-20260525"
+      ]
+    },
+    {
+      "id": "file::be/arguably",
+      "type": "file",
+      "label": "be/arguably",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "file::be/could",
+      "type": "file",
+      "label": "be/could",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
       ]
     },
     {
@@ -124,12 +746,75 @@
       ]
     },
     {
+      "id": "file::believe/it",
+      "type": "file",
+      "label": "believe/it",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "concept::benchmark axis decomposition and degradation protocol",
+      "type": "concept",
+      "label": "benchmark axis decomposition and degradation protocol",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "benchmark-axis-decomposition-20260525"
+      ]
+    },
+    {
+      "id": "file::bypass/directory",
+      "type": "file",
+      "label": "bypass/directory",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::capability routing and contexttuner design",
+      "type": "concept",
+      "label": "capability routing and contexttuner design",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::claude/.wabblespec",
+      "type": "file",
+      "label": "claude/.wabblespec",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
       "id": "file::claude/settings.json",
       "type": "file",
       "label": "claude/settings.json",
       "drawer_count": 1,
       "drawer_ids": [
         "phase-1-completion-20260519"
+      ]
+    },
+    {
+      "id": "file::delete/break",
+      "type": "file",
+      "label": "delete/break",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "concept::document module cross-link enforcement",
+      "type": "concept",
+      "label": "document module cross-link enforcement",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "document-cross-link-enforcement-20260525"
       ]
     },
     {
@@ -142,12 +827,57 @@
       ]
     },
     {
-      "id": "module::executor",
-      "type": "module",
-      "label": "executor",
+      "id": "concept::dream module behavior and gap-map",
+      "type": "concept",
+      "label": "dream module behavior and gap-map",
       "drawer_count": 1,
       "drawer_ids": [
-        "module-order-rationale-20260520"
+        "dream-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "concept::ears syntax for wabblespec requirements",
+      "type": "concept",
+      "label": "ears syntax for wabblespec requirements",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "file::engineering/build",
+      "type": "file",
+      "label": "engineering/build",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "concept::entitygraph and knowledge graph behavior",
+      "type": "concept",
+      "label": "entitygraph and knowledge graph behavior",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "entity-graph-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::escalation/authentication",
+      "type": "file",
+      "label": "escalation/authentication",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::executor wave execution protocol",
+      "type": "concept",
+      "label": "executor wave execution protocol",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "executor-wave-protocol-20260525"
       ]
     },
     {
@@ -157,6 +887,51 @@
       "drawer_count": 1,
       "drawer_ids": [
         "skill-factory-gaps-20260520"
+      ]
+    },
+    {
+      "id": "file::formatting/rename",
+      "type": "file",
+      "label": "formatting/rename",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "apply-delta-classification-20260525"
+      ]
+    },
+    {
+      "id": "concept::framework and product space separation (i11)",
+      "type": "concept",
+      "label": "framework and product space separation (i11)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "framework-product-separation-20260525"
+      ]
+    },
+    {
+      "id": "concept::framework.yaml canonical module registry",
+      "type": "concept",
+      "label": "framework.yaml canonical module registry",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "framework-yaml-structure-20260525"
+      ]
+    },
+    {
+      "id": "concept::g0dm0d3 integration key decisions and exclusions",
+      "type": "concept",
+      "label": "g0dm0d3 integration key decisions and exclusions",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "g0dm0d3-integration-decisions-20260525"
+      ]
+    },
+    {
+      "id": "concept::gateway pattern three-axis routing",
+      "type": "concept",
+      "label": "gateway pattern three-axis routing",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
       ]
     },
     {
@@ -178,6 +953,15 @@
       ]
     },
     {
+      "id": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "type": "file",
+      "label": "hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
       "id": "concept::hook enforcement pattern",
       "type": "concept",
       "label": "hook enforcement pattern",
@@ -187,12 +971,48 @@
       ]
     },
     {
-      "id": "module::instinct",
-      "type": "module",
-      "label": "instinct",
+      "id": "concept::inferenceguard activation and tier system",
+      "type": "concept",
+      "label": "inferenceguard activation and tier system",
       "drawer_count": 1,
       "drawer_ids": [
-        "memory-drawer-structure-20260521"
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::key wabblespec error types and routing",
+      "type": "concept",
+      "label": "key wabblespec error types and routing",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "error-taxonomy-key-types-20260525"
+      ]
+    },
+    {
+      "id": "concept::l8 corpus gate criteria and status",
+      "type": "concept",
+      "label": "l8 corpus gate criteria and status",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "l8-corpus-gate-criteria-20260525"
+      ]
+    },
+    {
+      "id": "concept::l8 self-improvement evolution chain",
+      "type": "concept",
+      "label": "l8 self-improvement evolution chain",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "l8-evolution-chain-20260525"
+      ]
+    },
+    {
+      "id": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "type": "file",
+      "label": "malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
       ]
     },
     {
@@ -205,12 +1025,111 @@
       ]
     },
     {
+      "id": "concept::memorysearch hybrid scoring algorithm",
+      "type": "concept",
+      "label": "memorysearch hybrid scoring algorithm",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-search-hybrid-scoring-20260525"
+      ]
+    },
+    {
+      "id": "file::might/could/perhaps/maybe",
+      "type": "file",
+      "label": "might/could/perhaps/maybe",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "concept::module file structure requirements",
+      "type": "concept",
+      "label": "module file structure requirements",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-file-structure-20260525"
+      ]
+    },
+    {
       "id": "file::module/receipt_path/staleness_state",
       "type": "file",
       "label": "module/receipt_path/staleness_state",
       "drawer_count": 1,
       "drawer_ids": [
         "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "file::nodes/edges",
+      "type": "file",
+      "label": "nodes/edges",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "shared-artifacts-structure-20260525"
+      ]
+    },
+    {
+      "id": "file::now/new",
+      "type": "file",
+      "label": "now/new",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "type": "file",
+      "label": "nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "file::optional/best-effort",
+      "type": "file",
+      "label": "optional/best-effort",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "file::optional/permitted",
+      "type": "file",
+      "label": "optional/permitted",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "file::outcome/constraint/scope",
+      "type": "file",
+      "label": "outcome/constraint/scope",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::overflow/privilege",
+      "type": "file",
+      "label": "overflow/privilege",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::parseltongue framing as false-refusal prevention (not jailbreak)",
+      "type": "concept",
+      "label": "parseltongue framing as false-refusal prevention (not jailbreak)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "parseltongue-framing-decision-20260525"
       ]
     },
     {
@@ -232,21 +1151,93 @@
       ]
     },
     {
-      "id": "module::provenance",
-      "type": "module",
-      "label": "provenance",
+      "id": "file::priority/status",
+      "type": "file",
+      "label": "priority/status",
       "drawer_count": 1,
       "drawer_ids": [
-        "drawer-staleness-states-20260521"
+        "dream-module-behavior-20260525"
       ]
     },
     {
-      "id": "module::reviewer",
-      "type": "module",
-      "label": "reviewer",
+      "id": "concept::provenance module and contradiction tracking",
+      "type": "concept",
+      "label": "provenance module and contradiction tracking",
       "drawer_count": 1,
       "drawer_ids": [
-        "module-order-rationale-20260520"
+        "provenance-contradiction-tracking-20260525"
+      ]
+    },
+    {
+      "id": "concept::quality floor gate design",
+      "type": "concept",
+      "label": "quality floor gate design",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "quality-floor-gates-20260525"
+      ]
+    },
+    {
+      "id": "file::question/I",
+      "type": "file",
+      "label": "question/I",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "concept::receipt chain phase sequence",
+      "type": "concept",
+      "label": "receipt chain phase sequence",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "receipt-chain-phases-20260525"
+      ]
+    },
+    {
+      "id": "concept::receipt gating and implied completion prohibition (i10)",
+      "type": "concept",
+      "label": "receipt gating and implied completion prohibition (i10)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "receipt-gating-rationale-20260525"
+      ]
+    },
+    {
+      "id": "concept::recipe module behavior and cold-start gate",
+      "type": "concept",
+      "label": "recipe module behavior and cold-start gate",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "recipe-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "concept::red/blue/purple 9-component scoring model",
+      "type": "concept",
+      "label": "red/blue/purple 9-component scoring model",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "red-blue-purple-9-component-20260525"
+      ]
+    },
+    {
+      "id": "module::retro",
+      "type": "module",
+      "label": "retro",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::rollback",
+      "type": "module",
+      "label": "rollback",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "error-taxonomy-key-types-20260525"
       ]
     },
     {
@@ -268,12 +1259,57 @@
       ]
     },
     {
-      "id": "file::session/state.json",
+      "id": "file::secondary/unverified",
       "type": "file",
-      "label": "session/state.json",
+      "label": "secondary/unverified",
       "drawer_count": 1,
       "drawer_ids": [
-        "hook-enforcement-pattern-20260519"
+        "memory-search-hybrid-scoring-20260525"
+      ]
+    },
+    {
+      "id": "file::security/adversarial",
+      "type": "file",
+      "label": "security/adversarial",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "file::security/authentication/payments/PII/secrets",
+      "type": "file",
+      "label": "security/authentication/payments/PII/secrets",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "gateway-pattern-routing-20260525"
+      ]
+    },
+    {
+      "id": "file::security/enforcement/receipt/gate",
+      "type": "file",
+      "label": "security/enforcement/receipt/gate",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "module-file-structure-20260525"
+      ]
+    },
+    {
+      "id": "concept::seed run pipeline and completion criteria",
+      "type": "concept",
+      "label": "seed run pipeline and completion criteria",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "seed-run-pipeline-20260525"
+      ]
+    },
+    {
+      "id": "file::seems/might",
+      "type": "file",
+      "label": "seems/might",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
       ]
     },
     {
@@ -286,12 +1322,84 @@
       ]
     },
     {
-      "id": "module::specify",
-      "type": "module",
-      "label": "specify",
+      "id": "concept::spec as single source of truth (i1)",
+      "type": "concept",
+      "label": "spec as single source of truth (i1)",
       "drawer_count": 1,
       "drawer_ids": [
-        "module-order-rationale-20260520"
+        "spec-single-source-of-truth-20260525"
+      ]
+    },
+    {
+      "id": "file::src/hooks",
+      "type": "file",
+      "label": "src/hooks",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
+      "id": "concept::stm pipeline transform configuration",
+      "type": "concept",
+      "label": "stm pipeline transform configuration",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "module::team-plan",
+      "type": "module",
+      "label": "team-plan",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "entity-graph-behavior-20260525"
+      ]
+    },
+    {
+      "id": "concept::the 12 wabblespec invariants",
+      "type": "concept",
+      "label": "the 12 wabblespec invariants",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "twelve-invariants-20260525"
+      ]
+    },
+    {
+      "id": "file::think/perhaps/maybe/I",
+      "type": "file",
+      "label": "think/perhaps/maybe/I",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "concept::tool call batching discipline for parallel execution",
+      "type": "concept",
+      "label": "tool call batching discipline for parallel execution",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "tool-call-batching-discipline-20260525"
+      ]
+    },
+    {
+      "id": "file::topic/id",
+      "type": "file",
+      "label": "topic/id",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "memory-search-hybrid-scoring-20260525"
+      ]
+    },
+    {
+      "id": "concept::vendor neutrality enforcement (i6)",
+      "type": "concept",
+      "label": "vendor neutrality enforcement (i6)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "vendor-neutrality-enforcement-20260525"
       ]
     },
     {
@@ -304,12 +1412,66 @@
       ]
     },
     {
+      "id": "concept::wabblespec hook architecture detail",
+      "type": "concept",
+      "label": "wabblespec hook architecture detail",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "hook-architecture-detail-20260525"
+      ]
+    },
+    {
       "id": "concept::wabblespec kill criteria",
       "type": "concept",
       "label": "wabblespec kill criteria",
       "drawer_count": 1,
       "drawer_ids": [
         "wabblespec-kill-criteria-20260521"
+      ]
+    },
+    {
+      "id": "concept::wabblespec layer architecture overview",
+      "type": "concept",
+      "label": "wabblespec layer architecture overview",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "concept::wabblespec version progression history",
+      "type": "concept",
+      "label": "wabblespec version progression history",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "version-progression-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/archive/receipt-index.json",
+      "type": "file",
+      "label": "wabblespec/archive/receipt-index.json",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "archive-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "type": "file",
+      "label": "wabblespec/checkpoints/wave-N-timestamp",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "executor-wave-protocol-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory",
+      "type": "file",
+      "label": "wabblespec/memory",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "provenance-contradiction-tracking-20260525"
       ]
     },
     {
@@ -322,33 +1484,602 @@
       ]
     },
     {
-      "id": "file::wabblespec/memory/wings",
+      "id": "file::wabblespec/memory/dream-log.json",
       "type": "file",
-      "label": "wabblespec/memory/wings",
+      "label": "wabblespec/memory/dream-log.json",
       "drawer_count": 1,
       "drawer_ids": [
-        "memory-drawer-structure-20260521"
+        "dream-module-behavior-20260525"
       ]
     },
     {
-      "id": "file::wabblespec/receipts",
+      "id": "file::wabblespec/memory/gap-map.md",
       "type": "file",
-      "label": "wabblespec/receipts",
+      "label": "wabblespec/memory/gap-map.md",
       "drawer_count": 1,
       "drawer_ids": [
-        "hook-enforcement-pattern-20260519"
+        "dream-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/memory/instinct-observations.md",
+      "type": "file",
+      "label": "wabblespec/memory/instinct-observations.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "l8-corpus-gate-criteria-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/meta.md",
+      "type": "file",
+      "label": "wabblespec/meta.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "autopilot-orchestration-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/plans/task-card.md",
+      "type": "file",
+      "label": "wabblespec/plans/task-card.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "spec-single-source-of-truth-20260525"
+      ]
+    },
+    {
+      "id": "concept::wave 5 paramlearner gate condition",
+      "type": "concept",
+      "label": "wave 5 paramlearner gate condition",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "wave5-param-learner-gating-20260525"
+      ]
+    },
+    {
+      "id": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "type": "file",
+      "label": "weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "file::writes/edits",
+      "type": "file",
+      "label": "writes/edits",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "tool-call-batching-discipline-20260525"
       ]
     }
   ],
   "edges": [
     {
+      "source": "module::executor",
+      "target": "module::guard",
+      "weight": 6
+    },
+    {
+      "source": "module::executor",
+      "target": "module::verifier",
+      "weight": 5
+    },
+    {
+      "source": "module::guard",
+      "target": "module::verifier",
+      "weight": 5
+    },
+    {
+      "source": "module::archive",
+      "target": "module::executor",
+      "weight": 5
+    },
+    {
+      "source": "module::archive",
+      "target": "module::guard",
+      "weight": 5
+    },
+    {
+      "source": "module::archive",
+      "target": "module::verifier",
+      "weight": 5
+    },
+    {
+      "source": "module::executor",
+      "target": "module::specify",
+      "weight": 5
+    },
+    {
+      "source": "module::guard",
+      "target": "module::instinct",
+      "weight": 4
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::synth",
+      "weight": 4
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::instinct",
+      "weight": 4
+    },
+    {
+      "source": "module::executor",
+      "target": "module::recipe",
+      "weight": 4
+    },
+    {
+      "source": "module::augment",
+      "target": "module::recipe",
+      "weight": 3
+    },
+    {
+      "source": "module::augment",
+      "target": "module::document",
+      "weight": 3
+    },
+    {
+      "source": "module::augment",
+      "target": "module::executor",
+      "weight": 3
+    },
+    {
+      "source": "module::augment",
+      "target": "module::forge",
+      "weight": 3
+    },
+    {
+      "source": "module::augment",
+      "target": "module::instinct",
+      "weight": 3
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::document",
+      "weight": 3
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::instinct",
+      "weight": 3
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::synth",
+      "weight": 3
+    },
+    {
+      "source": "module::document",
+      "target": "module::executor",
+      "weight": 3
+    },
+    {
+      "source": "module::document",
+      "target": "module::forge",
+      "weight": 3
+    },
+    {
+      "source": "module::document",
+      "target": "module::recipe",
+      "weight": 3
+    },
+    {
+      "source": "module::executor",
+      "target": "module::instinct",
+      "weight": 3
+    },
+    {
+      "source": "module::guard",
+      "target": "module::memory",
+      "weight": 3
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::instinct",
+      "weight": 3
+    },
+    {
       "source": "module::archive",
       "target": "module::recipe",
+      "weight": 3
+    },
+    {
+      "source": "module::guard",
+      "target": "module::specify",
+      "weight": 3
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::specify",
+      "weight": 3
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::memory",
+      "weight": 3
+    },
+    {
+      "source": "module::guard",
+      "target": "module::provenance",
+      "weight": 2
+    },
+    {
+      "source": "module::guard",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::provenance",
+      "weight": 2
+    },
+    {
+      "source": "module::provenance",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "file::100/100",
+      "target": "file::wabblespec/experiments",
+      "weight": 2
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::augment",
+      "weight": 2
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::benchmark",
+      "weight": 2
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::benchmark",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::instinct",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::benchmark",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::blueprint",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::blueprint",
+      "weight": 2
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::executor",
+      "weight": 2
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::forge",
+      "weight": 2
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::document",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::executor",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::forge",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::instinct",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::document",
+      "target": "module::instinct",
+      "weight": 2
+    },
+    {
+      "source": "module::document",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::executor",
+      "target": "module::forge",
+      "weight": 2
+    },
+    {
+      "source": "module::executor",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::forge",
+      "target": "module::instinct",
+      "weight": 2
+    },
+    {
+      "source": "module::forge",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "module::forge",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::synth",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::guard",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::polish",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::dream",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::autopilot",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::decompose",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::polish",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::reviewer",
+      "weight": 2
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::executor",
+      "weight": 2
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::guard",
+      "weight": 2
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::polish",
+      "weight": 2
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::executor",
+      "weight": 2
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::guard",
+      "weight": 2
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::reviewer",
+      "weight": 2
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::executor",
+      "target": "module::polish",
+      "weight": 2
+    },
+    {
+      "source": "module::executor",
+      "target": "module::reviewer",
+      "weight": 2
+    },
+    {
+      "source": "module::guard",
+      "target": "module::polish",
+      "weight": 2
+    },
+    {
+      "source": "module::guard",
+      "target": "module::reviewer",
+      "weight": 2
+    },
+    {
+      "source": "module::polish",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::reviewer",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/receipts",
+      "target": "module::archive",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/receipts",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::apply",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::autopilot",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "module::guard",
+      "target": "module::recipe",
+      "weight": 2
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::specify",
+      "target": "module::verifier",
+      "weight": 2
+    },
+    {
+      "source": "module::augment",
+      "target": "module::feedback",
+      "weight": 2
+    },
+    {
+      "source": "module::document",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::instinct",
+      "weight": 2
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::memory",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::gateway-engineering",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::gateway-security",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::gateway-security",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "module::archive",
+      "target": "module::instinct",
       "weight": 2
     },
     {
       "source": "concept::receipt schema design",
       "target": "file::PASS/FAIL/PARTIAL",
+      "weight": 2
+    },
+    {
+      "source": "file::session/state.json",
+      "target": "file::wabblespec/receipts",
       "weight": 2
     },
     {
@@ -367,6 +2098,236 @@
       "weight": 1
     },
     {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::PASS/FAIL/WARN",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::be/arguably",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::be/could",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::believe/it",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::question/I",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "concept::stm pipeline transform configuration",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::be/arguably",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::be/could",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::believe/it",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::question/I",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FAIL/WARN",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "file::be/could",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "file::believe/it",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "file::question/I",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::be/arguably",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::be/could",
+      "target": "file::believe/it",
+      "weight": 1
+    },
+    {
+      "source": "file::be/could",
+      "target": "file::question/I",
+      "weight": 1
+    },
+    {
+      "source": "file::be/could",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "file::be/could",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::be/could",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::believe/it",
+      "target": "file::question/I",
+      "weight": 1
+    },
+    {
+      "source": "file::believe/it",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "file::believe/it",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::believe/it",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::question/I",
+      "target": "file::seems/might",
+      "weight": 1
+    },
+    {
+      "source": "file::question/I",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::question/I",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::seems/might",
+      "target": "file::think/perhaps/maybe/I",
+      "weight": 1
+    },
+    {
+      "source": "file::seems/might",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::think/perhaps/maybe/I",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "concept::ears syntax for wabblespec requirements",
+      "target": "file::_shared/scripts/ears-validate.py",
+      "weight": 1
+    },
+    {
+      "source": "concept::ears syntax for wabblespec requirements",
+      "target": "file::might/could/perhaps/maybe",
+      "weight": 1
+    },
+    {
+      "source": "concept::ears syntax for wabblespec requirements",
+      "target": "file::optional/best-effort",
+      "weight": 1
+    },
+    {
+      "source": "concept::ears syntax for wabblespec requirements",
+      "target": "file::optional/permitted",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/ears-validate.py",
+      "target": "file::might/could/perhaps/maybe",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/ears-validate.py",
+      "target": "file::optional/best-effort",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/ears-validate.py",
+      "target": "file::optional/permitted",
+      "weight": 1
+    },
+    {
+      "source": "file::might/could/perhaps/maybe",
+      "target": "file::optional/best-effort",
+      "weight": 1
+    },
+    {
+      "source": "file::might/could/perhaps/maybe",
+      "target": "file::optional/permitted",
+      "weight": 1
+    },
+    {
+      "source": "file::optional/best-effort",
+      "target": "file::optional/permitted",
+      "weight": 1
+    },
+    {
       "source": "concept::skill factory gaps and wabblespec templates",
       "target": "module::factory",
       "weight": 1
@@ -379,6 +2340,626 @@
     {
       "source": "module::factory",
       "target": "module::scaffold",
+      "weight": 1
+    },
+    {
+      "source": "concept::red/blue/purple 9-component scoring model",
+      "target": "file::Red/Blue/Purple",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "file::Low/Medium/High",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "file::artifact/measurable",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "file::outcome/constraint/scope",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "file::rules/cold-start.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::recipe module behavior and cold-start gate",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::Low/Medium/High",
+      "target": "file::artifact/measurable",
+      "weight": 1
+    },
+    {
+      "source": "file::Low/Medium/High",
+      "target": "file::outcome/constraint/scope",
+      "weight": 1
+    },
+    {
+      "source": "file::Low/Medium/High",
+      "target": "file::rules/cold-start.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Low/Medium/High",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::Low/Medium/High",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::artifact/measurable",
+      "target": "file::outcome/constraint/scope",
+      "weight": 1
+    },
+    {
+      "source": "file::artifact/measurable",
+      "target": "file::rules/cold-start.md",
+      "weight": 1
+    },
+    {
+      "source": "file::artifact/measurable",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::artifact/measurable",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::outcome/constraint/scope",
+      "target": "file::rules/cold-start.md",
+      "weight": 1
+    },
+    {
+      "source": "file::outcome/constraint/scope",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::outcome/constraint/scope",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::rules/cold-start.md",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::rules/cold-start.md",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::provenance module and contradiction tracking",
+      "target": "file::wabblespec/memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::provenance module and contradiction tracking",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::provenance module and contradiction tracking",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::provenance module and contradiction tracking",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "concept::provenance module and contradiction tracking",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "concept::memorysearch hybrid scoring algorithm",
+      "target": "file::EXPIRED/SUPERSEDED",
+      "weight": 1
+    },
+    {
+      "source": "concept::memorysearch hybrid scoring algorithm",
+      "target": "file::secondary/unverified",
+      "weight": 1
+    },
+    {
+      "source": "concept::memorysearch hybrid scoring algorithm",
+      "target": "file::topic/id",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "file::secondary/unverified",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "file::topic/id",
+      "weight": 1
+    },
+    {
+      "source": "file::secondary/unverified",
+      "target": "file::topic/id",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "file::100/100",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "file::wabblespec/experiments",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 self-improvement evolution chain",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::_shared/scripts/inference-guard.py",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::as/you",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::bypass/directory",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::escalation/authentication",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "concept::inferenceguard activation and tier system",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::as/you",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::bypass/directory",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::escalation/authentication",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts/inference-guard.py",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::bypass/directory",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::escalation/authentication",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::as/you",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::escalation/authentication",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::bypass/directory",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::escalation/authentication",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "target": "file::now/new",
+      "weight": 1
+    },
+    {
+      "source": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::now/new",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "weight": 1
+    },
+    {
+      "source": "file::now/new",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::now/new",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::now/new",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "target": "file::overflow/privilege",
+      "weight": 1
+    },
+    {
+      "source": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::overflow/privilege",
+      "target": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "weight": 1
+    },
+    {
+      "source": "file::overflow/privilege",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+      "target": "module::gateway-security",
       "weight": 1
     },
     {
@@ -442,8 +3023,708 @@
       "weight": 1
     },
     {
-      "source": "module::guard",
-      "target": "module::memory",
+      "source": "concept::executor wave execution protocol",
+      "target": "file::tests/acceptance.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::executor wave execution protocol",
+      "target": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "weight": 1
+    },
+    {
+      "source": "concept::executor wave execution protocol",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::executor wave execution protocol",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::executor wave execution protocol",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::executor wave execution protocol",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::tests/acceptance.md",
+      "target": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "weight": 1
+    },
+    {
+      "source": "file::tests/acceptance.md",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::tests/acceptance.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::tests/acceptance.md",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::tests/acceptance.md",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/checkpoints/wave-N-timestamp",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "concept::entitygraph and knowledge graph behavior",
+      "target": "file::EXPIRED/SUPERSEDED",
+      "weight": 1
+    },
+    {
+      "source": "concept::entitygraph and knowledge graph behavior",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "concept::entitygraph and knowledge graph behavior",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::entitygraph and knowledge graph behavior",
+      "target": "module::team-plan",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::EXPIRED/SUPERSEDED",
+      "target": "module::team-plan",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::team-plan",
+      "weight": 1
+    },
+    {
+      "source": "module::specify",
+      "target": "module::team-plan",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "file::LOW/MEDIUM/HIGH",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "file::priority/status",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "file::wabblespec/memory/dream-log.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "file::wabblespec/memory/gap-map.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "concept::dream module behavior and gap-map",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "file::priority/status",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "file::wabblespec/memory/dream-log.json",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "file::wabblespec/memory/gap-map.md",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::LOW/MEDIUM/HIGH",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::priority/status",
+      "target": "file::wabblespec/memory/dream-log.json",
+      "weight": 1
+    },
+    {
+      "source": "file::priority/status",
+      "target": "file::wabblespec/memory/gap-map.md",
+      "weight": 1
+    },
+    {
+      "source": "file::priority/status",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::priority/status",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::priority/status",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/dream-log.json",
+      "target": "file::wabblespec/memory/gap-map.md",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/dream-log.json",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/dream-log.json",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/dream-log.json",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/gap-map.md",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/gap-map.md",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/gap-map.md",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::document module cross-link enforcement",
+      "target": "file::_shared/references",
+      "weight": 1
+    },
+    {
+      "source": "concept::document module cross-link enforcement",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::document module cross-link enforcement",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::document module cross-link enforcement",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/references",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/references",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/references",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "concept::benchmark axis decomposition and degradation protocol",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::benchmark axis decomposition and degradation protocol",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "file::L3/L4",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "file::wabblespec/meta.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "concept::autopilot scale-adaptive orchestration",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "file::wabblespec/meta.md",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "file::L3/L4",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/meta.md",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::dream",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "module::decompose",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::economy",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "module::economy",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::economy",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::economy",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::economy",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "concept::archive module behavior and delivery receipt",
+      "target": "file::wabblespec/archive/receipt-index.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::archive module behavior and delivery receipt",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "concept::archive module behavior and delivery receipt",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::archive module behavior and delivery receipt",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::archive module behavior and delivery receipt",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/archive/receipt-index.json",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/archive/receipt-index.json",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/archive/receipt-index.json",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/archive/receipt-index.json",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/receipts",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "file::ADDITIVE/COSMETIC",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "file::formatting/rename",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::apply module delta classification rules",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::ADDITIVE/COSMETIC",
+      "target": "file::formatting/rename",
+      "weight": 1
+    },
+    {
+      "source": "file::ADDITIVE/COSMETIC",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "file::ADDITIVE/COSMETIC",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::ADDITIVE/COSMETIC",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::ADDITIVE/COSMETIC",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::formatting/rename",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "file::formatting/rename",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::formatting/rename",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::formatting/rename",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::apply",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "module::apply",
+      "target": "module::specify",
       "weight": 1
     },
     {
@@ -459,6 +3740,86 @@
     {
       "source": "file::claude/settings.json",
       "target": "module::decompose",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "file::100/100",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "file::OMC/OpenSpec/AgentOS",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "file::wabblespec/VERSION",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec version progression history",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "file::OMC/OpenSpec/AgentOS",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "file::wabblespec/VERSION",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::OMC/OpenSpec/AgentOS",
+      "target": "file::wabblespec/VERSION",
+      "weight": 1
+    },
+    {
+      "source": "file::OMC/OpenSpec/AgentOS",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::OMC/OpenSpec/AgentOS",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::OMC/OpenSpec/AgentOS",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::instinct",
       "weight": 1
     },
     {
@@ -502,123 +3863,18 @@
       "weight": 1
     },
     {
-      "source": "module::archive",
-      "target": "module::decompose",
-      "weight": 1
-    },
-    {
-      "source": "module::archive",
-      "target": "module::executor",
-      "weight": 1
-    },
-    {
-      "source": "module::archive",
-      "target": "module::guard",
-      "weight": 1
-    },
-    {
-      "source": "module::archive",
-      "target": "module::reviewer",
-      "weight": 1
-    },
-    {
-      "source": "module::archive",
-      "target": "module::specify",
-      "weight": 1
-    },
-    {
-      "source": "module::archive",
-      "target": "module::verifier",
-      "weight": 1
-    },
-    {
-      "source": "module::decompose",
-      "target": "module::executor",
-      "weight": 1
-    },
-    {
-      "source": "module::decompose",
-      "target": "module::guard",
-      "weight": 1
-    },
-    {
       "source": "module::decompose",
       "target": "module::recipe",
       "weight": 1
     },
     {
       "source": "module::decompose",
-      "target": "module::reviewer",
-      "weight": 1
-    },
-    {
-      "source": "module::decompose",
-      "target": "module::specify",
-      "weight": 1
-    },
-    {
-      "source": "module::decompose",
-      "target": "module::verifier",
-      "weight": 1
-    },
-    {
-      "source": "module::executor",
-      "target": "module::guard",
-      "weight": 1
-    },
-    {
-      "source": "module::executor",
-      "target": "module::recipe",
-      "weight": 1
-    },
-    {
-      "source": "module::executor",
-      "target": "module::reviewer",
-      "weight": 1
-    },
-    {
-      "source": "module::executor",
-      "target": "module::specify",
-      "weight": 1
-    },
-    {
-      "source": "module::executor",
-      "target": "module::verifier",
-      "weight": 1
-    },
-    {
-      "source": "module::guard",
-      "target": "module::recipe",
-      "weight": 1
-    },
-    {
-      "source": "module::guard",
-      "target": "module::reviewer",
-      "weight": 1
-    },
-    {
-      "source": "module::guard",
-      "target": "module::specify",
-      "weight": 1
-    },
-    {
-      "source": "module::guard",
-      "target": "module::verifier",
-      "weight": 1
-    },
-    {
-      "source": "module::recipe",
-      "target": "module::reviewer",
-      "weight": 1
-    },
-    {
-      "source": "module::recipe",
       "target": "module::specify",
       "weight": 1
     },
     {
       "source": "module::recipe",
-      "target": "module::verifier",
+      "target": "module::reviewer",
       "weight": 1
     },
     {
@@ -627,18 +3883,693 @@
       "weight": 1
     },
     {
-      "source": "module::reviewer",
-      "target": "module::verifier",
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "file::100/100",
       "weight": 1
     },
     {
-      "source": "module::specify",
-      "target": "module::verifier",
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "file::wabblespec/experiments",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "file::wabblespec/memory/instinct-observations.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::l8 corpus gate criteria and status",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "file::wabblespec/memory/instinct-observations.md",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/experiments",
+      "target": "file::wabblespec/memory/instinct-observations.md",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/instinct-observations.md",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/instinct-observations.md",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/instinct-observations.md",
+      "target": "module::synth",
       "weight": 1
     },
     {
       "source": "concept::wabblespec kill criteria",
       "target": "file::before/after",
+      "weight": 1
+    },
+    {
+      "source": "concept::g0dm0d3 integration key decisions and exclusions",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+      "weight": 1
+    },
+    {
+      "source": "concept::parseltongue framing as false-refusal prevention (not jailbreak)",
+      "target": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+      "weight": 1
+    },
+    {
+      "source": "concept::parseltongue framing as false-refusal prevention (not jailbreak)",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "concept::wave 5 paramlearner gate condition",
+      "target": "file::_shared/scripts",
+      "weight": 1
+    },
+    {
+      "source": "concept::wave 5 paramlearner gate condition",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "concept::wave 5 paramlearner gate condition",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::wave 5 paramlearner gate condition",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/scripts",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "concept::key wabblespec error types and routing",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::key wabblespec error types and routing",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::key wabblespec error types and routing",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::key wabblespec error types and routing",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "concept::key wabblespec error types and routing",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "module::rollback",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "file::Write/Edit",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::framework and product space separation (i11)",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::Write/Edit",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::project/repo",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "file::wabblespec/memory/wings",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/wings",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::apply",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::apply",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::apply",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::PASS/FLAG/BLOCK",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::Red/Blue/Purple",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::aesthetic/design/UX",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::engineering/build",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::security/adversarial",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "concept::gateway pattern three-axis routing",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "file::Red/Blue/Purple",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "file::aesthetic/design/UX",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "file::engineering/build",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "file::security/adversarial",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::PASS/FLAG/BLOCK",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "file::aesthetic/design/UX",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "file::engineering/build",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "file::security/adversarial",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::Red/Blue/Purple",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "file::engineering/build",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "file::security/adversarial",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::aesthetic/design/UX",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "file::security/adversarial",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::engineering/build",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::security/adversarial",
+      "target": "file::security/authentication/payments/PII/secrets",
+      "weight": 1
+    },
+    {
+      "source": "file::security/adversarial",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::security/adversarial",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::security/adversarial",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::security/adversarial",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::security/authentication/payments/PII/secrets",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "file::security/authentication/payments/PII/secrets",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "file::security/authentication/payments/PII/secrets",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::security/authentication/payments/PII/secrets",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt gating and implied completion prohibition (i10)",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt gating and implied completion prohibition (i10)",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt gating and implied completion prohibition (i10)",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt gating and implied completion prohibition (i10)",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::seed run pipeline and completion criteria",
+      "target": "file::100/100",
+      "weight": 1
+    },
+    {
+      "source": "concept::seed run pipeline and completion criteria",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "concept::seed run pipeline and completion criteria",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "file::100/100",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/receipts",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::spec as single source of truth (i1)",
+      "target": "file::wabblespec/VERSION",
+      "weight": 1
+    },
+    {
+      "source": "concept::spec as single source of truth (i1)",
+      "target": "file::wabblespec/plans/task-card.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::spec as single source of truth (i1)",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::spec as single source of truth (i1)",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::spec as single source of truth (i1)",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "file::wabblespec/plans/task-card.md",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/VERSION",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/plans/task-card.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/plans/task-card.md",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/plans/task-card.md",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::tool call batching discipline for parallel execution",
+      "target": "file::writes/edits",
+      "weight": 1
+    },
+    {
+      "source": "concept::_shared/ directory structure and consumers",
+      "target": "file::nodes/edges",
+      "weight": 1
+    },
+    {
+      "source": "concept::_shared/ directory structure and consumers",
+      "target": "module::economy",
+      "weight": 1
+    },
+    {
+      "source": "file::nodes/edges",
+      "target": "module::economy",
       "weight": 1
     },
     {
@@ -687,6 +4618,86 @@
       "weight": 1
     },
     {
+      "source": "concept::receipt chain phase sequence",
+      "target": "file::session/state.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt chain phase sequence",
+      "target": "file::wabblespec/receipts",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt chain phase sequence",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt chain phase sequence",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::receipt chain phase sequence",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::session/state.json",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "file::session/state.json",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "file::session/state.json",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/receipts",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::quality floor gate design",
+      "target": "file::_shared/scripts/quality-floor-check.py",
+      "weight": 1
+    },
+    {
+      "source": "concept::module file structure requirements",
+      "target": "file::rules/cold-start.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::module file structure requirements",
+      "target": "file::security/enforcement/receipt/gate",
+      "weight": 1
+    },
+    {
+      "source": "concept::module file structure requirements",
+      "target": "file::tests/acceptance.md",
+      "weight": 1
+    },
+    {
+      "source": "file::rules/cold-start.md",
+      "target": "file::security/enforcement/receipt/gate",
+      "weight": 1
+    },
+    {
+      "source": "file::rules/cold-start.md",
+      "target": "file::tests/acceptance.md",
+      "weight": 1
+    },
+    {
+      "source": "file::security/enforcement/receipt/gate",
+      "target": "file::tests/acceptance.md",
+      "weight": 1
+    },
+    {
       "source": "concept::drawer staleness states and transitions",
       "target": "module::provenance",
       "weight": 1
@@ -727,18 +4738,958 @@
       "weight": 1
     },
     {
-      "source": "file::wabblespec/memory/wings",
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::archive",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::autopilot",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
       "target": "module::instinct",
       "weight": 1
     },
     {
-      "source": "file::wabblespec/memory/wings",
+      "source": "concept::wabblespec layer architecture overview",
       "target": "module::memory",
       "weight": 1
     },
     {
-      "source": "module::instinct",
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec layer architecture overview",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::augment",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
       "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::archive",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::augment",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::blueprint",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::autopilot",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::blueprint",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::feedback",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::executor",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::forge",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::feedback",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::gateway-ai",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::gateway-engineering",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::forge",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-ai",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-engineering",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::guard",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::gateway-security",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::guard",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::instinct",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::polish",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::memory",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::provenance",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::polish",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::provenance",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "module::provenance",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::provenance",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::provenance",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::recipe",
+      "target": "module::retro",
+      "weight": 1
+    },
+    {
+      "source": "module::retro",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "module::retro",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::retro",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "module::specify",
+      "target": "module::synth",
+      "weight": 1
+    },
+    {
+      "source": "module::synth",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "concept::the 12 wabblespec invariants",
+      "target": "file::_shared/references/invariants.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::the 12 wabblespec invariants",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "file::_shared/references/invariants.md",
+      "target": "file::project/repo",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec hook architecture detail",
+      "target": "file::ESM/CJS",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec hook architecture detail",
+      "target": "file::N/M",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec hook architecture detail",
+      "target": "file::claude/.wabblespec",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec hook architecture detail",
+      "target": "file::src/hooks",
+      "weight": 1
+    },
+    {
+      "source": "concept::wabblespec hook architecture detail",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::ESM/CJS",
+      "target": "file::N/M",
+      "weight": 1
+    },
+    {
+      "source": "file::ESM/CJS",
+      "target": "file::claude/.wabblespec",
+      "weight": 1
+    },
+    {
+      "source": "file::ESM/CJS",
+      "target": "file::src/hooks",
+      "weight": 1
+    },
+    {
+      "source": "file::ESM/CJS",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::N/M",
+      "target": "file::claude/.wabblespec",
+      "weight": 1
+    },
+    {
+      "source": "file::N/M",
+      "target": "file::src/hooks",
+      "weight": 1
+    },
+    {
+      "source": "file::N/M",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/.wabblespec",
+      "target": "file::src/hooks",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/.wabblespec",
+      "target": "module::recipe",
+      "weight": 1
+    },
+    {
+      "source": "file::src/hooks",
+      "target": "module::recipe",
       "weight": 1
     },
     {
@@ -752,8 +5703,53 @@
       "weight": 1
     },
     {
-      "source": "file::session/state.json",
-      "target": "file::wabblespec/receipts",
+      "source": "concept::capability routing and contexttuner design",
+      "target": "file::FRESH/AGING",
+      "weight": 1
+    },
+    {
+      "source": "concept::capability routing and contexttuner design",
+      "target": "file::delete/break",
+      "weight": 1
+    },
+    {
+      "source": "concept::capability routing and contexttuner design",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "concept::capability routing and contexttuner design",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::FRESH/AGING",
+      "target": "file::delete/break",
+      "weight": 1
+    },
+    {
+      "source": "file::FRESH/AGING",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "file::FRESH/AGING",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::delete/break",
+      "target": "file::wabblespec/memory/learned-params",
+      "weight": 1
+    },
+    {
+      "source": "file::delete/break",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/memory/learned-params",
+      "target": "module::document",
       "weight": 1
     }
   ]

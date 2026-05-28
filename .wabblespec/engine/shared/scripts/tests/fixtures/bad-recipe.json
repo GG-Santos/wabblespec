@@ -1,0 +1,6 @@
+{
+  "platform": "Framework",
+  "detection_method": "explicit-instruction",
+  "confidence": 2.0,
+  "complexity": "High"
+}

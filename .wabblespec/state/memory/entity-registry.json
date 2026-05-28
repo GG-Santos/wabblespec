@@ -1,11 +1,11 @@
 {
   "version": "1.0",
-  "generated": "2026-05-24T13:09:29.147163+00:00",
-  "drawers_scanned": 12,
+  "generated": "2026-05-28T22:59:28.469860+00:00",
+  "drawers_scanned": 50,
   "entity_counts": {
-    "concept": 11,
-    "module": 13,
-    "file": 12
+    "concept": 49,
+    "module": 31,
+    "file": 79
   },
   "entities": {
     "concept": [
@@ -27,11 +27,75 @@
         ]
       },
       {
+        "id": "concept::stm pipeline transform configuration",
+        "label": "stm pipeline transform configuration",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "concept::ears syntax for wabblespec requirements",
+        "label": "ears syntax for wabblespec requirements",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "ears-syntax-requirements-20260525"
+        ]
+      },
+      {
         "id": "concept::skill factory gaps and wabblespec templates",
         "label": "skill factory gaps and wabblespec templates",
         "drawer_count": 1,
         "drawer_ids": [
           "skill-factory-gaps-20260520"
+        ]
+      },
+      {
+        "id": "concept::red/blue/purple 9-component scoring model",
+        "label": "red/blue/purple 9-component scoring model",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "red-blue-purple-9-component-20260525"
+        ]
+      },
+      {
+        "id": "concept::recipe module behavior and cold-start gate",
+        "label": "recipe module behavior and cold-start gate",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "recipe-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "concept::provenance module and contradiction tracking",
+        "label": "provenance module and contradiction tracking",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "provenance-contradiction-tracking-20260525"
+        ]
+      },
+      {
+        "id": "concept::memorysearch hybrid scoring algorithm",
+        "label": "memorysearch hybrid scoring algorithm",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-search-hybrid-scoring-20260525"
+        ]
+      },
+      {
+        "id": "concept::l8 self-improvement evolution chain",
+        "label": "l8 self-improvement evolution chain",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525"
+        ]
+      },
+      {
+        "id": "concept::inferenceguard activation and tier system",
+        "label": "inferenceguard activation and tier system",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
         ]
       },
       {
@@ -51,11 +115,91 @@
         ]
       },
       {
+        "id": "concept::executor wave execution protocol",
+        "label": "executor wave execution protocol",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "executor-wave-protocol-20260525"
+        ]
+      },
+      {
+        "id": "concept::entitygraph and knowledge graph behavior",
+        "label": "entitygraph and knowledge graph behavior",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "entity-graph-behavior-20260525"
+        ]
+      },
+      {
+        "id": "concept::dream module behavior and gap-map",
+        "label": "dream module behavior and gap-map",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "dream-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "concept::document module cross-link enforcement",
+        "label": "document module cross-link enforcement",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "document-cross-link-enforcement-20260525"
+        ]
+      },
+      {
+        "id": "concept::benchmark axis decomposition and degradation protocol",
+        "label": "benchmark axis decomposition and degradation protocol",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "benchmark-axis-decomposition-20260525"
+        ]
+      },
+      {
+        "id": "concept::autopilot scale-adaptive orchestration",
+        "label": "autopilot scale-adaptive orchestration",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525"
+        ]
+      },
+      {
+        "id": "concept::archive module behavior and delivery receipt",
+        "label": "archive module behavior and delivery receipt",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "archive-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "concept::apply module delta classification rules",
+        "label": "apply module delta classification rules",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "apply-delta-classification-20260525"
+        ]
+      },
+      {
+        "id": "concept::vendor neutrality enforcement (i6)",
+        "label": "vendor neutrality enforcement (i6)",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "vendor-neutrality-enforcement-20260525"
+        ]
+      },
+      {
         "id": "concept::phase 1 completion",
         "label": "phase 1 completion",
         "drawer_count": 1,
         "drawer_ids": [
           "phase-1-completion-20260519"
+        ]
+      },
+      {
+        "id": "concept::wabblespec version progression history",
+        "label": "wabblespec version progression history",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "version-progression-20260525"
         ]
       },
       {
@@ -67,11 +211,131 @@
         ]
       },
       {
+        "id": "concept::l8 corpus gate criteria and status",
+        "label": "l8 corpus gate criteria and status",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "l8-corpus-gate-criteria-20260525"
+        ]
+      },
+      {
         "id": "concept::wabblespec kill criteria",
         "label": "wabblespec kill criteria",
         "drawer_count": 1,
         "drawer_ids": [
           "wabblespec-kill-criteria-20260521"
+        ]
+      },
+      {
+        "id": "concept::g0dm0d3 integration key decisions and exclusions",
+        "label": "g0dm0d3 integration key decisions and exclusions",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "g0dm0d3-integration-decisions-20260525"
+        ]
+      },
+      {
+        "id": "concept::parseltongue framing as false-refusal prevention (not jailbreak)",
+        "label": "parseltongue framing as false-refusal prevention (not jailbreak)",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "parseltongue-framing-decision-20260525"
+        ]
+      },
+      {
+        "id": "concept::wave 5 paramlearner gate condition",
+        "label": "wave 5 paramlearner gate condition",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "wave5-param-learner-gating-20260525"
+        ]
+      },
+      {
+        "id": "concept::key wabblespec error types and routing",
+        "label": "key wabblespec error types and routing",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "error-taxonomy-key-types-20260525"
+        ]
+      },
+      {
+        "id": "concept::framework and product space separation (i11)",
+        "label": "framework and product space separation (i11)",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "framework-product-separation-20260525"
+        ]
+      },
+      {
+        "id": "concept::gateway pattern three-axis routing",
+        "label": "gateway pattern three-axis routing",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "concept::receipt gating and implied completion prohibition (i10)",
+        "label": "receipt gating and implied completion prohibition (i10)",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "receipt-gating-rationale-20260525"
+        ]
+      },
+      {
+        "id": "concept::seed run pipeline and completion criteria",
+        "label": "seed run pipeline and completion criteria",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "seed-run-pipeline-20260525"
+        ]
+      },
+      {
+        "id": "concept::spec as single source of truth (i1)",
+        "label": "spec as single source of truth (i1)",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "spec-single-source-of-truth-20260525"
+        ]
+      },
+      {
+        "id": "concept::tool call batching discipline for parallel execution",
+        "label": "tool call batching discipline for parallel execution",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "tool-call-batching-discipline-20260525"
+        ]
+      },
+      {
+        "id": "concept::_shared/ directory structure and consumers",
+        "label": "_shared/ directory structure and consumers",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "shared-artifacts-structure-20260525"
+        ]
+      },
+      {
+        "id": "concept::receipt chain phase sequence",
+        "label": "receipt chain phase sequence",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "receipt-chain-phases-20260525"
+        ]
+      },
+      {
+        "id": "concept::quality floor gate design",
+        "label": "quality floor gate design",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "quality-floor-gates-20260525"
+        ]
+      },
+      {
+        "id": "concept::module file structure requirements",
+        "label": "module file structure requirements",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "module-file-structure-20260525"
         ]
       },
       {
@@ -91,11 +355,51 @@
         ]
       },
       {
+        "id": "concept::wabblespec layer architecture overview",
+        "label": "wabblespec layer architecture overview",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "concept::the 12 wabblespec invariants",
+        "label": "the 12 wabblespec invariants",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "twelve-invariants-20260525"
+        ]
+      },
+      {
+        "id": "concept::wabblespec hook architecture detail",
+        "label": "wabblespec hook architecture detail",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
         "id": "concept::hook enforcement pattern",
         "label": "hook enforcement pattern",
         "drawer_count": 1,
         "drawer_ids": [
           "hook-enforcement-pattern-20260519"
+        ]
+      },
+      {
+        "id": "concept::framework.yaml canonical module registry",
+        "label": "framework.yaml canonical module registry",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "framework-yaml-structure-20260525"
+        ]
+      },
+      {
+        "id": "concept::capability routing and contexttuner design",
+        "label": "capability routing and contexttuner design",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "capability-routing-design-20260525"
         ]
       }
     ],
@@ -103,64 +407,304 @@
       {
         "id": "module::guard",
         "label": "guard",
-        "drawer_count": 3,
+        "drawer_count": 11,
         "drawer_ids": [
+          "provenance-contradiction-tracking-20260525",
           "guard-invariant-list-20260520",
           "guard-mempalace-invariants-20260524",
-          "module-order-rationale-20260520"
+          "executor-wave-protocol-20260525",
+          "autopilot-orchestration-20260525",
+          "module-order-rationale-20260520",
+          "framework-product-separation-20260525",
+          "receipt-gating-rationale-20260525",
+          "spec-single-source-of-truth-20260525",
+          "receipt-chain-phases-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::instinct",
+        "label": "instinct",
+        "drawer_count": 10,
+        "drawer_ids": [
+          "provenance-contradiction-tracking-20260525",
+          "l8-evolution-chain-20260525",
+          "dream-module-behavior-20260525",
+          "version-progression-20260525",
+          "l8-corpus-gate-criteria-20260525",
+          "framework-product-separation-20260525",
+          "receipt-gating-rationale-20260525",
+          "seed-run-pipeline-20260525",
+          "memory-drawer-structure-20260521",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::executor",
+        "label": "executor",
+        "drawer_count": 10,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "executor-wave-protocol-20260525",
+          "autopilot-orchestration-20260525",
+          "archive-module-behavior-20260525",
+          "apply-delta-classification-20260525",
+          "module-order-rationale-20260520",
+          "error-taxonomy-key-types-20260525",
+          "receipt-gating-rationale-20260525",
+          "spec-single-source-of-truth-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
         "id": "module::verifier",
         "label": "verifier",
-        "drawer_count": 2,
+        "drawer_count": 7,
         "drawer_ids": [
           "verifier-check-types-20260520",
-          "module-order-rationale-20260520"
+          "executor-wave-protocol-20260525",
+          "autopilot-orchestration-20260525",
+          "archive-module-behavior-20260525",
+          "module-order-rationale-20260520",
+          "receipt-chain-phases-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
-        "id": "module::memory",
-        "label": "memory",
-        "drawer_count": 2,
+        "id": "module::augment",
+        "label": "augment",
+        "drawer_count": 7,
         "drawer_ids": [
-          "guard-mempalace-invariants-20260524",
-          "memory-drawer-structure-20260521"
-        ]
-      },
-      {
-        "id": "module::decompose",
-        "label": "decompose",
-        "drawer_count": 2,
-        "drawer_ids": [
-          "phase-1-completion-20260519",
-          "module-order-rationale-20260520"
+          "recipe-module-behavior-20260525",
+          "l8-evolution-chain-20260525",
+          "executor-wave-protocol-20260525",
+          "document-cross-link-enforcement-20260525",
+          "version-progression-20260525",
+          "wave5-param-learner-gating-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
         "id": "module::recipe",
         "label": "recipe",
-        "drawer_count": 2,
+        "drawer_count": 7,
         "drawer_ids": [
+          "recipe-module-behavior-20260525",
+          "l8-evolution-chain-20260525",
           "module-order-rationale-20260520",
-          "receipt-schema-design-20260519"
+          "error-taxonomy-key-types-20260525",
+          "receipt-schema-design-20260519",
+          "layer-architecture-overview-20260525",
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "module::specify",
+        "label": "specify",
+        "drawer_count": 7,
+        "drawer_ids": [
+          "entity-graph-behavior-20260525",
+          "apply-delta-classification-20260525",
+          "module-order-rationale-20260520",
+          "error-taxonomy-key-types-20260525",
+          "gateway-pattern-routing-20260525",
+          "spec-single-source-of-truth-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
         "id": "module::archive",
         "label": "archive",
-        "drawer_count": 2,
+        "drawer_count": 7,
         "drawer_ids": [
+          "autopilot-orchestration-20260525",
+          "archive-module-behavior-20260525",
           "module-order-rationale-20260520",
-          "receipt-schema-design-20260519"
+          "receipt-gating-rationale-20260525",
+          "receipt-schema-design-20260519",
+          "receipt-chain-phases-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
-        "id": "module::factory",
-        "label": "factory",
-        "drawer_count": 1,
+        "id": "module::document",
+        "label": "document",
+        "drawer_count": 6,
         "drawer_ids": [
-          "skill-factory-gaps-20260520"
+          "l8-evolution-chain-20260525",
+          "document-cross-link-enforcement-20260525",
+          "benchmark-axis-decomposition-20260525",
+          "error-taxonomy-key-types-20260525",
+          "layer-architecture-overview-20260525",
+          "capability-routing-design-20260525"
+        ]
+      },
+      {
+        "id": "module::polish",
+        "label": "polish",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525",
+          "entity-graph-behavior-20260525",
+          "autopilot-orchestration-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::synth",
+        "label": "synth",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "provenance-contradiction-tracking-20260525",
+          "l8-evolution-chain-20260525",
+          "l8-corpus-gate-criteria-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::benchmark",
+        "label": "benchmark",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "benchmark-axis-decomposition-20260525",
+          "l8-corpus-gate-criteria-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::gateway-security",
+        "label": "gateway-security",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "inference-guard-activation-20260525",
+          "parseltongue-framing-decision-20260525",
+          "gateway-pattern-routing-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::memory",
+        "label": "memory",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524",
+          "framework-product-separation-20260525",
+          "memory-drawer-structure-20260521",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::autopilot",
+        "label": "autopilot",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "dream-module-behavior-20260525",
+          "autopilot-orchestration-20260525",
+          "version-progression-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::provenance",
+        "label": "provenance",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "provenance-contradiction-tracking-20260525",
+          "drawer-staleness-states-20260521",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::forge",
+        "label": "forge",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "document-cross-link-enforcement-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::decompose",
+        "label": "decompose",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525",
+          "phase-1-completion-20260519",
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::blueprint",
+        "label": "blueprint",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::dream",
+        "label": "dream",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "dream-module-behavior-20260525",
+          "autopilot-orchestration-20260525"
+        ]
+      },
+      {
+        "id": "module::reviewer",
+        "label": "reviewer",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525",
+          "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::economy",
+        "label": "economy",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525",
+          "shared-artifacts-structure-20260525"
+        ]
+      },
+      {
+        "id": "module::apply",
+        "label": "apply",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "apply-delta-classification-20260525",
+          "framework-product-separation-20260525"
+        ]
+      },
+      {
+        "id": "module::feedback",
+        "label": "feedback",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "wave5-param-learner-gating-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::gateway-engineering",
+        "label": "gateway-engineering",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525",
+          "layer-architecture-overview-20260525"
+        ]
+      },
+      {
+        "id": "module::gateway-ai",
+        "label": "gateway-ai",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525",
+          "layer-architecture-overview-20260525"
         ]
       },
       {
@@ -172,47 +716,61 @@
         ]
       },
       {
-        "id": "module::reviewer",
-        "label": "reviewer",
+        "id": "module::factory",
+        "label": "factory",
         "drawer_count": 1,
         "drawer_ids": [
-          "module-order-rationale-20260520"
+          "skill-factory-gaps-20260520"
         ]
       },
       {
-        "id": "module::executor",
-        "label": "executor",
+        "id": "module::team-plan",
+        "label": "team-plan",
         "drawer_count": 1,
         "drawer_ids": [
-          "module-order-rationale-20260520"
+          "entity-graph-behavior-20260525"
         ]
       },
       {
-        "id": "module::specify",
-        "label": "specify",
+        "id": "module::rollback",
+        "label": "rollback",
         "drawer_count": 1,
         "drawer_ids": [
-          "module-order-rationale-20260520"
+          "error-taxonomy-key-types-20260525"
         ]
       },
       {
-        "id": "module::provenance",
-        "label": "provenance",
+        "id": "module::retro",
+        "label": "retro",
         "drawer_count": 1,
         "drawer_ids": [
-          "drawer-staleness-states-20260521"
-        ]
-      },
-      {
-        "id": "module::instinct",
-        "label": "instinct",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "memory-drawer-structure-20260521"
+          "layer-architecture-overview-20260525"
         ]
       }
     ],
     "file": [
+      {
+        "id": "file::100/100",
+        "label": "100/100",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "version-progression-20260525",
+          "l8-corpus-gate-criteria-20260525",
+          "seed-run-pipeline-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/receipts",
+        "label": "wabblespec/receipts",
+        "drawer_count": 4,
+        "drawer_ids": [
+          "archive-module-behavior-20260525",
+          "seed-run-pipeline-20260525",
+          "receipt-chain-phases-20260525",
+          "hook-enforcement-pattern-20260519"
+        ]
+      },
       {
         "id": "file::PASS/FAIL/PARTIAL",
         "label": "PASS/FAIL/PARTIAL",
@@ -224,19 +782,330 @@
         ]
       },
       {
-        "id": "file::_shared/references/invariants.md",
-        "label": "_shared/references/invariants.md",
-        "drawer_count": 1,
+        "id": "file::EXPIRED/SUPERSEDED",
+        "label": "EXPIRED/SUPERSEDED",
+        "drawer_count": 3,
         "drawer_ids": [
-          "guard-invariant-list-20260520"
+          "memory-search-hybrid-scoring-20260525",
+          "entity-graph-behavior-20260525",
+          "memory-drawer-structure-20260521"
         ]
       },
       {
-        "id": "file::wabblespec/memory/chroma",
-        "label": "wabblespec/memory/chroma",
+        "id": "file::project/repo",
+        "label": "project/repo",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "apply-delta-classification-20260525",
+          "framework-product-separation-20260525",
+          "twelve-invariants-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/learned-params",
+        "label": "wabblespec/memory/learned-params",
+        "drawer_count": 3,
+        "drawer_ids": [
+          "wave5-param-learner-gating-20260525",
+          "framework-product-separation-20260525",
+          "capability-routing-design-20260525"
+        ]
+      },
+      {
+        "id": "file::Red/Blue/Purple",
+        "label": "Red/Blue/Purple",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "red-blue-purple-9-component-20260525",
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::rules/cold-start.md",
+        "label": "rules/cold-start.md",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "recipe-module-behavior-20260525",
+          "module-file-structure-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/experiments",
+        "label": "wabblespec/experiments",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "l8-evolution-chain-20260525",
+          "l8-corpus-gate-criteria-20260525"
+        ]
+      },
+      {
+        "id": "file::_shared/references/invariants.md",
+        "label": "_shared/references/invariants.md",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "guard-invariant-list-20260520",
+          "twelve-invariants-20260525"
+        ]
+      },
+      {
+        "id": "file::tests/acceptance.md",
+        "label": "tests/acceptance.md",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "executor-wave-protocol-20260525",
+          "module-file-structure-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/VERSION",
+        "label": "wabblespec/VERSION",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "version-progression-20260525",
+          "spec-single-source-of-truth-20260525"
+        ]
+      },
+      {
+        "id": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+        "label": "nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/roleplay",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "g0dm0d3-integration-decisions-20260525",
+          "parseltongue-framing-decision-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/wings",
+        "label": "wabblespec/memory/wings",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "framework-product-separation-20260525",
+          "memory-drawer-structure-20260521"
+        ]
+      },
+      {
+        "id": "file::session/state.json",
+        "label": "session/state.json",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "receipt-chain-phases-20260525",
+          "hook-enforcement-pattern-20260519"
+        ]
+      },
+      {
+        "id": "file::question/I",
+        "label": "question/I",
         "drawer_count": 1,
         "drawer_ids": [
-          "guard-mempalace-invariants-20260524"
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::seems/might",
+        "label": "seems/might",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::believe/it",
+        "label": "believe/it",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::PASS/FAIL/WARN",
+        "label": "PASS/FAIL/WARN",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::be/arguably",
+        "label": "be/arguably",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::be/could",
+        "label": "be/could",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::think/perhaps/maybe/I",
+        "label": "think/perhaps/maybe/I",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::might/could/perhaps/maybe",
+        "label": "might/could/perhaps/maybe",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "ears-syntax-requirements-20260525"
+        ]
+      },
+      {
+        "id": "file::_shared/scripts/ears-validate.py",
+        "label": "_shared/scripts/ears-validate.py",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "ears-syntax-requirements-20260525"
+        ]
+      },
+      {
+        "id": "file::optional/best-effort",
+        "label": "optional/best-effort",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "ears-syntax-requirements-20260525"
+        ]
+      },
+      {
+        "id": "file::optional/permitted",
+        "label": "optional/permitted",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "ears-syntax-requirements-20260525"
+        ]
+      },
+      {
+        "id": "file::artifact/measurable",
+        "label": "artifact/measurable",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "recipe-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::Low/Medium/High",
+        "label": "Low/Medium/High",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "recipe-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::outcome/constraint/scope",
+        "label": "outcome/constraint/scope",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "recipe-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory",
+        "label": "wabblespec/memory",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "provenance-contradiction-tracking-20260525"
+        ]
+      },
+      {
+        "id": "file::topic/id",
+        "label": "topic/id",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-search-hybrid-scoring-20260525"
+        ]
+      },
+      {
+        "id": "file::secondary/unverified",
+        "label": "secondary/unverified",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "memory-search-hybrid-scoring-20260525"
+        ]
+      },
+      {
+        "id": "file::now/new",
+        "label": "now/new",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::_shared/scripts/inference-guard.py",
+        "label": "_shared/scripts/inference-guard.py",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+        "label": "hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+        "label": "weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::as/you",
+        "label": "as/you",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::overflow/privilege",
+        "label": "overflow/privilege",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::escalation/authentication",
+        "label": "escalation/authentication",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::bypass/directory",
+        "label": "bypass/directory",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+        "label": "malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+        "label": "nsfw/explicit/uncensored/unfiltered/unrestricted/jailbreak/ignore/disregard/forget/pretend/roleplay/act",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
         ]
       },
       {
@@ -248,11 +1117,123 @@
         ]
       },
       {
+        "id": "file::wabblespec/memory/chroma",
+        "label": "wabblespec/memory/chroma",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "guard-mempalace-invariants-20260524"
+        ]
+      },
+      {
+        "id": "file::wabblespec/checkpoints/wave-N-timestamp",
+        "label": "wabblespec/checkpoints/wave-N-timestamp",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "executor-wave-protocol-20260525"
+        ]
+      },
+      {
+        "id": "file::priority/status",
+        "label": "priority/status",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "dream-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/gap-map.md",
+        "label": "wabblespec/memory/gap-map.md",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "dream-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/dream-log.json",
+        "label": "wabblespec/memory/dream-log.json",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "dream-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::LOW/MEDIUM/HIGH",
+        "label": "LOW/MEDIUM/HIGH",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "dream-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::_shared/references",
+        "label": "_shared/references",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "document-cross-link-enforcement-20260525"
+        ]
+      },
+      {
+        "id": "file::L3/L4",
+        "label": "L3/L4",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/meta.md",
+        "label": "wabblespec/meta.md",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/archive/receipt-index.json",
+        "label": "wabblespec/archive/receipt-index.json",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "archive-module-behavior-20260525"
+        ]
+      },
+      {
+        "id": "file::ADDITIVE/COSMETIC",
+        "label": "ADDITIVE/COSMETIC",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "apply-delta-classification-20260525"
+        ]
+      },
+      {
+        "id": "file::formatting/rename",
+        "label": "formatting/rename",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "apply-delta-classification-20260525"
+        ]
+      },
+      {
         "id": "file::claude/settings.json",
         "label": "claude/settings.json",
         "drawer_count": 1,
         "drawer_ids": [
           "phase-1-completion-20260519"
+        ]
+      },
+      {
+        "id": "file::OMC/OpenSpec/AgentOS",
+        "label": "OMC/OpenSpec/AgentOS",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "version-progression-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/memory/instinct-observations.md",
+        "label": "wabblespec/memory/instinct-observations.md",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "l8-corpus-gate-criteria-20260525"
         ]
       },
       {
@@ -264,11 +1245,83 @@
         ]
       },
       {
-        "id": "file::L0-L8/shared",
-        "label": "L0-L8/shared",
+        "id": "file::_shared/scripts",
+        "label": "_shared/scripts",
         "drawer_count": 1,
         "drawer_ids": [
-          "receipt-schema-design-20260521"
+          "wave5-param-learner-gating-20260525"
+        ]
+      },
+      {
+        "id": "file::Write/Edit",
+        "label": "Write/Edit",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "framework-product-separation-20260525"
+        ]
+      },
+      {
+        "id": "file::engineering/build",
+        "label": "engineering/build",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::security/adversarial",
+        "label": "security/adversarial",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::PASS/FLAG/BLOCK",
+        "label": "PASS/FLAG/BLOCK",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::security/authentication/payments/PII/secrets",
+        "label": "security/authentication/payments/PII/secrets",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::aesthetic/design/UX",
+        "label": "aesthetic/design/UX",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
+        "id": "file::wabblespec/plans/task-card.md",
+        "label": "wabblespec/plans/task-card.md",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "spec-single-source-of-truth-20260525"
+        ]
+      },
+      {
+        "id": "file::writes/edits",
+        "label": "writes/edits",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "tool-call-batching-discipline-20260525"
+        ]
+      },
+      {
+        "id": "file::nodes/edges",
+        "label": "nodes/edges",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "shared-artifacts-structure-20260525"
         ]
       },
       {
@@ -280,35 +1333,75 @@
         ]
       },
       {
-        "id": "file::EXPIRED/SUPERSEDED",
-        "label": "EXPIRED/SUPERSEDED",
+        "id": "file::L0-L8/shared",
+        "label": "L0-L8/shared",
         "drawer_count": 1,
         "drawer_ids": [
-          "memory-drawer-structure-20260521"
+          "receipt-schema-design-20260521"
         ]
       },
       {
-        "id": "file::wabblespec/memory/wings",
-        "label": "wabblespec/memory/wings",
+        "id": "file::_shared/scripts/quality-floor-check.py",
+        "label": "_shared/scripts/quality-floor-check.py",
         "drawer_count": 1,
         "drawer_ids": [
-          "memory-drawer-structure-20260521"
+          "quality-floor-gates-20260525"
         ]
       },
       {
-        "id": "file::session/state.json",
-        "label": "session/state.json",
+        "id": "file::security/enforcement/receipt/gate",
+        "label": "security/enforcement/receipt/gate",
         "drawer_count": 1,
         "drawer_ids": [
-          "hook-enforcement-pattern-20260519"
+          "module-file-structure-20260525"
         ]
       },
       {
-        "id": "file::wabblespec/receipts",
-        "label": "wabblespec/receipts",
+        "id": "file::claude/.wabblespec",
+        "label": "claude/.wabblespec",
         "drawer_count": 1,
         "drawer_ids": [
-          "hook-enforcement-pattern-20260519"
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "file::ESM/CJS",
+        "label": "ESM/CJS",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "file::src/hooks",
+        "label": "src/hooks",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "file::N/M",
+        "label": "N/M",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "file::delete/break",
+        "label": "delete/break",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "capability-routing-design-20260525"
+        ]
+      },
+      {
+        "id": "file::FRESH/AGING",
+        "label": "FRESH/AGING",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "capability-routing-design-20260525"
         ]
       }
     ]

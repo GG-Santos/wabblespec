@@ -11,7 +11,7 @@ Usage:
         --goal "Three automation scripts and a guard chain check exist at engine/shared/scripts/." \\
         --target Library-Package \\
         --complexity Medium \\
-        --change-class ADDITIVE \\
+        --delta-class ADDITIVE \\
         --locked-at 2026-05-28T13:00:00Z \\
         --non-goal "SKILL.md updates to call new scripts" \\
         --non-goal "DuckDB receipt store" \\
@@ -106,8 +106,9 @@ def main():
     parser.add_argument("--goal", required=True, help="One sentence, falsifiable.")
     parser.add_argument("--target", required=True)
     parser.add_argument("--complexity", required=True, choices=list(VALID_COMPLEXITY))
-    parser.add_argument("--change-class", required=True, choices=list(VALID_CHANGE_CLASS),
-                        dest="change_class")
+    parser.add_argument("--delta-class", required=True, choices=list(VALID_CHANGE_CLASS),
+                        dest="change_class",
+                        help="Delta/change classification (BREAKING/ADDITIVE/COSMETIC).")
     parser.add_argument("--locked-at", default=NOW, dest="locked_at")
     parser.add_argument("--non-goal", action="append", default=[], metavar="TEXT",
                         dest="non_goal", help="Repeatable. At least one required.")

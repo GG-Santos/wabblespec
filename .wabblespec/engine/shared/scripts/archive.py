@@ -68,7 +68,7 @@ def _play_lifecycle_sound(event_name: str, root: str) -> None:
     root — repo root path (used to locate the script).
     """
     try:
-        script = os.path.join(root, "_shared", "scripts", "wabble-sound.py")
+        script = os.path.join(root, ".wabblespec", "engine", "shared", "scripts", "wabble-sound.py")
         if not os.path.isfile(script):
             return
         subprocess.Popen(

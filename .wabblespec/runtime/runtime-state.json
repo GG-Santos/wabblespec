@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-29T00:00:00Z",
+  "capabilities": {
+    "code-generation": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "analysis": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "synthesis": {
+      "available": true,
+      "confidence": 0.9
+    },
+    "instruction-following": {
+      "available": true,
+      "confidence": 0.98
+    },
+    "reasoning": {
+      "available": true,
+      "confidence": 0.92
+    },
+    "tool-use": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "vision": {
+      "available": false,
+      "confidence": 0.8
+    },
+    "embedding": {
+      "available": false,
+      "confidence": 0.9
+    },
+    "long-context": {
+      "available": true,
+      "confidence": 0.95
+    }
+  },
+  "overrides_applied": false
+}

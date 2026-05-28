@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "session_id": "self-test-session-001",
+  "created_at": "2026-05-29T00:00:00Z",
+  "tasks": [
+    {
+      "task_id": "wave-1-self-test-session-001",
+      "session_id": "self-test-session-001",
+      "wave_number": 1,
+      "wave_label": "Foundation",
+      "status": "PASS",
+      "worker_id": null,
+      "claimed_at": null,
+      "completed_at": "2026-05-29T00:05:00Z",
+      "receipt_path": ".wabblespec/state/receipts/wave-1-self-test.json",
+      "failure_reason": null
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WabbleSpec Recipe",
+  "description": "Schema for recipe.json produced by the Recipe module (L0). Declares build target, platform, complexity, and session configuration.",
+  "type": "object",
+  "required": ["target", "platform", "detection_method", "confidence", "complexity", "session_id"],
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "Declared build target (e.g. Framework, Web, CLI, API/Service)."
+    },
+    "platform": {
+      "type": "string",
+      "description": "Resolved platform name."
+    },
+    "detection_method": {
+      "type": "string",
+      "description": "How the target was detected (explicit-instruction, file-pattern, dependency-scan)."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Recipe confidence score."
+    },
+    "complexity": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High"],
+      "description": "Task complexity classification."
+    },
+    "secondary_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional detected targets beyond the primary."
+    },
+    "collapse_eligible": {
+      "type": "boolean",
+      "description": "Whether this session is eligible for phase collapse."
+    },
+    "active_skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Subset of skills loaded for this session (empty = all skills)."
+    },
+    "input_quality": {
+      "type": "object",
+      "properties": {
+        "vague": { "type": "boolean" },
+        "broad": { "type": "boolean" },
+        "enhanced": { "type": "boolean" },
+        "sharpened": { "type": "boolean" }
+      },
+      "required": ["vague", "broad", "enhanced", "sharpened"]
+    },
+    "locked_at": {
+      "type": "string",
+      "description": "ISO-8601 timestamp when recipe was locked."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Unique session identifier."
+    }
+  },
+  "additionalProperties": true
+}

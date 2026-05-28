@@ -16,9 +16,9 @@ Platform modules do not execute tasks — Executor does. They shape how tasks ar
 | `platform-data-pipeline` | ETL/data workflows | Data integrity, idempotency, schema evolution, backpressure, observability |
 | `platform-ai-agent` | AI/LLM-backed agents | Prompt injection, output validation, hallucination handling, tool-use safety, eval harness |
 | `platform-game` | Games | Frame budget, input handling, state serialization, platform certification requirements |
-| `platform-iot-embedded` | IoT/embedded systems | Resource constraints, OTA update safety, communication protocols, hardware fault handling |
-| `platform-library-package` | Libraries and packages | API stability, semver discipline, documentation requirements, dependency hygiene |
-| `platform-extension-plugin` | Browser/editor extensions | Permission minimization, manifest compliance, host API boundaries, sandboxing |
+| `platform-iot` | IoT/embedded systems | Resource constraints, OTA update safety, communication protocols, hardware fault handling |
+| `platform-library` | Libraries and packages | API stability, semver discipline, documentation requirements, dependency hygiene |
+| `platform-extension` | Browser/editor extensions | Permission minimization, manifest compliance, host API boundaries, sandboxing |
 
 ## How platforms activate
 

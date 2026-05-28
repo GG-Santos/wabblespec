@@ -453,7 +453,7 @@ def build_brainstorm(args):
         "status": args.status or "PASS",
         "options_generated": len(args.requirements or []),
         "options_passed_filter": len(args.requirements or []),
-        "options_path": "",
+        "options_path": args.options_path or "",
         "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
@@ -1365,6 +1365,8 @@ def main():
     parser.add_argument("--wave", type=int, default=1)
     parser.add_argument("--wave-of", type=int)
     parser.add_argument("--not-tested", nargs="*", metavar="ITEM")
+    parser.add_argument("--options-path", metavar="PATH", dest="options_path",
+                        help="Brainstorm: path to the options-<timestamp>.md file.")
     parser.add_argument(
         "--check",
         action="append",

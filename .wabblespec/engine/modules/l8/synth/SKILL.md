@@ -34,6 +34,8 @@ Process one pattern per invocation. Do not batch.
 
 Read the module's SKILL.md before writing anything. A hypothesis about behavior you have not read is invalid.
 
+When multiple runs have produced overlapping observations for the same pattern, merge them deterministically per `.wabblespec/engine/shared/templates/observation-merge-guide.md` before synthesizing — one merged pattern in, one hypothesis out.
+
 ## Decision logic
 
 Before writing, answer three questions:

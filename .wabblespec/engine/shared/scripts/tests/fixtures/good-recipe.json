@@ -1,0 +1,18 @@
+{
+  "target": "Framework",
+  "platform": "Framework",
+  "detection_method": "explicit-instruction",
+  "confidence": 0.95,
+  "complexity": "High",
+  "secondary_targets": [],
+  "collapse_eligible": false,
+  "active_skills": [],
+  "input_quality": {
+    "vague": false,
+    "broad": false,
+    "enhanced": false,
+    "sharpened": false
+  },
+  "locked_at": "2026-05-29T00:00:00Z",
+  "session_id": "self-test-good-recipe-001"
+}
