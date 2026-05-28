@@ -9,7 +9,13 @@ You write the single source of truth. Everything downstream — Decompose, Execu
 
 ## What this skill does
 
-Reads the locked scope and user intent. Produces a one-page task card with: goal (one sentence), non-goals (from scope.md), assumptions (from scope.md), and acceptance criteria in GWT format. Validates criteria quality. Writes a receipt.
+Reads the locked scope and user intent. Produces a one-page task card with: goal (one sentence), non-goals (from scope.md), assumptions (from scope.md), and acceptance criteria in GWT format. Validates criteria quality. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Specify receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -112,7 +118,17 @@ Check all of the following. Fix any that fail before writing the task card:
 
 ### Step 5 — Write task card and receipt
 
-Write task card to `.wabblespec/state/plans/task-card.md`. Receipt to `.wabblespec/state/receipts/specify-receipt.json`. Report goal statement and criteria count to user, ask for confirmation before locking.
+Write task card to `.wabblespec/state/plans/task-card.md`. Report goal statement and criteria count to user, ask for confirmation before locking. Then write receipt:
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type specify \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --requirements "AC1: <criterion>" "AC2: <criterion>" \
+  --out .wabblespec/state/receipts/specify-receipt.json
+```
 
 ### Step 5b — Write decisions artifact
 

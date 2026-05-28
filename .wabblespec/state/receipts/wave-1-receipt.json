@@ -1,24 +1,16 @@
 {
-  "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
-  "module": "executor",
-  "layer": "L2",
-  "session_id": "toprank-integration-phase2-T3",
-  "task_id": "toprank-integration-phase2-T3",
-  "wave_number": 1,
-  "wave_label": "instinct-skill-output-contract",
+  "receipt_type": "executor",
+  "task_id": "phase2-script-delegation-20260528",
+  "session_id": "phase2-script-delegation-20260528",
   "status": "PASS",
-  "timestamp": "2026-05-28T11:35:00Z",
-  "verification_mode_used": "Audit",
-  "verdict": "PASS",
-  "revise_cycles": 0,
-  "files_modified": [
-    {"path": ".claude/skills/instinct/SKILL.md", "action": "modified"}
+  "wave": 1,
+  "wave_of": 3,
+  "modules_activated": [],
+  "files_written": [
+    ".wabblespec/engine/shared/references/script-delegation-contract.md"
   ],
-  "checks": [
-    {"check": "AC1 — three fields with vocabularies in pattern block", "result": "PASS", "evidence": "lines 82-84 of instinct/SKILL.md"},
-    {"check": "AC2 — human-reviewer note present", "result": "PASS", "evidence": "line 93 of instinct/SKILL.md"},
-    {"check": "AC6 — no model name strings", "result": "PASS", "evidence": "grep returned no matches for claude-, gpt-, gemini-"}
-  ],
-  "deviations_found": [],
-  "acceptance_criteria_covered": ["AC1", "AC2", "AC6-partial"]
+  "summary": "Audited all engine/modules SKILL.md files; identified 6 skills with manual framework writes; wrote script-delegation-contract.md mapping all 4 delegation scripts with complete CLI examples",
+  "not_tested": [],
+  "delta_class": "ADDITIVE",
+  "executed_at": "2026-05-28T07:38:03Z"
 }

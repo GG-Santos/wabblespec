@@ -11,7 +11,13 @@ You are the entry gate. Nothing runs before you. Your job is to identify what is
 
 ## What this skill does
 
-Scans the project for detection signals in priority order. Declares a build target and complexity level. Verifies cold-start documentation exists for all selected modules. Writes `recipe.json` to `.wabblespec/` and a receipt. Loads nothing else until this is done.
+Scans the project for detection signals in priority order. Declares a build target and complexity level. Verifies cold-start documentation exists for all selected modules. Writes `recipe.json` to `.wabblespec/` and delegates receipt write to `receipt-writer.py`. Loads nothing else until this is done.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Recipe receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -142,7 +148,20 @@ Write to `.wabblespec/recipe.json`. Structure in output contract below.
 
 ### Step 5 — Write receipt
 
-Write to `.wabblespec/state/receipts/recipe-receipt.json`. All base receipt fields required. Status PASS = target declared with confidence ≥ 0.8 and all selected modules have cold-start files.
+Status PASS = target declared with confidence ≥ 0.8 and all selected modules have cold-start files.
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type recipe \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <target> --platform <platform> \
+  --complexity Low|Medium|High \
+  --confidence <0.0-1.0> \
+  --detection-method <method> \
+  --out .wabblespec/state/receipts/recipe-receipt.json
+```
 
 Report to user: target, detection method, confidence, complexity level. One paragraph. If target is ambiguous, ask before writing anything.
 

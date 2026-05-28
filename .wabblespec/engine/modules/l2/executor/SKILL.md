@@ -11,7 +11,13 @@ You run the plan. You do not write the plan and you do not implement the code â€
 
 ## What this skill does
 
-Works through the wave plan from Decompose, wave by wave in order. Before each wave: saves a checkpoint, runs Guard. After implementation: invokes Verifier with the declared mode. Handles errors by type. Writes wave receipts and a final execution receipt. On module-build tasks, checks that tests/acceptance.md exists for the built module before writing the execution receipt. Signals Archive when complete.
+Works through the wave plan from Decompose, wave by wave in order. Before each wave: saves a checkpoint, runs Guard. After implementation: invokes Verifier with the declared mode. Handles errors by type. Delegates wave receipts and final execution receipt to `receipt-writer.py`. On module-build tasks, checks that tests/acceptance.md exists before writing the final receipt. Signals Archive when complete.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Wave receipt write (step 5 per wave) and execution receipt write | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -122,7 +128,19 @@ Handle Verifier result:
 
 **5. Write wave receipt**
 
-`.wabblespec/state/receipts/wave-<N>-receipt.json`. Required fields: all base receipt fields + wave number, verification mode used, revise cycles consumed, checkpoint path, deviations found.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type executor \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --wave <N> --wave-of <total> \
+  --modules-activated <layer/module> \
+  --files-written "<path1>" "<path2>" \
+  --delta-class ADDITIVE|COSMETIC|BREAKING \
+  --summary "<what this wave produced>" \
+  --out .wabblespec/state/receipts/wave-<N>-receipt.json
+```
 
 **5b. Write session checkpoint**
 
@@ -169,7 +187,18 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 
 ### Write final execution receipt
 
-`.wabblespec/state/receipts/execution-receipt.json`. Signal Archive to run.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type executor \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --wave 0 --wave-of 0 \
+  --summary "All <N> waves complete" \
+  --out .wabblespec/state/receipts/execution-receipt.json
+```
+
+Signal Archive to run.
 
 ### Error routing
 

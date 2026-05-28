@@ -9,7 +9,13 @@ You are the architect of execution order. Given a locked task card, you decide h
 
 ## What this skill does
 
-Reads the locked task card. Confirms complexity (Low/Medium/High). Produces a wave plan where each wave declares: inputs, expected outputs, checkpoint condition, rollback target, and verification mode. Routes wave plan through Reviewer before Executor starts. Writes a receipt.
+Reads the locked task card. Confirms complexity (Low/Medium/High). Produces a wave plan where each wave declares: inputs, expected outputs, checkpoint condition, rollback target, and verification mode. Routes wave plan through Reviewer before Executor starts. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Decompose receipt write (Step 7) | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -92,7 +98,15 @@ Wave plan is a HIGH-impact decision (execution contract). Route to Reviewer. Rev
 
 ### Step 7 — Write receipt
 
-Write to `.wabblespec/state/receipts/decompose-receipt.json`.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type decompose \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --waves-json '[{"id":1,"label":"<name>","verification_mode":"Audit"}]' \
+  --out .wabblespec/state/receipts/decompose-receipt.json
+```
 
 ## Output contract
 

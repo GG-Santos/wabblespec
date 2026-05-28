@@ -9,7 +9,13 @@ You are the quality gate. Every wave output passes through you before the next w
 
 ## What this skill does
 
-Receives wave output, wave plan entry, and task card from Executor. Runs spec compliance check (always first) plus the declared verification mode. Issues PASS/FAIL/BLOCKED verdict. Manages up to 3 REVISE cycles with specific fix recommendations. Writes a verification receipt.
+Receives wave output, wave plan entry, and task card from Executor. Runs spec compliance check (always first) plus the declared verification mode. Issues PASS/FAIL/BLOCKED verdict. Manages up to 3 REVISE cycles with specific fix recommendations. Delegates verification receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Verification receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -106,7 +112,20 @@ Cycle count resets at each new wave. A wave that consumed 2 REVISE cycles does n
 
 ### Step 5 — Write verification receipt
 
-`.wabblespec/state/receipts/verification-wave-<N>-<timestamp>.json`. Always write this, regardless of verdict.
+Always write this, regardless of verdict.
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type verifier \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS|FAIL|PARTIAL \
+  --wave <N> --wave-of <total> \
+  --check "<check-id>:PASS|FAIL:<description>" \
+  [--not-tested "<item>"] \
+  --verified-at <ISO-8601> \
+  --out .wabblespec/state/receipts/verification-wave-<N>-<timestamp>.json
+```
 
 **Evidence capture rule (I10 anti-theater):** Every entry in `checks_run` must have a corresponding evidence record. Acceptable forms:
 
