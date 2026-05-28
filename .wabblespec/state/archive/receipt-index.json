@@ -187,6 +187,28 @@
       ],
       "last_updated": "2026-05-28T10:52:00Z",
       "summary": "toprank-main Phase 1: ~~capability-name convention in CLAUDE.md; Reference Routing section in executor SKILL.md (3 entries, −15 lines)"
+    },
+    {
+      "task_id": "toprank-integration-phase2-T2",
+      "session_id": "toprank-integration-phase2-T2",
+      "target": "Library-Package",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-28T11:02:00Z",
+      "archived_at": "2026-05-28T11:15:00Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-20260528111500.json",
+      "version_previous": "0.25.0",
+      "version_new": "0.26.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_planned": 2,
+      "waves_completed": 2,
+      "not_tested_items": 2,
+      "not_tested_list": [
+        "AC3: live API call (requires WS_ANALYSIS_MODEL + anthropic SDK + real API key)",
+        "AC4: eval-log append path (requires live run)"
+      ],
+      "last_updated": "2026-05-28T11:15:00Z",
+      "summary": "toprank-main Phase 2 T2: llm-eval.py created (I6-compliant, 3-dimension rubric); eval-log.json initialized; Benchmark SKILL.md Reference Routing section added"
     }
   ]
 }

@@ -2,15 +2,18 @@
   "_self_critique": "IC5 RC4 EF5 SS5 SR5 OV4",
   "module": "executor",
   "layer": "L2",
-  "session_id": "toprank-integration-phase1",
+  "session_id": "toprank-integration-phase2-T2",
   "wave_number": 1,
-  "wave_label": "claude-md-convention",
+  "wave_label": "llm-eval-script",
   "status": "PASS",
-  "timestamp": "2026-05-28T10:45:00Z",
+  "timestamp": "2026-05-28T11:10:00Z",
   "verification_mode_used": "Audit",
   "verdict": "PASS",
   "revise_cycles": 0,
-  "files_modified": [{"path": "CLAUDE.md", "action": "modified"}],
+  "files_modified": [
+    {"path": ".wabblespec/engine/shared/scripts/llm-eval.py", "action": "created"},
+    {"path": ".wabblespec/state/evals/eval-log.json", "action": "created"}
+  ],
   "deviations_found": [],
-  "acceptance_criteria_covered": ["AC1"]
+  "acceptance_criteria_covered": ["AC1", "AC2"]
 }

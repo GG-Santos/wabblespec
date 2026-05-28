@@ -1,19 +1,17 @@
 {
   "module": "guard",
   "layer": "L2",
-  "session_id": "toprank-integration-phase1",
+  "session_id": "toprank-integration-phase2-T2",
   "wave_id": 1,
   "status": "PASS",
-  "timestamp": "2026-05-28T10:43:00Z",
-  "checks_run": ["layer-1-schema", "layer-2-scope", "layer-3-I1", "layer-3-I6", "layer-3-I10", "layer-3-I11", "layer-4-authority", "layer-5-command-risk"],
-  "checks_passed": ["layer-1-schema", "layer-2-scope", "layer-3-I1", "layer-3-I6", "layer-3-I10", "layer-3-I11", "layer-4-authority"],
-  "evidence": [".wabblespec/scope.md", ".wabblespec/state/receipts/decompose-receipt.json"],
+  "timestamp": "2026-05-28T11:05:00Z",
   "layer_1_schema": "PASS",
   "layer_2_scope": "PASS",
   "layer_3_invariants": "PASS",
   "layer_4_authority": "PASS",
-  "layer_5_command_risk": "SKIP",
+  "layer_5_command_risk": "SAFE",
   "misactivation_risk": false,
   "overall": "PASS",
-  "violations": []
+  "violations": [],
+  "notes": "Framework authoring task — writes to .wabblespec/ are permitted; I11 does not apply"
 }

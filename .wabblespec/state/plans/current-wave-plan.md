@@ -1,69 +1,85 @@
-# Wave Plan: toprank-integration-phase1
+# Wave Plan: toprank-integration-phase2-T2
 
-**session_id:** toprank-integration-phase1
+**session_id:** toprank-integration-phase2-T2
 **task_card:** .wabblespec/state/plans/task-card.md
-**locked_at:** 2026-05-28T10:42:00Z
+**locked_at:** 2026-05-28T11:04:00Z
 **total_waves:** 2
 
 ---
 
-## Wave 1 — T4: Capability Placeholder Convention in CLAUDE.md
+## Wave 1 — Create llm-eval.py and eval-log.json
 
-**label:** claude-md-convention
+**label:** llm-eval-script
 **verification_mode:** Audit
 
 ### Steps
 
-1. Read `CLAUDE.md` in full to locate the correct insertion point.
-2. Add a `## Skill Authoring Conventions` section documenting the `~~capability-name` placeholder convention with at least two examples.
-3. Verify no model names were introduced.
+1. Create `.wabblespec/state/evals/eval-log.json` containing `[]`.
+2. Create `.wabblespec/engine/shared/scripts/llm-eval.py` implementing:
+   - CLI: `--skill-path`, `--section`, `--content-file` (mutually exclusive input modes), `--model` (optional, overrides env var)
+   - Model resolution: `WS_ANALYSIS_MODEL` env var → `--model` flag → error exit
+   - Reads `runtime-state.json` at `.wabblespec/state/runtime/runtime-state.json`; aborts if `analysis.available != true`
+   - Extracts section content from SKILL.md (finds `## <heading>` and reads until next `##`)
+   - Builds three-dimension judge prompt (clarity / completeness / actionability, 1–5 rubric)
+   - Calls Anthropic API via `anthropic` SDK using resolved model; requests JSON response
+   - Parses response; checks all three scores ≥ 4
+   - Appends entry to `.wabblespec/state/evals/eval-log.json`
+   - Prints scores and reasoning; exits 0 if passed, 1 if any score < 4
+3. Run `python -m py_compile .wabblespec/engine/shared/scripts/llm-eval.py` to verify syntax.
 
 ### Outputs
 
 | Path | Operation |
 |---|---|
-| `CLAUDE.md` | MODIFY |
+| `.wabblespec/engine/shared/scripts/llm-eval.py` | CREATE |
+| `.wabblespec/state/evals/eval-log.json` | CREATE |
 
 ### Verification gate (Audit)
 
-- `CLAUDE.md` contains `~~capability-name` text with at least one example placeholder
-- No model names in the added section
-- Acceptance criterion 1 "Then" clauses satisfied
+- Both files exist
+- `py_compile` exits 0 on `llm-eval.py`
+- No model name string (claude-*, gpt-*, gemini-*) appears in `llm-eval.py` source
+- AC1 and AC2 "Then" clauses satisfied
 
 ### Rollback
 
-Revert `CLAUDE.md` to pre-wave state.
+Delete both created files.
 
 ---
 
-## Wave 2 — T1: Reference Routing Table in Executor SKILL.md
+## Wave 2 — Add Reference Routing to Benchmark SKILL.md
 
-**label:** executor-routing-table
+**label:** benchmark-routing-entry
 **verification_mode:** Audit
 
 ### Steps
 
-1. Count lines in `.claude/skills/executor/SKILL.md` before editing. Record as `pre_edit_lines`.
-2. Remove the 3-row tier table (stable/context/volatile) from the Inputs section; replace with a one-line pointer to the existing "Full tier placement rules" line already present.
-3. Remove the 5-row inline error routing summary table from the "### Error routing" section; replace with "See `rules/error-routing.md` for the full routing table, decision tree, and rollback protocol."
-4. Add a `## Reference Routing` section with a 2-entry table pointing to `system-prompt-tiers.md` and `rules/error-routing.md`.
-5. Count lines after editing. Confirm reduction ≥ 10.
+1. Read `.claude/skills/benchmark/SKILL.md` to confirm no existing `## Reference Routing` section.
+2. Add `## Reference Routing` section immediately after the opening description block (before `## When to use`), containing:
+
+```markdown
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Benchmark discipline and integrity rules | `rules/benchmark-discipline.md` |
+| Outcome declaration format and enforcement | `rules/outcome-requirement.md` |
+| Skill-section quality evaluation (clarity / completeness / actionability) | `.wabblespec/engine/shared/scripts/llm-eval.py` |
+```
 
 ### Outputs
 
 | Path | Operation |
 |---|---|
-| `.claude/skills/executor/SKILL.md` | MODIFY |
+| `.claude/skills/benchmark/SKILL.md` | MODIFY |
 
 ### Verification gate (Audit)
 
-- `## Reference Routing` section exists with 2-entry table
-- Both referenced files exist
-- Inline tier table rows absent from Inputs section
-- Inline error routing table absent from Error routing section
-- Line count ≥ 10 fewer than pre-edit
-- Acceptance criteria 2, 3, 4, 5 "Then" clauses satisfied
+- `## Reference Routing` section exists in Benchmark SKILL.md
+- Table contains exactly 3 entries including the `llm-eval.py` entry
+- AC5 "Then" clauses satisfied
+- AC1–AC4 unaffected (script not modified in this wave)
 
 ### Rollback
 
-Revert `.claude/skills/executor/SKILL.md` to pre-wave state.
+Revert `.claude/skills/benchmark/SKILL.md` to pre-wave state.

@@ -2,14 +2,15 @@
   "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
   "module": "executor",
   "layer": "L2",
-  "session_id": "toprank-integration-phase1",
+  "session_id": "toprank-integration-phase2-T2",
   "status": "PASS",
-  "timestamp": "2026-05-28T10:51:00Z",
+  "timestamp": "2026-05-28T11:14:00Z",
   "waves_planned": 2,
   "waves_completed": 2,
   "waves_failed": 0,
   "rollbacks_triggered": 0,
   "acceptance_verified": null,
+  "not_tested": ["AC3 (live API call — requires WS_ANALYSIS_MODEL + real API key)", "AC4 (eval-log append — requires live run)"],
   "errors_by_type": {
     "SOFT": 0, "HARD": 0, "DEPENDENCY": 0,
     "CONTEXT_EXHAUSTION": 0, "SPEC_VIOLATION": 0, "STALENESS_VIOLATION": 0

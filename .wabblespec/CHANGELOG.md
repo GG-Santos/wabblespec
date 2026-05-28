@@ -1,5 +1,30 @@
 # WabbleSpec Changelog
 
+## [0.26.0] — 2026-05-28
+
+### toprank-integration-phase2-T2 — LLM-as-judge eval script (T2)
+
+**`.wabblespec/engine/shared/scripts/llm-eval.py` — CREATED**
+
+WabbleSpec-native skill-section quality scorer. Three dimensions: clarity / completeness / actionability (each 1–5, minimum gate 4/5). Model resolved from `WS_ANALYSIS_MODEL` env var or `--model` flag — no hardcoded model name (I6 compliant). Reads `runtime-state.json` to gate on `analysis` capability. Appends to `.wabblespec/state/evals/eval-log.json` on each run. Exits 0 on pass, 1 on fail or error. Rubric adapted from toprank `llm_judge.py` three-dimension pattern; judge call is a clean WabbleSpec-native Anthropic SDK invocation.
+
+**`.wabblespec/state/evals/eval-log.json` — CREATED**
+
+Append-only eval log initialized empty. Schema: `[{timestamp, skill_path, section, scores: {clarity, completeness, actionability}, reasoning, passed}, ...]`.
+
+**`.claude/skills/benchmark/SKILL.md` — ADDITIVE: `## Reference Routing` section**
+
+Three-entry routing table added before `## What this skill does`: benchmark-discipline.md (integrity rules), outcome-requirement.md (outcome declaration), and llm-eval.py (skill-section quality evaluation).
+
+### Not Tested
+- AC3: live API call with real model and API key (requires WS_ANALYSIS_MODEL + anthropic SDK installed)
+- AC4: eval-log append path (requires live run)
+
+### Receipts
+- execution-receipt: .wabblespec/state/receipts/execution-receipt.json
+- waves: 2 planned, 2 completed, 0 failed
+- verification: all waves PASS
+
 ## [0.25.0] — 2026-05-28
 
 ### toprank-integration-phase1 — Reference routing pattern + skill authoring convention (T4, T1)

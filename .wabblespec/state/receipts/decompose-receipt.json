@@ -1,9 +1,9 @@
 {
   "module": "decompose",
   "layer": "L1",
-  "session_id": "toprank-integration-phase1",
+  "session_id": "toprank-integration-phase2-T2",
   "status": "PASS",
-  "timestamp": "2026-05-28T10:42:00Z",
+  "timestamp": "2026-05-28T11:04:00Z",
   "checks_run": ["task-card-locked", "scope-read", "complexity-confirmed", "wave-sequence-valid", "verification-mode-assigned"],
   "checks_passed": ["task-card-locked", "scope-read", "complexity-confirmed", "wave-sequence-valid", "verification-mode-assigned"],
   "evidence": [".wabblespec/state/plans/task-card.md", ".wabblespec/scope.md"],
