@@ -1,33 +1,37 @@
 {
-  "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
   "module": "recipe",
   "layer": "L0",
-  "session_id": "toprank-integration-phase2-T3",
-  "task_id": "toprank-integration-phase2-T3",
-  "status": "PASS",
-  "timestamp": "2026-05-28T11:20:00Z",
+  "phase": "Intake",
+  "wave": 0,
+  "timestamp": "2026-05-28T04:02:53Z",
+  "session_id": "phase2-script-delegation-20260528",
   "target": "Library-Package",
+  "platform": "Library-Package",
   "detection_method": "user-declaration",
-  "confidence": 0.95,
+  "confidence": 0.97,
   "complexity": "Medium",
+  "secondary_targets": [],
   "collapse_eligible": false,
-  "cold_start_verified": true,
-  "prior_session_checkpoints_found": 2,
-  "prior_session_checkpoints_disposition": "stale — toprank-integration-phase2-T2 archived at 2026-05-28T11:15:00Z; T3 is a new task, not a resume",
   "input_quality": {
     "vague": false,
     "broad": false,
     "enhanced": false,
     "sharpened": false
   },
-  "collapse_assessment": [
-    { "module_id": "ground",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "recipe",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "scope-frame", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "specify",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "executor",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "guard",       "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
-  ]
+  "checks_run": [
+    "target-detection",
+    "complexity-score",
+    "input-quality"
+  ],
+  "checks_passed": [
+    "target-detection",
+    "complexity-score",
+    "input-quality"
+  ],
+  "status": "PASS",
+  "confidence_score": 0.97,
+  "outputs": [
+    "recipe.json"
+  ],
+  "not_tested": []
 }
