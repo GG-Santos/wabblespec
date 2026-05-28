@@ -467,8 +467,10 @@ def main():
                         help="Explicit path to skill-rules.json (auto-discovered if omitted).")
     parser.add_argument("--repo-root", metavar="PATH",
                         help="Explicit repo root path (auto-discovered if omitted).")
+    parser.add_argument("--advisory-doctor", action="store_true",
+                        help="Advisory drift check: run wabblespec-doctor --guard-advisory. Always exits 0.")
 
-    sub = parser.add_subparsers(dest="command", required=True)
+    sub = parser.add_subparsers(dest="command", required=False)
 
     # authority
     p_auth = sub.add_parser("authority", help="Layer 4: authority ownership check.")
@@ -513,6 +515,15 @@ def main():
         sys.exit(2)
 
     # Chain subcommand doesn't need module resolution
+    if getattr(args, "advisory_doctor", False):
+        doctor = os.path.join(repo_root, ".wabblespec", "engine", "shared", "scripts", "wabblespec-doctor.py")
+        import subprocess as _sp
+        _sp.run([sys.executable, doctor, "--guard-advisory", "--format", "json"])
+        sys.exit(0)  # always non-blocking
+
+    if args.command is None:
+        parser.error("a subcommand is required (or use --advisory-doctor)")
+
     if args.command == "chain":
         receipts_dir = args.receipts_dir or os.path.join(
             repo_root, ".wabblespec", "state", "receipts"
