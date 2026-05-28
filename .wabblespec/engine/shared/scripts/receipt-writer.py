@@ -144,6 +144,7 @@ def build_verifier(args):
         "wave": args.wave,
         "wave_of": args.wave_of or args.wave,
         "checks": checks,
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
         "verified_at": args.verified_at or NOW,
     }
@@ -160,6 +161,7 @@ def build_executor(args):
         "modules_activated": args.modules_activated or [],
         "files_written": args.files_written or [],
         "summary": args.summary or "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
         "delta_class": args.delta_class or "ADDITIVE",
         "executed_at": args.executed_at or NOW,
@@ -222,6 +224,7 @@ def build_specify(args):
         "success_criteria": args.success_criteria or [],
         "failure_modes": args.failure_modes or [],
         "outputs": args.files_written or [],
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -251,6 +254,7 @@ def build_decompose(args):
         "waves": args.waves_json or [],
         "total_waves": args.wave_of or 1,
         "outputs": ["task-card.md"],
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -269,6 +273,7 @@ def build_scaffold(args):
         "target": args.target or "",
         "files_generated": args.files_written or [],
         "project_map_written": True,
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -289,6 +294,7 @@ def build_package(args):
         "all_signed": True,
         "manifest_path": "",
         "signing_method": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -307,6 +313,7 @@ def build_release(args):
         "tag_name": f"v{args.target}" if args.target else "",
         "github_release_url": "",
         "release_notes_source": ".wabblespec/CHANGELOG.md",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -326,6 +333,7 @@ def build_monitor(args):
         "dashboard_path": "",
         "alert_rules_count": 0,
         "health_status": "HEALTHY",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -345,6 +353,7 @@ def build_deploy(args):
         "health_check_passed": (args.status or "PASS") == "PASS",
         "rollback_available": True,
         "artifacts_deployed": args.files_written or [],
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -427,6 +436,7 @@ def build_nexus(args):
         "nodes_traversed": 0,
         "edges_followed": 0,
         "response_path": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -444,6 +454,7 @@ def build_brainstorm(args):
         "options_generated": len(args.requirements or []),
         "options_passed_filter": len(args.requirements or []),
         "options_path": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -461,6 +472,7 @@ def build_enhance(args):
         "dimensions_extracted": 0,
         "questions_asked": 0,
         "enhanced_input_path": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -477,6 +489,7 @@ def build_sharpen(args):
         "status": args.status or "PASS",
         "interpretations_resolved": 0,
         "interpretation_selected": args.summary or "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -567,6 +580,7 @@ def build_ref_plan(args):
         "phase_3_items": 0,
         "phase_4_items": 0,
         "plan_path": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -586,6 +600,7 @@ def build_audit(args):
         "violations_high": 0,
         "attestation_required": False,
         "report_path": "",
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -1098,6 +1113,7 @@ def build_wave(args):
             "unauthorized_files": args.unauthorized_files or [],
         },
         "acceptance_criteria_covered": args.ac_covered or [],
+        "confidence": args.confidence if args.confidence is not None else 1.0,
         "not_tested": args.not_tested or [],
     }
 
@@ -1241,7 +1257,7 @@ def write_receipt(data, out_path, dry_run=False, also_db=True):
 # Validation (structural only — checks required fields from base schema)
 # ---------------------------------------------------------------------------
 
-BASE_REQUIRED = {"status", "not_tested"}
+BASE_REQUIRED = {"status", "not_tested", "confidence"}
 VERIFIER_REQUIRED = {"receipt_type", "task_id", "status", "checks", "verified_at"}
 EXECUTOR_REQUIRED = {"receipt_type", "task_id", "status", "delta_class", "executed_at"}
 # Delivery receipts use a different schema from the base (not_tested_list not not_tested).
@@ -1278,6 +1294,12 @@ def validate_receipt(path, lenient=False):
 
     for field in sorted(required):
         if field not in data:
+            # Back-compat alias: legacy receipts emit 'confidence_score' or 'score'
+            # in place of 'confidence'. Accept with a warning rather than reject.
+            if field == "confidence" and ("confidence_score" in data or "score" in data):
+                legacy_key = "confidence_score" if "confidence_score" in data else "score"
+                print(f"WARN [{rtype}] {os.path.basename(path)}: legacy '{legacy_key}' accepted in lieu of 'confidence' (deprecated; rewrite to emit 'confidence')")
+                continue
             msg = f"missing required field: '{field}'"
             if lenient and (
                 msg.startswith("missing required field: 'not_tested'")

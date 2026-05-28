@@ -244,13 +244,13 @@ shared:
       consumers: [apply, platform-data-pipeline]
     # Library/Package platform framework
     - path: .wabblespec/engine/shared/dev/frameworks/library/core.md
-      consumers: [apply, platform-library-package]
+      consumers: [apply, platform-library]
     # Extension/Plugin platform framework
     - path: .wabblespec/engine/shared/dev/frameworks/extension/core.md
-      consumers: [apply, platform-extension-plugin]
+      consumers: [apply, platform-extension]
     # IoT/Embedded platform framework
     - path: .wabblespec/engine/shared/dev/frameworks/iot/core.md
-      consumers: [apply, platform-iot-embedded]
+      consumers: [apply, platform-iot]
   dev_infrastructure:
     # Engineering infrastructure knowledge — loaded by Apply when gateway-engineering is active
     - path: .wabblespec/engine/shared/dev/infrastructure/cicd.md
@@ -821,7 +821,7 @@ modules:
     quality_floor_passed: true
     build_status: built
 
-  - id: platform-iot-embedded
+  - id: platform-iot
     path: .wabblespec/engine/modules/l3/iot/
     type: skill
     layer: L3
@@ -833,7 +833,7 @@ modules:
     quality_floor_passed: true
     build_status: built
 
-  - id: platform-library-package
+  - id: platform-library
     path: .wabblespec/engine/modules/l3/library/
     type: skill
     layer: L3
@@ -845,7 +845,7 @@ modules:
     quality_floor_passed: true
     build_status: built
 
-  - id: platform-extension-plugin
+  - id: platform-extension
     path: .wabblespec/engine/modules/l3/extension/
     type: skill
     layer: L3
