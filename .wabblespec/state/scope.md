@@ -1,33 +1,32 @@
 # Session Scope
 
 **target:** Library-Package
-**complexity:** Medium
-**locked_at:** 2026-05-28T13:01:00Z
-**session_id:** phase3-new-scripts-20260528
+**complexity:** Low
+**locked_at:** 2026-05-28T14:00:00Z
+**session_id:** real-exec-validation-20260528
 
 ## In Scope
 
-- Build `task-card-writer.py` — writes task-card.md from CLI args, eliminating manual JSON/Markdown construction
-- Build `wave-plan-writer.py` — writes current-wave-plan.md from structured wave JSON input
-- Build `scope-writer.py` — writes scope.md from CLI args (in-scope, out-of-scope, assumptions)
-- Extend `guard-check.py` with a `chain` subcommand that validates the receipt chain for a session
-- Update `script-delegation-contract.md` with entries for the three new writer scripts
-- Add `--dry-run` and correct exit codes (0/1/2) to all four scripts
+- Verify lint.yml — ruff invocation paths and trigger paths
+- Add ruff.toml with select E,F to prevent style-only CI failures
+- Verify quality-floor.yml — script paths, flags, and dep list
+- Fix any issues found in either workflow file
+- Commit .github/workflows/lint.yml, quality-floor.yml, and ruff.toml
 
 ## Out of Scope
 
-- SKILL.md updates to call the new scripts (Phase 2 pattern — separate session)
-- Modifying existing guard-check.py authority/commands subcommands
-- Integration testing across multiple sessions
-- DuckDB receipt store (Phase 8)
+- Editing Python scripts to resolve lint violations
+- Adding additional workflows (test runner, release, deploy)
+- Configuring GitHub repo settings or branch protection rules
+- Validating workflows execute against a live GitHub remote
 
 ## Assumptions
 
-- Phase 2 complete — script-delegation-contract.md exists at `engine/shared/references/`
-- `guard-check.py` already has `authority` and `commands` subcommands — `chain` is additive
-- Task card schema is stable (task-card.schema.json defines the required fields)
-- Scripts go in `engine/shared/scripts/` alongside the existing 30+
-- Python 3.8+ stdlib only — no new pip dependencies
+- A GitHub remote will be added before workflows are exercised
+- Python 3.11 covers all script syntax in use
+- ruff --select E,F is the right starting bar — not full default ruleset
+- requirements.txt PyYAML dep covers both quality-floor-check.py and validate-module-registry.py
+- No existing ruff.toml or pyproject.toml — confirmed by directory scan
 
 ## Scope Change Log
 
