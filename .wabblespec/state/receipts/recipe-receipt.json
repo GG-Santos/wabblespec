@@ -1,17 +1,21 @@
 {
+  "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
   "module": "recipe",
   "layer": "L0",
-  "session_id": "toprank-integration-phase2-T2",
+  "session_id": "toprank-integration-phase2-T3",
+  "task_id": "toprank-integration-phase2-T3",
   "status": "PASS",
+  "timestamp": "2026-05-28T11:20:00Z",
   "target": "Library-Package",
   "detection_method": "user-declaration",
-  "confidence": 0.85,
+  "confidence": 0.95,
   "complexity": "Medium",
   "collapse_eligible": false,
   "cold_start_verified": true,
-  "checkpoint_note": "checkpoints from prior session toprank-integration-phase1 exist but that task is archived; starting fresh",
+  "prior_session_checkpoints_found": 2,
+  "prior_session_checkpoints_disposition": "stale — toprank-integration-phase2-T2 archived at 2026-05-28T11:15:00Z; T3 is a new task, not a resume",
   "input_quality": {
-    "vague": true,
+    "vague": false,
     "broad": false,
     "enhanced": false,
     "sharpened": false
@@ -20,11 +24,10 @@
     { "module_id": "ground",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "recipe",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "scope-frame", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "decompose",   "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "specify",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "executor",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "guard",       "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
-  ],
-  "timestamp": "2026-05-28T11:00:00Z"
+  ]
 }
