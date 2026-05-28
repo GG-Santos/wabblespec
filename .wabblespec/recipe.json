@@ -5,13 +5,13 @@
   "complexity": "Medium",
   "secondary_targets": [],
   "collapse_eligible": false,
-  "locked_at": "2026-05-28T10:30:00Z",
-  "session_id": "toprank-integration-phase1",
+  "locked_at": "2026-05-28T11:00:00Z",
+  "session_id": "toprank-integration-phase2-T2",
   "cold_start_verified": true,
   "input_quality": {
     "vague": true,
     "broad": false,
-    "enhanced": true,
+    "enhanced": false,
     "sharpened": false
   },
   "collapse_assessment": [
