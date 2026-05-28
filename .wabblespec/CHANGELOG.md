@@ -1738,3 +1738,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-queue-orchestrator-20260528.json
 - waves: 2 completed
 - verification: all waves PASS
+
+---
+
+## [0.45.0] — 2026-05-28T12:30:06Z
+
+### wave-plan-writer --waves-file flag
+
+### Changed
+- Added --waves-file PATH to wave-plan-writer.py to accept wave definitions from a JSON file, bypassing shell quoting issues with complex verification_command strings.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-wave-plan-writer-fix-20260528.json
+- waves: 1 completed
+- verification: all waves PASS

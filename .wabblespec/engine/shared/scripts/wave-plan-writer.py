@@ -15,6 +15,16 @@ Usage:
         --wave '{"name":"Rewrite SKILL.md files","inputs":["Wave 1 outputs"],"outputs":["6 SKILL.md files"],"checkpoint":"All skills have script calls","rollback_to":"Wave 1 checkpoint","verification_mode":"Audit","verification_command":"python -c \\"print(\\'PASS\\')\\""}' \\
         --out .wabblespec/state/plans/current-wave-plan.md
 
+    # Via --waves-file (avoids shell quoting issues with complex verification_command):
+    python .wabblespec/engine/shared/scripts/wave-plan-writer.py \\
+        --session-id my-session \\
+        --target Library-Package \\
+        --complexity Low \\
+        --waves-file /tmp/waves.json \\
+        --out .wabblespec/state/plans/current-wave-plan.md
+
+    waves.json format: JSON array of wave objects (same schema as --wave).
+
     # Dry run:
     python .wabblespec/engine/shared/scripts/wave-plan-writer.py ... --dry-run
 
@@ -127,21 +137,43 @@ def main():
                         dest="collapse_eligible")
     parser.add_argument("--generated-at", default=NOW, dest="generated_at")
     parser.add_argument("--wave", action="append", default=[], metavar="JSON",
-                        help="Repeatable. JSON object per wave. At least one required.")
+                        help="Repeatable. JSON object per wave. "
+                             "Mutually exclusive with --waves-file.")
+    parser.add_argument("--waves-file", metavar="PATH",
+                        help="Path to a JSON file containing an array of wave objects. "
+                             "Use instead of --wave to avoid shell quoting issues with "
+                             "complex verification_command strings.")
     parser.add_argument("--out", required=True, metavar="PATH")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
     errors = []
-    if not args.wave:
-        errors.append("At least one --wave is required.")
+    if args.wave and args.waves_file:
+        errors.append("--wave and --waves-file are mutually exclusive.")
+    elif not args.wave and not args.waves_file:
+        errors.append("At least one --wave or --waves-file is required.")
 
     waves = []
-    for i, raw in enumerate(args.wave):
+    if args.waves_file and not errors:
         try:
-            waves.append(parse_wave(raw, i))
-        except ValueError as e:
-            errors.append(str(e))
+            with open(args.waves_file, encoding="utf-8") as fh:
+                raw_waves = json.load(fh)
+            if not isinstance(raw_waves, list):
+                errors.append("--waves-file must contain a JSON array.")
+            else:
+                for i, w in enumerate(raw_waves):
+                    try:
+                        waves.append(parse_wave(json.dumps(w), i))
+                    except ValueError as e:
+                        errors.append(str(e))
+        except (OSError, json.JSONDecodeError) as e:
+            errors.append(f"--waves-file: {e}")
+    else:
+        for i, raw in enumerate(args.wave):
+            try:
+                waves.append(parse_wave(raw, i))
+            except ValueError as e:
+                errors.append(str(e))
 
     if errors:
         for e in errors:
