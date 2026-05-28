@@ -4,13 +4,13 @@ Guidance for Claude Code (claude.ai/code) in this repository.
 
 ## What This Repository Is
 
-WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 100 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
+WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 103 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
 
-Current version: **0.39.0** (see `.wabblespec/VERSION`)
+Current version: **0.46.0** (see `.wabblespec/VERSION`)
 
 ## Key Scripts
 
-All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Required deps: `pip install pyyaml duckdb` (duckdb for receipt-db.py).
+Pipeline/automation scripts live in `.wabblespec/engine/shared/scripts/` unless noted otherwise; run any with `--help`. The L5 memory daemons (dream, memory-mine, entity-graph) live in `.wabblespec/engine/modules/l5/<module>/scripts/`, not shared/scripts/. Required deps: `pip install pyyaml duckdb` (duckdb for receipt-db.py).
 
 **Pipeline automation (all sessions):**
 - `archive.py` — CHANGELOG + VERSION + delivery receipt + receipt-index (replaces manual Archive steps)
@@ -31,7 +31,7 @@ All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Requ
 - `queue-orchestrator.py` — parallel wave coordinator; `populate` loads queue from wave plan, `ready` outputs JSON of tasks for parallel Agent dispatch, `advance` checks progress (exit 0=done, 1=pending, 2=fail), `run` for sequential fallback
 
 **Analysis and validation:**
-- `quality-floor-check.py` — Gate 1 + Gate 2 for all 100 modules; `--verbose` for full detail
+- `quality-floor-check.py` — Gate 1 + Gate 2 for all 103 modules; `--verbose` for full detail
 - `validate-graph.py` — module registry integrity
 - `agent-output-validator.py` — validate JSON output from skill subagents
 
@@ -40,12 +40,12 @@ All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Requ
 - `provenance-append.py` — append to provenance ledger
 
 **Background scripts (fired by stop-hook via daemon-config.json):**
-- `dream.py` — EMA decay + gap-map + staleness-map (on_stop)
-- `quality-floor-check.py` — regression check (on_archive)
-- `index-update.py` — regenerate INDEX.md managed sections (on_archive)
-- `receipt-db.py import` — sync JSON receipts to DuckDB (on_archive)
-- `memory-mine.py` — closet indexing (on_stop, enabled at 50+ drawers)
-- `entity-graph.py` — graph update (on_stop)
+- `dream.py` — EMA decay + gap-map + staleness-map (on_stop) — `l5/dream/scripts/`
+- `quality-floor-check.py` — regression check (on_archive) — `shared/scripts/`
+- `index-update.py` — regenerate INDEX.md managed sections (on_archive) — `shared/scripts/`
+- `receipt-db.py import` — sync JSON receipts to DuckDB (on_archive) — `shared/scripts/`
+- `memory-mine.py` — closet indexing (on_stop, enabled at 50+ drawers) — `l5/memory-mine/scripts/`
+- `entity-graph.py` — graph update (on_stop) — `l5/entity-graph/scripts/`
 
 **Engine scripts (not in shared/scripts/):**
 - `.wabblespec/engine/scripts/wabblespec-sync-skills.py` — sync engine/modules/ → .claude/skills/; use `--filter-recipe .wabblespec/state/recipe.json` to sync only the skills declared in `active_skills:` (run without flag to restore all)
@@ -74,7 +74,7 @@ Both gates enforced by `quality-floor-check.py`. Details in that script's output
 **Do not write to `.wabblespec/` from product-space tasks (I11).** Framework modules own all writes here.
 
 Key paths:
-- `.wabblespec/wabblespec.yaml` — canonical module registry; source of truth for all 99 modules
+- `.wabblespec/wabblespec.yaml` — canonical module registry; source of truth for all 103 modules
 - `.wabblespec/state/receipts/` — individual seed run receipts (100 accumulated)
 - `.wabblespec/state/archive/receipt-index.json` — completed task receipt index
 - `.wabblespec/state/memory/` — drawers, entity graph, gap-map, instinct observations
@@ -86,7 +86,7 @@ Key paths:
 - `.wabblespec/state/scope.md` — active session scope (not `.wabblespec/scope.md`)
 - `.wabblespec/state/recipe.json` — active session recipe (not `.wabblespec/recipe.json`)
 
-Root-level `scope.md` and `recipe.json` are legacy artefacts from earlier skill versions. Skills and scripts SHALL read from `state/` paths. Root copies are written only for backward compatibility during the Phase 2 migration window.
+The Phase 2 path migration is **complete**: all modules, skill-rules, and scripts read and write the `state/` paths exclusively. Root-level `scope.md`/`recipe.json` are no longer written or referenced (the legacy root copies have been removed).
 
 ## Receipt Chain
 
