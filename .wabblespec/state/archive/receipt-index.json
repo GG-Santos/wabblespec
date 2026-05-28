@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T09:06:10Z",
+  "last_updated": "2026-05-28T09:27:08Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -802,6 +802,20 @@
       "waves_planned": 1,
       "not_tested_items": 0,
       "summary": "Final gap closure: release/SKILL.md wired to receipt-writer.py --type release; script-delegation-contract.md updated with all 11 delegated skills (5 new L7 types added); non-delegated list reduced to 7"
+    },
+    {
+      "task_id": "complete-delegation-20260528",
+      "session_id": "complete-delegation-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T09:27:08Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-complete-delegation-20260528.json",
+      "version_previous": "0.38.0",
+      "version_new": "0.39.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Full delegation complete: receipt-writer.py now covers all 17 skill types; adversary/grader/nexus/brainstorm/enhance/sharpen/audit SKILL.md wired; memory-mine + entity-graph daemons enabled (50-drawer gate MET); receipt-db --db flag bridges JSON and DuckDB writes; --db flag on receipt-writer.py; script-delegation-contract.md fully updated"
     }
   ]
 }
