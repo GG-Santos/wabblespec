@@ -47,8 +47,11 @@ All scripts in `.wabblespec/engine/shared/scripts/`; run any with `--help`. Requ
 - `entity-graph.py` — graph update (on_stop)
 
 **Engine scripts (not in shared/scripts/):**
-- `.wabblespec/engine/scripts/wabblespec-sync-skills.py` — sync engine/modules/ → .claude/skills/
+- `.wabblespec/engine/scripts/wabblespec-sync-skills.py` — sync engine/modules/ → .claude/skills/; use `--filter-recipe .wabblespec/state/recipe.json` to sync only the skills declared in `active_skills:` (run without flag to restore all)
 - `.wabblespec/engine/scripts/stop-hook.py` — Stop hook orchestrator
+
+**Selective skill preloading:**
+Add `--skills <name>` (repeatable) to `recipe-writer.py` to declare which skills are active for the session. This writes `active_skills: [...]` to recipe.json. Then run sync with `--filter-recipe` to limit `.claude/skills/` to only those skills. Run sync without `--filter-recipe` at session end to restore all 100 skills. Sessions that omit `--skills` default to all skills.
 
 ## The 12 Invariants
 

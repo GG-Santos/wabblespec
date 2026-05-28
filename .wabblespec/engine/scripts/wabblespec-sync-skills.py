@@ -95,11 +95,37 @@ def _remove_stale(dst_dir: Path, valid_names: set[str], quiet: bool) -> int:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def _load_active_skills(recipe_path: Path) -> set[str] | None:
+    """Return set of active skill names from recipe.json, or None if no filter applies."""
+    if not recipe_path.exists():
+        return None
+    try:
+        import json as _json
+        data = _json.loads(recipe_path.read_text(encoding="utf-8"))
+        skills = data.get("active_skills", [])
+        if skills:
+            return set(skills)
+    except Exception:
+        pass
+    return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quiet", action="store_true", help="suppress per-file output")
     parser.add_argument("--dry-run", action="store_true", help="report changes without writing")
+    parser.add_argument(
+        "--filter-recipe", metavar="PATH",
+        help="Path to recipe.json. If it declares active_skills, only those skills are synced. "
+             "Omit to sync all skills (default behavior).",
+    )
     args = parser.parse_args()
+
+    active_skills: set[str] | None = None
+    if args.filter_recipe:
+        active_skills = _load_active_skills(Path(args.filter_recipe))
+        if active_skills is not None and not args.quiet:
+            print(f"Skill filter active: {sorted(active_skills)}")
 
     yaml_path = ROOT / ".wabblespec" / "wabblespec.yaml"
     if not yaml_path.exists():
@@ -129,6 +155,11 @@ def main() -> None:
             continue
 
         valid_skill_names.add(name)
+
+        # Skip skills not in the active filter (leave existing copy untouched)
+        if active_skills is not None and name not in active_skills:
+            continue
+
         dst = skills_dir / name
 
         if args.dry_run:
@@ -144,8 +175,12 @@ def main() -> None:
         total_skipped += skipped
         synced += 1
 
+    # Stale removal: when a filter is active, only remove skills that are both
+    # wabblespec-managed AND in the active filter but no longer in the registry.
+    # Skills outside the filter are left untouched.
+    stale_candidates = valid_skill_names if active_skills is None else (valid_skill_names & active_skills)
     if not args.dry_run:
-        total_removed = _remove_stale(skills_dir, valid_skill_names, quiet=args.quiet)
+        total_removed = _remove_stale(skills_dir, stale_candidates, quiet=args.quiet)
 
     print(
         f"\nSync complete: {synced} skills | "

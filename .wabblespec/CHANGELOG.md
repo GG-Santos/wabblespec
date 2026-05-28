@@ -1710,3 +1710,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-ref-receipt-schemas-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.43.0] — 2026-05-28T12:19:43Z
+
+### Selective skill preloading
+
+### Changed
+- Added --skills flag to recipe-writer.py (writes active_skills to recipe.json) and --filter-recipe flag to wabblespec-sync-skills.py (filters sync to declared skills only). Sessions without --skills default to all 100 skills.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-selective-skills-20260528.json
+- waves: 2 completed
+- verification: all waves PASS

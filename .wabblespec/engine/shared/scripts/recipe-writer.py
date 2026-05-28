@@ -107,6 +107,10 @@ def main():
                         help="Platform string (defaults to --target value).")
     parser.add_argument("--secondary-targets", nargs="*", default=[], metavar="TARGET")
     parser.add_argument("--collapse-eligible", action="store_true")
+    parser.add_argument("--skills", action="append", default=[], metavar="SKILL",
+                        help="Skill name to activate for this session (repeatable). "
+                             "Omit entirely = all skills (default). "
+                             "Example: --skills executor --skills verifier")
     parser.add_argument("--vague", action="store_true",
                         help="Mark input_quality.vague = true (triggers Sharpen).")
     parser.add_argument("--broad", action="store_true",
@@ -137,6 +141,7 @@ def main():
         "complexity": args.complexity,
         "secondary_targets": args.secondary_targets,
         "collapse_eligible": args.collapse_eligible,
+        "active_skills": args.skills,
         "input_quality": {
             "vague": args.vague,
             "broad": args.broad,
