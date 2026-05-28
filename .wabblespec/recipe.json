@@ -1,18 +1,17 @@
 {
-  "module": "recipe",
-  "layer": "L0",
-  "session_id": "toprank-integration-phase1",
-  "status": "PASS",
   "target": "Library-Package",
   "detection_method": "user-declaration",
   "confidence": 0.85,
   "complexity": "Medium",
+  "secondary_targets": [],
   "collapse_eligible": false,
+  "locked_at": "2026-05-28T10:30:00Z",
+  "session_id": "toprank-integration-phase1",
   "cold_start_verified": true,
   "input_quality": {
     "vague": true,
     "broad": false,
-    "enhanced": false,
+    "enhanced": true,
     "sharpened": false
   },
   "collapse_assessment": [
@@ -24,6 +23,5 @@
     { "module_id": "guard",       "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
     { "module_id": "archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
-  ],
-  "timestamp": "2026-05-28T10:30:00Z"
+  ]
 }
