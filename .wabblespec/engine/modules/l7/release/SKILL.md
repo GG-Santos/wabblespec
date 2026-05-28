@@ -9,7 +9,13 @@ You make a release official and visible. You tag the commit, sign the tag, extra
 
 ## What this skill does
 
-Creates an annotated git tag with Attestation, extracts release notes from Archive changelog, and publishes to GitHub Releases. Requires production Deploy receipt. Tag is signed and pushed. Release notes are derived from CHANGELOG.md — not written from scratch.
+Creates an annotated git tag with Attestation, extracts release notes from Archive changelog, and publishes to GitHub Releases. Requires production Deploy receipt. Tag is signed and pushed. Release notes are derived from CHANGELOG.md — not written from scratch. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Release receipt write (Step 6) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type release` |
 
 ## When to use
 
@@ -88,6 +94,16 @@ gh release create "v${VERSION}" \
 Attach: all artifacts from the package manifest + their SHA-256 files + signature files.
 
 ### Step 6 — Write release receipt
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type release \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --target <version> \
+  --out .wabblespec/state/receipts/release-receipt-<version>-<timestamp>.json
+```
 
 ## Output contract
 

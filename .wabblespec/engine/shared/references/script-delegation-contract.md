@@ -197,12 +197,17 @@ python .wabblespec/engine/shared/scripts/version-bump.py --set 1.0.0
 | recipe | L0 | Step 5 (recipe receipt) | `receipt-writer.py --type recipe` |
 | specify | L1 | Step 5 (specify receipt) | `receipt-writer.py --type specify` |
 | decompose | L1 | Step 7 (decompose receipt) | `receipt-writer.py --type decompose` |
+| scaffold | L7 | Step 6 (scaffold receipt) | `receipt-writer.py --type scaffold` |
+| package | L7 | Step 6 (package receipt) | `receipt-writer.py --type package` |
+| release | L7 | Step 6 (release receipt) | `receipt-writer.py --type release` |
+| monitor | L7 | Step 7 (monitor receipt) | `receipt-writer.py --type monitor` |
+| deploy | L7 | Step 6 (deploy receipt) | `receipt-writer.py --type deploy` |
 
 ## Non-Delegated Receipt Types
 
-The following skills write module-specific receipts to `.wabblespec/state/receipts/` but their receipt types are not in `receipt-writer.py`'s supported set. They are out of scope for this contract until receipt-writer.py is extended:
+The following skills write module-specific receipts but their receipt types require custom schema support not yet in `receipt-writer.py`:
 
-`scaffold`, `release`, `package`, `monitor`, `deploy`, `audit`, `adversary`, `grader`, `nexus`, `brainstorm`, `enhance`, `sharpen`
+`audit`, `adversary`, `grader`, `nexus`, `brainstorm`, `enhance`, `sharpen`
 
 ---
 

@@ -1644,3 +1644,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase-cleanup-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.38.0] — 2026-05-28T09:06:10Z
+
+### Changed
+- Final gap closure: release/SKILL.md wired to receipt-writer.py --type release; script-delegation-contract.md updated with all 11 delegated skills (5 new L7 types added); non-delegated list reduced to 7
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-final-gap-closure-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
