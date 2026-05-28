@@ -1,19 +1,24 @@
 {
-  "_self_critique": "IC5 RC4 EF5 SS5 SR5 OV4",
+  "_self_critique": "IC5 RC5 EF5 SS5 SR5 OV5",
   "module": "executor",
   "layer": "L2",
-  "session_id": "toprank-integration-phase2-T2",
+  "session_id": "toprank-integration-phase2-T3",
+  "task_id": "toprank-integration-phase2-T3",
   "wave_number": 1,
-  "wave_label": "llm-eval-script",
+  "wave_label": "instinct-skill-output-contract",
   "status": "PASS",
-  "timestamp": "2026-05-28T11:10:00Z",
+  "timestamp": "2026-05-28T11:35:00Z",
   "verification_mode_used": "Audit",
   "verdict": "PASS",
   "revise_cycles": 0,
   "files_modified": [
-    {"path": ".wabblespec/engine/shared/scripts/llm-eval.py", "action": "created"},
-    {"path": ".wabblespec/state/evals/eval-log.json", "action": "created"}
+    {"path": ".claude/skills/instinct/SKILL.md", "action": "modified"}
+  ],
+  "checks": [
+    {"check": "AC1 — three fields with vocabularies in pattern block", "result": "PASS", "evidence": "lines 82-84 of instinct/SKILL.md"},
+    {"check": "AC2 — human-reviewer note present", "result": "PASS", "evidence": "line 93 of instinct/SKILL.md"},
+    {"check": "AC6 — no model name strings", "result": "PASS", "evidence": "grep returned no matches for claude-, gpt-, gemini-"}
   ],
   "deviations_found": [],
-  "acceptance_criteria_covered": ["AC1", "AC2"]
+  "acceptance_criteria_covered": ["AC1", "AC2", "AC6-partial"]
 }

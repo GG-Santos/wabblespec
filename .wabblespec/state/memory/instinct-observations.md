@@ -15,6 +15,10 @@ Occurrences: 33 receipts (23%)
 Human-validated: true
 Validated-by: human
 Validated-at: 2026-05-26
+Expected impact: null
+Actionability score: null
+Learned multiplier: null
+requires_scoring: true
 
 Module `executor` appears in 33 receipts (23% of corpus). High-activation modules are core execution workhorses. Review for optimisation opportunities (token economy, parallelism).
 
@@ -29,6 +33,10 @@ Occurrences: 33 receipts (23%)
 Human-validated: true
 Validated-by: human
 Validated-at: 2026-05-26
+Expected impact: null
+Actionability score: null
+Learned multiplier: null
+requires_scoring: true
 
 Module `verifier` appears in 33 receipts (23% of corpus). High-activation modules are core execution workhorses. Review for optimisation opportunities (token economy, parallelism).
 
@@ -43,6 +51,10 @@ Occurrences: 28 receipts (19%)
 Human-validated: true
 Validated-by: human
 Validated-at: 2026-05-26
+Expected impact: null
+Actionability score: null
+Learned multiplier: null
+requires_scoring: true
 
 Module `delivery` appears in 28 receipts (19% of corpus). High-activation modules are core execution workhorses. Review for optimisation opportunities (token economy, parallelism).
 
@@ -57,6 +69,10 @@ Occurrences: 6 of 7 tagged receipts
 Human-validated: true
 Validated-by: human
 Validated-at: 2026-05-26
+Expected impact: null
+Actionability score: null
+Learned multiplier: null
+requires_scoring: true
 
 86% of complexity-tagged sessions run at Low complexity. Other levels: Medium=1. Under-exercised tiers may have latent defects in branching logic.
 
