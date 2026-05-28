@@ -1,34 +1,36 @@
 # Session Scope
 
 **target:** Library-Package
-**complexity:** Low
-**locked_at:** 2026-05-28T03:49:55Z
-**session_id:** phase1-root-cleanup-20260528
+**complexity:** Medium
+**locked_at:** 2026-05-28T12:01:00Z
+**session_id:** phase2-script-delegation-20260528
 
 ## In Scope
 
-- Delete `scope.md` from `.wabblespec/` root (canonical path is `.wabblespec/state/scope.md`; root copy is stale duplication)
-- Delete `recipe.json` from `.wabblespec/` root (canonical path is `.wabblespec/state/recipe.json`; root copy is stale duplication)
-- Move `options-framework-script-delegation-20260528T110016Z.md` from `.wabblespec/` root to `.wabblespec/state/working/`
-- Move `brainstorm/` directory from `.wabblespec/` root to `.wabblespec/state/brainstorm/`
-- Move `enhance/` directory from `.wabblespec/` root to `.wabblespec/state/enhance/`
-- Delete stale T3 checkpoint files from `.wabblespec/state/session/checkpoints/` (T3 archived — checkpoints are orphaned)
-- Add canonical path declarations to `CLAUDE.md` under framework state paths section
+- Audit all SKILL.md files to confirm the exact set performing manual writes to `.wabblespec/CHANGELOG.md`, `.wabblespec/VERSION`, or receipt JSON files
+- Rewrite `archive/SKILL.md` Steps 4–6b to call `archive.py` with the correct CLI args (highest priority — eliminates 98KB+ CHANGELOG context load)
+- Rewrite each other affected SKILL.md's manual write steps to call `receipt-writer.py`, `changelog-append.py`, or `version-bump.py` as appropriate
+- Write `.wabblespec/engine/shared/references/script-delegation-contract.md` — canonical mapping of every standard framework write operation to its script call and example invocation
+- Add `## Reference Routing` tables to each affected SKILL.md pointing to `script-delegation-contract.md`, removing superseded inline prose
+- Run `wabblespec-sync-skills.py` to propagate updated SKILL.md files from `engine/modules/` to `.claude/skills/`
 
 ## Out of Scope
 
-- Updating any SKILL.md files to reference new canonical paths (Phase 2 work)
-- Updating any script path resolution logic (Phase 2 work)
-- Moving or renaming anything inside `state/` or `engine/` subdirectories
-- `brainstorm-receipt` and `propose-receipt` in `state/receipts/` — correctly placed, not moving
+- Creating new Python scripts (all required scripts already exist in `engine/shared/scripts/`)
+- Modifying any script logic or CLI interfaces
+- Guard Layer intercept hook (Option 3 from options document — blocked, Guard is locked)
+- Changes to `skill-rules.json`, schemas, or any non-SKILL.md module files
+- Running live archive or receipt operations to validate scripts end-to-end
+- Skills not performing manual framework writes
 
 ## Assumptions
 
-- No skill or script reads `.wabblespec/scope.md` (root) or `.wabblespec/recipe.json` (root) at runtime in a way that breaks if absent — root files are stale session artifacts
-- `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` already exist and are up to date
-- `enhance/enhanced-*.md` files have no downstream consumers — working artifacts from brainstorm session
-- T3 checkpoint files are safe to delete — `delivery-receipt-toprank-integration-phase2-T3.json` exists with `status: PASS`
-- No project-standard drawers discovered — none cited
+- Phase 1 root cleanup (`phase1-root-cleanup-20260528`) is complete — delivery receipt confirmed at `state/receipts/`
+- All four scripts (`archive.py`, `receipt-writer.py`, `changelog-append.py`, `version-bump.py`) exist at `.wabblespec/engine/shared/scripts/` and are functional
+- The "9 affected skills" is approximate — exact count determined by audit in Wave 1; expected range 7–11
+- `.claude/skills/*/SKILL.md` files are the live copies; `engine/modules/*/SKILL.md` are source of truth; sync runs post-execution
+- Changes are ADDITIVE — no existing skill behavior removed, only write steps delegated to script calls
+- No project-standard drawers discovered — no existing standards apply to this task
 
 ## Scope Change Log
 
