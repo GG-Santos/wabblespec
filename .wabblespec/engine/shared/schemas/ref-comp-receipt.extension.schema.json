@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ref-comp receipt extension",
+  "description": "Extension fields for ref-comp (post-implementation reference audit) receipts.",
+  "type": "object",
+  "required": [
+    "reference_slug", "coverage_rate", "execution_gaps",
+    "execution_classification", "confidence", "status"
+  ],
+  "properties": {
+    "reference":       { "type": "string" },
+    "reference_slug":  { "type": "string" },
+    "scope":           { "type": "string" },
+    "ref_plan_available":  { "type": "boolean" },
+    "ref_eval_available":  { "type": "boolean" },
+    "dedup_hit":           { "type": "boolean" },
+    "coverage_rate":       { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "execution_gaps": {
+      "type": "object",
+      "properties": {
+        "critical": { "type": "integer", "minimum": 0 },
+        "major":    { "type": "integer", "minimum": 0 },
+        "minor":    { "type": "integer", "minimum": 0 }
+      },
+      "required": ["critical", "major", "minor"]
+    },
+    "improvements_beyond_plan": { "type": "integer", "minimum": 0 },
+    "execution_classification": {
+      "type": "string",
+      "enum": ["complete", "substantially-complete", "partially-complete", "significantly-incomplete"]
+    },
+    "report_path":     { "type": "string" },
+    "drawers_written": { "type": "integer", "minimum": 0 },
+    "confidence":      { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+  }
+}

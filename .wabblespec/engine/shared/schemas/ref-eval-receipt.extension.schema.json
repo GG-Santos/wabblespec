@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ref-eval receipt extension",
+  "description": "Extension fields for ref-eval (reference evaluation) receipts.",
+  "type": "object",
+  "required": [
+    "reference_slug", "verdict", "project_context_loaded",
+    "integration_scores", "confidence", "status"
+  ],
+  "properties": {
+    "reference_path":           { "type": "string" },
+    "reference_slug":           { "type": "string" },
+    "reference_type":           { "type": "string" },
+    "project_context_loaded":   { "type": "boolean" },
+    "reference_load_drawer_id": { "type": "string" },
+    "verdict": {
+      "type": "string",
+      "enum": ["critical-reference", "supporting-reference", "inspiration-only", "ignore"]
+    },
+    "integration_scores": {
+      "type": "object",
+      "properties": {
+        "concept_fit":        { "type": "integer", "minimum": 0, "maximum": 10 },
+        "architecture_fit":   { "type": "integer", "minimum": 0, "maximum": 10 },
+        "implementation_fit": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "maintenance_fit":    { "type": "integer", "minimum": 0, "maximum": 10 },
+        "risk_level":         { "type": "integer", "minimum": 0, "maximum": 10 },
+        "overall_usefulness": { "type": "integer", "minimum": 0, "maximum": 10 }
+      }
+    },
+    "benefits_identified": { "type": "integer", "minimum": 0 },
+    "risks_identified":    { "type": "integer", "minimum": 0 },
+    "adapt_items":         { "type": "integer", "minimum": 0 },
+    "avoid_items":         { "type": "integer", "minimum": 0 },
+    "report_path":         { "type": "string" },
+    "drawers_written":     { "type": "integer", "minimum": 0 },
+    "depth":               { "type": "string", "enum": ["deep", "shallow"] },
+    "dedup_hit":           { "type": "boolean" },
+    "confidence":          { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+  }
+}

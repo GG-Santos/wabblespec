@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ref-plan receipt extension",
+  "description": "Extension fields for ref-plan (reference integration plan) receipts.",
+  "type": "object",
+  "required": [
+    "reference_slug", "ref_eval_verdict", "signal_items_found",
+    "backlog_size", "status"
+  ],
+  "properties": {
+    "reference_slug":   { "type": "string" },
+    "ref_eval_verdict": {
+      "type": "string",
+      "enum": ["critical-reference", "supporting-reference", "inspiration-only", "ignore"]
+    },
+    "integration_goal": { "type": "string" },
+    "risk_appetite": {
+      "type": "string",
+      "enum": ["conservative", "balanced", "aggressive"]
+    },
+    "signal_items_found": { "type": "integer", "minimum": 0 },
+    "items_excluded":     { "type": "integer", "minimum": 0 },
+    "backlog_size":       { "type": "integer", "minimum": 0 },
+    "phase_1_items":      { "type": "integer", "minimum": 0 },
+    "phase_2_items":      { "type": "integer", "minimum": 0 },
+    "phase_3_items":      { "type": "integer", "minimum": 0 },
+    "phase_4_items":      { "type": "integer", "minimum": 0 },
+    "plan_path":          { "type": "string" }
+  }
+}

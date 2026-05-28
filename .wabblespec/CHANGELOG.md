@@ -1696,3 +1696,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-real-exec-validation-20260528.json
 - waves: 2 completed
 - verification: all waves PASS
+
+---
+
+## [0.42.0] — 2026-05-28T10:34:19Z
+
+### ref-eval/comp/plan receipt schema alignment
+
+### Changed
+- Fixed build_ref_eval, build_ref_comp, build_ref_plan in receipt-writer.py to match SKILL.md-declared field names and types; created three extension schema JSON files.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-ref-receipt-schemas-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
