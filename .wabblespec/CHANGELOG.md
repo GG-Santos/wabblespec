@@ -1682,3 +1682,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase3-new-scripts-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.41.0] — 2026-05-28T10:23:32Z
+
+### CI workflows and ruff config
+
+### Changed
+- Added lint.yml (ruff E,F on Python scripts) and quality-floor.yml (quality-floor-check + registry consistency) GitHub Actions workflows; added ruff.toml with select=E,F ignore=E501. Full pipeline validated end-to-end using all new writer scripts.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-real-exec-validation-20260528.json
+- waves: 2 completed
+- verification: all waves PASS
