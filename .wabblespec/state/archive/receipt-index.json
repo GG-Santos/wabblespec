@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T10:52:00Z",
+  "last_updated": "2026-05-28T03:42:21Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -42,124 +42,535 @@
       "waves_completed": 0
     },
     {
-      "task_id": "seed-run-20260524a", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T00:00:00Z", "archived_at": "2026-05-24T01:00:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524a.json", "version_previous": "0.2.0", "version_new": "0.3.2", "version_bump_reason": "ADDITIVE", "summary": "validate-graph.py build + A7 fix"
+      "task_id": "seed-run-20260524a",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T00:00:00Z",
+      "archived_at": "2026-05-24T01:00:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524a.json",
+      "version_previous": "0.2.0",
+      "version_new": "0.3.2",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "validate-graph.py build + A7 fix"
     },
     {
-      "task_id": "seed-run-20260524b", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T02:00:00Z", "archived_at": "2026-05-24T03:00:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524b.json", "version_previous": "0.3.2", "version_new": "0.3.4", "version_bump_reason": "ADDITIVE", "summary": "quality-floor-check.py build (30 failures found and fixed)"
+      "task_id": "seed-run-20260524b",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T02:00:00Z",
+      "archived_at": "2026-05-24T03:00:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524b.json",
+      "version_previous": "0.3.2",
+      "version_new": "0.3.4",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "quality-floor-check.py build (30 failures found and fixed)"
     },
     {
-      "task_id": "seed-run-20260524c", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-24T03:30:00Z", "archived_at": "2026-05-24T04:30:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524c.json", "version_previous": "0.3.4", "version_new": "0.3.6", "version_bump_reason": "ADDITIVE", "summary": "quality floor fix batch (30 to 0 failures); BOM fix; 96/96 PASS"
+      "task_id": "seed-run-20260524c",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-24T03:30:00Z",
+      "archived_at": "2026-05-24T04:30:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524c.json",
+      "version_previous": "0.3.4",
+      "version_new": "0.3.6",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "quality floor fix batch (30 to 0 failures); BOM fix; 96/96 PASS"
     },
     {
-      "task_id": "seed-run-20260524d", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-24T05:00:00Z", "archived_at": "2026-05-24T06:00:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524d.json", "version_previous": "0.3.6", "version_new": "0.3.7", "version_bump_reason": "ADDITIVE", "summary": "gateway integration: three-axis routing, 37 framework files, 4 infrastructure files, 24 gateway references, Red/Blue/Purple restored"
+      "task_id": "seed-run-20260524d",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-24T05:00:00Z",
+      "archived_at": "2026-05-24T06:00:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524d.json",
+      "version_previous": "0.3.6",
+      "version_new": "0.3.7",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "gateway integration: three-axis routing, 37 framework files, 4 infrastructure files, 24 gateway references, Red/Blue/Purple restored"
     },
     {
-      "task_id": "seed-run-20260524e", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T06:30:00Z", "archived_at": "2026-05-24T07:32:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524e.json", "version_previous": "0.3.7", "version_new": "0.3.8", "version_bump_reason": "ADDITIVE", "summary": "framework.yaml registration (41 new shared files); validate-graph.py dynamic sections fix"
+      "task_id": "seed-run-20260524e",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T06:30:00Z",
+      "archived_at": "2026-05-24T07:32:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524e.json",
+      "version_previous": "0.3.7",
+      "version_new": "0.3.8",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "framework.yaml registration (41 new shared files); validate-graph.py dynamic sections fix"
     },
     {
-      "task_id": "seed-run-20260524f", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T08:00:00Z", "archived_at": "2026-05-24T08:16:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524f.json", "version_previous": "0.3.8", "version_new": "0.3.9", "version_bump_reason": "ADDITIVE", "summary": "gateway-security/rules/ populated: auth-policy.md (7 rules) and secrets-policy.md (8 rules)"
+      "task_id": "seed-run-20260524f",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T08:00:00Z",
+      "archived_at": "2026-05-24T08:16:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524f.json",
+      "version_previous": "0.3.8",
+      "version_new": "0.3.9",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "gateway-security/rules/ populated: auth-policy.md (7 rules) and secrets-policy.md (8 rules)"
     },
     {
-      "task_id": "seed-run-20260524g", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-24T09:00:00Z", "archived_at": "2026-05-24T09:01:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524g.json", "version_previous": "0.3.9", "version_new": "0.4.0", "version_bump_reason": "ADDITIVE", "summary": "cold-start coverage: L3 (11 platforms) and L4 (6 gateways); platform invariants declared unconditionally"
+      "task_id": "seed-run-20260524g",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-24T09:00:00Z",
+      "archived_at": "2026-05-24T09:01:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524g.json",
+      "version_previous": "0.3.9",
+      "version_new": "0.4.0",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "cold-start coverage: L3 (11 platforms) and L4 (6 gateways); platform invariants declared unconditionally"
     },
     {
-      "task_id": "seed-run-20260524h", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-24T10:00:00Z", "archived_at": "2026-05-24T10:01:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524h.json", "version_previous": "0.4.0", "version_new": "0.4.1", "version_bump_reason": "ADDITIVE", "summary": "cold-start coverage complete: L5 (8) + L6 (12) + L7 (8) + L8 (9) = 37 files; all 81 modules covered"
+      "task_id": "seed-run-20260524h",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-24T10:00:00Z",
+      "archived_at": "2026-05-24T10:01:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524h.json",
+      "version_previous": "0.4.0",
+      "version_new": "0.4.1",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "cold-start coverage complete: L5 (8) + L6 (12) + L7 (8) + L8 (9) = 37 files; all 81 modules covered"
     },
     {
-      "task_id": "seed-run-20260524i", "target": "Framework", "complexity": "Low", "status": "PASS", "started_at": "2026-05-24T10:30:00Z", "archived_at": "2026-05-24T10:31:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524i.json", "version_previous": "0.4.1", "version_new": "0.4.2", "version_bump_reason": "ADDITIVE", "summary": "archive sync, l8-corpus-gate/INDEX.md updated, dream.py --background fix"
+      "task_id": "seed-run-20260524i",
+      "target": "Framework",
+      "complexity": "Low",
+      "status": "PASS",
+      "started_at": "2026-05-24T10:30:00Z",
+      "archived_at": "2026-05-24T10:31:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524i.json",
+      "version_previous": "0.4.1",
+      "version_new": "0.4.2",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "archive sync, l8-corpus-gate/INDEX.md updated, dream.py --background fix"
     },
     {
-      "task_id": "seed-run-20260524j", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T11:00:00Z", "archived_at": "2026-05-24T11:01:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524j.json", "version_previous": "0.4.2", "version_new": "0.4.3", "version_bump_reason": "ADDITIVE", "summary": "L8 acceptance tests expanded: retro, feedback, factory — L8 corpus gate added; Integration Phase 5-6 gate CLEARED (10/10 runs)"
+      "task_id": "seed-run-20260524j",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T11:00:00Z",
+      "archived_at": "2026-05-24T11:01:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524j.json",
+      "version_previous": "0.4.2",
+      "version_new": "0.4.3",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L8 acceptance tests expanded: retro, feedback, factory \u2014 L8 corpus gate added; Integration Phase 5-6 gate CLEARED (10/10 runs)"
     },
     {
-      "task_id": "seed-run-20260524k", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T12:00:00Z", "archived_at": "2026-05-24T12:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524k.json", "version_previous": "0.4.3", "version_new": "0.4.4", "version_bump_reason": "ADDITIVE", "summary": "Cold-start coverage corrected: 15 missing files (L1: 12, L2: 3); L1 24/24, L2 13/13; total 99/99 modules covered"
+      "task_id": "seed-run-20260524k",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T12:00:00Z",
+      "archived_at": "2026-05-24T12:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524k.json",
+      "version_previous": "0.4.3",
+      "version_new": "0.4.4",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Cold-start coverage corrected: 15 missing files (L1: 12, L2: 3); L1 24/24, L2 13/13; total 99/99 modules covered"
     },
     {
-      "task_id": "seed-run-20260524l", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T13:00:00Z", "archived_at": "2026-05-24T13:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524l.json", "version_previous": "0.4.5", "version_new": "0.4.6", "version_bump_reason": "ADDITIVE", "summary": "L1 acceptance tests batch 1: 12 modules; 49/100 PASS receipts"
+      "task_id": "seed-run-20260524l",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T13:00:00Z",
+      "archived_at": "2026-05-24T13:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524l.json",
+      "version_previous": "0.4.5",
+      "version_new": "0.4.6",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L1 acceptance tests batch 1: 12 modules; 49/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260524m", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-24T14:00:00Z", "archived_at": "2026-05-24T14:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524m.json", "version_previous": "0.4.6", "version_new": "0.4.7", "version_bump_reason": "ADDITIVE", "summary": "L1 acceptance tests batch 2: 12 modules; L1 24/24 COMPLETE; 52/100 PASS receipts"
+      "task_id": "seed-run-20260524m",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-24T14:00:00Z",
+      "archived_at": "2026-05-24T14:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524m.json",
+      "version_previous": "0.4.6",
+      "version_new": "0.4.7",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L1 acceptance tests batch 2: 12 modules; L1 24/24 COMPLETE; 52/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260524n", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-25T00:00:00Z", "archived_at": "2026-05-25T00:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524n.json", "version_previous": "0.4.8", "version_new": "0.4.9", "version_bump_reason": "ADDITIVE", "summary": "L2 acceptance tests: 13 modules; L2 13/13 COMPLETE; 55/100 PASS receipts"
+      "task_id": "seed-run-20260524n",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-25T00:00:00Z",
+      "archived_at": "2026-05-25T00:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260524n.json",
+      "version_previous": "0.4.8",
+      "version_new": "0.4.9",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L2 acceptance tests: 13 modules; L2 13/13 COMPLETE; 55/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525o", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T01:00:00Z", "archived_at": "2026-05-25T01:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525o.json", "version_previous": "0.4.9", "version_new": "0.5.0", "version_bump_reason": "ADDITIVE", "summary": "L4 gateway policy files: 10 files across 5 gateways; 58/100 PASS receipts"
+      "task_id": "seed-run-20260525o",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T01:00:00Z",
+      "archived_at": "2026-05-25T01:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525o.json",
+      "version_previous": "0.4.9",
+      "version_new": "0.5.0",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L4 gateway policy files: 10 files across 5 gateways; 58/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525p", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-25T02:00:00Z", "archived_at": "2026-05-25T02:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525p.json", "version_previous": "0.5.0", "version_new": "0.5.1", "version_bump_reason": "ADDITIVE", "summary": "L3 acceptance tests: 11 platform modules; L3 11/11 COMPLETE; 61/100 PASS receipts"
+      "task_id": "seed-run-20260525p",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-25T02:00:00Z",
+      "archived_at": "2026-05-25T02:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525p.json",
+      "version_previous": "0.5.0",
+      "version_new": "0.5.1",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L3 acceptance tests: 11 platform modules; L3 11/11 COMPLETE; 61/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525q", "target": "Framework", "complexity": "High", "status": "PASS", "started_at": "2026-05-25T03:00:00Z", "archived_at": "2026-05-25T03:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525q.json", "version_previous": "0.5.1", "version_new": "0.5.2", "version_bump_reason": "ADDITIVE", "summary": "L5/L6/L7 acceptance tests: 28 modules; all three layers COMPLETE; 64/100 PASS receipts"
+      "task_id": "seed-run-20260525q",
+      "target": "Framework",
+      "complexity": "High",
+      "status": "PASS",
+      "started_at": "2026-05-25T03:00:00Z",
+      "archived_at": "2026-05-25T03:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525q.json",
+      "version_previous": "0.5.1",
+      "version_new": "0.5.2",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L5/L6/L7 acceptance tests: 28 modules; all three layers COMPLETE; 64/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525r", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T04:00:00Z", "archived_at": "2026-05-25T04:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525r.json", "version_previous": "0.5.2", "version_new": "0.5.3", "version_bump_reason": "ADDITIVE", "summary": "L4 gateway acceptance tests: 6/6 gateways; 67/100 PASS receipts"
+      "task_id": "seed-run-20260525r",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T04:00:00Z",
+      "archived_at": "2026-05-25T04:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525r.json",
+      "version_previous": "0.5.2",
+      "version_new": "0.5.3",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "L4 gateway acceptance tests: 6/6 gateways; 67/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525s", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T05:00:00Z", "archived_at": "2026-05-25T05:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525s.json", "version_previous": "0.5.3", "version_new": "0.5.4", "version_bump_reason": "ADDITIVE", "summary": "l8-corpus-gate.md corrected; performance-budgets reference + 3 platform templates; 70/100 PASS receipts"
+      "task_id": "seed-run-20260525s",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T05:00:00Z",
+      "archived_at": "2026-05-25T05:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525s.json",
+      "version_previous": "0.5.3",
+      "version_new": "0.5.4",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "l8-corpus-gate.md corrected; performance-budgets reference + 3 platform templates; 70/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525t", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T06:00:00Z", "archived_at": "2026-05-25T06:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525t.json", "version_previous": "0.5.4", "version_new": "0.5.5", "version_bump_reason": "ADDITIVE", "summary": "Performance budget templates for 8 remaining platforms; 73/100 PASS receipts"
+      "task_id": "seed-run-20260525t",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T06:00:00Z",
+      "archived_at": "2026-05-25T06:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525t.json",
+      "version_previous": "0.5.4",
+      "version_new": "0.5.5",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Performance budget templates for 8 remaining platforms; 73/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525u", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T07:00:00Z", "archived_at": "2026-05-25T07:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525u.json", "version_previous": "0.5.5", "version_new": "0.5.6", "version_bump_reason": "ADDITIVE", "summary": "Build-toolchain templates for all 11 L3 platforms; 76/100 PASS receipts"
+      "task_id": "seed-run-20260525u",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T07:00:00Z",
+      "archived_at": "2026-05-25T07:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525u.json",
+      "version_previous": "0.5.5",
+      "version_new": "0.5.6",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Build-toolchain templates for all 11 L3 platforms; 76/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525v", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T08:00:00Z", "archived_at": "2026-05-25T08:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525v.json", "version_previous": "0.5.6", "version_new": "0.5.7", "version_bump_reason": "ADDITIVE", "summary": "Runbook stub templates for 5 core alert types; 79/100 PASS receipts"
+      "task_id": "seed-run-20260525v",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T08:00:00Z",
+      "archived_at": "2026-05-25T08:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525v.json",
+      "version_previous": "0.5.6",
+      "version_new": "0.5.7",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Runbook stub templates for 5 core alert types; 79/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525w", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T09:00:00Z", "archived_at": "2026-05-25T09:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525w.json", "version_previous": "0.5.7", "version_new": "0.5.8", "version_bump_reason": "ADDITIVE", "summary": "Platform-specific runbook stubs; 82/100 PASS receipts"
+      "task_id": "seed-run-20260525w",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T09:00:00Z",
+      "archived_at": "2026-05-25T09:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525w.json",
+      "version_previous": "0.5.7",
+      "version_new": "0.5.8",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Platform-specific runbook stubs; 82/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525x", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T10:00:00Z", "archived_at": "2026-05-25T10:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525x.json", "version_previous": "0.5.8", "version_new": "0.5.9", "version_bump_reason": "ADDITIVE", "summary": "Error event catalog + Guard policy reference; 85/100 PASS receipts"
+      "task_id": "seed-run-20260525x",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T10:00:00Z",
+      "archived_at": "2026-05-25T10:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525x.json",
+      "version_previous": "0.5.8",
+      "version_new": "0.5.9",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "Error event catalog + Guard policy reference; 85/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525y", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T11:00:00Z", "archived_at": "2026-05-25T11:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525y.json", "version_previous": "0.5.9", "version_new": "0.6.0", "version_bump_reason": "ADDITIVE", "summary": "project-map.md starter templates for Web/API-Service/CLI/Mobile/Desktop; 88/100 PASS receipts"
+      "task_id": "seed-run-20260525y",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T11:00:00Z",
+      "archived_at": "2026-05-25T11:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525y.json",
+      "version_previous": "0.5.9",
+      "version_new": "0.6.0",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "project-map.md starter templates for Web/API-Service/CLI/Mobile/Desktop; 88/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525z", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T12:00:00Z", "archived_at": "2026-05-25T12:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525z.json", "version_previous": "0.6.0", "version_new": "0.6.1", "version_bump_reason": "ADDITIVE", "summary": "project-map templates for remaining 6 platforms; Scaffold library complete; 91/100 PASS receipts"
+      "task_id": "seed-run-20260525z",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T12:00:00Z",
+      "archived_at": "2026-05-25T12:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525z.json",
+      "version_previous": "0.6.0",
+      "version_new": "0.6.1",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "project-map templates for remaining 6 platforms; Scaffold library complete; 91/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525aa", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T13:00:00Z", "archived_at": "2026-05-25T13:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525aa.json", "version_previous": "0.6.1", "version_new": "0.6.2", "version_bump_reason": "ADDITIVE", "summary": "dependency-policy.md + version-policy.md; 94/100 PASS receipts"
+      "task_id": "seed-run-20260525aa",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T13:00:00Z",
+      "archived_at": "2026-05-25T13:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525aa.json",
+      "version_previous": "0.6.1",
+      "version_new": "0.6.2",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "dependency-policy.md + version-policy.md; 94/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525ab", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T14:00:00Z", "archived_at": "2026-05-25T14:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525ab.json", "version_previous": "0.6.2", "version_new": "0.6.3", "version_bump_reason": "ADDITIVE", "summary": "gate-progression-reference.md + module-activation-matrix.md; 97/100 PASS receipts"
+      "task_id": "seed-run-20260525ab",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T14:00:00Z",
+      "archived_at": "2026-05-25T14:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525ab.json",
+      "version_previous": "0.6.2",
+      "version_new": "0.6.3",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "gate-progression-reference.md + module-activation-matrix.md; 97/100 PASS receipts"
     },
     {
-      "task_id": "seed-run-20260525ac", "target": "Framework", "complexity": "Medium", "status": "PASS", "started_at": "2026-05-25T15:00:00Z", "archived_at": "2026-05-25T15:02:00Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525ac.json", "version_previous": "0.6.3", "version_new": "0.6.4", "version_bump_reason": "ADDITIVE", "summary": "FINAL SEED RUN. Receipt #100: L8 corpus gate CLEARED. instinct-activation-walkthrough.md written."
+      "task_id": "seed-run-20260525ac",
+      "target": "Framework",
+      "complexity": "Medium",
+      "status": "PASS",
+      "started_at": "2026-05-25T15:00:00Z",
+      "archived_at": "2026-05-25T15:02:00Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-20260525ac.json",
+      "version_previous": "0.6.3",
+      "version_new": "0.6.4",
+      "version_bump_reason": "ADDITIVE",
+      "summary": "FINAL SEED RUN. Receipt #100: L8 corpus gate CLEARED. instinct-activation-walkthrough.md written."
     },
     {
-      "task_id": "seed-run-automation-scripts", "session_id": "seed-run-automation-scripts", "status": "PASS", "archived_at": "2026-05-25T15:54:48Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts.json", "version_previous": "0.9.0", "version_new": "0.10.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Four token-reduction automation scripts"
+      "task_id": "seed-run-automation-scripts",
+      "session_id": "seed-run-automation-scripts",
+      "status": "PASS",
+      "archived_at": "2026-05-25T15:54:48Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts.json",
+      "version_previous": "0.9.0",
+      "version_new": "0.10.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Four token-reduction automation scripts"
     },
     {
-      "task_id": "seed-run-automation-scripts-2", "session_id": "seed-run-automation-scripts-2", "status": "PASS", "archived_at": "2026-05-25T16:27:08Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts-2.json", "version_previous": "0.10.0", "version_new": "0.11.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Five mechanical-layer scripts"
+      "task_id": "seed-run-automation-scripts-2",
+      "session_id": "seed-run-automation-scripts-2",
+      "status": "PASS",
+      "archived_at": "2026-05-25T16:27:08Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts-2.json",
+      "version_previous": "0.10.0",
+      "version_new": "0.11.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Five mechanical-layer scripts"
     },
     {
-      "task_id": "seed-run-automation-scripts-3", "session_id": "seed-run-automation-scripts-3", "status": "PASS", "archived_at": "2026-05-25T17:01:41Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts-3.json", "version_previous": "0.11.0", "version_new": "0.12.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 4, "summary": "Wave 3 automation: 9 scripts"
+      "task_id": "seed-run-automation-scripts-3",
+      "session_id": "seed-run-automation-scripts-3",
+      "status": "PASS",
+      "archived_at": "2026-05-25T17:01:41Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-seed-run-automation-scripts-3.json",
+      "version_previous": "0.11.0",
+      "version_new": "0.12.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 4,
+      "summary": "Wave 3 automation: 9 scripts"
     },
     {
-      "task_id": "wave-checkpoint-v1", "session_id": "wave-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T17:41:57Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-wave-checkpoint-v1.json", "version_previous": "0.12.0", "version_new": "0.13.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 1, "summary": "Add wave-checkpoint authority path and produces_schemas to executor module"
+      "task_id": "wave-checkpoint-v1",
+      "session_id": "wave-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T17:41:57Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-wave-checkpoint-v1.json",
+      "version_previous": "0.12.0",
+      "version_new": "0.13.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 1,
+      "summary": "Add wave-checkpoint authority path and produces_schemas to executor module"
     },
     {
-      "task_id": "instinct-positive-patterns-v1", "session_id": "instinct-positive-patterns-v1", "status": "PASS", "archived_at": "2026-05-25T17:49:55Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-instinct-positive-patterns-v1.json", "version_previous": "0.13.0", "version_new": "0.14.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Extend instinct.py with positive-pattern detectors"
+      "task_id": "instinct-positive-patterns-v1",
+      "session_id": "instinct-positive-patterns-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T17:49:55Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-instinct-positive-patterns-v1.json",
+      "version_previous": "0.13.0",
+      "version_new": "0.14.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Extend instinct.py with positive-pattern detectors"
     },
     {
-      "task_id": "l3-framework-extensions-plan-v1", "session_id": "l3-framework-extensions-plan-v1", "status": "PASS", "archived_at": "2026-05-25T20:10:31Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-l3-framework-extensions-plan-v1.json", "version_previous": "0.14.0", "version_new": "0.15.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Resolve gateway leaf module planning"
+      "task_id": "l3-framework-extensions-plan-v1",
+      "session_id": "l3-framework-extensions-plan-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T20:10:31Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-l3-framework-extensions-plan-v1.json",
+      "version_previous": "0.14.0",
+      "version_new": "0.15.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Resolve gateway leaf module planning"
     },
     {
-      "task_id": "synth-executor-checkpoint-v1", "session_id": "synth-executor-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T20:19:19Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-synth-executor-checkpoint-v1.json", "version_previous": "0.15.0", "version_new": "0.16.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Synth: produce executor-pre-wave-checkpoint-elimination-v1 candidate"
+      "task_id": "synth-executor-checkpoint-v1",
+      "session_id": "synth-executor-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T20:19:19Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-synth-executor-checkpoint-v1.json",
+      "version_previous": "0.15.0",
+      "version_new": "0.16.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Synth: produce executor-pre-wave-checkpoint-elimination-v1 candidate"
     },
     {
-      "task_id": "blueprint-executor-checkpoint-v1", "session_id": "blueprint-executor-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T20:20:45Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-blueprint-executor-checkpoint-v1.json", "version_previous": "0.16.0", "version_new": "0.17.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Blueprint: executor-pre-wave-checkpoint-elimination-v1 awaiting attestation"
+      "task_id": "blueprint-executor-checkpoint-v1",
+      "session_id": "blueprint-executor-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T20:20:45Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-blueprint-executor-checkpoint-v1.json",
+      "version_previous": "0.16.0",
+      "version_new": "0.17.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Blueprint: executor-pre-wave-checkpoint-elimination-v1 awaiting attestation"
     },
     {
-      "task_id": "augment-executor-checkpoint-v1", "session_id": "augment-executor-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T21:04:09Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-augment-executor-checkpoint-v1.json", "version_previous": "0.17.0", "version_new": "0.18.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Augment: executor-pre-wave-checkpoint-elimination-v1 experimental module complete"
+      "task_id": "augment-executor-checkpoint-v1",
+      "session_id": "augment-executor-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T21:04:09Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-augment-executor-checkpoint-v1.json",
+      "version_previous": "0.17.0",
+      "version_new": "0.18.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Augment: executor-pre-wave-checkpoint-elimination-v1 experimental module complete"
     },
     {
-      "task_id": "benchmark-executor-checkpoint-v1", "session_id": "benchmark-executor-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T21:05:58Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-benchmark-executor-checkpoint-v1.json", "version_previous": "0.18.0", "version_new": "0.19.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Benchmark PASS: executor-pre-wave-checkpoint-elimination-v1, rate=0.0, threshold=0.10"
+      "task_id": "benchmark-executor-checkpoint-v1",
+      "session_id": "benchmark-executor-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T21:05:58Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-benchmark-executor-checkpoint-v1.json",
+      "version_previous": "0.18.0",
+      "version_new": "0.19.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Benchmark PASS: executor-pre-wave-checkpoint-elimination-v1, rate=0.0, threshold=0.10"
     },
     {
-      "task_id": "forge-executor-checkpoint-v1", "session_id": "forge-executor-checkpoint-v1", "status": "PASS", "archived_at": "2026-05-25T21:19:29Z", "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-forge-executor-checkpoint-v1.json", "version_previous": "0.19.0", "version_new": "0.20.0", "version_bump_reason": "ADDITIVE", "waves_completed": 1, "waves_planned": 1, "not_tested_items": 0, "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted — pre-wave directory checkpoint eliminated"
+      "task_id": "forge-executor-checkpoint-v1",
+      "session_id": "forge-executor-checkpoint-v1",
+      "status": "PASS",
+      "archived_at": "2026-05-25T21:19:29Z",
+      "delivery_receipt_path": ".wabblespec/receipts/delivery-receipt-forge-executor-checkpoint-v1.json",
+      "version_previous": "0.19.0",
+      "version_new": "0.20.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted \u2014 pre-wave directory checkpoint eliminated"
     },
     {
       "task_id": "toprank-integration-phase1",
@@ -186,7 +597,7 @@
         "T5 allowed-tools: frontmatter (Phase 3)"
       ],
       "last_updated": "2026-05-28T10:52:00Z",
-      "summary": "toprank-main Phase 1: ~~capability-name convention in CLAUDE.md; Reference Routing section in executor SKILL.md (3 entries, −15 lines)"
+      "summary": "toprank-main Phase 1: ~~capability-name convention in CLAUDE.md; Reference Routing section in executor SKILL.md (3 entries, \u221215 lines)"
     },
     {
       "task_id": "toprank-integration-phase2-T2",
@@ -209,6 +620,20 @@
       ],
       "last_updated": "2026-05-28T11:15:00Z",
       "summary": "toprank-main Phase 2 T2: llm-eval.py created (I6-compliant, 3-dimension rubric); eval-log.json initialized; Benchmark SKILL.md Reference Routing section added"
+    },
+    {
+      "task_id": "toprank-integration-phase2-T3",
+      "session_id": "toprank-integration-phase2-T3",
+      "status": "PASS",
+      "archived_at": "2026-05-28T03:42:21Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-toprank-integration-phase2-T3.json",
+      "version_previous": "0.26.0",
+      "version_new": "0.27.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 2,
+      "waves_planned": 2,
+      "not_tested_items": 0,
+      "summary": "Extended Instinct output contract with three judgment lever fields (Expected impact, Actionability score, Learned multiplier). Updated all 4 existing patterns in instinct-observations.md with null defaults and requires_scoring: true. Guard/decompose/execution receipts carry T2 session annotation from prior linked task; wave and verification receipts are T3-native."
     }
   ]
 }

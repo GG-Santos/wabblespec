@@ -1497,3 +1497,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/receipts/delivery-receipt-forge-executor-checkpoint-v1.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.27.0] — 2026-05-28T03:42:21Z
+
+### Changed
+- Extended Instinct output contract with three judgment lever fields (Expected impact, Actionability score, Learned multiplier). Updated all 4 existing patterns in instinct-observations.md with null defaults and requires_scoring: true. Guard/decompose/execution receipts carry T2 session annotation from prior linked task; wave and verification receipts are T3-native.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-toprank-integration-phase2-T3.json
+- waves: 2 completed
+- verification: all waves PASS
