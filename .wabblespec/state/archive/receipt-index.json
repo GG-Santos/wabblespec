@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T10:23:32Z",
+  "last_updated": "2026-05-28T10:34:19Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -830,6 +830,20 @@
       "waves_planned": 2,
       "not_tested_items": 0,
       "summary": "Added lint.yml (ruff E,F on Python scripts) and quality-floor.yml (quality-floor-check + registry consistency) GitHub Actions workflows; added ruff.toml with select=E,F ignore=E501. Full pipeline validated end-to-end using all new writer scripts."
+    },
+    {
+      "task_id": "ref-receipt-schemas-20260528",
+      "session_id": "ref-receipt-schemas-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T10:34:19Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-ref-receipt-schemas-20260528.json",
+      "version_previous": "0.41.0",
+      "version_new": "0.42.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Fixed build_ref_eval, build_ref_comp, build_ref_plan in receipt-writer.py to match SKILL.md-declared field names and types; created three extension schema JSON files."
     }
   ]
 }

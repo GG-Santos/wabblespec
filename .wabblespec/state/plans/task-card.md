@@ -1,49 +1,45 @@
 # Task Card
 
-**goal:** Two GitHub Actions workflow files and a ruff.toml are committed to main, with all script paths, flags, and dependency references verified correct.
+**goal:** receipt-writer.py correctly outputs all schema-declared fields for ref-eval, ref-comp, and ref-plan types with matching field names, types, and three schema JSON files created.
 **target:** Library-Package
-**complexity:** Low
+**complexity:** Medium
 **change_class:** ADDITIVE
-**locked_at:** 2026-05-28T14:00:00Z
-**session_id:** real-exec-validation-20260528
+**locked_at:** 2026-05-28T15:00:00Z
+**session_id:** ref-receipt-schemas-20260528
 
 ## Non-Goals
 
-- Editing Python scripts to resolve lint violations
-- Adding additional workflows (test runner, release, deploy)
-- Configuring GitHub repo settings or branch protection rules
-- Validating workflows execute against a live GitHub remote
+- Adding new dedicated CLI flags for type-specific fields
+- Modifying SKILL.md files or base receipt schema
+- Changes to any other receipt type
 
 ## Assumptions
 
-- A GitHub remote will be added before workflows are exercised
-- Python 3.11 covers all script syntax in use
-- ruff select E,F with ignore E501 is the right starting bar — long docstring lines exist up to 280 chars
-- requirements.txt PyYAML dep covers both quality-floor-check.py and validate-module-registry.py
-- No existing ruff.toml or pyproject.toml — confirmed by directory scan
+- SKILL.md schemas are the authoritative field spec
+- All new fields use sensible defaults when not settable via current CLI
 
 ## Acceptance Criteria
 
-### AC1 — lint.yml verified
+### AC1 — ref-eval fields correct
 
-Given lint.yml exists at .github/workflows/lint.yml
-When the file is reviewed against actual repo paths
-Then all referenced script directories exist in the repo and the workflow YAML is syntactically valid
+Given receipt-writer.py --type ref-eval is invoked
+When output JSON is inspected
+Then all 16 SKILL.md fields present with correct names including reference_path, reference_type, benefits_identified, risks_identified, adapt_items, avoid_items, drawers_written, depth, report_path
 
-### AC2 — quality-floor.yml verified
+### AC2 — ref-comp fields correct
 
-Given quality-floor.yml exists at .github/workflows/quality-floor.yml
-When the file is reviewed against actual script paths and flags
-Then quality-floor-check.py --verbose and validate-module-registry.py --undeclared are the correct invocations and PyYAML is in the dep list
+Given receipt-writer.py --type ref-comp is invoked
+When output JSON is inspected
+Then fields are execution_classification (not verdict), coverage_rate (not coverage_score), execution_gaps as dict with critical/major/minor keys, improvements_beyond_plan as int
 
-### AC3 — ruff.toml created
+### AC3 — ref-plan fields correct
 
-Given no ruff.toml exists in the repo root
-When ruff.toml is written to the repo root
-Then the file declares select = ["E", "F"] and ignore = ["E501"] and ruff check runs without error on the shared scripts directory
+Given receipt-writer.py --type ref-plan is invoked
+When output JSON is inspected
+Then fields are signal_items_found (not total_items_extracted), backlog_size, ref_eval_verdict, integration_goal, risk_appetite all present
 
-### AC4 — three files committed
+### AC4 — schema files created
 
-Given lint.yml, quality-floor.yml, and ruff.toml are verified and correct
-When git commit is run
-Then all three files appear in the HEAD commit on main with no unstaged changes remaining
+Given no schema files existed before this session
+When three schema JSON files are written
+Then ref-eval-receipt.extension.schema.json, ref-comp-receipt.extension.schema.json, and ref-plan-receipt.extension.schema.json exist under .wabblespec/engine/shared/schemas/
