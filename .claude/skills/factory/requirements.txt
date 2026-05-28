@@ -1,0 +1,11 @@
+# WabbleSpec framework script dependencies.
+# Run: pip install -r requirements.txt
+#
+# To tighten to exact pins after install:
+#   pip freeze | grep -E "pyyaml|PyYAML|pytest|jinja2|Jinja2" >> requirements.lock
+#
+# Minimum versions are the tested floor; pin exact versions in CI for reproducibility.
+
+pyyaml>=6.0
+pytest>=8.0
+jinja2>=3.1

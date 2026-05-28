@@ -87,11 +87,13 @@ When `gateway-engineering` is active, also load from `.wabblespec/engine/shared/
 
 Context is assembled in three zones to stay within Economy token constraints:
 
-| Zone | Content | Position |
-|---|---|---|
-| Constraints | Invariants relevant to this wave, gateway rules, scope constraints | Top of context |
-| References | Platform package content, shared-dev modules, gateway reference files | Middle |
-| Active task | Current wave declaration, spec artifacts for this wave, acceptance criteria | End of context |
+| Zone | Tier equivalent | Content | Position |
+|---|---|---|---|
+| Constraints | stable | Invariants relevant to this wave, gateway rules, scope constraints | Top of context |
+| References | context | Platform package content, shared-dev modules, gateway reference files | Middle |
+| Active task | volatile | Current wave declaration, spec artifacts for this wave, acceptance criteria | End of context |
+
+Zone ordering follows the stable → context → volatile tier model: cache-stable content leads, frequently-changing content trails. This prevents active-task volatility from invalidating the cached invariant and reference prefix. Full tier rules: `.wabblespec/engine/shared/references/system-prompt-tiers.md`.
 
 Nothing preloaded beyond what the current wave declaration specifies. Every item in context must trace to a declared wave input.
 

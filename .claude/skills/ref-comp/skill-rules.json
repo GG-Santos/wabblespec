@@ -1,0 +1,55 @@
+{
+  "module": "ref-comp",
+  "layer": "L2",
+  "tier": 2,
+  "activators": [
+    "/ref-comp command",
+    "compare our implementation to reference",
+    "how well did we implement the reference patterns",
+    "did we miss anything from reference",
+    "audit the implementation against the reference",
+    "post-implementation reference audit"
+  ],
+  "anti_activators": [
+    "implementation has not started (run ref-eval and ref-plan first)",
+    "running before implementation is complete"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Execute"
+  ],
+  "stages": [
+    "P3",
+    "P4"
+  ],
+  "runtime_lanes": [
+    "analysis"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/receipts/ref-comp-*.json",
+      ".wabblespec/state/memory/wings/references/**"
+    ],
+    "reads": [
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/receipts/ref-eval-*.json",
+      ".wabblespec/state/receipts/ref-plan-*.json",
+      ".wabblespec/state/memory/**"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "ref-eval",
+    "ref-plan"
+  ],
+  "loading_gate": "stage",
+  "commands": [
+    "/ref-comp"
+  ],
+  "file_path_patterns": []
+}

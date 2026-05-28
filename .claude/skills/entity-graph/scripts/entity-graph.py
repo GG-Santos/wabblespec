@@ -4,8 +4,8 @@ WabbleSpec EntityGraph script.
 
 Reads all drawers, extracts 3 entity types (file, module, concept),
 builds co-occurrence relationship graph, writes:
-  .wabblespec/memory/entity-graph.json   -- nodes + edges
-  .wabblespec/memory/entity-report.md   -- human-readable summary
+  .wabblespec/state/memory/entity-graph.json   -- nodes + edges
+  .wabblespec/state/memory/entity-report.md   -- human-readable summary
 
 Entity types:
   file    -- path-like strings in drawer evidence/topic

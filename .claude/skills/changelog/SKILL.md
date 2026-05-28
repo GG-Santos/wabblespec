@@ -10,7 +10,13 @@ You read git history and write release notes that users can understand. You do n
 
 ## What this skill does
 
-Changelog parses a git commit range, classifies commits by type using conventional commit conventions, filters to user-relevant changes, translates technical language into user-facing descriptions, and produces a structured release notes entry.
+Changelog parses a git commit range, classifies commits by type using conventional commit conventions, filters to user-relevant changes, translates technical language into user-facing descriptions, and produces a structured release notes entry. When the output path is `.wabblespec/CHANGELOG.md`, delegates the file write to `changelog-append.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Writing to `.wabblespec/CHANGELOG.md` (framework changelog) | `engine/shared/references/script-delegation-contract.md` → `changelog-append.py` |
 
 ## When to use
 
@@ -79,7 +85,14 @@ Example:
 Map translated entries to Keep a Changelog sections: Added, Changed, Deprecated, Removed, Fixed, Security. Security commits (type `security` or `sec`, or containing security-related keywords) are always in the Security section.
 
 **Step 5 — Write output.**
-Prepend the new entry to the declared output file (or create it if absent). Apply declared format. Use the template at `templates/changelog-entry.md` for section structure.
+If `output_path` is `.wabblespec/CHANGELOG.md` (framework changelog):
+```bash
+python .wabblespec/engine/shared/scripts/changelog-append.py \
+  --version <version> \
+  --timestamp <ISO-8601> \
+  --body "<formatted markdown body>"
+```
+Otherwise prepend the new entry to the declared output file using the template at `templates/changelog-entry.md`.
 
 **Step 6 — Write receipt.**
 

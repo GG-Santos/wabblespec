@@ -9,7 +9,13 @@ A task is not complete until you run. You are the permanent record. You read eve
 
 ## What this skill does
 
-Reads all receipts from the current execution session. Compiles `not_tested` items from every receipt into a consolidated list. Determines version bump from change classifications. Writes delivery receipt, updates VERSION, appends to CHANGELOG.md. All prior receipts remain untouched — Archive never deletes.
+Reads all receipts from the current execution session. Compiles `not_tested` items from every receipt into a consolidated list. Determines version bump from change classifications. Delegates all file I/O (CHANGELOG append, VERSION bump, delivery receipt write, receipt-index patch) to `archive.py`. All prior receipts remain untouched — Archive never deletes.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| CHANGELOG append, VERSION bump, delivery receipt write, receipt-index patch | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 
@@ -24,9 +30,8 @@ Reads all receipts from the current execution session. Compiles `not_tested` ite
 
 ## Inputs
 
-- All receipts in `.wabblespec/state/receipts/` written during this session
-- `.wabblespec/VERSION` (current version string)
-- `.wabblespec/CHANGELOG.md` (existing changelog — append only)
+- All receipts in `.wabblespec/state/receipts/` written during this session (for not-tested aggregation)
+- `.wabblespec/VERSION` and `.wabblespec/CHANGELOG.md` — accessed by `archive.py` directly; not loaded into Claude context
 
 ## Receipt index
 
@@ -87,55 +92,31 @@ Read the `not_tested` field from every receipt. Aggregate all items into one lis
 
 No items are minimized, summarized away, or hidden. Delivery is not blocked by not-tested items — they are recorded, not resolved. They become the starting scope for the next related session.
 
-### Step 3 — Determine version bump
+### Step 3 — Run archive.py
 
-Read all receipts for change classification signals:
-- Any `BREAKING` deviation found in any receipt → major version bump (x.0.0)
-- Only `ADDITIVE` deviations, no BREAKING → minor version bump (0.x.0)
-- Only `COSMETIC` deviations, or no deviations at all → patch bump (0.0.x)
+Provide the reasoning-dependent arguments. The script handles all file I/O without loading CHANGELOG or VERSION into context.
 
-### Step 4 — Append changelog entry
-
-Append to `.wabblespec/CHANGELOG.md`. Never overwrite existing entries.
-
-```markdown
-## [new-version] — ISO-8601-timestamp
-
-### Changed
-- <BREAKING or ADDITIVE items from wave receipts>
-
-### Fixed
-- <COSMETIC or correction items>
-
-### Not Tested
-- <aggregated not-tested list — verbatim>
-
-### Receipts
-- execution-receipt: .wabblespec/state/receipts/execution-receipt.json
-- waves: <N> planned, <N> completed, <N> failed
-- verification: all waves PASS
+```bash
+python .wabblespec/engine/shared/scripts/archive.py \
+  --session-id <current-session-id> \
+  --task-id <task-id> \
+  --summary "<one-sentence description of what was built this session>" \
+  --delta-class ADDITIVE|COSMETIC|BREAKING \
+  --files-delivered "<path1>" "<path2>" \
+  --waves-completed <N> \
+  [--not-tested "item A" "item B"]
 ```
 
-### Step 5 — Bump VERSION
+**Claude provides:**
+- `--summary` — synthesize from wave receipts: what was produced and why
+- `--delta-class` — derive from the highest change class in any wave receipt (`BREAKING` > `ADDITIVE` > `COSMETIC`)
+- `--files-delivered` — union of `files_written` fields from all wave receipts in this session
+- `--waves-completed` — count of waves with status PASS
+- `--not-tested` — aggregated not-tested list from Step 2 (one `--not-tested` arg per item)
 
-Read `.wabblespec/VERSION`. Increment the correct semver component. Write the new version string back.
+**Script handles:** CHANGELOG append (write-only, never read into context), VERSION semver bump, delivery receipt JSON write, receipt-index patch.
 
-### Step 6 — Write delivery receipt
-
-Write to `.wabblespec/state/receipts/delivery-receipt-<timestamp>.json`. This is the master I10 record for this execution.
-
-### Step 6b — Finalize receipt index entry
-
-Update the index entry for this `task_id`:
-- `status`: PASS if `all_waves_passed = true`, else FAIL
-- `archived_at`: now
-- `delivery_receipt_path`: relative path to delivery receipt just written
-- `version_previous`, `version_new`, `version_bump_reason`: from Step 3
-- `waves_completed`, `not_tested_items`, `not_tested_list`, `missing_receipts`: from aggregation
-- All `receipts_by_module` entries: set to PASS or SKIP (FAIL only if receipt is missing and was required)
-- `last_updated`: now
-
-Write index. This is the final index write for this execution.
+See `engine/shared/references/script-delegation-contract.md` for full flag reference and optional args (`--extra`, `--dry-run`).
 
 ### Step 7 — Report to user
 

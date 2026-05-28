@@ -40,6 +40,12 @@ Key paths:
 - `.wabblespec/state/plans/` — active task card and wave plan
 - `.wabblespec/state/session/state.json` — session enforcement state (active only during open task)
 
+**Canonical session state paths** (do not use root-level copies):
+- `.wabblespec/state/scope.md` — active session scope (not `.wabblespec/scope.md`)
+- `.wabblespec/state/recipe.json` — active session recipe (not `.wabblespec/recipe.json`)
+
+Root-level `scope.md` and `recipe.json` are legacy artefacts from earlier skill versions. Skills and scripts SHALL read from `state/` paths. Root copies are written only for backward compatibility during the Phase 2 migration window.
+
 ## Receipt Chain
 
 Every non-trivial task: Research receipt → Plan receipt → Execution receipt → Verifier receipt → Archive receipt. Each phase reads the prior phase's receipt. Skip requires `collapse_eligible: true` in recipe.json plus complexity below threshold.
@@ -84,3 +90,17 @@ Claude Code executes independent tool calls in parallel. Real effect on seed run
 - Receipt writes: each phase's receipt depends on the prior phase's receipt content.
 
 Applies to framework authoring (seed runs, module builds) and product-space tasks equally.
+
+## Skill Authoring Conventions
+
+**Tool references in SKILL.md files use capability placeholders, not provider names (extends I6).**
+
+When a SKILL.md references an external tool by capability — an MCP server, external API, CLI tool, or data connector — use the `~~capability-name` placeholder form rather than hardcoding a provider name or tool prefix. Examples:
+
+- `~~search-console` (not `mcp__google__searchConsole` or `gcloud`)
+- `~~vector-store` (not `mcp__chroma__*` or a hardcoded ChromaDB path)
+- `~~code-runner` (not `bash` or a specific interpreter name)
+
+The shared skill preamble or Guard resolves `~~capability-name` to the active provider at runtime. Skills written this way work with any conforming provider and never require edits when a backend changes.
+
+**Reference routing over inline documentation.** When a SKILL.md section has a dedicated reference document, add a `## Reference Routing` table and route the situation to that file rather than duplicating the content inline. Each routing entry replaces (not supplements) the corresponding inline block — SKILL.md line counts must go down when routing tables are added.

@@ -3,8 +3,8 @@
   "required_receipts": [],
   "active_module": null,
   "evidence_drawers": [],
-  "session_id": "forge-executor-checkpoint-v1",
-  "started_at": "2026-05-25T21:06:14Z",
-  "completed_at": "2026-05-25T21:19:29Z",
-  "last_task": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted \u2014 pre-wave directory checkpoint eliminated"
+  "session_id": "phase2-script-delegation-20260528",
+  "started_at": "2026-05-28T12:08:00Z",
+  "completed_at": "2026-05-28T08:04:11Z",
+  "last_task": null
 }

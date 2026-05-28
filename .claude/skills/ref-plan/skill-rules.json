@@ -1,0 +1,53 @@
+{
+  "module": "ref-plan",
+  "layer": "L2",
+  "tier": 2,
+  "activators": [
+    "/ref-plan command",
+    "plan the integration",
+    "what should we adopt from reference",
+    "prioritize the reference learnings",
+    "build an integration plan from ref-eval results",
+    "turn the ref analysis into a work plan"
+  ],
+  "anti_activators": [
+    "ref-eval has not run for this reference",
+    "implementation already in progress or complete (use ref-comp)"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Plan"
+  ],
+  "stages": [
+    "P1",
+    "P2"
+  ],
+  "runtime_lanes": [
+    "analysis",
+    "synthesis"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/receipts/ref-plan-*.json"
+    ],
+    "reads": [
+      ".wabblespec/state/receipts/ref-eval-*.json",
+      ".wabblespec/state/memory/wings/references/**",
+      ".wabblespec/state/plans/task-card.md"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [
+    "ref-eval"
+  ],
+  "loading_gate": "stage",
+  "commands": [
+    "/ref-plan"
+  ],
+  "file_path_patterns": []
+}

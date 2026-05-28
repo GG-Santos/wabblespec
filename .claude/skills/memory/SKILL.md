@@ -18,7 +18,14 @@ KG: SQLite at `.wabblespec/state/memory/knowledge_graph.sqlite3` (owned by Entit
 
 ## What this skill does
 
-Three operations: **Write** (create or update a drawer), **Read** (return content with staleness state), **Transition** (apply a staleness state change). All operations go through `get_collection()`. WabbleSpec adds staleness metadata fields, receipt writing, and Provenance notification on top.
+Three operations: **Write** (create or update a drawer), **Read** (return content with staleness state), **Transition** (apply a staleness state change). All operations go through `get_collection()`. For file-based drawer JSON writes to `wings/`, delegates to `drawer-writer.py`. WabbleSpec adds staleness metadata fields, receipt writing, and Provenance notification on top.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Writing a file-based drawer JSON to `state/memory/wings/` | `engine/shared/references/script-delegation-contract.md` → `drawer-writer.py` |
+| Provenance ledger and index update after write | Route to `modules/l5/provenance/SKILL.md` |
 
 ## When to use / when not to use
 

@@ -11,7 +11,14 @@ You run the plan. You do not write the plan and you do not implement the code �
 
 ## What this skill does
 
-Works through the wave plan from Decompose, wave by wave in order. Before each wave: saves a checkpoint, runs Guard. After implementation: invokes Verifier with the declared mode. Handles errors by type. Writes wave receipts and a final execution receipt. On module-build tasks, checks that tests/acceptance.md exists for the built module before writing the execution receipt. Signals Archive when complete.
+Works through the wave plan from Decompose, wave by wave in order. Before each wave: saves a checkpoint, runs Guard. After implementation: invokes Verifier with the declared mode. Handles errors by type. Delegates wave receipts and final execution receipt to `receipt-writer.py`. On module-build tasks, checks that tests/acceptance.md exists before writing the final receipt. Signals Archive when complete.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Wave receipt write (step 5 per wave) and execution receipt write | `engine/shared/references/script-delegation-contract.md` |
+| Running Guard, Verifier, or Archive as subagents (optional — reduces orchestrator context) | `engine/shared/references/agents-architecture.md` |
 
 ## When to use / when not to use
 
@@ -26,6 +33,17 @@ Works through the wave plan from Decompose, wave by wave in order. Before each w
 
 ## Inputs
 
+Load inputs in tier order to keep the KV-cache warm across waves:
+
+| Tier | Content |
+|---|---|
+| stable | Framework invariants, Guard policy — loaded once, never evicted |
+| context | Task card, wave plan, scope.md — loaded at session start, refreshed if updated |
+| volatile | Prior wave receipts, active evidence drawers — loaded per wave, cleared after |
+
+Full tier placement rules: `.wabblespec/engine/shared/references/system-prompt-tiers.md`.
+
+Canonical input paths:
 - `.wabblespec/state/plans/current-wave-plan.md` (locked wave plan)
 - `.wabblespec/state/plans/task-card.md` (spec ground truth)
 - `.wabblespec/scope.md`
@@ -71,7 +89,11 @@ The locked wave plan at `.wabblespec/state/plans/current-wave-plan.md` is the ro
 
 **2. Run Guard**
 
-Pass wave inputs to Guard. Wait for Guard receipt with `overall: "PASS"`. If Guard returns an error:
+**Option A — Inline (default):** Pass wave inputs to Guard. Wait for Guard receipt with `overall: "PASS"`.
+
+**Option B — Subagent (reduces orchestrator context):** Invoke the `wabblespec-guard` agent via the Agent tool with wave inputs as the prompt. Parse the returned JSON receipt with `agent-output-validator.py --type guard`. Write the validated JSON to the receipts directory.
+
+If Guard returns an error:
 - HARD → abort wave, do not proceed
 - SPEC_VIOLATION → surface to user, pause execution pending resolution
 - DEPENDENCY → surface upstream failure, pause and await resolution
@@ -102,7 +124,11 @@ If a deviation is discovered mid-wave:
 
 **4. Run Verifier**
 
-Invoke Verifier with: wave output artifacts + wave plan entry + task card. Verifier uses the `verification_mode` declared in the wave plan for this wave.
+**Option A — Inline (default):** Invoke Verifier with: wave output artifacts + wave plan entry + task card.
+
+**Option B — Subagent:** Invoke the `wabblespec-verifier` agent via the Agent tool. Parse returned JSON with `agent-output-validator.py --type verifier`. Write validated JSON to receipts directory.
+
+Verifier uses the `verification_mode` declared in the wave plan for this wave.
 
 Handle Verifier result:
 - PASS → write wave receipt, then append `"wave-<N>"` and the verification receipt stem to `required_receipts` in state.json, then advance to next wave
@@ -111,7 +137,19 @@ Handle Verifier result:
 
 **5. Write wave receipt**
 
-`.wabblespec/state/receipts/wave-<N>-receipt.json`. Required fields: all base receipt fields + wave number, verification mode used, revise cycles consumed, checkpoint path, deviations found.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type executor \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --wave <N> --wave-of <total> \
+  --modules-activated <layer/module> \
+  --files-written "<path1>" "<path2>" \
+  --delta-class ADDITIVE|COSMETIC|BREAKING \
+  --summary "<what this wave produced>" \
+  --out .wabblespec/state/receipts/wave-<N>-receipt.json
+```
 
 **5b. Write session checkpoint**
 
@@ -158,7 +196,18 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 
 ### Write final execution receipt
 
-`.wabblespec/state/receipts/execution-receipt.json`. Signal Archive to run.
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type executor \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --wave 0 --wave-of 0 \
+  --summary "All <N> waves complete" \
+  --out .wabblespec/state/receipts/execution-receipt.json
+```
+
+Signal Archive to run.
 
 ### Error routing
 
@@ -167,8 +216,20 @@ If `task_type` is anything other than `module-build`, skip this check entirely a
 | SOFT | Retry once. If retry fails, escalate to HARD. |
 | HARD | Halt wave. Human-confirmed rollback to prior checkpoint. |
 | DEPENDENCY | Pause. Surface upstream failure. Await resolution. |
-| CONTEXT_EXHAUSTION | Compress context. Resume from last saved checkpoint. |
+| CONTEXT_EXHAUSTION | Compress context using protected-bounds rules (see below). Resume from last saved checkpoint. |
 | SPEC_VIOLATION | Pause. Loop back to Specify or ScopeFrame depending on violation. ACCEPTANCE_NOT_COVERED routes to acceptance test authorship. |
+
+### CONTEXT_EXHAUSTION — compression protocol
+
+When CONTEXT_EXHAUSTION fires, compress the conversation before resuming. Protected-bounds invariant:
+
+1. **Protect head** — task card, invariants, wave plan, Guard receipts. Never summarize.
+2. **Summarize middle** — completed prior turns. Prefix the summary with the compression sentinel (exact text in `.wabblespec/engine/shared/references/context-compression-bounds.md`).
+3. **Protect tail** — last 3+ turns. Never summarize. The most recent wave receipt and active tool calls must remain verbatim.
+
+Compression does not produce a receipt and does not advance the wave plan. The receipt chain continues from the last wave receipt written before compression. Resume at the step that was in progress when CONTEXT_EXHAUSTION was emitted.
+
+Full invariant: `.wabblespec/engine/shared/references/context-compression-bounds.md`
 | STALENESS_VIOLATION | Quarantine the evidence. Surface for fresh fetch before continuing. |
 
 ## Output contract
@@ -182,7 +243,9 @@ Base receipt schema. Extension fields:
   "verification_mode_used": "string",
   "revise_cycles": "integer — 0 to 3",
   "checkpoint_path": ".wabblespec/state/checkpoints/wave-N-timestamp/",
-  "deviations_found": ["string — ADDITIVE/COSMETIC deviations if any"]
+  "deviations_found": ["string — ADDITIVE/COSMETIC deviations if any"],
+  "compression_occurred": "boolean — true if CONTEXT_EXHAUSTION fired and compression was applied during this wave; omit or false otherwise",
+  "compression_count": "integer — number of compression events in this wave; omit when compression_occurred is false"
 }
 ```
 

@@ -9,7 +9,13 @@ Specs change. Implementations drift. Your job is to detect both with precision. 
 
 ## What this skill does
 
-Receives two versions of a spec artifact (before and after). Classifies the change. Detects reverse drift. Identifies downstream consumers affected. Writes compatibility report. Triggered automatically by Archive when Archive detects BREAKING or ADDITIVE spec changes.
+Receives two versions of a spec artifact (before and after). Classifies the change via `semantic-differ.py`. Detects reverse drift via `reverse-drift-detector.py`. Identifies downstream consumers via `compatibility-checker.py`. Writes compatibility report. Triggered automatically by Archive when Archive detects BREAKING or ADDITIVE spec changes.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Semantic diff, reverse drift detection, consumer impact scripts | `engine/shared/references/script-delegation-contract.md` |
 
 ## When to use / when not to use
 

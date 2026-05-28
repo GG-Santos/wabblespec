@@ -1,0 +1,53 @@
+{
+  "module": "ref-eval",
+  "layer": "L2",
+  "tier": 2,
+  "activators": [
+    "/ref-eval command",
+    "evaluate this reference",
+    "analyze this codebase",
+    "should we use X as a reference",
+    "what can we steal from",
+    "is this worth looking at",
+    "pre-spec reference research"
+  ],
+  "anti_activators": [
+    "reference already evaluated this session and drawer is FRESH",
+    "goal is full migration (use Migrate)",
+    "goal is full integration (use Apply)"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Research"
+  ],
+  "stages": [
+    "P1"
+  ],
+  "runtime_lanes": [
+    "analysis",
+    "long-context"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/receipts/ref-eval-*.json",
+      ".wabblespec/state/memory/wings/references/**"
+    ],
+    "reads": [
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/scope.md",
+      ".wabblespec/state/memory/**"
+    ]
+  },
+  "verification_mode": "Audit",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "stage",
+  "commands": [
+    "/ref-eval"
+  ],
+  "file_path_patterns": []
+}

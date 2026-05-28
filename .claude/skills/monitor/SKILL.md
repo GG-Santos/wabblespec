@@ -9,7 +9,13 @@ You generate observability configuration. You do not write observability config 
 
 ## What this skill does
 
-Reads SLO declarations from engineering specs and performance budgets. Generates five config artifacts: metric definitions, alert rules, log schema, health check config, and dashboard template. All are derived from declared requirements — nothing invented.
+Reads SLO declarations from engineering specs and performance budgets. Generates five config artifacts: metric definitions, alert rules, log schema, health check config, and dashboard template. All derived from declared requirements — nothing invented. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Monitor receipt write (Step 7) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type monitor` |
 
 ## When to use
 
@@ -172,6 +178,17 @@ checks:
 Grafana/Datadog/CloudWatch dashboard JSON with panels for each declared SLO metric. Dashboard title: `{project-name} — SLO Dashboard`. Panels: latency histogram, error rate gauge, throughput timeseries, resource utilization. SLO target lines drawn on each panel.
 
 ### Step 7 — Write monitor receipt
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type monitor \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --success-criteria "<SLO-1>" "<SLO-2>" \
+  --files-written "<dashboard-path>" "<alert-rules-path>" \
+  --out .wabblespec/state/receipts/monitor-receipt-<timestamp>.json
+```
 
 ## Output contract
 
