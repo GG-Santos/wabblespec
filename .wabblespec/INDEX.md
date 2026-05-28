@@ -79,5 +79,5 @@ Reference authoring discipline, Specify decisions artifact, ReferenceLoad pointe
 ## Version
 
 <!-- auto-updated: index-update.py -->
-Current: 0.39.0
+Current: 0.40.0
 <!-- end auto-updated -->

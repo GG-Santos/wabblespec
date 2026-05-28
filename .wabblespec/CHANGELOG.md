@@ -1668,3 +1668,17 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-complete-delegation-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.40.0] — 2026-05-28T09:38:53Z
+
+### CLAUDE.md script documentation + ref skill routing updates
+
+### Changed
+- Updated CLAUDE.md to reflect v0.39.0: 100 modules, comprehensive key-scripts inventory, daemon background scripts, engine scripts section. Updated ref-comp/ref-eval/ref-plan skills.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase3-new-scripts-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
