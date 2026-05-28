@@ -56,13 +56,14 @@ rm -f "$P" "$B"'
 ### Wave 2: Build wabblespec-doctor.py
 
 **inputs:** [Wave 1 schemas, task-card.md AC1, .wabblespec/brainstorm/options-20260528T125658Z.md]
-**outputs:** [wabblespec-doctor.py implementing the exit-code contract; checks for C1-C4, H1-H10, M/L tier; a schema-validity check that validates recipe.json against recipe.schema.json and a generated wave-queue file against wave-queue.schema.json (covers config-schema half of AC2)]
-**checkpoint:** `--all --format json` exits 0 and enumerates ≥28 checks; baseline reports the SPECIFIC seeded critical findings (C1,C2,C3,C4) as FAIL — proving the checks detect real defects rather than passing vacuously.
+**outputs:** [wabblespec-doctor.py implementing the exit-code contract; checks for C1-C4, H1-H10, M/L tier; a schema-validity check that validates recipe.json against recipe.schema.json and a generated wave-queue file against wave-queue.schema.json (covers config-schema half of AC2); a `--self-test` mode that validates bundled good AND malformed fixtures (engine/shared/scripts/tests/fixtures/{good,bad}-{recipe,wave-queue}.json) for each schema, asserting good→PASS and bad→FAIL; the fixtures themselves (this is the doctor's own validator self-test, NOT the deferred 42-script harness H9)]
+**checkpoint:** `--all --format json` exits 0 and enumerates ≥28 checks; baseline reports the SPECIFIC seeded critical findings (C1,C2,C3,C4) as FAIL — proving the checks detect real defects rather than passing vacuously; AND `--self-test` exits 0, confirming each schema validator accepts the good fixture and rejects the malformed one (RV-A2: schema check is provably non-vacuous).
 **rollback_to:** Wave 1 checkpoint
 **verification_mode:** Test
 **verification_command:**
 ```bash
 bash -c 'set -e
+python .wabblespec/engine/shared/scripts/wabblespec-doctor.py --self-test
 python .wabblespec/engine/shared/scripts/wabblespec-doctor.py --all >/dev/null
 python .wabblespec/engine/shared/scripts/wabblespec-doctor.py --all --format json \
  | python -c "import sys,json; d=json.load(sys.stdin); ch=d[\"checks\"]; assert len(ch)>=28, len(ch); ids={c[\"id\"] for c in ch}; need={\"C1\",\"C2\",\"C3\",\"C4\",\"H1\",\"H2\",\"H3\",\"H4\",\"H5\",\"H6\",\"H7\",\"H8\",\"H10\"}; assert need<=ids, need-ids; crit={c[\"id\"]:c[\"status\"] for c in ch if c.get(\"severity\")==\"critical\"}; assert any(v!=\"PASS\" for v in crit.values()), \"baseline must detect critical findings\"; print(\"checks=%d named-present detects-critical=OK\"%len(ch))"'
@@ -86,7 +87,7 @@ python -c "import os,re,sys; ids=[m.group(1) for m in (re.match(r\"\s*-\s*id:\s*
 ! grep -q "\"_shared\", \"scripts\", \"wabble-sound.py\"" .wabblespec/engine/shared/scripts/archive.py
 grep -q "wabble-sound.py" .wabblespec/engine/shared/scripts/archive.py
 test -f .wabblespec/engine/shared/scripts/wabble-sound.py
-grep -qiE "current version.*0.45.0|0.45.0" CLAUDE.md && grep -qiE "103 (skill )?modules" CLAUDE.md && ! grep -qiE "current version.*0.39.0" CLAUDE.md'
+python -c "import re,sys; cm=open(\"CLAUDE.md\",encoding=\"utf-8\").read(); ver=open(\".wabblespec/VERSION\").read().strip(); m=re.search(r\"Current version[:*\s]*([0-9]+\.[0-9]+\.[0-9]+)\",cm); assert m and m.group(1)==ver, (m and m.group(1),ver); assert re.search(r\"103 (skill )?modules\",cm), \"103 modules\""'
 ```
 
 ---
@@ -146,6 +147,6 @@ echo "$OUT" | grep -Eq "(C|H|M|L)[0-9]+|FAIL|PASS|finding"'
 - **Accepted residual (disclosed, not hidden):** config-schema *conformance* of recipe.json and wave-queue files (the config half of AC2) is verified by the doctor's schema-validity check (Wave 2), which depends on the instrument. Mitigation: Wave 1 independently proves the schema files are well-formed, and Wave 2's baseline-detection requirement guards against a vacuous schema check. Full independent config-conformance would require a standalone JSON-Schema validator (jsonschema is not assumed installed) — out of scope for this task.
 - **AC1 resolved** via the documented exit-code contract: `--all` exits 0 on enumeration; pass/fail gating uses `--severity`. Remaining M/L findings never break a gate.
 - **Wave 5 rollback uses a git worktree** (edits Guard, invariant-enforcing; High + irreversible-category + git repo).
-- **Known residual minors (accepted at ESCALATE):** (A2) AC2's recipe/wave-queue/delivery *receipt* conformance is proven for recipe (a writable type) and an existing delivery receipt, but `wave-queue` is a config (not a receipt type) and is covered only by the doctor's schema check; (A5) CLAUDE.md version greps are scoped to the "current version" line to reduce brittleness but still string-based. These are verification-strength residuals, not architecture flaws; the live Verifier executes every command at wave-time, so a broken command fails its wave and triggers rollback.
-- **Reviewer gate:** HIGH-impact contract + Guard edit → Reviewer. Reached the 3-cycle REVISE limit (cycle 0/1/2 all REVISE, MAJOR count 6→2→2, all in verification-command micro-semantics). Per the Reviewer contract this forces ESCALATE: human judgment on whether the remaining verification residuals are acceptable before Executor starts.
+- **Post-escalation hardening (human-authorized 2026-05-28, beyond the 3-cycle limit):** RV-A2 closed — Wave 2 now requires a doctor `--self-test` proving each schema validator accepts a good fixture and rejects a malformed one, so the schema check (incl. wave-queue config conformance) is provably non-vacuous. RV-A5 closed — Wave 3 now parses the CLAUDE.md "Current version" line and asserts it equals the VERSION file (empirically confirmed to detect the live 0.39.0↔0.45.0 drift), replacing the brittle whole-file grep. RV-TOOL (no reviewer/propose builder) remains folded into Wave 1's builder-closure scope.
+- **Reviewer gate:** HIGH-impact contract + Guard edit → Reviewer. Reached the 3-cycle REVISE limit (cycle 0/1/2 all REVISE, MAJOR count 6→2→2, all in verification-command micro-semantics) → ESCALATE. Human directed one final residual-hardening pass (above); plan is now cleared to proceed to Executor.
 - **Advisory-first:** doctor Guard layer ships non-blocking; promotion to blocking is out of scope.
