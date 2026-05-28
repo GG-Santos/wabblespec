@@ -1,34 +1,34 @@
 # Session Scope
 
-**target:** Framework
-**complexity:** Medium
-**locked_at:** 2026-05-26T00:00:00Z
-**session_id:** wave-checkpoint-v1
+**target:** Library-Package
+**complexity:** Low
+**locked_at:** 2026-05-28T03:49:55Z
+**session_id:** phase1-root-cleanup-20260528
 
 ## In Scope
 
-- `_shared/schemas/wave-checkpoint.schema.json` — new JSON schema for checkpoint files
-- `modules/l2/executor/SKILL.md` — add checkpoint write step after each wave completes
-- `modules/l2/executor/skill-rules.json` — add `.wabblespec/session/checkpoints/*` to `authority.owns`; add `wave-checkpoint.schema.json` to `produces_schemas`
-- `modules/l2/executor/tests/acceptance.md` — add acceptance criteria for checkpoint write
-- `modules/l2/guard/SKILL.md` — add checkpoint detection to Layer 1 schema check
-- `modules/l2/guard/tests/acceptance.md` — update for checkpoint detection
-- `modules/l0/recipe/SKILL.md` — surface checkpoint state in cold-start output
-- `framework.yaml` — update executor `produces_schemas`, `authority.owns`; add schema to shared.schemas
+- Delete `scope.md` from `.wabblespec/` root (canonical path is `.wabblespec/state/scope.md`; root copy is stale duplication)
+- Delete `recipe.json` from `.wabblespec/` root (canonical path is `.wabblespec/state/recipe.json`; root copy is stale duplication)
+- Move `options-framework-script-delegation-20260528T110016Z.md` from `.wabblespec/` root to `.wabblespec/state/working/`
+- Move `brainstorm/` directory from `.wabblespec/` root to `.wabblespec/state/brainstorm/`
+- Move `enhance/` directory from `.wabblespec/` root to `.wabblespec/state/enhance/`
+- Delete stale T3 checkpoint files from `.wabblespec/state/session/checkpoints/` (T3 archived — checkpoints are orphaned)
+- Add canonical path declarations to `CLAUDE.md` under framework state paths section
 
 ## Out of Scope
 
-- Automatic wave re-execution from checkpoint (separate spec)
-- Cross-session checkpoint transfer
-- Checkpoint expiry or cleanup policy (follow-on)
-- Executor `skill-rules.json` changes beyond `authority.owns` and `produces_schemas`
+- Updating any SKILL.md files to reference new canonical paths (Phase 2 work)
+- Updating any script path resolution logic (Phase 2 work)
+- Moving or renaming anything inside `state/` or `engine/` subdirectories
+- `brainstorm-receipt` and `propose-receipt` in `state/receipts/` — correctly placed, not moving
 
 ## Assumptions
 
-- Checkpoint files are written only when a wave completes successfully; failed waves produce no checkpoint
-- Checkpoint detection in Guard is informational — Guard surfaces the last wave to the human but does not auto-resume
-- The checkpoint schema is a new shared artifact consumed by Executor (writes) and Guard (reads)
-- Recipe cold-start detection is read-only; it surfaces checkpoint state without modifying session behavior
+- No skill or script reads `.wabblespec/scope.md` (root) or `.wabblespec/recipe.json` (root) at runtime in a way that breaks if absent — root files are stale session artifacts
+- `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` already exist and are up to date
+- `enhance/enhanced-*.md` files have no downstream consumers — working artifacts from brainstorm session
+- T3 checkpoint files are safe to delete — `delivery-receipt-toprank-integration-phase2-T3.json` exists with `status: PASS`
+- No project-standard drawers discovered — none cited
 
 ## Scope Change Log
 

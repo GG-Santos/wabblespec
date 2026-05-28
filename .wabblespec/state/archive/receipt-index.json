@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T03:42:21Z",
+  "last_updated": "2026-05-28T03:56:00Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -634,6 +634,20 @@
       "waves_planned": 2,
       "not_tested_items": 0,
       "summary": "Extended Instinct output contract with three judgment lever fields (Expected impact, Actionability score, Learned multiplier). Updated all 4 existing patterns in instinct-observations.md with null defaults and requires_scoring: true. Guard/decompose/execution receipts carry T2 session annotation from prior linked task; wave and verification receipts are T3-native."
+    },
+    {
+      "task_id": "phase1-root-cleanup-20260528",
+      "session_id": "phase1-root-cleanup-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T03:56:00Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-phase1-root-cleanup-20260528.json",
+      "version_previous": "0.27.0",
+      "version_new": "0.27.1",
+      "version_bump_reason": "COSMETIC",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 0,
+      "summary": "Phase 1 root cleanup: relocated stray session artifacts (brainstorm/, enhance/, options-*.md) to state/ subdirectories, deleted stale scope.md and orphaned T3 checkpoints, updated CLAUDE.md with canonical path declarations for state/scope.md and state/recipe.json."
     }
   ]
 }

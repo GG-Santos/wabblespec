@@ -1509,3 +1509,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-toprank-integration-phase2-T3.json
 - waves: 2 completed
 - verification: all waves PASS
+
+---
+
+## [0.27.1] — 2026-05-28T03:56:00Z
+
+### Changed
+- Phase 1 root cleanup: relocated stray session artifacts (brainstorm/, enhance/, options-*.md) to state/ subdirectories, deleted stale scope.md and orphaned T3 checkpoints, updated CLAUDE.md with canonical path declarations for state/scope.md and state/recipe.json.
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase1-root-cleanup-20260528.json
+- waves: 1 completed
+- verification: all waves PASS

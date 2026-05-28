@@ -1,88 +1,49 @@
-# Task Card: toprank-integration-phase2-T3
+# Task Card
 
-**Session ID:** toprank-integration-phase2-T3
-**Created:** 2026-05-28
-**Delta class:** ADDITIVE
-**Complexity:** Medium
-**Status:** LOCKED
-**Task type:** framework-authoring
-
----
-
-## Goal
-
-The Instinct output contract and all 4 existing instinct observation patterns are extended with three judgment lever fields (`Expected impact`, `Actionability score`, `Learned multiplier`), each with a documented value vocabulary and null defaults, leaving all existing fields and Synth gate logic unchanged.
-
----
+**goal:** The `.wabblespec/` root contains only VERSION, CHANGELOG.md, INDEX.md, wabblespec.yaml, state/, and engine/, with all stray session artifacts relocated to canonical paths under `state/` and CLAUDE.md updated to declare the canonical locations for scope and recipe state files.
+**target:** Library-Package
+**complexity:** Low
+**change_class:** COSMETIC
+**locked_at:** 2026-05-28T03:50:30Z
+**session_id:** phase1-root-cleanup-20260528
 
 ## Non-Goals
 
-- Retroactive scoring of existing patterns (null defaults only; no human scoring applied in this task)
-- Modifying Synth SKILL.md or any Synth-side gate logic
-- Updating memory-mine.py or any Instinct automation to emit the new fields (separate task)
-- Touching any existing field (Human-validated, Confidence, Type, Evidence, Occurrences)
-- Guard SKILL.md, T5 (allowed-tools enforcement), T6 (Guard safety taxonomy)
-
----
+- Updating any SKILL.md files to reference new canonical paths (Phase 2 work)
+- Updating any script path resolution logic (Phase 2 work)
+- Moving or renaming anything inside `state/` or `engine/` subdirectories
+- `brainstorm-receipt` and `propose-receipt` in `state/receipts/` — correctly placed, not moving
 
 ## Assumptions
 
-- Synth SKILL.md audit (completed during ScopeFrame): only hardcoded field reference is `Human-validated` — adding three new fields is safe
-- instinct-observations.md contains exactly 4 patterns — confirmed
-- No active Instinct run is concurrently writing to instinct-observations.md
-- `requires_scoring: true` is a documentation convention, not a machine-enforced field
-- This is a framework authoring task — writes to `.wabblespec/state/memory/` and `.claude/skills/instinct/` are permitted (I11 product-space restriction does not apply)
-- VERSION bump to 0.27.0 on Archive (ADDITIVE)
-
----
+- No skill or script reads `.wabblespec/scope.md` (root) or `.wabblespec/recipe.json` (root) at runtime in a way that breaks if absent — root files are stale session artifacts
+- `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` already exist and are up to date
+- `enhance/enhanced-*.md` files have no downstream consumers — working artifacts from brainstorm session
+- T3 checkpoint files are safe to delete — `delivery-receipt-toprank-integration-phase2-T3.json` exists with `status: PASS`
+- No project-standard drawers discovered — none cited
 
 ## Acceptance Criteria
 
-### AC1 — Pattern block contains three new fields
+### AC1 — Root contains only canonical items
 
-Given the Instinct SKILL.md `## Output contract` section,
-When this task completes,
-Then the pattern block contains all three new fields with their full value vocabularies:
-  `Expected impact: null | low | medium | high`
-  `Actionability score: null | specific-lever | investigation | vague`
-  `Learned multiplier: null | single-corpus | cross-corpus`
+Given the `.wabblespec/` root directory,
+When cleanup completes,
+Then the root contains no items other than: `VERSION`, `CHANGELOG.md`, `INDEX.md`, `wabblespec.yaml`, `state/`, `engine/` — specifically `scope.md`, `brainstorm/`, `enhance/`, and `options-framework-script-delegation-20260528T110016Z.md` SHALL NOT be present.
 
-### AC2 — Human-reviewer note present
+### AC2 — Moved artifacts exist at new paths
 
-Given the Instinct SKILL.md `## Output contract` section,
-When this task completes,
-Then a note exists stating that `Expected impact` is populated by the human reviewer at validation time, not by automated scoring.
+Given the stray items previously at `.wabblespec/` root,
+When cleanup completes,
+Then `options-framework-script-delegation-20260528T110016Z.md` exists at `.wabblespec/state/working/options-framework-script-delegation-20260528T110016Z.md`, brainstorm output files exist under `.wabblespec/state/brainstorm/`, and enhanced working files exist under `.wabblespec/state/enhance/`.
 
-### AC3 — All 4 patterns updated with null defaults
+### AC3 — Orphaned checkpoints cleared
 
-Given `instinct-observations.md` containing 4 existing patterns,
-When this task completes,
-Then each pattern contains all three new fields set to `null`.
-Then each pattern contains `requires_scoring: true` for the new fields.
+Given `.wabblespec/state/session/checkpoints/` containing `checkpoint-wave-1.json` and `checkpoint-wave-2.json` from the archived T3 session,
+When cleanup completes,
+Then neither file exists in that directory.
 
-### AC4 — No existing fields removed or modified
+### AC4 — CLAUDE.md declares canonical paths
 
-Given `instinct-observations.md` containing 4 existing patterns,
-When this task completes,
-Then every existing field (`Type`, `Confidence`, `Evidence`, `Occurrences`, `Human-validated`) is still present on each pattern with its original value unchanged.
-
-### AC5 — Synth gate unaffected (failure path)
-
-Given Synth SKILL.md reads only `Human-validated: true` as its gate condition,
-When this task completes,
-Then no modification has been made to Synth SKILL.md, any Synth script, or any Synth-side gate logic.
-
-### AC6 — No model names introduced (I6)
-
-Given the Instinct SKILL.md and instinct-observations.md,
-When this task completes,
-Then neither file contains any string matching `claude-`, `gpt-`, `gemini-`, or any versioned model identifier.
-
----
-
-## Files to be Written / Modified
-
-| File | Operation |
-|---|---|
-| `.claude/skills/instinct/SKILL.md` | MODIFY — extend output contract pattern block |
-| `.wabblespec/state/memory/instinct-observations.md` | MODIFY — add three null fields to 4 patterns |
+Given the `CLAUDE.md` "Framework State" section listing key paths,
+When cleanup completes,
+Then CLAUDE.md contains a note stating that `.wabblespec/state/scope.md` and `.wabblespec/state/recipe.json` are the canonical session state paths (not the root-level copies).
