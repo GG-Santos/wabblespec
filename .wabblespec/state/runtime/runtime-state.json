@@ -1,15 +1,40 @@
 {
-  "probed_at": "2026-05-23T00:00:00Z",
+  "probed_at": "2026-05-28T23:48:48Z",
   "capabilities": {
-    "code-generation":      { "available": true,  "confidence": 0.95 },
-    "analysis":             { "available": true,  "confidence": 0.95 },
-    "synthesis":            { "available": true,  "confidence": 0.90 },
-    "instruction-following":{ "available": true,  "confidence": 0.95 },
-    "reasoning":            { "available": true,  "confidence": 0.90 },
-    "tool-use":             { "available": true,  "confidence": 0.99 },
-    "vision":               { "available": false, "confidence": 0.80 },
-    "embedding":            { "available": false, "confidence": 0.90 }
+    "code-generation": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "analysis": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "synthesis": {
+      "available": true,
+      "confidence": 0.9
+    },
+    "instruction-following": {
+      "available": true,
+      "confidence": 0.95
+    },
+    "reasoning": {
+      "available": true,
+      "confidence": 0.9
+    },
+    "tool-use": {
+      "available": true,
+      "confidence": 0.99
+    },
+    "vision": {
+      "available": true,
+      "confidence": 0.9
+    },
+    "embedding": {
+      "available": false,
+      "confidence": 0.9
+    }
   },
   "overrides_applied": false,
-  "override_source": null
+  "override_source": null,
+  "reprobe_note": "Refreshed during foundation hardening; runtime unchanged; vision corrected to available (image-capable runtime)."
 }

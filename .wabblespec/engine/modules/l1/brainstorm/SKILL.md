@@ -64,7 +64,7 @@ This is the only evaluation step in Brainstorm. Do not score, compare, or argue 
 
 ### Step 4 — Write receipt
 
-Write top options to `.wabblespec/brainstorm/options-<timestamp>.md`. Then write receipt:
+Write top options to `.wabblespec/state/brainstorm/options-<timestamp>.md`. Then write receipt:
 
 ```bash
 python .wabblespec/engine/shared/scripts/receipt-writer.py \
@@ -90,7 +90,7 @@ Base receipt schema extended with fields per `schemas/brainstorm-receipt.schema.
   "convergence_trigger": "volume_cap | diminishing_returns | user_signal | time_budget",
   "options": ["array of option summary strings — one per option in top set"],
   "evaluation_deferred": "boolean — must be true; false = invariant violation",
-  "top_options_path": ".wabblespec/brainstorm/options-<timestamp>.md"
+  "top_options_path": ".wabblespec/state/brainstorm/options-<timestamp>.md"
 }
 ```
 

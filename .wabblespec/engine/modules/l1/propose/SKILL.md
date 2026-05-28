@@ -39,14 +39,14 @@ Generate no more than 4 options. More options increase decision paralysis withou
 5. Generate 2-4 distinct, implementable options
 6. For each option: assess tradeoffs across 5 dimensions (Complexity, Time, Risk, Reversibility, Fits scope)
 7. Select recommendation — most aligned with scope + target + constraints
-8. Write options document to `.wabblespec/`
+8. Write options document to `.wabblespec/state/`
 9. Present to user or route to Reviewer if impact = HIGH
 10. Record selected option in receipt
 11. Pass selected option to Specify
 
 ## Option document format
 
-Write to `.wabblespec/options-<stage>-<timestamp>.md`:
+Write to `.wabblespec/state/options-<stage>-<timestamp>.md`:
 
 ```markdown
 # Options: <decision point>
