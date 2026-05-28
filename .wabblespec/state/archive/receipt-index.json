@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T17:28:19Z",
+  "last_updated": "2026-05-28T23:00:18Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -143,7 +143,7 @@
       "version_previous": "0.4.2",
       "version_new": "0.4.3",
       "version_bump_reason": "ADDITIVE",
-      "summary": "L8 acceptance tests expanded: retro, feedback, factory — L8 corpus gate added; Integration Phase 5-6 gate CLEARED (10/10 runs)"
+      "summary": "L8 acceptance tests expanded: retro, feedback, factory \u2014 L8 corpus gate added; Integration Phase 5-6 gate CLEARED (10/10 runs)"
     },
     {
       "task_id": "seed-run-20260524k",
@@ -544,7 +544,7 @@
       "waves_completed": 1,
       "waves_planned": 1,
       "not_tested_items": 0,
-      "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted — pre-wave directory checkpoint eliminated"
+      "summary": "Forge: executor-pre-wave-checkpoint-elimination-v1 promoted \u2014 pre-wave directory checkpoint eliminated"
     },
     {
       "task_id": "toprank-integration-phase1",
@@ -571,7 +571,7 @@
         "T5 allowed-tools: frontmatter (Phase 3)"
       ],
       "last_updated": "2026-05-28T10:52:00Z",
-      "summary": "toprank-main Phase 1: ~~capability-name convention in CLAUDE.md; Reference Routing section in executor SKILL.md (3 entries, −15 lines)"
+      "summary": "toprank-main Phase 1: ~~capability-name convention in CLAUDE.md; Reference Routing section in executor SKILL.md (3 entries, \u221215 lines)"
     },
     {
       "task_id": "toprank-integration-phase2-T2",
@@ -860,6 +860,20 @@
       "waves_planned": 1,
       "not_tested_items": 0,
       "summary": "Added --waves-file PATH to wave-plan-writer.py to accept wave definitions from a JSON file, bypassing shell quoting issues with complex verification_command strings."
+    },
+    {
+      "task_id": "foundation-hardening-20260528",
+      "session_id": "foundation-hardening-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T23:00:18Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-foundation-hardening-20260528.json",
+      "version_previous": "0.45.0",
+      "version_new": "0.46.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 6,
+      "waves_planned": 6,
+      "not_tested_items": 26,
+      "summary": "Foundation hardening complete: framework-maintenance authority module (Wave 1), 3 schema files (Wave 2), wabblespec-doctor.py 30-check drift detector + fixtures (Wave 3), C4/H10 fixes (Wave 4), H3/M7 fixes + 30/30 doctor green (Wave 5), advisory doctor gate wired (Wave 6)"
     }
   ],
   "change_log": [

@@ -1752,3 +1752,43 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-wave-plan-writer-fix-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.46.0] — 2026-05-28T23:00:18Z
+
+### Changed
+- Foundation hardening complete: framework-maintenance authority module (Wave 1), 3 schema files (Wave 2), wabblespec-doctor.py 30-check drift detector + fixtures (Wave 3), C4/H10 fixes (Wave 4), H3/M7 fixes + 30/30 doctor green (Wave 5), advisory doctor gate wired (Wave 6)
+
+### Not Tested
+- Code quality / plan robustness (Stage B) - not run; Stage A returned blocking MAJOR gaps
+- Stage B (plan robustness) - skipped; Stage A returned MAJOR
+- Stage B (quality/robustness) - skipped; Stage A returned 5 MAJOR
+- Stage B - skipped; Stage A returned 5 MAJOR
+- Stage B - skipped; Stage A returned 7 MAJOR
+- Waves 2-6
+- Waves 3-6
+- Waves 4-6
+- Waves 5-6
+- Wave 6
+- doctor blocking promotion (deferred non-goal)
+- Wave 1 implementation - not started; Guard blocked at Layer 4
+- Layer 4 skipped for skill-rules.json write only (attestation-gated bootstrap); all other steps ran Guard normally
+- None
+- Stage B (code/plan quality) - never reached; Stage A returned MAJOR in every cycle until final fixes
+- Final post-fix adversary pass - not run; 3-cycle limit reached, escalated to human per contract
+- Fresh adversary pass on the post-hardening plan - intentionally not run; human exited the review loop at ESCALATE and authorized proceeding. The live Verifier validates every command at wave-time.
+- Stage B (plan robustness/quality) — never reached; every cycle returned MAJOR at Stage A
+- Cycle 3 (post-cycle-2 fixes) — not attempted; 3-cycle hard limit reached
+- Stage B - skipped; Stage A returned CRITICAL + 4 HIGH
+- Cycles 1-2 - intentionally skipped; cross-cycle pattern is sufficient evidence for early escalation
+- scope-writer.py does not emit a receipt and receipt-writer.py has no 'scopeframe' builder; this receipt was authored directly against the base schema (sibling of RV-TOOL — fold into Wave 1 builder closure)
+- Waves 2-6 guard checks
+- M7 runtime-state.json (medium severity; Wave 5 scope)
+- Wave 6 (daemon wiring)
+- doctor blocking promotion (advisory-first per non-goal)
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-foundation-hardening-20260528.json
+- waves: 6 completed
+- verification: all waves PASS
