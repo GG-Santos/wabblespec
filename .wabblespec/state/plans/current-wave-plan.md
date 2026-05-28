@@ -33,20 +33,118 @@
 **inputs:** [task-card.md AC8, scope.md finding #29 + bootstrap assumption, wabblespec.yaml, .wabblespec/engine/modules/, guard-wave-1-receipt-foundation-hardening-20260528.json (the block that triggered the rescope)]
 **outputs:**
 - `.wabblespec/engine/modules/l2/framework-maintenance/SKILL.md` — minimal SKILL.md (purpose: own shared framework infrastructure paths for framework self-build tasks)
-- `.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json` with `authority.owns` covering the shared-infra paths the remaining waves must write: `.wabblespec/engine/shared/**`, `.wabblespec/engine/hooks/**`, `.wabblespec/engine/scripts/**`, `.wabblespec/engine/modules/l2/guard/**`, `.wabblespec/engine/modules/l2/framework-maintenance/**`, `.wabblespec/wabblespec.yaml`, `CLAUDE.md`, `.claude/skills/**`, `.wabblespec/state/daemons/daemon-config.json`, `.wabblespec/state/archive/receipt-index.json`, `.wabblespec/state/memory/entity-graph.json`
-- `wabblespec.yaml` registration entry for the new module
-- `.wabblespec/state/attestations/framework-maintenance-authority-bootstrap-<timestamp>.json` — the human Attestation record (signed sign-off, recorded reason, scope of grant)
-**checkpoint:** Attestation record exists and is well-formed; framework-maintenance SKILL.md and skill-rules.json exist; skill-rules.json parses and contains every required owns glob from the outputs list; `wabblespec.yaml` lists the new module; and `guard-check.py authority --module framework-maintenance` returns PASS for a representative file from each subsequent wave's outputs (receipt-writer.py, the planned doctor path, receipt-index.json, archive.py, CLAUDE.md, daemon-config.json, the Guard module SKILL.md).
-**rollback_to:** null
+- `.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json` with `authority.owns` covering ALL shared-infra paths the remaining waves must write: `.wabblespec/engine/shared/**`, `.wabblespec/engine/hooks/**`, `.wabblespec/engine/scripts/**`, `.wabblespec/engine/modules/l2/guard/**`, `.wabblespec/engine/modules/l2/framework-maintenance/**`, `.wabblespec/wabblespec.yaml`, `CLAUDE.md`, `.claude/skills/**`, `.wabblespec/state/daemons/daemon-config.json`, `.wabblespec/state/archive/receipt-index.json`, `.wabblespec/state/memory/**` (broader than entity-graph alone — covers Wave 5 regen of gap-map/staleness-map/closet-index/entity-graph), `.wabblespec/state/attestations/**` (gives the attestation artifact class an owner going forward)
+- `.wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py` — small helper script (~10 lines) that the operator runs to compute the canonical `content_hash` before authoring an attestation. Written as part of Wave 1 (owned by framework-maintenance/**). The canonical recipe is also embedded inline below so the operator can compute the hash BEFORE Wave 1 has run.
+- `wabblespec.yaml` structural registration entry for `framework-maintenance` — a full module record with `id: framework-maintenance`, `layer: L2`, `path:`, `build_status:`, not a stray string mention
+- `.wabblespec/state/attestations/framework-maintenance-authority-bootstrap-<timestamp>.json` — human Attestation record with required schema: `attestation_id` (str), `attested_by` (str), `attested_at` (ISO 8601 UTC), `reason` (str), `scope` (object: `module="framework-maintenance"`, `wave=1`, `task_id`), `granted_paths` (array of file/dir paths/globs this attestation authorizes Wave 1 to write — MUST be a subset of the closed whitelist below), `one_time_use` (bool, MUST be `true`), `content_hash` (sha256 hex per the canonical recipe — binds the attestation to the exact files attested), optional `signature` (str). The file MUST PRE-EXIST before `/executor` starts (it is NOT a Wave 1 output).
+- After Wave 1 completes successfully, Executor moves the attestation from `.wabblespec/state/attestations/framework-maintenance-authority-bootstrap-<timestamp>.json` to `.wabblespec/state/attestations/consumed/<attestation_id>/<original-filename>` (consume-by-move: prevents replay).
+
+**Bootstrap mechanism (resolves the chicken-and-egg) — engineered for invariant-grade enforcement:**
+
+**Hard preconditions** (before `/executor` may start Wave 1):
+- The Attestation file MUST exist at `.wabblespec/state/attestations/framework-maintenance-authority-bootstrap-*.json` — EXACTLY ONE such file. Executor rejects Wave 1 at entry if absent or if multiple exist.
+- The Attestation's `attestation_id` MUST NOT already appear as a subdirectory under `.wabblespec/state/attestations/consumed/` (replay prevention via filesystem semantics — no receipt-writer dependency).
+- The Attestation's `granted_paths` MUST be a subset of the closed whitelist (no prefix-bounds; explicit allowlist). The whitelist for the bootstrap is exactly:
+  ```
+  .wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json
+  .wabblespec/engine/modules/l2/framework-maintenance/SKILL.md
+  .wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py
+  .wabblespec/engine/modules/l2/framework-maintenance/**
+  .wabblespec/wabblespec.yaml
+  ```
+- The Attestation's `granted_paths` MUST include at minimum: skill-rules.json, SKILL.md, wabblespec.yaml (the irreducible step-1+2+3 set).
+
+**Fixed write order** (narrows the Layer-4 skip to ONE file):
+1. **Write `.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json` first** — the ONLY write that requires an Attestation skip of Guard Layer 4 (no module currently owns this path; once it lands, `--module framework-maintenance` resolves and owns everything else).
+2. Write `SKILL.md` and `scripts/attestation-hash.py` — owned by `.wabblespec/engine/modules/l2/framework-maintenance/**` from step 1.
+3. Edit `wabblespec.yaml` registration entry — owned by `.wabblespec/wabblespec.yaml` from step 1.
+4. Run the verification command below (all four sub-checks must pass).
+5. **Consume-by-move:** Executor moves the attestation file from `state/attestations/<filename>` to `state/attestations/consumed/<attestation_id>/<filename>`. This is a filesystem-level consume: replay protection on any future wave is `os.path.isdir('.wabblespec/state/attestations/consumed/<id>')`. No receipt-writer field is required.
+
+Guard Layer 4 is SKIPPED for the SINGLE write in step 1 only; steps 2-5 and all subsequent waves run Guard normally under `--module framework-maintenance`.
+
+**Attestation authoring recipe (the operator runs this BEFORE `/executor`):**
+```bash
+# 1. Author the framework-maintenance module files first (SKILL.md + skill-rules.json) in the worktree.
+# 2. Compute the canonical content_hash:
+python -c "
+import hashlib
+skill = open('.wabblespec/engine/modules/l2/framework-maintenance/SKILL.md','rb').read()
+rules = open('.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json','rb').read()
+print(hashlib.sha256(skill + b'\x00---attestation-separator---\x00' + rules).hexdigest())
+"
+# 3. Author the attestation JSON at .wabblespec/state/attestations/framework-maintenance-authority-bootstrap-<ISO-timestamp>.json
+#    with all required fields and content_hash = (the hex printed above).
+# 4. Now run /executor — Wave 1 will validate the attestation against the on-disk files.
+# After Wave 1 succeeds, .wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py
+# becomes the permanent helper for any future attestation of this module.
+```
+
+**Acknowledged residual (documented, narrow):** `guard-check.py` still has no `--attestation` flag, so the step-1 skip remains an Executor process control rather than a Guard-enforced behavior. The verification command runs AFTER step 1 completes and proves the resulting authority is correct (a posteriori safety net). The Attestation `content_hash` binds SKILL.md + skill-rules.json bytes but does NOT bind the wabblespec.yaml edit; the operator is trusted to register only the attested module. These two residuals are accepted under the trusted-operator model (the operator IS the human attestor — same trust boundary).
+
+**checkpoint:** Attestation record validates against the full schema (all 8 required fields present, correct types, `one_time_use=true`, `scope.module="framework-maintenance"`, `content_hash` equals sha256 of on-disk SKILL.md+skill-rules.json); SKILL.md and skill-rules.json exist; `authority.owns` contains every glob in the outputs list; `wabblespec.yaml` contains a structurally-parsed module entry with `id=framework-maintenance`, `layer=L2`, and `build_status` present; `guard-check.py authority --module framework-maintenance` returns PASS for representative files spanning every subsequent wave's outputs (receipt-writer.py, doctor.py, receipt-index.json, archive.py, CLAUDE.md, daemon-config.json, Guard SKILL.md, entity-graph.json, gap-map.md, a platform skill dir).
+**rollback_to:** null (Wave 1 runs in a git worktree; on failure run `git worktree remove <path> --force` and `rm -f .wabblespec/state/attestations/framework-maintenance-authority-bootstrap-*.json` to clear partial state before re-attestation)
 **verification_mode:** Attestation
-**verification_command:**
+**verification_command:** (runs inside the Wave 1 worktree before merge)
 ```bash
 bash -c 'set -e
-ATT=$(ls .wabblespec/state/attestations/framework-maintenance-authority-bootstrap-*.json 2>/dev/null | head -1)
-test -n "$ATT" && python -c "import json,sys; d=json.load(open(\"$ATT\")); assert d.get(\"attested_by\") and d.get(\"reason\") and d.get(\"scope\"), \"attestation incomplete\""
-test -f .wabblespec/engine/modules/l2/framework-maintenance/SKILL.md
-python -c "import json; d=json.load(open(\".wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json\")); owns=d[\"authority\"][\"owns\"]; need=[\".wabblespec/engine/shared/**\",\".wabblespec/engine/hooks/**\",\".wabblespec/engine/modules/l2/guard/**\",\".wabblespec/wabblespec.yaml\",\"CLAUDE.md\",\".claude/skills/**\",\".wabblespec/state/daemons/daemon-config.json\",\".wabblespec/engine/modules/l2/framework-maintenance/**\"]; miss=[g for g in need if g not in owns]; assert not miss, miss"
-grep -q "framework-maintenance" .wabblespec/wabblespec.yaml
+python -c "
+import json, hashlib, glob, os, sys
+# 1) Exactly one attestation file present
+atts = sorted(glob.glob(\".wabblespec/state/attestations/framework-maintenance-authority-bootstrap-*.json\"))
+assert len(atts) == 1, ('expected exactly one attestation, got', atts)
+d = json.load(open(atts[0], encoding=\"utf-8\"))
+# 2) All required fields present and non-empty (or correctly typed)
+req = [\"attestation_id\",\"attested_by\",\"attested_at\",\"reason\",\"scope\",\"granted_paths\",\"one_time_use\",\"content_hash\"]
+miss = [f for f in req if f not in d or d[f] in (None, '', [])]
+assert not miss, ('missing/empty fields', miss)
+assert isinstance(d[\"granted_paths\"], list) and d[\"granted_paths\"], 'granted_paths empty'
+assert d[\"one_time_use\"] is True, 'one_time_use must be True'
+assert isinstance(d[\"scope\"], dict) and d[\"scope\"].get(\"module\") == \"framework-maintenance\"
+# 3) Replay protection via filesystem (consume-by-move): attestation_id must not exist in consumed/
+consumed = os.path.join('.wabblespec/state/attestations/consumed', d['attestation_id'])
+assert not os.path.isdir(consumed), ('attestation_id already consumed at', consumed)
+# 4) granted_paths must be a SUBSET of the closed whitelist (no prefix-bound bypass)
+WHITELIST = {
+    '.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json',
+    '.wabblespec/engine/modules/l2/framework-maintenance/SKILL.md',
+    '.wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py',
+    '.wabblespec/engine/modules/l2/framework-maintenance/**',
+    '.wabblespec/wabblespec.yaml',
+}
+extra = [g for g in d['granted_paths'] if g not in WHITELIST]
+assert not extra, ('granted_paths contains entries outside the closed whitelist', extra)
+# 5) granted_paths must cover the irreducible step-1+2+3 set
+REQUIRED_IN_GRANT = {
+    '.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json',
+    '.wabblespec/engine/modules/l2/framework-maintenance/SKILL.md',
+    '.wabblespec/wabblespec.yaml',
+}
+miss_grant = [p for p in REQUIRED_IN_GRANT if p not in d['granted_paths']]
+assert not miss_grant, ('granted_paths missing required entries', miss_grant)
+# 6) content_hash binds SKILL.md + skill-rules.json bytes (canonical separator)
+skill = open(\".wabblespec/engine/modules/l2/framework-maintenance/SKILL.md\",\"rb\").read()
+rules = open(\".wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json\",\"rb\").read()
+got = hashlib.sha256(skill + b'\\x00---attestation-separator---\\x00' + rules).hexdigest()
+assert got == d[\"content_hash\"], ('content_hash mismatch', got, d['content_hash'])
+"
+python -c "
+import json
+d = json.load(open(\".wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json\"))
+owns = d[\"authority\"][\"owns\"]
+need = [\".wabblespec/engine/shared/**\",\".wabblespec/engine/hooks/**\",\".wabblespec/engine/scripts/**\",\".wabblespec/engine/modules/l2/guard/**\",\".wabblespec/engine/modules/l2/framework-maintenance/**\",\".wabblespec/wabblespec.yaml\",\"CLAUDE.md\",\".claude/skills/**\",\".wabblespec/state/daemons/daemon-config.json\",\".wabblespec/state/archive/receipt-index.json\",\".wabblespec/state/memory/**\",\".wabblespec/state/attestations/**\"]
+miss = [g for g in need if g not in owns]
+assert not miss, miss
+"
+python -c "
+import yaml
+reg = yaml.safe_load(open(\".wabblespec/wabblespec.yaml\", encoding=\"utf-8\"))
+mods = reg.get(\"modules\", reg) if isinstance(reg, dict) else reg
+entry = next((m for m in mods if isinstance(m, dict) and m.get(\"id\") == \"framework-maintenance\"), None)
+assert entry is not None
+assert entry.get(\"layer\") == \"L2\"
+assert entry.get(\"build_status\")
+"
 python .wabblespec/engine/shared/scripts/guard-check.py authority \
   --module framework-maintenance \
   --files ".wabblespec/engine/shared/scripts/receipt-writer.py" \
@@ -55,7 +153,11 @@ python .wabblespec/engine/shared/scripts/guard-check.py authority \
           ".wabblespec/engine/shared/scripts/archive.py" \
           "CLAUDE.md" \
           ".wabblespec/state/daemons/daemon-config.json" \
-          ".wabblespec/engine/modules/l2/guard/SKILL.md" | grep -q "PASS"'
+          ".wabblespec/engine/modules/l2/guard/SKILL.md" \
+          ".wabblespec/state/memory/entity-graph.json" \
+          ".wabblespec/state/memory/gap-map.md" \
+          ".claude/skills/platform-iot" | grep -q "PASS"
+'
 ```
 
 ---
@@ -179,7 +281,7 @@ echo "$OUT" | grep -Eq "(C|H|M|L)[0-9]+|FAIL|PASS|finding"'
 
 | Trigger | Rollback target | Condition |
 |---|---|---|
-| Wave 1 fails | null (re-attest from clean) | Attestation missing/malformed, skill-rules.json missing required owns, or guard-check authority fails for a representative subsequent-wave file |
+| Wave 1 fails | null — canonical worktree path is `../wabblespec-wave-1-bootstrap`. Run `git worktree remove ../wabblespec-wave-1-bootstrap --force`. If the consume-by-move already ran (state/attestations/consumed/<id>/ exists), the attestation is consumed and a fresh one is required for retry — author a NEW attestation with a NEW `attestation_id` (do not reuse). If consume-by-move did NOT run, delete the unconsumed attestation: `rm -f .wabblespec/state/attestations/framework-maintenance-authority-bootstrap-*.json`. | Hard precondition fail (zero or >1 attestation files; attestation_id already in consumed/; granted_paths not a whitelist subset; required_in_grant entries missing; content_hash mismatch; schema validation fail); OR post-write fail (skill-rules.json missing required owns glob; wabblespec.yaml structural module entry missing; guard-check authority fails for any sample file). |
 | Wave 2 fails | Wave 1 checkpoint | schema not well-formed, a --validate fails, options_path absent, or any builder lacks a clean confidence field |
 | Wave 3 fails | Wave 2 checkpoint | doctor cannot enumerate ≥28 checks, named set missing, --self-test fails, or baseline does not detect seeded critical findings |
 | Wave 4 fails | Wave 3 checkpoint | HARD error, critical RED after 3 REVISE cycles, or any independent C1/C2/C3/C4 assertion fails |
@@ -188,7 +290,8 @@ echo "$OUT" | grep -Eq "(C|H|M|L)[0-9]+|FAIL|PASS|finding"'
 
 ## Notes
 
-- **Wave 1 is the bootstrap.** The Attestation is the root of trust for the new authority model; without it, no other wave can pass Guard Layer 4. Wave 1 itself must run under either (a) a one-time human Attestation that authorizes the creation of `.wabblespec/engine/modules/l2/framework-maintenance/` and the wabblespec.yaml registration, OR (b) the executor temporarily acting under the Attestation grant for that single edit set. Verification_mode = Attestation (human sign-off) plus a structural runnable check that the attestation file + module files exist and guard-check passes downstream.
+- **Wave 1 is the bootstrap.** Mechanism is now explicit (see "Bootstrap mechanism" in Wave 1): Executor reads and validates a one-time Attestation; Guard Layer 4 is skipped ONLY for the paths in `granted_paths`, ONLY during Wave 1, ONLY when a valid Attestation exists. A `content_hash` field binds the Attestation to the exact SKILL.md + skill-rules.json bytes attested, so post-hoc edits invalidate it.
+- **authority.owns rationale (justifies expansion beyond AC8's named surface):** `.claude/skills/**` is needed for Wave 4's platform skill-ID rename (C2); `.wabblespec/engine/hooks/**` and `.wabblespec/engine/scripts/**` are needed for downstream fixes that touch the sync script and stop-hook; `.wabblespec/state/memory/**` is needed for Wave 5's entity-graph/gap-map/staleness-map/closet-index regen; `.wabblespec/state/attestations/**` gives the attestation artifact class an owner going forward (otherwise it remains unowned even after Wave 1).
 - **Wave 1 uses a git worktree** (High + irreversible-category governance edit + git repo): the new module's files and the wabblespec.yaml change are isolated until Reviewer + Attestation sign off.
 - **Wave 6 uses a git worktree** (Guard edit, invariant-enforcing). Two worktree waves total.
 - **Reviewer:** new Wave 1 is novel content; recommend a focused Reviewer pass scoped to Wave 1 only (Waves 2-6 were exhaustively reviewed in the prior cycle and content is unchanged). The Reviewer hard-limit counter resets for the new scope.

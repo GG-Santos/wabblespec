@@ -47,6 +47,9 @@ Supported receipt types:
     blueprint           Blueprint attestation and plan output (L8)
     benchmark           Benchmark metric evaluation output (L8)
     synth               Synth candidate generation output (L8)
+    guard           Guard five-layer pre-wave validation receipt (L2)
+    wave            Executor intermediate wave completion receipt
+    memory-mine     Memory mine deep pattern scan receipt (L5)
 
 Usage:
     # Verifier receipt:
@@ -1049,6 +1052,81 @@ def build_synth(args):
     }
 
 
+def build_guard(args):
+    layer_results = args.layer_results_json or {}
+    overall = args.overall or (args.status or "PASS")
+    return {
+        "receipt_type": "guard",
+        "module": "guard",
+        "layer": "L2",
+        "phase": "Execute",
+        "wave": args.wave,
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "checks_run": args.checks_run or [
+            "layer1-schema-validity", "layer2-scope-constraints",
+            "layer3-invariant-compliance", "layer4-authority-ownership",
+            "layer5-command-risk"
+        ],
+        "checks_passed": args.checks_passed or [],
+        "evidence": args.evidence or [],
+        "overall": overall,
+        "layer_results": layer_results,
+        "unauthorized_files": args.unauthorized_files or [],
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
+def build_wave(args):
+    return {
+        "receipt_type": "wave",
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "wave_number": args.wave,
+        "wave_label": args.summary or "",
+        "timestamp": args.timestamp or NOW,
+        "status": args.status or "COMPLETE",
+        "files_modified": args.files_written or [],
+        "changes": args.wave_changes or [],
+        "verification": {
+            "method": args.verification_method or "",
+            "command": args.verification_command or "",
+            "result": "PASS" if (args.status or "COMPLETE") in ("COMPLETE", "PASS") else "FAIL",
+            "unauthorized_files": args.unauthorized_files or [],
+        },
+        "acceptance_criteria_covered": args.ac_covered or [],
+        "not_tested": args.not_tested or [],
+    }
+
+
+def build_memory_mine(args):
+    return {
+        "receipt_type": "memory-mine",
+        "module": "memory-mine",
+        "layer": "L5",
+        "phase": "Research",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "schema_version_current": args.schema_version if args.schema_version is not None else 1,
+        "drawers_analyzed": args.drawers_analyzed if args.drawers_analyzed is not None else 0,
+        "drawers_skipped_schema_mismatch": args.drawers_skipped if args.drawers_skipped is not None else 0,
+        "gaps_found": args.gaps_found if args.gaps_found is not None else 0,
+        "clusters_found": args.clusters_found if args.clusters_found is not None else 0,
+        "patterns_found": args.patterns_found if args.patterns_found is not None else 0,
+        "dedup_candidates_found": args.dedup_candidates if args.dedup_candidates is not None else 0,
+        "staleness_critical": args.staleness_critical if args.staleness_critical is not None else 0,
+        "output_dir": args.mine_output_dir or "",
+        "dry_run": args.dry_run,
+        "status": args.status or "PASS",
+        "not_tested": args.not_tested or [],
+        "confidence": args.confidence if args.confidence is not None else 0.9,
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -1089,6 +1167,9 @@ BUILDERS = {
     "blueprint": build_blueprint,
     "benchmark": build_benchmark,
     "synth": build_synth,
+    "guard": build_guard,
+    "wave": build_wave,
+    "memory-mine": build_memory_mine,
 }
 
 
@@ -1165,10 +1246,13 @@ VERIFIER_REQUIRED = {"receipt_type", "task_id", "status", "checks", "verified_at
 EXECUTOR_REQUIRED = {"receipt_type", "task_id", "status", "delta_class", "executed_at"}
 # Delivery receipts use a different schema from the base (not_tested_list not not_tested).
 # They are validated separately.
-DELIVERY_REQUIRED = {"receipt_type", "task_id", "status", "version_new", "version_previous"}
+DELIVERY_REQUIRED = {"task_id", "status", "version_new", "version_previous"}
+
+VALID_STATUSES = {"PASS", "FAIL", "PARTIAL"}
+WAVE_STATUSES = {"PASS", "FAIL", "PARTIAL", "COMPLETE", "BLOCKED"}
 
 
-def validate_receipt(path):
+def validate_receipt(path, lenient=False):
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -1179,35 +1263,51 @@ def validate_receipt(path):
     rtype = data.get("receipt_type") or data.get("module") or "(unknown)"
     errors = []
 
-    # Delivery receipts follow a distinct schema (not the base schema)
-    if data.get("receipt_type") in ("delivery", "archive"):
+    # Delivery/archive: use rtype (receipt_type OR module) — legacy receipts identify via module only.
+    # Verifier/executor: use explicit receipt_type only — legacy receipts with module:"verifier" but
+    # no receipt_type field must not be promoted to the strict schema they can't satisfy.
+    explicit_type = data.get("receipt_type")
+    if rtype in ("delivery", "archive"):
         required = DELIVERY_REQUIRED
-    elif data.get("receipt_type") == "verifier":
+    elif explicit_type == "verifier":
         required = BASE_REQUIRED | VERIFIER_REQUIRED
-    elif data.get("receipt_type") == "executor":
+    elif explicit_type == "executor":
         required = BASE_REQUIRED | EXECUTOR_REQUIRED
     else:
         required = BASE_REQUIRED.copy()
 
     for field in sorted(required):
         if field not in data:
-            errors.append(f"missing required field: '{field}'")
+            msg = f"missing required field: '{field}'"
+            if lenient and (
+                msg.startswith("missing required field: 'not_tested'")
+                or msg.startswith("missing required field: 'status'")
+            ):
+                print(f"WARN [{rtype}] {os.path.basename(path)}: {msg}")
+            else:
+                errors.append(msg)
 
     status = data.get("status")
-    if status not in ("PASS", "FAIL", "PARTIAL"):
-        errors.append(f"status '{status}' not in PASS/FAIL/PARTIAL")
+    allowed = WAVE_STATUSES if rtype == "wave" else VALID_STATUSES
+    status_msg = f"status '{status}' not in {sorted(allowed)}"
+    if status not in allowed:
+        if lenient and (status is None or status_msg.startswith("status 'None' not in")):
+            print(f"WARN [{rtype}] {os.path.basename(path)}: {status_msg}")
+        else:
+            errors.append(status_msg)
 
     if status in ("FAIL", "PARTIAL") and "failure_reason" not in data:
         errors.append("status FAIL/PARTIAL requires 'failure_reason'")
 
-    # Type-specific conditional validation (only when receipt declares the key,
-    # indicating it was produced by the new builder; legacy hand-authored receipts
-    # that omit the key entirely are accepted by base schema only)
-    if rtype == "grader" and "escalation_reason" in data:
+    # Type-specific conditional validation. Gate on each field's key presence independently:
+    # new builder receipts always emit revision_guidance/escalation_reason (even as null),
+    # so the key exists and we can enforce it. Legacy hand-authored receipts omit the key
+    # entirely and pass base schema only.
+    if rtype == "grader":
         verdict = data.get("verdict")
-        if verdict == "REVISE" and not data.get("revision_guidance"):
+        if verdict == "REVISE" and "revision_guidance" in data and not data.get("revision_guidance"):
             errors.append("verdict REVISE requires 'revision_guidance'")
-        if verdict == "ESCALATE" and not data.get("escalation_reason"):
+        if verdict == "ESCALATE" and "escalation_reason" in data and not data.get("escalation_reason"):
             errors.append("verdict ESCALATE requires 'escalation_reason'")
 
     if errors:
@@ -1239,7 +1339,7 @@ def main():
     )
     parser.add_argument("--task-id", metavar="ID")
     parser.add_argument("--session-id", metavar="ID")
-    parser.add_argument("--status", choices=["PASS", "FAIL", "PARTIAL"])
+    parser.add_argument("--status", choices=["PASS", "FAIL", "PARTIAL", "COMPLETE", "BLOCKED"])
     parser.add_argument("--wave", type=int, default=1)
     parser.add_argument("--wave-of", type=int)
     parser.add_argument("--not-tested", nargs="*", metavar="ITEM")
@@ -1478,6 +1578,37 @@ def main():
     parser.add_argument("--candidate-path", metavar="PATH", help="Synth: path to candidate JSON file.")
     parser.add_argument("--pattern-occurrence-count", type=int, metavar="N", help="Synth: number of times the pattern was observed.")
 
+    # Guard-specific args
+    parser.add_argument(
+        "--overall",
+        choices=["PASS", "FAIL"],
+        help="Guard: overall gate result.",
+    )
+    parser.add_argument(
+        "--layer-results-json",
+        type=json.loads,
+        metavar="JSON",
+        help="Guard: JSON object of per-layer results e.g. '{\"layer1_schema\": \"PASS\"}'.",
+    )
+    parser.add_argument("--unauthorized-files", nargs="*", metavar="PATH", help="Guard/wave: list of unauthorized file paths.")
+
+    # Wave-specific args
+    parser.add_argument("--wave-changes", nargs="*", metavar="CHANGE", help="Wave: list of changes made in this wave.")
+    parser.add_argument("--verification-method", metavar="TEXT", help="Wave: verification method used.")
+    parser.add_argument("--verification-command", metavar="TEXT", help="Wave: verification command run.")
+    parser.add_argument("--ac-covered", nargs="*", metavar="AC", help="Wave: acceptance criteria covered by this wave.")
+
+    # Memory-mine-specific args
+    parser.add_argument("--schema-version", type=int, metavar="N", help="Memory-mine: current schema version.")
+    parser.add_argument("--drawers-analyzed", type=int, metavar="N", help="Memory-mine: number of drawers analyzed.")
+    parser.add_argument("--drawers-skipped", type=int, metavar="N", help="Memory-mine: number of drawers skipped due to schema mismatch.")
+    parser.add_argument("--gaps-found", type=int, metavar="N", help="Memory-mine: number of gaps found.")
+    parser.add_argument("--clusters-found", type=int, metavar="N", help="Memory-mine: number of clusters found.")
+    parser.add_argument("--patterns-found", type=int, metavar="N", help="Memory-mine: number of patterns found.")
+    parser.add_argument("--dedup-candidates", type=int, metavar="N", help="Memory-mine: number of dedup candidates found.")
+    parser.add_argument("--staleness-critical", type=int, metavar="N", help="Memory-mine: number of critically stale drawers.")
+    parser.add_argument("--mine-output-dir", metavar="PATH", help="Memory-mine: output directory path.")
+
     parser.add_argument(
         "--out",
         metavar="PATH",
@@ -1495,12 +1626,30 @@ def main():
         metavar="PATH",
         help="Validate an existing receipt JSON instead of writing a new one.",
     )
+    parser.add_argument(
+        "--lenient",
+        action="store_true",
+        help="Lenient validation: treat missing not_tested/status as warnings, not errors. Use for pre-schema legacy receipts. Only meaningful with --validate.",
+    )
 
-    args = parser.parse_args()
+    # Normalize argv: --validate --lenient PATH → --validate PATH --lenient
+    # argparse refuses to use a --flag as the value for an optional argument,
+    # so we pre-process sys.argv to move the path after --lenient.
+    argv = sys.argv[1:]
+    if "--validate" in argv and "--lenient" in argv:
+        vi = argv.index("--validate")
+        li = argv.index("--lenient")
+        # If --lenient immediately follows --validate (i.e. no path between them),
+        # pull the path from right after --lenient and insert it after --validate.
+        if li == vi + 1 and li + 1 < len(argv) and not argv[li + 1].startswith("--"):
+            path_val = argv[li + 1]
+            new_argv = argv[:vi + 1] + [path_val] + argv[li:li + 1] + argv[li + 2:]
+            argv = new_argv
+    args = parser.parse_args(argv)
 
     # Validate mode
     if args.validate:
-        ok = validate_receipt(args.validate)
+        ok = validate_receipt(args.validate, lenient=getattr(args, 'lenient', False))
         sys.exit(0 if ok else 1)
 
     if not args.receipt_type:
