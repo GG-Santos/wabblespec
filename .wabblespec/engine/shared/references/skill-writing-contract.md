@@ -162,6 +162,20 @@ The pattern score is the deeper signal.
 
 ---
 
+---
+
+## Script Delegation
+
+Any SKILL.md step that writes to a framework artifact — `.wabblespec/CHANGELOG.md`, `.wabblespec/VERSION`, `.wabblespec/state/receipts/*.json`, `.wabblespec/state/memory/provenance/` — MUST delegate to the appropriate script rather than constructing the file content inline.
+
+**Canonical mapping:** `.wabblespec/engine/shared/references/script-delegation-contract.md`
+
+**Rule for new skills:** if your "How to do it" steps contain any of these verbs followed by a framework path — *append*, *write*, *prepend*, *update*, *patch* — check the delegation contract first. If a script exists for that operation, call it. If not, note it as a `not_tested` item and file a script request.
+
+**Reference Routing obligation:** Every SKILL.md that delegates to a script MUST include a `## Reference Routing` table pointing to `script-delegation-contract.md` for the relevant situation. This is how the module auditor detects undeclared delegation gaps.
+
+---
+
 ## Applying This Contract
 
 When writing a new module SKILL.md:
@@ -173,4 +187,5 @@ When writing a new module SKILL.md:
 3. Apply Pattern 5: read the whole SKILL.md and delete every line that does
    not change what the agent produces.
 4. Apply Pattern 6: grep for tool names and env vars. Move or remove.
-5. Run `.wabblespec/engine/shared/agents/module-auditor.md` before marking `build_complete: true`.
+5. Check Script Delegation: any write to a framework path must use the canonical script.
+6. Run `.wabblespec/engine/shared/agents/module-auditor.md` before marking `build_complete: true`.

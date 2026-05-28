@@ -204,11 +204,89 @@ The following skills write module-specific receipts to `.wabblespec/state/receip
 
 `scaffold`, `release`, `package`, `monitor`, `deploy`, `audit`, `adversary`, `grader`, `nexus`, `brainstorm`, `enhance`, `sharpen`
 
+---
+
+### 5. Task Card Write — `task-card-writer.py`
+
+**Use when:** Specify needs to produce `task-card.md`. Claude provides goal, target, complexity, change class, non-goals, assumptions, and criteria text.
+
+```bash
+python .wabblespec/engine/shared/scripts/task-card-writer.py \
+  --session-id <session-id> \
+  --goal "<one sentence, falsifiable>" \
+  --target <target> \
+  --complexity Low|Medium|High \
+  --change-class ADDITIVE|COSMETIC|BREAKING \
+  --non-goal "Item 1" --non-goal "Item 2" \
+  --assumption "Assumption text" \
+  --criterion "AC1|short name|Given ...|When ...|Then ..." \
+  --out .wabblespec/state/plans/task-card.md
+```
+
+**Exit codes:** 0 = written, 1 = validation failure, 2 = path not writable.
+
+---
+
+### 6. Wave Plan Write — `wave-plan-writer.py`
+
+**Use when:** Decompose needs to produce `current-wave-plan.md`. Claude provides wave names, inputs, outputs, checkpoints, and verification commands as JSON.
+
+```bash
+python .wabblespec/engine/shared/scripts/wave-plan-writer.py \
+  --session-id <session-id> \
+  --target <target> \
+  --complexity Low|Medium|High \
+  --wave '{"name":"Wave name","inputs":["in"],"outputs":["out"],"checkpoint":"condition","rollback_to":null,"verification_mode":"Audit","verification_command":"python -c \"print(1)\""}' \
+  --out .wabblespec/state/plans/current-wave-plan.md
+```
+
+**Exit codes:** 0 = written, 1 = validation failure, 2 = path not writable.
+
+---
+
+### 7. Scope Write — `scope-writer.py`
+
+**Use when:** ScopeFrame needs to produce `scope.md`. Claude provides in-scope items, out-of-scope items, and assumptions.
+
+```bash
+python .wabblespec/engine/shared/scripts/scope-writer.py \
+  --session-id <session-id> \
+  --target <target> \
+  --complexity Low|Medium|High \
+  --in-scope "Item 1" --in-scope "Item 2" \
+  --out-of-scope "Excluded item" \
+  --assumption "Assumption text" \
+  --out .wabblespec/state/scope.md
+```
+
+**Exit codes:** 0 = written, 1 = validation failure, 2 = path not writable.
+
+---
+
+### 8. Receipt Chain Validation — `guard-check.py chain`
+
+**Use when:** Guard (or any module) needs to verify the receipt chain is complete for a session before proceeding.
+
+```bash
+python .wabblespec/engine/shared/scripts/guard-check.py chain \
+  --session-id <session-id> \
+  --waves <N> \
+  [--receipts-dir .wabblespec/state/receipts/] \
+  [--json]
+```
+
+**Exit codes:** 0 = PASS (all required receipts present), 1 = FAIL (missing receipts listed), 2 = configuration error.
+
+---
+
 ## Cross-references
 
 - Script source: `.wabblespec/engine/shared/scripts/archive.py`
 - Script source: `.wabblespec/engine/shared/scripts/receipt-writer.py`
 - Script source: `.wabblespec/engine/shared/scripts/changelog-append.py`
 - Script source: `.wabblespec/engine/shared/scripts/version-bump.py`
+- Script source: `.wabblespec/engine/shared/scripts/task-card-writer.py`
+- Script source: `.wabblespec/engine/shared/scripts/wave-plan-writer.py`
+- Script source: `.wabblespec/engine/shared/scripts/scope-writer.py`
 - Receipts schema: `.wabblespec/engine/shared/schemas/`
 - Archive skill: `.wabblespec/engine/modules/l7/archive/SKILL.md`

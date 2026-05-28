@@ -46,6 +46,51 @@ def _run(script: Path, *, timeout: int, label: str) -> int:
         return 1
 
 
+def _archived_this_session(root: Path) -> bool:
+    """Return True if a delivery receipt was written during this session."""
+    import json as _json
+    receipts_dir = root / ".wabblespec" / "state" / "receipts"
+    state_file = root / ".wabblespec" / "state" / "session" / "state.json"
+    if not state_file.exists():
+        return False
+    try:
+        state = _json.loads(state_file.read_text(encoding="utf-8"))
+        session_id = state.get("session_id", "")
+        if not session_id:
+            return False
+        receipt = receipts_dir / f"delivery-receipt-{session_id}.json"
+        return receipt.exists()
+    except Exception:
+        return False
+
+
+def _run_daemons(root: Path, trigger: str) -> None:
+    """Read daemon-config.json and run all enabled daemons for the given trigger. Silent-fail."""
+    import json as _json
+    config_path = root / ".wabblespec" / "state" / "daemons" / "daemon-config.json"
+    if not config_path.exists():
+        return
+    try:
+        config = _json.loads(config_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    for daemon in config.get("daemons", []):
+        if not daemon.get("enabled", False):
+            continue
+        if daemon.get("trigger") != trigger:
+            continue
+        script_rel = daemon.get("script", "")
+        # skip dream — already handled in main()
+        if "dream" in script_rel:
+            continue
+        script = root / script_rel
+        if not script.exists():
+            print(f"[stop-hook] daemon '{daemon['id']}': script not found — skipping", flush=True)
+            continue
+        timeout = daemon.get("timeout_seconds", 60)
+        _run(script, timeout=timeout, label=f"daemon:{daemon['id']}")
+
+
 def main() -> int:
     root = _repo_root()
 
@@ -70,9 +115,15 @@ def main() -> int:
     rc2 = _run(dream_script, timeout=60, label="dream")
     if rc2 != 0:
         print(f"[stop-hook] ERROR: dream exited {rc2}", flush=True)
-        # Do not return yet — sync push should still fire
 
-    # Step 3: sync push — commit + push .wabblespec/ changes to remote
+    # Step 3: daemon-driven background tasks
+    # on_stop daemons run every session end
+    _run_daemons(root, "on_stop")
+    # on_archive daemons run only when a delivery receipt was written this session
+    if _archived_this_session(root):
+        _run_daemons(root, "on_archive")
+
+    # Step 4: sync push — commit + push .wabblespec/ changes to remote
     # Non-blocking: push failure never fails the Stop hook (silent-fail contract)
     sync_push_script = engine / "scripts" / "sync-push.py"
     if sync_push_script.exists():

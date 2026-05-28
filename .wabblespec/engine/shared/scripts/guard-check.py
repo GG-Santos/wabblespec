@@ -361,6 +361,99 @@ def print_wave_report(report):
 
 
 # ---------------------------------------------------------------------------
+# Receipt chain validation
+# ---------------------------------------------------------------------------
+
+CHAIN_REQUIRED_STATIC = [
+    "recipe-receipt.json",
+    "scopeframe-receipt.json",
+    "specify-receipt.json",
+    "decompose-receipt.json",
+]
+CHAIN_CLOSE_RECEIPTS = ["execution-receipt.json"]
+
+
+def check_chain(session_id, receipts_dir, expected_waves):
+    """
+    Validate the receipt chain for a session.
+
+    Returns dict:
+    {
+        "verdict": "PASS" | "FAIL",
+        "present": [...],
+        "missing": [...],
+        "waves_checked": int,
+    }
+    """
+    if not os.path.isdir(receipts_dir):
+        return {
+            "verdict": "FAIL",
+            "present": [],
+            "missing": [f"receipts directory not found: {receipts_dir}"],
+            "waves_checked": 0,
+        }
+
+    present = []
+    missing = []
+
+    # Static required receipts
+    for name in CHAIN_REQUIRED_STATIC:
+        path = os.path.join(receipts_dir, name)
+        if os.path.isfile(path):
+            present.append(name)
+        else:
+            missing.append(name)
+
+    # Per-wave receipts
+    for n in range(1, expected_waves + 1):
+        wave_receipt = f"wave-{n}-receipt.json"
+        wave_path = os.path.join(receipts_dir, wave_receipt)
+        if os.path.isfile(wave_path):
+            present.append(wave_receipt)
+        else:
+            missing.append(wave_receipt)
+
+        # verification-wave-N-*.json — any matching file is sufficient
+        prefix = f"verification-wave-{n}-"
+        matches = [
+            f for f in os.listdir(receipts_dir)
+            if f.startswith(prefix) and f.endswith(".json")
+        ]
+        if matches:
+            present.append(f"verification-wave-{n}-*.json ({matches[0]})")
+        else:
+            missing.append(f"verification-wave-{n}-*.json")
+
+    # Close receipts
+    for name in CHAIN_CLOSE_RECEIPTS:
+        path = os.path.join(receipts_dir, name)
+        if os.path.isfile(path):
+            present.append(name)
+        else:
+            missing.append(name)
+
+    verdict = "PASS" if not missing else "FAIL"
+    return {
+        "verdict": verdict,
+        "present": present,
+        "missing": missing,
+        "waves_checked": expected_waves,
+    }
+
+
+def print_chain_report(report):
+    print(f"\nReceipt chain check")
+    print(f"  Verdict: {report['verdict']}")
+    print(f"  Waves checked: {report['waves_checked']}")
+    if report["missing"]:
+        print(f"  Missing ({len(report['missing'])}):")
+        for m in report["missing"]:
+            print(f"    - {m}")
+    else:
+        print(f"  All {len(report['present'])} required receipts present.")
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -401,6 +494,15 @@ def main():
                         help="Shell commands to classify (Layer 5).")
     p_wave.add_argument("--json", action="store_true", dest="emit_json")
 
+    # chain
+    p_chain = sub.add_parser("chain", help="Validate receipt chain completeness for a session.")
+    p_chain.add_argument("--session-id", required=True, metavar="SESSION_ID")
+    p_chain.add_argument("--waves", type=int, required=True, metavar="N",
+                         help="Number of expected waves (checks wave-1 through wave-N receipts).")
+    p_chain.add_argument("--receipts-dir", metavar="PATH",
+                         help="Path to receipts directory. Default: .wabblespec/state/receipts/")
+    p_chain.add_argument("--json", action="store_true", dest="emit_json")
+
     args = parser.parse_args()
     if not hasattr(args, "emit_json"):
         args.emit_json = False
@@ -409,6 +511,18 @@ def main():
     if repo_root is None:
         print("ERROR: Cannot find repo root. Run from inside the project.", file=sys.stderr)
         sys.exit(2)
+
+    # Chain subcommand doesn't need module resolution
+    if args.command == "chain":
+        receipts_dir = args.receipts_dir or os.path.join(
+            repo_root, ".wabblespec", "state", "receipts"
+        )
+        report = check_chain(args.session_id, receipts_dir, args.waves)
+        if args.emit_json:
+            print(json.dumps(report, indent=2))
+        else:
+            print_chain_report(report)
+        sys.exit(0 if report["verdict"] == "PASS" else 1)
 
     # Commands-only subcommand doesn't need a module
     if args.command == "commands":

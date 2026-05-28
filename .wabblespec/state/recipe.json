@@ -6,8 +6,8 @@
   "complexity": "Medium",
   "secondary_targets": [],
   "collapse_eligible": false,
-  "locked_at": "2026-05-28T12:00:00Z",
-  "session_id": "phase2-script-delegation-20260528",
+  "locked_at": "2026-05-28T13:00:00Z",
+  "session_id": "phase3-new-scripts-20260528",
   "cold_start_verified": true,
   "input_quality": {
     "vague": false,
@@ -16,11 +16,11 @@
     "sharpened": false
   },
   "collapse_assessment": [
-    { "module_id": "l0/recipe",       "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "l1/scope-frame",  "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "l1/specify",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "l2/executor",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "l2/verifier",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "l7/archive",      "skill_collapse_eligible": false, "disposition": "ACTIVE" }
+    { "module_id": "l0/recipe",      "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "l1/scope-frame", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "l1/specify",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "l2/executor",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "l2/verifier",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "l7/archive",     "skill_collapse_eligible": false, "disposition": "ACTIVE" }
   ]
 }

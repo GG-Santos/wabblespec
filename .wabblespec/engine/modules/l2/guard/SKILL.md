@@ -9,7 +9,14 @@ You are the last checkpoint before execution touches the project. Every wave pas
 
 ## What this skill does
 
-Runs five validation layers in order against wave inputs: schema validation, scope constraint, invariant compliance, authority check, command risk. Returns PASS or a typed error event. Writes a guard receipt per wave.
+Runs five validation layers in order against wave inputs: schema validation, scope constraint, invariant compliance, authority check, command risk. Delegates Layers 4 and 5 to `guard-check.py`. Returns PASS or a typed error event. Writes a guard receipt per wave.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Layer 4 authority check (module owns target files?) | `engine/shared/references/script-delegation-contract.md` → `guard-check.py authority` |
+| Layer 5 command risk classification | `engine/shared/references/script-delegation-contract.md` → `guard-check.py commands` |
 
 ## When to use / when not to use
 
@@ -105,10 +112,14 @@ Do not scan WabbleSpec receipts, Decompose wave plan entries, or code artifacts 
 
 ### Layer 4 — Authority check
 
-Verify the requesting module has declared authority over its target files:
-1. Read the requesting module's `skill-rules.json` → `authority.owns`
-2. Target file path must match an entry in the owned list
-3. If the module's `skill-rules.json` declares `file_path_patterns`, check whether any active wave file paths match those glob patterns. A module whose `file_path_patterns` produces no matches on the current wave's files is flagged as potentially misactivated — SOFT warning to receipt, not a block.
+```bash
+python .wabblespec/engine/shared/scripts/guard-check.py authority \
+  --module <module-id> \
+  --files "<target-path-1>" "<target-path-2>" \
+  [--wave-files "<active-wave-file-1>"]
+```
+
+Reads `skill-rules.json` directly — no framework.yaml read. Uses `fnmatch` for glob matching. Sets `misactivation_risk: true` when `file_path_patterns` declared but no wave files match any pattern.
 
 | Result | Action |
 |---|---|
@@ -124,11 +135,12 @@ Classify shell commands found in wave plan steps against `.wabblespec/engine/sha
 
 **Classification process:**
 
-1. Extract all shell command strings from wave plan steps.
-2. Check SAFE patterns first — a SAFE match terminates classification for that command (no BLOCK/WARN escalation).
-3. For piped commands, classify each segment independently; highest tier wins for the step.
-4. Commands with unresolved shell variables (`$UNKNOWN`, `*` wildcards) in WARN-or-above patterns escalate one tier.
-5. Novel commands matching no pattern default to WARN.
+```bash
+python .wabblespec/engine/shared/scripts/guard-check.py commands \
+  --commands "<cmd1>" "<cmd2>"
+```
+
+Delegates to `command-risk-check.py` internally. SAFE patterns take precedence; piped commands classified per segment, highest tier wins; unresolved shell variables escalate one tier; novel commands default to WARN.
 
 | Result | Action |
 |---|---|

@@ -1536,3 +1536,99 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase2-script-delegation-20260528.json
 - waves: 3 completed
 - verification: all waves PASS
+
+---
+
+## [0.29.0] — 2026-05-28T08:16:06Z
+
+### Changed
+- Completed Phase 2: wired Guard (Layers 4+5 to guard-check.py), Shift (Reference Routing), Memory (drawer-writer.py reference), Provenance (provenance-append.py for ledger/index), Changelog (changelog-append.py for framework CHANGELOG path); added Script Delegation section to skill-writing-contract.md
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase2b-script-delegation-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.30.0] — 2026-05-28T08:33:54Z
+
+### Changed
+- Built task-card-writer.py, wave-plan-writer.py, scope-writer.py, and guard-check.py chain subcommand; updated script-delegation-contract.md with all 4 new entries
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase3-new-scripts-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.31.0] — 2026-05-28T08:36:49Z
+
+### Changed
+- Built session-registry.py (create/list/close/purge/path) and session-isolation.md reference; established namespaced session directory pattern and worktree integration guide
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase4-session-isolation-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.32.0] — 2026-05-28T08:44:53Z
+
+### Changed
+- Established skills-as-subagents architecture: agents-architecture.md reference, pioneer wabblespec-verifier.md and wabblespec-guard.md agent definitions, agent-output-validator.py schema validator
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase5-6-agents-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.33.0] — 2026-05-28T08:47:44Z
+
+### Changed
+- Phase 7: daemon-config.json trigger configuration, stop-hook.py extended with on_stop/on_archive daemon runner, background-daemons.md reference document
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase7-background-daemons-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.34.0] — 2026-05-28T08:51:23Z
+
+### Changed
+- Phase 8: receipt-db.py DuckDB store; 206 JSON receipts imported; SQL query interface; receipt write path; stats; init/import/query/export subcommands
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase8-duckdb-receipt-store-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.35.0] — 2026-05-28T08:52:43Z
+
+### Changed
+- Phase 9: wave-queue.py file-locked task queue; populate/claim/complete/fail/wave-done/status/clear subcommands; Wave N+1 gated on all Wave N receipts PASS
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase9-parallel-wave-execution-20260528.json
+- waves: 1 completed
+- verification: all waves PASS
+
+---
+
+## [0.36.0] — 2026-05-28T08:53:39Z
+
+### Changed
+- Phase 10: engineering-standards.md codifying naming conventions, script API contracts (--dry-run, --json, exit codes, docstring format), receipt schema versioning, I/O contracts, module file structure, and I11 boundary enforcement
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase10-standards-20260528.json
+- waves: 1 completed
+- verification: all waves PASS

@@ -9,7 +9,13 @@ You are the trust infrastructure. Every drawer written to Memory has a provenanc
 
 ## What this skill does
 
-Maintains `.wabblespec/state/memory/provenance/`. Three operations: **Record** (on Memory write), **Cascade** (on BREAKING spec change), **Delete-record** (on Forget archiving a drawer). Writes an append-only `ledger.md` and a machine-readable `index.json`.
+Maintains `.wabblespec/state/memory/provenance/`. Three operations: **Record** (on Memory write), **Cascade** (on BREAKING spec change), **Delete-record** (on Forget archiving a drawer). Delegates ledger append and index update to `provenance-append.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Record, cascade, delete, or contradiction ledger writes | `engine/shared/references/script-delegation-contract.md` → `provenance-append.py` |
 
 ## When to use / when not to use
 
@@ -60,9 +66,16 @@ Rules: `modules/l5/provenance/rules/contradiction-policy.md`, `rules/cascade-pol
    IF found AND different drawer_id: flag contradiction
      -> append to contradictions.md: {drawer_a, drawer_b, topic, flagged_at}
      -> set contradicts field on both provenance records
-5. Append to ledger.md:
-   "| {timestamp} | WRITTEN | {drawer_id} | {source_module} | {source} |"
-6. Update index.json
+5-6. Delegate ledger append and index update:
+```bash
+python .wabblespec/engine/shared/scripts/provenance-append.py record \
+  --drawer-id <drawer_id> \
+  --topic "<topic>" \
+  --source-path <source.path> \
+  --source-type <source.type> \
+  --written-by <source_module> \
+  --confidence <confidence>
+```
 7. Confirm to Memory (write proceeds)
 ```
 
@@ -87,9 +100,13 @@ Rules: `modules/l5/provenance/rules/contradiction-policy.md`, `rules/cascade-pol
    {triggered_at, change_class: "BREAKING", source_spec: spec_path, hop_depth: 1, affected_specs: []}
    And to hop-2 specs' owning drawers:
    {triggered_at, change_class: "BREAKING", source_spec: spec_path, hop_depth: 2, affected_specs: [spec paths]}
-8. Append to ledger.md:
-   "| {timestamp} | CASCADE | change_class=BREAKING | hop=1 | source={spec_path} | affected_drawers={count} | affected_specs={paths} | drawers={id_list} |"
-9. Write cascade summary to provenance receipt
+8-9. Delegate cascade ledger append:
+```bash
+python .wabblespec/engine/shared/scripts/provenance-append.py cascade \
+  --spec-path <spec_path> \
+  --change-class BREAKING \
+  --affected-drawers "<drawer_id_1>" "<drawer_id_2>"
+```
 ```
 
 Cascade depth limit: 2 hops. See `rules/cascade-policy.md`.
