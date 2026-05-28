@@ -1521,3 +1521,18 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase1-root-cleanup-20260528.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.28.0] — 2026-05-28T08:03:12Z
+
+### Changed
+- Wired 6 pipeline SKILL.md files (archive, verifier, executor, recipe, specify, decompose) to call archive.py and receipt-writer.py instead of manual framework writes; added script-delegation-contract.md to engine/shared/references/
+
+### Not Tested
+- guard-wave-*-receipt.json not written — Guard verified inline for all 3 waves without formal Guard module invocation
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-phase2-script-delegation-20260528.json
+- waves: 3 completed
+- verification: all waves PASS

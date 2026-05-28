@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T03:56:00Z",
+  "last_updated": "2026-05-28T08:03:12Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -648,6 +648,20 @@
       "waves_planned": 1,
       "not_tested_items": 0,
       "summary": "Phase 1 root cleanup: relocated stray session artifacts (brainstorm/, enhance/, options-*.md) to state/ subdirectories, deleted stale scope.md and orphaned T3 checkpoints, updated CLAUDE.md with canonical path declarations for state/scope.md and state/recipe.json."
+    },
+    {
+      "task_id": "phase2-script-delegation-20260528",
+      "session_id": "phase2-script-delegation-20260528",
+      "status": "PASS",
+      "archived_at": "2026-05-28T08:03:12Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-phase2-script-delegation-20260528.json",
+      "version_previous": "0.27.1",
+      "version_new": "0.28.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 3,
+      "waves_planned": 3,
+      "not_tested_items": 1,
+      "summary": "Wired 6 pipeline SKILL.md files (archive, verifier, executor, recipe, specify, decompose) to call archive.py and receipt-writer.py instead of manual framework writes; added script-delegation-contract.md to engine/shared/references/"
     }
   ]
 }
