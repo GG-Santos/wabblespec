@@ -1,0 +1,30 @@
+name: Quality Floor
+
+on:
+  push:
+    paths:
+      - '.wabblespec/**'
+      - '.claude/skills/**'
+  pull_request:
+    paths:
+      - '.wabblespec/**'
+      - '.claude/skills/**'
+
+jobs:
+  quality-floor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r .claude/skills/factory/requirements.txt
+
+      - name: Quality floor check
+        run: python .wabblespec/engine/shared/scripts/quality-floor-check.py --verbose
+
+      - name: Registry consistency check
+        run: python .wabblespec/engine/shared/scripts/validate-module-registry.py --undeclared
