@@ -2380,6 +2380,34 @@
         "MEDIUM": 0
       },
       "errors": 0
+    },
+    {
+      "run_id": "dream-run-171",
+      "timestamp": "2026-05-29T15:28:11.625888+00:00",
+      "dry_run": false,
+      "drawers_processed": 53,
+      "ema_updates": 0,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
+    },
+    {
+      "run_id": "dream-run-172",
+      "timestamp": "2026-05-29T15:28:19.847629+00:00",
+      "dry_run": false,
+      "drawers_processed": 53,
+      "ema_updates": 0,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
     }
   ]
 }
