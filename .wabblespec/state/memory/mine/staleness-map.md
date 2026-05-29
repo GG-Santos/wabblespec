@@ -1,4 +1,4 @@
-# Staleness Map — 2026-05-29T15-17-37
+# Staleness Map — 2026-05-29T15-21-47
 
 Total drawers: 2931
 
