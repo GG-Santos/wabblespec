@@ -1,70 +1,90 @@
 # Task Card
 
-**goal:** WabbleSpec's `wabblespec-guard` and `wabblespec-verifier` subagents declare an explicit minimal `tools:` set with no hardcoded model name, and the ref-* and review-trio skill descriptions carry negative-trigger clauses, all without changing any subagent's receipt contract.
+**goal:** WabbleSpec's `wabblespec-guard`/`wabblespec-verifier` subagents and the ref-*/review-trio skill descriptions are hardened per the agent-creator ref-plan, executed under a re-established and regression-guarded `framework-maintenance` authority owner.
 **target:** Framework
-**complexity:** Medium
-**change_class:** COSMETIC
-**locked_at:** 2026-05-29T15:00:00Z
+**complexity:** High
+**change_class:** ADDITIVE
+**locked_at:** 2026-05-29T15:20:00Z
 **session_id:** agent-creator-integration-20260529
 
 ## Non-Goals
 
-- B3 (subagent-vs-skill rubric in CLAUDE.md / authoring conventions) — deferred to Phase 2, gated behind the framework-maintenance authority owner and its own Specify cycle.
-- Any change that introduces or references a model name (I6 hard guardrail).
-- Importing the reference's token-budget numbers as justification.
-- Adopting the unverified `skills:` frontmatter field.
+- Rewriting foundation-hardening's closed delivery receipt / AC8 — the regression is logged (memory + this task's receipts), not retro-edited into an archived task.
+- A general "every module owns its own SKILL.md" authority-model refactor across all 103 modules — only the touched review-trio paths are added now.
+- B3 (subagent-vs-skill rubric in CLAUDE.md / authoring conventions) — still deferred to a later Phase 2.
+- Promoting the new doctor check to blocking — advisory-first.
+- Introducing or referencing any model name (I6 hard guardrail); importing the reference's token-budget numbers; adopting the `skills:` frontmatter field.
 - Changing subagent prompt logic/behavior beyond the `tools:`/`model:` frontmatter, or skill bodies beyond the `description` string.
 - Any product-space change (I11 — framework-only).
 
 ## Assumptions
 
-- foundation-hardening (v0.46.0) is complete and archived; this builds on that baseline.
-- `research/ref-eval/agent-creator.md` and `research/ref-plan/agent-creator.md` are the authoritative source of work items.
-- The two subagents invoke a determinable, finite tool set (Read/Grep/Glob/Bash + receipt/JSON writers) — confirmed by reading their definitions during Specify.
-- Authority for `.claude/agents/*` writes is unsettled (analogous to finding #29) — to be resolved at Guard Layer 4 during execution; the framework-maintenance owner may or may not cover this surface.
+- foundation-hardening v0.46.0 is complete; `framework-maintenance` was unintentionally removed in commit `2f72f1c` (git-verified) and is recoverable from `2371bea`.
+- A fresh `one_time_use` Attestation will be provided by the human (Gino) before Wave 1 executes — the agent cannot self-grant a root of trust. The spent bootstrap attestation cannot be reused.
+- `attestation-hash.py` is restored as part of the module (it was deleted with it) and validates the new bootstrap the same way the original did.
+- `ref-eval`/`ref-plan`/`ref-comp` have no engine module; `.claude/skills/` is canonical for them. `reviewer`/`adversary`/`grader` canonical source is `engine/modules/l2/<m>/SKILL.md`; `.claude/skills/` copies are sync-generated.
+- `guard-check.py authority` is the Layer-4 arbiter; PASS for the target files under `framework-maintenance` (post owns-extension) is the gate.
 - Python 3.8+ with pyyaml/duckdb available.
 - No project-standard drawers discovered in Memory.
 
 ## Acceptance Criteria
 
-### Criterion 1: Guard subagent toolset scoped
+### Criterion 1: Bootstrap attestation validates
 
-Given `.claude/agents/wabblespec-guard.md` has no `tools:` frontmatter key (inherits all tools)
-When an explicit `tools:` line is added containing exactly the tools its prompt invokes
-Then the frontmatter declares `tools: Read, Grep, Glob, Bash` and no longer inherits the full tool set
+Given a fresh `one_time_use` attestation for the framework-maintenance bootstrap and the staged restored module files
+When Wave 1 begins
+Then the attestation's `content_hash` equals `sha256(SKILL.md + b"\x00---attestation-separator---\x00" + skill-rules.json)` over the staged files and Guard accepts it; a mismatch MUST halt Wave 1
 
-### Criterion 2: Verifier subagent toolset scoped
+### Criterion 2: Module restored verbatim
 
-Given `.claude/agents/wabblespec-verifier.md` has no `tools:` frontmatter key (inherits all tools)
-When an explicit `tools:` line is added containing exactly the tools its prompt invokes
-Then the frontmatter declares `tools: Read, Grep, Glob, Bash` and no longer inherits the full tool set
+Given `framework-maintenance` was deleted in commit `2f72f1c`
+When the module is restored from git `2371bea`
+Then `SKILL.md` and `scripts/attestation-hash.py` are byte-identical to their `2371bea` versions and `skill-rules.json` is present
 
-### Criterion 3: Hardcoded model names removed (I6)
+### Criterion 3: authority.owns extended
 
-Given both subagent files contain `model: claude-sonnet-4-6` on line 4
-When the `model:` line is removed from each file
-Then neither file contains any model name and a grep for `claude-` / `sonnet` / `opus` / `haiku` across both files returns zero matches
+Given the original `owns` list lacked `.claude/agents/**` and the review-trio paths
+When the restored `skill-rules.json` is written with extensions
+Then `authority.owns` contains every original entry plus `.claude/agents/**` and `engine/modules/l2/reviewer/**`, `engine/modules/l2/adversary/**`, `engine/modules/l2/grader/**`
 
-### Criterion 4: Receipt contract preserved (regression gate)
+### Criterion 4: Module re-registered
+
+Given `wabblespec.yaml` no longer lists `framework-maintenance`
+When the module is re-registered
+Then `wabblespec.yaml` contains the `framework-maintenance` entry (layer L2, type authority) and `validate-graph.py` exits 0
+
+### Criterion 5: Authority resolves for all targets
+
+Given the registered, owns-extended module
+When `guard-check.py authority --module framework-maintenance --files <target>` is run for each B1/B2 target file
+Then every target returns Layer 4 PASS
+
+### Criterion 6: Doctor owner-check added
+
+Given `wabblespec-doctor.py` has no shared-infra-owner check
+When a check is added asserting the shared-infra anchor paths have an authority owner
+Then `wabblespec-doctor.py --self-test` exits 0, a normal run reports the new check green with the owner present, and a simulated owner-absence run emits the finding
+
+### Criterion 7: Guard subagent scoped (tools + I6)
+
+Given `.claude/agents/wabblespec-guard.md` inherits all tools and pins `model: claude-sonnet-4-6`
+When it is edited under `--module framework-maintenance`
+Then its frontmatter declares `tools: Read, Grep, Glob, Bash` and a grep for `claude-`/`sonnet`/`opus`/`haiku` in the file returns zero matches
+
+### Criterion 8: Verifier subagent scoped (tools + I6)
+
+Given `.claude/agents/wabblespec-verifier.md` inherits all tools and pins `model: claude-sonnet-4-6`
+When it is edited under `--module framework-maintenance`
+Then its frontmatter declares `tools: Read, Grep, Glob, Bash` and a grep for `claude-`/`sonnet`/`opus`/`haiku` in the file returns zero matches
+
+### Criterion 9: Receipt contract preserved (regression gate)
 
 Given the scoped subagents with restricted toolsets and no model pin
 When `wabblespec-guard` and `wabblespec-verifier` are each invoked on a representative wave
-Then each returns its declared JSON receipt (guard receipt with `overall`/`status`; verifier receipt with `verdict`/`status`) with no tool-call failure caused by a removed tool
+Then each returns its declared JSON receipt (guard: `overall`/`status`; verifier: `verdict`/`status`) with no tool-call failure caused by a removed tool
 
-### Criterion 5: ref-* descriptions carry negative triggers
+### Criterion 10: Negative triggers added, no sync divergence
 
-Given the `ref-eval`, `ref-plan`, and `ref-comp` skill descriptions
-When a negative-trigger clause is added to each
-Then each description names its sibling(s) as explicit NOT-for cases (e.g. ref-eval: "NOT for turning findings into a work plan — use ref-plan") and each skill still loads without a parse error
-
-### Criterion 6: review-trio descriptions carry negative triggers
-
-Given the `reviewer`, `adversary`, and `grader` skill descriptions
-When a negative-trigger clause is added to each
-Then each description names the adjacent module's boundary and each skill still loads without a parse error
-
-### Criterion 7: Source-of-truth edited, no sync divergence
-
-Given `.claude/agents/` and `.claude/skills/` may be sync-generated from `.wabblespec/engine/`
-When the canonical source-of-truth copy is determined and edited
-Then re-running the skill sync reproduces the edits in `.claude/` (or confirms `.claude/` is canonical), and `wabblespec-sync-skills.py` reports zero stale/divergent files for the touched modules
+Given the `ref-eval`/`ref-plan`/`ref-comp` and `reviewer`/`adversary`/`grader` skill descriptions
+When negative-trigger clauses are added (ref-* in `.claude/skills/`, review-trio in `engine/modules/l2/` source) and sync is run
+Then each description names its sibling boundary, each skill still loads without a parse error, and `wabblespec-sync-skills.py` reports zero divergence between engine and `.claude/` for the review-trio modules
