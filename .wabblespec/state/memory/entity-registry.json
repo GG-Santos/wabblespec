@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-05-29T00:09:53.972122+00:00",
+  "generated": "2026-05-29T00:20:10.210986+00:00",
   "drawers_scanned": 49,
   "entity_counts": {
     "concept": 49,
@@ -651,21 +651,21 @@
         ]
       },
       {
-        "id": "module::economy",
-        "label": "economy",
-        "drawer_count": 2,
-        "drawer_ids": [
-          "autopilot-orchestration-20260525",
-          "shared-artifacts-structure-20260525"
-        ]
-      },
-      {
         "id": "module::reviewer",
         "label": "reviewer",
         "drawer_count": 2,
         "drawer_ids": [
           "autopilot-orchestration-20260525",
           "module-order-rationale-20260520"
+        ]
+      },
+      {
+        "id": "module::economy",
+        "label": "economy",
+        "drawer_count": 2,
+        "drawer_ids": [
+          "autopilot-orchestration-20260525",
+          "shared-artifacts-structure-20260525"
         ]
       },
       {
@@ -687,8 +687,8 @@
         ]
       },
       {
-        "id": "module::gateway-ai",
-        "label": "gateway-ai",
+        "id": "module::gateway-engineering",
+        "label": "gateway-engineering",
         "drawer_count": 2,
         "drawer_ids": [
           "gateway-pattern-routing-20260525",
@@ -696,8 +696,8 @@
         ]
       },
       {
-        "id": "module::gateway-engineering",
-        "label": "gateway-engineering",
+        "id": "module::gateway-ai",
+        "label": "gateway-ai",
         "drawer_count": 2,
         "drawer_ids": [
           "gateway-pattern-routing-20260525",
@@ -889,6 +889,14 @@
         ]
       },
       {
+        "id": "file::be/arguably",
+        "label": "be/arguably",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
         "id": "file::think/perhaps/maybe/I",
         "label": "think/perhaps/maybe/I",
         "drawer_count": 1,
@@ -897,24 +905,8 @@
         ]
       },
       {
-        "id": "file::PASS/FAIL/WARN",
-        "label": "PASS/FAIL/WARN",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "stm-pipeline-transforms-20260525"
-        ]
-      },
-      {
-        "id": "file::believe/it",
-        "label": "believe/it",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "stm-pipeline-transforms-20260525"
-        ]
-      },
-      {
-        "id": "file::be/arguably",
-        "label": "be/arguably",
+        "id": "file::seems/might",
+        "label": "seems/might",
         "drawer_count": 1,
         "drawer_ids": [
           "stm-pipeline-transforms-20260525"
@@ -937,8 +929,16 @@
         ]
       },
       {
-        "id": "file::seems/might",
-        "label": "seems/might",
+        "id": "file::PASS/FAIL/WARN",
+        "label": "PASS/FAIL/WARN",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "stm-pipeline-transforms-20260525"
+        ]
+      },
+      {
+        "id": "file::believe/it",
+        "label": "believe/it",
         "drawer_count": 1,
         "drawer_ids": [
           "stm-pipeline-transforms-20260525"
@@ -953,16 +953,16 @@
         ]
       },
       {
-        "id": "file::optional/best-effort",
-        "label": "optional/best-effort",
+        "id": "file::might/could/perhaps/maybe",
+        "label": "might/could/perhaps/maybe",
         "drawer_count": 1,
         "drawer_ids": [
           "ears-syntax-requirements-20260525"
         ]
       },
       {
-        "id": "file::might/could/perhaps/maybe",
-        "label": "might/could/perhaps/maybe",
+        "id": "file::optional/best-effort",
+        "label": "optional/best-effort",
         "drawer_count": 1,
         "drawer_ids": [
           "ears-syntax-requirements-20260525"
@@ -977,8 +977,8 @@
         ]
       },
       {
-        "id": "file::outcome/constraint/scope",
-        "label": "outcome/constraint/scope",
+        "id": "file::Low/Medium/High",
+        "label": "Low/Medium/High",
         "drawer_count": 1,
         "drawer_ids": [
           "recipe-module-behavior-20260525"
@@ -993,8 +993,8 @@
         ]
       },
       {
-        "id": "file::Low/Medium/High",
-        "label": "Low/Medium/High",
+        "id": "file::outcome/constraint/scope",
+        "label": "outcome/constraint/scope",
         "drawer_count": 1,
         "drawer_ids": [
           "recipe-module-behavior-20260525"
@@ -1009,14 +1009,6 @@
         ]
       },
       {
-        "id": "file::secondary/unverified",
-        "label": "secondary/unverified",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "memory-search-hybrid-scoring-20260525"
-        ]
-      },
-      {
         "id": "file::topic/id",
         "label": "topic/id",
         "drawer_count": 1,
@@ -1025,27 +1017,11 @@
         ]
       },
       {
-        "id": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
-        "label": "malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+        "id": "file::secondary/unverified",
+        "label": "secondary/unverified",
         "drawer_count": 1,
         "drawer_ids": [
-          "inference-guard-activation-20260525"
-        ]
-      },
-      {
-        "id": "file::bypass/directory",
-        "label": "bypass/directory",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "inference-guard-activation-20260525"
-        ]
-      },
-      {
-        "id": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
-        "label": "hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "inference-guard-activation-20260525"
+          "memory-search-hybrid-scoring-20260525"
         ]
       },
       {
@@ -1065,14 +1041,6 @@
         ]
       },
       {
-        "id": "file::_shared/scripts/inference-guard.py",
-        "label": "_shared/scripts/inference-guard.py",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "inference-guard-activation-20260525"
-        ]
-      },
-      {
         "id": "file::now/new",
         "label": "now/new",
         "drawer_count": 1,
@@ -1081,8 +1049,16 @@
         ]
       },
       {
-        "id": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
-        "label": "weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+        "id": "file::hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+        "label": "hack/exploit/bypass/crack/attack/penetrate/inject/override/disable/circumvent/evade/manipulate",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::_shared/scripts/inference-guard.py",
+        "label": "_shared/scripts/inference-guard.py",
         "drawer_count": 1,
         "drawer_ids": [
           "inference-guard-activation-20260525"
@@ -1097,8 +1073,32 @@
         ]
       },
       {
+        "id": "file::weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+        "label": "weapon/explosive/poison/synthesize/phishing/impersonate/deceive/fraud",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+        "label": "malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
         "id": "file::overflow/privilege",
         "label": "overflow/privilege",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "inference-guard-activation-20260525"
+        ]
+      },
+      {
+        "id": "file::bypass/directory",
+        "label": "bypass/directory",
         "drawer_count": 1,
         "drawer_ids": [
           "inference-guard-activation-20260525"
@@ -1145,16 +1145,16 @@
         ]
       },
       {
-        "id": "file::wabblespec/memory/gap-map.md",
-        "label": "wabblespec/memory/gap-map.md",
+        "id": "file::wabblespec/memory/dream-log.json",
+        "label": "wabblespec/memory/dream-log.json",
         "drawer_count": 1,
         "drawer_ids": [
           "dream-module-behavior-20260525"
         ]
       },
       {
-        "id": "file::wabblespec/memory/dream-log.json",
-        "label": "wabblespec/memory/dream-log.json",
+        "id": "file::wabblespec/memory/gap-map.md",
+        "label": "wabblespec/memory/gap-map.md",
         "drawer_count": 1,
         "drawer_ids": [
           "dream-module-behavior-20260525"
@@ -1169,16 +1169,16 @@
         ]
       },
       {
-        "id": "file::wabblespec/meta.md",
-        "label": "wabblespec/meta.md",
+        "id": "file::L3/L4",
+        "label": "L3/L4",
         "drawer_count": 1,
         "drawer_ids": [
           "autopilot-orchestration-20260525"
         ]
       },
       {
-        "id": "file::L3/L4",
-        "label": "L3/L4",
+        "id": "file::wabblespec/meta.md",
+        "label": "wabblespec/meta.md",
         "drawer_count": 1,
         "drawer_ids": [
           "autopilot-orchestration-20260525"
@@ -1193,16 +1193,16 @@
         ]
       },
       {
-        "id": "file::ADDITIVE/COSMETIC",
-        "label": "ADDITIVE/COSMETIC",
+        "id": "file::formatting/rename",
+        "label": "formatting/rename",
         "drawer_count": 1,
         "drawer_ids": [
           "apply-delta-classification-20260525"
         ]
       },
       {
-        "id": "file::formatting/rename",
-        "label": "formatting/rename",
+        "id": "file::ADDITIVE/COSMETIC",
+        "label": "ADDITIVE/COSMETIC",
         "drawer_count": 1,
         "drawer_ids": [
           "apply-delta-classification-20260525"
@@ -1257,6 +1257,14 @@
         ]
       },
       {
+        "id": "file::security/authentication/payments/PII/secrets",
+        "label": "security/authentication/payments/PII/secrets",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "gateway-pattern-routing-20260525"
+        ]
+      },
+      {
         "id": "file::aesthetic/design/UX",
         "label": "aesthetic/design/UX",
         "drawer_count": 1,
@@ -1289,14 +1297,6 @@
         ]
       },
       {
-        "id": "file::security/authentication/payments/PII/secrets",
-        "label": "security/authentication/payments/PII/secrets",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "gateway-pattern-routing-20260525"
-        ]
-      },
-      {
         "id": "file::wabblespec/plans/task-card.md",
         "label": "wabblespec/plans/task-card.md",
         "drawer_count": 1,
@@ -1321,16 +1321,16 @@
         ]
       },
       {
-        "id": "file::module/receipt_path/staleness_state",
-        "label": "module/receipt_path/staleness_state",
+        "id": "file::L0-L8/shared",
+        "label": "L0-L8/shared",
         "drawer_count": 1,
         "drawer_ids": [
           "receipt-schema-design-20260521"
         ]
       },
       {
-        "id": "file::L0-L8/shared",
-        "label": "L0-L8/shared",
+        "id": "file::module/receipt_path/staleness_state",
+        "label": "module/receipt_path/staleness_state",
         "drawer_count": 1,
         "drawer_ids": [
           "receipt-schema-design-20260521"
@@ -1353,8 +1353,16 @@
         ]
       },
       {
-        "id": "file::claude/.wabblespec",
-        "label": "claude/.wabblespec",
+        "id": "file::N/M",
+        "label": "N/M",
+        "drawer_count": 1,
+        "drawer_ids": [
+          "hook-architecture-detail-20260525"
+        ]
+      },
+      {
+        "id": "file::src/hooks",
+        "label": "src/hooks",
         "drawer_count": 1,
         "drawer_ids": [
           "hook-architecture-detail-20260525"
@@ -1369,16 +1377,8 @@
         ]
       },
       {
-        "id": "file::N/M",
-        "label": "N/M",
-        "drawer_count": 1,
-        "drawer_ids": [
-          "hook-architecture-detail-20260525"
-        ]
-      },
-      {
-        "id": "file::src/hooks",
-        "label": "src/hooks",
+        "id": "file::claude/.wabblespec",
+        "label": "claude/.wabblespec",
         "drawer_count": 1,
         "drawer_ids": [
           "hook-architecture-detail-20260525"
