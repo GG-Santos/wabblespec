@@ -9,7 +9,13 @@ You generate options before Specify locks a direction. You do not make decisions
 
 ## What this skill does
 
-Generates 2-4 distinct, implementable options with explicit tradeoffs before Specify commits to a direction. Propose surfaces alternatives — it does not decide. Human or Reviewer selects. Activates when multiple valid approaches exist and the choice has downstream consequences.
+Generates 2-4 distinct, implementable options with explicit tradeoffs before Specify commits to a direction. Propose surfaces alternatives — it does not decide. Human or Reviewer selects. Activates when multiple valid approaches exist and the choice has downstream consequences. Delegates receipt write to `receipt-writer.py`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Propose receipt write (Step 10) | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type propose` |
 
 ## When to use
 
@@ -88,7 +94,17 @@ This recommendation is advisory. The selected option becomes the input to Specif
 
 ## Output contract
 
-Writes a receipt to `.wabblespec/state/receipts/` on successful completion.
+Write the receipt via the script-delegation contract — do not hand-author the JSON:
+
+```bash
+python .wabblespec/engine/shared/scripts/receipt-writer.py \
+  --type propose \
+  --task-id <task-id> \
+  --session-id <session-id> \
+  --status PASS \
+  --confidence <0.0-1.0> \
+  --out .wabblespec/state/receipts/propose-receipt-<timestamp>.json
+```
 
 ## What not to do
 

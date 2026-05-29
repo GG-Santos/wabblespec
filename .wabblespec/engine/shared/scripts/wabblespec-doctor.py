@@ -765,6 +765,47 @@ def check_L7(root: str) -> dict:
     return _pass(cid, sev, desc, "scope.md exists at .wabblespec/state/scope.md")
 
 
+def check_D1(root: str) -> dict:
+    """Receipt-write delegation: every receipt_required module's SKILL.md must
+    route its receipt write through receipt-writer.py (directly or via the
+    script-delegation-contract), rather than hand-authoring receipt JSON."""
+    cid, sev = "D1", "medium"
+    desc = "Receipt-producing modules delegate to receipt-writer.py"
+    modules_root = os.path.join(root, ".wabblespec", "engine", "modules")
+    if not os.path.isdir(modules_root):
+        return _fail(cid, sev, desc, "engine/modules/ not found")
+
+    total = 0
+    non_delegating = []
+    for dirpath, _dirs, files in os.walk(modules_root):
+        if "skill-rules.json" not in files:
+            continue
+        rules = os.path.join(dirpath, "skill-rules.json")
+        try:
+            data = _load_json(rules)
+        except Exception:
+            continue
+        if data.get("receipt_required") is not True:
+            continue
+        total += 1
+        skill_md = os.path.join(dirpath, "SKILL.md")
+        content = ""
+        if os.path.isfile(skill_md):
+            with open(skill_md, "r", encoding="utf-8") as f:
+                content = f.read()
+        if "receipt-writer.py" not in content and "script-delegation-contract" not in content:
+            mid = data.get("module") or os.path.relpath(dirpath, modules_root).replace("\\", "/")
+            non_delegating.append(mid)
+
+    if non_delegating:
+        non_delegating.sort()
+        return _fail(cid, sev, desc,
+                     f"{len(non_delegating)}/{total} receipt_required modules hand-author "
+                     f"(no receipt-writer.py / contract reference): {non_delegating[:8]}"
+                     + (" ..." if len(non_delegating) > 8 else ""))
+    return _pass(cid, sev, desc, f"all {total} receipt_required modules delegate")
+
+
 # ---------------------------------------------------------------------------
 # All checks registry
 # ---------------------------------------------------------------------------
@@ -775,6 +816,7 @@ ALL_CHECKS = [
     check_H6, check_H7, check_H8, check_H10,
     check_M1, check_M2, check_M3, check_M4, check_M5,
     check_M6, check_M7, check_M8, check_M9, check_M10,
+    check_D1,
     check_L1, check_L2, check_L3, check_L4, check_L5,
     check_L6, check_L7,
 ]
