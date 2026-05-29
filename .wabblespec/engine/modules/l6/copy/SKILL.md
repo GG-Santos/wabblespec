@@ -30,6 +30,12 @@ Copy activates when:
 - **Severity** — for errors and warnings: `info | warning | error | critical` (default: info)
 - **Action available** — what action the user can take in response (optional; required for error and security-warning categories)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Copy receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/copy/schemas/copy-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/copy-{timestamp}.json`

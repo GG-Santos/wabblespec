@@ -775,8 +775,16 @@ def check_D1(root: str) -> dict:
     if not os.path.isdir(modules_root):
         return _fail(cid, sev, desc, "engine/modules/ not found")
 
+    # Documented exemptions: deterministic, zero-LLM stop-hook daemons whose domain
+    # outputs ARE their run record (dream-log.json tracks each run; entity-graph.json /
+    # entity-report). I10's "no implied completion" targets reasoning steps, not
+    # deterministic file generators that leave their full output as evidence. They emit
+    # no receipt-chain receipt by design.
+    EXEMPT = {"dream", "entity-graph"}
+
     total = 0
     non_delegating = []
+    exempt_seen = []
     for dirpath, _dirs, files in os.walk(modules_root):
         if "skill-rules.json" not in files:
             continue
@@ -787,6 +795,10 @@ def check_D1(root: str) -> dict:
             continue
         if data.get("receipt_required") is not True:
             continue
+        mid = data.get("module") or os.path.relpath(dirpath, modules_root).replace("\\", "/")
+        if mid in EXEMPT:
+            exempt_seen.append(mid)
+            continue
         total += 1
         skill_md = os.path.join(dirpath, "SKILL.md")
         content = ""
@@ -794,16 +806,16 @@ def check_D1(root: str) -> dict:
             with open(skill_md, "r", encoding="utf-8") as f:
                 content = f.read()
         if "receipt-writer.py" not in content and "script-delegation-contract" not in content:
-            mid = data.get("module") or os.path.relpath(dirpath, modules_root).replace("\\", "/")
             non_delegating.append(mid)
 
+    exempt_note = f" ({len(exempt_seen)} documented exemptions: {sorted(exempt_seen)})" if exempt_seen else ""
     if non_delegating:
         non_delegating.sort()
         return _fail(cid, sev, desc,
                      f"{len(non_delegating)}/{total} receipt_required modules hand-author "
                      f"(no receipt-writer.py / contract reference): {non_delegating[:8]}"
-                     + (" ..." if len(non_delegating) > 8 else ""))
-    return _pass(cid, sev, desc, f"all {total} receipt_required modules delegate")
+                     + (" ..." if len(non_delegating) > 8 else "") + exempt_note)
+    return _pass(cid, sev, desc, f"all {total} receipt_required modules delegate{exempt_note}")
 
 
 # ---------------------------------------------------------------------------

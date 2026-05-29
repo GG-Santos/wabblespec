@@ -28,6 +28,12 @@ Markdown is invoked:
 - **Link targets** — list of note titles or paths that this note should wikilink to (optional)
 - **Vault root** — root path for resolving wikilink targets (optional; default: `.wabblespec/`)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Markdown receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/markdown/schemas/markdown-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/markdown-{timestamp}.json`

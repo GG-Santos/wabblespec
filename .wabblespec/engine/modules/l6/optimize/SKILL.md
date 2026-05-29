@@ -30,6 +30,12 @@ Optimize activates when:
 - **Location** — physical address (required for local mode)
 - **Locale** — target locale for optimization (default: `en-US`)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Optimize receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/optimize/schemas/optimize-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/optimize-{timestamp}.json`

@@ -70,6 +70,12 @@ Present CONFIRM actions to user as a numbered list. Wait for confirmation before
 
 Write organize report to `.wabblespec/organize/report-<timestamp>.md`. Write receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Organize receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/organize-receipt.schema.json` |
+
 ## Output contract
 
 **organize-receipt.json** (`.wabblespec/state/receipts/organize-receipt-<timestamp>.json`):

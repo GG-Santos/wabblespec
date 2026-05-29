@@ -29,6 +29,12 @@ Commit activates:
 - **Sign** — whether to GPG-sign the commit (default: false)
 - **Dry-run** — produce commit message(s) without applying (default: false; always true in audit mode)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Commit receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l7/commit/schemas/commit-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/commit-{timestamp}.json`

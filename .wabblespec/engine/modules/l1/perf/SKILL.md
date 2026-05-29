@@ -54,6 +54,12 @@ After optimization: run baseline measurement again. Compare all metrics, not jus
 
 ### Step 6 — Write receipt
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Perf receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/perf-receipt.schema.json` |
+
 ## Output contract
 
 **perf-receipt.json** (`.wabblespec/state/receipts/perf-receipt-<timestamp>.json`):

@@ -44,6 +44,12 @@ Scan manifest for: DRAFT flags older than 30 days (stale), ROLLING flags with no
 
 Transition state to RETIRED. Record `retired_at` timestamp and `retirement_reason`. Retired flags remain in manifest — do not delete. Deletion requires an explicit `--purge` flag (not default).
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Flag receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/flag-receipt.schema.json` |
+
 ## Output contract
 
 **flag-receipt.json** (`.wabblespec/state/receipts/flag-receipt-<timestamp>.json`):

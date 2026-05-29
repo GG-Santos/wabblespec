@@ -89,6 +89,12 @@ Write plan artifact to `.wabblespec/state/plans/plan-<timestamp>.md`. Receipt to
 
 Pass plan artifact path to Decompose. Decompose uses the chosen approach, rationale, and open risks to structure waves.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Plan receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/plan-receipt.schema.json` |
+
 ## Output contract
 
 **plan-<timestamp>.md** (`.wabblespec/state/plans/plan-<timestamp>.md`):

@@ -32,6 +32,12 @@ Legal activates when:
 - **Third parties** — list of third-party processors or partners (optional; required for GDPR if processors exist)
 - **Effective date** — document effective date (default: today)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Legal receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/legal/schemas/legal-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/legal-{timestamp}.json`

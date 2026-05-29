@@ -57,6 +57,12 @@ Root cause is speculative (< 0.4): note as hypothesis requiring verification, do
 
 Write to `.wabblespec/analysis/rca-<timestamp>.md`. Write receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Analyze receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/analyze-receipt.schema.json` |
+
 ## Output contract
 
 **analyze-receipt.json** (`.wabblespec/state/receipts/analyze-receipt-<timestamp>.json`):

@@ -53,6 +53,12 @@ Write SBOM to `.wabblespec/deps/sbom-<timestamp>.json`. Format per rules/sbom-fo
 
 ### Step 5 — Write receipt
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Deps receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/deps-receipt.schema.json` |
+
 ## Output contract
 
 **deps-receipt.json** (`.wabblespec/state/receipts/deps-receipt-<timestamp>.json`):
