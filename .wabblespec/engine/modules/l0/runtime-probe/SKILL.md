@@ -52,6 +52,12 @@ Probe each capability through a minimal behavioral test — not by reading model
 
 If detection is uncertain, record as available with confidence < 0.7 and note uncertainty.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| RuntimeProbe receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type runtime-probe` |
+
 ## Output contract
 
 Write to `.wabblespec/state/runtime/runtime-state.json`:

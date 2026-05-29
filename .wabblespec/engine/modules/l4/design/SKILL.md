@@ -57,6 +57,12 @@ Cross-cutting UX and interaction standards layer. Activates on top of (not inste
 7. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| design receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - User flow completability audit

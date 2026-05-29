@@ -48,6 +48,12 @@ See `rules/ambiguity-dimensions.md` for full definitions. Cover only dimensions 
 5. Record answers, reassess remaining ambiguity
 6. Repeat until resolved or human stops session
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Interview receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Outputs
 
 Write `.wabblespec/state/plans/intent.md`:

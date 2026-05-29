@@ -87,6 +87,12 @@ Write to `.wabblespec/state/plans/test-plan-<spec-id>.md`:
 <platform-appropriate test runner and structure>
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Test receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

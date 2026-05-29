@@ -55,6 +55,12 @@ Note: Homowabian ultra mode suppressed for Aesthetic content output — prose co
 7. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| aesthetic receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - Brand asset compliance check

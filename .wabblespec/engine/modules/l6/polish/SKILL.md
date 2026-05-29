@@ -125,6 +125,12 @@ Threshold: 100% precision and recall (deterministic regex modules).
 30 negative cases required — cases that must NOT be transformed.
 Run: `python .wabblespec/engine/shared/scripts/stm-pipeline.py --test --fixture-dir modules/l6/polish/fixtures`
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Polish receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Outputs
 
 | Output | Location | Notes |

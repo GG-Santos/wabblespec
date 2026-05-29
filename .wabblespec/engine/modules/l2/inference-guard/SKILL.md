@@ -67,6 +67,12 @@ Declared in task card via `inference_guard_technique`. Default: `leetspeak`.
 5. Write activation receipt with trigger list, transformation record, byte counts
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| InferenceGuard receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type inference-guard` |
+
 ## Output contract
 
 **Activation receipt:**

@@ -46,6 +46,12 @@ Every project-map.md carries a `freshness_state` and `valid_until`. Explore sets
 
 Set `valid_until` to `explored_at + 24h` for most targets. High-churn projects (>5 commits per day) may use 8h. Explore re-runs always write a new map and reset `freshness_state` to `FRESH`.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Explore receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Write to `.wabblespec/state/plans/project-map.md`. Schema contract: `.wabblespec/engine/shared/schemas/project-map.schema.json`.

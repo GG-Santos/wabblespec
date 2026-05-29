@@ -56,6 +56,12 @@ Note: Design gateway (accessibility floor) applies to all visual targets uncondi
 7. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| experience receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - Research method and cadence compliance check

@@ -52,6 +52,12 @@ Resume terse mode after the critical section is complete.
 
 Module complexity has not grown beyond this SKILL.md. No skill-rules.json activation logic needed — register is a passive setting, not an invocable skill. Revisit if: register logic becomes conditional on task type, or if per-module register overrides are needed.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Homowabian receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

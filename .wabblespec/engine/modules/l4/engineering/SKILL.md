@@ -57,6 +57,12 @@ You are the cross-cutting engineering quality layer. You activate on top of the 
 5. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| engineering receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - Code quality report (coverage, complexity, lint findings)

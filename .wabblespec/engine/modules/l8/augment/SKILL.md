@@ -48,6 +48,12 @@ Augment activates when:
 4. Extend receipt schema with module-specific required fields
 5. Write concrete GWT acceptance scenarios
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Augment receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type augment` |
+
 ## Output contract
 
 **Directory:** `.wabblespec/state/experiments/augments/{blueprint-id}/`

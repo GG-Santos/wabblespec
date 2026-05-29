@@ -58,6 +58,12 @@ Cross-cutting AI standards layer. Activates on top of (not instead of) the activ
 9. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ai receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - Prompt engineering compliance check

@@ -75,6 +75,12 @@ After routing, set `inference_guard_eligible` based on:
 
 This field flows to InferenceGuard activation check. InferenceGuard reads this field from the routing receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ModelRouter receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type model-router` |
+
 ## Output contract
 
 ```json

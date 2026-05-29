@@ -66,6 +66,12 @@ capability_handoff:
     - gateway-ai/references/             # always for AI/Agent
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ai-agent receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 **Platform activation receipt** (`.wabblespec/state/receipts/platform-ai-agent-{timestamp}.json`)

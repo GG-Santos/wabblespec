@@ -49,6 +49,12 @@ If any gate is unmet, Forge exits with `FORGE_BLOCKED`, names the unmet gate, an
 7. Update framework.yaml: set promoted module's `last_validated` and `build_status: built`.
 8. Write Forge receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Forge receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type forge` |
+
 ## Output contract
 
 **Writes to production:** `modules/{layer}/{module}/` — complete replacement of module files

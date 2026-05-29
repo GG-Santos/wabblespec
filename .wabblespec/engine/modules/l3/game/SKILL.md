@@ -132,6 +132,12 @@ capability_handoff:
     - gateway-aesthetic/references/      # if aesthetic gateway active
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| game receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

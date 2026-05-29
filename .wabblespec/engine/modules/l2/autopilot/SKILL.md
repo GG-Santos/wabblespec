@@ -192,6 +192,12 @@ See `.wabblespec/engine/shared/references/orchestration-adapter-boundary.md` for
 
 After each major execution wave: trigger Dream (non-blocking — does not wait for completion). After a release cycle: schedule Evolution pipeline check.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Autopilot receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

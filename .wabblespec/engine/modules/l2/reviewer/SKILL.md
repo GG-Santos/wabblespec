@@ -107,6 +107,12 @@ If REVISE:
 
 Always write a receipt, whether triggered or not. If not triggered: `triggered: false`, `verdict: NOT_TRIGGERED`.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Reviewer receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type reviewer` |
+
 ## Output contract
 
 **gate receipt** (`.wabblespec/state/receipts/reviewer-receipt-<timestamp>.json`):

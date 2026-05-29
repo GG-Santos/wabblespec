@@ -140,6 +140,12 @@ Pointer mode use cases:
 }
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Reference-load receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 **Reference card drawer** in `.wabblespec/state/memory/wings/references/rooms/<source-slug>/drawers/<id>.json`

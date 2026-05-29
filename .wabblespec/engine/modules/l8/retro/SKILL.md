@@ -29,6 +29,12 @@ Retro activates after an execution completes — Recipe through Archive chain is
 
 Retro reads receipts by `timestamp` range or by an execution ID if provided. If no execution ID is given, it reads the most recent complete chain (Recipe → Archive).
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Retro receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 **One file:** `.wabblespec/state/memory/retro/retro-{ISO-timestamp}.md`

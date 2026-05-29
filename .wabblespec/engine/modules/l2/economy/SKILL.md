@@ -191,6 +191,12 @@ Projection accuracy degrades when:
 
 After the wave completes, Verifier may compare `tokens_projected` against actual receipt size. Accuracy data feeds the per-module tier estimates in future projections.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Economy receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion. In `--budget` mode, also writes to `.wabblespec/advisories/` when projected tokens exceed ceiling.

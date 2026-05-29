@@ -81,6 +81,12 @@ capability_handoff:
     - gateway-experience/references/     # if experience gateway active
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| cli receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 **Platform activation receipt** (`.wabblespec/state/receipts/platform-cli-{timestamp}.json`):

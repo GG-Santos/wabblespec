@@ -103,6 +103,12 @@ For each drawer written: write Provenance record with source, trust level, load 
 
 Notify ResearchLog with: sources loaded, drawer IDs written, findings count, any EXPIRED override decisions.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Reference-load receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Outputs
 
 Receipt declaring: sources loaded, trust levels, drawer IDs written, staleness actions taken, any EXPIRED overrides with reasons.

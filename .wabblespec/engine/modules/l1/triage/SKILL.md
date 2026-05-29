@@ -98,6 +98,12 @@ Check Memory for prior triage records on the same topic before classifying:
 |---|---|---|
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Triage receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

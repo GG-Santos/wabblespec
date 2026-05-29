@@ -89,6 +89,12 @@ InferenceGuard (L2) activates automatically when gateway-security is active. It 
 
 Override tier/technique in the security profile header fields: `InferenceGuard tier` and `InferenceGuard technique`.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| security receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type gateway-spec` / `gateway-verdict` (two-phase)` |
+
 ## Output contract
 
 - Cross-cutting threat assessment (additive to platform threat model)

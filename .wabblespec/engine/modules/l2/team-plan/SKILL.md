@@ -76,6 +76,12 @@ When delegating to a specialist, pass exactly:
 
 Before using TeamPlan on a new task class: run the same task in single-agent mode first. If single-agent produces correct receipts, TeamPlan is unnecessary. Only use TeamPlan when single-agent execution demonstrably fails (timeout, context overflow, parallelism bottleneck).
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Team-plan receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

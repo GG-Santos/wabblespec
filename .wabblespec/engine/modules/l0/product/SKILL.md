@@ -136,6 +136,12 @@ Write to Memory before writing product-context.md. Cite the drawer IDs in the pr
 
 **If no standards found** (new project, empty codebase): skip discovery. Write product-context.md with an empty Standards section noting "no existing codebase conventions detected."
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Product receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Outputs
 
 Write `product-context.md` to `.wabblespec/state/plans/`.

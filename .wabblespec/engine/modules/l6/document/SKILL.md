@@ -23,6 +23,12 @@ Documentation generation for completed tasks. Produces README updates, API docs,
 - During execution waves (documentation is a post-completion step)
 - When no Archive receipt exists (cannot document unverified work)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Document receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 | Output | When | Content source |

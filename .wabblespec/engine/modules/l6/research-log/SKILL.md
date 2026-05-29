@@ -22,6 +22,12 @@ Logs research findings as memory drawers with provenance. Use when an Executor w
 - Findings that are already in an existing FRESH drawer (check MemorySearch first)
 - Per-wave implementation notes (those belong in receipts)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Research-log receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 One or more drawer entries, each containing:

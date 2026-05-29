@@ -46,6 +46,12 @@ Before writing, answer three questions:
 
 If any answer is no: stop, write a one-paragraph note to the user explaining what is missing. Do not write `candidate.json`.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Synth receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type synth` |
+
 ## Output contract
 
 **One file:** `.wabblespec/state/experiments/candidates/{candidate-id}.candidate.json`

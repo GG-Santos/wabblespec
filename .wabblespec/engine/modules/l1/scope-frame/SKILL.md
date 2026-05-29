@@ -68,6 +68,12 @@ Write to `.wabblespec/state/scope.md`. See output contract for structure.
 
 Write to `.wabblespec/state/receipts/scopeframe-receipt.json`. Extension fields: `in_scope_count`, `out_of_scope_count`, `assumptions_count`, `user_confirmed` (must be `true` — never write receipt with false).
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| ScopeFrame receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type scopeframe` |
+
 ## Output contract
 
 **scope.md** (`.wabblespec/state/scope.md`):

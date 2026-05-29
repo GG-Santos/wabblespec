@@ -122,6 +122,12 @@ capability_handoff:
     - gateway-experience/references/     # if experience gateway active
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| web receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

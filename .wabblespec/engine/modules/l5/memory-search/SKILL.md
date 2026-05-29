@@ -125,6 +125,12 @@ Deduplicate by `wabblespec_drawer_id` — synthetic pointer docs share a drawer 
 
 Return top `max_results` after ranking. Write MemorySearch receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| MemorySearch receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type memory-search` |
+
 ## Output format (in-context)
 
 ```

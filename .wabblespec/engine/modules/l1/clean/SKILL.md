@@ -83,6 +83,12 @@ STM transforms are classified as COSMETIC — they do not change semantics, only
 
 STM only runs when scope includes receipt artifacts or code comment targets. STM does not activate on production code logic regardless of scope declaration.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Clean receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion. Receipt includes `stm_applied` field when STM transforms were applied.
