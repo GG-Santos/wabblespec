@@ -106,7 +106,7 @@ def receipt_to_row(receipt_id, data):
         "module": data.get("module"),
         "status": data.get("status"),
         "timestamp": data.get("timestamp") or data.get("written_at"),
-        "wave": data.get("wave"),
+        "wave": (lambda w: int(w) if isinstance(w, (int, float)) or (isinstance(w, str) and w.isdigit()) else None)(data.get("wave")),
         "delta_class": data.get("delta_class"),
         "receipt_json": json.dumps(data),
     }

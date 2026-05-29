@@ -1,6 +1,6 @@
 # Entity Graph Report
 
-> Generated: 2026-05-29T15:06:57.246238+00:00
+> Generated: 2026-05-29T15:14:38.718165+00:00
 > Drawers scanned: 53
 > Nodes: 159  Edges: 835
 

@@ -1,7 +1,7 @@
 # Staleness Map
 
-> Generated: 2026-05-29T15:01:38.202213+00:00
-> Drawers: 49
+> Generated: 2026-05-29T15:14:34.384428+00:00
+> Drawers: 53
 
 Sorted by state (worst first), then confidence ascending.
 
@@ -10,6 +10,10 @@ Sorted by state (worst first), then confidence ascending.
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
+| context-degradation | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
+| gate-taxonomy | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
+| specificity-enforcement | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
+| verification-framework | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | stm-pipeline-transforms-20260525 | STM Pipeline Transform Configuration | implementation/stm-pipeline | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | ears-syntax-requirements-20260525 | EARS Syntax for WabbleSpec Requirements | implementation/specify | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | red-blue-purple-9-component-20260525 | Red/Blue/Purple 9-Component Scoring Model | implementation/security | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
@@ -59,4 +63,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 49
+- FRESH: 53

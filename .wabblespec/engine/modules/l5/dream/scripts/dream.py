@@ -124,7 +124,7 @@ class Finding:
 
 def detect_gaps(drawers: list[dict]) -> list[Finding]:
     findings: list[Finding] = []
-    active_ids = {d["id"] for d in drawers if d.get("staleness_state") not in ("SUPERSEDED", "EXPIRED")}
+    active_ids = {d.get("id", "unknown") for d in drawers if d.get("staleness_state") not in ("SUPERSEDED", "EXPIRED")}
 
     # Per-drawer findings
     for d in drawers:

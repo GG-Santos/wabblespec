@@ -1,12 +1,11 @@
-# Staleness Map — 2026-05-24T13-12-46
+# Staleness Map — 2026-05-29T15-14-35
 
 Total drawers: 2931
 
 ## State Distribution
 
-| FRESH | 11 |
+| FRESH | 12 |
 | NEEDS_REBUILD | 2918 |
-| NEEDS_REVERIFICATION | 1 |
 | SUPERSEDED | 1 |
 | UNKNOWN | 2918 |
 
@@ -18,4 +17,3 @@ Total drawers: 2931
 ## Top Stale Wings
 
 - wing_sessions: 2918 stale/expired drawers
-- architecture: 1 stale/expired drawers
