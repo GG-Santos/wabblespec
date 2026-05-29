@@ -34,6 +34,7 @@ Pipeline/automation scripts live in `.wabblespec/engine/shared/scripts/` unless 
 - `quality-floor-check.py` — Gate 1 + Gate 2 for all 103 modules; `--verbose` for full detail
 - `validate-graph.py` — module registry integrity
 - `agent-output-validator.py` — validate JSON output from skill subagents
+- `wabblespec-doctor.py` — read-only drift detector; 30 checks (C/H/M/L) covering the foundation-audit finding classes. `--all`, `--severity {critical,high,medium,low}`, `--format json`, `--self-test`. Run after a batch of changes (e.g. reference integrations) to catch regressions. Reports only — no edits, no hook wiring.
 
 **Memory layer:**
 - `drawer-writer.py` — write file-based drawer JSON
