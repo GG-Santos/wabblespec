@@ -575,6 +575,18 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+  - id: framework-maintenance
+    path: .wabblespec/engine/modules/l2/framework-maintenance/
+    type: authority
+    layer: L2
+    tags: [governance, authority, framework-self-build, infrastructure]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-29"
+    quality_floor_passed: true
+    build_status: built
+
   - id: adversary
     path: .wabblespec/engine/modules/l2/adversary/
     type: skill
