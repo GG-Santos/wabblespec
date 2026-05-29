@@ -1,8 +1,1 @@
- 0 May 22 13:34 memory-mine
-→ drwxr-xr-x 1 Kirsten 197121 0 May 22 08:34 memory-search
-→ drwxr-xr-x 1 Kirsten 197121 0 May 23 17:35 provenance
-Perfect! Now let me check the .wabblespec/memory directory structure:
-[Bash] ls -la "C:\Vaults\WabbleSpec v6.1/.wabblespec/" | head -20
-[Bash] find "C:\Vaults\WabbleSpec v6.1/.wabblespec/memory" -type f 2>/dev/null | head -50
-→ total 62
-→ drwxr-xr-x
+\\WabbleSpec v6.1\\.wabblespec\\memory\\provenance\\index.json]\n[Read C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\memory\\dream-log.json]\n[Bash] ls -la \"C:\\Vaults\\WabbleSpec v6.1/.wabblespec/memory/wings/architecture/rooms/\" 2>/dev/null\n→ total 0\n→ drwxr-xr-x 1 Kirsten 197121 0 May 21 19:51 .\n→ drwxr-xr-x 1 Kirsten 197121 0 May 21 19:51 ..\n→ drwxr-xr-x 1 Kirsten 197121 0 May 21 19:
