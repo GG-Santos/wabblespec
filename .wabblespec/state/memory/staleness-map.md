@@ -1,6 +1,6 @@
 # Staleness Map
 
-> Generated: 2026-05-29T15:14:34.384428+00:00
+> Generated: 2026-05-29T15:17:35.931304+00:00
 > Drawers: 53
 
 Sorted by state (worst first), then confidence ascending.
