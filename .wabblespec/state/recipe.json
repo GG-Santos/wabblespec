@@ -3,7 +3,7 @@
   "platform": "Framework",
   "detection_method": "user-declaration",
   "confidence": 0.95,
-  "complexity": "Medium",
+  "complexity": "High",
   "secondary_targets": [],
   "collapse_eligible": false,
   "active_skills": [],
