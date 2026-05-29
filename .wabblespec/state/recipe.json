@@ -1,9 +1,9 @@
 {
   "target": "Framework",
   "platform": "Framework",
-  "detection_method": "explicit-instruction",
+  "detection_method": "user-declaration",
   "confidence": 0.95,
-  "complexity": "High",
+  "complexity": "Medium",
   "secondary_targets": [],
   "collapse_eligible": false,
   "active_skills": [],
@@ -13,6 +13,7 @@
     "enhanced": false,
     "sharpened": false
   },
-  "locked_at": "2026-05-28T13:28:55Z",
-  "session_id": "foundation-hardening-20260528"
+  "cold_start_verified": true,
+  "locked_at": "2026-05-29T14:52:00Z",
+  "session_id": "agent-creator-integration-20260529"
 }
