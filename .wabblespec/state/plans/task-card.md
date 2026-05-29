@@ -1,74 +1,70 @@
 # Task Card
 
-**goal:** A wabblespec-doctor.py drift detector exists and is wired as an on_archive daemon and an advisory Guard layer, all five schema gaps are closed, findings C1-C4 plus the high-tier drift items are fixed and verified, and a permanent authority owner for shared framework infrastructure (finding #29) is established so Framework self-builds pass Guard Layer 4.
-**revised_at:** 2026-05-28T14:18:38Z (rescope: finding #29 added after Executor Wave 1 blocked at Guard Layer 4 — no authority owner for shared framework infra)
+**goal:** WabbleSpec's `wabblespec-guard` and `wabblespec-verifier` subagents declare an explicit minimal `tools:` set with no hardcoded model name, and the ref-* and review-trio skill descriptions carry negative-trigger clauses, all without changing any subagent's receipt contract.
 **target:** Framework
-**complexity:** High
-**change_class:** ADDITIVE
-**locked_at:** 2026-05-28T13:02:20Z
-**session_id:** foundation-hardening-20260528
+**complexity:** Medium
+**change_class:** COSMETIC
+**locked_at:** 2026-05-29T15:00:00Z
+**session_id:** agent-creator-integration-20260529
 
 ## Non-Goals
 
-- Exhaustive resolution of all medium and low tier findings (left for the doctor to surface)
-- Full unit-test harness for the 42 shared scripts (deferred to a fast-follow task card)
-- Promoting the doctor Guard layer to blocking (stays advisory until clean across several Archives)
-- Any product-space changes (framework self-build only, I11)
+- B3 (subagent-vs-skill rubric in CLAUDE.md / authoring conventions) — deferred to Phase 2, gated behind the framework-maintenance authority owner and its own Specify cycle.
+- Any change that introduces or references a model name (I6 hard guardrail).
+- Importing the reference's token-budget numbers as justification.
+- Adopting the unverified `skills:` frontmatter field.
+- Changing subagent prompt logic/behavior beyond the `tools:`/`model:` frontmatter, or skill bodies beyond the `description` string.
+- Any product-space change (I11 — framework-only).
 
 ## Assumptions
 
-- Brainstorm and Propose artifacts are the source of the 28 findings and Option 2 was human-selected
-- Python 3.8+ with pyyaml and duckdb available
-- Reviewer gates the Plan stage before Executor since Guard is invariant-enforcing
-- H1 confidence unification is additive with a deprecation window, keeping the overall delta ADDITIVE
-- Establishing the shared-infra authority owner (finding #29) requires a one-time human Attestation for the first governance edit — a root of trust cannot be self-granted. Rescope scopes that Attestation to a single authority-defining edit and makes the owner permanent (vs. a blanket session grant).
+- foundation-hardening (v0.46.0) is complete and archived; this builds on that baseline.
+- `research/ref-eval/agent-creator.md` and `research/ref-plan/agent-creator.md` are the authoritative source of work items.
+- The two subagents invoke a determinable, finite tool set (Read/Grep/Glob/Bash + receipt/JSON writers) — confirmed by reading their definitions during Specify.
+- Authority for `.claude/agents/*` writes is unsettled (analogous to finding #29) — to be resolved at Guard Layer 4 during execution; the framework-maintenance owner may or may not cover this surface.
+- Python 3.8+ with pyyaml/duckdb available.
+- No project-standard drawers discovered in Memory.
 
 ## Acceptance Criteria
 
-### AC1 — doctor exists and runs
+### Criterion 1: Guard subagent toolset scoped
 
-Given wabblespec-doctor.py does not exist today
-When the doctor is built and invoked with a full run
-Then command exits 0, executes all 28 finding checks, and emits a structured report
+Given `.claude/agents/wabblespec-guard.md` has no `tools:` frontmatter key (inherits all tools)
+When an explicit `tools:` line is added containing exactly the tools its prompt invokes
+Then the frontmatter declares `tools: Read, Grep, Glob, Bash` and no longer inherits the full tool set
 
-### AC2 — schema gaps closed
+### Criterion 2: Verifier subagent toolset scoped
 
-Given recipe.json wave-queue.json delivery brainstorm and propose lack schemas or builders
-When schemas are added under engine/shared/schemas and receipt-writer gains brainstorm options_path and a propose builder
-Then receipt-writer --validate passes for recipe wave-queue delivery brainstorm and propose receipts
+Given `.claude/agents/wabblespec-verifier.md` has no `tools:` frontmatter key (inherits all tools)
+When an explicit `tools:` line is added containing exactly the tools its prompt invokes
+Then the frontmatter declares `tools: Read, Grep, Glob, Bash` and no longer inherits the full tool set
 
-### AC3 — confidence field unified
+### Criterion 3: Hardcoded model names removed (I6)
 
-Given receipts use confidence confidence_score and score interchangeably
-When writers are normalized to emit confidence with back-compat reads of legacy names
-Then all receipt builders emit a single confidence field in 0 to 1 and validation passes
+Given both subagent files contain `model: claude-sonnet-4-6` on line 4
+When the `model:` line is removed from each file
+Then neither file contains any model name and a grep for `claude-` / `sonnet` / `opus` / `haiku` across both files returns zero matches
 
-### AC4 — receipt-index paths resolve
+### Criterion 4: Receipt contract preserved (regression gate)
 
-Given 43 of 64 indexed delivery receipt paths point to .wabblespec/receipts/
-When the index is regenerated against .wabblespec/state/receipts/
-Then every delivery_receipt_path in receipt-index.json resolves to an existing file
+Given the scoped subagents with restricted toolsets and no model pin
+When `wabblespec-guard` and `wabblespec-verifier` are each invoked on a representative wave
+Then each returns its declared JSON receipt (guard receipt with `overall`/`status`; verifier receipt with `verdict`/`status`) with no tool-call failure caused by a removed tool
 
-### AC5 — platform skill IDs aligned
+### Criterion 5: ref-* descriptions carry negative triggers
 
-Given registry full IDs differ from .claude/skills short forms
-When the sync process is corrected and re-run
-Then registry IDs and .claude/skills directory names match for platform-iot platform-extension and platform-library
+Given the `ref-eval`, `ref-plan`, and `ref-comp` skill descriptions
+When a negative-trigger clause is added to each
+Then each description names its sibling(s) as explicit NOT-for cases (e.g. ref-eval: "NOT for turning findings into a work plan — use ref-plan") and each skill still loads without a parse error
 
-### AC6 — critical path and doc fixes
+### Criterion 6: review-trio descriptions carry negative triggers
 
-Given archive.py references a nonexistent _shared path and CLAUDE.md states version 0.39.0 and 100 or 99 modules
-When archive.py path is corrected and CLAUDE.md is updated
-Then archive.py resolves wabble-sound.py and CLAUDE.md states version 0.45.0 and 103 modules
+Given the `reviewer`, `adversary`, and `grader` skill descriptions
+When a negative-trigger clause is added to each
+Then each description names the adjacent module's boundary and each skill still loads without a parse error
 
-### AC7 — doctor wired as gate
+### Criterion 7: Source-of-truth edited, no sync divergence
 
-Given no automated drift detection exists
-When doctor is added to daemon-config on_archive and as an advisory Guard layer
-Then an Archive run triggers the doctor and Guard surfaces its findings without blocking
-
-### AC8 — shared-infra authority owner established (finding #29)
-
-Given no module's authority.owns covers shared framework infrastructure (engine/shared/**, wabblespec.yaml, CLAUDE.md, daemon-config, the Guard module), so a Framework self-build fails Guard Layer 4
-When a permanent framework-maintenance authority owner is defined (bootstrapped by a one-time Attestation) covering the shared-infra paths the hardening waves must write
-Then guard-check.py authority --module <framework-maintenance owner> --files <each subsequent wave's shared-infra outputs> returns PASS for every remaining wave
+Given `.claude/agents/` and `.claude/skills/` may be sync-generated from `.wabblespec/engine/`
+When the canonical source-of-truth copy is determined and edited
+Then re-running the skill sync reproduces the edits in `.claude/` (or confirms `.claude/` is canonical), and `wabblespec-sync-skills.py` reports zero stale/divergent files for the touched modules

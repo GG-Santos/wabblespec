@@ -7,8 +7,9 @@
 
 ## In Scope
 
-- **B1** — Scope `.claude/agents/wabblespec-guard.md` tool grant from "All tools" to an explicit minimal set matching its actual invocations.
-- **B1** — Scope `.claude/agents/wabblespec-verifier.md` tool grant from "All tools" to an explicit minimal set matching its actual invocations.
+- **B1** — Add an explicit minimal `tools:` line to `.claude/agents/wabblespec-guard.md` (currently absent → inherits all tools) matching its actual invocations.
+- **B1** — Add an explicit minimal `tools:` line to `.claude/agents/wabblespec-verifier.md` (currently absent → inherits all tools) matching its actual invocations.
+- **B1+ (I6 fix, re-framed in)** — Remove the hardcoded `model: claude-sonnet-4-6` line from both subagent files (omit `model:` so the lane is selected by capability per I6/ModelRouter).
 - **B1 gate** — Verify both subagents still produce valid guard/verification receipts after scoping (regression check).
 - **B2** — Add negative-trigger clauses to the ref-* skill descriptions (`ref-eval`, `ref-plan`, `ref-comp`), each pointing at its sibling.
 - **B2** — Add negative-trigger clauses to the review-trio descriptions (`reviewer`, `adversary`, `grader`).
@@ -37,3 +38,4 @@
 | timestamp | change | triggered_by |
 |---|---|---|
 | 2026-05-29T14:52:00Z | Initial scope locked (Phase 1: B1 + B2) | user-confirmed |
+| 2026-05-29T15:00:00Z | Re-framed in: remove hardcoded `model: claude-sonnet-4-6` (I6 fix) from both subagent files — discovered during Specify file read | user-confirmed |
