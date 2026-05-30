@@ -144,6 +144,22 @@ After Archive completes each wave:
 
 Autopilot submits counter increments via `counter-increment-request.schema.json` rather than writing counter fields directly to meta.md when delegating to Archive or Memory. This preserves the deny-without-mutation contract on concurrent writes. Fields `revise_cycles`, `waves_completed`, and `stages_completed` are updated by Autopilot directly (sole writer); all other counter changes from sub-modules come through the request schema.
 
+## Delegation Thresholds
+
+When routing work during pipeline orchestration, apply these thresholds to decide whether to spawn a dedicated sub-module or keep execution inline:
+
+| Pattern | Signal | Action |
+|---|---|---|
+| Research breadth | Wave requires reading 3+ files to form a plan | Spawn Ground or a research wave; do not inline |
+| Parallel independence | Two or more sub-tasks have no shared outputs | Dispatch as parallel wave queue entries, not sequential |
+| External fact dependency | Wave plan references API availability, library version, or file existence not yet confirmed | Invoke Ground before Executor — block wave dispatch on Ground FAIL |
+| Validation scope | Output requires checking against the spec across multiple criteria | Route to Verifier; do not inline spot-check |
+| High-stakes decision | Confidence < 0.7 OR BREAKING delta class OR security/infra scope | Invoke Adversary before proceeding to Decompose or Executor |
+
+**Main orchestration context = coordination only.** Autopilot reads meta.md, routes between phases, and synthesizes module outputs. It does not implement, research, or validate inline. Sub-module invocations preserve this boundary.
+
+**Do not over-delegate:** A single simple lookup (1–2 files, known answer) does not require a sub-module. Latency and context cost must justify the delegation. Apply the thresholds, not a reflex to always spawn.
+
 ## Phase transitions
 
 Before advancing to the next phase, verify:

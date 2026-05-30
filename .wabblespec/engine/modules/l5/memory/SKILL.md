@@ -158,6 +158,24 @@ If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit 
 }
 ```
 
+## Observation Types
+
+When writing a drawer, the `wabblespec_topic` field should be prefixed with one of these named observation types to enable categorized retrieval. MemorySearch and Dream use these prefixes to filter and decay by observation category:
+
+| Type | Use for |
+|---|---|
+| `ARCHITECTURAL_DECISION` | Design choices, system structure decisions, and the reasoning behind them |
+| `WORKING_SOLUTION` | Fixes, approaches, and implementations that succeeded |
+| `CODEBASE_PATTERN` | Recurring patterns discovered in project code or framework modules |
+| `FAILED_APPROACH` | What was tried and did not work — prevents repeating failed paths |
+| `ERROR_FIX` | How specific errors or failures were resolved, keyed to the error message or symptom |
+| `USER_PREFERENCE` | Stated or observed user preferences about approach, format, or output style |
+| `OPEN_THREAD` | Incomplete work, deferred decisions, or threads to resume in a future session |
+
+**Format:** `wabblespec_topic: "ARCHITECTURAL_DECISION: auth middleware token storage approach"`
+
+A drawer without a recognized type prefix is still valid but will not benefit from type-based filtering. Prefer typed topics for all new drawers.
+
 ## Common failure modes
 
 1. **`WABBLESPEC_MEMORY_PATH` not set.** The memory store may write outside `.wabblespec/state/memory/`. Import `_shared.memory_backend` before storage access, or run `scripts/memory-bootstrap.py` for compatibility entry points. See `modules/l5/memory/rules/memory-backend-config.md`.

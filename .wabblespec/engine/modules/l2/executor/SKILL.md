@@ -249,6 +249,21 @@ After all waves complete and the execution receipt is written, present a structu
 - When the next valid state is clear from the wave plan, name it exactly instead of ending with a generic summary.
 - If cleanup was skipped and unarchived tasks accumulate, recommend running `/archive` explicitly as the next action.
 
+### Wave State Symbols
+
+Each wave in the wave plan transitions through these states. Surface the current symbol in wave receipts and checkpoint entries so progress is machine-readable:
+
+| Symbol | State | Meaning |
+|---|---|---|
+| ○ | PENDING | Wave not yet started |
+| → | IN_PROGRESS | Wave is actively executing |
+| ✓ | VALIDATED | Wave complete — Verifier returned PASS |
+| ✗ | FAILED | Verifier returned FAIL and max REVISE cycles exhausted |
+
+**Transition rule:** `○ PENDING → → IN_PROGRESS → ✓ VALIDATED` is the happy path. `✗ FAILED` is a terminal state for the wave — halt pipeline and surface to the human. REVISE cycles happen inside the `→ IN_PROGRESS` state; they do not increment the wave symbol until Verifier issues its final verdict.
+
+**Advance rule:** Never advance to the next wave without a `✓ VALIDATED` symbol on the current wave. A wave receipt without Verifier PASS is not `✓ VALIDATED`.
+
 ### Error routing
 
 | Error type | Action |

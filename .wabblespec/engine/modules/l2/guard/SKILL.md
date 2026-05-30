@@ -39,7 +39,21 @@ Guard cannot be skipped. A wave that proceeds without Guard PASS is an I4 violat
 
 ## How to do it
 
-Run four layers in sequence. A HARD violation stops all subsequent layers and returns immediately.
+### Pre-Check Question Frame
+
+Before running any layer, frame the validation space E(X,Q):
+
+- **X** = the wave target: files declared in the wave plan's `outputs` list + shell commands in `bash_command` fields + scope boundary from `scope.md`
+- **Q** = the invariant questions Guard must answer before returning PASS:
+  1. Are all required planning receipts present? (I10)
+  2. Are all write targets within the declared authority of the active module? (I5/Layer 4)
+  3. Do any wave inputs contain model names, expired evidence, or boundary violations? (I6, I9, I11)
+  4. Do any shell commands in the wave plan exceed SAFE risk classification? (Layer 5)
+  5. Does the wave expand beyond the current scope.md boundary? (I12/Layer 2)
+
+Enumerate each Q before starting Layer 1. If any Q cannot be answered from available inputs — flag as SOFT pause and request the missing input from Executor. Do not proceed with an unanswerable question.
+
+Run five layers in sequence. A HARD violation stops all subsequent layers and returns immediately.
 
 ### Layer 1 — Schema validation
 

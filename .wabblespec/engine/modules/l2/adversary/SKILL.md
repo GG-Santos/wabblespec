@@ -70,6 +70,29 @@ Produce analysis for each domain. See rules/challenge-format.md for standards an
 
 If `challenger_mode = spec-bound`: also assess whether the artifact meets criteria declared in `spec_artifact`. Gaps against the spec are the highest-priority findings.
 
+### Claim Confidence Protocol
+
+Every finding produced in Step 2 must carry one of these markers before being written to the receipt:
+
+| Marker | Meaning | When to use |
+|---|---|---|
+| ✓ VERIFIED | Read the file, traced the code or decision path | Safe to assert as a finding |
+| ? INFERRED | Based on grep/search pattern or structural signal only | Must verify by reading before claiming |
+| ✗ UNCERTAIN | Not checked — evidence is absent | Must investigate before including as a finding |
+
+**Two-pass audit rule:**
+
+- Pass 1 (Hypothesis): generate challenge points marked `? INFERRED` from search results, file names, and structural signals.
+- Pass 2 (Verification): for every `? INFERRED` point, read the actual file or code path. Upgrade to `✓ VERIFIED` on confirmation or downgrade to `✗ UNCERTAIN` if the evidence does not hold.
+
+A finding may not appear in the `counter_analysis` output with `? INFERRED` or `✗ UNCERTAIN` status. Unverified points remain in working notes only. Including an unverified grep result as a weakness is a fabricated-weakness failure (see common failure modes).
+
+Common false-claim patterns to watch for:
+- `grep -L "pattern"` misses alternate naming — verify by reading the file
+- Grep with no results may reflect wrong directory or extension — check before claiming absence
+- Presence of a function name in grep output does not confirm what the function does — read it
+- Pattern found only in comments is not an actual implementation — distinguish
+
 ### Step 3 — Write adversary receipt
 
 ```bash
