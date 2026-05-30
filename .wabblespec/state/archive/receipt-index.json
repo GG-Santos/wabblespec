@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-30T14:46:00Z",
+  "last_updated": "2026-05-30T18:10:06Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -902,6 +902,20 @@
       "waves_planned": 6,
       "not_tested_items": 0,
       "summary": "Implemented all 18 Tier 7 expansion capabilities from ref-adopt drawers: skill bundles, epistemic hook, ref watcher, watzup scanner, shape artifact, reference capture, conflict detection, compaction memo, post-wave reviewer, skill-tdd, benchmark-loop, topology planner, transcript handoff, pattern inference, plan notebooks, visual companion, CRDT merge, and workflow schema Phase 1"
+    },
+    {
+      "task_id": "ref-adopt-pentest-ai-agents-main",
+      "session_id": "tier7-expansions-20260530",
+      "status": "PASS",
+      "archived_at": "2026-05-30T18:10:06Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json",
+      "version_previous": "0.49.0",
+      "version_new": "0.50.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 0,
+      "waves_planned": 0,
+      "not_tested_items": 4,
+      "summary": "Adopted pentest-ai-agents-main reference: OPSEC noise taxonomy and absolute refusal categories to Guard, DREAD scoring formula and dual-perspective requirement and attack tree format to Adversary, conflict resolution rules to Verifier, phase status display blocks to Executor, plus new /recommend and /skills-for slash commands"
     }
   ],
   "change_log": [

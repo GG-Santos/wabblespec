@@ -1836,3 +1836,21 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json
 - waves: 6 completed
 - verification: all waves PASS
+
+---
+
+## [0.50.0] — 2026-05-30T18:10:06Z
+
+### Changed
+- Adopted pentest-ai-agents-main reference: OPSEC noise taxonomy and absolute refusal categories to Guard, DREAD scoring formula and dual-perspective requirement and attack tree format to Adversary, conflict resolution rules to Verifier, phase status display blocks to Executor, plus new /recommend and /skills-for slash commands
+
+### Not Tested
+- Behavioral validation of DREAD scoring output format in live adversary receipts
+- Behavioral validation of conflict resolution rules in live verifier runs
+- Validation that /recommend and /skills-for slash commands route correctly for all 15 theme tags
+- Confirmation that EXECUTOR STATUS blocks appear correctly in multi-wave (4+) tasks
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json
+- waves: 0 completed
+- verification: all waves PASS

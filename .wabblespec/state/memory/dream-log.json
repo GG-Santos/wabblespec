@@ -3528,6 +3528,20 @@
         "MEDIUM": 1
       },
       "errors": 0
+    },
+    {
+      "run_id": "dream-run-253",
+      "timestamp": "2026-05-30T18:10:20.809175+00:00",
+      "dry_run": false,
+      "drawers_processed": 102,
+      "ema_updates": 2,
+      "gap_findings": 1,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 1
+      },
+      "errors": 0
     }
   ]
 }
