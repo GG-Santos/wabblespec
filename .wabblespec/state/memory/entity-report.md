@@ -1,29 +1,29 @@
 # Entity Graph Report
 
-> Generated: 2026-05-30T13:31:18.399079+00:00
-> Drawers scanned: 89
-> Nodes: 170  Edges: 844
+> Generated: 2026-05-30T13:40:45.827123+00:00
+> Drawers scanned: 96
+> Nodes: 191  Edges: 899
 
 ## Entity Type Breakdown
 
 - concept: 54
 - module: 31
-- file: 85
+- file: 106
 
 ## Top 20 Entities by Degree (most connected)
 
 | Entity | Type | Degree | Drawer count |
 |---|---|---|---|
-| guard | module | 53 | 11 |
+| guard | module | 56 | 12 |
 | instinct | module | 50 | 11 |
 | executor | module | 50 | 11 |
 | specify | module | 45 | 7 |
+| verifier | module | 44 | 11 |
+| autopilot | module | 43 | 5 |
 | gateway-security | module | 42 | 4 |
-| verifier | module | 41 | 10 |
 | augment | module | 41 | 7 |
 | polish | module | 40 | 4 |
 | recipe | module | 40 | 6 |
-| autopilot | module | 38 | 4 |
 | document | module | 36 | 7 |
 | archive | module | 36 | 6 |
 | memory | module | 33 | 4 |
@@ -39,9 +39,9 @@
 
 | Entity A | Entity B | Weight |
 |---|---|---|
+| guard | verifier | 6 |
 | executor | verifier | 6 |
 | executor | guard | 6 |
-| guard | verifier | 5 |
 | archive | executor | 5 |
 | archive | guard | 5 |
 | archive | verifier | 5 |
