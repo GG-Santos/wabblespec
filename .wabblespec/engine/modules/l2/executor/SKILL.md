@@ -287,6 +287,33 @@ Compression does not produce a receipt and does not advance the wave plan. The r
 Full invariant: `.wabblespec/engine/shared/references/context-compression-bounds.md`
 | STALENESS_VIOLATION | Quarantine the evidence. Surface for fresh fetch before continuing. |
 
+## Phase Status Display
+
+When transitioning between waves or surfacing progress mid-execution, emit a structured status block. This makes wave state scannable in long sessions.
+
+**Format:**
+
+```
+EXECUTOR STATUS: Wave N — <wave-name>
+═══════════════════════════════════════════════════
+Wave:      N of M
+Symbol:    ✓ VALIDATED | → IN_PROGRESS | ✗ FAILED
+Verdict:   PASS | FAIL | BLOCKED
+Receipt:   .wabblespec/state/receipts/wave-N-receipt-<ts>.json
+Next:      <Wave N+1 name, or "Archive" if final wave>
+═══════════════════════════════════════════════════
+```
+
+Emit this block: (1) when Verifier returns PASS for a wave, (2) when a wave enters the REVISE loop, (3) when a HARD error or BLOCKED state halts the pipeline.
+
+For multi-wave tasks with 4+ waves, also emit a summary progress line before each new wave starts:
+
+```
+Progress: ✓ W1 ✓ W2 → W3 ○ W4 ○ W5
+```
+
+Do not emit status blocks for single-wave tasks — the closeout packet is sufficient.
+
 ## Output contract
 
 **wave receipts** (`.wabblespec/state/receipts/wave-<N>-receipt.json`):

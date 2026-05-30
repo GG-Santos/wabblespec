@@ -208,6 +208,18 @@ Base receipt schema. Extension fields:
 
 Signal to Executor: PASS (advance to next wave) | FAIL (enter REVISE) | BLOCKED (pause, escalate to user).
 
+## Agent Disagreement Resolution
+
+When Verifier's independent check contradicts another module's claim (Guard, Adversary, a subagent report), resolve disagreements with these three rules in priority order:
+
+1. **Receipt wins.** If a completed, signed receipt contradicts a subagent's verbal or inline claim, the receipt stands. Receipts are artifacts — claims are ephemeral. A Guard receipt showing PASS overrides an in-conversation statement that the wave was invalid.
+
+2. **Specific beats general.** If a specialist check (e.g., a mode-specific Audit of a single file) conflicts with a general scan (e.g., a grep-based Guard check across all files), the specialist check takes priority on the specific artifact. Record the general check's finding in `not_tested` with reason: "superseded by specialist verification."
+
+3. **Escalate unknowns.** If two independent checks produce contradictory results and no receipt or artifact evidence resolves the conflict, emit `ARCHITECTURE_ESCALATION` and surface to the operator for judgment. Do not attempt to resolve by choosing the more convenient result. The escalation note must name both conflicting claims, their sources, and what evidence would be needed to resolve them.
+
+Apply these rules before issuing any verdict. A disagreement resolved by rule is noted in the receipt's `fix_recommendation` field with the rule number applied.
+
 ## A note on common failure modes
 
 1. **Vague fix recommendations.** "The output is incorrect" is not a fix recommendation. Write: "Criterion 2 requires the CLI to exit with code 1 on missing input. The current implementation exits with code 0. Fix: add `sys.exit(1)` to the error handler at line 34 of `cli.py`."
