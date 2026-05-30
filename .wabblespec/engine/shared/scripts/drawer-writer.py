@@ -71,6 +71,20 @@ Usage:
     python .wabblespec/engine/shared/scripts/drawer-writer.py --list architecture
     python .wabblespec/engine/shared/scripts/drawer-writer.py --list architecture/layer-architecture
 
+    # Bulk staleness transition — all drawers in a wing or room:
+    python .wabblespec/engine/shared/scripts/drawer-writer.py \\
+        --bulk-update architecture \\
+        --staleness-state NEEDS_REVERIFICATION \\
+        --note "Post-portability-migration sweep"
+
+    # Bulk update with filters:
+    python .wabblespec/engine/shared/scripts/drawer-writer.py \\
+        --bulk-update architecture/memory \\
+        --staleness-state STALE \\
+        --current-state AGING \\
+        --older-than 2026-01-01 \\
+        --dry-run
+
 Valid wings: architecture, implementation, decisions, operations, requirements, infrastructure, research
 Valid staleness states: FRESH, AGING, STALE, EXPIRED, NEEDS_REVERIFICATION, SUPERSEDED
 
@@ -586,6 +600,135 @@ def cmd_list(args):
 
 
 # ---------------------------------------------------------------------------
+# Bulk update
+# ---------------------------------------------------------------------------
+
+def cmd_bulk_update(args):
+    if not args.staleness_state:
+        print("ERROR: --bulk-update requires --staleness-state", file=sys.stderr)
+        sys.exit(1)
+
+    ws = find_wabblespec()
+    if ws is None:
+        print("ERROR: Cannot find .wabblespec/.", file=sys.stderr)
+        sys.exit(2)
+
+    mem_root = find_state_memory(ws)
+    wings_root = os.path.join(mem_root, "wings")
+
+    # Parse scope: 'architecture' or 'architecture/room'
+    scope = args.bulk_update or ''
+    parts = [p for p in scope.split('/') if p]
+
+    if len(parts) == 0:
+        search_root = wings_root
+    elif len(parts) == 1:
+        search_root = os.path.join(wings_root, parts[0])
+    else:
+        search_root = os.path.join(wings_root, parts[0], "rooms", parts[1])
+
+    if not os.path.isdir(search_root):
+        print(f"ERROR: Path not found: {search_root}", file=sys.stderr)
+        sys.exit(1)
+
+    # Collect candidate drawers
+    drawer_files = []
+    for dirpath, _, filenames in os.walk(search_root):
+        if os.path.basename(dirpath) == "drawers":
+            for fn in filenames:
+                if fn.endswith(".json"):
+                    drawer_files.append(os.path.join(dirpath, fn))
+    drawer_files.sort()
+
+    if not drawer_files:
+        print("No drawer files found in scope.")
+        return
+
+    # Parse --older-than filter
+    older_than_ts = None
+    if args.older_than:
+        try:
+            from datetime import date
+            d = date.fromisoformat(args.older_than)
+            older_than_ts = d.strftime("%Y-%m-%d")
+        except ValueError:
+            print(f"ERROR: --older-than must be YYYY-MM-DD, got: {args.older_than!r}", file=sys.stderr)
+            sys.exit(1)
+
+    updated = 0
+    skipped = 0
+    failed = 0
+
+    for path in drawer_files:
+        try:
+            data = json.loads(open(path, encoding="utf-8").read())
+        except Exception as e:
+            print(f"SKIP (unreadable)  {path}: {e}")
+            failed += 1
+            continue
+
+        # Filter by current staleness state
+        current_state = data.get("staleness_state", "")
+        if args.current_state and current_state != args.current_state:
+            skipped += 1
+            continue
+
+        # Filter by written_at date
+        if older_than_ts:
+            written_at = data.get("written_at", "")
+            if written_at and written_at[:10] >= older_than_ts:
+                skipped += 1
+                continue
+
+        # Skip if already in target state
+        if current_state == args.staleness_state:
+            skipped += 1
+            continue
+
+        if args.dry_run:
+            print(f"WOULD UPDATE  {path}")
+            print(f"  {current_state} -> {args.staleness_state}")
+            updated += 1
+            continue
+
+        # Apply update using the existing update_drawer logic
+        ts = now_utc()
+        old_state = current_state
+        data["staleness_state"] = args.staleness_state
+        if args.staleness_state == "FRESH":
+            data["last_verified"] = ts
+
+        prov_entry = {
+            "event": "TRANSITION" if args.staleness_state != "SUPERSEDED" else "SUPERSEDED",
+            "timestamp": ts,
+            "actor": args.actor or "memory",
+            "from_state": old_state,
+            "to_state": args.staleness_state,
+            "note": args.note or f"Bulk update: {old_state} -> {args.staleness_state}",
+        }
+        if not isinstance(data.get("provenance"), list):
+            data["provenance"] = []
+        data["provenance"].append(prov_entry)
+
+        errors = validate_drawer(data, path=path)
+        if errors:
+            print(f"SKIP (validation fail)  {path}")
+            for e in errors:
+                print(f"  {e}")
+            failed += 1
+            continue
+
+        write_json(path, data)
+        print(f"  {old_state} -> {args.staleness_state}")
+        updated += 1
+
+    action = "Would update" if args.dry_run else "Updated"
+    print(f"\n{action} {updated}, skipped {skipped}, failed {failed} (of {len(drawer_files)} total)")
+    if failed:
+        sys.exit(1)
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -609,6 +752,9 @@ def main():
                         help="Show human-readable summary of an existing drawer.")
     parser.add_argument("--list", metavar="WING[/ROOM]", nargs="?", const="",
                         help="List wings (no arg), rooms in WING, or drawers in WING/ROOM.")
+    parser.add_argument("--bulk-update", metavar="WING[/ROOM]", nargs="?", const="", dest="bulk_update",
+                        help="Transition all matching drawers to --staleness-state. "
+                             "Scope: empty=all, WING, or WING/ROOM.")
 
     # Create-time fields
     parser.add_argument("--topic", metavar="TEXT")
@@ -634,6 +780,13 @@ def main():
     parser.add_argument("--note", metavar="TEXT",
                         help="Provenance note for the event.")
 
+    # Bulk-update filters
+    parser.add_argument("--current-state", metavar="STATE", dest="current_state",
+                        choices=VALID_STALENESS,
+                        help="Bulk update only drawers currently in this staleness state.")
+    parser.add_argument("--older-than", metavar="YYYY-MM-DD", dest="older_than",
+                        help="Bulk update only drawers written before this date.")
+
     # Output / mode
     parser.add_argument("--out", metavar="PATH",
                         help="Explicit output path (create mode; auto-derived if omitted).")
@@ -647,6 +800,8 @@ def main():
         ops.append("validate_all")
     if args.list is not None:
         ops.append("list")
+    if args.bulk_update is not None:
+        ops.append("bulk_update")
 
     if len(ops) > 1:
         print(f"ERROR: Conflicting operations: {ops}. Use only one at a time.", file=sys.stderr)
@@ -662,6 +817,8 @@ def main():
         cmd_update(args)
     elif args.list is not None:
         cmd_list(args)
+    elif args.bulk_update is not None:
+        cmd_bulk_update(args)
     else:
         # Create mode: requires --topic (--id is optional)
         if not args.topic:
