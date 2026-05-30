@@ -1,7 +1,7 @@
 # Staleness Map
 
-> Generated: 2026-05-30T07:30:28.682118+00:00
-> Drawers: 55
+> Generated: 2026-05-30T08:22:47.129940+00:00
+> Drawers: 57
 
 Sorted by state (worst first), then confidence ascending.
 
@@ -14,6 +14,8 @@ Sorted by state (worst first), then confidence ascending.
 | gate-taxonomy | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | specificity-enforcement | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | verification-framework | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
+| - | Hermes SKILL.md authoring standards adapted for WabbleSpec | references/hermes-agent-main | FRESH | 1.0000 | - |
+| - | Four categories of observations that must NOT be distilled to skills or Instinct | references/hermes-agent-main | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
 | stm-pipeline-transforms-20260525 | STM Pipeline Transform Configuration | implementation/stm-pipeline | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
@@ -65,4 +67,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 55
+- FRESH: 57

@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "generated": "2026-05-30T08:19:08.310555+00:00",
+  "generated": "2026-05-30T08:22:50.785566+00:00",
   "drawers_scanned": 57,
-  "node_count": 159,
-  "edge_count": 835,
+  "node_count": 161,
+  "edge_count": 836,
   "nodes": [
     {
       "id": "module::guard",
@@ -30,7 +30,7 @@
       "label": "instinct",
       "drawer_count": 11,
       "drawer_ids": [
-        "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\state\\memory\\wings\\references\\rooms\\hermes-agent-main\\skill-anti-patterns.json",
+        "skill-anti-patterns",
         "provenance-contradiction-tracking-20260525",
         "l8-evolution-chain-20260525",
         "dream-module-behavior-20260525",
@@ -267,17 +267,6 @@
       ]
     },
     {
-      "id": "module::dream",
-      "type": "module",
-      "label": "dream",
-      "drawer_count": 3,
-      "drawer_ids": [
-        "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\state\\memory\\wings\\references\\rooms\\hermes-agent-main\\skill-anti-patterns.json",
-        "dream-module-behavior-20260525",
-        "autopilot-orchestration-20260525"
-      ]
-    },
-    {
       "id": "module::forge",
       "type": "module",
       "label": "forge",
@@ -369,6 +358,16 @@
       "drawer_ids": [
         "l8-evolution-chain-20260525",
         "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::dream",
+      "type": "module",
+      "label": "dream",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "dream-module-behavior-20260525",
+        "autopilot-orchestration-20260525"
       ]
     },
     {
@@ -888,6 +887,15 @@
       ]
     },
     {
+      "id": "concept::four categories of observations that must not be distilled to skills or instinct",
+      "type": "concept",
+      "label": "four categories of observations that must not be distilled to skills or instinct",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "skill-anti-patterns"
+      ]
+    },
+    {
       "id": "concept::framework and product space separation (i11)",
       "type": "concept",
       "label": "framework and product space separation (i11)",
@@ -948,6 +956,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::hermes skill.md authoring standards adapted for wabblespec",
+      "type": "concept",
+      "label": "hermes skill.md authoring standards adapted for wabblespec",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "description-standard"
       ]
     },
     {
@@ -1696,11 +1713,6 @@
       "weight": 3
     },
     {
-      "source": "module::dream",
-      "target": "module::instinct",
-      "weight": 2
-    },
-    {
       "source": "module::guard",
       "target": "module::provenance",
       "weight": 2
@@ -2079,6 +2091,11 @@
       "source": "file::session/state.json",
       "target": "file::wabblespec/receipts",
       "weight": 2
+    },
+    {
+      "source": "concept::four categories of observations that must not be distilled to skills or instinct",
+      "target": "module::instinct",
+      "weight": 1
     },
     {
       "source": "concept::verifier check types",
@@ -3262,6 +3279,11 @@
     },
     {
       "source": "file::wabblespec/memory/gap-map.md",
+      "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "module::dream",
       "target": "module::instinct",
       "weight": 1
     },

@@ -2702,6 +2702,20 @@
         "MEDIUM": 0
       },
       "errors": 0
+    },
+    {
+      "run_id": "dream-run-194",
+      "timestamp": "2026-05-30T08:22:47.129940+00:00",
+      "dry_run": false,
+      "drawers_processed": 57,
+      "ema_updates": 0,
+      "gap_findings": 0,
+      "findings_by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0
+      },
+      "errors": 0
     }
   ]
 }

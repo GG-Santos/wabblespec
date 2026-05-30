@@ -1,12 +1,12 @@
 # Entity Graph Report
 
-> Generated: 2026-05-30T08:19:08.310555+00:00
+> Generated: 2026-05-30T08:22:50.785566+00:00
 > Drawers scanned: 57
-> Nodes: 159  Edges: 835
+> Nodes: 161  Edges: 836
 
 ## Entity Type Breakdown
 
-- concept: 49
+- concept: 51
 - module: 31
 - file: 79
 
@@ -15,8 +15,8 @@
 | Entity | Type | Degree | Drawer count |
 |---|---|---|---|
 | guard | module | 53 | 11 |
+| instinct | module | 50 | 11 |
 | executor | module | 50 | 10 |
-| instinct | module | 49 | 11 |
 | specify | module | 45 | 7 |
 | gateway-security | module | 42 | 4 |
 | augment | module | 41 | 7 |
