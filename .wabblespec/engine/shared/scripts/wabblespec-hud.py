@@ -357,34 +357,30 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
         line1 = dim('no git')
 
     # ── Line 2: usage + module ────────────────────────────────────────────────
-    label = f'{bpur("[WABBLE]")} {dim("v" + version)}'
-    parts2: list[str] = [label]
+    parts2: list[str] = [bpur('[WABBLE]')]
 
-    # Usage bars
     if usage:
         fh = usage.get('fiveHour')
         wk = usage.get('weekly')
         if fh is not None:
-            bar_str = usage_bar(fh, width=8, label='5h')
-            reset = _format_reset(usage.get('fiveHourResets'))
-            if reset:
-                bar_str += dim(f'({reset})')
+            bar_str = usage_bar(fh, width=6, label='5h')
+            # show reset only when approaching limit
+            if fh >= 70:
+                reset = _format_reset(usage.get('fiveHourResets'))
+                if reset:
+                    bar_str += dim(f' {reset}')
             parts2.append(bar_str)
         if wk is not None:
-            bar_str = usage_bar(wk, width=8, label='wk')
-            reset = _format_reset(usage.get('weeklyResets'))
-            if reset:
-                bar_str += dim(f'({reset})')
+            bar_str = usage_bar(wk, width=6, label='wk')
+            if wk >= 70:
+                reset = _format_reset(usage.get('weeklyResets'))
+                if reset:
+                    bar_str += dim(f' {reset}')
             parts2.append(bar_str)
 
-    # Module + session
     if state:
         module = state.get('active_module') or '?'
         parts2.append(render_module(module))
-        session_id = state.get('session_id', '')
-        if session_id:
-            short = session_id[:18] + ('…' if len(session_id) > 18 else '')
-            parts2.append(pur(short))
     else:
         parts2.append(dim('idle'))
 
@@ -397,18 +393,17 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
     if waves:
         session_id = (state or {}).get('session_id', '')
         completed  = count_verifier_receipts(session_id)
-        w_bar = wave_bar(completed, len(waves), width=10)
-        parts3.append(f'{dim("waves:")}{w_bar}')
+        color = GRN if completed == len(waves) else SPR
+        parts3.append(f'{dim("w:")}{_c(color, f"{completed}/{len(waves)}")}')
 
     if state:
         required = state.get('required_receipts', [])
         if required:
-            found = count_receipts_found(required)
-            r_bar = wave_bar(found, len(required), width=8)
-            parts3.append(f'{dim("R:")}{r_bar}')
+            found  = count_receipts_found(required)
+            color  = GRN if found == len(required) else YEL if found > 0 else DIM
+            parts3.append(f'{dim("R:")}{_c(color, f"{found}/{len(required)}")}')
 
-    l8_str = f'{dim("L8:")}{grn("MET") if l8_met else dim("?")}'
-    parts3.append(l8_str)
+    parts3.append(f'{dim("L8:")}{grn("MET") if l8_met else dim("?")}')
 
     line3 = SEP.join(parts3)
 
