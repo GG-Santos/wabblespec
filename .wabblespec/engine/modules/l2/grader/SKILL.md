@@ -1,6 +1,6 @@
 ---
 name: grader
-description: Standalone grader. Evaluates primary output against Adversary counter-analysis and spec artifact. Issues ACCEPT / REVISE / ESCALATE verdict with score and revision guidance. Invokable directly by any caller — not only Reviewer.
+description: Standalone grader. Evaluates primary output against Adversary counter-analysis and spec artifact. Issues ACCEPT / REVISE / ESCALATE verdict with score and revision guidance. Invokable directly by any caller — not only Reviewer. Do NOT invoke to generate the counter-case against an artifact — that is Adversary's job. Do NOT invoke when no Adversary output exists to grade against.
 ---
 
 # Grader

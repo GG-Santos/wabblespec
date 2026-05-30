@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-28T23:00:18Z",
+  "last_updated": "2026-05-30T09:10:56Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -874,6 +874,20 @@
       "waves_planned": 6,
       "not_tested_items": 26,
       "summary": "Foundation hardening complete: framework-maintenance authority module (Wave 1), 3 schema files (Wave 2), wabblespec-doctor.py 30-check drift detector + fixtures (Wave 3), C4/H10 fixes (Wave 4), H3/M7 fixes + 30/30 doctor green (Wave 5), advisory doctor gate wired (Wave 6)"
+    },
+    {
+      "task_id": "agent-creator-integration-20260529",
+      "session_id": "agent-creator-integration-20260529",
+      "status": "PASS",
+      "archived_at": "2026-05-30T09:10:56Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-agent-creator-integration-20260529.json",
+      "version_previous": "0.46.0",
+      "version_new": "0.47.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 1,
+      "waves_planned": 1,
+      "not_tested_items": 2,
+      "summary": "agent-creator-integration: restored framework-maintenance authority owner (W1), added doctor shared-infra-owner check (W2), scoped subagent toolsets and removed model pins (W3), added negative-trigger sibling-boundary clauses to adversary/grader descriptions and synced (W4). All 4 waves PASS."
     }
   ],
   "change_log": [

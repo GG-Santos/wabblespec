@@ -1792,3 +1792,19 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-foundation-hardening-20260528.json
 - waves: 6 completed
 - verification: all waves PASS
+
+---
+
+## [0.47.0] — 2026-05-30T09:10:56Z
+
+### Changed
+- agent-creator-integration: restored framework-maintenance authority owner (W1), added doctor shared-infra-owner check (W2), scoped subagent toolsets and removed model pins (W3), added negative-trigger sibling-boundary clauses to adversary/grader descriptions and synced (W4). All 4 waves PASS.
+
+### Not Tested
+- C4 (critical) and D1 (medium) FAIL on full doctor run — outside Wave 2's AC6 checkpoint; surfaced as deviations, paused for user decision before Wave 3
+- wave-plan W2 verification_command listed '--format json' without a required mode flag; correct invocation is '--all --format json' (Executor does not edit the locked wave plan; noted here)
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-agent-creator-integration-20260529.json
+- waves: 1 completed
+- verification: all waves PASS
