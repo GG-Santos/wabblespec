@@ -374,9 +374,9 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
         parts1.append(dim('IDLE'))
 
     if branch or remote:
-        repo_part = dim(remote) if remote else ''
-        branch_part = spr(f'({branch})') if branch else ''
-        dirty_part = f' {yel("!modified")}' if dirty else ''
+        repo_part = dim(remote) if remote else dim('Local')
+        branch_part = spr(f' ({branch})') if branch else ''
+        dirty_part = f' {yel("(changes)")}' if dirty else ''
         parts1.append(repo_part + branch_part + dirty_part)
 
     if usage:
