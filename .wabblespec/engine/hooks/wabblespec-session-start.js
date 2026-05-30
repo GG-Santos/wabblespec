@@ -106,4 +106,33 @@ if (state && state.task_id) {
   lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
+// ── Pending wave reviews ──────────────────────────────────────────────────────
+// Surface any pending review jobs so Claude performs the review inline this session.
+
+function readPendingReviews() {
+  try {
+    const pendingDir = path.join(process.cwd(), '.wabblespec', 'state', 'reviews', 'pending');
+    if (!fs.existsSync(pendingDir)) return [];
+    return fs.readdirSync(pendingDir)
+      .filter(f => f.endsWith('.json'))
+      .map(f => {
+        try {
+          const job = JSON.parse(fs.readFileSync(path.join(pendingDir, f), 'utf8'));
+          return { file: f, ref: job.resolved_ref, type: job.review_type, lines: job.diff_lines };
+        } catch (e) { return null; }
+      })
+      .filter(Boolean);
+  } catch (e) { return []; }
+}
+
+const pendingReviews = readPendingReviews();
+if (pendingReviews.length > 0) {
+  lines.push('');
+  lines.push(`PENDING WAVE REVIEWS (${pendingReviews.length}):`);
+  for (const r of pendingReviews) {
+    lines.push(`  ${r.ref}  type=${r.type}  diff_lines=${r.lines}`);
+  }
+  lines.push('  Run /wave-review to perform the review inline this session.');
+}
+
 process.stdout.write(lines.join('\n'));

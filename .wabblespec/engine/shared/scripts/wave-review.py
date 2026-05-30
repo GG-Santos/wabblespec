@@ -1,73 +1,63 @@
 #!/usr/bin/env python3
-"""wave-review.py — WabbleSpec native code review engine.
+"""wave-review.py — WabbleSpec native review prep engine.
 
-Extracts a git diff, builds a review prompt from WabbleSpec context,
-invokes the review agent headlessly, parses the verdict and findings,
-and writes a wave-review receipt.
+Extracts git diff + context and writes a structured pending review file.
+Does NOT call any AI agent. The session agent (Claude) reads the pending
+review and performs the review inline during the next session.
 
-This is WabbleSpec's own review infrastructure — no external review
-daemon dependency. The review agent is invoked via the `claude` CLI
-(`claude -p`), which is already present in the WabbleSpec environment.
+Pattern: same as Dream (writes gap-map) or memory-mine (writes index).
+Background script = pure Python. AI work = done in the session.
 
 Usage:
-    python wave-review.py [options]
+    python wave-review.py --ref HEAD [--type standard|security|design]
+        Extract diff for HEAD and write a pending review to state/reviews/pending/.
 
-    --ref HEAD          Git ref to review (default: HEAD)
-    --range A..B        Git range to review (overrides --ref)
-    --type standard     Review type: standard | security | design (default: standard)
-    --context-file PATH Extra context file to include in prompt (e.g. task card)
-    --session-id ID     Session ID for receipt (default: review-<timestamp>)
-    --task-id ID        Task ID for receipt (default: same as session-id)
-    --out PATH          Receipt output path (default: .wabblespec/state/reviews/<ref>-review.json)
-    --dry-run           Print the prompt without calling the agent
-    --max-diff-lines N  Truncate diff at N lines (default: 800)
-    --wait              Block until review completes (always true in this implementation)
-    --list              List open (unreviewed) reviews from the queue
-    --fix-open          Show open findings for the agent to address
+    python wave-review.py --list
+        List pending (unreviewed) review jobs.
+
+    python wave-review.py --list --reviewed
+        List all review jobs including completed ones.
+
+    python wave-review.py --complete <ref> --verdict PASS|FAIL [--receipt <path>]
+        Mark a pending review as complete (called by the session agent after review).
+
+    python wave-review.py --enqueue <ref> [--type standard|security|design]
+        Add ref to queue without extracting (lightweight enqueue for git hooks).
+
+    python wave-review.py stats
+        Show queue statistics.
 
 Exit codes:
-    0  PASS verdict or dry-run complete
-    1  FAIL verdict
-    2  Error (could not run review, git error, agent unavailable)
+    0  success
+    1  no diff found / nothing to review
+    2  error (git unavailable, path error)
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
-import shutil
-import subprocess
 import sys
-import tempfile
-import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
-
-REVIEW_DIR = Path(".wabblespec/engine/shared/review")
-RECEIPTS_DIR = Path(".wabblespec/state/reviews")
-MAX_DIFF_LINES = 800
 NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 TIMESTAMP_SHORT = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
+MAX_DIFF_LINES = 800
 
 
 # ---------------------------------------------------------------------------
-# Git helpers
+# Git helpers (pure Python / subprocess — no AI)
 # ---------------------------------------------------------------------------
 
 def _run(args: list[str], *, cwd: Path | None = None, timeout: int = 30) -> tuple[int, str]:
+    import subprocess
     try:
         r = subprocess.run(args, capture_output=True, timeout=timeout,
                            cwd=str(cwd) if cwd else None, check=False)
         stdout = r.stdout.decode("utf-8", errors="replace") if r.stdout else ""
         stderr = r.stderr.decode("utf-8", errors="replace") if r.stderr else ""
         return r.returncode, (stdout + stderr).strip()
-    except subprocess.TimeoutExpired:
-        return 2, f"timed out after {timeout}s"
     except Exception as exc:
         return 2, str(exc)
 
@@ -79,204 +69,141 @@ def _repo_root() -> Path:
     return Path(out.strip())
 
 
-def _get_diff(ref: str | None, range_: str | None, root: Path, max_lines: int) -> tuple[str, str]:
-    """Return (diff_text, resolved_ref). Truncates if over max_lines."""
-    if range_:
-        rc, diff = _run(["git", "diff", range_], cwd=root)
-        resolved = range_
-    else:
-        ref = ref or "HEAD"
-        rc, diff = _run(["git", "show", ref, "--format=", "--unified=5"], cwd=root)
-        if rc != 0:
-            # fallback: staged diff
-            rc, diff = _run(["git", "diff", "--cached"], cwd=root)
-        _, resolved = _run(["git", "rev-parse", "--short", ref], cwd=root)
-        resolved = resolved.strip() or ref
+def _resolve_ref(ref: str, root: Path) -> str:
+    rc, sha = _run(["git", "rev-parse", "--short", ref], cwd=root)
+    return sha.strip() if rc == 0 and sha.strip() else ref
 
+
+def _get_diff(ref: str, root: Path, max_lines: int) -> str:
+    rc, diff = _run(["git", "show", ref, "--format=", "--unified=5"], cwd=root)
+    if rc != 0 or not diff.strip():
+        rc, diff = _run(["git", "diff", "HEAD~1..HEAD"], cwd=root)
     lines = diff.splitlines()
     if len(lines) > max_lines:
-        diff = "\n".join(lines[:max_lines]) + f"\n\n[... diff truncated at {max_lines} lines ...]"
-
-    return diff, resolved
+        diff = "\n".join(lines[:max_lines]) + f"\n\n[... truncated at {max_lines} lines ...]"
+    return diff
 
 
 def _get_commit_info(ref: str, root: Path) -> str:
-    rc, info = _run(["git", "log", "-1", "--format=%h %s\nAuthor: %an\nDate: %ai", ref], cwd=root)
+    rc, info = _run(
+        ["git", "log", "-1", "--format=%h %s%nAuthor: %an%nDate: %ai", ref], cwd=root
+    )
     return info if rc == 0 else "(commit info unavailable)"
 
 
 # ---------------------------------------------------------------------------
-# Context loading
+# Context loading (pure Python — reads files, no AI)
 # ---------------------------------------------------------------------------
 
-def _load_context(root: Path, context_file: str | None) -> str:
-    """Load WabbleSpec session context for the review prompt."""
-    parts = []
+def _load_context(root: Path) -> dict:
+    ctx: dict = {}
 
-    # Task card (if active session)
     task_card = root / ".wabblespec" / "state" / "plans" / "task-card.md"
     if task_card.exists():
         try:
             text = task_card.read_text(encoding="utf-8")
-            # Include only goal + acceptance criteria (not full card)
             lines = text.splitlines()
-            summary_lines = []
-            in_ac = False
-            for line in lines:
-                if line.startswith("**goal:**") or line.startswith("## Acceptance"):
-                    in_ac = True
-                if in_ac:
-                    summary_lines.append(line)
-                if in_ac and line == "" and len(summary_lines) > 10:
-                    break
-            if summary_lines:
-                parts.append("## Active task context\n" + "\n".join(summary_lines[:30]))
+            goal_lines = [l for l in lines if l.startswith("**goal:**")]
+            ctx["task_goal"] = goal_lines[0] if goal_lines else ""
+            ctx["task_card_path"] = str(task_card)
         except Exception:
             pass
 
-    # Extra context file
-    if context_file:
+    session_file = root / ".wabblespec" / "state" / "session" / "state.json"
+    if session_file.exists():
         try:
-            text = Path(context_file).read_text(encoding="utf-8")
-            parts.append(f"## Additional context ({context_file})\n{text[:2000]}")
+            state = json.loads(session_file.read_text(encoding="utf-8"))
+            ctx["session_id"] = state.get("session_id", "")
+            ctx["task_id"] = state.get("task_id", "")
         except Exception:
             pass
 
-    # Review guidelines from .roborev.toml (or wabblespec.yaml note)
     toml_path = root / ".roborev.toml"
     if toml_path.exists():
         try:
             raw = toml_path.read_text(encoding="utf-8")
-            # Extract review_guidelines value (naive parse — no toml dep)
             if 'review_guidelines' in raw:
                 start = raw.find('"""', raw.find('review_guidelines'))
                 end = raw.find('"""', start + 3)
                 if start != -1 and end != -1:
-                    guidelines = raw[start + 3:end].strip()
-                    parts.append(f"## Project review guidelines\n{guidelines[:3000]}")
+                    ctx["review_guidelines"] = raw[start + 3:end].strip()[:2000]
         except Exception:
             pass
 
-    return "\n\n".join(parts) if parts else ""
+    return ctx
 
 
 # ---------------------------------------------------------------------------
-# Prompt builder
+# Prompt template loading (pure Python — reads files)
 # ---------------------------------------------------------------------------
 
-def _load_prompt_template(review_type: str, review_dir: Path) -> str:
-    template_path = review_dir / f"{review_type}.txt"
-    if template_path.exists():
-        return template_path.read_text(encoding="utf-8").strip()
-    # Fallback to standard
+def _load_template(review_type: str, root: Path) -> str:
+    review_dir = root / ".wabblespec" / "engine" / "shared" / "review"
+    path = review_dir / f"{review_type}.txt"
+    if path.exists():
+        return path.read_text(encoding="utf-8").strip()
     fallback = review_dir / "standard.txt"
     if fallback.exists():
         return fallback.read_text(encoding="utf-8").strip()
     return "Review the following code changes for correctness, quality, and security."
 
 
-def _build_prompt(diff: str, commit_info: str, context: str,
-                  review_type: str, review_dir: Path) -> str:
-    template = _load_prompt_template(review_type, review_dir)
-    parts = [template]
-    if context:
-        parts.append(f"\n---\n{context}")
-    parts.append(f"\n---\n## Commit being reviewed\n{commit_info}")
-    parts.append(f"\n---\n## Diff\n```diff\n{diff}\n```")
-    return "\n".join(parts)
+# ---------------------------------------------------------------------------
+# Pending review file (the artifact the session agent reads)
+# ---------------------------------------------------------------------------
+
+def _pending_dir(root: Path) -> Path:
+    p = root / ".wabblespec" / "state" / "reviews" / "pending"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def _reviewed_dir(root: Path) -> Path:
+    p = root / ".wabblespec" / "state" / "reviews" / "completed"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def _write_pending(root: Path, ref: str, resolved_ref: str, review_type: str,
+                   diff: str, commit_info: str, ctx: dict, template: str) -> Path:
+    """Write a structured pending review file. The session agent reads this."""
+    pending = {
+        "schema_version": 1,
+        "ref": ref,
+        "resolved_ref": resolved_ref,
+        "review_type": review_type,
+        "queued_at": NOW,
+        "status": "pending",
+        "session_id": ctx.get("session_id", ""),
+        "task_id": ctx.get("task_id", ""),
+        "commit_info": commit_info,
+        "task_goal": ctx.get("task_goal", ""),
+        "task_card_path": ctx.get("task_card_path", ""),
+        "review_guidelines_excerpt": ctx.get("review_guidelines", "")[:500],
+        "review_prompt_template": template,
+        "diff": diff,
+        "diff_lines": len(diff.splitlines()),
+        "instructions": (
+            "Read the review_prompt_template, then the diff, then produce a structured "
+            "review with VERDICT: PASS or FAIL, and FINDINGS sorted HIGH → MEDIUM → LOW "
+            "grouped by file. Write the receipt via receipt-writer.py --type wave-review "
+            "and mark this job complete via wave-review.py --complete."
+        ),
+    }
+
+    out_path = _pending_dir(root) / f"{resolved_ref}-{review_type}-{TIMESTAMP_SHORT}.json"
+    out_path.write_text(json.dumps(pending, indent=2), encoding="utf-8")
+    return out_path
 
 
 # ---------------------------------------------------------------------------
-# Verdict parsing
-# ---------------------------------------------------------------------------
-
-def _parse_verdict(output: str) -> tuple[str, list[dict]]:
-    """Extract PASS/FAIL verdict and findings from agent output.
-
-    Returns (verdict, findings) where verdict is 'PASS' or 'FAIL'
-    and findings is a list of {severity, description, location} dicts.
-    """
-    upper = output.upper()
-    verdict = "PASS"
-    if "VERDICT: FAIL" in upper or "**VERDICT:** FAIL" in upper:
-        verdict = "FAIL"
-    elif "VERDICT: PASS" in upper or "**VERDICT:** PASS" in upper:
-        verdict = "PASS"
-    elif "NO FINDINGS" in upper or "NO SECURITY FINDINGS" in upper:
-        verdict = "PASS"
-    elif "FINDINGS:" in upper and len(output) > 200:
-        # Has a FINDINGS section with content — likely FAIL
-        findings_idx = upper.find("FINDINGS:")
-        after = output[findings_idx + 9:findings_idx + 500].strip()
-        if after and not after.upper().startswith("NO "):
-            verdict = "FAIL"
-
-    # Parse findings by severity markers
-    findings = []
-    for line in output.splitlines():
-        stripped = line.strip()
-        for sev in ("HIGH", "MEDIUM", "LOW", "CRITICAL"):
-            if stripped.upper().startswith(f"- {sev}") or stripped.upper().startswith(f"* {sev}") \
-               or f"**{sev}**" in stripped.upper() or f"severity: {sev}" in stripped.upper():
-                findings.append({"severity": sev, "description": stripped[:200], "location": ""})
-                break
-
-    return verdict, findings
-
-
-# ---------------------------------------------------------------------------
-# Agent invocation
-# ---------------------------------------------------------------------------
-
-def _call_agent(prompt: str, dry_run: bool) -> tuple[int, str]:
-    """Invoke claude -p with the review prompt. Returns (exit_code, output)."""
-    if dry_run:
-        print("=== DRY RUN PROMPT ===")
-        print(prompt[:3000])
-        print("=== END PROMPT ===")
-        return 0, "VERDICT: PASS\nNO FINDINGS (dry-run mode)"
-
-    if not shutil.which("claude"):
-        return 2, "claude CLI not found in PATH"
-
-    # Write prompt to temp file to avoid shell injection from diff content
-    with tempfile.NamedTemporaryFile(mode="w", suffix=".txt",
-                                     delete=False, encoding="utf-8") as f:
-        f.write(prompt)
-        prompt_file = f.name
-
-    try:
-        rc, output = _run(
-            ["claude", "-p", f"$(cat {prompt_file})"],
-            timeout=180,
-        )
-        if rc != 0 or not output:
-            # Try direct stdin approach
-            result = subprocess.run(
-                ["claude", "--print"],
-                input=prompt,
-                capture_output=True,
-                text=True,
-                timeout=180,
-                check=False,
-            )
-            output = (result.stdout + result.stderr).strip()
-            rc = result.returncode
-    finally:
-        try:
-            os.unlink(prompt_file)
-        except Exception:
-            pass
-
-    return rc, output
-
-
-# ---------------------------------------------------------------------------
-# Queue helpers
+# Queue management
 # ---------------------------------------------------------------------------
 
 def _queue_path(root: Path) -> Path:
-    return root / ".wabblespec" / "state" / "reviews" / "queue.json"
+    p = root / ".wabblespec" / "state" / "reviews"
+    p.mkdir(parents=True, exist_ok=True)
+    return p / "queue.json"
 
 
 def _read_queue(root: Path) -> list[dict]:
@@ -290,115 +217,157 @@ def _read_queue(root: Path) -> list[dict]:
 
 
 def _write_queue(root: Path, items: list[dict]) -> None:
-    q = _queue_path(root)
-    q.parent.mkdir(parents=True, exist_ok=True)
-    q.write_text(json.dumps(items, indent=2), encoding="utf-8")
+    _queue_path(root).write_text(json.dumps(items, indent=2), encoding="utf-8")
 
 
-def _enqueue(root: Path, ref: str, review_type: str = "standard") -> None:
+def _enqueue_entry(root: Path, ref: str, resolved_ref: str,
+                   review_type: str, pending_path: str) -> None:
     items = _read_queue(root)
-    # Deduplicate by ref
-    if any(i["ref"] == ref for i in items):
-        return
+    if any(i.get("resolved_ref") == resolved_ref and i.get("status") == "pending"
+           for i in items):
+        return  # already queued
     items.append({
         "ref": ref,
+        "resolved_ref": resolved_ref,
         "review_type": review_type,
         "queued_at": NOW,
         "status": "pending",
+        "pending_path": pending_path,
+        "verdict": None,
+        "receipt_path": None,
     })
     _write_queue(root, items)
-    print(f"[wave-review] queued review for {ref}", flush=True)
 
 
-def _list_open(root: Path) -> list[dict]:
-    return [i for i in _read_queue(root) if i.get("status") != "reviewed"]
-
-
-def _mark_reviewed(root: Path, ref: str, verdict: str, receipt_path: str) -> None:
+def _mark_complete(root: Path, ref: str, verdict: str, receipt_path: str) -> bool:
     items = _read_queue(root)
+    found = False
     for item in items:
-        if item["ref"] == ref:
+        if item.get("ref") == ref or item.get("resolved_ref") == ref:
             item["status"] = "reviewed"
             item["verdict"] = verdict
             item["receipt_path"] = receipt_path
             item["reviewed_at"] = NOW
-    _write_queue(root, items)
+            found = True
+    if found:
+        _write_queue(root, items)
+        # Move pending file to completed
+        pending_path = next(
+            (i.get("pending_path") for i in items if i.get("ref") == ref), None
+        )
+        if pending_path and Path(pending_path).exists():
+            dest = _reviewed_dir(root) / Path(pending_path).name
+            try:
+                Path(pending_path).rename(dest)
+            except Exception:
+                pass
+    return found
 
 
 # ---------------------------------------------------------------------------
-# Receipt write
+# Commands
 # ---------------------------------------------------------------------------
 
-def _write_receipt(root: Path, out_path: Path, ref: str, review_type: str,
-                   verdict: str, findings: list[dict], output: str,
-                   session_id: str, task_id: str) -> None:
-    counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0, "CRITICAL": 0}
-    for f in findings:
-        sev = f.get("severity", "LOW").upper()
-        counts[sev] = counts.get(sev, 0) + 1
+def cmd_prep(args, root: Path) -> int:
+    """Extract diff and write pending review file."""
+    ref = args.ref or "HEAD"
+    resolved_ref = _resolve_ref(ref, root)
 
-    receipt = {
-        "receipt_type": "wave-review",
-        "module": "wave-reviewer",
-        "layer": "L2",
-        "phase": "Verify",
-        "timestamp": NOW,
-        "session_id": session_id,
-        "task_id": task_id,
-        "git_ref": ref,
-        "review_type": review_type,
-        "verdict": verdict,
-        "status": "PASS" if verdict == "PASS" else "FAIL",
-        "finding_summary": {
-            "total": len(findings),
-            "by_severity": counts,
-        },
-        "findings": findings,
-        "output_excerpt": output[:500] if output else "",
-        "confidence": 0.85,
-    }
+    diff = _get_diff(ref, root, args.max_diff_lines)
+    if not diff.strip():
+        print(f"[wave-review] no diff for {ref} — nothing to review", flush=True)
+        return 1
 
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(receipt, indent=2), encoding="utf-8")
-    print(f"[wave-review] receipt → {out_path}", flush=True)
+    commit_info = _get_commit_info(ref, root)
+    ctx = _load_context(root)
+    template = _load_template(args.review_type, root)
 
-    # Attempt receipt-writer upsert to DuckDB
-    try:
-        scripts_dir = root / ".wabblespec" / "engine" / "shared" / "scripts"
-        rw = scripts_dir / "receipt-writer.py"
-        if rw.exists():
-            subprocess.run(
-                [sys.executable, str(rw), "--validate", str(out_path)],
-                capture_output=True, check=False, timeout=15,
-            )
-    except Exception:
-        pass
+    pending_path = _write_pending(
+        root, ref, resolved_ref, args.review_type,
+        diff, commit_info, ctx, template
+    )
+    _enqueue_entry(root, ref, resolved_ref, args.review_type, str(pending_path))
+
+    print(
+        f"[wave-review] pending review queued: {pending_path.name}\n"
+        f"  ref={resolved_ref}  type={args.review_type}  diff_lines={len(diff.splitlines())}\n"
+        f"  Run /wave-review in your next session to perform the review.",
+        flush=True,
+    )
+    return 0
+
+
+def cmd_list(args, root: Path) -> int:
+    items = _read_queue(root)
+    if not args.reviewed:
+        items = [i for i in items if i.get("status") == "pending"]
+    if not items:
+        print("[wave-review] no" + (" pending" if not args.reviewed else "") + " reviews")
+        return 0
+    if getattr(args, "format", "table") == "json":
+        print(json.dumps(items, indent=2))
+        return 0
+    for i in items:
+        verdict = i.get("verdict") or "-"
+        print(f"  {i['status']:10s}  {i.get('resolved_ref','?'):12s}  "
+              f"{i['review_type']:10s}  verdict={verdict}")
+    return 0
+
+
+def cmd_complete(args, root: Path) -> int:
+    found = _mark_complete(root, args.complete, args.verdict, args.receipt or "")
+    if found:
+        print(f"[wave-review] marked {args.complete} as reviewed (verdict={args.verdict})")
+        return 0
+    print(f"[wave-review] ref not found in queue: {args.complete}")
+    return 1
+
+
+def cmd_enqueue_only(args, root: Path) -> int:
+    resolved_ref = _resolve_ref(args.enqueue, root)
+    _enqueue_entry(root, args.enqueue, resolved_ref, args.review_type, "")
+    print(f"[wave-review] enqueued {resolved_ref} (prep deferred)")
+    return 0
+
+
+def cmd_stats(root: Path) -> int:
+    items = _read_queue(root)
+    pending = sum(1 for i in items if i.get("status") == "pending")
+    reviewed = sum(1 for i in items if i.get("status") == "reviewed")
+    passed = sum(1 for i in items if i.get("verdict") == "PASS")
+    failed = sum(1 for i in items if i.get("verdict") == "FAIL")
+    print(f"Total: {len(items)}  Pending: {pending}  Reviewed: {reviewed}  "
+          f"Pass: {passed}  Fail: {failed}")
+    return 0
 
 
 # ---------------------------------------------------------------------------
-# Main
+# Entry point
 # ---------------------------------------------------------------------------
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="WabbleSpec native wave reviewer")
-    parser.add_argument("--ref", default="HEAD", help="Git ref to review")
-    parser.add_argument("--range", dest="range_", default=None, help="Git range A..B")
+    parser = argparse.ArgumentParser(
+        description="WabbleSpec wave review prep — extracts diff, writes pending review"
+    )
+    parser.add_argument("--ref", default="HEAD", help="Git ref (default: HEAD)")
     parser.add_argument("--type", dest="review_type", default="standard",
-                        choices=["standard", "security", "design"],
-                        help="Review focus (default: standard)")
-    parser.add_argument("--context-file", default=None, help="Extra context file")
-    parser.add_argument("--session-id", default=f"wave-review-{TIMESTAMP_SHORT}")
-    parser.add_argument("--task-id", default=None)
-    parser.add_argument("--out", type=Path, default=None, help="Receipt output path")
-    parser.add_argument("--dry-run", action="store_true")
+                        choices=["standard", "security", "design"])
     parser.add_argument("--max-diff-lines", type=int, default=MAX_DIFF_LINES)
-    parser.add_argument("--list", action="store_true", help="List open reviews")
-    parser.add_argument("--enqueue", metavar="REF", default=None,
-                        help="Enqueue a ref for review without running it now")
-    args = parser.parse_args()
+    parser.add_argument("--list", action="store_true", help="List reviews")
+    parser.add_argument("--reviewed", action="store_true",
+                        help="Include completed reviews in --list")
+    parser.add_argument("--format", default="table", choices=["table", "json"])
+    parser.add_argument("--complete", metavar="REF",
+                        help="Mark a ref as reviewed (called by session agent)")
+    parser.add_argument("--verdict", choices=["PASS", "FAIL"],
+                        help="Verdict for --complete")
+    parser.add_argument("--receipt", metavar="PATH",
+                        help="Receipt path for --complete")
+    parser.add_argument("--enqueue", metavar="REF",
+                        help="Lightweight enqueue without diff extraction")
+    parser.add_argument("stats", nargs="?", help="Show statistics")
 
-    if args.task_id is None:
-        args.task_id = args.session_id
+    args = parser.parse_args()
 
     try:
         root = _repo_root()
@@ -406,69 +375,19 @@ def main() -> int:
         print(f"[wave-review] ERROR: {exc}", flush=True)
         return 2
 
-    # Sub-commands
+    if args.stats == "stats":
+        return cmd_stats(root)
     if args.list:
-        open_reviews = _list_open(root)
-        if not open_reviews:
-            print("[wave-review] No open reviews.")
-        else:
-            for r in open_reviews:
-                print(f"  {r['ref']} ({r['review_type']}) queued {r['queued_at']}")
-        return 0
-
+        return cmd_list(args, root)
+    if args.complete:
+        if not args.verdict:
+            print("[wave-review] --verdict required with --complete", flush=True)
+            return 1
+        return cmd_complete(args, root)
     if args.enqueue:
-        _enqueue(root, args.enqueue, args.review_type)
-        return 0
+        return cmd_enqueue_only(args, root)
 
-    # Resolve paths
-    review_dir = root / REVIEW_DIR if not (root / REVIEW_DIR).is_absolute() else Path(REVIEW_DIR)
-    review_dir = root / ".wabblespec" / "engine" / "shared" / "review"
-
-    ref = args.ref
-    try:
-        diff, resolved_ref = _get_diff(args.ref, args.range_, root, args.max_diff_lines)
-    except Exception as exc:
-        print(f"[wave-review] ERROR extracting diff: {exc}", flush=True)
-        return 2
-
-    if not diff.strip() and not args.dry_run:
-        print(f"[wave-review] No diff found for {ref} — skipping", flush=True)
-        return 0
-    if not diff.strip() and args.dry_run:
-        diff = "(dry-run: no actual diff — showing prompt structure)"
-
-    commit_info = _get_commit_info(ref, root)
-    context = _load_context(root, args.context_file)
-    prompt = _build_prompt(diff, commit_info, context, args.review_type, review_dir)
-
-    print(f"[wave-review] reviewing {resolved_ref} ({args.review_type})", flush=True)
-
-    agent_rc, output = _call_agent(prompt, args.dry_run)
-
-    if agent_rc == 2:
-        print(f"[wave-review] ERROR: agent failed: {output}", flush=True)
-        return 2
-
-    verdict, findings = _parse_verdict(output)
-
-    # Severity sort: HIGH → MEDIUM → LOW (from ref-adopt R2)
-    sev_order = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
-    findings.sort(key=lambda f: sev_order.get(f.get("severity", "LOW").upper(), 3))
-
-    print(f"[wave-review] verdict: {verdict} | findings: {len(findings)}", flush=True)
-    for f in findings[:5]:
-        print(f"  {f['severity']}: {f['description'][:80]}", flush=True)
-
-    out_path = args.out or (
-        root / ".wabblespec" / "state" / "reviews" /
-        f"{resolved_ref}-{args.review_type}-{TIMESTAMP_SHORT}.json"
-    )
-
-    _write_receipt(root, out_path, resolved_ref, args.review_type,
-                   verdict, findings, output, args.session_id, args.task_id)
-    _mark_reviewed(root, ref, verdict, str(out_path))
-
-    return 0 if verdict == "PASS" else 1
+    return cmd_prep(args, root)
 
 
 if __name__ == "__main__":
