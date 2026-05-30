@@ -1,15 +1,15 @@
 # Staleness Map
 
-> Generated: 2026-05-30T09:43:26.898613+00:00
+> Generated: 2026-05-30T09:45:51.247433+00:00
 > Drawers: 66
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.8542 (+0.0162) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.8906 (+0.0121) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9271 (+0.0081) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.8688 (+0.0146) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9015 (+0.0109) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9344 (+0.0073) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
