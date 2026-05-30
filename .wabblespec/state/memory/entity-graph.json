@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "generated": "2026-05-30T09:15:57.729436+00:00",
-  "drawers_scanned": 57,
-  "node_count": 161,
-  "edge_count": 836,
+  "generated": "2026-05-30T09:17:57.434630+00:00",
+  "drawers_scanned": 60,
+  "node_count": 164,
+  "edge_count": 837,
   "nodes": [
     {
       "id": "module::guard",
@@ -62,6 +62,22 @@
       ]
     },
     {
+      "id": "module::verifier",
+      "type": "module",
+      "label": "verifier",
+      "drawer_count": 8,
+      "drawer_ids": [
+        "tier7-postwave-reviewer",
+        "verifier-check-types-20260520",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "module-order-rationale-20260520",
+        "receipt-chain-phases-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
       "id": "module::augment",
       "type": "module",
       "label": "augment",
@@ -88,21 +104,6 @@
         "error-taxonomy-key-types-20260525",
         "gateway-pattern-routing-20260525",
         "spec-single-source-of-truth-20260525",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
-      "id": "module::verifier",
-      "type": "module",
-      "label": "verifier",
-      "drawer_count": 7,
-      "drawer_ids": [
-        "verifier-check-types-20260520",
-        "executor-wave-protocol-20260525",
-        "autopilot-orchestration-20260525",
-        "archive-module-behavior-20260525",
-        "module-order-rationale-20260520",
-        "receipt-chain-phases-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -1391,6 +1392,33 @@
       ]
     },
     {
+      "id": "concept::tier 7 expansion: post-wave background subagent that surfaces instinct-candidate patterns before verifier",
+      "type": "concept",
+      "label": "tier 7 expansion: post-wave background subagent that surfaces instinct-candidate patterns before verifier",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "tier7-postwave-reviewer"
+      ]
+    },
+    {
+      "id": "concept::tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer",
+      "type": "concept",
+      "label": "tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "tier7-skill-bundles"
+      ]
+    },
+    {
+      "id": "concept::tier 7 expansion: staleness watcher for reference drawers with upstream source fields",
+      "type": "concept",
+      "label": "tier 7 expansion: staleness watcher for reference drawers with upstream source fields",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "tier7-reference-watcher"
+      ]
+    },
+    {
       "id": "concept::tool call batching discipline for parallel execution",
       "type": "concept",
       "label": "tool call batching discipline for parallel execution",
@@ -2095,6 +2123,11 @@
     {
       "source": "concept::four categories of observations that must not be distilled to skills or instinct",
       "target": "module::instinct",
+      "weight": 1
+    },
+    {
+      "source": "concept::tier 7 expansion: post-wave background subagent that surfaces instinct-candidate patterns before verifier",
+      "target": "module::verifier",
       "weight": 1
     },
     {

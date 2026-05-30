@@ -1,12 +1,12 @@
 # Entity Graph Report
 
-> Generated: 2026-05-30T09:15:57.729436+00:00
-> Drawers scanned: 57
-> Nodes: 161  Edges: 836
+> Generated: 2026-05-30T09:17:57.434630+00:00
+> Drawers scanned: 60
+> Nodes: 164  Edges: 837
 
 ## Entity Type Breakdown
 
-- concept: 51
+- concept: 54
 - module: 31
 - file: 79
 
@@ -19,8 +19,8 @@
 | executor | module | 50 | 10 |
 | specify | module | 45 | 7 |
 | gateway-security | module | 42 | 4 |
+| verifier | module | 41 | 8 |
 | augment | module | 41 | 7 |
-| verifier | module | 40 | 7 |
 | polish | module | 40 | 4 |
 | recipe | module | 40 | 6 |
 | autopilot | module | 38 | 4 |
