@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-30T09:10:56Z",
+  "last_updated": "2026-05-30T12:12:27Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -879,15 +879,15 @@
       "task_id": "agent-creator-integration-20260529",
       "session_id": "agent-creator-integration-20260529",
       "status": "PASS",
-      "archived_at": "2026-05-30T09:10:56Z",
+      "archived_at": "2026-05-30T12:12:27Z",
       "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-agent-creator-integration-20260529.json",
-      "version_previous": "0.46.0",
-      "version_new": "0.47.0",
+      "version_previous": "0.47.0",
+      "version_new": "0.48.0",
       "version_bump_reason": "ADDITIVE",
       "waves_completed": 1,
       "waves_planned": 1,
       "not_tested_items": 2,
-      "summary": "agent-creator-integration: restored framework-maintenance authority owner (W1), added doctor shared-infra-owner check (W2), scoped subagent toolsets and removed model pins (W3), added negative-trigger sibling-boundary clauses to adversary/grader descriptions and synced (W4). All 4 waves PASS."
+      "summary": "agent-creator integration complete: reviewer negative trigger sibling boundary added (Adversary/Grader named); all 10 AC gates verified PASS under restored framework-maintenance authority"
     }
   ],
   "change_log": [

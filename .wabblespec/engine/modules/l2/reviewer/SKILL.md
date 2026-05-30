@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Budget-gated adversarial review. Triggers only when impact is HIGH or confidence is low. Adversary generates counter-analysis; Grader issues verdict. Maximum 3 REVISE cycles, then human escalation. NOT for implementing fixes or modifying artifacts — Executor handles implementation. NOT for routine low-impact decisions — budget gate blocks invocation.
+description: Budget-gated adversarial review. Triggers only when impact is HIGH or confidence is low. Adversary generates counter-analysis; Grader issues verdict. Maximum 3 REVISE cycles, then human escalation. NOT for implementing fixes or modifying artifacts — Executor handles implementation. NOT for routine low-impact decisions — budget gate blocks invocation. NOT for standalone adversarial analysis without a full review cycle — use Adversary directly. NOT for issuing a verdict or score without adversarial counter-analysis — use Grader directly.
 ---
 
 # Reviewer

@@ -19,7 +19,7 @@ Current session state: `session/state.json`. Enforcement active only during an o
 <!-- auto-updated: index-update.py -->
 Completed tasks: `.wabblespec/state/archive/receipt-index.json` (64 entries).
 
-Seed pipeline receipts: `.wabblespec/state/receipts/` — 379 individual receipts accumulated.
+Seed pipeline receipts: `.wabblespec/state/receipts/` — 382 individual receipts accumulated.
 <!-- end auto-updated -->
 
 ## Research Outputs
@@ -79,5 +79,5 @@ Reference authoring discipline, Specify decisions artifact, ReferenceLoad pointe
 ## Version
 
 <!-- auto-updated: index-update.py -->
-Current: 0.47.0
+Current: 0.48.0
 <!-- end auto-updated -->
