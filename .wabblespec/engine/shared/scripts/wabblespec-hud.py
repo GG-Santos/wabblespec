@@ -329,7 +329,7 @@ MODULE_COLOR = {
 }
 
 def render_module(module: str) -> str:
-    color = MODULE_COLOR.get(module, PUR)
+    color = MODULE_COLOR.get(module.lower(), PUR)
     return f'{color}{module}{R}'
 
 # ── Render ────────────────────────────────────────────────────────────────────
@@ -342,29 +342,40 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
     usage   = get_usage(no_usage=no_usage)
     git     = {} if no_git else git_info(cwd)
 
-    # ── Line 1: git info ──────────────────────────────────────────────────────
+    # ── Line 1: brand + skill + git ───────────────────────────────────────────
     branch = git.get('branch')
     remote = git.get('remote')
     dirty  = git.get('dirty', False)
 
-    if branch:
-        line1 = spr(branch)
-        if remote and remote != branch:
-            line1 += dim(' → ') + dim(remote)
-        if dirty:
-            line1 += f' {yel("*")}'
-    else:
-        line1 = dim('no git')
+    parts1: list[str] = [bpur('[WABBLE]')]
 
-    # ── Line 2: usage + module ────────────────────────────────────────────────
-    parts2: list[str] = [bpur('[WABBLE]')]
+    if state:
+        module = state.get('active_module') or '?'
+        parts1.append(render_module(module.upper()))
+    else:
+        parts1.append(dim('IDLE'))
+
+    if branch:
+        git_str = bpur(branch)
+        if remote and remote != branch:
+            # strip "origin/" prefix for brevity — show just the remote branch name
+            remote_short = remote.split('/', 1)[-1] if '/' in remote else remote
+            if remote_short != branch:
+                git_str += dim('/') + dim(remote_short)
+        if dirty:
+            git_str += f' {yel("*")}'
+        parts1.append(git_str)
+
+    line1 = SEP.join(parts1)
+
+    # ── Line 2: usage + task progress ────────────────────────────────────────
+    parts2: list[str] = []
 
     if usage:
         fh = usage.get('fiveHour')
         wk = usage.get('weekly')
         if fh is not None:
             bar_str = usage_bar(fh, width=6, label='5h')
-            # show reset only when approaching limit
             if fh >= 70:
                 reset = _format_reset(usage.get('fiveHourResets'))
                 if reset:
@@ -378,39 +389,25 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
                     bar_str += dim(f' {reset}')
             parts2.append(bar_str)
 
-    if state:
-        module = state.get('active_module') or '?'
-        parts2.append(render_module(module))
-    else:
-        parts2.append(dim('idle'))
-
-    line2 = SEP.join(parts2)
-
-    # ── Line 3: task progress ─────────────────────────────────────────────────
-    parts3: list[str] = []
-
     waves = parse_wave_names()
     if waves:
         session_id = (state or {}).get('session_id', '')
         completed  = count_verifier_receipts(session_id)
         color = GRN if completed == len(waves) else SPR
-        parts3.append(f'{dim("w:")}{_c(color, f"{completed}/{len(waves)}")}')
+        parts2.append(f'{dim("waves:")}{_c(color, f"{completed}/{len(waves)}")}')
 
     if state:
         required = state.get('required_receipts', [])
         if required:
-            found  = count_receipts_found(required)
-            color  = GRN if found == len(required) else YEL if found > 0 else DIM
-            parts3.append(f'{dim("R:")}{_c(color, f"{found}/{len(required)}")}')
+            found = count_receipts_found(required)
+            color = GRN if found == len(required) else YEL if found > 0 else DIM
+            parts2.append(f'{dim("receipts:")}{_c(color, f"{found}/{len(required)}")}')
 
-    parts3.append(f'{dim("L8:")}{grn("MET") if l8_met else dim("?")}')
+    parts2.append(f'{dim("gate:")}{grn("MET") if l8_met else dim("?")}')
 
-    line3 = SEP.join(parts3)
+    line2 = SEP.join(parts2)
 
-    lines = [line1, line2]
-    if not compact:
-        lines.append(line3)
-    return '\n'.join(lines)
+    return '\n'.join([line1, line2])
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
