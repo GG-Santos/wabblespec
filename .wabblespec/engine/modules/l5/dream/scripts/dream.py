@@ -181,7 +181,7 @@ def detect_gaps(drawers: list[dict]) -> list[Finding]:
                 kind="COVERAGE_GAP",
                 subject=room_key,
                 detail=f"Room {room_key} has no FRESH or AGING drawers "
-                       f"(states present: {', '.join(sorted(active_states))})",
+                       f"(states present: {', '.join(sorted(s for s in active_states if s is not None))})",
                 action=f"Run MemorySearch to identify what needs documenting in {room_key}. "
                        f"Write at least one new drawer from a verified source.",
             ))
