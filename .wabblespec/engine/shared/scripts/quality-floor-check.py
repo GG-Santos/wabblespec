@@ -132,14 +132,14 @@ def lint_prompts(module_dir):
     if not os.path.isfile(skill_path):
         return False, {k: False for k in (
             "FRONTMATTER", "DESCRIPTION_LEN", "SECTION_WHAT",
-            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH"
+            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET"
         )}
 
     content, err = load_skill(skill_path)
     if err or content is None:
         return False, {k: False for k in (
             "FRONTMATTER", "DESCRIPTION_LEN", "SECTION_WHAT",
-            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH"
+            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET"
         )}
 
     fm_match = re.match(r"^---\n(.*?)\n---", content, re.DOTALL)
@@ -155,6 +155,30 @@ def lint_prompts(module_dir):
     checks["SECTION_WHEN"] = "## When to use" in content
     checks["SECTION_OUTPUT"] = any(sig in content for sig in OUTPUT_SIGNALS)
     checks["MIN_LENGTH"] = len(body) >= 200
+
+    # Skill size budget gate.
+    # Tiers by orchestrator role (inferred from skill name or content):
+    #   XL (1700 lines): top-level orchestrators — executor, autopilot
+    #   LARGE (1500 lines): multi-step planners — decompose, verifier
+    #   DEFAULT (1000 lines): all other focused single-purpose skills
+    # Skills over their tier limit without a ## Reference Routing table to
+    # offload the excess are flagged. Reference Routing is the approved escape
+    # valve — if it is present, the skill is actively managing its size.
+    line_count = content.count("\n")
+    skill_name = os.path.basename(module_dir).lower()
+    has_routing_table = "## Reference Routing" in content
+
+    if skill_name in ("executor", "autopilot"):
+        size_limit = 1700
+    elif skill_name in ("decompose", "verifier"):
+        size_limit = 1500
+    else:
+        size_limit = 1000
+
+    if line_count > size_limit and not has_routing_table:
+        checks["SKILL_SIZE_BUDGET"] = False
+    else:
+        checks["SKILL_SIZE_BUDGET"] = True
 
     return all(checks.values()), checks
 
