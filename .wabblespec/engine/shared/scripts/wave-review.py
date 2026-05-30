@@ -74,10 +74,18 @@ def _resolve_ref(ref: str, root: Path) -> str:
     return sha.strip() if rc == 0 and sha.strip() else ref
 
 
-def _get_diff(ref: str, root: Path, max_lines: int) -> str:
-    rc, diff = _run(["git", "show", ref, "--format=", "--unified=5"], cwd=root)
-    if rc != 0 or not diff.strip():
-        rc, diff = _run(["git", "diff", "HEAD~1..HEAD"], cwd=root)
+def _get_diff(ref: str, root: Path, max_lines: int,
+              range_: str | None = None, dirty: bool = False) -> str:
+    if dirty:
+        rc, diff = _run(["git", "diff"], cwd=root)
+        if not diff.strip():
+            rc, diff = _run(["git", "diff", "--cached"], cwd=root)
+    elif range_:
+        rc, diff = _run(["git", "diff", range_], cwd=root)
+    else:
+        rc, diff = _run(["git", "show", ref, "--format=", "--unified=5"], cwd=root)
+        if rc != 0 or not diff.strip():
+            rc, diff = _run(["git", "diff", "HEAD~1..HEAD"], cwd=root)
     lines = diff.splitlines()
     if len(lines) > max_lines:
         diff = "\n".join(lines[:max_lines]) + f"\n\n[... truncated at {max_lines} lines ...]"
@@ -273,7 +281,9 @@ def cmd_prep(args, root: Path) -> int:
     ref = args.ref or "HEAD"
     resolved_ref = _resolve_ref(ref, root)
 
-    diff = _get_diff(ref, root, args.max_diff_lines)
+    diff = _get_diff(ref, root, args.max_diff_lines,
+                     range_=getattr(args, 'range_', None),
+                     dirty=getattr(args, 'dirty', False))
     if not diff.strip():
         print(f"[wave-review] no diff for {ref} — nothing to review", flush=True)
         return 1
@@ -350,6 +360,10 @@ def main() -> int:
         description="WabbleSpec wave review prep — extracts diff, writes pending review"
     )
     parser.add_argument("--ref", default="HEAD", help="Git ref (default: HEAD)")
+    parser.add_argument("--range", dest="range_", default=None,
+                        help="Git range A..B to review")
+    parser.add_argument("--dirty", action="store_true",
+                        help="Review uncommitted changes (git diff)")
     parser.add_argument("--type", dest="review_type", default="standard",
                         choices=["standard", "security", "design"])
     parser.add_argument("--max-diff-lines", type=int, default=MAX_DIFF_LINES)

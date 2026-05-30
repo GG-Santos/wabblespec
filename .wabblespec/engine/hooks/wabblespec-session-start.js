@@ -106,8 +106,7 @@ if (state && state.task_id) {
   lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
-// ── Pending wave reviews ──────────────────────────────────────────────────────
-// Surface any pending review jobs so Claude performs the review inline this session.
+// ── Wave review daemon + pending reviews ─────────────────────────────────────
 
 function readPendingReviews() {
   try {
@@ -125,14 +124,39 @@ function readPendingReviews() {
   } catch (e) { return []; }
 }
 
+function readDaemonStatus() {
+  try {
+    const pidPath = path.join(process.cwd(), '.wabblespec', 'state', 'reviews', 'daemon', 'daemon.pid');
+    if (!fs.existsSync(pidPath)) return 'STOPPED';
+    const pid = parseInt(fs.readFileSync(pidPath, 'utf8').trim(), 10);
+    // On Unix we'd send signal 0; on Windows just check if PID file is recent (<60s)
+    const stat = fs.statSync(pidPath);
+    const ageMs = Date.now() - stat.mtimeMs;
+    return ageMs < 60000 ? `RUNNING (pid=${pid})` : `UNKNOWN (pid=${pid}, pid file stale)`;
+  } catch (e) { return 'STOPPED'; }
+}
+
 const pendingReviews = readPendingReviews();
-if (pendingReviews.length > 0) {
+const daemonStatus = readDaemonStatus();
+
+const daemonRunning = daemonStatus.startsWith('RUNNING');
+
+if (pendingReviews.length > 0 && !daemonRunning) {
+  // Daemon not running — surface pending reviews for inline session review
   lines.push('');
-  lines.push(`PENDING WAVE REVIEWS (${pendingReviews.length}):`);
+  lines.push(`PENDING WAVE REVIEWS (${pendingReviews.length}) — daemon not running:`);
   for (const r of pendingReviews) {
     lines.push(`  ${r.ref}  type=${r.type}  diff_lines=${r.lines}`);
   }
-  lines.push('  Run /wave-review to perform the review inline this session.');
+  lines.push('  Run /wave-review to review inline, or start the daemon:');
+  lines.push('  python .wabblespec/engine/shared/scripts/review-daemon.py start');
+} else if (pendingReviews.length > 0) {
+  // Daemon is running — it will process them; just inform
+  lines.push('');
+  lines.push(`WAVE REVIEWER: ${daemonStatus} | ${pendingReviews.length} pending (daemon processing)`);
+} else if (!daemonRunning) {
+  lines.push('');
+  lines.push('WAVE REVIEWER: daemon not running. Start: python .wabblespec/engine/shared/scripts/review-daemon.py start');
 }
 
 process.stdout.write(lines.join('\n'));
