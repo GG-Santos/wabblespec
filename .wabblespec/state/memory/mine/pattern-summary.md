@@ -1,9 +1,9 @@
-# Pattern Summary — 2026-05-30T14-36-31
+# Pattern Summary — 2026-05-30T14-40-48
 
 Total patterns found: 1
 
 ## Pattern: must
 - Type: RECURRING_CONSTRAINT
-- Evidence drawers: guard-mempalace-invariants-20260524, receipt-schema-design-20260521, module-order-rationale-20260520
+- Evidence drawers: module-order-rationale-20260520, receipt-schema-design-20260521, guard-mempalace-invariants-20260524
 - Recurrence: 3
 - Recommendation: Consider creating a constraints index drawer.
