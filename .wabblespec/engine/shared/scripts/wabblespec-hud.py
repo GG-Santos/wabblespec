@@ -242,13 +242,12 @@ def module_color(name):
 def render(no_git=False, no_usage=False):
     cwd   = os.getcwd()
     state = read_state()
-    l8    = read_l8_gate()
     usage = get_usage(no_usage=no_usage)
     git   = {} if no_git else git_info(cwd)
 
     # ── Line 1: brand + skill (no divider) | repo (branch) | usage ──────────
     mod   = (state or {}).get('active_module') or 'IDLE'
-    brand = f'{spr("[WABBLE]")} {spr(mod.upper())}'
+    brand = spr('[WABBLE]')
     parts1 = [brand]
 
     branch = git.get('branch')
@@ -276,26 +275,7 @@ def render(no_git=False, no_usage=False):
 
     line1 = SEP.join(parts1)
 
-    # ── Line 2: task progress (left) + ctx (right) ───────────────────────────
-    parts2 = []
-
-    waves = parse_wave_names()
-    if waves:
-        sid       = (state or {}).get('session_id', '')
-        completed = count_verifier_receipts(sid)
-        parts2.append(f'{dim("waves:")}{spr(f"{completed}/{len(waves)}")}')
-
-    if state:
-        req = state.get('required_receipts', [])
-        if req:
-            found = count_receipts_found(req)
-            parts2.append(f'{dim("receipts:")}{spr(f"{found}/{len(req)}")}')
-
-    parts2.append(f'{dim("gate:")}{spr("MET") if l8 else dim("?")}')
-
-    line2 = SEP.join(parts2)
-
-    return '\n'.join([line1, line2])
+    return line1
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 

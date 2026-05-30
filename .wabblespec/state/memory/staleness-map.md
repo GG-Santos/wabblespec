@@ -1,15 +1,15 @@
 # Staleness Map
 
-> Generated: 2026-05-30T17:45:20.527034+00:00
-> Drawers: 97
+> Generated: 2026-05-30T17:56:31.947964+00:00
+> Drawers: 102
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9981 (+0.0002) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9986 (+0.0002) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9990 (+0.0001) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9983 (+0.0002) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9987 (+0.0001) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9991 (+0.0001) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
@@ -43,6 +43,11 @@ Sorted by state (worst first), then confidence ascending.
 | - | - | references/openspec | FRESH | 1.0000 | - |
 | - | - | references/openspec | FRESH | 1.0000 | - |
 | - | - | references/openspec | FRESH | 1.0000 | - |
+| - | - | references/pentest-ai-agents-main | FRESH | 1.0000 | - |
+| - | - | references/pentest-ai-agents-main | FRESH | 1.0000 | - |
+| - | - | references/pentest-ai-agents-main | FRESH | 1.0000 | - |
+| - | - | references/pentest-ai-agents-main | FRESH | 1.0000 | - |
+| - | - | references/pentest-ai-agents-main | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
 | - | - | references/superpowers | FRESH | 1.0000 | - |
@@ -107,4 +112,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 97
+- FRESH: 102
