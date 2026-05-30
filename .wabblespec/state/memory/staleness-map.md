@@ -1,18 +1,22 @@
 # Staleness Map
 
-> Generated: 2026-05-30T10:06:47.455263+00:00
-> Drawers: 72
+> Generated: 2026-05-30T10:24:08.804195+00:00
+> Drawers: 76
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.8937 (+0.0118) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9202 (+0.0089) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9469 (+0.0059) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9043 (+0.0106) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9282 (+0.0080) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9522 (+0.0053) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
+| - | - | references/agent-os | FRESH | 1.0000 | - |
+| - | - | references/agent-os | FRESH | 1.0000 | - |
+| - | - | references/agent-os | FRESH | 1.0000 | - |
+| - | - | references/agent-os | FRESH | 1.0000 | - |
 | context-degradation | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | gate-taxonomy | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | specificity-enforcement | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
@@ -82,4 +86,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 72
+- FRESH: 76
