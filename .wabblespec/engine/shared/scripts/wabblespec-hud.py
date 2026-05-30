@@ -342,7 +342,7 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
     usage   = get_usage(no_usage=no_usage)
     git     = {} if no_git else git_info(cwd)
 
-    # ── Line 1: brand + skill + git ───────────────────────────────────────────
+    # ── Line 1: brand + skill + git + usage ──────────────────────────────────
     branch = git.get('branch')
     remote = git.get('remote')
     dirty  = git.get('dirty', False)
@@ -356,20 +356,12 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
         parts1.append(dim('IDLE'))
 
     if branch:
-        git_str = bpur(branch)
-        if remote and remote != branch:
-            # strip "origin/" prefix for brevity — show just the remote branch name
-            remote_short = remote.split('/', 1)[-1] if '/' in remote else remote
-            if remote_short != branch:
-                git_str += dim('/') + dim(remote_short)
+        git_str = spr(branch)
+        if remote:
+            git_str += dim(' → ') + dim(remote)
         if dirty:
             git_str += f' {yel("*")}'
         parts1.append(git_str)
-
-    line1 = SEP.join(parts1)
-
-    # ── Line 2: usage + task progress ────────────────────────────────────────
-    parts2: list[str] = []
 
     if usage:
         fh = usage.get('fiveHour')
@@ -380,14 +372,19 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
                 reset = _format_reset(usage.get('fiveHourResets'))
                 if reset:
                     bar_str += dim(f' {reset}')
-            parts2.append(bar_str)
+            parts1.append(bar_str)
         if wk is not None:
             bar_str = usage_bar(wk, width=6, label='wk')
             if wk >= 70:
                 reset = _format_reset(usage.get('weeklyResets'))
                 if reset:
                     bar_str += dim(f' {reset}')
-            parts2.append(bar_str)
+            parts1.append(bar_str)
+
+    line1 = SEP.join(parts1)
+
+    # ── Line 2: task progress ─────────────────────────────────────────────────
+    parts2: list[str] = []
 
     waves = parse_wave_names()
     if waves:
