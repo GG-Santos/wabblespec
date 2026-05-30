@@ -150,8 +150,15 @@ def read_l8_gate() -> bool:
 
 # ── Data: Git ─────────────────────────────────────────────────────────────────
 
+def _parse_remote_slug(url: str) -> str | None:
+    """Extract owner/repo from https or ssh remote URL."""
+    url = url.strip().removesuffix('.git')
+    # SSH: git@github.com:owner/repo
+    m = re.search(r'[:/]([^/]+/[^/]+)$', url)
+    return m.group(1) if m else None
+
 def git_info(cwd: str) -> dict:
-    """Returns dict with branch, remote, dirty."""
+    """Returns dict with branch, remote (owner/repo slug), dirty."""
     result = {'branch': None, 'remote': None, 'dirty': False}
     try:
         result['branch'] = subprocess.check_output(
@@ -165,23 +172,34 @@ def git_info(cwd: str) -> dict:
         ).decode().strip()
         result['dirty'] = bool(dirty_out)
 
-        # Remote tracking branch for HEAD
+        # Get the remote name from the upstream tracking ref, fall back to first remote
         try:
             tracking = subprocess.check_output(
                 ['git', 'rev-parse', '--abbrev-ref', '--symbolic-full-name', '@{u}'],
                 cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
             ).decode().strip()
-            result['remote'] = tracking  # e.g. "origin/main"
+            remote_name = tracking.split('/')[0]  # "origin/main" -> "origin"
         except subprocess.CalledProcessError:
-            # No upstream set — show remote name alone
             try:
                 remote_name = subprocess.check_output(
                     ['git', 'remote'],
                     cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
                 ).decode().strip().split('\n')[0]
-                result['remote'] = remote_name or None
-            except: pass
-    except: pass
+            except Exception:
+                remote_name = ''
+
+        # Resolve remote name to URL and extract owner/repo slug
+        if remote_name:
+            try:
+                url = subprocess.check_output(
+                    ['git', 'remote', 'get-url', remote_name],
+                    cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
+                ).decode().strip()
+                result['remote'] = _parse_remote_slug(url)
+            except Exception:
+                pass
+    except Exception:
+        pass
     return result
 
 def short_cwd(cwd: str) -> str:
