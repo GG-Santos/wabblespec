@@ -1824,3 +1824,15 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-agent-creator-integration-20260529.json
 - waves: 1 completed
 - verification: all waves PASS
+
+---
+
+## [0.49.0] — 2026-05-30T14:46:00Z
+
+### Changed
+- Implemented all 18 Tier 7 expansion capabilities from ref-adopt drawers: skill bundles, epistemic hook, ref watcher, watzup scanner, shape artifact, reference capture, conflict detection, compaction memo, post-wave reviewer, skill-tdd, benchmark-loop, topology planner, transcript handoff, pattern inference, plan notebooks, visual companion, CRDT merge, and workflow schema Phase 1
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json
+- waves: 6 completed
+- verification: all waves PASS

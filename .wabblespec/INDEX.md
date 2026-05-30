@@ -7,7 +7,7 @@ Module registry and session index.
 ## Active Modules
 
 <!-- auto-updated: index-update.py -->
-108 modules registered in `framework.yaml`. See `framework.yaml` for canonical registry — this file tracks session-level state only.
+111 modules registered in `framework.yaml`. See `framework.yaml` for canonical registry — this file tracks session-level state only.
 <!-- end auto-updated -->
 
 ## Session State
@@ -17,9 +17,9 @@ Current session state: `session/state.json`. Enforcement active only during an o
 ## Receipt Archive
 
 <!-- auto-updated: index-update.py -->
-Completed tasks: `.wabblespec/state/archive/receipt-index.json` (64 entries).
+Completed tasks: `.wabblespec/state/archive/receipt-index.json` (65 entries).
 
-Seed pipeline receipts: `.wabblespec/state/receipts/` — 454 individual receipts accumulated.
+Seed pipeline receipts: `.wabblespec/state/receipts/` — 473 individual receipts accumulated.
 <!-- end auto-updated -->
 
 ## Research Outputs
@@ -39,7 +39,7 @@ All 99 modules across L0-L8 have `rules/cold-start.md`. Coverage complete as of 
 ## Quality Floor
 
 <!-- auto-updated: index-update.py -->
-Quality floor status: see `quality-floor-check.py` output. (108 modules registered)
+Quality floor status: see `quality-floor-check.py` output. (111 modules registered)
 <!-- end auto-updated -->
 
 ## Witness
@@ -79,5 +79,5 @@ Reference authoring discipline, Specify decisions artifact, ReferenceLoad pointe
 ## Version
 
 <!-- auto-updated: index-update.py -->
-Current: 0.48.0
+Current: 0.49.0
 <!-- end auto-updated -->

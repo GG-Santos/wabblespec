@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-30T12:12:27Z",
+  "last_updated": "2026-05-30T14:46:00Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -888,6 +888,20 @@
       "waves_planned": 1,
       "not_tested_items": 2,
       "summary": "agent-creator integration complete: reviewer negative trigger sibling boundary added (Adversary/Grader named); all 10 AC gates verified PASS under restored framework-maintenance authority"
+    },
+    {
+      "task_id": "tier7-expansions-20260530",
+      "session_id": "tier7-expansions-20260530",
+      "status": "PASS",
+      "archived_at": "2026-05-30T14:46:00Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json",
+      "version_previous": "0.48.0",
+      "version_new": "0.49.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 6,
+      "waves_planned": 6,
+      "not_tested_items": 0,
+      "summary": "Implemented all 18 Tier 7 expansion capabilities from ref-adopt drawers: skill bundles, epistemic hook, ref watcher, watzup scanner, shape artifact, reference capture, conflict detection, compaction memo, post-wave reviewer, skill-tdd, benchmark-loop, topology planner, transcript handoff, pattern inference, plan notebooks, visual companion, CRDT merge, and workflow schema Phase 1"
     }
   ],
   "change_log": [
