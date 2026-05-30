@@ -1,7 +1,7 @@
 # Staleness Map
 
-> Generated: 2026-05-30T05:51:10.008378+00:00
-> Drawers: 53
+> Generated: 2026-05-30T06:06:10.771687+00:00
+> Drawers: 55
 
 Sorted by state (worst first), then confidence ascending.
 
@@ -14,6 +14,8 @@ Sorted by state (worst first), then confidence ascending.
 | gate-taxonomy | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | specificity-enforcement | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | verification-framework | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
+| - | - | references/roborev | FRESH | 1.0000 | - |
+| - | - | references/roborev | FRESH | 1.0000 | - |
 | stm-pipeline-transforms-20260525 | STM Pipeline Transform Configuration | implementation/stm-pipeline | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | ears-syntax-requirements-20260525 | EARS Syntax for WabbleSpec Requirements | implementation/specify | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | red-blue-purple-9-component-20260525 | Red/Blue/Purple 9-Component Scoring Model | implementation/security | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
@@ -63,4 +65,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 53
+- FRESH: 55
