@@ -1,15 +1,15 @@
 # Staleness Map
 
-> Generated: 2026-05-30T13:10:32.455542+00:00
-> Drawers: 82
+> Generated: 2026-05-30T13:18:03.485244+00:00
+> Drawers: 89
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9667 (+0.0037) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9749 (+0.0028) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9834 (+0.0019) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9700 (+0.0033) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9774 (+0.0025) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9851 (+0.0017) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
@@ -43,6 +43,13 @@ Sorted by state (worst first), then confidence ascending.
 | - | - | references/superpowers | FRESH | 1.0000 | - |
 | - | - | references/superpowers | FRESH | 1.0000 | - |
 | - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
+| - | - | references/vibecode-pro-max-kit | FRESH | 1.0000 | - |
 | stm-pipeline-transforms-20260525 | STM Pipeline Transform Configuration | implementation/stm-pipeline | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | ears-syntax-requirements-20260525 | EARS Syntax for WabbleSpec Requirements | implementation/specify | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | red-blue-purple-9-component-20260525 | Red/Blue/Purple 9-Component Scoring Model | implementation/security | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
@@ -92,4 +99,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 82
+- FRESH: 89
