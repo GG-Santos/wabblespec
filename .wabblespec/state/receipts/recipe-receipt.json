@@ -3,13 +3,13 @@
   "layer": "L0",
   "phase": "Intake",
   "wave": 0,
-  "timestamp": "2026-05-28T08:16:15Z",
-  "session_id": "phase3-new-scripts-20260528",
-  "target": "Library-Package",
-  "platform": "Library-Package",
+  "timestamp": "2026-05-30T13:56:39Z",
+  "session_id": "tier7-expansions-20260530",
+  "target": "Framework",
+  "platform": "Framework",
   "detection_method": "user-declaration",
-  "confidence": 0.97,
-  "complexity": "Medium",
+  "confidence": 0.95,
+  "complexity": "High",
   "secondary_targets": [],
   "collapse_eligible": false,
   "input_quality": {
@@ -29,7 +29,7 @@
     "input-quality"
   ],
   "status": "PASS",
-  "confidence_score": 0.97,
+  "confidence_score": 0.95,
   "outputs": [
     "recipe.json"
   ],

@@ -6,7 +6,10 @@
   "complexity": "High",
   "secondary_targets": [],
   "collapse_eligible": false,
-  "active_skills": [],
+  "active_skills": [
+    "recipe", "decompose", "executor", "guard", "autopilot",
+    "dream", "specify", "brainstorm", "benchmark", "verifier", "archive"
+  ],
   "input_quality": {
     "vague": false,
     "broad": false,
@@ -14,6 +17,19 @@
     "sharpened": false
   },
   "cold_start_verified": true,
-  "locked_at": "2026-05-29T14:52:00Z",
-  "session_id": "agent-creator-integration-20260529"
+  "locked_at": "2026-05-30T14:00:00Z",
+  "session_id": "tier7-expansions-20260530",
+  "collapse_assessment": [
+    { "module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "decompose", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "guard",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "autopilot", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "dream",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "specify",   "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "brainstorm","skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "benchmark", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "verifier",  "skill_collapse_eligible": false, "disposition": "ACTIVE" },
+    { "module_id": "archive",   "skill_collapse_eligible": false, "disposition": "ACTIVE" }
+  ]
 }
