@@ -1,46 +1,26 @@
 #!/usr/bin/env python3
 """review-daemon.py — WabbleSpec autonomous background code reviewer.
 
-A long-running daemon that watches the pending review queue and processes
-each job by spawning a headless Claude Code session (`claude --print`).
-Equivalent to roborev's worker pool, implemented in Python with no external
-binary dependency beyond the claude CLI already present in the environment.
+Watches the pending review queue and for each job opens a new terminal window
+running an interactive Claude Code session (`claude "task"` — subscription-
+billed, not API-billed). Inside that session the /wave-review skill runs
+parallel Agent subagents (standard + security + design), synthesizes findings,
+and writes the wave-review receipt.
 
-The daemon is a separate OS process — it has no relationship to any running
-Claude Code interactive session. It is started once and runs continuously.
+This is WabbleSpec's equivalent of roborev's multi-agent worker pool.
 
 Usage:
-    python review-daemon.py start        Start daemon in background (writes PID file)
-    python review-daemon.py run          Run in foreground (blocking)
-    python review-daemon.py stop         Stop running daemon
-    python review-daemon.py status       Show daemon status and queue stats
-    python review-daemon.py install-hook Install git post-commit hook in current repo
+    python review-daemon.py start           Start daemon in background
+    python review-daemon.py run             Run in foreground (blocking)
+    python review-daemon.py stop            Stop running daemon
+    python review-daemon.py status          Status + queue stats
+    python review-daemon.py dashboard       Live-refreshing terminal dashboard
+    python review-daemon.py install-hook    Install git post-commit hook
+    python review-daemon.py post-pr <ref>   Post findings to open GitHub PR
 
-Architecture:
-    post-commit hook
-        → wave-review.py --enqueue HEAD   (pure Python, no AI, <10ms)
-        ↓
-    review-daemon.py (always running)
-        watches .wabblespec/state/reviews/pending/
-        → for each pending job:
-            → reads diff + template from pending JSON
-            → spawns: claude --print "<review prompt>"
-            → parses PASS/FAIL + findings (HIGH→MEDIUM→LOW)
-            → writes wave-review receipt via receipt-writer.py
-            → marks job complete via wave-review.py --complete
-            → retry up to 3× on failure
-        → sleeps POLL_INTERVAL seconds, loops
-
-Configuration (environment variables):
-    WABBLESPEC_REVIEW_POLL=15        Seconds between queue polls (default: 15)
-    WABBLESPEC_REVIEW_RETRY=3        Max retries per job (default: 3)
-    WABBLESPEC_REVIEW_TIMEOUT=180    Seconds before claude --print times out (default: 180)
-    WABBLESPEC_REVIEW_MAX_JOBS=4     Max concurrent review jobs (default: 1, serial)
-
-Exit codes:
-    0  clean stop
-    1  startup error
-    2  fatal error during run
+Environment:
+    WABBLESPEC_REVIEW_POLL=15      Queue poll interval in seconds (default: 15)
+    WABBLESPEC_REVIEW_TIMEOUT=600  Seconds to wait for a terminal session (default: 600)
 """
 from __future__ import annotations
 
@@ -49,74 +29,174 @@ import json
 import os
 import shutil
 import signal
+import sqlite3
 import subprocess
 import sys
-import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
-# Constants (overridable via env)
+# Config
 # ---------------------------------------------------------------------------
 
-POLL_INTERVAL = int(os.environ.get("WABBLESPEC_REVIEW_POLL", "15"))
-MAX_RETRY = int(os.environ.get("WABBLESPEC_REVIEW_RETRY", "3"))
-AGENT_TIMEOUT = int(os.environ.get("WABBLESPEC_REVIEW_TIMEOUT", "180"))
-DAEMON_LABEL = "wabblespec-wave-reviewer"
+POLL_INTERVAL = int(os.environ.get("WABBLESPEC_REVIEW_POLL",    "15"))
+SESSION_TIMEOUT = int(os.environ.get("WABBLESPEC_REVIEW_TIMEOUT", "600"))
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
 
 def _short() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
 
 
 # ---------------------------------------------------------------------------
-# Repo / path resolution
+# Paths
 # ---------------------------------------------------------------------------
 
 def _repo_root() -> Path:
-    import subprocess as sp
-    r = sp.run(["git", "rev-parse", "--show-toplevel"],
-               capture_output=True, text=True, check=False)
+    r = subprocess.run(["git", "rev-parse", "--show-toplevel"],
+                       capture_output=True, text=True, check=False)
     if r.returncode != 0:
         raise RuntimeError("Not a git repository")
     return Path(r.stdout.strip())
 
-
-def _daemon_dir(root: Path) -> Path:
-    p = root / ".wabblespec" / "state" / "reviews" / "daemon"
+def _review_dir(root: Path) -> Path:
+    p = root / ".wabblespec" / "state" / "reviews"
     p.mkdir(parents=True, exist_ok=True)
     return p
 
+def _pending_dir(root: Path) -> Path:
+    p = _review_dir(root) / "pending"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+def _completed_dir(root: Path) -> Path:
+    p = _review_dir(root) / "completed"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+def _daemon_dir(root: Path) -> Path:
+    p = _review_dir(root) / "daemon"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+def _scripts_dir(root: Path) -> Path:
+    return root / ".wabblespec" / "engine" / "shared" / "scripts"
 
 def _pid_path(root: Path) -> Path:
     return _daemon_dir(root) / "daemon.pid"
-
 
 def _log_path(root: Path) -> Path:
     return _daemon_dir(root) / "daemon.log"
 
 
-def _pending_dir(root: Path) -> Path:
-    return root / ".wabblespec" / "state" / "reviews" / "pending"
+# ---------------------------------------------------------------------------
+# SQLite queue — concurrent-safe, queryable
+# ---------------------------------------------------------------------------
 
+def _db_path(root: Path) -> Path:
+    return _review_dir(root) / "reviews.db"
 
-def _scripts_dir(root: Path) -> Path:
-    return root / ".wabblespec" / "engine" / "shared" / "scripts"
+def _db_connect(root: Path) -> sqlite3.Connection:
+    con = sqlite3.connect(str(_db_path(root)), timeout=10,
+                          check_same_thread=False)
+    con.row_factory = sqlite3.Row
+    con.execute("PRAGMA journal_mode=WAL")
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS reviews (
+            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            ref            TEXT NOT NULL,
+            review_type    TEXT NOT NULL DEFAULT 'multi',
+            status         TEXT NOT NULL DEFAULT 'pending',
+            verdict        TEXT,
+            queued_at      TEXT NOT NULL,
+            reviewed_at    TEXT,
+            receipt_path   TEXT,
+            pending_path   TEXT,
+            finding_high   INTEGER DEFAULT 0,
+            finding_medium INTEGER DEFAULT 0,
+            finding_low    INTEGER DEFAULT 0,
+            agent_verdicts TEXT
+        )
+    """)
+    con.commit()
+    return con
+
+def _db_enqueue(root: Path, ref: str, pending_path: str) -> int:
+    con = _db_connect(root)
+    if con.execute("SELECT id FROM reviews WHERE ref=? AND status='pending'",
+                   (ref,)).fetchone():
+        con.close()
+        return -1
+    cur = con.execute(
+        "INSERT INTO reviews (ref, queued_at, pending_path) VALUES (?,?,?)",
+        (ref, _now(), pending_path)
+    )
+    con.commit()
+    row_id = cur.lastrowid
+    con.close()
+    return row_id
+
+def _db_claim_pending(root: Path) -> sqlite3.Row | None:
+    con = _db_connect(root)
+    row = con.execute(
+        "SELECT * FROM reviews WHERE status='pending' ORDER BY id LIMIT 1"
+    ).fetchone()
+    if row:
+        con.execute("UPDATE reviews SET status='running' WHERE id=?", (row["id"],))
+        con.commit()
+    con.close()
+    return row
+
+def _db_complete(root: Path, ref: str, verdict: str, receipt_path: str,
+                 h: int = 0, m: int = 0, l: int = 0,
+                 agent_verdicts: str = "{}") -> None:
+    con = _db_connect(root)
+    con.execute(
+        """UPDATE reviews SET status='reviewed', verdict=?, reviewed_at=?,
+           receipt_path=?, finding_high=?, finding_medium=?, finding_low=?,
+           agent_verdicts=? WHERE ref=? AND status IN ('pending','running')""",
+        (verdict, _now(), receipt_path, h, m, l, agent_verdicts, ref)
+    )
+    con.commit()
+    con.close()
+
+def _db_stats(root: Path) -> dict:
+    if not _db_path(root).exists():
+        return {}
+    con = _db_connect(root)
+    row = con.execute("""
+        SELECT COUNT(*) as total,
+            SUM(CASE WHEN status='pending'  THEN 1 ELSE 0 END) as pending,
+            SUM(CASE WHEN status='running'  THEN 1 ELSE 0 END) as running,
+            SUM(CASE WHEN status='reviewed' THEN 1 ELSE 0 END) as reviewed,
+            SUM(CASE WHEN verdict='PASS'    THEN 1 ELSE 0 END) as passed,
+            SUM(CASE WHEN verdict='FAIL'    THEN 1 ELSE 0 END) as failed
+        FROM reviews
+    """).fetchone()
+    con.close()
+    return dict(row) if row else {}
+
+def _db_recent(root: Path, n: int = 10) -> list[sqlite3.Row]:
+    if not _db_path(root).exists():
+        return []
+    con = _db_connect(root)
+    rows = con.execute(
+        "SELECT * FROM reviews ORDER BY id DESC LIMIT ?", (n,)
+    ).fetchall()
+    con.close()
+    return rows
 
 
 # ---------------------------------------------------------------------------
-# Logging (append to daemon.log, also stdout when in foreground)
+# Logging
 # ---------------------------------------------------------------------------
 
 _foreground = False
-_log_file = None
-
+_log_file   = None
 
 def _log(msg: str) -> None:
     line = f"[{_now()}] {msg}"
@@ -131,288 +211,96 @@ def _log(msg: str) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Agent invocation (the core: claude --print)
+# Job processor — delegates to review-terminal.py
 # ---------------------------------------------------------------------------
 
-def _build_review_prompt(job: dict) -> str:
-    """Build the full review prompt from a pending job JSON."""
-    template = job.get("review_prompt_template", "Review the following code changes.")
-    commit_info = job.get("commit_info", "")
-    diff = job.get("diff", "")
-    goal = job.get("task_goal", "")
-    guidelines = job.get("review_guidelines_excerpt", "")
+def _process_job(root: Path, row: sqlite3.Row) -> None:
+    ref          = row["ref"]
+    pending_path = row["pending_path"] or ""
 
-    parts = [template]
-    if guidelines:
-        parts.append(f"\n---\n## Project review guidelines\n{guidelines}")
-    if goal:
-        parts.append(f"\n---\n## Active task context\n{goal}")
-    if commit_info:
-        parts.append(f"\n---\n## Commit\n{commit_info}")
-    parts.append(f"\n---\n## Diff\n```diff\n{diff}\n```")
-    parts.append(
-        "\n---\nRespond with:\n"
-        "**VERDICT:** PASS or FAIL\n"
-        "**FINDINGS:** Each finding on its own line: "
-        "[HIGH|MEDIUM|LOW] file:line — description — suggested fix\n"
-        "**NO FINDINGS:** (if nothing found)"
-    )
-    return "\n".join(parts)
+    if not pending_path or not Path(pending_path).exists():
+        _log(f"pending file missing for {ref} — skipping")
+        _db_complete(root, ref, "ERROR", "")
+        return
 
+    _log(f"dispatching review terminal for {ref}")
 
-def _call_claude(prompt: str, timeout: int) -> tuple[int, str]:
-    """Spawn claude --print as a subprocess. Returns (exit_code, output)."""
-    if not shutil.which("claude"):
-        return 2, "claude CLI not found in PATH"
-
-    # Write prompt to temp file to avoid shell metacharacter injection
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".txt", delete=False, encoding="utf-8"
-    ) as f:
-        f.write(prompt)
-        prompt_file = f.name
-
-    try:
-        result = subprocess.run(
-            ["claude", "--print", f"$(cat '{prompt_file}')"],
-            capture_output=True,
-            timeout=timeout,
-            check=False,
-        )
-        # Try direct stdin if shell substitution fails
-        if result.returncode != 0 or not result.stdout:
-            result = subprocess.run(
-                ["claude", "--print"],
-                input=prompt.encode("utf-8"),
-                capture_output=True,
-                timeout=timeout,
-                check=False,
-            )
-        stdout = result.stdout.decode("utf-8", errors="replace") if result.stdout else ""
-        stderr = result.stderr.decode("utf-8", errors="replace") if result.stderr else ""
-        return result.returncode, (stdout + stderr).strip()
-    except subprocess.TimeoutExpired:
-        return 1, f"[timeout after {timeout}s]"
-    except Exception as exc:
-        return 2, str(exc)
-    finally:
-        try:
-            os.unlink(prompt_file)
-        except Exception:
-            pass
-
-
-# ---------------------------------------------------------------------------
-# Verdict parsing (identical to wave-review.py logic)
-# ---------------------------------------------------------------------------
-
-def _parse_verdict(output: str) -> tuple[str, list[dict]]:
-    upper = output.upper()
-    verdict = "FAIL"
-    if "VERDICT: PASS" in upper or "**VERDICT:** PASS" in upper:
-        verdict = "PASS"
-    elif "NO FINDINGS" in upper and "VERDICT" not in upper:
-        verdict = "PASS"
-    elif "VERDICT: FAIL" in upper or "**VERDICT:** FAIL" in upper:
-        verdict = "FAIL"
-
-    findings = []
-    for line in output.splitlines():
-        s = line.strip()
-        for sev in ("CRITICAL", "HIGH", "MEDIUM", "LOW"):
-            if (s.upper().startswith(f"[{sev}]") or
-                    s.upper().startswith(f"- {sev}") or
-                    f"**{sev}**" in s.upper()):
-                findings.append({
-                    "severity": sev,
-                    "description": s[:300],
-                    "location": "",
-                })
-                break
-
-    # Sort HIGH → MEDIUM → LOW
-    order = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
-    findings.sort(key=lambda f: order.get(f["severity"], 3))
-    return verdict, findings
-
-
-# ---------------------------------------------------------------------------
-# Receipt write
-# ---------------------------------------------------------------------------
-
-def _write_receipt(root: Path, job: dict, verdict: str,
-                   findings: list[dict], output_excerpt: str) -> Path | None:
-    rw = _scripts_dir(root) / "receipt-writer.py"
-    if not rw.exists():
-        return None
-
-    counts = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
-    for f in findings:
-        counts[f.get("severity", "LOW")] += 1
-
-    ref = job.get("resolved_ref", "unknown")
-    review_type = job.get("review_type", "standard")
-    ts = _short()
-    out_path = (
-        root / ".wabblespec" / "state" / "receipts" /
-        f"wave-review-{ref}-{review_type}-{ts}.json"
-    )
+    launcher = _scripts_dir(root) / "review-terminal.py"
+    if not launcher.exists():
+        _log("ERROR: review-terminal.py not found")
+        _db_complete(root, ref, "ERROR", "")
+        return
 
     result = subprocess.run(
-        [
-            sys.executable, str(rw),
-            "--type", "wave-review",
-            "--task-id", job.get("task_id") or f"wave-review-{ref}",
-            "--session-id", job.get("session_id") or f"daemon-{ts}",
-            "--status", "PASS" if verdict == "PASS" else "FAIL",
-            "--target", ref,
-            "--summary", f"{verdict}: {len(findings)} findings ({counts['HIGH']} HIGH, {counts['MEDIUM']} MEDIUM, {counts['LOW']} LOW)",
-            "--confidence", "0.85",
-            "--out", str(out_path),
-        ],
-        capture_output=True, check=False, timeout=30,
+        [sys.executable, str(launcher), pending_path,
+         "--poll-timeout", str(SESSION_TIMEOUT)],
+        capture_output=True, text=True,
+        timeout=SESSION_TIMEOUT + 30,
         cwd=str(root),
     )
-    if result.returncode == 0:
-        return out_path
-    _log(f"  receipt-writer error: {result.stderr.decode('utf-8', errors='replace')[:200]}")
-    return None
+
+    # The terminal session writes the DB entry directly via wave-review.py --complete.
+    # If it completed correctly the DB entry is already updated.
+    # If it timed out or errored, mark as error so the queue doesn't stall.
+    if result.returncode == 2:
+        _log(f"  terminal launch failed for {ref}: {result.stderr[:100]}")
+        _db_complete(root, ref, "ERROR", "")
+    else:
+        # Verify DB was updated by the terminal session
+        stats = _db_recent(root, 20)
+        if not any(r["ref"] == ref and r["status"] == "reviewed" for r in stats):
+            _log(f"  terminal session did not mark {ref} complete — marking ERROR")
+            _db_complete(root, ref, "ERROR", "")
+        else:
+            _log(f"  {ref} reviewed by terminal session")
 
 
 # ---------------------------------------------------------------------------
-# Single job processor
-# ---------------------------------------------------------------------------
-
-def _process_job(root: Path, pending_path: Path) -> bool:
-    """Process one pending review job. Returns True on success."""
-    try:
-        job = json.loads(pending_path.read_text(encoding="utf-8"))
-    except Exception as exc:
-        _log(f"  ERROR reading {pending_path.name}: {exc}")
-        return False
-
-    ref = job.get("resolved_ref", pending_path.stem)
-    review_type = job.get("review_type", "standard")
-    _log(f"reviewing {ref} ({review_type}, {job.get('diff_lines', '?')} diff lines)")
-
-    prompt = _build_review_prompt(job)
-
-    for attempt in range(1, MAX_RETRY + 1):
-        if attempt > 1:
-            _log(f"  retry {attempt}/{MAX_RETRY}")
-            time.sleep(5 * attempt)
-
-        rc, output = _call_claude(prompt, AGENT_TIMEOUT)
-
-        if rc == 2:
-            _log(f"  ERROR: agent unavailable: {output[:100]}")
-            return False  # non-retryable
-
-        if not output.strip():
-            _log(f"  WARNING: empty output (attempt {attempt})")
-            continue
-
-        verdict, findings = _parse_verdict(output)
-        _log(f"  verdict={verdict} findings={len(findings)}")
-
-        receipt_path = _write_receipt(root, job, verdict, findings, output[:500])
-
-        # Mark complete via wave-review.py --complete
-        wrev = _scripts_dir(root) / "wave-review.py"
-        if wrev.exists():
-            subprocess.run(
-                [sys.executable, str(wrev),
-                 "--complete", ref,
-                 "--verdict", verdict,
-                 "--receipt", str(receipt_path or "")],
-                capture_output=True, check=False, timeout=15,
-                cwd=str(root),
-            )
-
-        # Move pending file to completed
-        completed = root / ".wabblespec" / "state" / "reviews" / "completed"
-        completed.mkdir(parents=True, exist_ok=True)
-        try:
-            pending_path.rename(completed / pending_path.name)
-        except Exception:
-            pass
-
-        _log(f"  done: {ref} → {verdict}")
-        return True
-
-    _log(f"  FAILED after {MAX_RETRY} attempts: {ref}")
-    return False
-
-
-# ---------------------------------------------------------------------------
-# Main daemon loop
+# Daemon loop
 # ---------------------------------------------------------------------------
 
 def _daemon_loop(root: Path) -> None:
-    pending_dir = _pending_dir(root)
-    pending_dir.mkdir(parents=True, exist_ok=True)
-
-    _log(f"daemon started (pid={os.getpid()}, poll={POLL_INTERVAL}s, retry={MAX_RETRY}x, timeout={AGENT_TIMEOUT}s)")
-    _log(f"watching {pending_dir}")
+    _log(f"daemon started pid={os.getpid()} poll={POLL_INTERVAL}s timeout={SESSION_TIMEOUT}s")
 
     while True:
         try:
-            jobs = sorted(pending_dir.glob("*.json"),
-                          key=lambda p: p.stat().st_mtime)
-            for job_path in jobs:
-                _process_job(root, job_path)
+            row = _db_claim_pending(root)
+            if row:
+                _process_job(root, row)
+            else:
+                time.sleep(POLL_INTERVAL)
         except Exception as exc:
             _log(f"loop error: {exc}")
-
-        time.sleep(POLL_INTERVAL)
+            time.sleep(POLL_INTERVAL)
 
 
 # ---------------------------------------------------------------------------
-# Daemon lifecycle commands
+# Daemon lifecycle
 # ---------------------------------------------------------------------------
 
-def cmd_run(root: Path, foreground: bool) -> int:
+def cmd_run(root: Path) -> int:
     global _foreground, _log_file
+    _foreground = True
+    _log_file   = open(_log_path(root), "a", encoding="utf-8")
+    _pid_path(root).write_text(str(os.getpid()), encoding="utf-8")
 
-    if not shutil.which("claude"):
-        print("ERROR: claude CLI not found in PATH — daemon cannot review without it", file=sys.stderr)
-        return 1
-
-    if not foreground:
-        # Daemonise: fork and write PID
-        pid = os.getpid()
-        pid_path = _pid_path(root)
-        pid_path.write_text(str(pid), encoding="utf-8")
-        _foreground = False
-        _log_file = open(_log_path(root), "a", encoding="utf-8")
-    else:
-        _foreground = True
-        _log_file = open(_log_path(root), "a", encoding="utf-8")
-        _pid_path(root).write_text(str(os.getpid()), encoding="utf-8")
-
-    def _handle_stop(signum, frame):
-        _log("received stop signal — shutting down")
+    def _stop(sig, frame):
+        _log("stopping")
         _pid_path(root).unlink(missing_ok=True)
-        if _log_file:
-            _log_file.close()
+        _log_file.close()
         sys.exit(0)
 
-    signal.signal(signal.SIGTERM, _handle_stop)
-    signal.signal(signal.SIGINT, _handle_stop)
+    signal.signal(signal.SIGTERM, _stop)
+    signal.signal(signal.SIGINT, _stop)
 
     try:
         _daemon_loop(root)
-    except KeyboardInterrupt:
-        _log("interrupted")
     finally:
         _pid_path(root).unlink(missing_ok=True)
-        if _log_file:
-            _log_file.close()
     return 0
 
 
 def cmd_start(root: Path) -> int:
-    """Start daemon in background using subprocess."""
     pid_path = _pid_path(root)
     if pid_path.exists():
         try:
@@ -426,47 +314,39 @@ def cmd_start(root: Path) -> int:
     log = open(_log_path(root), "a", encoding="utf-8")
     proc = subprocess.Popen(
         [sys.executable, __file__, "run", "--root", str(root)],
-        stdout=log, stderr=log,
-        start_new_session=True,
-        cwd=str(root),
+        stdout=log, stderr=log, start_new_session=True, cwd=str(root),
     )
-    time.sleep(1)  # Give daemon a moment to write PID file
-    pid_path = _pid_path(root)
+    time.sleep(1)
     if pid_path.exists():
-        pid = int(pid_path.read_text().strip())
-        print(f"Daemon started (pid={pid})")
-        print(f"Log: {_log_path(root)}")
+        print(f"Daemon started (pid={int(pid_path.read_text().strip())})"
+              f"  log={_log_path(root)}")
     else:
-        print(f"Daemon process spawned (pid={proc.pid}) — check log for status")
-        print(f"Log: {_log_path(root)}")
+        print(f"Spawned pid={proc.pid}  log={_log_path(root)}")
     return 0
 
 
 def cmd_stop(root: Path) -> int:
     pid_path = _pid_path(root)
     if not pid_path.exists():
-        print("Daemon not running (no PID file)")
+        print("Daemon not running")
         return 0
     try:
         pid = int(pid_path.read_text().strip())
         os.kill(pid, signal.SIGTERM)
         pid_path.unlink(missing_ok=True)
-        print(f"Daemon stopped (pid={pid})")
-        return 0
+        print(f"Stopped (pid={pid})")
     except ProcessLookupError:
         pid_path.unlink(missing_ok=True)
-        print("Daemon was not running (stale PID file removed)")
-        return 0
+        print("Not running (stale PID removed)")
     except Exception as exc:
-        print(f"ERROR stopping daemon: {exc}")
+        print(f"ERROR: {exc}")
         return 1
+    return 0
 
 
 def cmd_status(root: Path) -> int:
     pid_path = _pid_path(root)
-    running = False
-    pid = None
-
+    running, pid = False, None
     if pid_path.exists():
         try:
             pid = int(pid_path.read_text().strip())
@@ -475,81 +355,129 @@ def cmd_status(root: Path) -> int:
         except (OSError, ValueError):
             pass
 
-    print(f"Daemon: {'RUNNING' if running else 'STOPPED'}" +
-          (f" (pid={pid})" if running else ""))
-    if not running and pid:
-        print("  (stale PID file — daemon may have crashed; check log)")
+    print(f"Daemon : {'RUNNING' if running else 'STOPPED'}" +
+          (f" (pid={pid})" if pid else ""))
 
-    # Queue stats
-    wrev = _scripts_dir(root) / "wave-review.py"
-    if wrev.exists():
-        result = subprocess.run(
-            [sys.executable, str(wrev), "stats"],
-            capture_output=True, text=True, check=False, timeout=10,
-            cwd=str(root),
-        )
-        if result.stdout:
-            print(f"Queue: {result.stdout.strip()}")
+    stats = _db_stats(root)
+    if stats:
+        print(f"Queue  : total={stats.get('total',0)}  "
+              f"pending={stats.get('pending',0)}  "
+              f"running={stats.get('running',0)}  "
+              f"reviewed={stats.get('reviewed',0)}  "
+              f"pass={stats.get('passed',0)}  "
+              f"fail={stats.get('failed',0)}")
 
-    # Pending jobs
-    pending = list(_pending_dir(root).glob("*.json")) if _pending_dir(root).exists() else []
-    print(f"Pending reviews: {len(pending)}")
-    for p in pending[:5]:
-        try:
-            j = json.loads(p.read_text(encoding="utf-8"))
-            print(f"  {j.get('resolved_ref','?'):12s}  {j.get('review_type','?'):10s}  {j.get('queued_at','')}")
-        except Exception:
-            print(f"  {p.name}")
+    recent = _db_recent(root, 5)
+    if recent:
+        print("\nRecent:")
+        for r in recent:
+            print(f"  {r['ref']:12s}  {r['status']:9s}  "
+                  f"verdict={r['verdict'] or '-':5s}  "
+                  f"H={r['finding_high']} M={r['finding_medium']} L={r['finding_low']}")
 
-    # Last log lines
     log = _log_path(root)
     if log.exists():
         lines = log.read_text(encoding="utf-8").splitlines()
         if lines:
-            print(f"\nLast log entries ({log}):")
-            for line in lines[-8:]:
+            print(f"\nLog:")
+            for line in lines[-5:]:
                 print(f"  {line}")
 
     return 0 if running else 1
 
 
+def cmd_dashboard(root: Path) -> int:
+    try:
+        while True:
+            os.system("cls" if os.name == "nt" else "clear")
+            print("=== WabbleSpec Wave Reviewer Dashboard ===\n")
+            cmd_status(root)
+            print("\nPending jobs:")
+            for p in sorted(_pending_dir(root).glob("*.json"),
+                            key=lambda f: f.stat().st_mtime):
+                try:
+                    j = json.loads(p.read_text(encoding="utf-8"))
+                    print(f"  {j.get('resolved_ref','?'):12s}  "
+                          f"{j.get('review_type','?'):10s}  "
+                          f"{j.get('diff_lines','?')} lines")
+                except Exception:
+                    print(f"  {p.name}")
+            print("\n[Ctrl-C to exit — refreshes every 5s]")
+            time.sleep(5)
+    except KeyboardInterrupt:
+        pass
+    return 0
+
+
 # ---------------------------------------------------------------------------
-# Git post-commit hook installer
+# GitHub PR posting
+# ---------------------------------------------------------------------------
+
+def cmd_post_pr(root: Path, ref: str) -> int:
+    if not shutil.which("gh"):
+        print("gh CLI not found — install GitHub CLI to use post-pr")
+        return 1
+
+    rows   = _db_recent(root, 50)
+    row    = next((r for r in rows if r["ref"] == ref), None)
+    if not row:
+        print(f"No review found for {ref}")
+        return 1
+
+    verdict = row["verdict"] or "UNKNOWN"
+    av      = json.loads(row["agent_verdicts"] or "{}")
+    av_str  = ", ".join(f"{k}: {v}" for k, v in av.items())
+    h, m, l = row["finding_high"] or 0, row["finding_medium"] or 0, row["finding_low"] or 0
+
+    if verdict == "PASS" and h == 0 and m == 0 and l == 0:
+        body = f"Wave review **PASS** for `{ref}` — no findings. [{av_str}]"
+    else:
+        body = (
+            f"## Wave Review — {verdict}\n"
+            f"**Agents:** {av_str}\n\n"
+            f"| Severity | Count |\n|---|---|\n"
+            f"| HIGH | {h} |\n| MEDIUM | {m} |\n| LOW | {l} |\n\n"
+            f"Run `/wave-review` in your session to see full findings."
+        )
+
+    result = subprocess.run(
+        ["gh", "pr", "comment", "--body", body],
+        capture_output=True, text=True, check=False,
+        timeout=30, cwd=str(root),
+    )
+    if result.returncode == 0:
+        print(f"Posted review findings to open PR")
+        return 0
+    print(f"gh error: {result.stderr[:200]}")
+    return 1
+
+
+# ---------------------------------------------------------------------------
+# Git hook installer
 # ---------------------------------------------------------------------------
 
 def cmd_install_hook(root: Path) -> int:
-    hook_path = root / ".git" / "hooks" / "post-commit"
-    wave_review = _scripts_dir(root) / "wave-review.py"
-
-    hook_content = f"""#!/bin/sh
-# WabbleSpec wave review — enqueue HEAD for background review
-# Installed by review-daemon.py --install-hook
-python "{wave_review}" --enqueue HEAD --type standard 2>/dev/null &
-"""
-
+    hook   = root / ".git" / "hooks" / "post-commit"
+    wrev   = _scripts_dir(root) / "wave-review.py"
     marker = "# WabbleSpec wave review"
-    if hook_path.exists():
-        existing = hook_path.read_text(encoding="utf-8")
+    snippet = (
+        f"\n{marker}\n"
+        f'python "{wrev}" --enqueue HEAD 2>/dev/null &\n'
+    )
+    if hook.exists():
+        existing = hook.read_text(encoding="utf-8")
         if marker in existing:
-            print(f"Hook already installed at {hook_path}")
+            print(f"Hook already installed: {hook}")
             return 0
-        # Append to existing hook
-        hook_path.write_text(
-            existing.rstrip() + "\n\n" + hook_content,
-            encoding="utf-8"
-        )
+        hook.write_text(existing.rstrip() + "\n" + snippet, encoding="utf-8")
     else:
-        hook_path.write_text(hook_content, encoding="utf-8")
-
-    # Make executable (Unix)
+        hook.write_text("#!/bin/sh" + snippet, encoding="utf-8")
     try:
-        hook_path.chmod(0o755)
+        hook.chmod(0o755)
     except Exception:
         pass
-
-    print(f"Post-commit hook installed: {hook_path}")
-    print("Every git commit will now enqueue HEAD for background review.")
-    print(f"Start the daemon: python {__file__} start")
+    print(f"Post-commit hook installed: {hook}")
+    print(f"Start daemon: python {Path(__file__).name} start")
     return 0
 
 
@@ -559,27 +487,27 @@ python "{wave_review}" --enqueue HEAD --type standard 2>/dev/null &
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="WabbleSpec autonomous background code reviewer"
+        description="WabbleSpec autonomous review daemon"
     )
     sub = parser.add_subparsers(dest="cmd")
-
-    sub.add_parser("start", help="Start daemon in background")
-    sub.add_parser("stop", help="Stop running daemon")
-    sub.add_parser("status", help="Show daemon status and queue stats")
-
-    p_run = sub.add_parser("run", help="Run in foreground (blocking)")
-    p_run.add_argument("--root", type=Path, default=None,
-                       help="Repo root (auto-detected if omitted)")
-
+    sub.add_parser("start",        help="Start daemon in background")
+    sub.add_parser("stop",         help="Stop running daemon")
+    sub.add_parser("status",       help="Show status and queue stats")
+    sub.add_parser("dashboard",    help="Live-refreshing terminal dashboard")
     sub.add_parser("install-hook", help="Install git post-commit hook")
 
-    args = parser.parse_args()
+    p_run = sub.add_parser("run", help="Run in foreground (blocking)")
+    p_run.add_argument("--root", type=Path, default=None)
 
+    p_pr = sub.add_parser("post-pr", help="Post review to open GitHub PR")
+    p_pr.add_argument("ref")
+
+    args = parser.parse_args()
     if not args.cmd:
         parser.print_help()
         return 1
 
-    if args.cmd == "run" and args.root:
+    if args.cmd == "run" and getattr(args, "root", None):
         root = args.root
     else:
         try:
@@ -588,18 +516,16 @@ def main() -> int:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 1
 
-    if args.cmd == "start":
-        return cmd_start(root)
-    elif args.cmd == "run":
-        return cmd_run(root, foreground=True)
-    elif args.cmd == "stop":
-        return cmd_stop(root)
-    elif args.cmd == "status":
-        return cmd_status(root)
-    elif args.cmd == "install-hook":
-        return cmd_install_hook(root)
-
-    return 0
+    dispatch = {
+        "start":        lambda: cmd_start(root),
+        "run":          lambda: cmd_run(root),
+        "stop":         lambda: cmd_stop(root),
+        "status":       lambda: cmd_status(root),
+        "dashboard":    lambda: cmd_dashboard(root),
+        "install-hook": lambda: cmd_install_hook(root),
+        "post-pr":      lambda: cmd_post_pr(root, args.ref),
+    }
+    return dispatch[args.cmd]()
 
 
 if __name__ == "__main__":
