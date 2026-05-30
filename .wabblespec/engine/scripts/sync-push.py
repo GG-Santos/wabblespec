@@ -132,13 +132,20 @@ def main() -> int:
         _log(f"git add failed: {err}")
         return 0
 
-    # Unstage session/ — machine-specific state must not propagate
-    _git("restore", "--staged", ".wabblespec/state/session/", cwd=ROOT)
+    # Unstage machine-local paths — must not propagate to other machines
+    _LOCAL_ONLY = [
+        ".wabblespec/state/session/",           # active session state
+        ".wabblespec/state/reviews/pending/",   # machine-specific diff extractions
+        ".wabblespec/state/reviews/daemon/",    # PID file, daemon log
+        ".wabblespec/state/reviews/reviews.db", # SQLite binary (use queue.json instead)
+    ]
+    for local_path in _LOCAL_ONLY:
+        _git("restore", "--staged", local_path, cwd=ROOT)
 
     # Check if anything remains staged
     rc, staged, _ = _git("diff", "--cached", "--name-only", "--", ".wabblespec/", cwd=ROOT)
     if rc != 0 or not staged.strip():
-        _log("nothing staged after excluding session/ — skipping commit")
+        _log("nothing staged after excluding local-only paths — skipping commit")
         return 0
 
     # Build commit message

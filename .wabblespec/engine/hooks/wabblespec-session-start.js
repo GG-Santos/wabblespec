@@ -106,6 +106,20 @@ if (state && state.task_id) {
   lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
+// ── Review queue cross-machine reconciliation ────────────────────────────────
+// Run review-sync.py to reconcile any entries in queue.json that arrived via
+// git pull from other machines. Silent-fail — never blocks session start.
+try {
+  const { execFileSync } = require('child_process');
+  const syncScript = path.join(
+    process.cwd(), '.wabblespec', 'engine', 'shared', 'scripts', 'review-sync.py'
+  );
+  if (fs.existsSync(syncScript)) {
+    execFileSync(process.execPath || 'python', [syncScript, '--no-pull', '--verbose'],
+      { cwd: process.cwd(), timeout: 30000, stdio: 'pipe' });
+  }
+} catch (e) { /* silent-fail */ }
+
 // ── Wave review daemon + pending reviews ─────────────────────────────────────
 
 function readPendingReviews() {

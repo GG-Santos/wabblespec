@@ -1,7 +1,1 @@
-memory/index.json
-→ C:\Vaults\WabbleSpec v6.1/.wabblespec/memory/provenance/contradictions.md
-→ C:\Vaults\WabbleSpec v6.1/.wabblespec/memory/provenance/index.json
-→ C:\Vaults\WabbleSpec v6.1/.wabblespec/memory/provenance/ledger.md
-→ C:\Vaults\WabbleSpec v6.1/.wabblespec/memory/README.md
-→ C:\Vaults\WabbleSpec v6.1/.wabblespec/memory/staleness-map.md
-→ C:\Vaults\WabbleSpec v6.1/.wabbles
+invalid type: string "Phase 1 complete 2026-05-21. Artifacts: receipt.base.schema.json, pre-tool-use-receipt-check.py wired in .claude/settings.json, path-linter.py with 0 violations, init-wabblespec.py creating .wabblespec/ directory structure. Hook proof-of-concept passed: exits 1 on missing decompose receipt, exits 0 when present. Directory structure: receipts/, plans/, memory/, checkpoints/, a

@@ -1,0 +1,32 @@
+[
+  {
+    "ref": "HEAD",
+    "resolved_ref": "3db33f4",
+    "review_type": "standard",
+    "queued_at": "2026-05-30T06:36:27Z",
+    "status": "pending",
+    "pending_path": "C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\state\\reviews\\pending\\3db33f4-standard-20260530T063627.json",
+    "verdict": null,
+    "receipt_path": null
+  },
+  {
+    "ref": "HEAD",
+    "resolved_ref": "e4797b1",
+    "review_type": "standard",
+    "queued_at": "2026-05-30T06:47:00Z",
+    "status": "pending",
+    "pending_path": "",
+    "verdict": null,
+    "receipt_path": null
+  },
+  {
+    "ref": "HEAD",
+    "resolved_ref": "8dfd7ac",
+    "review_type": "standard",
+    "queued_at": "2026-05-30T06:56:19Z",
+    "status": "pending",
+    "pending_path": "",
+    "verdict": null,
+    "receipt_path": null
+  }
+]
