@@ -373,31 +373,29 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
     else:
         parts1.append(dim('IDLE'))
 
-    if branch:
-        git_str = spr(branch)
-        if remote:
-            git_str += dim(' → ') + dim(remote)
-        if dirty:
-            git_str += f' {yel("*")}'
-        parts1.append(git_str)
+    if branch or remote:
+        repo_part = dim(remote) if remote else ''
+        branch_part = spr(f'({branch})') if branch else ''
+        dirty_part = f' {yel("!modified")}' if dirty else ''
+        parts1.append(repo_part + branch_part + dirty_part)
 
     if usage:
         fh = usage.get('fiveHour')
         wk = usage.get('weekly')
         if fh is not None:
-            bar_str = usage_bar(fh, width=6, label='5h')
-            if fh >= 70:
-                reset = _format_reset(usage.get('fiveHourResets'))
-                if reset:
-                    bar_str += dim(f' {reset}')
-            parts1.append(bar_str)
+            reset = _format_reset(usage.get('fiveHourResets'))
+            pct_color = _pct_color(fh)
+            usage_str = f'{dim("5H:")}{_c(pct_color, f"{fh}%")}'
+            if reset:
+                usage_str += dim(f' ({reset})')
+            parts1.append(usage_str)
         if wk is not None:
-            bar_str = usage_bar(wk, width=6, label='wk')
-            if wk >= 70:
-                reset = _format_reset(usage.get('weeklyResets'))
-                if reset:
-                    bar_str += dim(f' {reset}')
-            parts1.append(bar_str)
+            reset = _format_reset(usage.get('weeklyResets'))
+            pct_color = _pct_color(wk)
+            usage_str = f'{dim("1W:")}{_c(pct_color, f"{wk}%")}'
+            if reset:
+                usage_str += dim(f' ({reset})')
+            parts1.append(usage_str)
 
     line1 = SEP.join(parts1)
 
