@@ -31,7 +31,6 @@ GRN = '\x1b[32m'
 CYN = '\x1b[36m'
 
 SEP = f'{DIM} | {R}'
-ANSI_RE = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
 def _c(code, t): return f'{code}{t}{R}'
 def spr(t):  return _c(SPR, t)
@@ -44,8 +43,6 @@ def _pct_color(pct):
     if pct >= 70: return YEL
     return GRN
 
-def visual_len(s):
-    return len(ANSI_RE.sub('', s))
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 _HERE        = Path(__file__).resolve()
@@ -61,7 +58,6 @@ OMC_CACHE    = CLAUDE_DIR / 'plugins' / 'oh-my-claudecode' / '.usage-cache-anthr
 
 USAGE_TTL_S    = 300
 API_TIMEOUT_S  = 4
-CTX_WINDOW     = 200_000
 
 # ── WabbleSpec state ──────────────────────────────────────────────────────────
 
@@ -104,35 +100,6 @@ def read_l8_gate():
 
 # ── Context % from session jsonl ──────────────────────────────────────────────
 
-def _project_dir_name(cwd):
-    # Claude Code replaces each separator char individually — no dash collapsing.
-    # C:\Vaults\WabbleSpec v6.1 -> C--Vaults-WabbleSpec-v6-1
-    native = str(Path(cwd).resolve())
-    name = native.replace(':', '-').replace('\\', '-').replace('/', '-')
-    name = name.replace(' ', '-').replace('.', '-')
-    return name.strip('-')
-
-def read_context_pct(cwd):
-    try:
-        proj_dir = CLAUDE_DIR / 'projects' / _project_dir_name(cwd)
-        if not proj_dir.exists(): return None
-        jsonl = max(
-            (f for f in proj_dir.glob('*.jsonl')),
-            key=lambda f: f.stat().st_mtime,
-        )
-        for raw in reversed(jsonl.read_text('utf-8', errors='ignore').splitlines()):
-            try:
-                d = json.loads(raw)
-                if d.get('type') == 'assistant':
-                    u = d.get('message', {}).get('usage', {})
-                    tokens = (u.get('input_tokens', 0)
-                              + u.get('cache_read_input_tokens', 0)
-                              + u.get('cache_creation_input_tokens', 0))
-                    if tokens > 0:
-                        return round(tokens / CTX_WINDOW * 100)
-            except: pass
-    except: pass
-    return None
 
 # ── Git ───────────────────────────────────────────────────────────────────────
 
@@ -272,13 +239,12 @@ def module_color(name):
 
 # ── Render ────────────────────────────────────────────────────────────────────
 
-def render(no_git=False, no_usage=False, no_ctx=False):
+def render(no_git=False, no_usage=False):
     cwd   = os.getcwd()
     state = read_state()
     l8    = read_l8_gate()
     usage = get_usage(no_usage=no_usage)
     git   = {} if no_git else git_info(cwd)
-    ctx   = None if no_ctx else read_context_pct(cwd)
 
     # ── Line 1: brand + skill (no divider) | repo (branch) | usage ──────────
     mod   = (state or {}).get('active_module') or 'IDLE'
@@ -327,19 +293,7 @@ def render(no_git=False, no_usage=False, no_ctx=False):
 
     parts2.append(f'{dim("gate:")}{spr("MET") if l8 else dim("?")}')
 
-    left = SEP.join(parts2)
-
-    if ctx is not None:
-        right    = f'{spr(f"{ctx}%")} {dim("context")}'
-        # pad to right-align within terminal width
-        try:
-            width = os.get_terminal_size().columns
-        except Exception:
-            width = 120
-        gap = width - visual_len(left) - visual_len(right)
-        line2 = left + (' ' * max(2, gap)) + right
-    else:
-        line2 = left
+    line2 = SEP.join(parts2)
 
     return '\n'.join([line1, line2])
 
@@ -351,7 +305,6 @@ if __name__ == '__main__':
         print(render(
             no_git   = '--no-git'   in args,
             no_usage = '--no-usage' in args,
-            no_ctx   = '--no-ctx'   in args,
         ))
     except Exception:
         print(spr('[WABBLE]'))
