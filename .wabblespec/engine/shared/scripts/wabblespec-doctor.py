@@ -818,6 +818,70 @@ def check_D1(root: str) -> dict:
     return _pass(cid, sev, desc, f"all {total} receipt_required modules delegate{exempt_note}")
 
 
+SHARED_INFRA_ANCHORS = [
+    ".wabblespec/engine/shared/",
+    ".wabblespec/wabblespec.yaml",
+    "CLAUDE.md",
+    ".claude/agents/",
+    ".claude/skills/",
+]
+
+
+def _collect_owned_globs(root: str, exclude=()) -> list:
+    """Return [(module_dir, owns_glob)] across all module skill-rules.json,
+    skipping modules whose directory name is in `exclude`."""
+    modules_root = os.path.join(root, ".wabblespec", "engine", "modules")
+    owned = []
+    if not os.path.isdir(modules_root):
+        return owned
+    for dirpath, _dirs, files in os.walk(modules_root):
+        if "skill-rules.json" not in files:
+            continue
+        mid = os.path.basename(dirpath)
+        if mid in exclude:
+            continue
+        try:
+            data = _load_json(os.path.join(dirpath, "skill-rules.json"))
+        except Exception:
+            continue
+        auth = data.get("authority", {}) or {}
+        for g in (auth.get("owns", []) or []):
+            owned.append((mid, str(g).replace("\\", "/")))
+    return owned
+
+
+def _anchor_owned(anchor: str, glob: str) -> bool:
+    a = anchor.replace("\\", "/").rstrip("/")
+    gp = glob.replace("\\", "/").rstrip("*").rstrip("/")
+    if not gp:
+        return False
+    return a == gp or a.startswith(gp + "/") or gp.startswith(a + "/")
+
+
+def _shared_infra_owner_gaps(root: str, exclude=()) -> list:
+    globs = [g for (_m, g) in _collect_owned_globs(root, exclude)]
+    return [a for a in SHARED_INFRA_ANCHORS
+            if not any(_anchor_owned(a, g) for g in globs)]
+
+
+def check_H11(root: str) -> dict:
+    """Shared-infra authority owner exists: every shared-infra anchor path is
+    covered by some module's authority.owns. Guards against the framework-maintenance
+    removal regression that silently broke Guard Layer 4 for framework self-builds."""
+    cid, sev = "H11", "high"
+    desc = "Shared-infra authority owner exists"
+    try:
+        gaps = _shared_infra_owner_gaps(root)
+    except Exception as e:
+        return _error(cid, sev, desc, e)
+    if gaps:
+        return _fail(cid, sev, desc,
+                     f"shared-infra anchor paths with NO authority owner: {gaps} "
+                     f"— a Framework self-build will fail Guard Layer 4 for these paths")
+    return _pass(cid, sev, desc,
+                 f"all {len(SHARED_INFRA_ANCHORS)} shared-infra anchors are owned")
+
+
 # ---------------------------------------------------------------------------
 # All checks registry
 # ---------------------------------------------------------------------------
@@ -825,7 +889,7 @@ def check_D1(root: str) -> dict:
 ALL_CHECKS = [
     check_C1, check_C2, check_C3, check_C4,
     check_H1, check_H2, check_H3, check_H4, check_H5,
-    check_H6, check_H7, check_H8, check_H10,
+    check_H6, check_H7, check_H8, check_H10, check_H11,
     check_M1, check_M2, check_M3, check_M4, check_M5,
     check_M6, check_M7, check_M8, check_M9, check_M10,
     check_D1,

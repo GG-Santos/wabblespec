@@ -49,7 +49,7 @@
     ]
   },
   "verification_mode": "Attestation",
-  "receipt_required": true,
+  "receipt_required": false,
   "collapse_eligible": false,
   "gate_collapsing_conditions": null,
   "requires_receipts_from": [],
