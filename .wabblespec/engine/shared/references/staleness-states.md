@@ -64,6 +64,21 @@ Every drawer JSON must include:
 
 ---
 
+## Temporal Tiers
+
+Drawers are implicitly scoped to a temporal tier based on their subject. Tier informs expected staleness decay rate and appropriate `expires_at` values:
+
+| Tier | Scope | Decay expectation | Drawer types |
+|---|---|---|---|
+| Long-term (Global) | Persists across projects and versions | Slow — years | Instinct observations, entity graph nodes, evolution artifacts |
+| Medium-term (Project) | Active while the project evolves | Moderate — weeks/months | Architecture decisions, API contracts, module receipts, reference evals |
+| Short-term (Session) | Valid for the duration of a task cycle | Fast — days | Active wave plan state, session receipts, scope boundaries |
+| Ephemeral (Task) | Valid only within a single wave | Very fast — hours | Active evidence drawers loaded per wave, intermediate outputs |
+
+Temporal tier does not replace `staleness_state` — it is a planning lens for choosing `expires_at` when writing a new drawer.
+
+---
+
 ## Hook Enforcement
 
 Pre-tool-use hook checks staleness state of evidence listed in the active module's receipt inputs. If any `staleness_state` is EXPIRED, hook blocks and emits STALENESS_VIOLATION error.
