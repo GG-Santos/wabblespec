@@ -16,7 +16,6 @@ import io
 import json
 import os
 import re
-import socket
 import subprocess
 import ssl
 import sys
@@ -343,25 +342,19 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
     usage   = get_usage(no_usage=no_usage)
     git     = {} if no_git else git_info(cwd)
 
-    # ── Line 1: context bar ───────────────────────────────────────────────────
-    parts1: list[str] = []
-    try:
-        parts1.append(dim(socket.gethostname().split('.')[0]))
-    except: pass
-    parts1.append(dim(short_cwd(cwd)))
-
+    # ── Line 1: git info ──────────────────────────────────────────────────────
     branch = git.get('branch')
     remote = git.get('remote')
     dirty  = git.get('dirty', False)
-    if branch:
-        branch_str = spr(branch)
-        if remote and remote != branch:
-            branch_str += dim(' → ') + dim(remote)
-        if dirty:
-            branch_str += f' {yel("*")}'
-        parts1.append(branch_str)
 
-    line1 = SEP.join(parts1)
+    if branch:
+        line1 = spr(branch)
+        if remote and remote != branch:
+            line1 += dim(' → ') + dim(remote)
+        if dirty:
+            line1 += f' {yel("*")}'
+    else:
+        line1 = dim('no git')
 
     # ── Line 2: usage + module ────────────────────────────────────────────────
     label = f'{bpur("[WABBLE]")} {dim("v" + version)}'
