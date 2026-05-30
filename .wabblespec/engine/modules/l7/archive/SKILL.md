@@ -118,9 +118,26 @@ python .wabblespec/engine/shared/scripts/archive.py \
 
 See `engine/shared/references/script-delegation-contract.md` for full flag reference and optional args (`--extra`, `--dry-run`).
 
+### Step 6b — Drift signal scoring
+
+Before composing the final report, score the archive urgency to calibrate the language used when surfacing Archive to the user or when surfacing it in the executor closeout packet.
+
+Count how many of these signals are present:
+- **(a)** Total files touched across all wave receipts is high (more than 5 distinct files)
+- **(b)** Any framework or protocol file was touched: `.claude/`, `.wabblespec/engine/`, any `SKILL.md`, `skill-rules.json`, `schema/*.json`, or a `references/*.md` file
+- **(c)** Session involved 3 or more memory-worthy observations (drawers written, instinct records updated, entity graph modified)
+
+| Score | Urgency | Surface as |
+|---|---|---|
+| 0–1 signals | LOW | "Archive available if you want." |
+| 2 signals | MEDIUM | "Recommend Archive -- significant changes detected." |
+| 3+ signals | HIGH | "Strongly recommend Archive -- framework files touched." |
+
+Record the score and label in the delivery receipt under `archive_urgency`.
+
 ### Step 7 — Report to user
 
-Surface: version bumped from X to Y, N receipts aggregated, not-tested count. Provide delivery receipt path. If not-tested list is non-empty, name the items — they are actionable future scope.
+Surface: version bumped from X to Y, N receipts aggregated, not-tested count, drift signal score and urgency label. Provide delivery receipt path. If not-tested list is non-empty, name the items — they are actionable future scope.
 
 ### Step 8 — Shift trigger (post-archive hook)
 

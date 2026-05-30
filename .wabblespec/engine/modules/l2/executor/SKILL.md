@@ -124,6 +124,16 @@ If a deviation is discovered mid-wave:
 - ADDITIVE or COSMETIC deviation: document in wave receipt under `deviations_found`, continue
 - BREAKING deviation: stop immediately, surface to user, loop back to Specify before continuing
 
+**3b. Mid-wave check-in (at approximately 50% completion)**
+
+Pause and surface to the user:
+1. Status update: what has been completed so far
+2. List of completed wave outputs
+3. List of remaining wave outputs
+4. Ask: "Continue with current approach or pause and return to wave plan?"
+
+If the user indicates hesitation or concern, immediately pause. Do not continue until the user confirms. This is not optional — silent mid-wave drift is a primary failure mode.
+
 **4. Run Verifier**
 
 **Option A — Inline (default):** Invoke Verifier with: wave output artifacts + wave plan entry + task card.
@@ -212,6 +222,32 @@ python .wabblespec/engine/shared/scripts/receipt-writer.py \
 ```
 
 Signal Archive to run.
+
+### Closeout Packet
+
+After all waves complete and the execution receipt is written, present a structured closeout packet before signaling Archive:
+
+**Classification** — select exactly one:
+- `Ready for archival` — all waves passed, no open deviations, verification sufficient
+- `Keep in active/testing` — implementation complete but verification or user confirmation still pending
+- `Needs reconciliation` — material deviations exist; execution diverged from wave plan
+
+**Content** (report all 8 fields):
+1. Wave plan path used
+2. Closeout classification (one of the 3 above)
+3. What was actually finished (by wave)
+4. What was verified vs. still unverified
+5. What cleanup is done vs. still needed
+6. The single best next valid state
+7. Commit-checkpoint recommendation — whether to commit execution changes before Archive or after
+8. Regression status — which previously verified surfaces were checked; state PASS or note if skipped
+
+**Rules:**
+- Keep the wave plan path explicit. Do not say "the wave plan" without naming the path.
+- Do not auto-transition to Archive. Wait for the user to confirm.
+- Do not auto-archive without a user-visible action.
+- When the next valid state is clear from the wave plan, name it exactly instead of ending with a generic summary.
+- If cleanup was skipped and unarchived tasks accumulate, recommend running `/archive` explicitly as the next action.
 
 ### Error routing
 

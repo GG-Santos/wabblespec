@@ -198,6 +198,29 @@ Three invariants added 2026-05-24 when ChromaDB memory store was activated:
 
 These are enforced as Layer 3 invariant checks within the existing invariant compliance pass. Guard reads `WABBLESPEC_MEMORY_PATH` from the environment and checks for `chroma.sqlite3` existence at wave start when any Memory, MemorySearch, MemoryMine, or EntityGraph module is in the wave plan.
 
+## High-Risk Execution Classes
+
+When a wave plan touches any of the following risk classes, the orchestrator must require a structured evidence pack before treating the wave as complete. Guard surfaces this requirement during Layer 3 invariant compliance when the wave's declared outputs include a high-risk class.
+
+**Risk classes:**
+1. Auth or identity logic
+2. Billing or credits logic
+3. Schema/data migration or destructive data mutation
+4. Public API contract changes
+5. Deploy/runtime/container/proxy/gateway changes
+6. Permission, secret, or trust-boundary logic
+
+**Required evidence pack** (all five artifacts must be present before the wave closes):
+- `risk-gate.json` — risk class declaration and finalize gate
+- `context-snippets.json` — affected code and interface snapshots
+- `verification.json` — evidence that the behavior was verified
+- `review-decision.json` — reviewer sign-off
+- `adversarial-validation.json` — adversarial review result (required when the path is attack-sensitive)
+
+**Gate rule:** If `risk-gate.json` contains `"mustStopBeforeFinalize": true`, or the required evidence pack is incomplete for an applicable risk class, Guard must classify the wave as `Keep in active/testing` or `Needs reconciliation` rather than PASS. Do not return PASS on a high-risk wave without the complete pack.
+
+Layer 3 check: scan the wave's `outputs` list for file patterns that signal a risk class (e.g., auth middleware, migration files, API route handlers, secrets managers). If a match is found and no evidence pack path is declared in the wave plan, emit a SOFT warning with the risk class name and the expected pack artifact names.
+
 ## Runtime permission system boundary
 
 Guard Layer 5 (command risk) operates at wave-plan time — before the runtime permission system. A BLOCK from Guard prevents the wave from reaching tool dispatch. The runtime permission system applies separately at execution time, evaluating individual tool calls against permission rules, mode, hooks, and (in `auto` mode) a classifier.

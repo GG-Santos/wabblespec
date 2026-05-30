@@ -69,7 +69,28 @@ Wave count guidelines:
 - Medium: 2–4 waves
 - High: 4–8 waves (more than 8 requires user confirmation before writing plan)
 
-### Step 3b — Declare verification command per wave
+### Step 3b — Parallel fan-out assessment
+
+After sequencing the waves, score whether the wave plan warrants a parallel fan-out recommendation to the orchestrator. This is advisory — the orchestrator makes the final call.
+
+Count how many signals are present:
+1. Multi-package scope: wave outputs touch 3 or more distinct packages or top-level directories
+2. Schema/API/auth surface: wave plan includes changes to data schemas, public API contracts, or auth/identity flows
+3. Three or more viable implementation directions were identified during research
+4. Phase program classification: this task was classified as a phase program (3+ waves)
+5. User explicitly requested depth ("go deep", "explore all options", "compare thoroughly")
+
+| Score | Label | Recommendation |
+|---|---|---|
+| 0–1 | LOW | No mention. Proceed to wave plan without comment. |
+| 2 | MEDIUM | Note in wave plan header: "Parallel fan-out available for deeper coverage." |
+| 3+ | HIGH | Note in wave plan header: "Recommend parallel fan-out — [reason based on signals]." |
+
+Single-wave or trivial-change tasks always skip fan-out regardless of score.
+
+Record the fan-out score and label in the decompose receipt under `fanout_score` and `fanout_label`.
+
+### Step 3c — Declare verification command per wave
 
 Every wave must include a `verification_command`: the exact shell command that proves the checkpoint condition is satisfied when run. No pseudocode. No descriptions. A command that can be copied and executed as-is.
 
