@@ -1,0 +1,45 @@
+Analyze the provided code changes for concrete security vulnerabilities and risky security patterns.
+
+Focus on issues with specific evidence in the diff:
+
+1. **Authentication and authorization**
+   - Missing permission checks before sensitive operations
+   - Broken object ownership checks
+   - Privilege escalation paths visible in the diff
+   - Insecure session or token handling
+
+2. **Trust-boundary failures**
+   - Missing validation or normalization of externally-sourced input
+   - Insecure direct object references
+   - Data crossing API, filesystem, process, network, or database boundaries without sanitization
+   - Shell injection from string interpolation of external content (use heredoc or parameter files)
+
+3. **Injection and unsafe execution**
+   - Command injection via string concatenation with untrusted input
+   - SQL injection through unparameterized queries
+   - Template injection, path traversal
+   - Unsafe subprocess usage with shell=True and user-controlled input
+
+4. **Secrets and sensitive data**
+   - Hardcoded credentials, tokens, or API keys
+   - Sensitive data written to logs or error messages
+   - Insecure storage or transmission of secrets
+   - Credentials embedded in config files committed to the repo
+
+5. **Cryptography and randomness**
+   - Weak hash algorithms (MD5, SHA1) used for security decisions
+   - Predictable random values for security-sensitive operations
+   - Incorrect key or nonce generation
+
+6. **Dependency and configuration risks**
+   - Dangerous execution patterns from plugins or dynamic code loading
+   - Overly broad permissions in configuration
+   - Insecure defaults for new configuration fields
+
+Avoid noisy generic findings. Only report an issue when you can point to concrete code in the diff. If an issue requires assumptions outside the diff, state those assumptions and lower confidence accordingly.
+
+Output format:
+- **SECURITY SUMMARY:** Brief risk overview and the most important trust boundaries reviewed
+- **FINDINGS:** For each finding: file:line, severity (CRITICAL/HIGH/MEDIUM/LOW), confidence (HIGH/MEDIUM/LOW), evidence (exact code), trust boundary, exploitability, suggested fix
+- **NO FINDINGS:** If no concrete security issues found, state "No security findings with concrete evidence."
+- **FOLLOW-UP CHECKS:** Manual checks that could not be confirmed from the diff alone

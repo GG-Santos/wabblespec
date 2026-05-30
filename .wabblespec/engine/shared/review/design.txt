@@ -1,0 +1,37 @@
+Review the provided code changes for design quality, architecture decisions, and interface correctness.
+
+Focus on concerns with specific evidence in the diff:
+
+1. **Interface design**
+   - Public APIs that are harder to use correctly than incorrectly
+   - Missing or incorrect parameter validation at trust boundaries
+   - Return types that force callers into error-prone patterns
+   - Breaking changes to existing interfaces without versioning
+
+2. **Abstraction and responsibility**
+   - Functions or modules doing more than one clearly-named thing
+   - Business logic embedded in I/O or transport layers
+   - Tight coupling between components that should be independent
+   - Missing abstractions that would prevent future duplication
+
+3. **State and data flow**
+   - Shared mutable state with unclear ownership
+   - Data transformations that discard information needed later
+   - Implicit dependencies on execution ordering
+   - Missing schema or type contracts for data crossing boundaries
+
+4. **Extensibility and maintenance**
+   - Hard-coded values that will need to change as requirements evolve
+   - Structural choices that make a clearly anticipated change difficult
+   - Missing configuration hooks where they are obviously needed
+   - Premature optimization that reduces clarity without evidence of need
+
+5. **Spec and requirement alignment**
+   - Implementation that diverges from declared non-goals or scope
+   - Outputs that satisfy the literal requirement but miss the intent
+   - Missing behavior for edge cases declared in the spec
+
+Output format:
+- **VERDICT:** PASS or FAIL
+- **FINDINGS:** For each issue: severity (HIGH/MEDIUM/LOW), file:line if available, description of the design concern, and a concrete alternative
+- **NO FINDINGS:** If no design issues found, state this explicitly

@@ -1143,6 +1143,29 @@ def build_memory_mine(args):
     }
 
 
+def build_wave_review(args):
+    return {
+        "receipt_type": "wave-review",
+        "module": "wave-reviewer",
+        "layer": "L2",
+        "phase": "Verify",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "git_ref": args.target or "HEAD",
+        "review_type": getattr(args, "review_type", None) or "standard",
+        "verdict": "PASS" if (args.status or "PASS") == "PASS" else "FAIL",
+        "status": args.status or "PASS",
+        "finding_summary": {
+            "total": 0,
+            "by_severity": {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0},
+        },
+        "findings": [],
+        "confidence": args.confidence if args.confidence is not None else 0.85,
+        "summary": args.summary or "",
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -1186,6 +1209,7 @@ BUILDERS = {
     "guard": build_guard,
     "wave": build_wave,
     "memory-mine": build_memory_mine,
+    "wave-review": build_wave_review,
 }
 
 

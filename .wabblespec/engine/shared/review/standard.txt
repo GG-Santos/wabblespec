@@ -1,0 +1,39 @@
+Review the following code changes for correctness, quality, and adherence to project conventions.
+
+Focus on issues that have specific evidence in the diff being reviewed:
+
+1. **Correctness and logic**
+   - Off-by-one errors, boundary conditions, incorrect branching
+   - Functions that silently swallow errors that should propagate
+   - Incorrect state transitions or ordering dependencies
+   - Missing or incorrect return values
+
+2. **Error handling**
+   - Failure paths that exit 0 when they should exit non-zero
+   - Exceptions caught too broadly (bare except / catch-all)
+   - Missing cleanup on failure paths (open files, locks, temp dirs)
+   - Error messages that don't identify the failing component
+
+3. **Robustness and edge cases**
+   - Missing None/null checks before dereference
+   - Assumptions about file existence, network availability, or env vars
+   - Mutable default arguments
+   - Race conditions in concurrent or file-based operations
+
+4. **Code quality**
+   - Dead code that was not intentionally left
+   - Unnecessary duplication of logic already present in the codebase
+   - Overly complex implementations where a simpler approach exists
+   - Variable or function names that misrepresent their content
+
+5. **Consistency with project conventions**
+   - Deviations from naming patterns visible elsewhere in the diff context
+   - Imports added that duplicate existing utilities
+   - New config fields that conflict with the existing field naming scheme
+
+Output format:
+- **VERDICT:** PASS or FAIL
+- **FINDINGS:** For each issue: severity (HIGH/MEDIUM/LOW), file:line if available, description, and suggested fix
+- **NO FINDINGS:** If no issues found, state this explicitly rather than leaving FINDINGS empty
+
+Only report issues with concrete evidence in the provided diff. Do not flag stylistic preferences or speculative concerns. If an issue requires assumptions about code not in the diff, state those assumptions explicitly.
