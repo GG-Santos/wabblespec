@@ -1,26 +1,16 @@
 #!/usr/bin/env python3
 """
 wabblespec-hud.py — Purple HUD for WabbleSpec.
-Outputs up to 3 ANSI-colored lines for the Claude Code statusLine.
+Outputs 2 ANSI-colored lines for the Claude Code statusLine.
 
-Lines:
-  1  host | cwd | branch -> remote  dirty*
-  2  [WABBLE v0.49]  5h:[bar]%  wk:[bar]%  module  skill
-  3  waves:[bar] N/M  R:[bar] N/M  L8:MET
+  1  [WABBLE] | SKILL | repo (branch)  | 5H:% (reset) | 1W:% (reset)
+  2  waves:N/M | receipts:N/M | gate:MET                   ctx:87% context
 
-Usage: python wabblespec-hud.py [--no-git] [--compact] [--no-usage]
+Usage: python wabblespec-hud.py [--no-git] [--no-usage] [--no-ctx]
 """
 from __future__ import annotations
 
-import io
-import json
-import os
-import re
-import subprocess
-import ssl
-import sys
-import time
-import urllib.request
+import io, json, os, re, subprocess, ssl, sys, time, urllib.request
 from pathlib import Path
 
 # Force UTF-8 stdout on Windows
@@ -31,295 +21,195 @@ if hasattr(sys.stdout, 'buffer') and sys.stdout.encoding and sys.stdout.encoding
 R   = '\x1b[0m'
 DIM = '\x1b[2m'
 BLD = '\x1b[1m'
-PUR = '\x1b[35m'         # primary purple
-BPR = '\x1b[95m'         # bright purple — labels, active
-DPR = '\x1b[38;5;135m'  # deep purple — accent
-SPR = '\x1b[38;5;183m'  # soft lavender — secondary
+PUR = '\x1b[35m'
+BPR = '\x1b[95m'
+DPR = '\x1b[38;5;135m'
+SPR = '\x1b[38;5;183m'   # lavender — primary brand color
 RED = '\x1b[31m'
 YEL = '\x1b[33m'
 GRN = '\x1b[32m'
 CYN = '\x1b[36m'
 
 SEP = f'{DIM} | {R}'
+ANSI_RE = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
-def _c(code: str, t: str) -> str: return f'{code}{t}{R}'
-def bpur(t): return f'{BPR}{BLD}{t}{R}'
-def pur(t):  return _c(PUR, t)
+def _c(code, t): return f'{code}{t}{R}'
 def spr(t):  return _c(SPR, t)
 def dim(t):  return _c(DIM, t)
 def grn(t):  return _c(GRN, t)
 def yel(t):  return _c(YEL, t)
-def red(t):  return _c(RED, t)
 
-# ── Progress bar ──────────────────────────────────────────────────────────────
-
-def _pct_color(pct: float) -> str:
+def _pct_color(pct):
     if pct >= 90: return RED
     if pct >= 70: return YEL
     return GRN
 
-def usage_bar(pct: float, width: int = 8, label: str = '') -> str:
-    """OMC-style bar: label:[████░░░░]45%"""
-    safe = max(0.0, min(100.0, pct))
-    filled = round(safe / 100 * width)
-    empty  = width - filled
-    color  = _pct_color(safe)
-    bar    = f'{color}{"█" * filled}{DIM}{"░" * empty}{R}'
-    pct_str = f'{color}{round(safe)}%{R}'
-    prefix = f'{dim(label + ":")}' if label else ''
-    return f'{prefix}[{bar}]{pct_str}'
-
-def wave_bar(done: int, total: int, width: int = 10) -> str:
-    """Purple bar for wave/task progress."""
-    if total == 0:
-        return f'[{dim("░" * width)}]{dim("?/0")}'
-    safe_done = max(0, min(done, total))
-    filled = round(safe_done / total * width)
-    empty  = width - filled
-    bar    = f'{BPR}{"█" * filled}{DIM}{"░" * empty}{R}'
-    ratio  = f'{spr(str(safe_done))}{dim("/")}{dim(str(total))}'
-    return f'[{bar}]{ratio}'
+def visual_len(s):
+    return len(ANSI_RE.sub('', s))
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 _HERE        = Path(__file__).resolve()
-REPO         = _HERE.parent.parent.parent.parent.parent   # .wabblespec/engine/shared/scripts/ -> 5 up
+REPO         = _HERE.parent.parent.parent.parent.parent
 STATE_JSON   = REPO / '.wabblespec' / 'state' / 'session' / 'state.json'
 WAVE_PLAN    = REPO / '.wabblespec' / 'state' / 'plans' / 'current-wave-plan.md'
-VERSION_FILE = REPO / '.wabblespec' / 'VERSION'
 RECEIPTS_DIR = REPO / '.wabblespec' / 'state' / 'receipts'
 L8_GATE      = REPO / '.wabblespec' / 'engine' / 'shared' / 'references' / 'l8-corpus-gate.md'
 CLAUDE_DIR   = Path(os.environ.get('CLAUDE_CONFIG_DIR', Path.home() / '.claude'))
 CREDS_FILE   = CLAUDE_DIR / '.credentials.json'
 USAGE_CACHE  = CLAUDE_DIR / '.wabble-usage-cache.json'
-# Also check OMC's cache (user may have OMC installed)
 OMC_CACHE    = CLAUDE_DIR / 'plugins' / 'oh-my-claudecode' / '.usage-cache-anthropic.json'
 
-USAGE_CACHE_TTL_S = 300   # 5 minutes
-API_TIMEOUT_S     = 4
+USAGE_TTL_S    = 300
+API_TIMEOUT_S  = 4
+CTX_WINDOW     = 200_000
 
-# ── Data: WabbleSpec ─────────────────────────────────────────────────────────
+# ── WabbleSpec state ──────────────────────────────────────────────────────────
 
-def read_version() -> str:
-    try: return VERSION_FILE.read_text('utf-8').strip()
-    except: return '?'
-
-def read_state() -> dict | None:
+def read_state():
     try: return json.loads(STATE_JSON.read_text('utf-8'))
     except: return None
 
-def parse_wave_names() -> list[str]:
+def parse_wave_names():
     try:
-        text = WAVE_PLAN.read_text('utf-8')
-        return re.findall(r'^### Wave \d+: (.+)$', text, re.MULTILINE)
+        return re.findall(r'^### Wave \d+: (.+)$', WAVE_PLAN.read_text('utf-8'), re.MULTILINE)
     except: return []
 
-def count_verifier_receipts(session_id: str) -> int:
-    if not session_id or not RECEIPTS_DIR.exists():
-        return 0
+def count_verifier_receipts(session_id):
+    if not session_id or not RECEIPTS_DIR.exists(): return 0
     sid = session_id[:8]
     count = 0
     for f in RECEIPTS_DIR.glob('*.json'):
-        if sid not in f.name and session_id not in f.name:
-            continue
+        if sid not in f.name and session_id not in f.name: continue
         try:
-            d = json.loads(f.read_text('utf-8'))
-            if 'verifier' in d.get('receipt_type', ''):
+            if 'verifier' in json.loads(f.read_text('utf-8')).get('receipt_type', ''):
                 count += 1
         except: pass
     return count
 
-def count_receipts_found(required: list[str]) -> int:
-    if not required or not RECEIPTS_DIR.exists():
-        return 0
-    all_stems = {f.stem for f in RECEIPTS_DIR.glob('*.json')}
-    found = 0
-    for rtype in required:
-        canonical = rtype.replace('-receipt', '').replace('_receipt', '')
-        if any(canonical in s for s in all_stems):
-            found += 1
-    return found
+def count_receipts_found(required):
+    if not required or not RECEIPTS_DIR.exists(): return 0
+    stems = {f.stem for f in RECEIPTS_DIR.glob('*.json')}
+    return sum(
+        1 for r in required
+        if any(r.replace('-receipt','').replace('_receipt','') in s for s in stems)
+    )
 
-def read_l8_gate() -> bool:
+def read_l8_gate():
     try:
-        text = L8_GATE.read_text('utf-8')
-        for line in text.split('\n')[:25]:
+        for line in L8_GATE.read_text('utf-8').split('\n')[:25]:
             if re.search(r'\bmet\b', line, re.I) and not re.search(r'not.?met', line, re.I):
                 return True
-        return False
-    except: return False
+    except: pass
+    return False
 
-# ── Data: Git ─────────────────────────────────────────────────────────────────
+# ── Context % from session jsonl ──────────────────────────────────────────────
 
-def _parse_remote_slug(url: str) -> str | None:
-    """Extract owner/repo from https or ssh remote URL."""
+def _project_dir_name(cwd):
+    # Claude Code replaces each separator char individually — no dash collapsing.
+    # C:\Vaults\WabbleSpec v6.1 -> C--Vaults-WabbleSpec-v6-1
+    native = str(Path(cwd).resolve())
+    name = native.replace(':', '-').replace('\\', '-').replace('/', '-')
+    name = name.replace(' ', '-').replace('.', '-')
+    return name.strip('-')
+
+def read_context_pct(cwd):
+    try:
+        proj_dir = CLAUDE_DIR / 'projects' / _project_dir_name(cwd)
+        if not proj_dir.exists(): return None
+        jsonl = max(
+            (f for f in proj_dir.glob('*.jsonl')),
+            key=lambda f: f.stat().st_mtime,
+        )
+        for raw in reversed(jsonl.read_text('utf-8', errors='ignore').splitlines()):
+            try:
+                d = json.loads(raw)
+                if d.get('type') == 'assistant':
+                    u = d.get('message', {}).get('usage', {})
+                    tokens = (u.get('input_tokens', 0)
+                              + u.get('cache_read_input_tokens', 0)
+                              + u.get('cache_creation_input_tokens', 0))
+                    if tokens > 0:
+                        return round(tokens / CTX_WINDOW * 100)
+            except: pass
+    except: pass
+    return None
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+
+def _parse_remote_slug(url):
     url = url.strip().removesuffix('.git')
-    # SSH: git@github.com:owner/repo
     m = re.search(r'[:/]([^/]+/[^/]+)$', url)
     return m.group(1) if m else None
 
-def git_info(cwd: str) -> dict:
-    """Returns dict with branch, remote (owner/repo slug), dirty."""
+def git_info(cwd):
     result = {'branch': None, 'remote': None, 'dirty': False}
     try:
         result['branch'] = subprocess.check_output(
             ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
             cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
         ).decode().strip()
-
-        dirty_out = subprocess.check_output(
+        result['dirty'] = bool(subprocess.check_output(
             ['git', 'status', '--porcelain'],
             cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
-        ).decode().strip()
-        result['dirty'] = bool(dirty_out)
-
-        # Get the remote name from the upstream tracking ref, fall back to first remote
+        ).decode().strip())
         try:
             tracking = subprocess.check_output(
                 ['git', 'rev-parse', '--abbrev-ref', '--symbolic-full-name', '@{u}'],
                 cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
             ).decode().strip()
-            remote_name = tracking.split('/')[0]  # "origin/main" -> "origin"
+            remote_name = tracking.split('/')[0]
         except subprocess.CalledProcessError:
-            try:
-                remote_name = subprocess.check_output(
-                    ['git', 'remote'],
-                    cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
-                ).decode().strip().split('\n')[0]
-            except Exception:
-                remote_name = ''
-
-        # Resolve remote name to URL and extract owner/repo slug
+            remote_name = subprocess.check_output(
+                ['git', 'remote'], cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
+            ).decode().strip().split('\n')[0]
         if remote_name:
-            try:
-                url = subprocess.check_output(
-                    ['git', 'remote', 'get-url', remote_name],
-                    cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
-                ).decode().strip()
-                result['remote'] = _parse_remote_slug(url)
-            except Exception:
-                pass
-    except Exception:
-        pass
+            url = subprocess.check_output(
+                ['git', 'remote', 'get-url', remote_name],
+                cwd=cwd, stderr=subprocess.DEVNULL, timeout=2,
+            ).decode().strip()
+            result['remote'] = _parse_remote_slug(url)
+    except: pass
     return result
 
-def short_cwd(cwd: str) -> str:
-    try:
-        rel = Path(cwd).relative_to(Path.home())
-        return '~/' + str(rel).replace('\\', '/')
-    except:
-        return Path(cwd).name
+# ── Anthropic usage API ───────────────────────────────────────────────────────
 
-# ── Data: Anthropic usage API ─────────────────────────────────────────────────
-
-def _read_creds() -> dict | None:
+def _read_creds():
     try:
         raw = json.loads(CREDS_FILE.read_text('utf-8'))
         return raw.get('claudeAiOauth', raw)
     except: return None
 
-def _read_usage_cache() -> dict | None:
-    """Try our cache first, then OMC's cache."""
+def _read_usage_cache():
     for path in (USAGE_CACHE, OMC_CACHE):
         try:
             d = json.loads(path.read_text('utf-8'))
-            age = time.time() - d.get('timestamp', 0) / 1000
-            if age < USAGE_CACHE_TTL_S and d.get('data'):
+            if time.time() - d.get('timestamp', 0) / 1000 < USAGE_TTL_S and d.get('data'):
                 return d['data']
         except: pass
     return None
 
-def _write_usage_cache(data: dict | None) -> None:
+def _write_usage_cache(data):
     try:
-        payload = {'timestamp': int(time.time() * 1000), 'data': data}
-        USAGE_CACHE.write_text(json.dumps(payload), 'utf-8')
+        USAGE_CACHE.write_text(
+            json.dumps({'timestamp': int(time.time() * 1000), 'data': data}), 'utf-8'
+        )
     except: pass
 
-def _fetch_usage(token: str) -> dict | None:
-    """Call Anthropic OAuth usage API. Returns raw response dict or None."""
-    ctx = ssl.create_default_context()
+def _fetch_usage(token):
     req = urllib.request.Request(
         'https://api.anthropic.com/api/oauth/usage',
-        headers={
-            'Authorization': f'Bearer {token}',
-            'anthropic-beta': 'oauth-2025-04-20',
-            'Content-Type': 'application/json',
-        },
+        headers={'Authorization': f'Bearer {token}',
+                 'anthropic-beta': 'oauth-2025-04-20',
+                 'Content-Type': 'application/json'},
     )
     try:
-        with urllib.request.urlopen(req, timeout=API_TIMEOUT_S, context=ctx) as resp:
-            return json.loads(resp.read().decode('utf-8'))
+        with urllib.request.urlopen(req, timeout=API_TIMEOUT_S, context=ssl.create_default_context()) as r:
+            return json.loads(r.read().decode())
     except: return None
 
-def _clamp(v) -> int:
-    if v is None: return 0
-    try: return max(0, min(100, round(float(v))))
-    except: return 0
-
-def _parse_usage(raw: dict) -> dict:
-    """Parse API response → {fiveHour, weekly, fiveHourResets, weeklyResets}."""
-    result = {}
-    fh = raw.get('five_hour', {})
-    wk = raw.get('seven_day', {})
-    result['fiveHour']       = _clamp(fh.get('utilization'))
-    result['fiveHourResets'] = fh.get('resets_at')
-    if 'utilization' in wk:
-        result['weekly']       = _clamp(wk.get('utilization'))
-        result['weeklyResets'] = wk.get('resets_at')
-    return result
-
-def _format_reset(iso_str: str | None) -> str | None:
-    if not iso_str: return None
-    try:
-        import datetime
-        dt = datetime.datetime.fromisoformat(iso_str.replace('Z', '+00:00'))
-        now = datetime.datetime.now(datetime.timezone.utc)
-        diff = dt - now
-        if diff.total_seconds() <= 0: return None
-        total_m = int(diff.total_seconds() / 60)
-        h, m = divmod(total_m, 60)
-        d, h = divmod(h, 24)
-        if d > 0: return f'{d}d{h}h'
-        return f'{h}h{m}m'
-    except: return None
-
-def get_usage(no_usage: bool = False) -> dict:
-    """Return usage dict with fiveHour/weekly keys (int 0-100) or empty."""
-    if no_usage:
-        return {}
-    cached = _read_usage_cache()
-    if cached:
-        return _parse_usage(cached) if 'five_hour' in cached else cached
-
-    creds = _read_creds()
-    if not creds:
-        return {}
-    token = creds.get('accessToken', '')
-    if not token:
-        return {}
-
-    raw = _fetch_usage(token)
-    if raw:
-        _write_usage_cache(raw)
-        return _parse_usage(raw)
-
-    # Try token refresh if expired
-    refresh = creds.get('refreshToken', '')
-    if refresh:
-        new_token = _refresh_token(refresh)
-        if new_token:
-            raw = _fetch_usage(new_token)
-            if raw:
-                _write_usage_cache(raw)
-                return _parse_usage(raw)
-
-    _write_usage_cache(None)
-    return {}
-
-def _refresh_token(refresh_token: str) -> str | None:
-    """Attempt OAuth token refresh. Returns new access token or None."""
-    ctx = ssl.create_default_context()
+def _refresh_token(refresh):
     client_id = os.environ.get('CLAUDE_CODE_OAUTH_CLIENT_ID', '9d1c250a-e61b-44d9-88ed-5944d1962f5e')
-    body = f'grant_type=refresh_token&refresh_token={urllib.request.quote(refresh_token)}&client_id={client_id}'
+    body = f'grant_type=refresh_token&refresh_token={urllib.request.quote(refresh)}&client_id={client_id}'
     req = urllib.request.Request(
         'https://platform.claude.com/v1/oauth/token',
         data=body.encode(),
@@ -327,110 +217,141 @@ def _refresh_token(refresh_token: str) -> str | None:
         method='POST',
     )
     try:
-        with urllib.request.urlopen(req, timeout=API_TIMEOUT_S, context=ctx) as resp:
-            d = json.loads(resp.read().decode('utf-8'))
-            return d.get('access_token')
+        with urllib.request.urlopen(req, timeout=API_TIMEOUT_S, context=ssl.create_default_context()) as r:
+            return json.loads(r.read().decode()).get('access_token')
     except: return None
+
+def _parse_usage(raw):
+    def clamp(v): return max(0, min(100, round(float(v)))) if v is not None else None
+    fh = raw.get('five_hour', {})
+    wk = raw.get('seven_day', {})
+    result = {'fiveHour': clamp(fh.get('utilization')), 'fiveHourResets': fh.get('resets_at')}
+    if 'utilization' in wk:
+        result['weekly']       = clamp(wk.get('utilization'))
+        result['weeklyResets'] = wk.get('resets_at')
+    return result
+
+def _format_reset(iso):
+    if not iso: return None
+    try:
+        import datetime
+        dt  = datetime.datetime.fromisoformat(iso.replace('Z', '+00:00'))
+        now = datetime.datetime.now(datetime.timezone.utc)
+        diff_m = int((dt - now).total_seconds() / 60)
+        if diff_m <= 0: return None
+        h, m = divmod(diff_m, 60)
+        d, h = divmod(h, 24)
+        return f'{d}d{h}h' if d else f'{h}h{m:02d}m'
+    except: return None
+
+def get_usage(no_usage=False):
+    if no_usage: return {}
+    cached = _read_usage_cache()
+    if cached:
+        return _parse_usage(cached) if 'five_hour' in cached else cached
+    creds = _read_creds()
+    if not creds: return {}
+    token = creds.get('accessToken', '')
+    raw   = _fetch_usage(token) or (_fetch_usage(_refresh_token(creds.get('refreshToken', ''))) if creds.get('refreshToken') else None)
+    if raw:
+        _write_usage_cache(raw)
+        return _parse_usage(raw)
+    _write_usage_cache(None)
+    return {}
 
 # ── Module colors ─────────────────────────────────────────────────────────────
 
 MODULE_COLOR = {
-    'executor':  BPR,
-    'verifier':  CYN,
-    'guard':     YEL,
-    'archive':   GRN,
-    'recipe':    SPR,
-    'specify':   SPR,
-    'decompose': SPR,
-    'rollback':  RED,
-    'dream':     DPR,
+    'executor': BPR, 'verifier': CYN, 'guard': YEL,
+    'archive': GRN,  'recipe': SPR,   'specify': SPR,
+    'decompose': SPR,'rollback': RED,  'dream': DPR,
 }
 
-def render_module(module: str) -> str:
-    color = MODULE_COLOR.get(module.lower(), PUR)
-    return f'{color}{module}{R}'
+def module_color(name):
+    return MODULE_COLOR.get(name.lower(), PUR)
 
 # ── Render ────────────────────────────────────────────────────────────────────
 
-def render(no_git: bool, no_usage: bool, compact: bool) -> str:
-    cwd     = os.getcwd()
-    version = read_version()
-    state   = read_state()
-    l8_met  = read_l8_gate()
-    usage   = get_usage(no_usage=no_usage)
-    git     = {} if no_git else git_info(cwd)
+def render(no_git=False, no_usage=False, no_ctx=False):
+    cwd   = os.getcwd()
+    state = read_state()
+    l8    = read_l8_gate()
+    usage = get_usage(no_usage=no_usage)
+    git   = {} if no_git else git_info(cwd)
+    ctx   = None if no_ctx else read_context_pct(cwd)
 
-    # ── Line 1: brand + skill + git + usage ──────────────────────────────────
+    # ── Line 1: brand + skill (no divider) | repo (branch) | usage ──────────
+    mod   = (state or {}).get('active_module') or 'IDLE'
+    brand = f'{spr("[WABBLE]")} {spr(mod.upper())}'
+    parts1 = [brand]
+
     branch = git.get('branch')
     remote = git.get('remote')
     dirty  = git.get('dirty', False)
-
-    parts1: list[str] = [bpur('[WABBLE]')]
-
-    if state:
-        module = state.get('active_module') or '?'
-        parts1.append(render_module(module.upper()))
-    else:
-        parts1.append(dim('IDLE'))
-
     if branch or remote:
-        module_color = MODULE_COLOR.get((state or {}).get('active_module', ''), PUR) if dirty else None
-        branch_color = module_color if dirty else SPR
-        repo_part    = dim(remote) if remote else dim('Local')
-        branch_part  = f' {_c(branch_color, f"({branch})")}' if branch else ''
-        parts1.append(repo_part + branch_part)
+        repo  = dim(remote) if remote else dim('Local')
+        b_col = module_color(mod) if (dirty and state) else SPR
+        bpart = f' {_c(b_col, f"({branch})")}' if branch else ''
+        parts1.append(repo + bpart)
 
     if usage:
         fh = usage.get('fiveHour')
         wk = usage.get('weekly')
         if fh is not None:
-            reset = _format_reset(usage.get('fiveHourResets'))
-            pct_color = _pct_color(fh)
-            usage_str = f'{dim("5H:")}{_c(pct_color, f"{fh}%")}'
-            if reset:
-                usage_str += dim(f' ({reset})')
-            parts1.append(usage_str)
+            s   = f'{dim("5H:")}{spr(f"{fh}%")}'
+            rst = _format_reset(usage.get('fiveHourResets'))
+            if rst: s += dim(f' ({rst})')
+            parts1.append(s)
         if wk is not None:
-            reset = _format_reset(usage.get('weeklyResets'))
-            pct_color = _pct_color(wk)
-            usage_str = f'{dim("1W:")}{_c(pct_color, f"{wk}%")}'
-            if reset:
-                usage_str += dim(f' ({reset})')
-            parts1.append(usage_str)
+            s   = f'{dim("1W:")}{spr(f"{wk}%")}'
+            rst = _format_reset(usage.get('weeklyResets'))
+            if rst: s += dim(f' ({rst})')
+            parts1.append(s)
 
     line1 = SEP.join(parts1)
 
-    # ── Line 2: task progress ─────────────────────────────────────────────────
-    parts2: list[str] = []
+    # ── Line 2: task progress (left) + ctx (right) ───────────────────────────
+    parts2 = []
 
     waves = parse_wave_names()
     if waves:
-        session_id = (state or {}).get('session_id', '')
-        completed  = count_verifier_receipts(session_id)
-        color = GRN if completed == len(waves) else SPR
-        parts2.append(f'{dim("waves:")}{_c(color, f"{completed}/{len(waves)}")}')
+        sid       = (state or {}).get('session_id', '')
+        completed = count_verifier_receipts(sid)
+        parts2.append(f'{dim("waves:")}{spr(f"{completed}/{len(waves)}")}')
 
     if state:
-        required = state.get('required_receipts', [])
-        if required:
-            found = count_receipts_found(required)
-            color = GRN if found == len(required) else YEL if found > 0 else DIM
-            parts2.append(f'{dim("receipts:")}{_c(color, f"{found}/{len(required)}")}')
+        req = state.get('required_receipts', [])
+        if req:
+            found = count_receipts_found(req)
+            parts2.append(f'{dim("receipts:")}{spr(f"{found}/{len(req)}")}')
 
-    parts2.append(f'{dim("gate:")}{grn("MET") if l8_met else dim("?")}')
+    parts2.append(f'{dim("gate:")}{spr("MET") if l8 else dim("?")}')
 
-    line2 = SEP.join(parts2)
+    left = SEP.join(parts2)
+
+    if ctx is not None:
+        right    = f'{spr(f"{ctx}%")} {dim("context")}'
+        # pad to right-align within terminal width
+        try:
+            width = os.get_terminal_size().columns
+        except Exception:
+            width = 120
+        gap = width - visual_len(left) - visual_len(right)
+        line2 = left + (' ' * max(2, gap)) + right
+    else:
+        line2 = left
 
     return '\n'.join([line1, line2])
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    args     = set(sys.argv[1:])
-    no_git   = '--no-git'   in args
-    no_usage = '--no-usage' in args
-    compact  = '--compact'  in args
+    args = set(sys.argv[1:])
     try:
-        print(render(no_git=no_git, no_usage=no_usage, compact=compact))
+        print(render(
+            no_git   = '--no-git'   in args,
+            no_usage = '--no-usage' in args,
+            no_ctx   = '--no-ctx'   in args,
+        ))
     except Exception:
-        print(bpur('[WABBLE]'))
+        print(spr('[WABBLE]'))
