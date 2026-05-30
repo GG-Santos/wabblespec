@@ -1,15 +1,15 @@
 # Staleness Map
 
-> Generated: 2026-05-30T09:45:51.247433+00:00
-> Drawers: 66
+> Generated: 2026-05-30T10:01:11.570889+00:00
+> Drawers: 72
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.8688 (+0.0146) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9015 (+0.0109) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9344 (+0.0073) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.8819 (+0.0131) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9113 (+0.0098) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9410 (+0.0066) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
@@ -19,6 +19,12 @@ Sorted by state (worst first), then confidence ascending.
 | verification-framework | - | references/get-shit-done-redux | FRESH | 1.0000 | - |
 | - | Hermes SKILL.md authoring standards adapted for WabbleSpec | references/hermes-agent-main | FRESH | 1.0000 | - |
 | - | Four categories of observations that must NOT be distilled to skills or Instinct | references/hermes-agent-main | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
+| - | - | references/oh-my-claudecode | FRESH | 1.0000 | - |
 | - | - | references/openspec | FRESH | 1.0000 | - |
 | - | - | references/openspec | FRESH | 1.0000 | - |
 | - | - | references/openspec | FRESH | 1.0000 | - |
@@ -76,4 +82,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 66
+- FRESH: 72
