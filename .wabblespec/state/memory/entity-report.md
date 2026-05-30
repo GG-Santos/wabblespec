@@ -1,7 +1,7 @@
 # Entity Graph Report
 
-> Generated: 2026-05-30T07:30:33.833530+00:00
-> Drawers scanned: 55
+> Generated: 2026-05-30T08:19:08.310555+00:00
+> Drawers scanned: 57
 > Nodes: 159  Edges: 835
 
 ## Entity Type Breakdown
@@ -16,7 +16,7 @@
 |---|---|---|---|
 | guard | module | 53 | 11 |
 | executor | module | 50 | 10 |
-| instinct | module | 49 | 10 |
+| instinct | module | 49 | 11 |
 | specify | module | 45 | 7 |
 | gateway-security | module | 42 | 4 |
 | augment | module | 41 | 7 |
