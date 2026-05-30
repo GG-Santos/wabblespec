@@ -1,0 +1,35 @@
+{
+  "module": "skill-tdd",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "/skill-tdd",
+    "validate skill before deployment",
+    "pressure test skill",
+    "red-green skill test",
+    "compliance delta"
+  ],
+  "anti_activators": [
+    "live skill performance measurement",
+    "prose quality review only",
+    "cosmetic skill edit"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["pre-deployment"],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/experiments/skill-tdd/"
+    ],
+    "reads": [
+      ".claude/skills/**",
+      ".wabblespec/engine/modules/**"
+    ]
+  },
+  "verification_mode": "Measurement",
+  "receipt_required": false,
+  "collapse_eligible": false,
+  "loading_gate": "activation",
+  "commands": ["/skill-tdd"],
+  "file_path_patterns": []
+}

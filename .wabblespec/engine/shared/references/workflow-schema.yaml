@@ -1,0 +1,58 @@
+# WabbleSpec Workflow Schema Format
+# Version: 1.0
+# Purpose: Define a custom phase sequence for a WabbleSpec deployment.
+#          Teams can fork the default phase order without editing skill files.
+#
+# Required fields: name, version, phases (list, >= 1 phase)
+# Each phase requires: id, skill, description
+# Optional per-phase: required_before (list of phase IDs), optional (bool)
+
+# ─── Schema Definition ────────────────────────────────────────────────────────
+
+schema_version: "1.0"
+
+# Top-level required fields
+required_top_level:
+  - name         # string: workflow name (slug, no spaces)
+  - version      # string: semver (e.g. "1.0.0")
+  - phases       # list: ordered phase definitions
+
+# Phase object required fields
+required_phase_fields:
+  - id           # string: unique phase identifier (slug)
+  - skill        # string: WabbleSpec skill name to invoke for this phase
+  - description  # string: one sentence describing what this phase produces
+
+# Phase object optional fields
+optional_phase_fields:
+  - required_before   # list of phase IDs that must complete before this phase
+  - optional          # bool: if true, phase can be skipped without halting pipeline
+  - verification_mode # string: Test|Observation|Audit|Attestation (overrides skill default)
+  - collapse_eligible # bool: whether this phase can be collapsed with adjacent phases
+
+# ─── Validation Rules ─────────────────────────────────────────────────────────
+
+validation_rules:
+  - rule: no_circular_dependencies
+    description: >
+      No phase may appear in its own required_before chain (directly or transitively).
+      Circular dependencies halt the validator with CIRCULAR_DEP error.
+
+  - rule: all_required_before_ids_exist
+    description: >
+      Every ID listed in required_before must correspond to a phase id in the same schema.
+      Unknown IDs halt the validator with UNKNOWN_PHASE_REF error.
+
+  - rule: phase_ids_unique
+    description: >
+      All phase id values must be unique within the schema. Duplicates halt the
+      validator with DUPLICATE_PHASE_ID error.
+
+  - rule: at_least_one_phase
+    description: >
+      The phases list must contain at least one entry.
+
+  - rule: skill_exists_advisory
+    description: >
+      The skill field should reference a known WabbleSpec skill (advisory only --
+      does not halt validation). Unknown skills emit UNKNOWN_SKILL_ADVISORY warning.

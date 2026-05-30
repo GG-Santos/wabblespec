@@ -1,90 +1,101 @@
 # Task Card
 
-**goal:** WabbleSpec's `wabblespec-guard`/`wabblespec-verifier` subagents and the ref-*/review-trio skill descriptions are hardened per the agent-creator ref-plan, executed under a re-established and regression-guarded `framework-maintenance` authority owner.
+**goal:** All 18 Tier 7 expansion capabilities from the ref-adopt drawer library are implemented as verified, additive framework artifacts -- scripts, hooks, skills, and SKILL.md extensions -- each satisfying its drawer-defined session seed acceptance condition.
 **target:** Framework
 **complexity:** High
 **change_class:** ADDITIVE
-**locked_at:** 2026-05-29T15:20:00Z
-**session_id:** agent-creator-integration-20260529
+**locked_at:** 2026-05-30T14:10:00Z
+**session_id:** tier7-expansions-20260530
 
 ## Non-Goals
 
-- Rewriting foundation-hardening's closed delivery receipt / AC8 — the regression is logged (memory + this task's receipts), not retro-edited into an archived task.
-- A general "every module owns its own SKILL.md" authority-model refactor across all 103 modules — only the touched review-trio paths are added now.
-- B3 (subagent-vs-skill rubric in CLAUDE.md / authoring conventions) — still deferred to a later Phase 2.
-- Promoting the new doctor check to blocking — advisory-first.
-- Introducing or referencing any model name (I6 hard guardrail); importing the reference's token-budget numbers; adopting the `skills:` frontmatter field.
-- Changing subagent prompt logic/behavior beyond the `tools:`/`model:` frontmatter, or skill bodies beyond the `description` string.
-- Any product-space change (I11 — framework-only).
+- Multi-Tool Skill Adapters (Cursor/Windsurf/Copilot): excluded by user directive
+- Product-space writes (I11): all work is framework-space only
+- External binary dependencies beyond Python and Node.js
+- Breaking changes to existing receipt schema or SKILL.md APIs (additive only)
+- Live browser runtime verification of visual companion
+- Full Executor integration for Schema-Defined Workflow (months-scope; Phase 1 design only)
 
 ## Assumptions
 
-- foundation-hardening v0.46.0 is complete; `framework-maintenance` was unintentionally removed in commit `2f72f1c` (git-verified) and is recoverable from `2371bea`.
-- A fresh `one_time_use` Attestation will be provided by the human (Gino) before Wave 1 executes — the agent cannot self-grant a root of trust. The spent bootstrap attestation cannot be reused.
-- `attestation-hash.py` is restored as part of the module (it was deleted with it) and validates the new bootstrap the same way the original did.
-- `ref-eval`/`ref-plan`/`ref-comp` have no engine module; `.claude/skills/` is canonical for them. `reviewer`/`adversary`/`grader` canonical source is `engine/modules/l2/<m>/SKILL.md`; `.claude/skills/` copies are sync-generated.
-- `guard-check.py authority` is the Layer-4 arbiter; PASS for the target files under `framework-maintenance` (post owns-extension) is the gate.
-- Python 3.8+ with pyyaml/duckdb available.
-- No project-standard drawers discovered in Memory.
+- All 18 expansion drawer files are FRESH and verified in this session
+- `queue-orchestrator.py`, `session-registry.py`, `receipt-writer.py`, `stop-hook.py`, `recipe-writer.py` exist as declared
+- PreCompact hook event is supported by Claude Code harness
+- PostToolUse hook with tool matcher is supported in settings.json
+- Node.js available for visual companion server
+- User's goal statement constitutes scope confirmation (18 items enumerated in prior table discussion)
+- No file-based project-standard drawers found; ChromaDB not queried in this phase
 
 ## Acceptance Criteria
 
-### Criterion 1: Bootstrap attestation validates
+### Criterion 1: Skill Bundle Presets
 
-Given a fresh `one_time_use` attestation for the framework-maintenance bootstrap and the staged restored module files
-When Wave 1 begins
-Then the attestation's `content_hash` equals `sha256(SKILL.md + b"\x00---attestation-separator---\x00" + skill-rules.json)` over the staged files and Guard accepts it; a mismatch MUST halt Wave 1
+Given `.claude/bundles/ref-adopt.yaml` exists declaring `name`, `description`, and `skills` fields
+When `python .wabblespec/engine/shared/scripts/recipe-writer.py --bundle ref-adopt` is run
+Then `recipe.json` contains `active_skills` populated from the bundle YAML's skills list, and `--bundle unknown-name` exits non-zero with a legible error
 
-### Criterion 2: Module restored verbatim
+### Criterion 2: Epistemic Reminder Hook wired
 
-Given `framework-maintenance` was deleted in commit `2f72f1c`
-When the module is restored from git `2371bea`
-Then `SKILL.md` and `scripts/attestation-hash.py` are byte-identical to their `2371bea` versions and `skill-rules.json` is present
+Given a PostToolUse hook file exists at its declared path
+When `settings.json` contains a PostToolUse entry matching the Grep tool
+Then executing the hook with a mock Grep result emits valid JSON containing a `systemMessage` key (non-empty) and does not block (no non-zero exit)
 
-### Criterion 3: authority.owns extended
+### Criterion 3: Reference Staleness Watcher
 
-Given the original `owns` list lacked `.claude/agents/**` and the review-trio paths
-When the restored `skill-rules.json` is written with extensions
-Then `authority.owns` contains every original entry plus `.claude/agents/**` and `engine/modules/l2/reviewer/**`, `engine/modules/l2/adversary/**`, `engine/modules/l2/grader/**`
+Given reference drawers with `source` fields exist in `.wabblespec/state/memory/wings/references/`
+When `python .wabblespec/engine/shared/scripts/wabblespec-watch-refs.py` is run
+Then `.wabblespec/state/memory/wings/references/watch-watermarks.json` is written or updated, and any drawer whose upstream SHA differs from the stored watermark has its `staleness_state` field set to `NEEDS_REVERIFICATION`
 
-### Criterion 4: Module re-registered
+### Criterion 4: Session Handoff Scanner
 
-Given `wabblespec.yaml` no longer lists `framework-maintenance`
-When the module is re-registered
-Then `wabblespec.yaml` contains the `framework-maintenance` entry (layer L2, type authority) and `validate-graph.py` exits 0
+Given an existing WabbleSpec session state (session-state.py show returns data)
+When `python .wabblespec/engine/shared/scripts/watzup-scan.py` is run
+Then stdout contains labelled sections for Current Session, Active Wave, Pending Receipts, and Recent Commits, with no uncaught exceptions
 
-### Criterion 5: Authority resolves for all targets
+### Criterion 5: Spec Shape Artifact
 
-Given the registered, owns-extended module
-When `guard-check.py authority --module framework-maintenance --files <target>` is run for each B1/B2 target file
-Then every target returns Layer 4 PASS
+Given `state/scope.md` is locked and a session ID is active
+When `python .wabblespec/engine/shared/scripts/shape-writer.py` is run
+Then `state/plans/shape.md` is created containing a Scope summary section, a Decisions section (bulleted rationale), and a Standards Applied section
 
-### Criterion 6: Doctor owner-check added
+### Criterion 6: Compaction-Resistant Memo
 
-Given `wabblespec-doctor.py` has no shared-infra-owner check
-When a check is added asserting the shared-infra anchor paths have an authority owner
-Then `wabblespec-doctor.py --self-test` exits 0, a normal run reports the new check green with the owner present, and a simulated owner-absence run emits the finding
+Given `settings.json` contains a PreCompact hook entry pointing to the memo hook handler
+When the PreCompact event fires (simulated by running the hook directly with `trigger: manual`)
+Then `state/session/memo.md` is written with at least a timestamp header, and `wabblespec-session-start.js` reads and injects `memo.md` content when the file exists
 
-### Criterion 7: Guard subagent scoped (tools + I6)
+### Criterion 7: Post-Wave Background Reviewer
 
-Given `.claude/agents/wabblespec-guard.md` inherits all tools and pins `model: claude-sonnet-4-6`
-When it is edited under `--module framework-maintenance`
-Then its frontmatter declares `tools: Read, Grep, Glob, Bash` and a grep for `claude-`/`sonnet`/`opus`/`haiku` in the file returns zero matches
+Given Executor has written a wave receipt and the post-wave review step is present in Executor SKILL.md
+When the review subagent is dispatched (Read+Write tools only)
+Then the subagent applies the four Dream anti-pattern filters and either writes exactly one drawer to wing `instinct` / room `wave-review-candidates` or writes nothing; it MUST NOT write more than one drawer per wave
 
-### Criterion 8: Verifier subagent scoped (tools + I6)
+### Criterion 8: Skill TDD Harness
 
-Given `.claude/agents/wabblespec-verifier.md` inherits all tools and pins `model: claude-sonnet-4-6`
-When it is edited under `--module framework-maintenance`
-Then its frontmatter declares `tools: Read, Grep, Glob, Bash` and a grep for `claude-`/`sonnet`/`opus`/`haiku` in the file returns zero matches
+Given a candidate SKILL.md path and a pressure scenario description are provided
+When `/skill-tdd` is invoked
+Then the skill dispatches a subagent WITHOUT the candidate skill (recording baseline rationalizations) and then WITH the skill (recording compliance delta); the final report declares READY if delta >= 80% compliance improvement, BLOCKED otherwise
 
-### Criterion 9: Receipt contract preserved (regression gate)
+### Criterion 9: Autonomous Benchmark Loop (happy path + stuck detection)
 
-Given the scoped subagents with restricted toolsets and no model pin
-When `wabblespec-guard` and `wabblespec-verifier` are each invoked on a representative wave
-Then each returns its declared JSON receipt (guard: `overall`/`status`; verifier: `verdict`/`status`) with no tool-call failure caused by a removed tool
+Given `quality-floor-check.py --format json` returns a parseable score and the working tree is clean
+When `/benchmark-loop` is invoked
+Then each iteration makes exactly one atomic commit before verify; a regression reverts the commit; after 5 consecutive discards execution shifts strategy; after 10 consecutive discards execution halts and surfaces findings to the user; a TSV log of `iteration/commit/metric/delta/status` is written
 
-### Criterion 10: Negative triggers added, no sync divergence
+### Criterion 10: Parallel Topology Planner
 
-Given the `ref-eval`/`ref-plan`/`ref-comp` and `reviewer`/`adversary`/`grader` skill descriptions
-When negative-trigger clauses are added (ref-* in `.claude/skills/`, review-trio in `engine/modules/l2/` source) and sync is run
-Then each description names its sibling boundary, each skill still loads without a parse error, and `wabblespec-sync-skills.py` reports zero divergence between engine and `.claude/` for the review-trio modules
+Given a task with at least one wave group having `parallelizability: high` and no declared cross-wave file conflicts
+When Decompose runs Step 3b on that task
+Then each wave group entry in `current-wave-plan.md` contains an `execution_mode` field with value `sequential`, `parallel`, or `mixed`
+
+### Criterion 11: Pattern Inference Module
+
+Given a task card goal text and a complexity score
+When `python .wabblespec/engine/shared/scripts/pattern-inference.py --goal "<text>" --complexity <score>` is run
+Then stdout is valid JSON containing `pattern` (one of: hierarchical/pipeline/swarm/generator-critic/adversarial/jury), `confidence` (0.0-1.0 float), `signals` (non-empty list), `needs_clarification` (boolean), and `work_breakdown` (string)
+
+### Criterion 12: CRDT Wave Merge (Phase 1 -- Python module)
+
+Given two Python dicts representing parallel wave edits to overlapping keys
+When `crdt_merge.merge(wave_a, wave_b)` is called
+Then the result is deterministic (same output regardless of argument order for LWW-Register resolution), all non-conflicting keys from both inputs are present, and conflicting keys resolve to the higher-timestamp value with no KeyError or exception

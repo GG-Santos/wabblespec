@@ -1,0 +1,43 @@
+# workflow-schema-sample.yaml — Default WabbleSpec phase sequence
+# This sample encodes the standard Recipe → Archive pipeline as a workflow schema.
+# Teams can fork this file to customize their phase order.
+
+name: wabblespec-default
+version: "1.0.0"
+description: Standard WabbleSpec SDLC pipeline from intake to archive.
+
+phases:
+  - id: intake
+    skill: recipe
+    description: Declare build target, detect platform, score complexity.
+
+  - id: scope
+    skill: scope-frame
+    description: Lock session boundaries, in-scope items, and assumptions.
+    required_before: [intake]
+
+  - id: spec
+    skill: specify
+    description: Write the task card with goal, non-goals, and GWT acceptance criteria.
+    required_before: [scope]
+
+  - id: plan
+    skill: decompose
+    description: Break the task card into an ordered, verifiable wave plan.
+    required_before: [spec]
+
+  - id: execute
+    skill: executor
+    description: Run each wave with Guard, Verifier, and checkpoint writes.
+    required_before: [plan]
+
+  - id: close
+    skill: archive
+    description: Aggregate receipts, bump version, write delivery receipt and CHANGELOG.
+    required_before: [execute]
+
+  - id: review
+    skill: wave-review
+    description: Post-archive wave quality review (optional).
+    required_before: [execute]
+    optional: true

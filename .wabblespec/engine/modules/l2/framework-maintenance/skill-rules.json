@@ -37,7 +37,10 @@
       ".claude/agents/**",
       ".wabblespec/engine/modules/l2/reviewer/**",
       ".wabblespec/engine/modules/l2/adversary/**",
-      ".wabblespec/engine/modules/l2/grader/**"
+      ".wabblespec/engine/modules/l2/grader/**",
+      ".claude/bundles/**",
+      ".claude/settings.json",
+      ".claude/settings.local.json"
     ],
     "reads": [
       ".wabblespec/state/plans/task-card.md",

@@ -53,6 +53,38 @@ process.stdin.on('end', () => {
       'Executor resumes ownership of remaining waves after compaction completes.',
     ].join('\n');
 
+    // Write compaction-resistant memo before emitting the prompt
+    // Silent-fail: memo write must never block compaction
+    try {
+      const { execFileSync } = require('child_process');
+      const memoScript = path.join(
+        process.cwd(), '.wabblespec', 'engine', 'shared', 'scripts', 'memo-writer.py'
+      );
+      if (fs.existsSync(memoScript)) {
+        execFileSync('python', [memoScript, '--auto'],
+          { cwd: process.cwd(), timeout: 10000, stdio: 'pipe' });
+      }
+    } catch (_) { /* silent-fail */ }
+
+    // Write transcript auto-handoff if transcript_path provided
+    try {
+      const parsed = input ? JSON.parse(input) : {};
+      if (parsed.transcript_path && fs.existsSync(parsed.transcript_path)) {
+        const { execFileSync } = require('child_process');
+        const handoffDir = path.join(process.cwd(), '.wabblespec', 'state', 'handoffs');
+        fs.mkdirSync(handoffDir, { recursive: true });
+        const handoffPath = path.join(handoffDir, `${state.session_id || 'unknown'}-auto.yaml`);
+        const handoffContent = [
+          `goal: "${taskId}"`,
+          `now: "compaction fired at ${new Date().toISOString()}"`,
+          `phase: "${phase}"`,
+          `waves_done: ${wavesDone}`,
+          `session_id: "${taskId}"`,
+        ].join('\n') + '\n';
+        fs.writeFileSync(handoffPath, handoffContent, 'utf8');
+      }
+    } catch (_) { /* silent-fail */ }
+
     process.stdout.write(JSON.stringify({ customSystemPrompt: instruction }));
 
   } catch (e) {

@@ -1,0 +1,15 @@
+{
+  "name": "wabblespec-visual-companion",
+  "version": "1.0.0",
+  "description": "Zero-dependency localhost graphviz rendering server for WabbleSpec brainstorm sessions.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start-port": "node server.js --port"
+  },
+  "keywords": ["wabblespec", "brainstorm", "graphviz", "diagram"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

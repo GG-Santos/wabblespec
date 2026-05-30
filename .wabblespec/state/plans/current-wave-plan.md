@@ -4,76 +4,120 @@
 **target:** Framework
 **complexity:** High
 **collapse_eligible:** false
-**generated_at:** 2026-05-29T15:30:00Z
+**generated_at:** 2026-05-30T14:15:00Z
+**session_id:** tier7-expansions-20260530
 
-Complexity confirmed High (re-confirmed against the full task card; bumped from Medium during the ScopeFrame re-frame when the framework-maintenance authority-owner regression was discovered).
+Complexity confirmed High: 18 deliverables across 6 integration surfaces (shared/scripts, hooks, .claude/skills, SKILL.md extensions, settings.json, wabblespec.yaml).
+
+Recommend parallel fan-out — Wave 1 items are fully independent (6 scripts/hooks with no shared state); Wave 3 skills are independent of each other. Executor may dispatch Wave 1 items and Wave 3 items as parallel sub-tasks within each wave.
 
 ## Waves
 
-### Wave 1: Re-establish framework-maintenance authority owner
+### Wave 1: Standalone scripts and hook infrastructure
 
-**inputs:** task-card AC1-AC5; scope.md; git `2371bea` module files; a fresh human-signed `one_time_use` bootstrap attestation (Wave-1 prep produces the JSON + `content_hash`; human signs before this wave runs)
+**inputs:** task-card AC1-AC4; expansion drawers: skill-bundles, epistemic-hook, ref-watcher, watzup-scanner, shape-artifact, conflict-detection; `recipe-writer.py` (exists); `settings.json` (exists)
 **outputs:**
-- `.wabblespec/engine/modules/l2/framework-maintenance/SKILL.md` (byte-identical to `2371bea`)
-- `.wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py` (byte-identical to `2371bea`)
-- `.wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json` (verbatim + `owns` extended with `.claude/agents/**`, `engine/modules/l2/{reviewer,adversary,grader}/**`)
-- `.wabblespec/wabblespec.yaml` (framework-maintenance entry re-registered, L2, type authority)
-- consumed attestation moved to `.wabblespec/state/attestations/consumed/`
-**checkpoint:** attestation `content_hash` matches the staged files; `validate-graph.py` exits 0; `guard-check.py authority --module framework-maintenance` returns PASS for every B1/B2 target path
+- `.claude/bundles/ref-adopt.yaml` (+ `code-review.yaml`, `evolution.yaml`, `maintenance.yaml`)
+- `.wabblespec/engine/shared/scripts/recipe-writer.py` (--bundle flag added)
+- `.wabblespec/engine/shared/scripts/wabblespec-watch-refs.py` (new)
+- `.wabblespec/state/memory/wings/references/watch-watermarks.json` (initialized empty)
+- `.wabblespec/engine/shared/scripts/watzup-scan.py` (new)
+- `.wabblespec/engine/shared/scripts/shape-writer.py` (new)
+- `.wabblespec/engine/shared/scripts/session-conflict-check.py` (new)
+- `.wabblespec/engine/hooks/wabblespec-epistemic-reminder.js` (new PostToolUse hook)
+- `.claude/settings.json` updated with PostToolUse Grep hook entry
+**checkpoint:** all 5 scripts respond to --help; bundle YAML parses; hook emits valid JSON with `systemMessage` key; recipe-writer --bundle flag expands active_skills from YAML
 **rollback_to:** null
 **verification_mode:** Test
-**verification_command:** `python .wabblespec/engine/modules/l2/framework-maintenance/scripts/attestation-hash.py && python .wabblespec/engine/shared/scripts/validate-graph.py && python .wabblespec/engine/shared/scripts/guard-check.py authority --module framework-maintenance --files ".claude/agents/wabblespec-guard.md" ".claude/agents/wabblespec-verifier.md" ".wabblespec/engine/modules/l2/reviewer/SKILL.md" ".wabblespec/engine/modules/l2/adversary/SKILL.md" ".wabblespec/engine/modules/l2/grader/SKILL.md" ".claude/skills/ref-eval/SKILL.md" ".claude/skills/ref-plan/SKILL.md" ".claude/skills/ref-comp/SKILL.md" ".wabblespec/engine/shared/scripts/wabblespec-doctor.py"`
+**verification_command:** `python -c "import yaml; yaml.safe_load(open('.claude/bundles/ref-adopt.yaml').read()); print('bundle-ok')" && for s in wabblespec-watch-refs watzup-scan shape-writer session-conflict-check; do python .wabblespec/engine/shared/scripts/$s.py --help > /dev/null || exit 1; done && node .wabblespec/engine/hooks/wabblespec-epistemic-reminder.js '{"tool":"Grep","result":""}' | python -c "import sys,json; d=json.load(sys.stdin); assert 'systemMessage' in d; print('hook-ok')"`
 
 ---
 
-### Wave 2: Add doctor shared-infra-owner check
+### Wave 2: Executor, Specify, and session-start extensions
 
-**inputs:** Wave 1 outputs (registered owner); task-card AC6; `wabblespec-doctor.py`
-**outputs:** `.wabblespec/engine/shared/scripts/wabblespec-doctor.py` (new check: shared-infra anchor paths have an authority owner; advisory severity)
-**checkpoint:** `--self-test` exits 0; a normal run reports the new check green (owner present); a simulated owner-absence run emits the finding
+**inputs:** Wave 1 checkpoint; task-card AC5-AC7; expansion drawers: ref-capture, post-wave-reviewer, compaction-memo, transcript-handoff, plan-notebooks; `stop-hook.py` (exists); `session-registry.py` (exists); `wabblespec-session-start.js` (exists)
+**outputs:**
+- `.wabblespec/engine/shared/scripts/research-artifact-writer.py` (new)
+- `.wabblespec/engine/shared/scripts/memo-writer.py` (new)
+- `.wabblespec/engine/shared/scripts/notebook-writer.py` (new)
+- `.claude/skills/executor/SKILL.md` (post-wave reviewer step + ref capture step added)
+- `.claude/skills/specify/SKILL.md` (shape artifact step added after scope lock)
+- `.wabblespec/engine/hooks/wabblespec-session-start.js` (memo.md injection on startup)
+- `.claude/settings.json` updated with PreCompact hook entry
+- `.wabblespec/engine/hooks/wabblespec-pre-compact.js` (new PreCompact handler for memo + transcript handoff)
+**checkpoint:** 3 new scripts respond to --help; grep confirms executor/specify SKILL.md edits; PreCompact entry exists in settings.json; session-start memo injection present
 **rollback_to:** Wave 1 checkpoint
 **verification_mode:** Test
-**verification_command:** `python .wabblespec/engine/shared/scripts/wabblespec-doctor.py --self-test && python .wabblespec/engine/shared/scripts/wabblespec-doctor.py --format json`
+**verification_command:** `for s in research-artifact-writer memo-writer notebook-writer; do python .wabblespec/engine/shared/scripts/$s.py --help > /dev/null || exit 1; done && grep -q "post-wave reviewer" .claude/skills/executor/SKILL.md && grep -q "shape-writer" .claude/skills/specify/SKILL.md && python -c "import json; cfg=json.load(open('.claude/settings.json')); hooks=[h.get('matcher','') for h in cfg.get('hooks',{}).get('PostToolUse',[])]; assert any('Grep' in str(h) for h in hooks), 'Grep hook missing'; print('settings-ok')"`
 
 ---
 
-### Wave 3: Scope subagent toolsets + remove model pins (B1)
+### Wave 3: New skill modules (skill-tdd, benchmark-loop, watzup)
 
-**inputs:** Wave 1 owner (authorizes `.claude/agents/**`); task-card AC7, AC8
+**inputs:** Wave 1 checkpoint (watzup-scan.py exists); task-card AC8-AC9; expansion drawers: skill-tdd-harness, autonomous-loop, session-handoff-scanner; `wabblespec.yaml` (exists)
 **outputs:**
-- `.claude/agents/wabblespec-guard.md` (add `tools: Read, Grep, Glob, Bash`; remove `model:` line)
-- `.claude/agents/wabblespec-verifier.md` (add `tools: Read, Grep, Glob, Bash`; remove `model:` line)
-**checkpoint:** each file's frontmatter declares `tools: Read, Grep, Glob, Bash` and a grep for `claude-`/`sonnet`/`opus`/`haiku` across both files returns zero matches
-**rollback_to:** Wave 2 checkpoint
+- `.claude/skills/skill-tdd/SKILL.md` (new skill)
+- `.wabblespec/engine/modules/l8/skill-tdd/SKILL.md` (canonical engine source)
+- `.wabblespec/engine/modules/l8/skill-tdd/skill-rules.json` (new)
+- `.claude/skills/benchmark-loop/SKILL.md` (new skill)
+- `.wabblespec/engine/modules/l8/benchmark-loop/SKILL.md` (canonical engine source)
+- `.wabblespec/engine/modules/l8/benchmark-loop/skill-rules.json` (new)
+- `.claude/skills/watzup/SKILL.md` (new skill, thin wrapper around watzup-scan.py)
+- `.wabblespec/engine/modules/l7/watzup/SKILL.md` (canonical engine source)
+- `.wabblespec/engine/modules/l7/watzup/skill-rules.json` (new)
+- `.wabblespec/wabblespec.yaml` (3 new module entries)
+**checkpoint:** all three SKILL.md files parseable YAML frontmatter; wabblespec.yaml registers all 3; validate-graph.py exits 0
+**rollback_to:** Wave 1 checkpoint
 **verification_mode:** Test
-**verification_command:** `python -c "import re,sys; [sys.exit('FAIL '+f) for f in ['.claude/agents/wabblespec-guard.md','.claude/agents/wabblespec-verifier.md'] if not re.search(r'^tools:\s*Read,\s*Grep,\s*Glob,\s*Bash', open(f,encoding='utf-8').read(), re.M) or re.search(r'claude-|sonnet|opus|haiku', open(f,encoding='utf-8').read(), re.I)]; print('PASS')"`
+**verification_command:** `for s in skill-tdd benchmark-loop watzup; do test -f ".claude/skills/$s/SKILL.md" && python -c "import yaml; list(yaml.safe_load_all(open('.claude/skills/$s/SKILL.md').read()))" || { echo "FAIL: $s"; exit 1; }; done && python .wabblespec/engine/shared/scripts/validate-graph.py`
 
 ---
 
-### Wave 4: Add negative-trigger clauses + sync (B2)
+### Wave 4: Decompose and Autopilot extensions + pattern inference
 
-**inputs:** Wave 1 owner (authorizes review-trio engine paths + `.claude/skills/**`); task-card AC10
+**inputs:** Wave 1-3 checkpoints; task-card AC10-AC11; expansion drawers: topology-planner, pattern-inference-module; `decompose/SKILL.md` (exists); `autopilot/SKILL.md` (exists); `recipe-writer.py` (exists, already has --bundle from Wave 1)
 **outputs:**
-- `.claude/skills/ref-eval/SKILL.md`, `.claude/skills/ref-plan/SKILL.md`, `.claude/skills/ref-comp/SKILL.md` (description negative triggers)
-- `.wabblespec/engine/modules/l2/reviewer/SKILL.md`, `.../adversary/SKILL.md`, `.../grader/SKILL.md` (description negative triggers, canonical source)
-- re-synced `.claude/skills/` copies for the review-trio
-**checkpoint:** each of the six descriptions names its sibling boundary; every touched SKILL.md parses (frontmatter loads); sync reports zero divergence between engine and `.claude/` for the review-trio
+- `.wabblespec/engine/shared/scripts/pattern-inference.py` (new; classifies task → pattern)
+- `.claude/skills/decompose/SKILL.md` (Step 3b topology planner section added)
+- `.wabblespec/engine/modules/l1/decompose/SKILL.md` (engine canonical updated; sync to .claude/)
+- `.claude/skills/autopilot/SKILL.md` (Phase 0 pattern inference step added)
+- `.wabblespec/engine/modules/l2/autopilot/SKILL.md` (engine canonical updated; sync to .claude/)
+- `.wabblespec/engine/shared/scripts/recipe-writer.py` (--execution-mode flag added)
+**checkpoint:** pattern-inference.py --help exits 0; pattern-inference.py --goal "test" --complexity 3 outputs JSON with all 5 required keys; decompose SKILL.md contains "Step 3b"; autopilot SKILL.md references pattern-inference
 **rollback_to:** Wave 3 checkpoint
 **verification_mode:** Test
-**verification_command:** `python .wabblespec/engine/scripts/wabblespec-sync-skills.py; python -c "import yaml,sys; [yaml.safe_load(open(f,encoding='utf-8').read().split('---')[1]) for f in ['.claude/skills/ref-eval/SKILL.md','.claude/skills/ref-plan/SKILL.md','.claude/skills/ref-comp/SKILL.md','.claude/skills/reviewer/SKILL.md','.claude/skills/adversary/SKILL.md','.claude/skills/grader/SKILL.md']]; print('PARSE-OK')"`
-**reviewer_note:** sync runs WITHOUT `--filter-recipe` — recipe.json `active_skills` is `[]`, and a filtered sync could prune `.claude/skills/` to empty. Full sync propagates the review-trio engine edits to `.claude/`.
+**verification_command:** `python .wabblespec/engine/shared/scripts/pattern-inference.py --goal "Build a REST API" --complexity 3 | python -c "import sys,json; d=json.load(sys.stdin); required={'pattern','confidence','signals','needs_clarification','work_breakdown'}; missing=required-set(d); assert not missing, f'missing: {missing}'; print('pattern-ok')" && grep -q "Step 3b" .claude/skills/decompose/SKILL.md && grep -q "pattern-inference" .claude/skills/autopilot/SKILL.md`
 
 ---
 
-### Wave 5: Demonstrate subagent regression-free behavior (B1 gate)
+### Wave 5: CRDT merge module and visual companion server
 
-**inputs:** Wave 3 scoped subagents; task-card AC9
-**outputs:** a demonstration record — the scoped `wabblespec-guard` and `wabblespec-verifier` invoked on a representative wave (Waves 2-4 already exercise them in-band via Executor's pre-wave Guard and post-wave Verifier), with valid JSON receipts and no tool-call failure
-**checkpoint:** both subagents return their declared JSON receipt (guard `overall`/`status`; verifier `verdict`/`status`); each subagent's prompt body invokes no tool outside its declared `tools:` set (static subset check)
+**inputs:** Wave 4 checkpoint; task-card AC12; expansion drawers: crdt-merge, visual-companion; `queue-orchestrator.py` (exists); `brainstorm/SKILL.md` (exists)
+**outputs:**
+- `.wabblespec/engine/shared/scripts/crdt_merge.py` (Python CRDT module: LWW-Register, OR-Set, RGA)
+- `.wabblespec/engine/shared/scripts/crdt_merge_test.py` (unit tests for determinism + LWW semantics)
+- `.wabblespec/engine/shared/scripts/visual-companion/server.js` (zero-dependency Node.js HTTP server)
+- `.wabblespec/engine/shared/scripts/visual-companion/package.json`
+- `.claude/skills/brainstorm/SKILL.md` (opt-in visual companion step added)
+- `.wabblespec/engine/modules/l1/brainstorm/SKILL.md` (engine canonical updated)
+**checkpoint:** crdt_merge_test.py passes (determinism + LWW assertions); server.js exists and package.json is valid JSON; brainstorm SKILL.md contains visual companion opt-in language
 **rollback_to:** Wave 4 checkpoint
-**verification_mode:** Demonstration
-**verification_command:** `python -c "import re,sys; t=open('.claude/agents/wabblespec-guard.md',encoding='utf-8').read()+open('.claude/agents/wabblespec-verifier.md',encoding='utf-8').read(); bad=sorted(set(re.findall(r'\b(Write|Edit|MultiEdit|NotebookEdit|WebFetch|WebSearch|Task)\b', t))); sys.exit('FAIL ungranted tools referenced: '+str(bad)) if bad else print('SUBSET-OK')" && ls .wabblespec/state/receipts/guard-*agent-creator*.json .wabblespec/state/receipts/verifier-*agent-creator*.json`
-**reviewer_note:** static subset check is the reliable in-session gate. The live demonstration may not exercise the edited definitions if the harness caches subagent files mid-session — a definitive live run may require a fresh session. Executor must name its W2-W4 guard/verifier receipts with the session id so the `ls` glob resolves.
+**verification_mode:** Test
+**verification_command:** `python .wabblespec/engine/shared/scripts/crdt_merge_test.py && node -e "require('./.wabblespec/engine/shared/scripts/visual-companion/server.js')" 2>&1 | grep -v "^$" || true && grep -q "visual companion" .claude/skills/brainstorm/SKILL.md`
+
+---
+
+### Wave 6: Schema-defined workflow (Phase 1 -- design and validator only)
+
+**inputs:** Wave 1-5 checkpoints; task-card (schema-workflow non-goal: Executor integration deferred); expansion drawer: custom-workflow-schema
+**outputs:**
+- `.wabblespec/engine/shared/references/workflow-schema.yaml` (YAML schema format definition)
+- `.wabblespec/engine/shared/references/workflow-schema-sample.yaml` (example: default wabblespec phase sequence)
+- `.wabblespec/engine/shared/scripts/workflow-schema-validator.py` (validates a workflow YAML against the schema)
+**checkpoint:** validator exits 0 on the sample file; validator exits non-zero on a deliberately invalid YAML (missing required phase field); schema file documents all required fields with comments
+**rollback_to:** Wave 5 checkpoint
+**verification_mode:** Test
+**verification_command:** `python .wabblespec/engine/shared/scripts/workflow-schema-validator.py .wabblespec/engine/shared/references/workflow-schema-sample.yaml && python -c "import subprocess,sys; r=subprocess.run(['python','.wabblespec/engine/shared/scripts/workflow-schema-validator.py','/dev/null'],capture_output=True); sys.exit(0) if r.returncode!=0 else sys.exit(1)" && echo "PASS"`
 
 ---
 
@@ -81,8 +125,9 @@ Complexity confirmed High (re-confirmed against the full task card; bumped from 
 
 | Wave | Rollback target | Trigger condition |
 |---|---|---|
-| Wave 1 fails | null (restore deleted-state: remove framework-maintenance dir + yaml entry) | Attestation hash mismatch, validate-graph fail, or authority not PASS after 3 REVISE cycles |
-| Wave 2 fails | Wave 1 checkpoint | doctor `--self-test` fails or new check misbehaves after 3 REVISE cycles |
-| Wave 3 fails | Wave 2 checkpoint | tools line absent or model name remains after 3 REVISE cycles |
-| Wave 4 fails | Wave 3 checkpoint | description missing trigger, parse error, or sync divergence after 3 REVISE cycles |
-| Wave 5 fails | Wave 4 checkpoint | subagent returns invalid receipt or references an ungranted tool |
+| Wave 1 fails | null (remove created files) | any script --help fails, hook emits invalid JSON, bundle YAML invalid, after 3 REVISE cycles |
+| Wave 2 fails | Wave 1 checkpoint | script --help fails, SKILL.md grep misses, settings.json missing hook entry, after 3 REVISE cycles |
+| Wave 3 fails | Wave 1 checkpoint | SKILL.md frontmatter parse error, validate-graph.py non-zero, after 3 REVISE cycles |
+| Wave 4 fails | Wave 3 checkpoint | pattern-inference.py missing keys, SKILL.md grep misses, after 3 REVISE cycles |
+| Wave 5 fails | Wave 4 checkpoint | crdt_merge_test.py assertion fails, server.js missing, brainstorm SKILL.md not updated, after 3 REVISE cycles |
+| Wave 6 fails | Wave 5 checkpoint | validator fails on sample, or validator passes on invalid input (gate inverted), after 3 REVISE cycles |

@@ -3,8 +3,8 @@
   "layer": "L1",
   "phase": "Plan",
   "wave": 0,
-  "timestamp": "2026-05-28T04:18:58Z",
-  "session_id": "phase2-script-delegation-20260528",
+  "timestamp": "2026-05-30T14:03:19Z",
+  "session_id": "tier7-expansions-20260530",
   "checks_run": [
     "wave-plan-complete",
     "dependencies-declared",
@@ -22,28 +22,39 @@
   "waves": [
     {
       "id": 1,
-      "label": "Audit and contract file",
-      "verification_mode": "Audit"
+      "label": "standalone-scripts-and-hook-infrastructure",
+      "verification_mode": "Test"
     },
     {
       "id": 2,
-      "label": "Rewrite affected SKILL.md files",
-      "verification_mode": "Audit"
+      "label": "executor-specify-sessionstart-extensions",
+      "verification_mode": "Test"
     },
     {
       "id": 3,
-      "label": "Sync to .claude/skills/ and quality floor",
+      "label": "new-skill-modules",
+      "verification_mode": "Test"
+    },
+    {
+      "id": 4,
+      "label": "decompose-autopilot-extensions-pattern-inference",
+      "verification_mode": "Test"
+    },
+    {
+      "id": 5,
+      "label": "crdt-merge-and-visual-companion",
+      "verification_mode": "Test"
+    },
+    {
+      "id": 6,
+      "label": "schema-workflow-phase1",
       "verification_mode": "Test"
     }
   ],
-  "total_waves": 3,
-  "wave_count": 3,
-  "complexity_confirmed": "Medium",
-  "reviewer_triggered": true,
-  "rollback_checkpoints": 2,
-  "waves_with_verification_command": 3,
+  "total_waves": 1,
   "outputs": [
-    ".wabblespec/state/plans/current-wave-plan.md"
+    "task-card.md"
   ],
+  "confidence": 1.0,
   "not_tested": []
 }

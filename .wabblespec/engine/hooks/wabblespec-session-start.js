@@ -106,6 +106,21 @@ if (state && state.task_id) {
   lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
+// ── Session memo injection ───────────────────────────────────────────────────
+// If a compaction-resistant memo was written by the PreCompact hook, inject it
+// so the agent resumes with critical in-flight state immediately visible.
+try {
+  const memoPath = path.join(process.cwd(), '.wabblespec', 'state', 'session', 'memo.md');
+  if (fs.existsSync(memoPath)) {
+    const memoContent = fs.readFileSync(memoPath, 'utf8').trim();
+    if (memoContent) {
+      lines.push('');
+      lines.push('SESSION MEMO (written before last compaction):');
+      lines.push(memoContent);
+    }
+  }
+} catch (e) { /* silent-fail */ }
+
 // ── Compaction recovery warning ──────────────────────────────────────────────
 // When context is compacted mid-workflow, the summarization may lose pending-approval state.
 // Re-inject a re-confirm reminder so the agent does not silently bypass approval gates.

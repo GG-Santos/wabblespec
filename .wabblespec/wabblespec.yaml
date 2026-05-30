@@ -1337,6 +1337,42 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+  - id: skill-tdd
+    path: .wabblespec/engine/modules/l8/skill-tdd/
+    type: skill
+    layer: L8
+    tags: [evolution, validation, tdd, quality]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [benchmark]
+    last_validated: "2026-05-30"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: benchmark-loop
+    path: .wabblespec/engine/modules/l8/benchmark-loop/
+    type: skill
+    layer: L8
+    tags: [evolution, optimization, autonomous, loop]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [benchmark]
+    last_validated: "2026-05-30"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: watzup
+    path: .wabblespec/engine/modules/l7/watzup/
+    type: skill
+    layer: L7
+    tags: [lifecycle, session, handoff, inspector]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-30"
+    quality_floor_passed: true
+    build_status: built
+
 # ─────────────────────────────────────────────
 # PHASE 3 MODULES — built 2026-05-23
 # ─────────────────────────────────────────────

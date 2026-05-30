@@ -2,43 +2,51 @@
 
 **target:** Framework
 **complexity:** High
-**locked_at:** 2026-05-29T15:20:00Z
-**session_id:** agent-creator-integration-20260529
+**locked_at:** 2026-05-30T14:05:00Z
+**session_id:** tier7-expansions-20260530
 
 ## In Scope
 
-- Restore the `framework-maintenance` L2 authority module verbatim from git `2371bea` (SKILL.md, skill-rules.json, scripts/attestation-hash.py) and re-register its `wabblespec.yaml` entry (recoverable from `2371bea`).
-- Extend `framework-maintenance` `authority.owns` beyond the verbatim list with `.claude/agents/**` and `engine/modules/l2/{reviewer,adversary,grader}/**` (to cover B1 and the review-trio canonical sources).
-- Add a `wabblespec-doctor.py` check asserting the shared-infra anchor paths have an authority owner; emits a finding when none exists (advisory, matching the doctor's current posture).
-- **B1** — add `tools: Read, Grep, Glob, Bash` to `.claude/agents/wabblespec-guard.md` and `.claude/agents/wabblespec-verifier.md`, and remove their hardcoded `model: claude-sonnet-4-6` (I6).
-- **B1 gate** — verify both subagents still return valid guard/verification JSON receipts after scoping.
-- **B2** — add negative-trigger clauses to `ref-eval`/`ref-plan`/`ref-comp` (edit `.claude/skills/` — canonical for these) and `reviewer`/`adversary`/`grader` (edit `engine/modules/l2/` source, then sync).
-- Perform all shared-infra writes under `--module framework-maintenance`, bootstrapped by one fresh `one_time_use` human Attestation; reconcile source-of-truth so `.claude/` and `engine/modules/` do not diverge.
+1. Skill Bundle Presets -- `.claude/bundles/*.yaml` + `recipe-writer.py --bundle` flag
+2. Epistemic Reminder Hook -- PostToolUse/Grep hook in `settings.json`
+3. Reference Staleness Watcher -- `wabblespec-watch-refs.py` + watermark file
+4. Session Handoff Scanner -- `watzup-scan.py` + `/watzup` skill
+5. Spec Shape Artifact -- `shape-writer.py` + Specify SKILL.md integration
+6. Internal Reference Capture -- `research-artifact-writer.py` + Executor SKILL.md integration
+7. Parallel Session Conflict Detection -- `session-conflict-check.py` + Archive pre-condition note
+8. Compaction-Resistant Session Memo -- `memo-writer.py` + PreCompact hook + SessionStart injection
+9. Post-Wave Background Reviewer -- Executor subagent spawn between wave receipt and Verifier
+10. Skill TDD Harness -- `/skill-tdd` skill with pressure-test subagent
+11. Autonomous Benchmark Loop -- `/benchmark-loop` skill with git-backed iteration and stuck detection
+12. Parallel Topology Planner -- Decompose Step 3b + wave-plan schema `execution_mode` field
+13. Transcript Auto-Handoff -- PreCompact handler + SessionStart handoff injection
+14. Pattern Inference Module -- `pattern-inference.py` + Autopilot SKILL.md Phase 0 integration
+15. Per-Plan Knowledge Notebooks -- `notebook-writer.py` + session-registry + Executor per-wave step
+16. Visual Companion for Brainstorming -- Node.js localhost server + Brainstorm SKILL.md opt-in step
+17. CRDT-Based Parallel Wave Merge -- Python CRDT module + queue-orchestrator merge phase
+18. Schema-Defined Custom Workflow -- YAML schema design + format validator (Phase 1 only; Executor integration deferred)
 
 ## Out of Scope
 
-- Rewriting foundation-hardening's closed delivery receipt / AC8 — the regression is logged (memory + this task's receipts), not retro-edited into an archived task.
-- A general "every module owns its own SKILL.md" authority-model refactor across all 103 modules — only the touched review-trio paths are added now.
-- **B3** (subagent-vs-skill rubric in CLAUDE.md / authoring conventions) — still deferred to a later Phase 2.
-- Promoting the new doctor check to blocking — advisory-first.
-- Introducing or referencing any model name (I6 hard guardrail); importing the reference's token-budget numbers; adopting the `skills:` frontmatter field.
-- Changing subagent prompt logic/behavior beyond the `tools:`/`model:` frontmatter, or skill bodies beyond the `description` string.
-- Any product-space change (I11 — framework-only).
+- Multi-Tool Skill Adapters (Cursor/Windsurf/Copilot): excluded by user directive
+- Product-space writes (I11): all work is framework-space only
+- External binary dependencies beyond Python and Node.js
+- Breaking changes to existing receipt schema or SKILL.md APIs (additive only)
+- Live browser runtime verification of visual companion
+- Full Executor integration for Schema-Defined Workflow (months-scope; Phase 1 design only)
 
 ## Assumptions
 
-- foundation-hardening v0.46.0 is complete; `framework-maintenance` was unintentionally removed in commit `2f72f1c` (git-verified) and is recoverable from `2371bea`.
-- A fresh `one_time_use` Attestation will be provided by the human (Gino) before Wave 1 executes — the agent cannot self-grant a root of trust. The spent bootstrap attestation cannot be reused.
-- `attestation-hash.py` is restored as part of the module (it was deleted with it) and validates the new bootstrap the same way the original did.
-- `ref-eval`/`ref-plan`/`ref-comp` have no engine module; `.claude/skills/` is canonical for them. `reviewer`/`adversary`/`grader` canonical source is `engine/modules/l2/<m>/SKILL.md`; `.claude/skills/` copies are sync-generated.
-- `guard-check.py authority` is the Layer-4 arbiter; PASS for the target files under `framework-maintenance` (post owns-extension) is the gate.
-- Python 3.8+ with pyyaml/duckdb available.
-- No project-standard drawers discovered in Memory.
+- All 18 expansion drawer files are FRESH and verified in this session
+- `queue-orchestrator.py`, `session-registry.py`, `receipt-writer.py`, `stop-hook.py`, `recipe-writer.py` exist as declared
+- PreCompact hook event is supported by Claude Code harness
+- PostToolUse hook with tool matcher is supported in `settings.json`
+- Node.js available for visual companion server
+- User's goal statement constitutes scope confirmation (18 items enumerated in prior table discussion)
+- No file-based project-standard drawers found; ChromaDB not queried in this phase
 
 ## Scope Change Log
 
 | timestamp | change | triggered_by |
 |---|---|---|
-| 2026-05-29T14:52:00Z | Initial scope locked (Phase 1: B1 + B2) | user-confirmed |
-| 2026-05-29T15:00:00Z | Re-framed in: remove hardcoded `model: claude-sonnet-4-6` (I6 fix) from both subagent files — discovered during Specify file read | user-confirmed |
-| 2026-05-29T15:20:00Z | Major re-frame: add framework-maintenance restore + owns extension + doctor check + attestation bootstrap; complexity Medium→High | Decompose discovered no authority owner (finding #29 regression); user confirmed unintended |
+| 2026-05-30T14:05:00Z | Initial scope locked (18 Tier 7 expansions, excl. multi-tool adapters) | user-confirmed via goal statement |

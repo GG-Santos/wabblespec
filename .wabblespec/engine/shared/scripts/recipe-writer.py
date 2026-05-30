@@ -48,6 +48,12 @@ import json
 import argparse
 from datetime import datetime, timezone
 
+try:
+    import yaml
+    _YAML_AVAILABLE = True
+except ImportError:
+    _YAML_AVAILABLE = False
+
 
 VALID_TARGETS = [
     "Framework", "Script", "Web", "API-Service", "CLI", "Mobile", "Desktop",
@@ -60,6 +66,40 @@ VALID_DETECTION = [
 ]
 
 VALID_COMPLEXITY = ["Low", "Medium", "High"]
+
+
+def find_bundles_dir(repo_root):
+    """Return path to .claude/bundles/ relative to repo root."""
+    return os.path.join(repo_root, ".claude", "bundles")
+
+
+def load_bundle(name, bundles_dir, _depth=0):
+    """Load a bundle YAML and resolve extends chains (max depth 5)."""
+    if not _YAML_AVAILABLE:
+        print("ERROR: pyyaml not installed. Install with: pip install pyyaml", file=sys.stderr)
+        sys.exit(1)
+    if _depth > 5:
+        print("ERROR: Bundle extends chain exceeded depth 5 (circular?)", file=sys.stderr)
+        sys.exit(1)
+    path = os.path.join(bundles_dir, f"{name}.yaml")
+    if not os.path.exists(path):
+        print(f"ERROR: Bundle '{name}' not found at {path}", file=sys.stderr)
+        sys.exit(1)
+    with open(path, encoding="utf-8") as f:
+        bundle = yaml.safe_load(f)
+    skills = list(bundle.get("skills", []))
+    parent = bundle.get("extends")
+    if parent:
+        parent_skills = load_bundle(parent, bundles_dir, _depth + 1)
+        # Parent skills first, child skills override (dedup preserving order)
+        seen = set()
+        merged = []
+        for s in parent_skills + skills:
+            if s not in seen:
+                seen.add(s)
+                merged.append(s)
+        skills = merged
+    return skills
 
 
 def find_wabblespec(start_dir=None):
@@ -117,9 +157,27 @@ def main():
                         help="Mark input_quality.broad = true (triggers Enhance).")
     parser.add_argument("--wabblespec-dir", metavar="PATH",
                         help="Explicit path to .wabblespec/ directory.")
+    parser.add_argument("--execution-mode", metavar="PATTERN",
+                        help="Orchestration pattern from pattern-inference.py "
+                             "(e.g. hierarchical, pipeline, swarm, jury). "
+                             "Written to recipe.json as execution_pattern.")
+    parser.add_argument("--bundle", metavar="NAME",
+                        help="Load active_skills from .claude/bundles/<NAME>.yaml "
+                             "(overrides --skills if both given).")
     parser.add_argument("--dry-run", action="store_true")
 
     args = parser.parse_args()
+
+    # Resolve bundle -> skills before building recipe
+    if args.bundle:
+        ws_tmp = args.wabblespec_dir or find_wabblespec()
+        if ws_tmp is None:
+            print("ERROR: Cannot find .wabblespec/ to resolve bundle.", file=sys.stderr)
+            sys.exit(2)
+        repo_root = os.path.dirname(ws_tmp)
+        bundles_dir = find_bundles_dir(repo_root)
+        bundle_skills = load_bundle(args.bundle, bundles_dir)
+        args.skills = bundle_skills  # override --skills
 
     if not 0.0 <= args.confidence <= 1.0:
         print("ERROR: --confidence must be between 0.0 and 1.0", file=sys.stderr)
@@ -142,6 +200,7 @@ def main():
         "secondary_targets": args.secondary_targets,
         "collapse_eligible": args.collapse_eligible,
         "active_skills": args.skills,
+        "execution_pattern": args.execution_mode or None,
         "input_quality": {
             "vague": args.vague,
             "broad": args.broad,

@@ -1,0 +1,35 @@
+{
+  "module": "benchmark-loop",
+  "layer": "L8",
+  "tier": 3,
+  "activators": [
+    "/benchmark-loop",
+    "autonomous metric optimization",
+    "iterative quality improvement loop",
+    "benchmark loop",
+    "optimize score iteratively"
+  ],
+  "anti_activators": [
+    "one-shot quality measurement",
+    "working tree has uncommitted changes",
+    "no verify command available",
+    "no git repository"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["post-build"],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/experiments/benchmark-loop/"
+    ],
+    "reads": [
+      ".wabblespec/state/receipts/**"
+    ]
+  },
+  "verification_mode": "Measurement",
+  "receipt_required": false,
+  "collapse_eligible": false,
+  "loading_gate": "activation",
+  "commands": ["/benchmark-loop"],
+  "file_path_patterns": []
+}

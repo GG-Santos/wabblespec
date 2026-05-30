@@ -2,17 +2,25 @@
   "receipt_type": "scopeframe",
   "module": "scope-frame",
   "layer": "L1",
-  "session_id": "phase2-script-delegation-20260528",
-  "task_id": "phase2-script-delegation-20260528",
-  "status": "PASS",
-  "timestamp": "2026-05-28T12:01:30Z",
-  "in_scope_count": 6,
-  "out_of_scope_count": 6,
-  "assumptions_count": 6,
-  "user_confirmed": true,
-  "scope_changes": 0,
-  "outputs": [
-    ".wabblespec/state/scope.md"
+  "phase": "Research",
+  "wave": 1,
+  "timestamp": "2026-05-30T13:57:51Z",
+  "session_id": "tier7-expansions-20260530",
+  "task_id": "tier7-expansions-20260530",
+  "checks_run": [
+    "scope-boundaries-declared",
+    "in-scope-nonempty",
+    "out-of-scope-nonempty",
+    "assumptions-declared"
   ],
-  "not_tested": []
+  "checks_passed": [],
+  "evidence": [],
+  "outputs": [],
+  "in_scope_count": 0,
+  "out_of_scope_count": 0,
+  "assumptions_count": 0,
+  "user_confirmed": true,
+  "status": "PASS",
+  "not_tested": [],
+  "confidence": 0.9
 }

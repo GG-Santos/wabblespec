@@ -1,16 +1,29 @@
 {
   "receipt_type": "executor",
-  "task_id": "phase2-script-delegation-20260528",
-  "session_id": "phase2-script-delegation-20260528",
+  "task_id": "tier7-expansions-20260530",
+  "session_id": "tier7-expansions-20260530",
   "status": "PASS",
   "wave": 1,
-  "wave_of": 3,
+  "wave_of": 6,
   "modules_activated": [],
   "files_written": [
-    ".wabblespec/engine/shared/references/script-delegation-contract.md"
+    ".claude/bundles/ref-adopt.yaml",
+    ".claude/bundles/code-review.yaml",
+    ".claude/bundles/evolution.yaml",
+    ".claude/bundles/maintenance.yaml",
+    ".wabblespec/engine/shared/scripts/recipe-writer.py",
+    ".wabblespec/engine/shared/scripts/wabblespec-watch-refs.py",
+    ".wabblespec/state/memory/wings/references/watch-watermarks.json",
+    ".wabblespec/engine/shared/scripts/watzup-scan.py",
+    ".wabblespec/engine/shared/scripts/shape-writer.py",
+    ".wabblespec/engine/shared/scripts/session-conflict-check.py",
+    ".wabblespec/engine/hooks/wabblespec-epistemic-reminder.js",
+    ".claude/settings.json",
+    ".wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json"
   ],
-  "summary": "Audited all engine/modules SKILL.md files; identified 6 skills with manual framework writes; wrote script-delegation-contract.md mapping all 4 delegation scripts with complete CLI examples",
+  "summary": "Wave 1 complete: 4 bundle YAMLs, 5 new scripts, epistemic hook, PostToolUse/Grep wiring, recipe-writer --bundle flag, owns extension",
+  "confidence": 1.0,
   "not_tested": [],
   "delta_class": "ADDITIVE",
-  "executed_at": "2026-05-28T07:38:03Z"
+  "executed_at": "2026-05-30T14:10:35Z"
 }
