@@ -74,9 +74,23 @@ Invoke `modules/l2/adversary` with:
 - `challenger_mode`: "open"
 - `challenge_scope`: "code-quality-only"
 
-Adversary challenges implementation quality: maintainability, security, efficiency, error handling, naming. Spec compliance is assumed satisfied by Stage A. Record the receipt path in `adversary_receipt_path[1]` as `adversary-receipt-quality-<timestamp>.json`.
+Adversary challenges implementation quality: maintainability, efficiency, error handling, naming. Spec compliance is assumed satisfied by Stage A. Record the receipt path in `adversary_receipt_path[1]` as `adversary-receipt-quality-<timestamp>.json`.
 
-Do not reproduce or interpret Adversary's logic in either stage. Adversary is the authority on its own analysis. If any Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader for that stage.
+If Stage B Grader verdict is REVISE on a HIGH concern, return guidance. Do not proceed to Stage C if Stage B returns a blocking REVISE.
+
+**Stage C — Security** (runs after Stage B ACCEPT or minor REVISE only)
+
+Invoke `modules/l2/adversary` with:
+- `artifact_to_challenge`: the primary output
+- `challenger_mode`: "open"
+- `challenge_scope`: "security-only"
+- `challenge_prompt_override`: contents of `.wabblespec/engine/shared/review/security.txt`
+
+Adversary challenges: trust-boundary failures, injection risks, secret exposure, insecure execution, auth gaps, cryptographic weaknesses. Record the receipt path in `adversary_receipt_path[2]` as `adversary-receipt-security-<timestamp>.json`.
+
+Security findings with `confidence >= 0.7` that are CRITICAL or HIGH route immediately to the Security gateway (L4) in addition to the normal Grader evaluation — do not suppress them if Stage C Grader returns ACCEPT overall.
+
+Do not reproduce or interpret Adversary's logic in any stage. Adversary is the authority on its own analysis. If any Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader for that stage.
 
 ### Step 3 — Grader evaluation
 
@@ -144,7 +158,7 @@ Base receipt schema. Extension fields:
   },
   "adversary_receipt_path": {
     "type": "array",
-    "description": "Paths to the two stage adversary receipts: [0] spec-compliance, [1] code-quality. Null entries if that stage did not run. Null if triggered = false."
+    "description": "Paths to the three stage adversary receipts: [0] spec-compliance, [1] code-quality, [2] security. Null entries if that stage did not run. Null if triggered = false."
   },
   "grader_receipt_path": {
     "type": "string",

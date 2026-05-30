@@ -134,10 +134,8 @@ def main() -> int:
 
     # Unstage machine-local paths — must not propagate to other machines
     _LOCAL_ONLY = [
-        ".wabblespec/state/session/",           # active session state
-        ".wabblespec/state/reviews/pending/",   # machine-specific diff extractions
-        ".wabblespec/state/reviews/daemon/",    # PID file, daemon log
-        ".wabblespec/state/reviews/reviews.db", # SQLite binary (use queue.json instead)
+        ".wabblespec/state/session/",         # active session state (machine-specific)
+        ".wabblespec/state/reviews/pending/", # machine-specific diff extractions
     ]
     for local_path in _LOCAL_ONLY:
         _git("restore", "--staged", local_path, cwd=ROOT)

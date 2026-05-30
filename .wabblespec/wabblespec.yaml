@@ -769,6 +769,42 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+  - id: wave-reviewer
+    path: .wabblespec/engine/modules/l2/wave-reviewer/
+    type: skill
+    layer: L2
+    tags: [review, code-quality, security, parallel-agents, git-diff]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [verifier, reviewer, grader, triage]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: wave-fix
+    path: .wabblespec/engine/modules/l2/wave-fix/
+    type: skill
+    layer: L2
+    tags: [review, fix, code-quality]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [wave-reviewer]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
+  - id: wave-refine
+    path: .wabblespec/engine/modules/l2/wave-refine/
+    type: skill
+    layer: L2
+    tags: [review, fix, iteration, code-quality]
+    produces_schemas: [shared/schemas/receipt.base.schema.json]
+    consumes_schemas: [shared/schemas/receipt.base.schema.json]
+    depends_on: [wave-reviewer, wave-fix]
+    last_validated: ""
+    quality_floor_passed: true
+    build_status: built
+
 # ─────────────────────────────────────────────
 # L3 — PLATFORM PACKAGES
 # ─────────────────────────────────────────────

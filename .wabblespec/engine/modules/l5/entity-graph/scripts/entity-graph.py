@@ -54,6 +54,7 @@ KNOWN_MODULES = {
     "homowabian", "economy", "document", "polish", "research-log",
     "instinct", "synth", "blueprint", "factory", "augment",
     "benchmark", "forge", "retro", "feedback",
+    "wave-reviewer", "wave-review", "wave-fix", "wave-refine",
 }
 
 # ── Path-like pattern ─────────────────────────────────────────────────────────

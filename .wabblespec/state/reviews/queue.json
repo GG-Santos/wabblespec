@@ -38,5 +38,15 @@
     "pending_path": "",
     "verdict": null,
     "receipt_path": null
+  },
+  {
+    "ref": "HEAD",
+    "resolved_ref": "e67d345",
+    "review_type": "standard",
+    "queued_at": "2026-05-30T07:14:54Z",
+    "status": "pending",
+    "pending_path": "",
+    "verdict": null,
+    "receipt_path": null
   }
 ]

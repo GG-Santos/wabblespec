@@ -76,6 +76,7 @@ Run the check declared in the wave plan entry's `verification_mode`:
 | **Measurement** | Read the declared metric from the artifact or test output. Compare to the threshold declared in the wave plan. PASS = threshold met or exceeded. |
 | **Attestation** | Pause execution. Surface the wave output to the user. Await explicit confirmation. PASS = user confirms. No automated path to PASS. |
 | **Demonstration** | Run the working proof against real conditions (not mocks). PASS = declared behavior confirmed. FAIL = behavior did not occur — describe what happened instead. |
+| **Async-Review** | Trigger `wave-review.py --ref HEAD` to prep a pending review job, then return PROVISIONAL_PASS immediately — do not block the wave. The review runs in the next session via `/wave-review`. If a previous Async-Review result exists in the wave-queue (status FAIL), surface it as a FAIL before accepting PROVISIONAL_PASS for this wave. |
 
 ### Step 3 — Issue verdict
 
@@ -194,7 +195,7 @@ Base receipt schema. Extension fields:
 {
   "wave": "integer",
   "verification_mode": "Test|Review|Audit|Measurement|Observation|Attestation|Demonstration",
-  "verdict": "PASS|FAIL|BLOCKED",
+  "verdict": "PASS|FAIL|BLOCKED|PROVISIONAL_PASS",
   "spec_compliance": "PASS|FAIL",
   "revise_cycles_used": "integer — 0 to 3",
   "immediate_blocked": "boolean",
