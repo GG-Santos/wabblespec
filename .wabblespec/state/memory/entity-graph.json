@@ -1,10 +1,29 @@
 {
   "version": "1.0",
-  "generated": "2026-05-30T12:54:57.470438+00:00",
-  "drawers_scanned": 76,
-  "node_count": 164,
-  "edge_count": 837,
+  "generated": "2026-05-30T13:09:22.353815+00:00",
+  "drawers_scanned": 82,
+  "node_count": 170,
+  "edge_count": 844,
   "nodes": [
+    {
+      "id": "module::executor",
+      "type": "module",
+      "label": "executor",
+      "drawer_count": 11,
+      "drawer_ids": [
+        "superpowers-connector-skepticism",
+        "l8-evolution-chain-20260525",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "apply-delta-classification-20260525",
+        "module-order-rationale-20260520",
+        "error-taxonomy-key-types-20260525",
+        "receipt-gating-rationale-20260525",
+        "spec-single-source-of-truth-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
     {
       "id": "module::guard",
       "type": "module",
@@ -44,30 +63,14 @@
       ]
     },
     {
-      "id": "module::executor",
-      "type": "module",
-      "label": "executor",
-      "drawer_count": 10,
-      "drawer_ids": [
-        "l8-evolution-chain-20260525",
-        "executor-wave-protocol-20260525",
-        "autopilot-orchestration-20260525",
-        "archive-module-behavior-20260525",
-        "apply-delta-classification-20260525",
-        "module-order-rationale-20260520",
-        "error-taxonomy-key-types-20260525",
-        "receipt-gating-rationale-20260525",
-        "spec-single-source-of-truth-20260525",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
       "id": "module::verifier",
       "type": "module",
       "label": "verifier",
-      "drawer_count": 8,
+      "drawer_count": 10,
       "drawer_ids": [
         "tier7-postwave-reviewer",
+        "superpowers-architecture-escalation",
+        "superpowers-connector-skepticism",
         "verifier-check-types-20260520",
         "executor-wave-protocol-20260525",
         "autopilot-orchestration-20260525",
@@ -90,6 +93,21 @@
         "version-progression-20260525",
         "wave5-param-learner-gating-20260525",
         "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::document",
+      "type": "module",
+      "label": "document",
+      "drawer_count": 7,
+      "drawer_ids": [
+        "superpowers-tier7-skill-tdd-harness",
+        "l8-evolution-chain-20260525",
+        "document-cross-link-enforcement-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "error-taxonomy-key-types-20260525",
+        "layer-architecture-overview-20260525",
+        "capability-routing-design-20260525"
       ]
     },
     {
@@ -122,20 +140,6 @@
       ]
     },
     {
-      "id": "module::document",
-      "type": "module",
-      "label": "document",
-      "drawer_count": 6,
-      "drawer_ids": [
-        "l8-evolution-chain-20260525",
-        "document-cross-link-enforcement-20260525",
-        "benchmark-axis-decomposition-20260525",
-        "error-taxonomy-key-types-20260525",
-        "layer-architecture-overview-20260525",
-        "capability-routing-design-20260525"
-      ]
-    },
-    {
       "id": "module::recipe",
       "type": "module",
       "label": "recipe",
@@ -147,6 +151,19 @@
         "error-taxonomy-key-types-20260525",
         "layer-architecture-overview-20260525",
         "hook-architecture-detail-20260525"
+      ]
+    },
+    {
+      "id": "module::benchmark",
+      "type": "module",
+      "label": "benchmark",
+      "drawer_count": 5,
+      "drawer_ids": [
+        "superpowers-tier7-skill-tdd-harness",
+        "l8-evolution-chain-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "l8-corpus-gate-criteria-20260525",
+        "layer-architecture-overview-20260525"
       ]
     },
     {
@@ -170,18 +187,6 @@
         "dream-module-behavior-20260525",
         "autopilot-orchestration-20260525",
         "version-progression-20260525",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
-      "id": "module::benchmark",
-      "type": "module",
-      "label": "benchmark",
-      "drawer_count": 4,
-      "drawer_ids": [
-        "l8-evolution-chain-20260525",
-        "benchmark-axis-decomposition-20260525",
-        "l8-corpus-gate-criteria-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -492,6 +497,16 @@
       ]
     },
     {
+      "id": "file::writing-skills/SKILL.md",
+      "type": "file",
+      "label": "writing-skills/SKILL.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "superpowers-cso-description-rule",
+        "superpowers-tier7-skill-tdd-harness"
+      ]
+    },
+    {
       "id": "file::ADDITIVE/COSMETIC",
       "type": "file",
       "label": "ADDITIVE/COSMETIC",
@@ -516,6 +531,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::Instinct/Synth",
+      "type": "file",
+      "label": "Instinct/Synth",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "superpowers-tier7-skill-tdd-harness"
       ]
     },
     {
@@ -672,6 +696,15 @@
       ]
     },
     {
+      "id": "file::architecture/design",
+      "type": "file",
+      "label": "architecture/design",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "superpowers-task-complexity-signals"
+      ]
+    },
+    {
       "id": "concept::archive module behavior and delivery receipt",
       "type": "concept",
       "label": "archive module behavior and delivery receipt",
@@ -768,6 +801,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::cheap/fast",
+      "type": "file",
+      "label": "cheap/fast",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "superpowers-task-complexity-signals"
       ]
     },
     {
@@ -1275,6 +1317,15 @@
       ]
     },
     {
+      "id": "file::scripts/server.cjs",
+      "type": "file",
+      "label": "scripts/server.cjs",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "superpowers-tier7-visual-companion"
+      ]
+    },
+    {
       "id": "file::secondary/unverified",
       "type": "file",
       "label": "secondary/unverified",
@@ -1335,6 +1386,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "skill-factory-gaps-20260520"
+      ]
+    },
+    {
+      "id": "file::skills/brainstorming/visual-companion.md",
+      "type": "file",
+      "label": "skills/brainstorming/visual-companion.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "superpowers-tier7-visual-companion"
       ]
     },
     {
@@ -1602,13 +1662,13 @@
   "edges": [
     {
       "source": "module::executor",
-      "target": "module::guard",
+      "target": "module::verifier",
       "weight": 6
     },
     {
       "source": "module::executor",
-      "target": "module::verifier",
-      "weight": 5
+      "target": "module::guard",
+      "weight": 6
     },
     {
       "source": "module::guard",
@@ -1634,6 +1694,11 @@
       "source": "module::executor",
       "target": "module::specify",
       "weight": 5
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::document",
+      "weight": 4
     },
     {
       "source": "module::guard",
@@ -1678,11 +1743,6 @@
     {
       "source": "module::augment",
       "target": "module::instinct",
-      "weight": 3
-    },
-    {
-      "source": "module::benchmark",
-      "target": "module::document",
       "weight": 3
     },
     {
@@ -2128,6 +2188,41 @@
     {
       "source": "concept::tier 7 expansion: post-wave background subagent that surfaces instinct-candidate patterns before verifier",
       "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "file::architecture/design",
+      "target": "file::cheap/fast",
+      "weight": 1
+    },
+    {
+      "source": "file::Instinct/Synth",
+      "target": "file::writing-skills/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Instinct/Synth",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::Instinct/Synth",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::writing-skills/SKILL.md",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::writing-skills/SKILL.md",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::scripts/server.cjs",
+      "target": "file::skills/brainstorming/visual-companion.md",
       "weight": 1
     },
     {

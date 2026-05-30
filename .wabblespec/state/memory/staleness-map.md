@@ -1,15 +1,15 @@
 # Staleness Map
 
-> Generated: 2026-05-30T12:54:53.433140+00:00
-> Drawers: 76
+> Generated: 2026-05-30T13:09:18.295758+00:00
+> Drawers: 82
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9589 (+0.0046) | - |
-| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9690 (+0.0034) | - |
-| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9794 (+0.0023) | - |
+| - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9630 (+0.0041) | - |
+| - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9721 (+0.0031) | - |
+| - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9815 (+0.0021) | - |
 | verifier-check-types-20260520 | Verifier Check Types | implementation/verifier | FRESH | 0.9996 | 2026-05-20T14:00:00Z |
 | skill-factory-gaps-20260520 | Skill Factory Gaps and WabbleSpec Templates | implementation/skill-factory | FRESH | 0.9996 | 2026-05-20T10:00:00Z |
 | guard-invariant-list-20260520 | Guard Module Invariant Enforcement | implementation/guard | FRESH | 0.9996 | 2026-05-20T11:00:00Z |
@@ -37,6 +37,12 @@ Sorted by state (worst first), then confidence ascending.
 | - | - | references/openspec | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
 | - | - | references/roborev | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
+| - | - | references/superpowers | FRESH | 1.0000 | - |
 | stm-pipeline-transforms-20260525 | STM Pipeline Transform Configuration | implementation/stm-pipeline | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | ears-syntax-requirements-20260525 | EARS Syntax for WabbleSpec Requirements | implementation/specify | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
 | red-blue-purple-9-component-20260525 | Red/Blue/Purple 9-Component Scoring Model | implementation/security | FRESH | 1.0000 | 2026-05-25T14:37:42Z |
@@ -86,4 +92,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 76
+- FRESH: 82
