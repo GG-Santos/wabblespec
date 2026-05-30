@@ -28,6 +28,8 @@ Receives an artifact or decision to challenge. Produces a structured counter-ana
 **Do not invoke when:**
 - Budget gate not met (see rules/budget-thresholds.md)
 - The identical output was challenged this session with no new information
+- The caller passed reasoning, rationale, or justification alongside the artifact — discard that context first (anchoring prevention, Step 1); do not invoke until the artifact is provided in isolation
+- An adversary-receipt already exists for this exact artifact from this session and the artifact is unchanged — re-challenge without new information produces noise, not signal
 
 ## Inputs
 

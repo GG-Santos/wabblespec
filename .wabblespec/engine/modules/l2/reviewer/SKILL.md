@@ -23,6 +23,8 @@ Checks whether budget gate conditions are met. If triggered: Adversary generates
 - All impact conditions are LOW
 - Confidence is ≥ 0.7 on a routine implementation decision
 - The identical decision was reviewed this session and no new information has emerged
+- The artifact already has both adversary and grader receipts from this session and neither the artifact nor the spec has changed — re-review adds cost with no quality gain
+- The caller is presenting the revision guidance itself for evaluation rather than a revised artifact — Reviewer evaluates artifacts, not its own prior outputs
 
 When budget gate is not met: log "Reviewer not triggered — gate conditions not met," return primary output unchanged, write receipt with `triggered: false`.
 
@@ -152,6 +154,8 @@ Base receipt schema. Extension fields:
 ```
 
 **Finding schema:** Each finding in the `findings` array must validate against `modules/l2/reviewer/schemas/finding.schema.json`. Required fields per finding: `finding_id`, `severity`, `category`, `description`, `evidence`, `fix_recommendation`, `confidence`. Only include findings with `confidence >= 0.7`.
+
+**Finding presentation order:** Sort findings HIGH → MEDIUM → LOW. Within each severity tier, group by file to minimize context switches for the module acting on the findings. Multi-file findings at the same severity appear together. This ordering is mandatory — unsorted findings degrade Executor's fix efficiency.
 
 **Triage wiring:** When Reviewer produces findings with severity CRITICAL or HIGH, write `finding_id` values to the Triage module as new triage records. Security-category findings route immediately to L4 Security gateway.
 

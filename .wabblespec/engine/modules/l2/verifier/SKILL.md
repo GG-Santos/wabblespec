@@ -25,6 +25,8 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 
 **Do not use when:**
 - Wave implementation has not completed (Verifier runs after the wave, not during)
+- The wave output artifacts do not yet exist at their declared paths — check paths before invoking; a missing artifact is a spec compliance failure to report, not a reason to defer invocation
+- You are mid-REVISE cycle and Executor has not yet re-implemented the failing criterion — Verifier re-runs after Executor's fix, not before
 
 ## Inputs
 
@@ -98,6 +100,11 @@ Cycle 1:
   Return recommendation to Executor
   Executor re-implements → Verifier re-runs from Step 1
 
+  SCOPE RULE: Re-run from Step 1 (spec compliance check) after each Executor
+  revision — do not re-check only the failing criterion. A fix can introduce a
+  regression in a previously-passing criterion. The full wave spec-compliance
+  plus mode check must re-pass before issuing PASS.
+
 Cycle 2: same process
 
 Cycle 3: same process
@@ -111,6 +118,8 @@ Cycle 4+: BLOCKED
 Cycle count resets at each new wave. A wave that consumed 2 REVISE cycles does not carry that count into the next wave.
 
 ### Step 5 — Write verification receipt
+
+**Closure ordering:** Write the verification receipt and issue the PASS/FAIL/BLOCKED signal for the current wave BEFORE Executor invokes any module for the next wave. Do not treat next-wave setup as a prerequisite for closing the current wave's verification record. A verification receipt that is deferred until after the next wave begins is an open receipt chain — this is an I10 violation.
 
 Always write this, regardless of verdict.
 

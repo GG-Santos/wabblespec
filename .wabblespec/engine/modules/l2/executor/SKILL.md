@@ -53,6 +53,8 @@ Canonical input paths:
 
 ### Pre-execution prologue (once, before Wave 1)
 
+**Context-first rule:** Before invoking any tool or re-deriving state, check the conversation context. If a prior wave's output or a user message already satisfies a step, skip that step's tool calls. Re-deriving state that is already present wastes context budget and slows execution.
+
 Before any wave begins, confirm `decompose-receipt.json` exists. Then write the enforcement prologue to `.wabblespec/state/session/state.json`:
 
 ```json
@@ -136,6 +138,8 @@ Handle Verifier result:
 - BLOCKED → surface to user for Attestation, pause execution
 
 **5. Write wave receipt**
+
+**Heredoc rule:** When passing spec prose, acceptance criteria text, or review-derived content as arguments to a shell command, always use a heredoc — not inline string interpolation. Spec content may contain shell metacharacters that would cause unintended execution or argument splitting.
 
 ```bash
 python .wabblespec/engine/shared/scripts/receipt-writer.py \

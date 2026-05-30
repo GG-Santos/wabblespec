@@ -21,6 +21,12 @@ Receives primary output, Adversary counter-analysis, and a spec artifact. Evalua
 
 Grader is always invoked after Adversary. Do not invoke Grader without an Adversary receipt — the counter-analysis is required input. If Adversary receipt is missing or status = FAIL, halt and surface to caller.
 
+## When NOT to use
+
+- Adversary receipt is absent or status = FAIL — halt; do not substitute your own counter-analysis for the missing receipt
+- The primary output has changed since the Adversary receipt was written — re-run Adversary first; Grader evaluates against a specific counter-analysis, not a stale one
+- A grader-receipt already exists for this exact (primary output, adversary receipt) pair and neither has changed — re-grading without new Adversary input adds noise, not signal
+
 ## Inputs
 
 | Field | Type | Required | Description |
