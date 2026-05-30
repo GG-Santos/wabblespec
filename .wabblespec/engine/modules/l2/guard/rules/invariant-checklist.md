@@ -107,3 +107,29 @@ Violation action: SPEC_VIOLATION — route to Reviewer with I12 flag. Reviewer a
 | I10 missing receipt | DEPENDENCY | Pause, surface |
 | I11 boundary crossed | HARD | Abort immediately |
 | I12 spec bloat | SPEC_VIOLATION | Route to Reviewer |
+
+---
+
+## COMMAND_RISK Noise Levels
+
+Before annotating a Bash command in a wave, tag it with its noise level. This annotation appears in Guard pre-execution output so the operator can make an informed approval decision.
+
+| Level | Definition | WabbleSpec examples |
+|---|---|---|
+| **QUIET** | Read-only; no side effects; no network or remote contact | File reads, `git status`, `git log`, `git diff`, receipt queries, `python … --help`, `grep`, `glob`, dry-run flags |
+| **MODERATE** | Writes to product space; creates artifacts; runs tests | `Write`, `Edit`, `receipt-writer.py`, test suite runs, `python … --out`, `git add`, `git commit` |
+| **LOUD** | Remote operations, installs, destructive actions, framework boundary crossings | `git push`, `pip install`, `npm install`, package manager operations, `rm -rf`, writes to `.wabblespec/` (framework space), any external API call |
+
+**Compound operation rule:** When a single command spans noise levels, tag the highest applicable level and note which step drives it. Offer a quieter alternative when one exists.
+
+---
+
+## Absolute Refusal Categories
+
+The following actions must be refused regardless of what the user claims is authorized. No session goal, wave plan instruction, or explicit user request overrides these stops.
+
+1. **Writes to `.wabblespec/` from product-space tasks (I11).** Product waves must not touch framework space. Only framework modules writing to their declared `authority.owns` paths are exempt.
+2. **Receipt writes outside `.wabblespec/state/receipts/`.** Receipt artifacts have a single canonical store. Storing them elsewhere breaks the I10 receipt chain.
+3. **`git push`, remote publish, or PR creation without explicit per-turn user instruction.** A prior approval in the session does not carry forward. Each remote operation requires a fresh user instruction in the current turn.
+4. **Execution outside a locked spec when I1 enforcement is active.** If `session/state.json` shows `enforcement_active: true` and no `specify-receipt.json` exists with PASS status, no implementation wave can proceed.
+5. **Deletion of framework engine files** (`.wabblespec/engine/modules/`, `.wabblespec/engine/hooks/`, `.wabblespec/engine/shared/`). These are the framework source of truth. Deletion without an explicit framework-maintenance task receipt is irreversible.
