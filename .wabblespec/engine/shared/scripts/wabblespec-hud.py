@@ -374,10 +374,11 @@ def render(no_git: bool, no_usage: bool, compact: bool) -> str:
         parts1.append(dim('IDLE'))
 
     if branch or remote:
-        repo_part = dim(remote) if remote else dim('Local')
-        branch_part = spr(f' ({branch})') if branch else ''
-        dirty_part = f' {yel("(changes)")}' if dirty else ''
-        parts1.append(repo_part + branch_part + dirty_part)
+        module_color = MODULE_COLOR.get((state or {}).get('active_module', ''), PUR) if dirty else None
+        branch_color = module_color if dirty else SPR
+        repo_part    = dim(remote) if remote else dim('Local')
+        branch_part  = f' {_c(branch_color, f"({branch})")}' if branch else ''
+        parts1.append(repo_part + branch_part)
 
     if usage:
         fh = usage.get('fiveHour')
