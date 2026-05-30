@@ -106,6 +106,23 @@ if (state && state.task_id) {
   lines.push('  I11 — NO WRITES to .wabblespec/ from product-space tasks.');
 }
 
+// ── Compaction recovery warning ──────────────────────────────────────────────
+// When context is compacted mid-workflow, the summarization may lose pending-approval state.
+// Re-inject a re-confirm reminder so the agent does not silently bypass approval gates.
+try {
+  const stdinData = fs.readFileSync(0, { encoding: 'utf-8', flag: 'r' }).trim();
+  if (stdinData) {
+    const eventData = JSON.parse(stdinData);
+    if (eventData && eventData.source === 'compact') {
+      lines.push('');
+      lines.push('CONTEXT COMPACTED - APPROVAL STATE CHECK:');
+      lines.push('If you were waiting for user approval at any gate (plan review, wave execute, or attestation),');
+      lines.push('you MUST re-confirm with the user before proceeding. Do NOT assume approval was given.');
+      lines.push('Ask the user to confirm approval before continuing work.');
+    }
+  }
+} catch (e) { /* silent-fail — stdin may not be available in all invocation contexts */ }
+
 // ── Review queue cross-machine reconciliation ────────────────────────────────
 // Run review-sync.py to reconcile any entries in queue.json that arrived via
 // git pull from other machines. Silent-fail — never blocks session start.
