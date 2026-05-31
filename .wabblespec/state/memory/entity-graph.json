@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "generated": "2026-05-31T12:10:51.800224+00:00",
-  "drawers_scanned": 174,
-  "node_count": 339,
-  "edge_count": 1268,
+  "generated": "2026-05-31T14:50:44.830766+00:00",
+  "drawers_scanned": 176,
+  "node_count": 344,
+  "edge_count": 1274,
   "nodes": [
     {
       "id": "module::executor",
@@ -645,6 +645,15 @@
       ]
     },
     {
+      "id": "file::15/16",
+      "type": "file",
+      "label": "15/16",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-gap-test-coverage-for-20260531"
+      ]
+    },
+    {
       "id": "concept::3-tier evidence hierarchy for conflict resolution in verifier",
       "type": "concept",
       "label": "3-tier evidence hierarchy for conflict resolution in verifier",
@@ -687,6 +696,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::799/N",
+      "type": "file",
+      "label": "799/N",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-gap-test-coverage-for-20260531"
+      ]
+    },
+    {
+      "id": "file::800/N",
+      "type": "file",
+      "label": "800/N",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-gap-test-coverage-for-20260531"
       ]
     },
     {
@@ -2013,6 +2040,15 @@
       ]
     },
     {
+      "id": "concept::open_thread: gap: test coverage for bloated_skill and over_constrained thresholds",
+      "type": "concept",
+      "label": "open_thread: gap: test coverage for bloated_skill and over_constrained thresholds",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-gap-test-coverage-for-20260531"
+      ]
+    },
+    {
       "id": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
       "type": "concept",
       "label": "open_thread: tier 7 expansion: c4 architecture diagram generation",
@@ -3162,6 +3198,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "working-solution-win-four-skill-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: missing_trigger flag added beyond plan",
+      "type": "concept",
+      "label": "working_solution: win: missing_trigger flag added beyond plan",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-missing-trigger-20260531"
       ]
     },
     {
@@ -4543,6 +4588,36 @@
     {
       "source": "file::imagen/reference.md",
       "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: gap: test coverage for bloated_skill and over_constrained thresholds",
+      "target": "file::15/16",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: gap: test coverage for bloated_skill and over_constrained thresholds",
+      "target": "file::799/N",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: gap: test coverage for bloated_skill and over_constrained thresholds",
+      "target": "file::800/N",
+      "weight": 1
+    },
+    {
+      "source": "file::15/16",
+      "target": "file::799/N",
+      "weight": 1
+    },
+    {
+      "source": "file::15/16",
+      "target": "file::800/N",
+      "weight": 1
+    },
+    {
+      "source": "file::799/N",
+      "target": "file::800/N",
       "weight": 1
     },
     {

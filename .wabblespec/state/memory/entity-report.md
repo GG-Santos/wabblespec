@@ -1,14 +1,14 @@
 # Entity Graph Report
 
-> Generated: 2026-05-31T12:10:51.800224+00:00
-> Drawers scanned: 174
-> Nodes: 339  Edges: 1268
+> Generated: 2026-05-31T14:50:44.830766+00:00
+> Drawers scanned: 176
+> Nodes: 344  Edges: 1274
 
 ## Entity Type Breakdown
 
-- concept: 106
+- concept: 108
 - module: 32
-- file: 201
+- file: 204
 
 ## Top 20 Entities by Degree (most connected)
 

@@ -498,7 +498,7 @@
       "room": "claude-ads-main",
       "staleness_state": "FRESH",
       "path": "wings/references/rooms/claude-ads-main/drawers/reference-card-20260531.json",
-      "confidence": 0.9982
+      "confidence": 0.9984
     },
     {
       "id": "claude-ads-main-quick-wins-filter-20260531",
@@ -555,7 +555,7 @@
       "room": "andrej-karpathy-skills-main",
       "staleness_state": "FRESH",
       "path": "wings/references/rooms/andrej-karpathy-skills-main/drawers/reference-card-20260531.json",
-      "confidence": 0.9974
+      "confidence": 0.9977
     }
   ]
 }

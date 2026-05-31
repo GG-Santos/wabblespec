@@ -1,58 +1,60 @@
 # Staleness Map
 
-> Generated: 2026-05-31T12:10:47.248982+00:00
-> Drawers: 174
+> Generated: 2026-05-31T14:50:36.480048+00:00
+> Drawers: 176
 
 Sorted by state (worst first), then confidence ascending.
 
 | Drawer ID | Topic | Wing/Room | State | Confidence | Written At |
 |---|---|---|---|---|---|
-| expansion-candidate-structured-l8-20260531 | EXPANSION_CANDIDATE: structured L8 experiment document format (hypothesis/variants/status/winner/learnings) | references/agent-toolkit | FRESH | 0.6719 (+0.0364) | 2026-05-31T11:58:09Z |
-| open-thread-tier-7-expansion-c4-20260531 | OPEN_THREAD: Tier 7 expansion: C4 architecture diagram generation | references/agents-main | FRESH | 0.7813 (+0.0243) | 2026-05-31T12:04:48Z |
-| open-thread-tier-7-expansion-quality-20260531 | OPEN_THREAD: Tier 7 expansion: quality-suite (quality-score.py + quality-rank.py + quality-judge.py) | references/agents-main | FRESH | 0.8542 (+0.0162) | 2026-05-31T12:04:40Z |
-| expansion-gateway-aesthetic-tier-3-20260531 | EXPANSION: gateway-aesthetic Tier 3 reference for React View Transitions | references/agent-skills-main | FRESH | 0.8671 (+0.0148) | 2026-05-31T11:51:02Z |
-| expansion-candidate-database-connector-20260531 | EXPANSION_CANDIDATE: database connector skills (postgres/mysql/mssql) | references/ai-skills-main | FRESH | 0.8688 (+0.0146) | 2026-05-31T11:59:37Z |
-| expansion-candidate-native-image-20260531 | EXPANSION_CANDIDATE: native image generation skill (imagen pattern) | references/ai-skills-main | FRESH | 0.8688 (+0.0146) | 2026-05-31T11:59:28Z |
-| expansion-candidate-tts-and-podcast-20260531 | EXPANSION_CANDIDATE: TTS and podcast generation skill | references/ai-skills-main | FRESH | 0.8688 (+0.0146) | 2026-05-31T11:59:33Z |
-| format-pattern-hypothesis-template-we-20260531 | FORMAT_PATTERN: hypothesis template 'We believe [change] will [impact metric] because [reasoning]' | references/agent-toolkit | FRESH | 0.8688 (+0.0146) | 2026-05-31T11:57:53Z |
-| expansion-platform-mobile-tier-3-20260531 | EXPANSION: platform-mobile Tier 3 reference for React Native best practices | references/agent-skills-main | FRESH | 0.8947 (+0.0117) | 2026-05-31T11:50:47Z |
-| working-solution-agent-capability-tier-20260531 | WORKING_SOLUTION: agent capability tier taxonomy (lite/standard/max) | references/ai-skills-main | FRESH | 0.9015 (+0.0109) | 2026-05-31T11:59:16Z |
-| reference-card-agents-main-plugin-20260531 | REFERENCE_CARD: agents-main plugin marketplace + plugin-eval quality framework | references/agents-main | FRESH | 0.9015 (+0.0109) | 2026-05-31T11:59:40Z |
-| format-pattern-problem-why-fix-pitfall-20260531 | FORMAT_PATTERN: Problem/Why/Fix pitfall structure from common-pitfalls.md | references/agent-toolkit | FRESH | 0.9015 (+0.0109) | 2026-05-31T11:57:42Z |
-| expansion-platform-web-tier-3-reference-20260531 | EXPANSION: platform-web Tier 3 reference for React/Next.js performance rules | references/agent-skills-main | FRESH | 0.9043 (+0.0106) | 2026-05-31T11:50:14Z |
-| open-thread-tier-7-memory-framework-20260531 | OPEN_THREAD: tier-7: memory framework selection guide for scaling beyond proprietary drawer system | references/agent-skills-context-engineering | FRESH | 0.9129 (+0.0097) | 2026-05-31T11:33:59Z |
-| open-thread-tier-7-expansion-prd-20260531 | OPEN_THREAD: Tier 7 expansion: PRD document type generation workflow | references/adversarial-spec-main | FRESH | 0.9216 (+0.0087) | 2026-05-31T11:26:05Z |
-| working-solution-10-dimension-quality-20260531 | WORKING_SOLUTION: 10-dimension quality scoring formula with badge thresholds | references/agents-main | FRESH | 0.9271 (+0.0081) | 2026-05-31T12:04:24Z |
-| working-solution-anti-pattern-taxonomy-20260531 | WORKING_SOLUTION: anti-pattern taxonomy with exact thresholds from plugin-eval | references/agents-main | FRESH | 0.9271 (+0.0081) | 2026-05-31T12:04:18Z |
-| pattern-rule-compiler-build-system-for-20260531 | PATTERN: rule compiler build system for structured skill documentation | references/agent-skills-main | FRESH | 0.9282 (+0.0080) | 2026-05-31T11:49:52Z |
-| open-thread-tier-7-compaction-quality-20260531 | OPEN_THREAD: tier-7: compaction quality evaluator — probe-based verification after executor compaction | references/agent-skills-context-engineering | FRESH | 0.9303 (+0.0078) | 2026-05-31T11:33:44Z |
-| working-solution-defense-in-depth-3-20260531 | WORKING_SOLUTION: defense-in-depth 3-layer query safety pattern | references/ai-skills-main | FRESH | 0.9344 (+0.0073) | 2026-05-31T11:59:06Z |
-| working-solution-photography-prompt-20260531 | WORKING_SOLUTION: photography prompt vocabulary for photorealistic image generation | references/ai-skills-main | FRESH | 0.9344 (+0.0073) | 2026-05-31T11:59:12Z |
-| working-solution-win-benchmark-loop-20260531 | WORKING_SOLUTION: win: benchmark-loop Step 4 pre-verdict checklist guards early declaration | references/agent-toolkit-comp | FRESH | 0.9344 (+0.0073) | 2026-05-31T12:02:18Z |
-| working-solution-win-pitfalls-format-20260531 | WORKING_SOLUTION: win: Pitfalls format spec added to CLAUDE.md with Problem/Why/Fix structure | references/agent-toolkit-comp | FRESH | 0.9344 (+0.0073) | 2026-05-31T12:02:18Z |
-| working-solution-3-plus-files-rule-20260531 | WORKING_SOLUTION: 3-plus-files rule creation threshold | references/agent-rules-main | FRESH | 0.9373 (+0.0070) | 2026-05-31T11:27:08Z |
-| working-solution-rule-quality-checklist-20260531 | WORKING_SOLUTION: rule quality checklist six criteria | references/agent-rules-main | FRESH | 0.9373 (+0.0070) | 2026-05-31T11:27:12Z |
-| open-thread-tier-7-expansion-multi-20260531 | OPEN_THREAD: Tier 7 expansion: multi-persona task card review before locking | references/adversarial-spec-main | FRESH | 0.9373 (+0.0070) | 2026-05-31T11:25:56Z |
-| working-solution-compaction-quality-20260531 | WORKING_SOLUTION: compaction quality gate with probe-based verification integrated into executor | references/agent-skills-context-engineering | FRESH | 0.9410 (+0.0066) | 2026-05-31T11:55:48Z |
-| working-solution-memory-framework-20260531 | WORKING_SOLUTION: memory framework selection guide with escalation path integrated into memory module | references/agent-skills-context-engineering | FRESH | 0.9410 (+0.0066) | 2026-05-31T11:55:57Z |
-| working-solution-four-bucket-context-20260531 | WORKING_SOLUTION: four-bucket context management framework with named strategies and trigger conditions | references/agent-skills-context-engineering | FRESH | 0.9477 (+0.0058) | 2026-05-31T11:32:39Z |
-| working-solution-four-gate-research-20260531 | WORKING_SOLUTION: four-gate research curation rubric with weighted dimensions and decision thresholds | references/agent-skills-context-engineering | FRESH | 0.9477 (+0.0058) | 2026-05-31T11:32:27Z |
-| working-solution-llm-optimized-20260531 | WORKING_SOLUTION: LLM-optimized documentation format constraints | references/agent-rules-main | FRESH | 0.9529 (+0.0052) | 2026-05-31T11:27:29Z |
-| working-solution-win-defense-in-depth-3-20260531 | WORKING_SOLUTION: win: defense-in-depth 3-layer pattern in gateway-security | references/ai-skills-main-comp | FRESH | 0.9550 (+0.0050) | 2026-05-31T12:09:57Z |
-| working-solution-win-photography-prompt-20260531 | WORKING_SOLUTION: win: photography prompt vocabulary in gateway-aesthetic | references/ai-skills-main-comp | FRESH | 0.9550 (+0.0050) | 2026-05-31T12:09:55Z |
-| observation-type-kv-cache-invalidation-20260531 | OBSERVATION_TYPE: kv-cache invalidation: timestamps and dynamic metadata in system prompt destroy cache hit rate | references/agent-skills-context-engineering | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:33:06Z |
-| working-solution-receipt-chain-is-the-20260531 | WORKING_SOLUTION: receipt chain is the architectural solution to the universally-weak artifact trail compression problem | references/agent-skills-context-engineering | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:32:07Z |
-| working-solution-win-a1-llm-optimized-20260531 | WORKING_SOLUTION: win: A1 LLM-optimized doc format in document SKILL.md | references/agent-rules-main-comp | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:36:43Z |
-| working-solution-win-four-skill-20260531 | WORKING_SOLUTION: win: four skill authoring rules added to CLAUDE.md | references/agent-rules-main-comp | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:36:46Z |
-| working-solution-win-preserve-intent-20260531 | WORKING_SOLUTION: win: preserve-intent activation scoped to spec-bound mode only | references/adversarial-spec-main-comp | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:36:50Z |
-| working-solution-win-shallow-analysis-20260531 | WORKING_SOLUTION: win: shallow-analysis detection uses domain-count not round-count trigger | references/adversarial-spec-main-comp | FRESH | 0.9652 (+0.0039) | 2026-05-31T11:36:53Z |
-| negative-example-description-fields-20260531 | NEGATIVE_EXAMPLE: description fields containing workflow steps (all 3 SKILL.md files violate WabbleSpec CLAUDE.md rule) | references/agent-toolkit | FRESH | 0.9672 (+0.0036) | 2026-05-31T11:57:58Z |
-| working-solution-anchored-iterative-20260531 | WORKING_SOLUTION: anchored iterative summarization with mandatory sections beats freeform compression | references/agent-skills-context-engineering | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:31:54Z |
-| working-solution-10-persona-reviewer-20260531 | WORKING_SOLUTION: 10-persona reviewer system with production-hardened role descriptions | references/adversarial-spec-main | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:25:48Z |
-| working-solution-anti-laziness-press-20260531 | WORKING_SOLUTION: anti-laziness press protocol: 4-question early-agreement verification | references/adversarial-spec-main | FRESH | 0.9748 (+0.0028) | 2026-05-31T11:25:39Z |
-| working-solution-preserve-intent-20260531 | WORKING_SOLUTION: preserve-intent taxonomy: ERROR vs RISK vs PREFERENCE challenge tiers | references/adversarial-spec-main | FRESH | 0.9843 (+0.0017) | 2026-05-31T11:25:32Z |
-| andrej-karpathy-skills-main-overview-20260531 | andrej-karpathy-skills-main — four LLM coding behavior principles for CLAUDE.md behavioral guidance | references/andrej-karpathy-skills-main | FRESH | 0.9974 (+0.0003) | 2026-05-31T00:00:00Z |
-| claude-ads-main-overview-20260531 | claude-ads-main — production skill framework for paid advertising audit and optimization | references/claude-ads-main | FRESH | 0.9982 (+0.0002) | 2026-05-31T00:00:00Z |
+| expansion-candidate-structured-l8-20260531 | EXPANSION_CANDIDATE: structured L8 experiment document format (hypothesis/variants/status/winner/learnings) | references/agent-toolkit | FRESH | 0.7047 (+0.0328) | 2026-05-31T11:58:09Z |
+| open-thread-tier-7-expansion-c4-20260531 | OPEN_THREAD: Tier 7 expansion: C4 architecture diagram generation | references/agents-main | FRESH | 0.8032 (+0.0219) | 2026-05-31T12:04:48Z |
+| open-thread-tier-7-expansion-quality-20260531 | OPEN_THREAD: Tier 7 expansion: quality-suite (quality-score.py + quality-rank.py + quality-judge.py) | references/agents-main | FRESH | 0.8688 (+0.0146) | 2026-05-31T12:04:40Z |
+| expansion-gateway-aesthetic-tier-3-20260531 | EXPANSION: gateway-aesthetic Tier 3 reference for React View Transitions | references/agent-skills-main | FRESH | 0.8804 (+0.0133) | 2026-05-31T11:51:02Z |
+| expansion-candidate-database-connector-20260531 | EXPANSION_CANDIDATE: database connector skills (postgres/mysql/mssql) | references/ai-skills-main | FRESH | 0.8819 (+0.0131) | 2026-05-31T11:59:37Z |
+| expansion-candidate-native-image-20260531 | EXPANSION_CANDIDATE: native image generation skill (imagen pattern) | references/ai-skills-main | FRESH | 0.8819 (+0.0131) | 2026-05-31T11:59:28Z |
+| expansion-candidate-tts-and-podcast-20260531 | EXPANSION_CANDIDATE: TTS and podcast generation skill | references/ai-skills-main | FRESH | 0.8819 (+0.0131) | 2026-05-31T11:59:33Z |
+| format-pattern-hypothesis-template-we-20260531 | FORMAT_PATTERN: hypothesis template 'We believe [change] will [impact metric] because [reasoning]' | references/agent-toolkit | FRESH | 0.8819 (+0.0131) | 2026-05-31T11:57:53Z |
+| expansion-platform-mobile-tier-3-20260531 | EXPANSION: platform-mobile Tier 3 reference for React Native best practices | references/agent-skills-main | FRESH | 0.9052 (+0.0105) | 2026-05-31T11:50:47Z |
+| open-thread-gap-test-coverage-for-20260531 | OPEN_THREAD: gap: test coverage for BLOATED_SKILL and OVER_CONSTRAINED thresholds | references/agents-main-comp | FRESH | 0.9100 (+0.0100) | 2026-05-31T12:21:11Z |
+| working-solution-win-missing-trigger-20260531 | WORKING_SOLUTION: win: MISSING_TRIGGER flag added beyond plan | references/agents-main-comp | FRESH | 0.9100 (+0.0100) | 2026-05-31T12:21:12Z |
+| working-solution-agent-capability-tier-20260531 | WORKING_SOLUTION: agent capability tier taxonomy (lite/standard/max) | references/ai-skills-main | FRESH | 0.9113 (+0.0098) | 2026-05-31T11:59:16Z |
+| reference-card-agents-main-plugin-20260531 | REFERENCE_CARD: agents-main plugin marketplace + plugin-eval quality framework | references/agents-main | FRESH | 0.9113 (+0.0098) | 2026-05-31T11:59:40Z |
+| format-pattern-problem-why-fix-pitfall-20260531 | FORMAT_PATTERN: Problem/Why/Fix pitfall structure from common-pitfalls.md | references/agent-toolkit | FRESH | 0.9113 (+0.0098) | 2026-05-31T11:57:42Z |
+| expansion-platform-web-tier-3-reference-20260531 | EXPANSION: platform-web Tier 3 reference for React/Next.js performance rules | references/agent-skills-main | FRESH | 0.9139 (+0.0096) | 2026-05-31T11:50:14Z |
+| open-thread-tier-7-memory-framework-20260531 | OPEN_THREAD: tier-7: memory framework selection guide for scaling beyond proprietary drawer system | references/agent-skills-context-engineering | FRESH | 0.9216 (+0.0087) | 2026-05-31T11:33:59Z |
+| open-thread-tier-7-expansion-prd-20260531 | OPEN_THREAD: Tier 7 expansion: PRD document type generation workflow | references/adversarial-spec-main | FRESH | 0.9294 (+0.0078) | 2026-05-31T11:26:05Z |
+| working-solution-10-dimension-quality-20260531 | WORKING_SOLUTION: 10-dimension quality scoring formula with badge thresholds | references/agents-main | FRESH | 0.9344 (+0.0073) | 2026-05-31T12:04:24Z |
+| working-solution-anti-pattern-taxonomy-20260531 | WORKING_SOLUTION: anti-pattern taxonomy with exact thresholds from plugin-eval | references/agents-main | FRESH | 0.9344 (+0.0073) | 2026-05-31T12:04:18Z |
+| pattern-rule-compiler-build-system-for-20260531 | PATTERN: rule compiler build system for structured skill documentation | references/agent-skills-main | FRESH | 0.9354 (+0.0072) | 2026-05-31T11:49:52Z |
+| open-thread-tier-7-compaction-quality-20260531 | OPEN_THREAD: tier-7: compaction quality evaluator — probe-based verification after executor compaction | references/agent-skills-context-engineering | FRESH | 0.9373 (+0.0070) | 2026-05-31T11:33:44Z |
+| working-solution-defense-in-depth-3-20260531 | WORKING_SOLUTION: defense-in-depth 3-layer query safety pattern | references/ai-skills-main | FRESH | 0.9410 (+0.0066) | 2026-05-31T11:59:06Z |
+| working-solution-photography-prompt-20260531 | WORKING_SOLUTION: photography prompt vocabulary for photorealistic image generation | references/ai-skills-main | FRESH | 0.9410 (+0.0066) | 2026-05-31T11:59:12Z |
+| working-solution-win-benchmark-loop-20260531 | WORKING_SOLUTION: win: benchmark-loop Step 4 pre-verdict checklist guards early declaration | references/agent-toolkit-comp | FRESH | 0.9410 (+0.0066) | 2026-05-31T12:02:18Z |
+| working-solution-win-pitfalls-format-20260531 | WORKING_SOLUTION: win: Pitfalls format spec added to CLAUDE.md with Problem/Why/Fix structure | references/agent-toolkit-comp | FRESH | 0.9410 (+0.0066) | 2026-05-31T12:02:18Z |
+| working-solution-3-plus-files-rule-20260531 | WORKING_SOLUTION: 3-plus-files rule creation threshold | references/agent-rules-main | FRESH | 0.9436 (+0.0063) | 2026-05-31T11:27:08Z |
+| working-solution-rule-quality-checklist-20260531 | WORKING_SOLUTION: rule quality checklist six criteria | references/agent-rules-main | FRESH | 0.9436 (+0.0063) | 2026-05-31T11:27:12Z |
+| open-thread-tier-7-expansion-multi-20260531 | OPEN_THREAD: Tier 7 expansion: multi-persona task card review before locking | references/adversarial-spec-main | FRESH | 0.9436 (+0.0063) | 2026-05-31T11:25:56Z |
+| working-solution-compaction-quality-20260531 | WORKING_SOLUTION: compaction quality gate with probe-based verification integrated into executor | references/agent-skills-context-engineering | FRESH | 0.9469 (+0.0059) | 2026-05-31T11:55:48Z |
+| working-solution-memory-framework-20260531 | WORKING_SOLUTION: memory framework selection guide with escalation path integrated into memory module | references/agent-skills-context-engineering | FRESH | 0.9469 (+0.0059) | 2026-05-31T11:55:57Z |
+| working-solution-four-bucket-context-20260531 | WORKING_SOLUTION: four-bucket context management framework with named strategies and trigger conditions | references/agent-skills-context-engineering | FRESH | 0.9529 (+0.0052) | 2026-05-31T11:32:39Z |
+| working-solution-four-gate-research-20260531 | WORKING_SOLUTION: four-gate research curation rubric with weighted dimensions and decision thresholds | references/agent-skills-context-engineering | FRESH | 0.9529 (+0.0052) | 2026-05-31T11:32:27Z |
+| working-solution-llm-optimized-20260531 | WORKING_SOLUTION: LLM-optimized documentation format constraints | references/agent-rules-main | FRESH | 0.9576 (+0.0047) | 2026-05-31T11:27:29Z |
+| working-solution-win-defense-in-depth-3-20260531 | WORKING_SOLUTION: win: defense-in-depth 3-layer pattern in gateway-security | references/ai-skills-main-comp | FRESH | 0.9595 (+0.0045) | 2026-05-31T12:09:57Z |
+| working-solution-win-photography-prompt-20260531 | WORKING_SOLUTION: win: photography prompt vocabulary in gateway-aesthetic | references/ai-skills-main-comp | FRESH | 0.9595 (+0.0045) | 2026-05-31T12:09:55Z |
+| observation-type-kv-cache-invalidation-20260531 | OBSERVATION_TYPE: kv-cache invalidation: timestamps and dynamic metadata in system prompt destroy cache hit rate | references/agent-skills-context-engineering | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:33:06Z |
+| working-solution-receipt-chain-is-the-20260531 | WORKING_SOLUTION: receipt chain is the architectural solution to the universally-weak artifact trail compression problem | references/agent-skills-context-engineering | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:32:07Z |
+| working-solution-win-a1-llm-optimized-20260531 | WORKING_SOLUTION: win: A1 LLM-optimized doc format in document SKILL.md | references/agent-rules-main-comp | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:36:43Z |
+| working-solution-win-four-skill-20260531 | WORKING_SOLUTION: win: four skill authoring rules added to CLAUDE.md | references/agent-rules-main-comp | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:36:46Z |
+| working-solution-win-preserve-intent-20260531 | WORKING_SOLUTION: win: preserve-intent activation scoped to spec-bound mode only | references/adversarial-spec-main-comp | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:36:50Z |
+| working-solution-win-shallow-analysis-20260531 | WORKING_SOLUTION: win: shallow-analysis detection uses domain-count not round-count trigger | references/adversarial-spec-main-comp | FRESH | 0.9687 (+0.0035) | 2026-05-31T11:36:53Z |
+| negative-example-description-fields-20260531 | NEGATIVE_EXAMPLE: description fields containing workflow steps (all 3 SKILL.md files violate WabbleSpec CLAUDE.md rule) | references/agent-toolkit | FRESH | 0.9705 (+0.0033) | 2026-05-31T11:57:58Z |
+| working-solution-anchored-iterative-20260531 | WORKING_SOLUTION: anchored iterative summarization with mandatory sections beats freeform compression | references/agent-skills-context-engineering | FRESH | 0.9718 (+0.0031) | 2026-05-31T11:31:54Z |
+| working-solution-10-persona-reviewer-20260531 | WORKING_SOLUTION: 10-persona reviewer system with production-hardened role descriptions | references/adversarial-spec-main | FRESH | 0.9718 (+0.0031) | 2026-05-31T11:25:48Z |
+| working-solution-anti-laziness-press-20260531 | WORKING_SOLUTION: anti-laziness press protocol: 4-question early-agreement verification | references/adversarial-spec-main | FRESH | 0.9773 (+0.0025) | 2026-05-31T11:25:39Z |
+| working-solution-preserve-intent-20260531 | WORKING_SOLUTION: preserve-intent taxonomy: ERROR vs RISK vs PREFERENCE challenge tiers | references/adversarial-spec-main | FRESH | 0.9859 (+0.0016) | 2026-05-31T11:25:32Z |
+| andrej-karpathy-skills-main-overview-20260531 | andrej-karpathy-skills-main — four LLM coding behavior principles for CLAUDE.md behavioral guidance | references/andrej-karpathy-skills-main | FRESH | 0.9977 (+0.0003) | 2026-05-31T00:00:00Z |
+| claude-ads-main-overview-20260531 | claude-ads-main — production skill framework for paid advertising audit and optimization | references/claude-ads-main | FRESH | 0.9984 (+0.0002) | 2026-05-31T00:00:00Z |
 | - | Tier 7 expansion: post-wave background subagent that surfaces Instinct-candidate patterns before Verifier | references/hermes-agent-main | FRESH | 0.9996 | - |
 | - | Tier 7 expansion: staleness watcher for reference drawers with upstream source fields | references/hermes-agent-main | FRESH | 0.9996 | - |
 | - | Tier 7 expansion: session-typed skill bundle presets loadable by recipe-writer | references/hermes-agent-main | FRESH | 0.9996 | - |
@@ -184,4 +186,4 @@ Sorted by state (worst first), then confidence ascending.
 
 ## Summary
 
-- FRESH: 174
+- FRESH: 176
