@@ -74,6 +74,12 @@ capability_handoff:
     - gateway-security/references/
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| data-pipeline receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 **Platform activation receipt** (`.wabblespec/state/receipts/platform-data-pipeline-{timestamp}.json`)

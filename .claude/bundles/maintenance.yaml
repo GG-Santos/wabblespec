@@ -1,0 +1,17 @@
+name: maintenance
+description: Framework maintenance and hardening -- doctor, guard, wave-review, rollback.
+skills:
+  - recipe
+  - scope-frame
+  - specify
+  - decompose
+  - executor
+  - verifier
+  - archive
+  - wave-review
+  - wave-fix
+  - wave-refine
+  - ground
+  - rollback
+  - audit
+extends: null

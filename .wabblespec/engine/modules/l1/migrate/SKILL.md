@@ -97,11 +97,30 @@ Write to `.wabblespec/state/plans/migration-plan-<id>.md`:
 <how to revert if migration fails at either phase>
 ```
 
+## Phase 3 — Harden (post-migration security gate)
+
+After Phase 2 (Removal) completes and before signaling Archive, invoke gateway-security for a targeted audit of the changed surface:
+
+1. Collect all files modified in the Phase 2 wave from the wave receipt's `files_written` list
+2. Invoke gateway-security in targeted mode, scoped to those files only
+3. gateway-security checks: injection paths introduced by the new interface, trust-boundary changes, authentication gaps, secrets or credentials in the new code surface
+4. If findings at HIGH or CRITICAL severity: block Archive, surface to human, loop back to Executor with the security findings as a new wave
+5. If no HIGH/CRITICAL findings: record `security_harden_status: PASS` in the Migrate receipt and proceed to Archive
+
+**Harden is not optional when:**
+- The BREAKING change modifies an authentication, authorization, or data-access surface
+- Phase 2 exposes a new interface to external consumers
+
+**Harden may be skipped (with documented justification) when:**
+- The BREAKING change is purely internal (no external API or auth surface affected)
+- gateway-security was already invoked for these exact files in a concurrent security audit this session — reference that audit's receipt as `security_harden_receipt_path`
+
 ## Reference Routing
 
 | Situation | Reference |
 |---|---|
 | Migrate receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+| Phase 3 Harden — gateway-security invocation | `engine/shared/references/mcp-servers-integration.md` (for MCP-backed security tools if active) |
 
 ## Output contract
 

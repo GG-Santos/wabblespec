@@ -149,7 +149,36 @@ def main() -> int:
     # Build commit message
     ts = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     host = socket.gethostname()
-    commit_msg = f"wabblespec: sync {host} {ts}"
+
+    # Categorise staged files into human-readable buckets
+    staged_files = [f for f in staged.strip().splitlines() if f]
+    buckets: dict[str, int] = {}
+    for f in staged_files:
+        if "/state/receipts/" in f:
+            key = "receipts"
+        elif "/state/memory/drawers/" in f or "/state/memory/wings/" in f:
+            key = "memory drawers"
+        elif "/state/memory/entity-graph" in f:
+            key = "entity graph"
+        elif "/state/memory/gap-map" in f or "/state/memory/staleness" in f:
+            key = "dream maps"
+        elif "VERSION" in f:
+            key = "VERSION"
+        elif "CHANGELOG" in f:
+            key = "CHANGELOG"
+        elif "/state/archive/" in f:
+            key = "archive index"
+        elif "/state/experiments/" in f:
+            key = "experiments"
+        elif "/engine/" in f:
+            key = "engine files"
+        else:
+            key = "other"
+        buckets[key] = buckets.get(key, 0) + 1
+
+    summary_lines = [f"  {v} {k}" for k, v in sorted(buckets.items())]
+    body = "Changes:\n" + "\n".join(summary_lines) + f"\n\nDevice: {host}  At: {ts}"
+    commit_msg = f"chore(wabblespec): sync session state from {host}\n\n{body}"
 
     rc, _, err = _git("commit", "-m", commit_msg, cwd=ROOT)
     if rc != 0:
@@ -158,7 +187,7 @@ def main() -> int:
         _git("reset", "HEAD", ".wabblespec/", cwd=ROOT)
         return 0
 
-    _log(f"committed: {commit_msg}")
+    _log(f"committed: {commit_msg.splitlines()[0]}")
 
     # Push
     branch = _current_branch(ROOT)

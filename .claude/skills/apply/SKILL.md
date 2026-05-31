@@ -128,6 +128,12 @@ Apply never writes to:
 
 If Apply discovers it needs to write outside declared targets, it surfaces a SPEC_VIOLATION error — does not proceed.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Apply receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

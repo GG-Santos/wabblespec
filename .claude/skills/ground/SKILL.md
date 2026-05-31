@@ -69,6 +69,12 @@ Three buckets:
 - assumed: claims that are structurally unverifiable (behavior, runtime state) — flagged but not errors
 - `missing`: claims that require artifacts that do not exist at all
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Ground receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type ground` |
+
 ## Output contract
 
 **Ground receipt** at `.wabblespec/state/receipts/ground-receipt.json` with:

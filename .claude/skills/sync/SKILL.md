@@ -61,6 +61,12 @@ For every resolved conflict: record which version "won" and why. For every escal
 
 Write merged spec to `.wabblespec/sync/result-<timestamp>.md` (or mark as escalated). Write receipt.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Sync receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/sync-receipt.schema.json` |
+
 ## Output contract
 
 **sync-receipt.json** (`.wabblespec/state/receipts/sync-receipt-<timestamp>.json`):

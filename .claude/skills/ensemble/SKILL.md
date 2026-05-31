@@ -29,6 +29,12 @@ Triggered by ModelRouter when any of four conditions met:
 
 Cross-check is mandatory for Attestation and Audit verification modes.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Ensemble receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Combined receipt names all lanes, mode used, and individual lane outcomes:

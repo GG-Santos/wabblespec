@@ -31,6 +31,42 @@ except ImportError:
     sys.exit(2)
 
 
+# ─── Anti-pattern constants (agents-main ref-adopt 2026-05-31) ───────────────
+# Thresholds from plugin-eval engine.py; penalty formula: max(0.5, 1.0 - 0.05 × count)
+
+_MNA_PATTERN = re.compile(r'\b(MUST|NEVER|ALWAYS)\b')
+_CROSS_REF_PATTERN = re.compile(r'\[\[([a-z0-9_-]+)\]\]')
+_REF_LINK_PATTERN = re.compile(r'\[.*?\]\(references/([^\)#]+)')
+
+ANTI_PATTERN_PENALTIES = {
+    "OVER_CONSTRAINED": 0.10,   # >15 MNA directives
+    "MISSING_TRIGGER": 0.15,    # no "Use when" / trigger phrase in description
+    "BLOATED_SKILL": 0.10,      # >800 lines without references/ directory
+    "ORPHAN_REFERENCE": 0.05,   # dead link to a file in references/
+    "DEAD_CROSS_REF": 0.05,     # [[name]] link to non-existent module
+}
+
+# Dimension weights for --score mode (static-measurable dims only).
+# Source: plugin-eval engine.py DIMENSION_WEIGHTS. output_quality (0.15), robustness (0.05),
+# and code_template_quality (0.02) are not measurable from static analysis — excluded;
+# remaining weights renormalize at compute time.
+DIMENSION_WEIGHTS = {
+    "triggering_accuracy": 0.25,
+    "orchestration_fitness": 0.20,
+    "scope_calibration": 0.12,
+    "progressive_disclosure": 0.10,
+    "token_efficiency": 0.06,
+    "structural_completeness": 0.03,
+    "ecosystem_coherence": 0.02,
+}
+
+SCORE_BADGES = [(90, "Platinum"), (80, "Gold"), (70, "Silver"), (60, "Bronze")]
+SCORE_GRADES = [
+    (97, "A+"), (93, "A"), (90, "A-"), (87, "B+"), (83, "B"), (80, "B-"),
+    (77, "C+"), (73, "C"), (70, "C-"), (67, "D+"), (63, "D"), (60, "D-"),
+]
+
+
 # ─── Loaders ─────────────────────────────────────────────────────────────────
 
 def load_framework(path):
@@ -124,6 +160,24 @@ OUTPUT_SIGNALS = [
     "**receipt",
 ]
 
+# Patterns that trigger Claude Code's bash permission scanner when found inside
+# inline backtick spans (not fenced code blocks).
+# Source: hyperframes-main/scripts/lint-skills.ts lines 28-43 (2026-05-31 ref-adopt).
+_INLINE_DANGER_PATTERNS = [
+    re.compile(r'`[^`\n]*![^`\n]*`'),     # `!` → bash history expansion
+    re.compile(r'`[^`\n]*>\w[^`\n]*`'),   # `>word` → output redirection
+]
+
+
+def _strip_fenced_blocks(text):
+    """Replace fenced code blocks with blank lines, preserving line count."""
+    return re.sub(
+        r'^```[\s\S]*?^```',
+        lambda m: '\n' * m.group().count('\n'),
+        text,
+        flags=re.MULTILINE,
+    )
+
 
 def lint_prompts(module_dir):
     checks = {}
@@ -132,14 +186,16 @@ def lint_prompts(module_dir):
     if not os.path.isfile(skill_path):
         return False, {k: False for k in (
             "FRONTMATTER", "DESCRIPTION_LEN", "SECTION_WHAT",
-            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET"
+            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET",
+            "INLINE_DANGER",
         )}
 
     content, err = load_skill(skill_path)
     if err or content is None:
         return False, {k: False for k in (
             "FRONTMATTER", "DESCRIPTION_LEN", "SECTION_WHAT",
-            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET"
+            "SECTION_WHEN", "SECTION_OUTPUT", "MIN_LENGTH", "SKILL_SIZE_BUDGET",
+            "INLINE_DANGER",
         )}
 
     fm_match = re.match(r"^---\n(.*?)\n---", content, re.DOTALL)
@@ -180,6 +236,15 @@ def lint_prompts(module_dir):
     else:
         checks["SKILL_SIZE_BUDGET"] = True
 
+    # INLINE_DANGER: backtick-wrapped prose spans containing `!` or `>word`
+    # cause Claude Code's bash permission scanner to trigger false positives.
+    # Strip fenced blocks first so code examples (which may legitimately contain
+    # these chars) are excluded from the check.
+    stripped = _strip_fenced_blocks(content)
+    checks["INLINE_DANGER"] = not any(
+        p.search(stripped) for p in _INLINE_DANGER_PATTERNS
+    )
+
     return all(checks.values()), checks
 
 
@@ -199,6 +264,172 @@ def adversarial_warning(module_dir, rules_data, adversarial_tags):
     if content is None:
         return False
     return "adversarial" in content.lower()
+
+
+# ─── A1/A4: Anti-pattern detection ───────────────────────────────────────────
+
+def check_anti_patterns(module_dir, valid_module_ids=None):
+    """Check plugin-eval anti-pattern flags. Returns dict of flag -> triggered (True=bad).
+
+    Flags and thresholds (source: plugin-eval engine.py via agents-main ref-adopt):
+      OVER_CONSTRAINED : >15 MUST/NEVER/ALWAYS occurrences
+      MISSING_TRIGGER  : no "Use when" / "Use PROACTIVELY" in description field
+      BLOATED_SKILL    : >800 lines without a references/ subdirectory
+      ORPHAN_REFERENCE : markdown link to references/<file> where file does not exist
+      DEAD_CROSS_REF   : [[name]] link to a module id not in valid_module_ids
+    """
+    skill_path = os.path.join(module_dir, "SKILL.md")
+    content, err = load_skill(skill_path)
+    if err or content is None:
+        return {}
+
+    flags = {}
+
+    # OVER_CONSTRAINED: >15 MUST/NEVER/ALWAYS directives (A1 + A4 regex)
+    mna_count = len(_MNA_PATTERN.findall(content))
+    flags["OVER_CONSTRAINED"] = mna_count > 15
+
+    # MISSING_TRIGGER: description has no activation phrase
+    desc_match = re.search(r"^description:\s*(.+)$", content, re.MULTILINE)
+    desc_text = desc_match.group(1).strip() if desc_match else ""
+    flags["MISSING_TRIGGER"] = not bool(re.search(
+        r"(use when|use proactively|trigger|activates? when)", desc_text, re.IGNORECASE
+    ))
+
+    # BLOATED_SKILL: >800 lines without references/ directory (A1)
+    line_count = content.count('\n')
+    refs_dir = os.path.join(module_dir, "references")
+    flags["BLOATED_SKILL"] = line_count > 800 and not os.path.isdir(refs_dir)
+
+    # ORPHAN_REFERENCE: dead link to a file in references/ (A1)
+    ref_links = _REF_LINK_PATTERN.findall(content)
+    if ref_links:
+        flags["ORPHAN_REFERENCE"] = any(
+            not os.path.isfile(os.path.join(refs_dir, lnk))
+            for lnk in ref_links
+        )
+    else:
+        flags["ORPHAN_REFERENCE"] = False
+
+    # DEAD_CROSS_REF: [[name]] link to non-existent module (A1)
+    cross_refs = _CROSS_REF_PATTERN.findall(content)
+    if cross_refs and valid_module_ids is not None:
+        flags["DEAD_CROSS_REF"] = any(ref not in valid_module_ids for ref in cross_refs)
+    else:
+        flags["DEAD_CROSS_REF"] = False
+
+    return flags
+
+
+# ─── A3: Quality scoring mode ─────────────────────────────────────────────────
+
+def _score_to_grade(score):
+    for threshold, letter in SCORE_GRADES:
+        if score >= threshold:
+            return letter
+    return "F"
+
+
+def _score_to_badge(score):
+    for threshold, name in SCORE_BADGES:
+        if score >= threshold:
+            return name
+    return "No badge"
+
+
+def score_module(module_dir, lp_checks, anti_flags):
+    """Produce a 0-100 quality score from static analysis only.
+
+    Dimensions measured (from plugin-eval DIMENSION_WEIGHTS; static-only layers):
+      triggering_accuracy, orchestration_fitness, scope_calibration,
+      progressive_disclosure, token_efficiency, structural_completeness,
+      ecosystem_coherence. Remaining 3 dimensions require LLM layers — excluded here.
+    """
+    skill_path = os.path.join(module_dir, "SKILL.md")
+    content, err = load_skill(skill_path)
+    if err or content is None:
+        return None
+
+    line_count = content.count('\n')
+    refs_dir = os.path.join(module_dir, "references")
+    has_refs = os.path.isdir(refs_dir)
+    has_code = bool(re.search(r'^```', content, re.MULTILINE))
+    h2_count = len(re.findall(r'^## ', content, re.MULTILINE))
+
+    desc_match = re.search(r"^description:\s*(.+)$", content, re.MULTILINE)
+    desc_text = desc_match.group(1).strip() if desc_match else ""
+    has_trigger = bool(re.search(
+        r"(use when|use proactively|trigger|activates? when)", desc_text, re.IGNORECASE
+    ))
+
+    # triggering_accuracy: trigger phrase + description length
+    ta = (0.7 if has_trigger else 0.0) + (0.3 if lp_checks.get("DESCRIPTION_LEN") else 0.0)
+
+    # orchestration_fitness: output documentation + code examples
+    of = (0.6 if lp_checks.get("SECTION_OUTPUT") else 0.0) + (0.4 if has_code else 0.0)
+
+    # scope_calibration: sweet spot 200-600 lines
+    if 200 <= line_count <= 600:
+        sc = 1.0
+    elif line_count < 200:
+        sc = max(0.0, line_count / 200)
+    elif line_count <= 800:
+        sc = 0.8
+    else:
+        sc = 0.5
+
+    # progressive_disclosure: references/ present if body >600 lines
+    pd = 1.0 if (line_count <= 600 or has_refs) else 0.4
+
+    # token_efficiency: MNA count <=5 -> 1.0, 6-15 -> decay, >15 -> 0.0
+    mna_count = len(_MNA_PATTERN.findall(content))
+    if mna_count <= 5:
+        te = 1.0
+    elif mna_count <= 15:
+        te = max(0.0, 1.0 - (mna_count - 5) / 10.0)
+    else:
+        te = 0.0
+
+    # structural_completeness: required sections + headings + code
+    sc_struct = (
+        (0.4 if lp_checks.get("SECTION_WHAT") else 0.0) +
+        (0.3 if lp_checks.get("SECTION_WHEN") else 0.0) +
+        (0.2 if h2_count >= 3 else 0.1 if h2_count >= 1 else 0.0) +
+        (0.1 if has_code else 0.0)
+    )
+
+    # ecosystem_coherence: ## See Also / Related / cross-ref links
+    has_seealso = bool(re.search(r'## (see also|related|reference routing)', content, re.IGNORECASE))
+    ec = 1.0 if (has_seealso or _CROSS_REF_PATTERN.search(content)) else 0.3
+
+    dim_scores = {
+        "triggering_accuracy": ta,
+        "orchestration_fitness": of,
+        "scope_calibration": sc,
+        "progressive_disclosure": pd,
+        "token_efficiency": te,
+        "structural_completeness": sc_struct,
+        "ecosystem_coherence": ec,
+    }
+
+    # Renormalize weights to measured dimensions
+    total_weight = sum(DIMENSION_WEIGHTS[d] for d in dim_scores)
+    raw = sum(DIMENSION_WEIGHTS[d] / total_weight * s for d, s in dim_scores.items())
+
+    # Anti-pattern penalty: max(0.5, 1.0 - 0.05 * count_triggered)
+    triggered = [f for f, v in anti_flags.items() if v]
+    penalty = max(0.5, 1.0 - 0.05 * len(triggered))
+
+    final = min(100.0, max(0.0, raw * 100.0 * penalty))
+
+    return {
+        "score": round(final, 1),
+        "badge": _score_to_badge(final),
+        "grade": _score_to_grade(final),
+        "penalty": round(penalty, 2),
+        "triggered_anti_patterns": triggered,
+        "dimensions": {d: round(s, 3) for d, s in dim_scores.items()},
+    }
 
 
 # ─── framework.yaml patcher ───────────────────────────────────────────────────
@@ -241,6 +472,8 @@ def main():
                         help="Print passing module IDs for human review")
     parser.add_argument("--write", action="store_true",
                         help="Patch framework.yaml quality_floor_passed (opt-in)")
+    parser.add_argument("--score", action="store_true",
+                        help="Produce a 0-100 quality score per module (static dims only)")
     args = parser.parse_args()
 
     framework_path = args.framework
@@ -259,6 +492,7 @@ def main():
     adversarial_tags = set(qf.get("adversarial_required_for_tags", []))
 
     modules = data.get("modules", [])
+    valid_module_ids = {m.get("id", "") for m in modules}
     if args.module:
         modules = [m for m in modules if m.get("id") == args.module]
         if not modules:
@@ -286,6 +520,8 @@ def main():
         qv_pass, qv_checks = quick_validate(module_dir, rules_data, rules_error)
         lp_pass, lp_checks = lint_prompts(module_dir)
         adv = adversarial_warning(module_dir, rules_data, adversarial_tags)
+        anti = check_anti_patterns(module_dir, valid_module_ids)
+        score = score_module(module_dir, lp_checks, anti) if args.score else None
 
         overall = qv_pass and lp_pass
         results.append({
@@ -294,6 +530,8 @@ def main():
             "quick_validate": {"pass": qv_pass, "checks": qv_checks},
             "lint_prompts": {"pass": lp_pass, "checks": lp_checks},
             "adversarial_warning": adv,
+            "anti_patterns": anti,
+            "score": score,
         })
 
     if args.update_yaml:
@@ -309,6 +547,7 @@ def main():
     fail_qv = sum(1 for r in results if not r["quick_validate"]["pass"])
     fail_lp = sum(1 for r in results if not r["lint_prompts"]["pass"])
     warnings = sum(1 for r in results if r["adversarial_warning"] is False)
+    anti_warnings = sum(1 for r in results if any(r["anti_patterns"].values()))
 
     print(f"WabbleSpec quality floor check")
     print(f"  Modules checked:          {total}")
@@ -316,6 +555,12 @@ def main():
     print(f"  Failing quick_validate:   {fail_qv}")
     print(f"  Failing lint_prompts:     {fail_lp}")
     print(f"  Adversarial warnings:     {warnings}")
+    print(f"  Anti-pattern flags:       {anti_warnings}")
+    if args.score:
+        scored = [r for r in results if r["score"] is not None]
+        if scored:
+            avg = sum(r["score"]["score"] for r in scored) / len(scored)
+            print(f"  Avg quality score:        {avg:.1f}/100")
     print()
 
     any_failure = False
@@ -323,7 +568,9 @@ def main():
         mid = r["id"]
         verdict = "PASS" if r["pass"] else "FAIL"
 
-        show = args.verbose or not r["pass"] or r["adversarial_warning"] is False
+        show = (args.verbose or not r["pass"] or r["adversarial_warning"] is False
+                or (args.score and r["score"] is not None)
+                or (args.verbose and any(r["anti_patterns"].values())))
         if not show:
             continue
 
@@ -343,6 +590,20 @@ def main():
 
         if r["adversarial_warning"] is False:
             print(f"           [WARN] adversarial_required tag present but 'adversarial' not in SKILL.md")
+
+        triggered = [f for f, v in r["anti_patterns"].items() if v]
+        if triggered and (args.verbose or args.score):
+            for flag in triggered:
+                print(f"           [ANTI-PATTERN] {flag}")
+
+        if args.score and r["score"] is not None:
+            s = r["score"]
+            print(f"           score: {s['score']}/100  badge: {s['badge']}  grade: {s['grade']}")
+            if args.verbose:
+                for dim, val in s["dimensions"].items():
+                    print(f"             {dim}: {val:.3f}")
+                if s["triggered_anti_patterns"]:
+                    print(f"             penalty: {s['penalty']} ({', '.join(s['triggered_anti_patterns'])})")
 
         if not r["pass"]:
             any_failure = True

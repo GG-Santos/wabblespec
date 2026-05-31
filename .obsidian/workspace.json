@@ -11,10 +11,14 @@
             "id": "831c33e40b1a3a8d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -179,7 +183,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "831c33e40b1a3a8d",
+  "active": "8ed140ab4195460a",
   "lastOpenFiles": [
     "spec-reference/planning/05-MODULE-IMPORTANCE.md",
     "REFERENCE-INTEGRATION-MASTER-PLAN.md",

@@ -43,6 +43,12 @@ Blueprint activates when:
 
 Surface open questions to the human before writing if any of the above cannot be determined from the available inputs.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Blueprint receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type blueprint` |
+
 ## Output contract
 
 **One file:** `.wabblespec/state/experiments/blueprints/{candidate-id}.blueprint.json`

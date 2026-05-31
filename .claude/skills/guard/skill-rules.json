@@ -27,8 +27,8 @@
       ".wabblespec/state/receipts/guard-wave-*-receipt.json"
     ],
     "reads": [
-      ".wabblespec/scope.md",
-      ".wabblespec/recipe.json",
+      ".wabblespec/state/scope.md",
+      ".wabblespec/state/recipe.json",
       ".wabblespec/state/receipts/*",
       ".wabblespec/state/plans/task-card.md",
       ".wabblespec/engine/shared/references/invariants.md"

@@ -37,9 +37,11 @@ Receives a problem statement. Selects appropriate RCA method. Works through it s
 
 Record method selection rationale in receipt.
 
-### Step 2 — Query Nexus (if available)
+### Step 2 — Query Nexus and Serena (if available)
 
-Before analysis: query Nexus with the problem domain. Has this failure been seen before? What modules are involved? Record `nexus_queried: boolean`.
+Before analysis:
+1. Query Nexus with the problem domain. Has this failure been seen before? What modules are involved? Record `nexus_queried: boolean`.
+2. If Serena MCP is active: use `serena_search_codebase` with the problem domain keyword to identify affected modules before reading files. Use `serena_find_references` on the failing symbol to map blast radius. Record `serena_queried: boolean`. This replaces multi-grep traversal for the evidence-gathering step — faster and produces a reference graph, not a file list.
 
 ### Step 3 — Apply method
 

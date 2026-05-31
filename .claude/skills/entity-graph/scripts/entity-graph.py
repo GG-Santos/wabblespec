@@ -54,6 +54,7 @@ KNOWN_MODULES = {
     "homowabian", "economy", "document", "polish", "research-log",
     "instinct", "synth", "blueprint", "factory", "augment",
     "benchmark", "forge", "retro", "feedback",
+    "wave-reviewer", "wave-review", "wave-fix", "wave-refine",
 }
 
 # ── Path-like pattern ─────────────────────────────────────────────────────────
@@ -431,7 +432,7 @@ def main() -> None:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
 
-    memory_root = ws_root / "memory"
+    memory_root = ws_root / "state" / "memory"
     wings_root = memory_root / "wings"
     graph_path = memory_root / "entity-graph.json"
     report_path = memory_root / "entity-report.md"

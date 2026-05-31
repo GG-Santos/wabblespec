@@ -214,6 +214,15 @@ python .wabblespec/engine/shared/scripts/version-bump.py --set 1.0.0
 | ref-comp | L2 | Receipt write | `receipt-writer.py --type ref-comp` |
 | ref-plan | L2 | Receipt write | `receipt-writer.py --type ref-plan` |
 
+| ref-adopt | L2 | Phase 1 + Phase 4 drawer writes | `drawer-writer.py` |
+| ref-eval | L2 | Step 4 finding drawer writes | `drawer-writer.py` |
+| ref-comp | L2 | Step 3 gap + win drawer writes | `drawer-writer.py` |
+| ref-plan | L2 | Tier 7 expansion drawer writes | `drawer-writer.py` |
+| memory | L5 | All drawer write/update operations | `drawer-writer.py` |
+| explore | L1 | Durable finding drawer writes | `drawer-writer.py` |
+| wave-review | L2 | Quality finding drawer writes (via `wave-review.py --write-drawers`) | `drawer-writer.py` |
+| wave-fix | L2 | SUPERSEDED transition on quality drawers | `drawer-writer.py --update` |
+
 ## Non-Delegated Receipt Types
 
 **None.** All 100 WabbleSpec skills are fully delegated. receipt-writer.py covers 20 types.
@@ -290,6 +299,46 @@ python .wabblespec/engine/shared/scripts/guard-check.py chain \
 ```
 
 **Exit codes:** 0 = PASS (all required receipts present), 1 = FAIL (missing receipts listed), 2 = configuration error.
+
+---
+
+### 9. Memory Drawer Write — `drawer-writer.py`
+
+**Replaces:** Write tool calls that construct drawer JSON inline and write it to `.wabblespec/state/memory/wings/`.
+
+**Why:** Drawer schema has 11 required fields. Claude re-derives the schema each invocation, producing inconsistent field ordering, missing provenance arrays, and off-schema `staleness_state` values. `drawer-writer.py` enforces the schema, auto-derives the drawer ID from topic, and handles path creation.
+
+**Valid wings:** `architecture`, `implementation`, `decisions`, `operations`, `requirements`, `infrastructure`, `research`, `references`, `quality`
+
+**Canonical call (create):**
+
+```bash
+python .wabblespec/engine/shared/scripts/drawer-writer.py \
+  --topic "<observation-type-prefix>: <topic text>" \
+  --wing <wing> \
+  --room <room-slug> \
+  --evidence "<evidence text>" \
+  --confidence <0.0-1.0> \
+  --staleness-state FRESH \
+  --source "<reference path or string>" \
+  --source-module <module-id> \
+  --actor <calling-module-id>
+```
+
+Pass `--evidence-file <path>` instead of `--evidence` when evidence exceeds one line.
+
+Output path is auto-derived as `.wabblespec/state/memory/wings/{wing}/rooms/{room}/drawers/{id}.json`. Pass `--out <path>` to override.
+
+**Update an existing drawer:**
+
+```bash
+python .wabblespec/engine/shared/scripts/drawer-writer.py \
+  --update <path-to-drawer.json> \
+  --staleness-state FRESH \
+  --note "Re-verified <date>"
+```
+
+**Exit codes:** 0 = success, 1 = validation failure or bad arguments, 2 = path not writable.
 
 ---
 

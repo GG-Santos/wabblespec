@@ -16,6 +16,8 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 | Situation | Reference |
 |---|---|
 | Verification receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
+| LSP diagnostic severity mapping and language support | `engine/shared/references/lsp-integration.md` |
+| Playwright MCP call contracts (Demonstration mode) | `engine/shared/references/mcp-servers-integration.md` → Playwright section |
 
 ## When to use / when not to use
 
@@ -69,7 +71,7 @@ Run the check declared in the wave plan entry's `verification_mode`:
 
 | Mode | What to do |
 |---|---|
-| **Test** | Execute the declared test script or assertion suite. PASS = all assertions green. FAIL = any assertion fails — report which one and the exact output. |
+| **Test** | When an LSP plugin is active for the implementation language: collect LSP diagnostic output first. If LSP reports 1+ errors, emit FAIL immediately with the diagnostic list as `fix_recommendation` — do not run the test suite over type-errored code. Record `lsp_errors_checked: true` and `lsp_error_count: N` in the receipt. Then execute the declared test script or assertion suite. PASS = zero LSP errors AND all assertions green. FAIL = any LSP error OR any failing assertion — report the exact diagnostic or assertion output. Skip LSP check silently when no LSP plugin is installed. |
 | **Observation** | Check that each declared artifact exists and is in the expected state. PASS = all conditions met. FAIL = any artifact missing or in wrong state. |
 | **Audit** | Systematically compare each output artifact against the task card acceptance criteria. PASS = no violations found. FAIL = list each violation with the criterion it violates. |
 | **Review** | Route to Reviewer module. PASS = Reviewer returns ACCEPT verdict. FAIL = REVISE with Reviewer's revision guidance. |
@@ -89,6 +91,13 @@ BLOCKED conditions (immediate — do not enter REVISE):
 - Required hardware or external service unavailable and cannot be substituted
 - Irreversible action requires human judgment before proceeding
 - Deadlocked dependency with no resolution path
+
+**Thesis impact (informational):** After issuing PASS/FAIL/BLOCKED, assess the wave's directional contribution to the task goal:
+- **STRENGTHENED** — wave output provides stronger evidence toward the task goal than the prior state
+- **UNCHANGED** — wave output meets spec but does not shift confidence in the task goal
+- **WEAKENED** — wave output is technically compliant but reveals a risk or gap that reduces confidence in the task goal
+
+Record as `thesis_impact` in the verification receipt. This does not affect PASS/FAIL/BLOCKED — it is an informational signal for autopilot and the session retrospective.
 
 ### Step 4 — REVISE loop (if FAIL)
 
@@ -202,11 +211,30 @@ Base receipt schema. Extension fields:
   "attestation_required": "boolean",
   "attestation_received": "boolean",
   "fix_recommendation": "string — required when verdict is FAIL",
-  "deferred_then_clauses": "array of strings — clause IDs whose artifacts are not declared in this wave's outputs; empty array [] for single-wave tasks or when all clause artifacts are in scope"
+  "deferred_then_clauses": "array of strings — clause IDs whose artifacts are not declared in this wave's outputs; empty array [] for single-wave tasks or when all clause artifacts are in scope",
+  "thesis_impact": "STRENGTHENED|UNCHANGED|WEAKENED — informational; does not affect verdict"
 }
 ```
 
 Signal to Executor: PASS (advance to next wave) | FAIL (enter REVISE) | BLOCKED (pause, escalate to user).
+
+## Evidence Hierarchy
+
+When wave output is disputed or evidence sources conflict, resolve using this three-tier hierarchy. Higher tier wins. Do not attempt to average or compromise between tiers.
+
+| Tier | Source | Label | Resolution rule |
+|---|---|---|---|
+| 1 (Ultimate Truth) | Execution artifacts — files actually written to disk, test runner output, diffs | "What exists" | A file absent from disk overrides any receipt or assertion claiming it was written. Presence/absence is binary and observable. |
+| 2 (Macro View) | Receipt chain — verifier receipts, executor receipts (signed, timestamped artifacts) | "What was recorded" | A completed, signed receipt contradicts an agent's verbal claim. The receipt was written at execution time; the claim is post-hoc. |
+| 3 (Optimization View) | Agent text assertions — what a module claims it did in conversation output | "What was stated" | Useful for context; overridden by Tier 1 or Tier 2 when they conflict. |
+
+**Application:**
+
+- Tier 1 vs Tier 2 conflict: check whether the file the receipt claims exists is actually present at the declared path. If absent, the receipt is a PARTIAL record — surface as FAIL regardless of receipt status.
+- Tier 2 vs Tier 3 conflict: the receipt stands. Record the discrepancy in `fix_recommendation`.
+- All three conflict: Tier 1 determines verdict; note the conflict in the receipt.
+
+Apply this hierarchy before issuing any verdict. A disagreement resolved by tier is noted in the receipt's `fix_recommendation` field with the tier applied (e.g., "Tier 1 override: file absent at declared path despite PASS receipt").
 
 ## Agent Disagreement Resolution
 

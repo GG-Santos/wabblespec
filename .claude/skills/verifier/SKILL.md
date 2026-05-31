@@ -16,6 +16,8 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 | Situation | Reference |
 |---|---|
 | Verification receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
+| LSP diagnostic severity mapping and language support | `engine/shared/references/lsp-integration.md` |
+| Playwright MCP call contracts (Demonstration mode) | `engine/shared/references/mcp-servers-integration.md` → Playwright section |
 
 ## When to use / when not to use
 
@@ -25,13 +27,15 @@ Receives wave output, wave plan entry, and task card from Executor. Runs spec co
 
 **Do not use when:**
 - Wave implementation has not completed (Verifier runs after the wave, not during)
+- The wave output artifacts do not yet exist at their declared paths — check paths before invoking; a missing artifact is a spec compliance failure to report, not a reason to defer invocation
+- You are mid-REVISE cycle and Executor has not yet re-implemented the failing criterion — Verifier re-runs after Executor's fix, not before
 
 ## Inputs
 
 - Wave output artifacts (produced by the completed wave)
 - Wave plan entry (declared `outputs`, `verification_mode`, `checkpoint`)
 - `.wabblespec/state/plans/task-card.md` (spec ground truth — acceptance criteria)
-- `.wabblespec/scope.md` (boundary reference)
+- `.wabblespec/state/scope.md` (boundary reference)
 
 ## How to do it
 
@@ -67,13 +71,14 @@ Run the check declared in the wave plan entry's `verification_mode`:
 
 | Mode | What to do |
 |---|---|
-| **Test** | Execute the declared test script or assertion suite. PASS = all assertions green. FAIL = any assertion fails — report which one and the exact output. |
+| **Test** | When an LSP plugin is active for the implementation language: collect LSP diagnostic output first. If LSP reports 1+ errors, emit FAIL immediately with the diagnostic list as `fix_recommendation` — do not run the test suite over type-errored code. Record `lsp_errors_checked: true` and `lsp_error_count: N` in the receipt. Then execute the declared test script or assertion suite. PASS = zero LSP errors AND all assertions green. FAIL = any LSP error OR any failing assertion — report the exact diagnostic or assertion output. Skip LSP check silently when no LSP plugin is installed. |
 | **Observation** | Check that each declared artifact exists and is in the expected state. PASS = all conditions met. FAIL = any artifact missing or in wrong state. |
 | **Audit** | Systematically compare each output artifact against the task card acceptance criteria. PASS = no violations found. FAIL = list each violation with the criterion it violates. |
 | **Review** | Route to Reviewer module. PASS = Reviewer returns ACCEPT verdict. FAIL = REVISE with Reviewer's revision guidance. |
 | **Measurement** | Read the declared metric from the artifact or test output. Compare to the threshold declared in the wave plan. PASS = threshold met or exceeded. |
 | **Attestation** | Pause execution. Surface the wave output to the user. Await explicit confirmation. PASS = user confirms. No automated path to PASS. |
 | **Demonstration** | Run the working proof against real conditions (not mocks). PASS = declared behavior confirmed. FAIL = behavior did not occur — describe what happened instead. |
+| **Async-Review** | Trigger `wave-review.py --ref HEAD` to prep a pending review job, then return PROVISIONAL_PASS immediately — do not block the wave. The review runs in the next session via `/wave-review`. If a previous Async-Review result exists in the wave-queue (status FAIL), surface it as a FAIL before accepting PROVISIONAL_PASS for this wave. |
 
 ### Step 3 — Issue verdict
 
@@ -87,6 +92,13 @@ BLOCKED conditions (immediate — do not enter REVISE):
 - Irreversible action requires human judgment before proceeding
 - Deadlocked dependency with no resolution path
 
+**Thesis impact (informational):** After issuing PASS/FAIL/BLOCKED, assess the wave's directional contribution to the task goal:
+- **STRENGTHENED** — wave output provides stronger evidence toward the task goal than the prior state
+- **UNCHANGED** — wave output meets spec but does not shift confidence in the task goal
+- **WEAKENED** — wave output is technically compliant but reveals a risk or gap that reduces confidence in the task goal
+
+Record as `thesis_impact` in the verification receipt. This does not affect PASS/FAIL/BLOCKED — it is an informational signal for autopilot and the session retrospective.
+
 ### Step 4 — REVISE loop (if FAIL)
 
 ```
@@ -97,6 +109,11 @@ Cycle 1:
     - What needs to change and where
   Return recommendation to Executor
   Executor re-implements → Verifier re-runs from Step 1
+
+  SCOPE RULE: Re-run from Step 1 (spec compliance check) after each Executor
+  revision — do not re-check only the failing criterion. A fix can introduce a
+  regression in a previously-passing criterion. The full wave spec-compliance
+  plus mode check must re-pass before issuing PASS.
 
 Cycle 2: same process
 
@@ -111,6 +128,8 @@ Cycle 4+: BLOCKED
 Cycle count resets at each new wave. A wave that consumed 2 REVISE cycles does not carry that count into the next wave.
 
 ### Step 5 — Write verification receipt
+
+**Closure ordering:** Write the verification receipt and issue the PASS/FAIL/BLOCKED signal for the current wave BEFORE Executor invokes any module for the next wave. Do not treat next-wave setup as a prerequisite for closing the current wave's verification record. A verification receipt that is deferred until after the next wave begins is an open receipt chain — this is an I10 violation.
 
 Always write this, regardless of verdict.
 
@@ -185,18 +204,49 @@ Base receipt schema. Extension fields:
 {
   "wave": "integer",
   "verification_mode": "Test|Review|Audit|Measurement|Observation|Attestation|Demonstration",
-  "verdict": "PASS|FAIL|BLOCKED",
+  "verdict": "PASS|FAIL|BLOCKED|PROVISIONAL_PASS",
   "spec_compliance": "PASS|FAIL",
   "revise_cycles_used": "integer — 0 to 3",
   "immediate_blocked": "boolean",
   "attestation_required": "boolean",
   "attestation_received": "boolean",
   "fix_recommendation": "string — required when verdict is FAIL",
-  "deferred_then_clauses": "array of strings — clause IDs whose artifacts are not declared in this wave's outputs; empty array [] for single-wave tasks or when all clause artifacts are in scope"
+  "deferred_then_clauses": "array of strings — clause IDs whose artifacts are not declared in this wave's outputs; empty array [] for single-wave tasks or when all clause artifacts are in scope",
+  "thesis_impact": "STRENGTHENED|UNCHANGED|WEAKENED — informational; does not affect verdict"
 }
 ```
 
 Signal to Executor: PASS (advance to next wave) | FAIL (enter REVISE) | BLOCKED (pause, escalate to user).
+
+## Evidence Hierarchy
+
+When wave output is disputed or evidence sources conflict, resolve using this three-tier hierarchy. Higher tier wins. Do not attempt to average or compromise between tiers.
+
+| Tier | Source | Label | Resolution rule |
+|---|---|---|---|
+| 1 (Ultimate Truth) | Execution artifacts — files actually written to disk, test runner output, diffs | "What exists" | A file absent from disk overrides any receipt or assertion claiming it was written. Presence/absence is binary and observable. |
+| 2 (Macro View) | Receipt chain — verifier receipts, executor receipts (signed, timestamped artifacts) | "What was recorded" | A completed, signed receipt contradicts an agent's verbal claim. The receipt was written at execution time; the claim is post-hoc. |
+| 3 (Optimization View) | Agent text assertions — what a module claims it did in conversation output | "What was stated" | Useful for context; overridden by Tier 1 or Tier 2 when they conflict. |
+
+**Application:**
+
+- Tier 1 vs Tier 2 conflict: check whether the file the receipt claims exists is actually present at the declared path. If absent, the receipt is a PARTIAL record — surface as FAIL regardless of receipt status.
+- Tier 2 vs Tier 3 conflict: the receipt stands. Record the discrepancy in `fix_recommendation`.
+- All three conflict: Tier 1 determines verdict; note the conflict in the receipt.
+
+Apply this hierarchy before issuing any verdict. A disagreement resolved by tier is noted in the receipt's `fix_recommendation` field with the tier applied (e.g., "Tier 1 override: file absent at declared path despite PASS receipt").
+
+## Agent Disagreement Resolution
+
+When Verifier's independent check contradicts another module's claim (Guard, Adversary, a subagent report), resolve disagreements with these three rules in priority order:
+
+1. **Receipt wins.** If a completed, signed receipt contradicts a subagent's verbal or inline claim, the receipt stands. Receipts are artifacts — claims are ephemeral. A Guard receipt showing PASS overrides an in-conversation statement that the wave was invalid.
+
+2. **Specific beats general.** If a specialist check (e.g., a mode-specific Audit of a single file) conflicts with a general scan (e.g., a grep-based Guard check across all files), the specialist check takes priority on the specific artifact. Record the general check's finding in `not_tested` with reason: "superseded by specialist verification."
+
+3. **Escalate unknowns.** If two independent checks produce contradictory results and no receipt or artifact evidence resolves the conflict, emit `ARCHITECTURE_ESCALATION` and surface to the operator for judgment. Do not attempt to resolve by choosing the more convenient result. The escalation note must name both conflicting claims, their sources, and what evidence would be needed to resolve them.
+
+Apply these rules before issuing any verdict. A disagreement resolved by rule is noted in the receipt's `fix_recommendation` field with the rule number applied.
 
 ## A note on common failure modes
 

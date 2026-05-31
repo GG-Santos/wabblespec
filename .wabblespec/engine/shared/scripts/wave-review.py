@@ -366,15 +366,12 @@ def write_quality_drawers(root: Path, resolved_ref: str, findings: list[dict],
                           session_id: str, task_id: str) -> list[Path]:
     """Write HIGH/CRITICAL findings as memory drawers in wings/quality/.
 
-    Dream and entity-graph pick these up automatically on the next session stop:
-    - Dream decays their confidence over time (findings become STALE if not re-raised)
-    - entity-graph builds file co-occurrence edges (files with repeated findings
-      become high-degree nodes)
+    Delegates to drawer-writer.py for schema-compliant output. Dream and
+    entity-graph pick these up on the next session stop.
 
-    Only HIGH and CRITICAL findings are written — MEDIUM/LOW are informational
-    only and would create too much noise in the gap-map.
+    Only HIGH and CRITICAL findings are written — MEDIUM/LOW create noise.
     """
-    wings = root / ".wabblespec" / "state" / "memory" / "wings" / "quality"
+    drawer_script = root / ".wabblespec" / "engine" / "shared" / "scripts" / "drawer-writer.py"
     written: list[Path] = []
 
     for i, f in enumerate(findings):
@@ -386,39 +383,36 @@ def write_quality_drawers(root: Path, resolved_ref: str, findings: list[dict],
         desc     = f.get("description", "")[:200]
         fix      = f.get("fix_recommendation", "") or f.get("fix", "")
 
-        # Room = file path slugified (or "general" if no file)
         room_slug = location.replace("/", "-").replace("\\", "-").replace(".", "-") \
                     if location else "general"
-        room_dir = wings / room_slug
-        room_dir.mkdir(parents=True, exist_ok=True)
-
         drawer_id = f"quality-{resolved_ref}-{i:02d}"
-        drawer = {
-            "drawer_id":       drawer_id,
-            "id":              drawer_id,
-            "wing":            "quality",
-            "room":            room_slug,
-            "topic":           f"[{sev}] {desc[:60]}",
-            "staleness_state": "FRESH",
-            "confidence":      1.0,
-            "written_at":      NOW,
-            "tags":            [sev.lower(), "wave-review", "code-quality"],
-            "body": {
-                "severity":    sev,
-                "ref":         resolved_ref,
-                "location":    location,
-                "description": desc,
-                "fix":         fix,
-                "session_id":  session_id,
-                "task_id":     task_id,
-            },
-            "evidence":  [f"{location}: {desc[:100]}"] if location else [desc[:100]],
-            "provenance": [{"event": "WAVE_REVIEW", "timestamp": NOW,
-                            "actor": "wave-reviewer", "ref": resolved_ref}],
-        }
-        out = room_dir / f"{drawer_id}.json"
-        out.write_text(json.dumps(drawer, indent=2), encoding="utf-8")
-        written.append(out)
+        evidence  = f"severity: {sev}; ref: {resolved_ref}; location: {location}; " \
+                    f"description: {desc[:150]}; fix: {fix[:150]}; " \
+                    f"session_id: {session_id}; task_id: {task_id}"
+
+        cmd = [
+            sys.executable, str(drawer_script),
+            "--id",             drawer_id,
+            "--topic",          f"[{sev}] {desc[:60]}",
+            "--wing",           "quality",
+            "--room",           room_slug,
+            "--evidence",       evidence,
+            "--confidence",     "1.0",
+            "--staleness-state","FRESH",
+            "--source",         resolved_ref,
+            "--source-module",  "wave-reviewer",
+            "--actor",          "wave-reviewer",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(root))
+        if result.returncode == 0:
+            # Derive the auto-generated output path the same way drawer-writer does
+            wings_dir = root / ".wabblespec" / "state" / "memory" / "wings" / "quality" \
+                        / "rooms" / room_slug / "drawers"
+            out = wings_dir / f"{drawer_id}.json"
+            written.append(out)
+        else:
+            print(f"[wave-review] drawer-writer failed for finding {i}: {result.stderr.strip()}",
+                  file=sys.stderr)
 
     if written:
         print(f"[wave-review] wrote {len(written)} quality drawers → Dream+entity-graph will process")

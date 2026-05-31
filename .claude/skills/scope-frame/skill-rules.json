@@ -29,11 +29,11 @@
   ],
   "authority": {
     "owns": [
-      ".wabblespec/scope.md",
+      ".wabblespec/state/scope.md",
       ".wabblespec/state/receipts/scopeframe-receipt.json"
     ],
     "reads": [
-      ".wabblespec/recipe.json"
+      ".wabblespec/state/recipe.json"
     ]
   },
   "verification_mode": "Observation",

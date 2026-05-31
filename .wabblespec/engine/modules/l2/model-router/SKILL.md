@@ -75,6 +75,27 @@ After routing, set `inference_guard_eligible` based on:
 
 This field flows to InferenceGuard activation check. InferenceGuard reads this field from the routing receipt.
 
+## Task Capability Classification
+
+Use this table when no runtime-state.json is present or when confidence values are equal across capabilities. Task type determines the minimum required capability tier — route to the highest available tier that meets or exceeds the minimum.
+
+| Task type | Min tier | Rationale |
+|---|---|---|
+| Architecture decisions (system design, module decomposition, cross-cutting tradeoffs) | Highest | Low-capability routing produces structurally unsound designs that fail at review |
+| Security review (threat modeling, vulnerability analysis, access control audit) | Highest | Security false negatives from low capability are not recoverable at review time |
+| Code review spanning the entire codebase | Highest | Cross-file reasoning requires full coherence over large context |
+| Synthesis of ambiguous requirements (reconciling conflicting specs, gap-map analysis) | Highest | Ambiguity resolution requires judgment; patterns do not transfer from simpler tasks |
+| Complex multi-step reasoning (L8 evolution, wave-plan conflict resolution) | High-analysis | Significant context span; quality degrades before token budget is exhausted |
+| Multi-file refactors, API design, spec authoring | High-analysis | Structured output with tradeoff awareness required |
+| LLM pipeline design, evaluation framework design | High-analysis | Domain requires calibrated reasoning, not just pattern completion |
+| Deterministic code generation from a complete spec | Fast-execution | Output shape fully determined by input; reasoning overhead wastes budget |
+| Test boilerplate from established patterns | Fast-execution | Pattern-completion task; low novelty |
+| Documentation from templates (changelogs, READMEs from existing content) | Fast-execution | Transformation task with high structural constraint |
+| Deployment operations, infrastructure commands | Fast-execution | Execution fidelity matters more than reasoning quality |
+| Simple content formatting, SEO tasks, commit message generation | Fast-execution | Short output, well-defined rules, reversible if wrong |
+
+When the task is reasoning-heavy (spec-authoring, synthesis, security-review) and both token expansion and capability upgrade are available, route to higher capability rather than allocating more tokens to a weaker capability — capability level provides more leverage on reasoning tasks than additional token budget.
+
 ## Reference Routing
 
 | Situation | Reference |
@@ -105,6 +126,16 @@ This field flows to InferenceGuard activation check. InferenceGuard reads this f
 }
 ```
 
+## Token budget vs capability upgrade tradeoff
+
+When performance on a task is insufficient and the options are (a) increase token budget or (b) route to a higher-capability runtime, empirical evidence from agent evaluation shows:
+
+- Token usage explains approximately 80% of agent performance variance on browsing/research tasks
+- Capability level explains approximately 5% of variance independently
+- Upgrading capability quality provides more leverage than doubling the token budget allocated to a weaker capability — especially for complex reasoning tasks where the weaker capability hits diminishing returns before exhausting its token budget
+
+Apply this as a routing tiebreaker: when both token expansion and capability upgrade are available options and the task is reasoning-heavy (spec-authoring, synthesis, security-review), prefer routing to higher capability over simply allocating more tokens to the current capability.
+
 ## Empirical calibration notes
 
 These findings come from the WabbleSpec Memory benchmark evaluation (2026-05-10). They inform confidence values for `runtime-state.json` capability entries — not model identity.
@@ -123,6 +154,18 @@ These findings come from the WabbleSpec Memory benchmark evaluation (2026-05-10)
 - These are measured baselines for the task shapes above. Other task shapes have not been empirically evaluated — use default capability matching rules.
 
 Source: WabbleSpec Memory benchmark harness, fixture set 2026-05-10. Raw numbers are held-out results, not tuning-set results.
+
+## Capability Tier Selection
+
+When selecting between multiple available capabilities of the same type, use task complexity as a tiebreaker before applying confidence scores.
+
+| Tier | Task complexity signal | Select when |
+|---|---|---|
+| Lite | Fast, single-source, time-sensitive | Quick lookups, simple questions, format conversions, status checks |
+| Standard | Default; moderate reasoning depth | Feature implementation, code review, spec authoring, most research tasks |
+| Max | Multi-source synthesis requiring parallel processing | Deep research with multiple information sources, structured report generation, complex multi-step reasoning where quality difference is measurable |
+
+Upgrading capability tier provides more leverage than increasing token budget for reasoning-heavy tasks — a weaker capability hits diminishing returns before exhausting its token budget, while a stronger capability closes the gap earlier. Apply max only when the task genuinely requires multi-source synthesis. For everything else, standard is the correct default.
 
 ## What not to do
 

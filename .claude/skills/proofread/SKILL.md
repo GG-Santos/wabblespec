@@ -28,6 +28,12 @@ Proofread is invoked:
 - **Audience** — target reader profile: `developer`, `end-user`, `business`, `legal` (default: infer from content type)
 - **Fact sources** — paths to authoritative sources for fact-checking (optional; if absent, facts are flagged as "unverifiable" not "wrong")
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Proofread receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/proofread/schemas/proofread-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/proofread-{timestamp}.json`

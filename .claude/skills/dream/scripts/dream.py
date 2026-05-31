@@ -124,7 +124,7 @@ class Finding:
 
 def detect_gaps(drawers: list[dict]) -> list[Finding]:
     findings: list[Finding] = []
-    active_ids = {d["id"] for d in drawers if d.get("staleness_state") not in ("SUPERSEDED", "EXPIRED")}
+    active_ids = {d.get("id", "unknown") for d in drawers if d.get("staleness_state") not in ("SUPERSEDED", "EXPIRED")}
 
     # Per-drawer findings
     for d in drawers:
@@ -181,7 +181,7 @@ def detect_gaps(drawers: list[dict]) -> list[Finding]:
                 kind="COVERAGE_GAP",
                 subject=room_key,
                 detail=f"Room {room_key} has no FRESH or AGING drawers "
-                       f"(states present: {', '.join(sorted(active_states))})",
+                       f"(states present: {', '.join(sorted(s for s in active_states if s is not None))})",
                 action=f"Run MemorySearch to identify what needs documenting in {room_key}. "
                        f"Write at least one new drawer from a verified source.",
             ))
@@ -318,7 +318,7 @@ def main() -> None:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
 
-    memory_root = ws_root / "memory"
+    memory_root = ws_root / "state" / "memory"
     wings_root = memory_root / "wings"
     index_path = memory_root / "index.json"
     dream_log_path = memory_root / "dream-log.json"
@@ -400,7 +400,7 @@ def main() -> None:
     chromadb_synced = 0
     if not args.dry_run and ema_updates:
         store_path = memory_path() if memory_path else ""
-        chroma_db = ws_root / "memory" / "chroma.sqlite3"
+        chroma_db = ws_root / "state" / "memory" / "chroma.sqlite3"
         if store_path and chroma_db.exists() and get_collection is not None:
             try:
                 col = get_collection()

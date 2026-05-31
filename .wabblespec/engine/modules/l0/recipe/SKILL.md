@@ -18,6 +18,7 @@ Scans the project for detection signals in priority order. Declares a build targ
 | Situation | Reference |
 |---|---|
 | Recipe receipt write (Step 5) | `engine/shared/references/script-delegation-contract.md` |
+| Linear issue pre-population (Step 2, priority 2) | `engine/shared/references/mcp-servers-integration.md` → Linear section |
 
 ## When to use / when not to use
 
@@ -61,11 +62,14 @@ Work through signals in priority order. Stop at the first confident match (confi
 | Priority | Signal | Action |
 |---|---|---|
 | 1 | Existing `.wabblespec/state/recipe.json` | Load if session_id matches |
-| 2 | Design document present (`GDD.md`, `PRD.md`, `FDS.md`) | Declare target from document type |
-| 3 | Platform config files | See `rules/target-detection.md` |
-| 4 | Directory structure patterns | See `rules/target-detection.md` |
-| 5 | User intent in opening message | Extract target from explicit statement |
-| 6 | No confident signal | Ask user directly |
+| 2 | Linear issue ID in opening message (`ENG-123` pattern or Linear URL) | Fetch issue via Linear MCP → pre-populate task card fields (see `mcp-servers-integration.md` → Linear section) |
+| 3 | Design document present (`GDD.md`, `PRD.md`, `FDS.md`) | Declare target from document type |
+| 4 | Platform config files | See `rules/target-detection.md` |
+| 5 | Directory structure patterns | See `rules/target-detection.md` |
+| 6 | User intent in opening message | Extract target from explicit statement |
+| 7 | No confident signal | Ask user directly |
+
+When Linear MCP is unavailable: skip priority 2 silently and continue to priority 3.
 
 If two targets both score ≥ 0.6, present both and ask the user to confirm. Never guess between ambiguous candidates.
 

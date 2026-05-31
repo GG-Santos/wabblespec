@@ -122,6 +122,44 @@ capability_handoff:
     - gateway-experience/references/     # if experience gateway active
 ```
 
+## UI Testing guidance (Playwright)
+
+When acceptance testing requires browser interaction, use this decision tree:
+
+```
+Is the app static HTML?
+  Yes → Read HTML file directly to identify selectors
+        → Write Playwright script using discovered selectors
+  No (dynamic) → Is the server already running?
+      No  → Start server via scripts/with_server.py (run --help first)
+            → Write Playwright script (server lifecycle is managed externally)
+      Yes → Reconnaissance-then-action:
+            1. navigate + wait for networkidle
+            2. screenshot or inspect DOM to discover selectors
+            3. execute actions on discovered selectors
+```
+
+**Critical:** Always call `page.wait_for_load_state('networkidle')` on dynamic apps before inspecting DOM. Inspecting before networkidle produces stale selector lists.
+
+```python
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.goto('http://localhost:5173')
+    page.wait_for_load_state('networkidle')  # REQUIRED for dynamic apps
+    browser.close()
+```
+
+**Script pattern:** If a `scripts/with_server.py` exists, run `--help` first and use it as a black box. Do not read its source unless a customized solution is absolutely necessary.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| web receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

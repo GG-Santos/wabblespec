@@ -44,13 +44,36 @@ Every project-map.md carries a `freshness_state` and `valid_until`. Explore sets
 | `STALE` | 72h+ elapsed, OR new packages added, OR entry-points changed | Trigger Explore re-run before planning |
 | `EXPIRED` | Entry-points or tech-stack changed in git since last map | Block consumption — Explore re-run required |
 
-Set `valid_until` to `explored_at + 24h` for most targets. High-churn projects (>5 commits per day) may use 8h. Explore re-runs always write a new map and reset `freshness_state` to `FRESH`.
+Set `valid_until` to `explored_at + 24h` for most targets. High-churn projects (over 5 commits per day) may use 8h. Explore re-runs always write a new map and reset `freshness_state` to `FRESH`.
+
+## Serena Semantic Enrichment (optional — when serena MCP is active)
+
+When the `serena` MCP server is active, use its semantic navigation tools as the primary traversal mechanism for high-value node discovery — faster and more precise than grep-based traversal:
+
+| Tool | Replaces | Use for |
+|---|---|---|
+| `serena_find_references <symbol>` | grep/Grep | Locating all callers of an entry point |
+| `serena_go_to_definition <symbol>` | Manual import tracing | Resolving cross-module dependencies |
+| `serena_list_symbols <file>` | Full file read | Extracting public API surface |
+| `serena_search_codebase <query>` | Multi-grep passes | Semantic pattern discovery |
+
+**When serena is active:** use these tools first for Steps 2 (entry points), 5 (high-churn files cross-reference), and 6 (spec-referenced files). Fall back to file reads when serena returns no results for a query.
+
+**Traversal order change:** with serena, high-churn detection (Step 5) can use `serena_search_codebase` with an edit-frequency signal instead of `git log`. Report the method used in the project-map.md `conventions_observed` list.
+
+**Record in project-map.md:**
+- `serena_available: true` in the header block
+- Add a `semantic_nav` entry to Impact Slices listing symbols discovered via serena with their reference counts
+
+When serena is not active: proceed with standard Glob/Grep/Read traversal. Never block on serena availability.
 
 ## Reference Routing
 
 | Situation | Reference |
 |---|---|
 | Explore receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+| Serena MCP call patterns and tool list | `engine/shared/references/mcp-servers-integration.md` → Serena section |
+| LSP availability by language | `engine/shared/references/lsp-integration.md` |
 
 ## Output contract
 
@@ -131,11 +154,22 @@ Named slices of this map. ReferenceLoad consumes these instead of raw file trees
 
 ## Memory writes
 
-For each distinct finding, write one Memory drawer as FRESH:
-- One drawer per tech stack component (not one drawer per file)
-- One drawer per observed convention
-- One drawer per architectural pattern
-- One drawer per gap identified
+For each distinct finding, write one Memory drawer as FRESH using `drawer-writer.py` — do not construct drawer JSON inline. One drawer per tech stack component, per convention, per architectural pattern, per gap identified (not one per file).
+
+```bash
+python .wabblespec/engine/shared/scripts/drawer-writer.py \
+  --topic "<OBSERVATION_TYPE>: <finding>" \
+  --wing implementation \
+  --room <project-slug> \
+  --evidence "<finding text>" \
+  --confidence <0.6-0.9> \
+  --staleness-state FRESH \
+  --source "<file path that surfaced this finding>" \
+  --source-module explore \
+  --actor explore
+```
+
+Wing `implementation` for code/architecture findings; `decisions` for observed conventions. ID and output path are auto-derived.
 
 Notify EntityGraph after all drawers written — pass list of entity candidates (file paths, module names, technology names) for extraction.
 

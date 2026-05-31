@@ -30,6 +30,12 @@ Translate activates when:
 - **Platform** — `react-intl | i18next | flutter | ios | android | generic` (default: generic)
 - **Base locale** — source locale of the strings (default: `en-US`)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Translate receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/translate/schemas/translate-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/translate-{timestamp}.json`

@@ -56,6 +56,14 @@ You are the cross-cutting security layer. You activate on top of (not instead of
 5. Write gateway-verdict-receipt (Phase B: PASS / FLAG / BLOCK)
 ```
 
+Security review follows this 3-phase sequence before producing the PASS/FLAG/BLOCK verdict:
+
+- **Phase 1 — Context Research**: Identify existing security frameworks and libraries in use; examine established secure coding patterns; understand the project's security model and trust boundaries
+- **Phase 2 — Comparative Analysis**: Compare code changes against existing secure patterns; identify deviations from established secure practices; flag code that introduces new attack surfaces
+- **Phase 3 — Vulnerability Assessment**: Trace data flow from user inputs to sensitive operations; look for privilege boundaries crossed unsafely; identify injection points and unsafe deserialization
+
+Apply the Hard Exclusions and Precedents from `## False-Positive Filtering` before issuing any verdict.
+
 Security verdicts (BLOCK, CRITICAL, CVE) must be written in full prose regardless of any active output-compression mode. See homowabian auto-clarity rule.
 
 ### Runtime permission model (informational)
@@ -88,6 +96,64 @@ InferenceGuard (L2) activates automatically when gateway-security is active. It 
 - Purple scoring: 9th component (inference quality, 5%) reads `inference_guard_summary.refusal_count` from Red receipt
 
 Override tier/technique in the security profile header fields: `InferenceGuard tier` and `InferenceGuard technique`.
+
+## False-Positive Filtering
+
+Apply these rules when assessing security findings before issuing a verdict. Both sub-sections are mandatory gates — a finding excluded by either list must not appear in the output.
+
+### Hard Exclusions (17 items)
+
+Automatically exclude findings that describe any of the following:
+
+1. Denial of Service (DOS) vulnerabilities, even if they allow service disruption
+2. Secrets or sensitive data stored on disk (handled by other processes)
+3. Rate limiting or resource exhaustion issues
+4. Memory consumption or CPU exhaustion issues
+5. Lack of input validation on non-security-critical fields without proven security impact
+6. Input sanitization concerns for GitHub Action workflows unless clearly triggerable via untrusted input
+7. A lack of hardening measures — only flag concrete vulnerabilities
+8. Race conditions or timing attacks that are theoretical rather than practical issues
+9. Vulnerabilities related to outdated third-party libraries
+10. Memory safety issues in Rust or any other memory-safe language
+11. Files that are only unit tests or only used as part of running tests
+12. Log spoofing concerns — outputting un-sanitized user input to logs is not a vulnerability
+13. SSRF vulnerabilities that only control the path (only a concern if controlling host or protocol)
+14. Including user-controlled content in AI system prompts is not a vulnerability
+15. Regex injection — injecting untrusted content into a regex is not a vulnerability
+16. Regex DOS concerns
+17. Insecure documentation — do not report any findings in .md files; a lack of audit logs is not a vulnerability
+
+### Precedents
+
+These are explicit non-vulnerabilities rooted in how frameworks and runtimes actually work:
+
+1. Logging high value secrets in plaintext IS a vulnerability. Logging URLs is assumed to be safe.
+2. UUIDs can be assumed to be unguessable. If a vulnerability requires guessing a UUID, it is not valid.
+3. Environment variables and CLI flags are trusted values. Any attack relying on controlling an env var is invalid.
+4. Resource management issues such as memory or file descriptor leaks are not valid.
+5. Tabnabbing, XS-Leaks, prototype pollution, and open redirects should not be reported unless extremely high confidence.
+6. React and Angular are generally secure against XSS. Do not report XSS unless using `dangerouslySetInnerHTML`, `bypassSecurityTrustHtml`, or similar unsafe methods.
+7. Most vulnerabilities in GitHub Action workflows are not exploitable in practice. Require a concrete and very specific attack path before including.
+8. Lack of permission checking or authentication in client-side JS/TS code is not a vulnerability — server-side validates all inputs.
+9. Only include MEDIUM findings if they are obvious and concrete issues.
+10. Most vulnerabilities in ipython notebooks (.ipynb) are not exploitable in practice. Require a concrete and very specific attack path where untrusted input triggers the vulnerability.
+11. Logging non-PII data is not a vulnerability. Only report logging vulnerabilities if they expose secrets, passwords, or PII.
+12. Command injection vulnerabilities in shell scripts are generally not exploitable in practice. Only report if there is a concrete and very specific attack path for untrusted input.
+
+## Defense-in-Depth Pattern for Data Access
+
+When reviewing code that accesses databases or structured data stores, verify that three independent protection layers are present. Absence of a single layer is not automatically Critical — absence of all three is.
+
+**Layer 1 — Connection-level enforcement (primary):** The database connection itself is opened in read-only mode where the driver supports it. Examples: PostgreSQL `readonly=True`, MySQL `SET SESSION TRANSACTION READ ONLY`, SQL Server `db_datareader` role. Hardest to bypass because it operates below application code.
+
+**Layer 2 — Allowlist query validation:** Before executing any query, the code validates it matches an allowlist of permitted statement types (SELECT, SHOW, EXPLAIN, WITH). INSERT, UPDATE, DELETE, DROP, TRUNCATE are rejected. Single-statement enforcement: compound inputs containing multiple statements (`;` delimiter) are also rejected.
+
+**Layer 3 — Secondary controls:** Even with layers 1 and 2, verify:
+- Query timeout enforced (30-second maximum recommended)
+- Row result cap enforced (10,000 row maximum recommended)
+- Error messages sanitized — credentials must not appear in exception text or logs
+
+Apply this pattern check when the task involves any database driver, ORM, or raw query builder.
 
 ## Reference Routing
 

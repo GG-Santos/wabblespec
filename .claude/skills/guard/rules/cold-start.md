@@ -25,7 +25,7 @@ Do NOT: Skip the I10 check because Wave N-1 "probably ran."
 
 ## Absent: scope.md
 
-Condition: `.wabblespec/scope.md` does not exist when Guard runs Layer 2.
+Condition: `.wabblespec/state/scope.md` does not exist when Guard runs Layer 2.
 Detection: File read returns 404.
 Action: DEPENDENCY error — ScopeFrame must run before any wave is guarded. Layer 2 cannot run without scope boundaries.
 Do NOT: Default to "all files in scope."

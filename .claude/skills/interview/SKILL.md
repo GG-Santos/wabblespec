@@ -48,6 +48,12 @@ See `rules/ambiguity-dimensions.md` for full definitions. Cover only dimensions 
 5. Record answers, reassess remaining ambiguity
 6. Repeat until resolved or human stops session
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Interview receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Outputs
 
 Write `.wabblespec/state/plans/intent.md`:
@@ -66,6 +72,29 @@ Write `.wabblespec/state/plans/intent.md`:
 **Answer:** string
 **Confidence:** 0.0-1.0
 ```
+
+## Deep Probing Sub-Questions
+
+When ambiguity is high or when the user's initial description is thin, use these probing angles within the relevant dimensions. These supplement the nine dimensions — they do not replace them.
+
+**Under Intent — prior attempts:**
+- What prior attempts have been made to solve this? Why did they fail or fall short?
+- Surfaces hidden constraints and informs what not to repeat.
+
+**Tradeoffs and priorities (use when scope or success criteria are contested):**
+- If we can't have everything, what gets cut first?
+- Speed vs. quality vs. cost: what is the priority ordering?
+- What are the non-negotiables — things that cannot be removed from scope no matter what?
+
+**Under Risk tolerance — grounded framing:**
+- What keeps you up at night about this project?
+- What could cause this to fail entirely?
+- What assumptions are being made that might turn out to be wrong?
+
+**Probing rules for these additions:**
+- Challenge stated answers: "You mentioned X. What if Y instead?" — surfaces unstated assumptions.
+- Do not accept surface-level answers on prior failures — ask what specifically broke.
+- Tradeoffs questions are only needed when scope or success criteria are contested; do not ask them as routine.
 
 ## What not to do
 

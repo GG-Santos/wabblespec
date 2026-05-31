@@ -1,7 +1,7 @@
 # Gap Map
 
-> Generated: 2026-05-30T18:13:22.036866+00:00
-> Drawers scanned: 102
+> Generated: 2026-05-31T12:10:47.248982+00:00
+> Drawers scanned: 174
 > Findings: 1
 
 ## MEDIUM (1)

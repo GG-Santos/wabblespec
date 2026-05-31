@@ -48,6 +48,12 @@ git push origin :refs/tags/<version>
 ```
 Does not execute these — provides to human for manual execution.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Rollback receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

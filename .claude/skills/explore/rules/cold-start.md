@@ -5,7 +5,7 @@ Defines what Explore does when its expected upstream artifacts are absent.
 ## Absent: recipe.json
 
 Condition: No declared build target when Explore runs.
-Detection: `.wabblespec/recipe.json` absent or stale.
+Detection: `.wabblespec/state/recipe.json` absent or stale.
 Action: Surface DEPENDENCY error naming Recipe. Explore needs a target to bound its search space.
 Do NOT: Explore the entire project without a target — produces unbounded, low-signal output.
 

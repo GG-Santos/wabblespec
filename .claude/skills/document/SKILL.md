@@ -23,6 +23,12 @@ Documentation generation for completed tasks. Produces README updates, API docs,
 - During execution waves (documentation is a post-completion step)
 - When no Archive receipt exists (cannot document unverified work)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Document receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 | Output | When | Content source |
@@ -31,6 +37,7 @@ Documentation generation for completed tasks. Produces README updates, API docs,
 | Inline code comments | Complex logic with non-obvious invariants | Executor wave artifacts |
 | CHANGELOG entry | Any completed task | Archive receipt (module, phase, wave summary) |
 | API reference | API/Service target with OpenAPI declared | OpenAPI spec + Verifier receipt |
+| Audio narration / podcast | Documentation deliverable declares audio output type | Document text + `~~tts-generator` capability |
 
 ## Rules
 
@@ -72,6 +79,41 @@ Document writes a receipt to `.wabblespec/state/receipts/document-{timestamp}.js
 - Which outputs were produced
 - Whether all declared documentation deliverables are complete
 - `cross_link_verified`: `true` if reference-type output passed cross-reference check; `null` if not applicable
+
+## Audio Output
+
+When the task declares an audio output type, produce the narration or podcast using this 5-step workflow:
+
+1. **Extract document text** — Read the source document into plain prose. Strip headers-as-structure into topic transitions in the script.
+2. **Generate conversation script** — Write a two-host dialogue as a JSON array. Host 1 leads and introduces topics; Host 2 reacts, analyzes, and asks questions. Each turn under 4000 characters. Vary turn lengths — mix short reactions with longer explanations. Include a brief intro and outro. Do not read verbatim; discuss and interpret.
+3. **Write script to disk** — Save to `/tmp/podcast_script.json`:
+   ```json
+   [
+     {"speaker": "host1", "text": "..."},
+     {"speaker": "host2", "text": "..."}
+   ]
+   ```
+4. **Generate audio** — Call `~~tts-generator` with the script file and declared output path.
+5. **Clean up** — Remove the temp script file after successful audio generation.
+
+For single-voice narration: write clean prose to `/tmp/tts_input.md`, then call `~~tts-generator` with `--file`. Default output location: `~/Downloads/`.
+
+## LLM-optimized output format
+
+When the documentation target will be consumed by agents or LLMs (reference docs, API docs, module overviews), apply these five constraints:
+
+**Token-efficient writing.** No redundant explanations. State what the thing does and where to find it. One sentence per concept is the target; never repeat information already expressed by a heading or identifier name.
+
+**Concrete file references.** Every claim about a module, function, or script includes the specific file path. When a line number helps locate a key section, include it. "The main entry point" is not a reference. `engine/shared/scripts/receipt-writer.py:42` is.
+
+**No duplication.** Each piece of information appears in exactly one output file. When two doc files would overlap, one owns the content and the other links to it: "See [docs/build-system.md](docs/build-system.md) for build targets." Duplicated content diverges silently.
+
+**Parallel agent dispatch.** When producing multi-section documentation (architecture, build, testing, development, deployment, files catalog), issue section tasks in parallel. Each section agent reads the relevant source files independently. Sequencing doc sections through a single thread wastes wall-clock time and produces no quality benefit.
+
+**Timestamp header.** Generated documentation files start with an HTML comment timestamp. This signals when the snapshot was taken and lets readers judge staleness without opening a git log. Format:
+```
+<!-- Generated: YYYY-MM-DD HH:MM:SS UTC -->
+```
 
 ## Common failure modes
 

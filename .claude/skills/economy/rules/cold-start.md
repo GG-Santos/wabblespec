@@ -12,7 +12,7 @@ Output: Fresh tracking ledger with zero baseline. First session establishes the 
 ## Absent: recipe.json
 
 Condition: No declared build target when Economy is called.
-Detection: `.wabblespec/recipe.json` absent or stale.
+Detection: `.wabblespec/state/recipe.json` absent or stale.
 Action: Surface DEPENDENCY error naming Recipe. Economy tracks costs per target type — without a target, cost attribution is undefined.
 Do NOT: Track costs without a target.
 

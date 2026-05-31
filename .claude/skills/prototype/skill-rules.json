@@ -1,0 +1,47 @@
+{
+  "module": "prototype",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "user wants to prototype a design",
+    "state machine or data model feels unclear",
+    "UI layout options needed before committing",
+    "/prototype command",
+    "prototype this",
+    "let me play with it",
+    "try a few designs",
+    "sanity-check this data model"
+  ],
+  "anti_activators": [
+    "design question is already resolved",
+    "implementation of a full wave is required",
+    "validating that existing code works correctly"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Design"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      "throwaway prototype file(s) adjacent to the module being prototyped"
+    ],
+    "reads": [
+      "product space (existing module or route being prototyped)"
+    ]
+  },
+  "verification_mode": "Attestation",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "on_demand",
+  "commands": [
+    "/prototype"
+  ],
+  "file_path_patterns": []
+}

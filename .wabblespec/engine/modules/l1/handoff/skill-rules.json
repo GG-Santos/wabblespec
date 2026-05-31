@@ -1,0 +1,47 @@
+{
+  "module": "handoff",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "context is approaching compaction limits",
+    "handing off to another session",
+    "user says write a handoff",
+    "user says summarize for the next session",
+    "/handoff command"
+  ],
+  "anti_activators": [
+    "current task is complete and Archive is the right closure artifact",
+    "goal is to permanently document decisions",
+    "user wants a summary of what was done for a commit message"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Handoff"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      "temp handoff document (mktemp)"
+    ],
+    "reads": [
+      ".wabblespec/state/plans/task-card.md",
+      ".wabblespec/state/plans/current-wave-plan.md",
+      ".wabblespec/state/session/state.json",
+      ".wabblespec/state/receipts/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "on_demand",
+  "commands": [
+    "/handoff"
+  ],
+  "file_path_patterns": []
+}

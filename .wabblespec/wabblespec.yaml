@@ -120,7 +120,7 @@ shared:
     - path: .wabblespec/engine/shared/infrastructure/guard-policy.md
       consumers: [guard, executor]
     - path: .wabblespec/engine/shared/infrastructure/gateway-pattern.md
-      consumers: [gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience]
+      consumers: [gateway-security, gateway-engineering, gateway-ai, gateway-aesthetic, gateway-design, gateway-experience, gateway-document]
     - path: .wabblespec/engine/shared/infrastructure/version-tracking.md
       consumers: [shift, api]
     - path: .wabblespec/engine/shared/infrastructure/completion-promise.md
@@ -456,6 +456,30 @@ modules:
     consumes_schemas: []
     depends_on: [scope-frame, adversary]
     last_validated: "2026-05-23"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: prd
+    path: .wabblespec/engine/modules/l1/prd/
+    type: skill
+    layer: L1
+    tags: [spec, prd, product-requirements, stakeholder, requirements]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [interview]
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: project-identity
+    path: .wabblespec/engine/modules/l1/project-identity/
+    type: skill
+    layer: L1
+    tags: [brand, identity, typography, color, tone, configuration]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [scope-frame]
+    last_validated: "2026-05-31"
     quality_floor_passed: true
     build_status: built
 
@@ -1017,6 +1041,18 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+  - id: gateway-document
+    path: .wabblespec/engine/modules/l4/document/
+    type: skill
+    layer: L4
+    tags: [document, output, docx, pdf, xlsx, pptx, format, stakeholder]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
 # ─────────────────────────────────────────────
 # L5 — MEMORY
 # ─────────────────────────────────────────────
@@ -1142,6 +1178,18 @@ modules:
     consumes_schemas: []
     depends_on: []
     last_validated: "2026-05-25"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: visualize
+    path: .wabblespec/engine/modules/l6/visualize/
+    type: skill
+    layer: L6
+    tags: [visualization, charts, diagrams, png, pdf, analytics]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [gateway-document]
+    last_validated: "2026-05-31"
     quality_floor_passed: true
     build_status: built
 
@@ -1497,6 +1545,54 @@ modules:
     quality_floor_passed: true
     build_status: built
 
+  - id: diagnose
+    path: .wabblespec/engine/modules/l1/diagnose/
+    type: skill
+    layer: L1
+    tags: [debugging, feedback-loop, regression-test, diagnosis, product-engineering]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: prototype
+    path: .wabblespec/engine/modules/l1/prototype/
+    type: skill
+    layer: L1
+    tags: [prototyping, design-validation, throwaway, ui-variants, state-explorer]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: scope-reject
+    path: .wabblespec/engine/modules/l1/scope-reject/
+    type: skill
+    layer: L1
+    tags: [rejection-record, out-of-scope, evolution, institutional-memory]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [triage]
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: handoff
+    path: .wabblespec/engine/modules/l1/handoff/
+    type: skill
+    layer: L1
+    tags: [session-handoff, context-continuity, compaction-recovery]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
 # ─────────────────────────────────────────────
 # SHARED DEV INFRASTRUCTURE
 # ─────────────────────────────────────────────
@@ -1635,6 +1731,42 @@ modules:
     depends_on: []
     last_validated: "2026-05-23"
     quality_floor_passed: true
+    build_status: built
+
+  - id: report
+    path: .wabblespec/engine/modules/l7/report/
+    type: skill
+    layer: L7
+    tags: [stakeholder, communication, 3p-update, status-report, leadership]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [archive]
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: present
+    path: .wabblespec/engine/modules/l7/present/
+    type: skill
+    layer: L7
+    tags: [presentation, pptx, slides, stakeholder, delivery]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: [archive, gateway-document]
+    last_validated: "2026-05-31"
+    quality_floor_passed: true
+    build_status: built
+
+  - id: c4-architecture
+    path: .wabblespec/engine/modules/l7/c4-architecture/
+    type: skill
+    layer: L7
+    tags: [architecture, diagrams, C4, documentation, mermaid, context, container, component]
+    produces_schemas: []
+    consumes_schemas: []
+    depends_on: []
+    last_validated: "2026-05-31"
+    quality_floor_passed: false
     build_status: built
 
   - id: changelog

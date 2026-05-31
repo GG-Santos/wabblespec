@@ -34,6 +34,8 @@ Process one pattern per invocation. Do not batch.
 
 Read the module's SKILL.md before writing anything. A hypothesis about behavior you have not read is invalid.
 
+When multiple runs have produced overlapping observations for the same pattern, merge them deterministically per `.wabblespec/engine/shared/templates/observation-merge-guide.md` before synthesizing — one merged pattern in, one hypothesis out.
+
 ## Decision logic
 
 Before writing, answer three questions:
@@ -43,6 +45,12 @@ Before writing, answer three questions:
 3. **Is the risk nameable?** Can you state a specific, measurable condition that would indicate rollback is needed? "Quality degrades" is not nameable. "False-completion rate rises above 15%" is.
 
 If any answer is no: stop, write a one-paragraph note to the user explaining what is missing. Do not write `candidate.json`.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Synth receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type synth` |
 
 ## Output contract
 

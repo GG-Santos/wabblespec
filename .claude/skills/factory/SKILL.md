@@ -34,6 +34,12 @@ If the augments directory already contains the blueprint ID, Factory exits with 
 
 Check `framework.yaml` for ID conflicts before scaffolding. A proposed module ID that already exists in framework.yaml must be surfaced to the human before proceeding.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Factory receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
+
 ## Output contract
 
 **Directory:** `.wabblespec/state/experiments/augments/{blueprint-id}/`

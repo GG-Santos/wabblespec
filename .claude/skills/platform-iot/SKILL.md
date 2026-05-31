@@ -61,6 +61,12 @@ capability_handoff:
     - gateway-engineering/references/
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| iot receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 Writes a receipt to `.wabblespec/state/receipts/` on successful completion.

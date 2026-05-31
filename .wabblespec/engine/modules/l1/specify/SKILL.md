@@ -103,6 +103,48 @@ After classifying the change delta, check whether adversarial spec review is req
 
 **Receipt field:** Add `adversarial_spec_gate_checked: true|false` and `adversarial_spec_gate_triggered: true|false` to the specify receipt.
 
+### Step 3.7 — Spec clarity gate (optional fresh-subagent test)
+
+For Medium and High complexity tasks, optionally run a spec clarity test before locking: dispatch a fresh subagent with only the draft task card and ask it to derive the acceptance criteria independently, without access to any prior context from this session.
+
+Prompt:
+```
+Read the following task card. Based solely on its contents, list what you believe the acceptance criteria require.
+<paste task card>
+```
+
+If the subagent's derivation matches the declared criteria — the spec is unambiguous. If it misses criteria, adds criteria not declared, or misinterprets the goal — the task card has blind spots. Fix before locking.
+
+This test is not required for Low complexity tasks or when time is constrained. Surface the result in the receipt as `clarity_gate_run: true|false` and `clarity_gate_result: match|diverged|skipped`.
+
+#### Multi-Persona Review (optional — High complexity or security/breaking tasks)
+
+For High complexity tasks or tasks with `change_class: BREAKING`, optionally run a 3-persona review before locking. Each persona is a separate subagent receiving only the draft task card with no session context.
+
+Dispatch the three subagents in parallel with these role-specific prompts:
+
+**junior-developer subagent:**
+```
+You are a junior developer who will implement the following task card. Flag any acceptance criterion that is ambiguous, assumes tribal knowledge, or would require you to make a decision that should be spelled out in the spec. List only specific gaps — do not rewrite the spec.
+<paste task card>
+```
+
+**qa-engineer subagent:**
+```
+You are a QA engineer responsible for testing against the following task card. Identify any acceptance criterion that cannot be tested as written, any missing failure-path scenarios, and any boundary conditions not covered. List only specific gaps.
+<paste task card>
+```
+
+**security-engineer subagent:**
+```
+You are a senior security engineer. Review the following task card for acceptance criteria that fail to address authentication, authorization, input validation, or data handling concerns. Identify any acceptance criterion that would pass while leaving an attack surface open. List only specific gaps.
+<paste task card>
+```
+
+Collect all three responses. For each gap surfaced by at least two personas, treat it as a required fix before locking. For gaps surfaced by only one persona, surface to user and let them decide.
+
+Surface results in the receipt as `persona_review_run: true|false` and `persona_review_findings: N` (count of required-fix items). Skip when complexity = Low or when time is constrained.
+
 ### Step 4 — Validate before writing
 
 Check all of the following. Fix any that fail before writing the task card:
@@ -115,6 +157,19 @@ Check all of the following. Fix any that fail before writing the task card:
 - [ ] `change_class` declared (BREAKING/ADDITIVE/COSMETIC)
 - [ ] If BREAKING: `change_summary` and `affected_specs` populated
 - [ ] Normative criteria use SHALL or MUST, not "should" or "may"
+- [ ] No acceptance criterion references a specific file path (file paths go stale on rename/move)
+- [ ] No acceptance criterion references a line number (line numbers go stale on every edit)
+
+**When target = Product (stakeholder-facing spec):** additionally verify:
+- [ ] Success metrics have specific numeric targets and measurement methods (not "improve user satisfaction")
+- [ ] Scope section explicitly lists what is OUT as well as what is IN
+- [ ] No technical implementation details appear (databases, frameworks, deployment belong in a technical spec)
+- [ ] User-facing requirements use "As a... I want... so that..." framing or equivalent
+
+**When target = Framework (technical/engineering spec):** additionally verify:
+- [ ] Every interface, API endpoint, or module boundary has: identifier/path, input shape, output shape, and error cases
+- [ ] Security considerations address authentication, authorization, data protection, and input validation
+- [ ] No ambiguity that an implementer would need to resolve independently (if unsure, it is ambiguous)
 
 ### Step 5 — Write task card and receipt
 
@@ -253,6 +308,10 @@ Additional receipt fields when running in --patch mode:
 - `delta_applied: <short description>`
 - `task_card_version: <bumped version>`
 - `boundary_halt: true|false`
+
+## Pitfalls
+
+- **Do not converge early.** A task card that passes all Step 4 checks quickly but was written in isolation is higher risk than one that required 2–3 revision cycles to resolve scope, success criteria, and failure paths. Specificity produced under pressure tends toward the vague. If the first draft passed every checklist item without a single revision, treat that as a signal to probe harder — not a signal that the spec is complete.
 
 ## A note on common failure modes
 

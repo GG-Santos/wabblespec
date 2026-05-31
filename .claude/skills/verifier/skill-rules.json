@@ -29,7 +29,7 @@
     "reads": [
       ".wabblespec/state/plans/task-card.md",
       ".wabblespec/state/plans/current-wave-plan.md",
-      ".wabblespec/scope.md",
+      ".wabblespec/state/scope.md",
       ".wabblespec/state/receipts/wave-*-receipt.json"
     ]
   },

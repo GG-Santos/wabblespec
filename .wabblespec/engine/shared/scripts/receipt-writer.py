@@ -50,6 +50,7 @@ Supported receipt types:
     guard           Guard five-layer pre-wave validation receipt (L2)
     wave            Executor intermediate wave completion receipt
     memory-mine     Memory mine deep pattern scan receipt (L5)
+    experiment      L8 experiment conclusion receipt (hypothesis→outcome→learnings)
 
 Usage:
     # Verifier receipt:
@@ -1166,6 +1167,29 @@ def build_wave_review(args):
     }
 
 
+def build_experiment(args):
+    outcome_raw = (getattr(args, "experiment_outcome", None) or "").upper()
+    outcome = outcome_raw if outcome_raw in ("CONFIRMED", "REFUTED", "INCONCLUSIVE") else "INCONCLUSIVE"
+    return {
+        "receipt_type": "experiment",
+        "module": "benchmark-loop",
+        "layer": "L8",
+        "phase": "Execute",
+        "timestamp": args.timestamp or NOW,
+        "session_id": args.session_id,
+        "task_id": args.task_id,
+        "hypothesis": args.experiment_hypothesis or "",
+        "variants": args.experiment_variants or [],
+        "primary_metric": getattr(args, "experiment_primary_metric", None) or "",
+        "winner": getattr(args, "experiment_winner", None) or "",
+        "outcome": outcome,
+        "learnings": getattr(args, "experiment_learnings", None) or "",
+        "status": args.status or "COMPLETE",
+        "confidence": args.confidence if args.confidence is not None else 0.8,
+        "summary": args.summary or "",
+    }
+
+
 BUILDERS = {
     "verifier": build_verifier,
     "executor": build_executor,
@@ -1210,6 +1234,7 @@ BUILDERS = {
     "wave": build_wave,
     "memory-mine": build_memory_mine,
     "wave-review": build_wave_review,
+    "experiment": build_experiment,
 }
 
 
@@ -1619,6 +1644,14 @@ def main():
     parser.add_argument("--held-out-value", type=float, metavar="FLOAT", help="Benchmark: measured value on held-out set.")
     parser.add_argument("--threshold", type=float, metavar="FLOAT", help="Benchmark: pass/fail threshold.")
     parser.add_argument("--fixture-set", metavar="PATH", help="Benchmark: fixture set directory path.")
+
+    # Experiment-specific args
+    parser.add_argument("--experiment-hypothesis", metavar="TEXT", help="Experiment: hypothesis statement (use 'We believe [change] will [metric] because [reasoning]' format).")
+    parser.add_argument("--experiment-variants", nargs="*", metavar="VARIANT", help="Experiment: skill versions or paths tested (repeatable).")
+    parser.add_argument("--experiment-primary-metric", metavar="TEXT", help="Experiment: primary metric being measured.")
+    parser.add_argument("--experiment-winner", metavar="TEXT", help="Experiment: which variant won (or 'inconclusive').")
+    parser.add_argument("--experiment-outcome", choices=["CONFIRMED", "REFUTED", "INCONCLUSIVE"], help="Experiment: hypothesis outcome classification.")
+    parser.add_argument("--experiment-learnings", metavar="TEXT", help="Experiment: what was learned regardless of outcome.")
 
     # Synth-specific args
     parser.add_argument("--instinct-observation-id", metavar="TEXT", help="Synth: instinct observation identifier.")

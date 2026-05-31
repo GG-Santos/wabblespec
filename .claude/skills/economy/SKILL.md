@@ -87,6 +87,84 @@ Drop:
 - Explanations of what a built-in tool does
 - Hedging and uncertainty qualifiers on facts that are certain
 
+## Context degradation taxonomy
+
+Named failure modes as context grows. Not binary — a continuum. Economy tracks these as leading indicators before budget thresholds fire.
+
+| Pattern | Cause | Detection signal |
+|---|---|---|
+| **Lost-in-Middle** | U-shaped attention curve — models allocate high attention to first and last tokens; middle tokens receive 10–40% less recall | Critical info placed mid-conversation goes unrecovered |
+| **Context Poisoning** | Errors compound via reference — tool output with bad data, hallucinated summaries, outdated retrieved docs | Persistent incorrect behavior despite correction; wrong tool calls |
+| **Context Distraction** | Irrelevant content overwhelms relevant signal | Single distractor degrades performance on the actual task |
+| **Context Confusion** | Multiple tasks mixed in one context | Wrong outputs, mixed requirements, cross-task contamination |
+| **Context Clash** | Contradictory information present simultaneously | Inconsistent reasoning, conflicting outputs across turns |
+
+**U-curve placement rule:** Place the current task requirements and key conclusions at the beginning and end of context respectively. Supporting details and reference material belong in the middle. This applies to how receipts, task cards, and wave plans are ordered in the system prompt.
+
+**Context health score** (informal diagnostic, not enforced):
+```
+score = 1.0
+score -= 0.5 × utilization  (if utilization > 0.70)
+score -= 0.3 × degradation_risk
+score -= 0.2 × poisoning_risk
+# healthy: >0.8  |  warning: >0.6  |  degraded: >0.4  |  critical: ≤0.4
+```
+
+## Four-bucket mitigation vocabulary
+
+Shared vocabulary for context management decisions across Economy, Executor, and Guard. When any module needs to reduce context pressure, one of these four buckets applies:
+
+| Bucket | Action | Trigger condition | WabbleSpec mechanism |
+|---|---|---|---|
+| **Write** | Save context externally rather than holding it inline | Utilization > 70% — any content that has been processed and can be retrieved on demand | Capture to `.wabblespec/captures/`; write receipts to disk |
+| **Select** | Pull only relevant context rather than loading everything | Context Distraction symptoms — irrelevant content present; or retrieval returned too broad a set | Reference Routing — load the specific reference file, not all of them |
+| **Compress** | Reduce tokens while preserving information | Utilization 70–80% and all content is relevant — nothing can be evicted, only summarized | Economy Rule 1 (500–2000 token compression); Rule 2 (>2000 capture) |
+| **Isolate** | Split work across subagents to partition context | Context Confusion or Clash symptoms — tasks mixing, contradictory constraints; or utilization > 80% | Executor Option B (Guard/Verifier as subagents); queue-orchestrator.py parallel waves |
+
+## Utilization thresholds
+
+| Utilization | Action |
+|---|---|
+| < 70% | Normal operation |
+| 70% | WARNING — consider Compress or Select before next tool call |
+| 80% | Trigger — apply active compaction; prefer subagent Isolation for remaining waves |
+| 90% | CRITICAL — compaction mandatory before proceeding; see `compaction-behavior.md` |
+
+These thresholds apply to context window utilization as reported by the statusline or session context metrics. The 80% trigger aligns with Economy's `--budget` advisory threshold.
+
+## Observation masking
+
+When a tool output or retrieved document is verbose but only a fraction of it is actionable, mask it rather than pasting in full.
+
+**Masking trigger:** Tool output > 80% of its content is non-actionable (boilerplate, repeated output, already-summarized content).
+
+**Masking format:**
+
+```
+[Obs:<ref-id>. Key: <one-line extracted signal>]
+```
+
+Store the full observation in `.wabblespec/captures/<module>-<ref-id>.txt`. Downstream modules load from disk on demand.
+
+**Never mask:**
+- Current task critical information
+- Most recent tool turn output (needed for reasoning continuity)
+- Active error messages or stack traces (see Rule 3)
+- Content the Verifier will need to assess the wave
+
+**Always mask:**
+- Repeated outputs from the same tool in the same session
+- Boilerplate or licensing headers from read files
+- Documentation sections that were loaded but not consulted
+
+**Compaction priority order** (when active compaction fires at 80% utilization):
+1. Old tool outputs (oldest first)
+2. Retrieved documents no longer in scope
+3. Conversation turns from prior waves
+4. Never: system prompt, current task card, current wave plan
+
+This order preserves the task anchor while freeing the largest volume of stale context first.
+
 ## What Economy would add (if activated at 50-execution gate)
 
 - Per-wave token budget declaration in task card
@@ -190,6 +268,20 @@ Projection accuracy degrades when:
 - A module produces a large artifact not predictable from prior receipts
 
 After the wave completes, Verifier may compare `tokens_projected` against actual receipt size. Accuracy data feeds the per-module tier estimates in future projections.
+
+## Long-Running Task Cost Transparency
+
+When delegating a task to a `~~research-agent` or any `~~agent-delegate` capability with a known cost or time range, surface both signals to the user before initiating. Do not start a task that costs money or takes multiple minutes without the user seeing the signal first.
+
+Example signal format: "This task is expected to take 2–10 minutes and cost approximately $2–5 per run. Proceeding?"
+
+If the cost or time range is unknown: state what is known (e.g., "This runs asynchronously and may take several minutes") rather than omitting the signal.
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Economy receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
 
 ## Output contract
 

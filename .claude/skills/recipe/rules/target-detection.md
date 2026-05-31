@@ -6,7 +6,7 @@ Lookup table for Recipe signal scanning. Work through priorities in order. Stop 
 
 ## Priority 1 — Existing recipe.json
 
-If `.wabblespec/recipe.json` exists and `session_id` matches the current session: load it. Confidence = 1.0. Skip all other detection.
+If `.wabblespec/state/recipe.json` exists and `session_id` matches the current session: load it. Confidence = 1.0. Skip all other detection.
 
 If `session_id` does not match: run detection from Priority 2. The old recipe.json may inform but does not lock.
 

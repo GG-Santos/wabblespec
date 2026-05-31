@@ -75,6 +75,15 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Vaults\\WabbleSpec v6.1\\.wabblespec\\engine\\hooks\\wabblespec-epistemic-reminder.js\""
+          }
+        ]
+      },
+      {
         "matcher": "Edit|Write|Bash|MultiEdit",
         "hooks": [
           {

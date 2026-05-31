@@ -1,0 +1,19 @@
+name: ref-adopt
+description: Full reference adoption pipeline -- evaluate, plan, implement, and compare external references.
+skills:
+  - recipe
+  - scope-frame
+  - specify
+  - decompose
+  - executor
+  - verifier
+  - archive
+  - ref-eval
+  - ref-plan
+  - ref-comp
+  - ref-adopt
+  - reference-load
+  - reference-load-l0
+  - wave-review
+  - wave-fix
+extends: null

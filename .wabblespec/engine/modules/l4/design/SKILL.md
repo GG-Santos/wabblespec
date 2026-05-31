@@ -24,6 +24,10 @@ Cross-cutting UX and interaction standards layer. Activates on top of (not inste
 | Design system declaration | No L3 module | Yes |
 | Storybook requirement (10+ components) | No L3 module | Yes |
 | WCAG 2.1 AA accessibility floor | No L3 module | Yes |
+| Motion profile coupling (energy matches visual style) | No L3 module | Yes |
+| Motion vocabulary (semantic ease/duration mapping) | No L3 module | Yes |
+| Hierarchy audit (single dominant element per view) | No L3 module | Yes |
+| Transition restraint (reserved effects at key moments only) | No L3 module | Yes |
 
 ## When to use
 
@@ -69,9 +73,41 @@ Cross-cutting UX and interaction standards layer. Activates on top of (not inste
 - Mental model gap declaration check
 - IA depth and labeling audit
 - Interaction design compliance check (touch targets, keyboard, focus, gestures)
+- Motion profile check (energy level, ease vocabulary, duration semantics)
+- Hierarchy audit (single dominant element per view, reading order declared)
+- Transition restraint check (reserved effects at key moments; simple transitions elsewhere)
 - Design system governance check
 - Accessibility floor audit (WCAG 2.1 AA)
 - Gateway activation receipt with all gate results
+
+## Phase B audit gates
+
+### Motion profile coupling
+
+The project's motion profile must be coherent with its visual style. Motion energy (high / moderate / calm) must be declared in `interaction-design.md` and must match the Aesthetic gateway's named style declaration. A `Swiss Pulse` style (clinical, data-driven) with slow dreamy entrances is incoherent and flags this gate.
+
+Motion vocabulary reference — semantic language mapped to technical properties:
+
+| Feel | Ease | Duration signal |
+|---|---|---|
+| Smooth | `ease-out` moderate | 0.4–0.6s — professional |
+| Snappy | `ease-out` aggressive | 0.2–0.3s — energy |
+| Bouncy | overshoot curve | 0.3–0.5s — playful |
+| Dramatic | exponential ease-out | 0.3–0.5s — impact |
+| Dreamy | `ease-in-out` sine | 0.5–0.8s — luxury |
+| Cinematic | very slow ease | 1–2s — prestige |
+
+When specifying motion, use feel vocabulary first, then map to technical properties. "Snappy entrance" is a complete spec; "0.2s ease-out" without a stated feel is underspecified.
+
+### Hierarchy per view
+
+Every distinct view or screen state must declare a single dominant element — the one thing a user's eye should land on first. "Reading order is obvious" is not a gate condition. The specific dominant element must be named. Views with no declared dominant element fail this gate.
+
+### Transition restraint
+
+Most state transitions must use the simplest available transition type for that platform. Visually distinctive transitions (custom animations, route transitions, modal reveals) are reserved for key moments: primary call-to-action, onboarding completion, destructive action confirmation, hero feature reveal. Using a custom animation for every navigation transition is the equivalent of bolding every word — it erases hierarchy.
+
+Gate condition: for each custom transition in scope, declare which key-moment category it belongs to. Custom transitions with no declared key-moment fail this gate.
 
 ## Files loaded by this module
 

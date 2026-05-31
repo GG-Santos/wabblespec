@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Budget-gated adversarial review. Triggers only when impact is HIGH or confidence is low. Adversary generates counter-analysis; Grader issues verdict. Maximum 3 REVISE cycles, then human escalation. NOT for implementing fixes or modifying artifacts — Executor handles implementation. NOT for routine low-impact decisions — budget gate blocks invocation.
+description: Budget-gated adversarial review. Triggers only when impact is HIGH or confidence is low. Adversary generates counter-analysis; Grader issues verdict. Maximum 3 REVISE cycles, then human escalation. NOT for implementing fixes or modifying artifacts — Executor handles implementation. NOT for routine low-impact decisions — budget gate blocks invocation. NOT for standalone adversarial analysis without a full review cycle — use Adversary directly. NOT for issuing a verdict or score without adversarial counter-analysis — use Grader directly.
 ---
 
 # Reviewer
@@ -23,6 +23,8 @@ Checks whether budget gate conditions are met. If triggered: Adversary generates
 - All impact conditions are LOW
 - Confidence is ≥ 0.7 on a routine implementation decision
 - The identical decision was reviewed this session and no new information has emerged
+- The artifact already has both adversary and grader receipts from this session and neither the artifact nor the spec has changed — re-review adds cost with no quality gain
+- The caller is presenting the revision guidance itself for evaluation rather than a revised artifact — Reviewer evaluates artifacts, not its own prior outputs
 
 When budget gate is not met: log "Reviewer not triggered — gate conditions not met," return primary output unchanged, write receipt with `triggered: false`.
 
@@ -72,9 +74,23 @@ Invoke `modules/l2/adversary` with:
 - `challenger_mode`: "open"
 - `challenge_scope`: "code-quality-only"
 
-Adversary challenges implementation quality: maintainability, security, efficiency, error handling, naming. Spec compliance is assumed satisfied by Stage A. Record the receipt path in `adversary_receipt_path[1]` as `adversary-receipt-quality-<timestamp>.json`.
+Adversary challenges implementation quality: maintainability, efficiency, error handling, naming. Spec compliance is assumed satisfied by Stage A. Record the receipt path in `adversary_receipt_path[1]` as `adversary-receipt-quality-<timestamp>.json`.
 
-Do not reproduce or interpret Adversary's logic in either stage. Adversary is the authority on its own analysis. If any Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader for that stage.
+If Stage B Grader verdict is REVISE on a HIGH concern, return guidance. Do not proceed to Stage C if Stage B returns a blocking REVISE.
+
+**Stage C — Security** (runs after Stage B ACCEPT or minor REVISE only)
+
+Invoke `modules/l2/adversary` with:
+- `artifact_to_challenge`: the primary output
+- `challenger_mode`: "open"
+- `challenge_scope`: "security-only"
+- `challenge_prompt_override`: contents of `.wabblespec/engine/shared/review/security.txt`
+
+Adversary challenges: trust-boundary failures, injection risks, secret exposure, insecure execution, auth gaps, cryptographic weaknesses. Record the receipt path in `adversary_receipt_path[2]` as `adversary-receipt-security-<timestamp>.json`.
+
+Security findings with `confidence >= 0.7` that are CRITICAL or HIGH route immediately to the Security gateway (L4) in addition to the normal Grader evaluation — do not suppress them if Stage C Grader returns ACCEPT overall.
+
+Do not reproduce or interpret Adversary's logic in any stage. Adversary is the authority on its own analysis. If any Adversary receipt is missing or status = FAIL, halt and surface to human — do not proceed to Grader for that stage.
 
 ### Step 3 — Grader evaluation
 
@@ -107,6 +123,12 @@ If REVISE:
 
 Always write a receipt, whether triggered or not. If not triggered: `triggered: false`, `verdict: NOT_TRIGGERED`.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Reviewer receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type reviewer` |
+
 ## Output contract
 
 **gate receipt** (`.wabblespec/state/receipts/reviewer-receipt-<timestamp>.json`):
@@ -136,7 +158,7 @@ Base receipt schema. Extension fields:
   },
   "adversary_receipt_path": {
     "type": "array",
-    "description": "Paths to the two stage adversary receipts: [0] spec-compliance, [1] code-quality. Null entries if that stage did not run. Null if triggered = false."
+    "description": "Paths to the three stage adversary receipts: [0] spec-compliance, [1] code-quality, [2] security. Null entries if that stage did not run. Null if triggered = false."
   },
   "grader_receipt_path": {
     "type": "string",
@@ -146,6 +168,8 @@ Base receipt schema. Extension fields:
 ```
 
 **Finding schema:** Each finding in the `findings` array must validate against `modules/l2/reviewer/schemas/finding.schema.json`. Required fields per finding: `finding_id`, `severity`, `category`, `description`, `evidence`, `fix_recommendation`, `confidence`. Only include findings with `confidence >= 0.7`.
+
+**Finding presentation order:** Sort findings HIGH → MEDIUM → LOW. Within each severity tier, group by file to minimize context switches for the module acting on the findings. Multi-file findings at the same severity appear together. This ordering is mandatory — unsorted findings degrade Executor's fix efficiency.
 
 **Triage wiring:** When Reviewer produces findings with severity CRITICAL or HIGH, write `finding_id` values to the Triage module as new triage records. Security-category findings route immediately to L4 Security gateway.
 

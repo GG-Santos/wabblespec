@@ -1,0 +1,48 @@
+{
+  "module": "diagnose",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "confirmed bug with unknown cause",
+    "performance regression appeared",
+    "prior fix attempt failed",
+    "/diagnose command",
+    "debug this",
+    "diagnose this",
+    "something is broken or throwing",
+    "build a feedback loop for a bug"
+  ],
+  "anti_activators": [
+    "bug already understood and only fix remains",
+    "exploratory search for potential bugs",
+    "behavior is correct but user wants it changed"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Diagnose"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "product_space": true,
+    "owns": [
+      "product-space debug instrumentation (temporary, removed at Phase 6)"
+    ],
+    "reads": [
+      "product space (read-only during diagnosis)"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "on_demand",
+  "commands": [
+    "/diagnose"
+  ],
+  "file_path_patterns": []
+}

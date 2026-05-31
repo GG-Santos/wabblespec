@@ -26,6 +26,7 @@ Three operations: **Write** (create or update a drawer), **Read** (return conten
 |---|---|
 | Writing a file-based drawer JSON to `state/memory/wings/` | `engine/shared/references/script-delegation-contract.md` → `drawer-writer.py` |
 | Provenance ledger and index update after write | Route to `modules/l5/provenance/SKILL.md` |
+| Drawer retrieval fails on known-populated rooms; cross-room synthesis needed; deciding whether to add vector/graph layer | `skills/memory/references/memory-framework-selection.md` |
 
 ## When to use / when not to use
 
@@ -138,7 +139,7 @@ return {"evidence": content, "staleness_state": staleness,
 col.update(ids=[drawer_id], metadatas=[{"wabblespec_staleness_state": to_state}])
 ```
 
-If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit — search filters via `wabblespec_staleness_state != EXPIRED`.
+If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit — search filters exclude `wabblespec_staleness_state` equal to `EXPIRED`.
 
 ## Output contract
 
@@ -157,6 +158,24 @@ If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit 
   "backend": "memory/chromadb"
 }
 ```
+
+## Observation Types
+
+When writing a drawer, the `wabblespec_topic` field should be prefixed with one of these named observation types to enable categorized retrieval. MemorySearch and Dream use these prefixes to filter and decay by observation category:
+
+| Type | Use for |
+|---|---|
+| `ARCHITECTURAL_DECISION` | Design choices, system structure decisions, and the reasoning behind them |
+| `WORKING_SOLUTION` | Fixes, approaches, and implementations that succeeded |
+| `CODEBASE_PATTERN` | Recurring patterns discovered in project code or framework modules |
+| `FAILED_APPROACH` | What was tried and did not work — prevents repeating failed paths |
+| `ERROR_FIX` | How specific errors or failures were resolved, keyed to the error message or symptom |
+| `USER_PREFERENCE` | Stated or observed user preferences about approach, format, or output style |
+| `OPEN_THREAD` | Incomplete work, deferred decisions, or threads to resume in a future session |
+
+**Format:** `wabblespec_topic: "ARCHITECTURAL_DECISION: auth middleware token storage approach"`
+
+A drawer without a recognized type prefix is still valid but will not benefit from type-based filtering. Prefer typed topics for all new drawers.
 
 ## Common failure modes
 

@@ -31,6 +31,12 @@ Writer activates when:
 - **Word count target** — approximate target length (optional; defaults by content type)
 - **Tone** — `authoritative | conversational | educational | persuasive` (default: infer from content type and audience)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Writer receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/writer/schemas/writer-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/writer-{timestamp}.json`

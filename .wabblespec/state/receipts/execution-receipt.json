@@ -1,15 +1,15 @@
 {
   "receipt_type": "executor",
-  "task_id": "tier7-expansions-20260530",
-  "session_id": "tier7-expansions-20260530",
+  "task_id": "html-slides-20260531",
+  "session_id": "html-slides-20260531",
   "status": "PASS",
   "wave": 0,
   "wave_of": 0,
   "modules_activated": [],
   "files_written": [],
-  "summary": "All 6 waves complete: 18 Tier 7 expansions implemented",
+  "summary": "All 3 waves complete: slide-token-validator.py, generate-slide.py, present SKILL.md update",
   "confidence": 1.0,
   "not_tested": [],
   "delta_class": "ADDITIVE",
-  "executed_at": "2026-05-30T14:34:57Z"
+  "executed_at": "2026-05-31T10:08:55Z"
 }

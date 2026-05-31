@@ -1,10 +1,11 @@
 {
-  "enforcement_active": false,
-  "required_receipts": [],
-  "active_module": null,
-  "evidence_drawers": [],
-  "session_id": "phase2-script-delegation-20260528",
-  "started_at": "2026-05-28T12:08:00Z",
-  "completed_at": "2026-05-28T08:04:11Z",
-  "last_task": null
+  "enforcement_active": true,
+  "required_receipts": [
+    "recipe-receipt-html-slides-20260531",
+    "scopeframe-receipt-html-slides-20260531",
+    "specify-receipt-html-slides-20260531",
+    "decompose-receipt-html-slides-20260531"
+  ],
+  "active_module": "executor-wave-1",
+  "evidence_drawers": []
 }

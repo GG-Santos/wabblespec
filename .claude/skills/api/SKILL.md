@@ -46,6 +46,12 @@ Write or update the formal API contract document. Contract must include: endpoin
 
 Compare implementation to declared contract. Check: all declared endpoints exist, request/response shapes match, deprecated items still present if sunset date not reached, no undeclared endpoints exposed. Flag drift as violations.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Api receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `schemas/api-receipt.schema.json` |
+
 ## Output contract
 
 **api-receipt.json** (`.wabblespec/state/receipts/api-receipt-<timestamp>.json`):

@@ -16,6 +16,7 @@ Reads the locked task card. Confirms complexity (Low/Medium/High). Produces a wa
 | Situation | Reference |
 |---|---|
 | Decompose receipt write (Step 7) | `engine/shared/references/script-delegation-contract.md` |
+| Serena blast-radius check before wave sequencing | `engine/shared/references/mcp-servers-integration.md` → Serena section |
 
 ## When to use / when not to use
 
@@ -44,6 +45,18 @@ Read `specify-receipt.json`. If missing or status FAIL: stop, surface to user, r
 ### Step 2 — Confirm complexity
 
 Recipe scored complexity at intake. Re-confirm against the full task card now. Use Low/Medium/High criteria from Recipe. If revised upward, note the reason in the wave plan.
+
+### Step 2b — Serena blast-radius check (optional — Serena MCP only)
+
+Before sequencing waves, when Serena MCP is active: for each primary symbol or entry point declared in the task card, run `serena_find_references` to count reference depth.
+
+| Reference count | Wave plan implication |
+|---|---|
+| 0–5 callers | Normal scope — no special handling |
+| 6–15 callers | Flag as MEDIUM blast-radius in wave plan header; recommend test wave as final wave |
+| 16+ callers | Flag as HIGH blast-radius; upgrade rollback type to `worktree` for all waves touching this symbol |
+
+Record `serena_blast_radius_checked: true` and the max reference count in the decompose receipt. When Serena is unavailable: omit this step and set `serena_blast_radius_checked: false`.
 
 ### Step 3 — Sequence waves
 
@@ -90,11 +103,20 @@ Single-wave or trivial-change tasks always skip fan-out regardless of score.
 
 Record the fan-out score and label in the decompose receipt under `fanout_score` and `fanout_label`.
 
-### Step 3c — Declare verification command per wave
+### Step 3c — Declare verification command and execution mode per wave
 
 Every wave must include a `verification_command`: the exact shell command that proves the checkpoint condition is satisfied when run. No pseudocode. No descriptions. A command that can be copied and executed as-is.
 
 If no runnable command exists for a wave (human judgment required, visual inspection, live environment), set `verification_mode` to Attestation — not Observation. Defaulting to Observation when no command is available silently removes the verification gate.
+
+Every wave must also declare `execution_mode`:
+
+| Mode | When to assign |
+|---|---|
+| `AFK` | Wave can run fully autonomously — no human judgment required mid-execution. Verification is automated (Test or Observation mode). |
+| `HITL` | Human must be present during execution — the wave involves judgment calls, design decisions, external access, or manual testing. Verification mode is typically Attestation or Review. |
+
+Prefer AFK where possible. A wave that uses Attestation verification is almost always HITL. A wave that uses Test or Observation is almost always AFK. If uncertain, ask: "Can an agent execute this wave and verify it without any human interaction?" If yes, AFK. If no, HITL.
 
 ### Step 4 — Assign verification mode per wave
 
@@ -151,6 +173,7 @@ python .wabblespec/engine/shared/scripts/receipt-writer.py \
 **checkpoint:** <condition that must be true before Wave 2 begins>
 **rollback_to:** null
 **verification_mode:** Test|Review|Audit|Measurement|Observation|Attestation|Demonstration
+**execution_mode:** AFK|HITL
 
 ---
 
@@ -161,6 +184,7 @@ python .wabblespec/engine/shared/scripts/receipt-writer.py \
 **checkpoint:** <condition that must be true before Wave 3 begins>
 **rollback_to:** Wave 1 checkpoint
 **verification_mode:** <mode>
+**execution_mode:** AFK|HITL
 
 ---
 

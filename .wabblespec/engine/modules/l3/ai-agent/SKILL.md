@@ -66,6 +66,52 @@ capability_handoff:
     - gateway-ai/references/             # always for AI/Agent
 ```
 
+## MCP tool annotation standard
+
+When the project builds or consumes MCP tools, every tool declaration must include these four annotations. Missing annotations are a spec incompleteness — add them before Executor writes code:
+
+| Annotation | Set true when |
+|---|---|
+| `readOnlyHint: true` | Tool only reads, never modifies state (queries, lists, fetches) |
+| `destructiveHint: true` | Tool deletes or irreversibly modifies (delete, drop, overwrite) |
+| `idempotentHint: true` | Multiple identical calls produce the same result (safe to retry) |
+| `openWorldHint: true` | Tool interacts with external state (filesystem, APIs, databases) |
+
+Tool naming: use consistent action-prefixed names. Description must state: what it does, when to use it, what it accepts, what it returns.
+
+## Sub-Agent Context Enrichment
+
+When delegating a task to an external agent via any `~~agent-delegate` capability, enrich the task prompt with these 5 context fields before dispatching. Each field improves sub-agent output coherence without requiring it to re-derive project state.
+
+| Field | What to inject |
+|---|---|
+| Active branch | Current git branch name |
+| Recently modified files | Files changed in the last 3–5 commits (limit to 10) |
+| Recent commits | Last 5 commit messages, one line each |
+| Staged changes | Files currently staged but not committed |
+| Active task context | Active task card goal and current wave objective (1–2 sentences) |
+
+**AGENTS.md structure:** An `AGENTS.md` file in the project root gives an external agent persistent project context across sessions. Recommended sections:
+
+```
+## Project Overview
+[one-paragraph description]
+
+## Tech Stack
+[language, framework, testing approach]
+
+## Code Conventions
+[linter, naming, file organization]
+
+## Testing Requirements
+[coverage target, test types required]
+
+## Build and Deploy
+[build command, test command]
+```
+
+This file replaces ad-hoc context injection for external agents that support it. Treat it as a machine-readable project brief that improves first-turn task quality.
+
 ## Reference Routing
 
 | Situation | Reference |

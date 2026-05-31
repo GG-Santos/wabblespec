@@ -47,7 +47,7 @@ A spec written without this platform context will miss: exit code contracts, she
 
 | Detected signal | Language module loaded |
 |---|---|
-| `bin` in package.json, `#!/usr/bin/env node` | `.wabblespec/engine/shared/dev/languages/node/` |
+| `bin` in package.json, Node.js shebang line | `.wabblespec/engine/shared/dev/languages/node/` |
 | `cli.py`, `__main__.py`, `typer`/`click` import | `.wabblespec/engine/shared/dev/languages/python/` |
 | `cmd/` directory, `cobra` import, `go.mod` | `.wabblespec/engine/shared/dev/languages/go/` |
 | `clap` in Cargo.toml, Rust `main.rs` with arg parsing | `.wabblespec/engine/shared/dev/languages/rust/` |

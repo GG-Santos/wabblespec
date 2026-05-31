@@ -72,6 +72,12 @@ capability_handoff:
     - gateway-aesthetic/references/      # if aesthetic gateway active
 ```
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| desktop receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type platform-activation` |
+
 ## Output contract
 
 **Platform activation receipt** (`.wabblespec/state/receipts/platform-desktop-{timestamp}.json`)

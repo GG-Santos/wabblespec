@@ -85,7 +85,7 @@ Usage:
         --older-than 2026-01-01 \\
         --dry-run
 
-Valid wings: architecture, implementation, decisions, operations, requirements, infrastructure, research
+Valid wings: architecture, implementation, decisions, operations, requirements, infrastructure, research, references, quality
 Valid staleness states: FRESH, AGING, STALE, EXPIRED, NEEDS_REVERIFICATION, SUPERSEDED
 
 Output path derivation (when --out is omitted):
@@ -110,7 +110,7 @@ from datetime import datetime, timezone
 
 VALID_WINGS = [
     "architecture", "implementation", "decisions", "operations",
-    "requirements", "infrastructure", "research",
+    "requirements", "infrastructure", "research", "references", "quality",
 ]
 
 VALID_STALENESS = [

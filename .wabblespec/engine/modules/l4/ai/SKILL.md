@@ -74,6 +74,40 @@ Cross-cutting AI standards layer. Activates on top of (not instead of) the activ
 - Model governance check (pinning, fallback, regression)
 - Gateway activation receipt with all gate results
 
+## Agent design decision tree
+
+Before committing to an agent tier, verify all four criteria:
+
+- **Complexity** — Is the task multi-step and hard to fully specify in advance?
+- **Value** — Does the outcome justify higher cost and latency?
+- **Viability** — Is the agent capability-adequate for the task type?
+- **Cost of error** — Can errors be caught and recovered from? (tests, review, rollback)
+
+If any criterion is "no": stay at a simpler tier (single call or workflow). Agents add latency, cost, and non-determinism — only use them when the task genuinely requires open-ended model-driven exploration.
+
+## Compaction and prompt caching standards
+
+**Compaction contract:** For long-running conversations using server-side compaction, always append `response.content` (not just the text string) back to messages on every turn. Compaction blocks in the response must be preserved — the API uses them to replace compacted history on the next request. Appending only text silently loses compaction state.
+
+**Prompt caching anti-patterns to gate in spec:**
+- Stable content must go before volatile content in the rendering order (tools → system → messages)
+- Timestamps, per-request IDs, or varying user inputs must go after the last cache breakpoint — never before
+- Cache breakpoints have a minimum token threshold (~1024 tokens) — shorter prefixes silently do not cache
+- Verify caching is working via `cache_read_input_tokens` field — if zero across repeated requests, a silent invalidator is active
+
+## MCP tool design standards
+
+When the project builds MCP tools, apply these annotations to every tool declaration:
+
+| Annotation | Meaning | When to set true |
+|---|---|---|
+| `readOnlyHint` | Tool reads state, never modifies | Query/read/list tools |
+| `destructiveHint` | Tool deletes or irreversibly modifies | Delete, drop, overwrite tools |
+| `idempotentHint` | Multiple calls with same input = same result | Safe to retry without side effects |
+| `openWorldHint` | Tool interacts with external state | Any tool touching external APIs or filesystems |
+
+Tool names must use consistent prefixes — action-oriented and discoverable. Descriptions must answer: what does it do, when to use it, what it accepts, what it returns.
+
 ## Files loaded by this module
 
 ```

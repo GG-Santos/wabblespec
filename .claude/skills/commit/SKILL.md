@@ -29,6 +29,12 @@ Commit activates:
 - **Sign** — whether to GPG-sign the commit (default: false)
 - **Dry-run** — produce commit message(s) without applying (default: false; always true in audit mode)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Commit receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l7/commit/schemas/commit-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/commit-{timestamp}.json`
@@ -78,7 +84,7 @@ Commit activates:
 **Step 2 — Select type.** Apply `rules/conventional-commits.md` type selection. Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `perf`, `style`, `ci`, `build`. When in doubt between `feat` and `refactor`: if behavior changes for users → `feat`. If behavior is unchanged → `refactor`.
 
 **Step 3 — Write subject line.**
-- Format: `type(scope): description` or `type(scope)!: description` for breaking changes
+- Format: `type(scope): description`; append an exclamation mark before the colon for breaking changes
 - 72 characters maximum (total including type and scope prefix)
 - Description: imperative mood, lowercase, no period
 - Describes what the commit does — the effect, not the mechanism
@@ -92,6 +98,13 @@ Commit activates:
 
 **Step 5 — Write breaking change footer (if applicable).**
 `BREAKING CHANGE: {description of what breaks and what consumers must do}`
+
+**Step 5b — Decision trailer (non-obvious choices only).**
+When the commit implements a non-obvious architectural choice — one where a future reader would reasonably question why approach A was chosen over B — append a `Decision:` trailer:
+```
+Decision: chose <approach> over <alternative> because <constraint or evidence>
+```
+Use only when the why would not be recoverable from the diff or CLAUDE.md. One trailer per commit maximum. Do not use for routine choices where the diff is self-explanatory.
 
 **Step 6 — Apply or return.**
 If `dry-run`: output message(s) to receipt only.

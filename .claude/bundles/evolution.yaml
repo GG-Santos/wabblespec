@@ -1,0 +1,20 @@
+name: evolution
+description: L8 evolution cycle -- instinct, synth, blueprint, augment, benchmark, forge, retro.
+skills:
+  - recipe
+  - scope-frame
+  - specify
+  - decompose
+  - executor
+  - verifier
+  - archive
+  - instinct
+  - synth
+  - blueprint
+  - augment
+  - benchmark
+  - forge
+  - dream
+  - retro
+  - feedback
+extends: null

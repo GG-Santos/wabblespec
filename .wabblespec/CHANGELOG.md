@@ -1854,3 +1854,30 @@ Promoted 6 modules from `build_status: deferred` to `built`. All SKILL.md files 
 - delivery-receipt: .wabblespec/state/receipts/delivery-receipt-tier7-expansions-20260530.json
 - waves: 0 completed
 - verification: all waves PASS
+
+---
+
+## [0.51.0] — 2026-05-31T10:10:34Z
+
+### Changed
+- Added generate-slide.py (Chart.js HTML slide generator with 110+ embedded palettes) and slide-token-validator.py (CSS token compliance checker) to framework scripts; added HTML Slide Output section to present SKILL.md in engine module and skills mirror
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-html-slides-20260531.json
+- waves: 3 completed
+- verification: all waves PASS
+
+---
+
+## [0.52.0] — 2026-05-31T14:49:17Z
+
+### Changed
+- ref-adopt agents-main: plugin-eval anti-pattern taxonomy (OVER_CONSTRAINED/MISSING_TRIGGER/BLOATED_SKILL/ORPHAN_REFERENCE/DEAD_CROSS_REF) + quality scoring formula (10 dims, badge thresholds) + CLAUDE.md 200-600 sweet spot + skill-tdd F1 metric + model-router task capability classification + quality-suite scripts (quality-score.py, quality-rank.py, quality-judge.py) + c4-architecture L7 skill; 118 total skills
+
+### Not Tested
+- quality-floor-check.py --score mode for plugin-level evaluation (current --score requires wabblespec.yaml context; standalone --score-skill path flag not yet implemented)
+
+### Receipts
+- delivery-receipt: .wabblespec/state/receipts/delivery-receipt-ref-adopt-agents-main-20260531.json
+- waves: 4 completed
+- verification: all waves PASS

@@ -4,9 +4,9 @@ Guidance for Claude Code (claude.ai/code) in this repository.
 
 ## What This Repository Is
 
-WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 103 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
+WabbleSpec v6.1: spec-driven, receipt-gated, hook-enforced SDLC framework for single agent runtime. Framework is the product — 116 skill modules across layers L0–L8, `.wabblespec/wabblespec.yaml` as canonical module registry.
 
-Current version: **0.46.0** (see `.wabblespec/VERSION`)
+Current version: **0.50.0** (see `.wabblespec/VERSION`)
 
 ## Key Scripts
 
@@ -31,7 +31,7 @@ Pipeline/automation scripts live in `.wabblespec/engine/shared/scripts/` unless 
 - `queue-orchestrator.py` — parallel wave coordinator; `populate` loads queue from wave plan, `ready` outputs JSON of tasks for parallel Agent dispatch, `advance` checks progress (exit 0=done, 1=pending, 2=fail), `run` for sequential fallback
 
 **Analysis and validation:**
-- `quality-floor-check.py` — Gate 1 + Gate 2 for all 103 modules; `--verbose` for full detail
+- `quality-floor-check.py` — Gate 1 + Gate 2 for all 108 modules; `--verbose` for full detail
 - `validate-graph.py` — module registry integrity
 - `agent-output-validator.py` — validate JSON output from skill subagents
 - `wabblespec-doctor.py` — read-only drift detector; 30 checks (C/H/M/L) covering the foundation-audit finding classes. `--all`, `--severity {critical,high,medium,low}`, `--format json`, `--self-test`. Run after a batch of changes (e.g. reference integrations) to catch regressions. Reports only — no edits, no hook wiring.
@@ -75,7 +75,7 @@ Both gates enforced by `quality-floor-check.py`. Details in that script's output
 **Do not write to `.wabblespec/` from product-space tasks (I11).** Framework modules own all writes here.
 
 Key paths:
-- `.wabblespec/wabblespec.yaml` — canonical module registry; source of truth for all 103 modules
+- `.wabblespec/wabblespec.yaml` — canonical module registry; source of truth for all 108 modules
 - `.wabblespec/state/receipts/` — individual seed run receipts (100 accumulated)
 - `.wabblespec/state/archive/receipt-index.json` — completed task receipt index
 - `.wabblespec/state/memory/` — drawers, entity graph, gap-map, instinct observations
@@ -147,3 +147,57 @@ When a SKILL.md references an external tool by capability — an MCP server, ext
 The shared skill preamble or Guard resolves `~~capability-name` to the active provider at runtime. Skills written this way work with any conforming provider and never require edits when a backend changes.
 
 **Reference routing over inline documentation.** When a SKILL.md section has a dedicated reference document, add a `## Reference Routing` table and route the situation to that file rather than duplicating the content inline. Each routing entry replaces (not supplements) the corresponding inline block — SKILL.md line counts must go down when routing tables are added.
+
+**Negative triggers are mandatory.** Every SKILL.md must include a `## When NOT to use` section with at least two specific counterexamples. Positive trigger guidance in `description:` is not sufficient — the skill router and the runtime agent both benefit from knowing what inputs look like a trigger but are not one. Minimum counterexample types to cover: (1) an artifact or message that contains output-shaped content but is not a request to re-run the skill, and (2) a state condition under which the skill's gate is not met. Skills that omit this section fail the quality floor Gate 1 check.
+
+**Skill intro must state both dimensions.** The 2–3 sentence intro at the top of a SKILL.md body should declare what the skill does AND what it explicitly does not do. The "doesn't do" boundary prevents the skill from being activated for adjacent tasks that look similar but fall outside its scope.
+
+**Recommendation-only skills must declare a "Not guaranteed" line.** Any skill that produces a recommendation, signal, verdict, or flag — but does not take the resulting action itself — must include a "Not guaranteed:" statement in its intro or `## What this skill does` section. The statement names exactly what human operator or downstream module holds the actual decision authority. Examples: "Not guaranteed: Verifier issues PASS/FAIL; the operator decides whether to archive, extend, or re-plan." "Not guaranteed: Guard emits risk signals; Executor decides whether to proceed, hold, or escalate." This prevents a calling agent from treating the skill's output as an authorization to act, when human judgment or another module's gate is still required.
+
+**`## Pitfalls` is a recognized optional section.** Skills may include a `## Pitfalls` section for operational gotchas that would surprise an agent during execution — edge cases, ordering constraints, known failure modes. This is distinct from `## When NOT to use` (trigger boundaries) and `## When to use` (activation conditions). Target: 3–6 bullet points covering the most common execution surprises. Each entry should follow the Problem / Why / Fix structure: what the agent does wrong, why that failure mode occurs, and the corrective action. This mirrors the WHY-over-directives convention — a pitfall that only names the mistake without explaining causality will not help an agent recognize the failure mode before it occurs.
+
+**Skill eval fixtures must include negative routing cases.** For every skill that has an eval fixture, at least 2 entries must declare `should_trigger: false` with a specific prompt that looks like the skill's trigger but must not activate it. Entry schema: `{ "id": "negative-001", "prompt": "<natural language>", "expected_skill": "<skill that SHOULD handle it>", "should_trigger": false, "notes": "<why this must NOT trigger the candidate skill>" }`. Negative cases catch mis-routing regressions when `description:` fields are edited. This is enforced by quality-floor-check.py Gate 1.
+
+**`description:` must end with a period.** The description field in SKILL.md frontmatter must be a single sentence ending with a period. No marketing words ("powerful", "comprehensive", "seamless"). State the capability, not the implementation.
+
+**Skill descriptions must not contain time-sensitive information.** Version numbers, current counts, and dates embedded in a description field are stale at the next session. A description saying "supports 108 modules as of v0.50.0" is wrong the moment a module is added or the version bumps. State what the skill does and when to trigger it — not facts about the current state of the world.
+
+**Description must describe complex multi-step use cases, not simple single-step queries.** The triggering mechanism only activates when the model judges it would benefit from consulting the skill. A description calibrated for a simple one-step query will undertrigger — the model handles simple requests directly without loading skills. Describe the complex or specialized scenario where the skill is genuinely necessary.
+
+**Skill content has three loading tiers with distinct budget rules.** Tier 1 — frontmatter metadata (name + description): always in context, ~100 words; routing decisions read only this. Tier 2 — SKILL.md body: loaded when skill activates, budget <500 lines; put operational instructions here. Tier 3 — bundled resources (scripts/, references/, assets/): loaded on demand, unlimited; offload large schemas, reference material, and scripts here. When the body approaches 500 lines, promote content to Tier 3 with an explicit routing pointer — do not truncate. The sweet spot for SKILL.md body length is 200–600 lines. Below 200 lines is usually underpowered. Above 800 lines without a Tier 3 references/ directory is BLOATED_SKILL — promote content to Tier 3 rather than extending the body further.
+
+**Prefer explaining reasoning over capitalized directives.** When writing SKILL.md instructions, explain *why* a rule matters rather than issuing MUST/ALWAYS/NEVER/CRITICAL commands. Models given the WHY handle edge cases that flat directives miss. Writing ALWAYS or NEVER in all caps is a yellow flag that the rule needs better motivation, not stronger emphasis.
+
+**When evaluating description effectiveness against an eval set, split 60% train / 40% held-out test; select the best description by test score, not train score.** Selection by train score overfits the description to the eval set and produces a description that triggers on test queries but not on real user queries.
+
+**`description:` must not summarize the skill's workflow.** State only the triggering condition — what the agent is doing that warrants loading this skill. Do not list the steps the skill will perform. Empirical evidence from agent testing shows that when a description contains workflow steps, agents follow the description as a shortcut and skip reading the skill body. A description saying "dispatches subagent per task with two-stage review" caused agents to run ONE review instead of TWO because the description summary was used instead of the flowchart in the skill body. Triggering conditions only; no workflow content.
+
+**`<HARD-GATE>` is a recognized optional inline marker.** Use `<HARD-GATE>...</HARD-GATE>` within a skill body to wrap a verification requirement that is non-negotiable before the agent may proceed past that point in the skill flow. Unlike a general rule, a HARD-GATE is position-sensitive: it fires at the exact step where skipping it would guarantee a defect. Do not use for general guidance — reserve for checkpoints where the agent has no valid path forward without completing the check.
+
+**Avoid generic visual defaults in platform-web and gateway-aesthetic output.** Never default to: Inter, Roboto, Arial, or system fonts as the primary typeface; purple-to-blue gradients or purple/white backgrounds as the primary palette; or identical same-size card grids as the primary layout. These are the most common AI-generation convergence patterns. Each project's visual identity must be distinct — never converge on the same choices across different project outputs. Commit to a named aesthetic direction and document what is NOT being used.
+
+**Avoid dangerous inline backtick patterns.** Do not write inline code spans (single backticks) in SKILL.md prose that contain `!` or `>` followed by a word character. Claude Code's bash permission scanner interprets these as history expansion or output redirection, which can prevent the skill from loading. Both patterns are safe inside fenced code blocks (triple backticks). The quality floor `INLINE_DANGER` check enforces this automatically.
+
+**Task card briefs must quote, not paraphrase.** When authoring a task card or writing an agent brief that references a canonical rule (invariant, SKILL.md gate, reference doc), quote the exact line from the source document. Paraphrasing corrupts the rule — it produces a version that sounds similar but changes thresholds, omits conditions, or inverts the polarity. Empirical evidence: paraphrasing a single changelog rule caused 5 of 8 parallel agents to violate CONTRIBUTING.md in the same direction. Quote verbatim; adapt only when quoting would violate I6 (model names, vendor names).
+
+**Boundary coverage requirement.** Any script, check, or quality gate that enforces a threshold or budget must have test coverage at exactly N-1, N, and N+1 where N is the threshold. Tests covering only "trivially fits" (N far below) and "trivially overflows" (N far above) do not constitute edge-case coverage and routinely miss off-by-one and reservation-accounting bugs. Apply to quality-floor-check.py, receipt-writer.py, and any new guard script with numeric limits.
+
+**Before deleting any file or module, grep all consumers.** Check: workflow .md files, docs/, manifests (wabblespec.yaml), npm/pip scripts, CLAUDE.md references. If any reference exists, the removal is incomplete — update every consumer in the same commit or do not delete. "Already removed from source" does not mean removed from every consumer. Empirical evidence: removing a file that was declared in a workflow as `@file:` ref caused a silent downstream failure that only surfaced at CI run time.
+
+**Tool descriptions must answer four questions.** When writing a tool description (for MCP tools, skills referenced as tools, or any externally-callable interface): (1) What does it do? (2) When should it be used? (3) What inputs does it accept? (4) What does it return? A description that omits any of these — especially "when to use" vs "when not to use" — produces mis-invocation. "Search for things" is not a description. "Retrieve customer profile by ID. Use for order processing and support lookup. Returns 404 if not found." is a description.
+
+**Create a new skill when a behavior repeats without guidance in 3+ distinct execution contexts.** If an agent performs the same behavioral pattern three or more times across unrelated tasks without being prompted by a skill, that is the signal to formalize the behavior as a skill. Repeating in fewer contexts indicates an ad-hoc pattern, not a generalizable workflow.
+
+**Before publishing a new skill, verify six readiness criteria.** Actionable (provides clear implementable guidance, not vague recommendations), Specific (names exact files, thresholds, or conditions), Tested (examples drawn from actual project code, not invented), Complete (covers common edge cases including failure modes), Current (no version numbers, dates, or counts in description), Linked (cross-references at least one related skill by name). A skill that fails any criterion should be revised rather than published.
+
+**Skill examples must reference actual project artifacts, not theoretical constructs.** When a SKILL.md includes an example command, file path, code snippet, or workflow, the example must be drawn from something that exists in the codebase — a real script path, a real SKILL.md section, a real receipt type. Invented example paths and fake filenames teach incorrect mental models and diverge from the project as it evolves.
+
+**Cross-reference related skills by name rather than duplicating their content.** When a SKILL.md section would repeat content already covered by another skill, add a reference pointer instead of copying the block. Duplicated content creates two maintenance targets and diverges over time. The `## Reference Routing` table is the correct location for these pointers.
+
+**Never inject dynamic metadata into the stable prompt prefix.** Timestamps, session IDs, version numbers, or request counters in the system prompt prefix invalidate the entire KV-cache block downstream of that change — causing a full cache miss on every request. Move all dynamic metadata into a separate user message or tool result appended after the stable prefix. Stable ordering: system instructions first, tool definitions second, reusable templates third, dynamic content last. Even one character change in the prefix destroys all cached blocks that follow it.
+
+**Match instruction specificity to task fragility.** Three freedom levels: High freedom (text instructions only) — use when multiple valid approaches exist and decisions depend on context. Medium freedom (pseudocode or scripts with configurable parameters) — use when a preferred pattern exists but reasonable variation is acceptable. Low freedom (exact script, no modification) — use when the operation is fragile, order-sensitive, or invariant-critical (e.g., receipt writes, database migrations, wave plan execution). Default to medium freedom and escalate to low only when tested failure modes confirm it.
+
+**Skill reference chains must be at most 1 level deep from SKILL.md.** When a SKILL.md references a file in references/, that file must not reference a third file. Nested reference chains (SKILL.md → ref-A.md → ref-B.md) cause agents to read ref-B using partial reads rather than full reads, producing incomplete information. All Tier 3 reference files must link directly from SKILL.md or from a dedicated Reference Routing section, not from within other reference files.
+
+**Use Incorrect/Correct as the preferred label pair in code example blocks.** When SKILL.md files or rule documents include code comparisons showing what to do vs. what not to do, use `**Incorrect:**` and `**Correct:**` as the headings. This is more precise than Before/After (which implies temporal change, not correctness) and clearer than Bad/Good (which is evaluative). Exact format: `**Incorrect:**` on its own line before the wrong example, `**Correct:**` before the right example. Match case exactly.

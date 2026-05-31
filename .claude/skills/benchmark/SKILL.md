@@ -93,6 +93,12 @@ For evolution candidates that modify probabilistic or stylistic behavior — phr
 
 `tracker.json` is append-only. Entries are never removed or edited.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Benchmark receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type benchmark` |
+
 ## Output contract
 
 **Mutates:** `.wabblespec/state/experiments/tracker.json` (append only)

@@ -66,7 +66,8 @@ Check Memory for prior triage records on the same topic before classifying:
 4. Determine routing from routing table
 5. Write triage record to Memory as FRESH drawer
 6. Route to declared module with triage record as context
-7. Write Triage receipt
+7. If Linear MCP is active AND severity is Critical or High: check for existing Linear issue (`linear_search_issues` by description keyword). If no match: create new issue with triage record contents. Record `linear_issue_created: boolean` and `linear_issue_id` in triage receipt.
+8. Write Triage receipt
 
 ## Triage record format
 
@@ -97,6 +98,12 @@ Check Memory for prior triage records on the same topic before classifying:
 | Date | Triage ID | Resolution |
 |---|---|---|
 ```
+
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Triage receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` |
 
 ## Output contract
 

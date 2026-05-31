@@ -1,33 +1,33 @@
 # Entity Graph Report
 
-> Generated: 2026-05-30T18:13:26.260596+00:00
-> Drawers scanned: 102
-> Nodes: 191  Edges: 899
+> Generated: 2026-05-31T12:10:51.800224+00:00
+> Drawers scanned: 174
+> Nodes: 339  Edges: 1268
 
 ## Entity Type Breakdown
 
-- concept: 54
-- module: 31
-- file: 106
+- concept: 106
+- module: 32
+- file: 201
 
 ## Top 20 Entities by Degree (most connected)
 
 | Entity | Type | Degree | Drawer count |
 |---|---|---|---|
+| executor | module | 63 | 13 |
+| document | module | 61 | 12 |
+| specify | module | 59 | 10 |
 | guard | module | 56 | 12 |
 | instinct | module | 50 | 11 |
-| executor | module | 50 | 11 |
-| specify | module | 45 | 7 |
-| verifier | module | 44 | 11 |
+| verifier | module | 45 | 12 |
+| gateway-security | module | 44 | 5 |
 | autopilot | module | 43 | 5 |
-| gateway-security | module | 42 | 4 |
+| benchmark | module | 43 | 8 |
+| memory | module | 42 | 6 |
 | augment | module | 41 | 7 |
 | polish | module | 40 | 4 |
 | recipe | module | 40 | 6 |
-| document | module | 36 | 7 |
 | archive | module | 36 | 6 |
-| memory | module | 33 | 4 |
-| benchmark | module | 30 | 5 |
 | synth | module | 29 | 4 |
 | gateway-ai | module | 29 | 2 |
 | gateway-engineering | module | 29 | 2 |
@@ -42,18 +42,18 @@
 | guard | verifier | 6 |
 | executor | verifier | 6 |
 | executor | guard | 6 |
+| benchmark | document | 5 |
 | archive | executor | 5 |
 | archive | guard | 5 |
 | archive | verifier | 5 |
 | executor | specify | 5 |
-| benchmark | document | 4 |
+| document | specify | 4 |
 | guard | instinct | 4 |
 | instinct | synth | 4 |
 | 100/100 | instinct | 4 |
 | executor | recipe | 4 |
+| benchmark | memory | 3 |
 | augment | recipe | 3 |
-| augment | document | 3 |
-| augment | executor | 3 |
 
 ---
 

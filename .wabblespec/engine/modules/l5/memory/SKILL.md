@@ -26,6 +26,7 @@ Three operations: **Write** (create or update a drawer), **Read** (return conten
 |---|---|
 | Writing a file-based drawer JSON to `state/memory/wings/` | `engine/shared/references/script-delegation-contract.md` → `drawer-writer.py` |
 | Provenance ledger and index update after write | Route to `modules/l5/provenance/SKILL.md` |
+| Drawer retrieval fails on known-populated rooms; cross-room synthesis needed; deciding whether to add vector/graph layer | `skills/memory/references/memory-framework-selection.md` |
 
 ## When to use / when not to use
 
@@ -138,7 +139,7 @@ return {"evidence": content, "staleness_state": staleness,
 col.update(ids=[drawer_id], metadatas=[{"wabblespec_staleness_state": to_state}])
 ```
 
-If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit — search filters via `wabblespec_staleness_state != EXPIRED`.
+If `to_state == "EXPIRED"`: update metadata. Drawer stays in ChromaDB for audit — search filters exclude `wabblespec_staleness_state` equal to `EXPIRED`.
 
 ## Output contract
 

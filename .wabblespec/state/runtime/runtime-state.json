@@ -1,5 +1,55 @@
 {
   "probed_at": "2026-05-28T23:48:48Z",
+  "mcp_servers": {
+    "context7": {
+      "available": true,
+      "purpose": "live library documentation lookup",
+      "used_by": ["executor", "specify", "gateway-engineering"],
+      "install_note": "npx -y @upstash/context7-mcp"
+    },
+    "serena": {
+      "available": false,
+      "purpose": "semantic code navigation via LSP (find-references, go-to-definition, list-symbols)",
+      "used_by": ["explore", "analyze", "decompose", "gateway-engineering"],
+      "install_note": "uvx --from git+https://github.com/oraios/serena serena start-mcp-server"
+    },
+    "playwright": {
+      "available": false,
+      "purpose": "browser automation and end-to-end testing",
+      "used_by": ["test", "verifier", "platform-web", "gateway-experience"],
+      "install_note": "npx @playwright/mcp@latest"
+    },
+    "github": {
+      "available": false,
+      "purpose": "GitHub PR/issue management, inline review comment posting",
+      "used_by": ["commit", "archive", "wave-review"],
+      "requires_env": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "install_note": "HTTP MCP at https://api.githubcopilot.com/mcp/"
+    },
+    "linear": {
+      "available": false,
+      "purpose": "Linear issue tracking — task card population from tickets, wave-completion status sync",
+      "used_by": ["recipe", "specify", "archive", "triage"],
+      "install_note": "HTTP MCP at https://mcp.linear.app/mcp"
+    }
+  },
+  "lsp_plugins": {
+    "note": "LSP plugins are installed per-user via Claude Code plugin system, not runtime-state. Check plugin installation status via Claude Code settings.",
+    "known_plugins": [
+      {"id": "pyright-lsp", "language": "Python", "extensions": [".py", ".pyi"]},
+      {"id": "typescript-lsp", "language": "TypeScript/JavaScript", "extensions": [".ts", ".tsx", ".js", ".jsx"]},
+      {"id": "rust-analyzer-lsp", "language": "Rust", "extensions": [".rs"]},
+      {"id": "gopls-lsp", "language": "Go", "extensions": [".go"]},
+      {"id": "clangd-lsp", "language": "C/C++", "extensions": [".c", ".cpp", ".h", ".hpp"]},
+      {"id": "jdtls-lsp", "language": "Java", "extensions": [".java"]},
+      {"id": "kotlin-lsp", "language": "Kotlin", "extensions": [".kt", ".kts"]},
+      {"id": "csharp-lsp", "language": "C#", "extensions": [".cs"]},
+      {"id": "ruby-lsp", "language": "Ruby", "extensions": [".rb", ".rake"]},
+      {"id": "swift-lsp", "language": "Swift", "extensions": [".swift"]},
+      {"id": "php-lsp", "language": "PHP", "extensions": [".php"]},
+      {"id": "lua-lsp", "language": "Lua", "extensions": [".lua"]}
+    ]
+  },
   "capabilities": {
     "code-generation": {
       "available": true,

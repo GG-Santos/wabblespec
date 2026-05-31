@@ -25,6 +25,33 @@ You do not decide what is stale. The script decides. You run the script and repo
 - On every wave — this is a session-level operation
 - If another Dream process is running (script checks PID lock and exits cleanly)
 
+## Signal Anti-Patterns
+
+Four categories of observations that MUST NOT be distilled to Instinct or written as new drawers. Capturing these creates persistent false constraints that outlive the session they describe.
+
+**Environment-dependent failures.** Missing binaries, fresh-install errors, post-migration path mismatches, "command not found", unconfigured credentials, uninstalled packages. These are user-fixable state — not durable rules. The fix command belongs in an existing setup drawer, not as a standalone constraint.
+
+**Negative tool claims.** "X tool is broken", "cannot use Y from this context", "browser tools do not work". These harden into refusals that the agent cites against itself for months after the actual problem is fixed. Never write "tool X does not work" as a finding.
+
+**Transient errors that resolved.** Session-specific errors that resolved before the session ended. If retrying worked, the lesson is the retry pattern — not the original failure. Only capture the retry pattern if it's novel.
+
+**One-off task narratives.** "Summarized today's market", "analyzed PR #1234", "ran the nightly build". These are events, not classes of work. A finding must generalize beyond the specific task to be Instinct-worthy.
+
+## Instinct Signal Routing
+
+Not all observations belong in memory drawers. User corrections to framework behavior are first-class Instinct candidates and should be routed to the Instinct module rather than written as general memory.
+
+Route to **Instinct** (not a memory drawer) when:
+- The user corrected the agent's style, tone, format, verbosity, or workflow during a session ("stop doing X", "don't format like this", "why are you explaining this")
+- The user corrected an approach that a skill or module prescribed — the correction belongs in the skill, not in memory
+- A loaded skill or module produced an incorrect or missing step that was caught during execution
+
+Route to a **memory drawer** when:
+- The observation is factual evidence about the project, a dependency, or an external system
+- The observation is a validated technique, fix, or workaround that a future session would benefit from
+
+The distinction: memory says "what is true about this project"; Instinct says "how this class of task should be handled differently". Frustration signals always route to Instinct.
+
 ## How to run it
 
 ```

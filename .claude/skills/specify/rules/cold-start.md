@@ -18,7 +18,7 @@ Do NOT: Proceed without recipe.json and scope.md confirmed. Specify writes specs
 
 ## Absent: scope.md
 
-Condition: `.wabblespec/scope.md` does not exist.
+Condition: `.wabblespec/state/scope.md` does not exist.
 Detection: File read returns 404.
 Action: Surface DEPENDENCY error: ScopeFrame must run before Specify. Do not infer scope from the user message alone.
 Do NOT: Write specs without declared scope boundaries.

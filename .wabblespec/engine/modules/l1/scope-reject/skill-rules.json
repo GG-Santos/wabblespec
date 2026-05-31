@@ -1,0 +1,44 @@
+{
+  "module": "scope-reject",
+  "layer": "L1",
+  "tier": 2,
+  "activators": [
+    "enhancement idea is being rejected with durable reasoning",
+    "Tier 7 expansion deferred indefinitely",
+    "user says remember we decided not to do X because Y",
+    "triage routes an enhancement to wontfix",
+    "/scope-reject command"
+  ],
+  "anti_activators": [
+    "rejection is temporary or sprint-based",
+    "idea is in active consideration",
+    "creating a record to block a future proposal"
+  ],
+  "build_targets": [
+    "ALL"
+  ],
+  "phases": [
+    "Plan"
+  ],
+  "stages": [
+    "ALL"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/evolution/out-of-scope/"
+    ],
+    "reads": [
+      ".wabblespec/state/evolution/out-of-scope/"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "on_demand",
+  "commands": [
+    "/scope-reject"
+  ],
+  "file_path_patterns": []
+}

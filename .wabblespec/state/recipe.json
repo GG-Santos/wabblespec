@@ -1,35 +1,27 @@
 {
   "target": "Framework",
   "platform": "Framework",
-  "detection_method": "user-declaration",
+  "detection_method": "explicit-instruction",
   "confidence": 0.95,
-  "complexity": "High",
+  "complexity": "Medium",
   "secondary_targets": [],
   "collapse_eligible": false,
   "active_skills": [
-    "recipe", "decompose", "executor", "guard", "autopilot",
-    "dream", "specify", "brainstorm", "benchmark", "verifier", "archive"
+    "scope-frame",
+    "specify",
+    "decompose",
+    "executor",
+    "guard",
+    "verifier",
+    "archive"
   ],
+  "execution_pattern": null,
   "input_quality": {
     "vague": false,
     "broad": false,
     "enhanced": false,
     "sharpened": false
   },
-  "cold_start_verified": true,
-  "locked_at": "2026-05-30T14:00:00Z",
-  "session_id": "tier7-expansions-20260530",
-  "collapse_assessment": [
-    { "module_id": "recipe",    "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "decompose", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "executor",  "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "guard",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "autopilot", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "dream",     "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "specify",   "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "brainstorm","skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "benchmark", "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "verifier",  "skill_collapse_eligible": false, "disposition": "ACTIVE" },
-    { "module_id": "archive",   "skill_collapse_eligible": false, "disposition": "ACTIVE" }
-  ]
+  "locked_at": "2026-05-31T09:36:18Z",
+  "session_id": "html-slides-20260531"
 }

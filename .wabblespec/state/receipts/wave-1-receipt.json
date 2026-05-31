@@ -1,29 +1,19 @@
 {
   "receipt_type": "executor",
-  "task_id": "tier7-expansions-20260530",
-  "session_id": "tier7-expansions-20260530",
+  "task_id": "html-slides-20260531",
+  "session_id": "html-slides-20260531",
   "status": "PASS",
   "wave": 1,
-  "wave_of": 6,
-  "modules_activated": [],
-  "files_written": [
-    ".claude/bundles/ref-adopt.yaml",
-    ".claude/bundles/code-review.yaml",
-    ".claude/bundles/evolution.yaml",
-    ".claude/bundles/maintenance.yaml",
-    ".wabblespec/engine/shared/scripts/recipe-writer.py",
-    ".wabblespec/engine/shared/scripts/wabblespec-watch-refs.py",
-    ".wabblespec/state/memory/wings/references/watch-watermarks.json",
-    ".wabblespec/engine/shared/scripts/watzup-scan.py",
-    ".wabblespec/engine/shared/scripts/shape-writer.py",
-    ".wabblespec/engine/shared/scripts/session-conflict-check.py",
-    ".wabblespec/engine/hooks/wabblespec-epistemic-reminder.js",
-    ".claude/settings.json",
-    ".wabblespec/engine/modules/l2/framework-maintenance/skill-rules.json"
+  "wave_of": 3,
+  "modules_activated": [
+    "l2/guard"
   ],
-  "summary": "Wave 1 complete: 4 bundle YAMLs, 5 new scripts, epistemic hook, PostToolUse/Grep wiring, recipe-writer --bundle flag, owns extension",
+  "files_written": [
+    ".wabblespec/engine/shared/scripts/slide-token-validator.py"
+  ],
+  "summary": "slide-token-validator.py created; AC3+AC4 verified \u2014 exits 0 on clean HTML, exits 1 with line numbers on raw hex/rgb, custom property definitions correctly exempt",
   "confidence": 1.0,
   "not_tested": [],
   "delta_class": "ADDITIVE",
-  "executed_at": "2026-05-30T14:10:35Z"
+  "executed_at": "2026-05-31T09:55:47Z"
 }

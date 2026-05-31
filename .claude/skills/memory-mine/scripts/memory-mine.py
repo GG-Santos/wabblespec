@@ -696,7 +696,7 @@ def main() -> None:
             "valid_drawers": len(valid_drawers),
             "needs_rebuild": len(needs_rebuild),
             "schema_version_current": CURRENT_SCHEMA_VERSION,
-            "would_write_to": str(ws_root / "memory" / "mine")
+            "would_write_to": str(palace_path / "mine")
         }, indent=2))
         sys.exit(0)
 

@@ -1,6 +1,6 @@
 {
   "index_version": 1,
-  "last_updated": "2026-05-30T18:10:06Z",
+  "last_updated": "2026-05-31T14:49:17Z",
   "tasks": [
     {
       "task_id": "hook-phase-20260521-001",
@@ -916,6 +916,34 @@
       "waves_planned": 0,
       "not_tested_items": 4,
       "summary": "Adopted pentest-ai-agents-main reference: OPSEC noise taxonomy and absolute refusal categories to Guard, DREAD scoring formula and dual-perspective requirement and attack tree format to Adversary, conflict resolution rules to Verifier, phase status display blocks to Executor, plus new /recommend and /skills-for slash commands"
+    },
+    {
+      "task_id": "html-slides-20260531",
+      "session_id": "html-slides-20260531",
+      "status": "PASS",
+      "archived_at": "2026-05-31T10:10:34Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-html-slides-20260531.json",
+      "version_previous": "0.50.0",
+      "version_new": "0.51.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 3,
+      "waves_planned": 3,
+      "not_tested_items": 0,
+      "summary": "Added generate-slide.py (Chart.js HTML slide generator with 110+ embedded palettes) and slide-token-validator.py (CSS token compliance checker) to framework scripts; added HTML Slide Output section to present SKILL.md in engine module and skills mirror"
+    },
+    {
+      "task_id": "ref-adopt-agents-main-20260531",
+      "session_id": "ref-adopt-agents-main-20260531",
+      "status": "PASS",
+      "archived_at": "2026-05-31T14:49:17Z",
+      "delivery_receipt_path": ".wabblespec/state/receipts/delivery-receipt-ref-adopt-agents-main-20260531.json",
+      "version_previous": "0.51.0",
+      "version_new": "0.52.0",
+      "version_bump_reason": "ADDITIVE",
+      "waves_completed": 4,
+      "waves_planned": 4,
+      "not_tested_items": 1,
+      "summary": "ref-adopt agents-main: plugin-eval anti-pattern taxonomy (OVER_CONSTRAINED/MISSING_TRIGGER/BLOATED_SKILL/ORPHAN_REFERENCE/DEAD_CROSS_REF) + quality scoring formula (10 dims, badge thresholds) + CLAUDE.md 200-600 sweet spot + skill-tdd F1 metric + model-router task capability classification + quality-suite scripts (quality-score.py, quality-rank.py, quality-judge.py) + c4-architecture L7 skill; 118 total skills"
     }
   ],
   "change_log": [

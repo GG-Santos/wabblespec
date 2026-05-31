@@ -128,6 +128,25 @@ After Archive completes each wave:
 
 3. **Evolution check.** After a release cycle (Deploy + Archive both PASS): schedule Evolution pipeline check (Instinct → [Synth] if gate allows).
 
+### Autonomous Retry Mode (Completion-Gate Pattern)
+
+When a task is explicitly flagged with `autonomous_retry: true` in the task card (or via `/autopilot --retry-until "<completion-promise>"`), Autopilot activates a self-referential retry loop:
+
+1. Dispatch Executor to run the wave plan
+2. On wave FAIL or Verifier FAIL: record the failure, update files modified so far (they persist), and re-dispatch Executor with the same wave plan — do not reset file state between retries
+3. On each retry: Executor reads its own prior wave receipts and file outputs to improve — the accumulated file state is the feedback mechanism
+4. The loop terminates when:
+   - The session output contains the exact `completion_promise` string (PASS — archive normally)
+   - Max iterations reached (`max_iterations` in task card, default: 20) — surface status report to human and halt
+   - Verifier returns BLOCKED (categorical failure — do not retry; surface immediately)
+   - Guard returns a HARD invariant violation — halt immediately, no retry
+
+**Completion promise:** an exact string declared in the task card under `completion_promise`. Autopilot checks for this string in Executor's wave output after each wave. The promise must be literally true before being output — Autopilot enforces this by requiring the promise to appear only after all Verifier gates pass for that wave.
+
+**Appropriate use cases:** well-defined tasks with clear automated verification (test suites, linters, acceptance scripts), greenfield builds with measurable success criteria. Not appropriate for: tasks requiring human design decisions, tasks with unclear success criteria, or tasks where each iteration requires human review.
+
+**Escape hatch:** Include in the task card `stuck_at_iteration: N` → "document blockers and halt" instructions so the loop self-terminates gracefully if the task is genuinely impossible.
+
 ### Error routing
 
 | Error type | Autopilot action |
@@ -203,6 +222,23 @@ Autopilot writes one handoff record per wave dispatch to `.wabblespec/meta.md` u
 ```
 
 See `.wabblespec/engine/shared/references/orchestration-adapter-boundary.md` for full adapter boundary rules.
+
+## Cross-Session Module Routing
+
+When a module's completion triggers another session (e.g., post-Archive → Dream; multi-phase task where Phase 2 requires a new Recipe), the completing module may emit a `handoff_request` field in its final output:
+
+```json
+{
+  "handoff_request": {
+    "target": "<module-slug>",
+    "trigger": "<why this handoff fires>"
+  }
+}
+```
+
+Autopilot routes this as a new session initiation. Targets must be from the hard-allowlisted set: `[dream, memory-mine, entity-graph, benchmark-loop]`.
+
+This prevents unbounded delegation — targets outside the allowlist are rejected, not attempted. Named agents never call each other directly; the handoff_request field is the explicit, auditable routing signal. Each handoff creates a new session, not a sub-call within the current one.
 
 ## Post-wave triggers
 

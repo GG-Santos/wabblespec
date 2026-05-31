@@ -490,6 +490,72 @@
       "staleness_state": "FRESH",
       "confidence": 1.0,
       "written_at": "2026-05-25T14:37:42Z"
+    },
+    {
+      "id": "claude-ads-main-overview-20260531",
+      "topic": "claude-ads-main — production skill framework for paid advertising audit and optimization",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/reference-card-20260531.json",
+      "confidence": 0.9982
+    },
+    {
+      "id": "claude-ads-main-quick-wins-filter-20260531",
+      "topic": "Quick Wins algorithmic filter — severity + fixability triage for Guard",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/quick-wins-filter-20260531.json"
+    },
+    {
+      "id": "claude-ads-main-evidence-hierarchy-20260531",
+      "topic": "3-tier evidence hierarchy for Verifier conflict resolution",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/evidence-hierarchy-20260531.json"
+    },
+    {
+      "id": "claude-ads-main-hypothesis-framework-20260531",
+      "topic": "Structured experiment hypothesis with quality checklist for benchmark-loop and skill-tdd",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/hypothesis-framework-20260531.json"
+    },
+    {
+      "id": "claude-ads-main-negative-routing-evals-20260531",
+      "topic": "Negative routing eval cases — skill mis-routing prevention pattern",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/negative-routing-evals-20260531.json"
+    },
+    {
+      "id": "claude-ads-main-tier7-skill-eval-runner-20260531",
+      "topic": "Tier 7: Skill Eval Runner — automated prompt-based skill routing validator (days)",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/tier7-skill-eval-runner-20260531.json"
+    },
+    {
+      "id": "claude-ads-main-tier7-deliverable-quality-score-20260531",
+      "topic": "Tier 7: Deliverable Quality Score — graduated 0-100 wave output health score (weeks)",
+      "wing": "references",
+      "room": "claude-ads-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/claude-ads-main/drawers/tier7-deliverable-quality-score-20260531.json"
+    },
+    {
+      "id": "andrej-karpathy-skills-main-overview-20260531",
+      "topic": "andrej-karpathy-skills-main — four LLM coding behavior principles for CLAUDE.md behavioral guidance",
+      "wing": "references",
+      "room": "andrej-karpathy-skills-main",
+      "staleness_state": "FRESH",
+      "path": "wings/references/rooms/andrej-karpathy-skills-main/drawers/reference-card-20260531.json",
+      "confidence": 0.9974
     }
   ]
 }

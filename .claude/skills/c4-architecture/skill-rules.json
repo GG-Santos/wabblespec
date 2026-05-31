@@ -1,0 +1,49 @@
+{
+  "module": "c4-architecture",
+  "layer": "L7",
+  "tier": 1,
+  "activators": [
+    "architecture diagram",
+    "C4 model",
+    "system context diagram",
+    "container diagram",
+    "component diagram",
+    "architecture overview",
+    "system map",
+    "how is the system structured",
+    "draw architecture",
+    "/c4-architecture command"
+  ],
+  "anti_activators": [
+    "sequence diagram",
+    "flowchart",
+    "state machine",
+    "UI mockup",
+    "design layout",
+    "review the diagram"
+  ],
+  "build_targets": ["ALL"],
+  "phases": ["Execute"],
+  "stages": ["ALL"],
+  "authority": {
+    "owns": [
+      "docs/architecture/*.md"
+    ],
+    "reads": [
+      "CLAUDE.md",
+      "README.md",
+      ".wabblespec/wabblespec.yaml",
+      "package.json",
+      "pyproject.toml",
+      "Cargo.toml"
+    ]
+  },
+  "verification_mode": "Standard",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "gate_collapsing_conditions": null,
+  "requires_receipts_from": [],
+  "loading_gate": "",
+  "commands": ["/c4-architecture"],
+  "file_path_patterns": []
+}

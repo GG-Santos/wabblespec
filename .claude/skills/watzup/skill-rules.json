@@ -1,0 +1,35 @@
+{
+  "module": "watzup",
+  "layer": "L7",
+  "tier": 2,
+  "activators": [
+    "/watzup",
+    "what's going on",
+    "where are we",
+    "current session status",
+    "show session state",
+    "handoff report"
+  ],
+  "anti_activators": [
+    "advance the wave",
+    "change session state",
+    "read specific receipt file"
+  ],
+  "build_targets": [],
+  "phases": [],
+  "stages": ["ALL"],
+  "authority": {
+    "owns": [],
+    "reads": [
+      ".wabblespec/state/session/**",
+      ".wabblespec/state/plans/**",
+      ".wabblespec/state/receipts/**"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": false,
+  "collapse_eligible": true,
+  "loading_gate": "activation",
+  "commands": ["/watzup"],
+  "file_path_patterns": []
+}

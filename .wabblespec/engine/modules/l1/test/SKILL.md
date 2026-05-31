@@ -28,7 +28,11 @@ Generates test stubs and test strategy from spec acceptance criteria. Every EARS
 | WHERE \<feature\> SHALL \<property\> | Property assertion test |
 | THE \<system\> SHALL \<capability\> | Capability smoke test |
 
-Untestable requirement: flag with `<!-- UNTESTABLE: <reason> -->` and write to not-tested compilation.
+Untestable requirement: flag with an HTML comment and write to not-tested compilation:
+
+```html
+<!-- UNTESTABLE: reason -->
+```
 
 ## Workflow
 

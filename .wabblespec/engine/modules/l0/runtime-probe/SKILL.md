@@ -33,6 +33,10 @@ Every capability is binary: available or unavailable. Confidence indicates how r
 | `vision` | Can process images, screenshots, diagrams |
 | `embedding` | Can produce vector embeddings for semantic similarity |
 | `context7` | Can retrieve up-to-date library documentation via ctx7 CLI or context7 MCP server |
+| `serena` | Can perform semantic code navigation via LSP (find-references, go-to-definition, list-symbols) |
+| `playwright` | Can automate browser interactions and capture screenshots for E2E verification |
+| `github-mcp` | Can manage GitHub PRs and issues; post inline review comments |
+| `linear-mcp` | Can read/write Linear issues for task card population and archive sync |
 
 ## Detection approach
 
@@ -49,6 +53,10 @@ Probe each capability through a minimal behavioral test — not by reading model
 | vision | Check if image input is accepted in current context |
 | embedding | Check if embedding generation is available in current context |
 | context7 | Check for `resolve-library-id` / `get-library-docs` in available tools (MCP); if absent, check `ctx7` binary on PATH (CLI). MCP preferred over CLI when both present. |
+| serena | Check for `serena_find_references` or `serena_list_symbols` in available MCP tools. |
+| playwright | Check for `playwright_navigate` or `playwright_screenshot` in available MCP tools. |
+| github-mcp | Check for GitHub MCP tools (e.g., `create_pull_request`, `list_issues`) in available tools. |
+| linear-mcp | Check for Linear MCP tools (e.g., `linear_get_issue`, `linear_update_issue_status`) in available tools. |
 
 If detection is uncertain, record as available with confidence < 0.7 and note uncertainty.
 

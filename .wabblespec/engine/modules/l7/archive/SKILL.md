@@ -16,6 +16,7 @@ Reads all receipts from the current execution session. Compiles `not_tested` ite
 | Situation | Reference |
 |---|---|
 | CHANGELOG append, VERSION bump, delivery receipt write, receipt-index patch | `engine/shared/references/script-delegation-contract.md` |
+| Linear ticket closure (Step 7b) | `engine/shared/references/mcp-servers-integration.md` → Linear section |
 
 ## When to use / when not to use
 
@@ -139,6 +140,18 @@ Record the score and label in the delivery receipt under `archive_urgency`.
 
 Surface: version bumped from X to Y, N receipts aggregated, not-tested count, drift signal score and urgency label. Provide delivery receipt path. If not-tested list is non-empty, name the items — they are actionable future scope.
 
+### Step 7b — Linear ticket closure (optional — Linear MCP only)
+
+After writing the delivery receipt, when `linear_issue_id` is present in the task card AND Linear MCP is available:
+
+1. Invoke `linear_update_issue_status` with `issue_id: <linear_issue_id>`, `status: "Done"`
+2. Post the delivery receipt path as a comment on the Linear issue: `linear_create_comment issue_id: <id> body: "WabbleSpec archive complete. Delivery receipt: <path>. Version: <new_version>."`
+3. Record in the delivery receipt: `linear_ticket_closed: true`, `linear_issue_id: "<id>"`
+
+Skip silently when: Linear MCP unavailable, `linear_issue_id` absent from task card, or the Linear call returns an error. Do not block archiving on Linear sync failure. Record `linear_ticket_closed: false` with reason when skipped.
+
+See `engine/shared/references/mcp-servers-integration.md` → Linear section for full call patterns.
+
 ### Step 8 — Shift trigger (post-archive hook)
 
 After writing the delivery receipt, check if any receipt in this session has `delta_class = BREAKING` or `delta_class = ADDITIVE` with a spec artifact touched (any SKILL.md, schema, or rules file modified).
@@ -219,6 +232,19 @@ Base receipt schema. Extension fields:
 **VERSION** (`.wabblespec/VERSION`): plain text semver string, e.g. `0.2.0`. Single line, no trailing newline needed.
 
 **CHANGELOG.md** (`.wabblespec/CHANGELOG.md`): append-only. New entry prepended at top (most recent first) or appended at bottom — be consistent with any existing format. Never modify existing entries.
+
+## When to Suppress Optional Output
+
+Archive produces several optional output blocks: the not-tested summary, the drift signal score label, and the Shift trigger record. Suppress these blocks in the following conditions — they add noise without informational value:
+
+| Condition | Blocks to suppress |
+|---|---|
+| Zero not-tested items across all receipts | Omit the not-tested summary section entirely. A `not_tested_items: 0` field in the receipt is sufficient. |
+| Single-wave task with no SKILL.md or schema file touched | Omit the drift signal scoring language ("Recommend Archive…"). Just write the receipt and state version. |
+| Dry-run invocation (`--dry-run` flag on archive.py) | Omit the "Archive complete" user-facing message. The dry-run output is its own confirmation. |
+| Shift did not trigger (no BREAKING or ADDITIVE spec artifact change) | Omit the Shift trigger record from the user-facing report. It appears in the receipt but is not surfaced in conversation. |
+
+Suppression applies only to the user-facing output, not to the receipt fields. Receipt fields are always written in full regardless of suppression rules.
 
 ## A note on common failure modes
 

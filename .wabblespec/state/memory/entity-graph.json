@@ -1,10 +1,51 @@
 {
   "version": "1.0",
-  "generated": "2026-05-30T18:13:26.260596+00:00",
-  "drawers_scanned": 102,
-  "node_count": 191,
-  "edge_count": 899,
+  "generated": "2026-05-31T12:10:51.800224+00:00",
+  "drawers_scanned": 174,
+  "node_count": 339,
+  "edge_count": 1268,
   "nodes": [
+    {
+      "id": "module::executor",
+      "type": "module",
+      "label": "executor",
+      "drawer_count": 13,
+      "drawer_ids": [
+        "superpowers-connector-skepticism",
+        "open-thread-tier-7-compaction-quality-20260531",
+        "working-solution-compaction-quality-20260531",
+        "l8-evolution-chain-20260525",
+        "executor-wave-protocol-20260525",
+        "autopilot-orchestration-20260525",
+        "archive-module-behavior-20260525",
+        "apply-delta-classification-20260525",
+        "module-order-rationale-20260520",
+        "error-taxonomy-key-types-20260525",
+        "receipt-gating-rationale-20260525",
+        "spec-single-source-of-truth-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::document",
+      "type": "module",
+      "label": "document",
+      "drawer_count": 12,
+      "drawer_ids": [
+        "superpowers-tier7-skill-tdd-harness",
+        "expansion-candidate-tts-and-podcast-20260531",
+        "expansion-candidate-structured-l8-20260531",
+        "working-solution-win-a1-llm-optimized-20260531",
+        "open-thread-tier-7-expansion-prd-20260531",
+        "working-solution-anti-laziness-press-20260531",
+        "l8-evolution-chain-20260525",
+        "document-cross-link-enforcement-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "error-taxonomy-key-types-20260525",
+        "layer-architecture-overview-20260525",
+        "capability-routing-design-20260525"
+      ]
+    },
     {
       "id": "module::guard",
       "type": "module",
@@ -26,21 +67,22 @@
       ]
     },
     {
-      "id": "module::executor",
+      "id": "module::verifier",
       "type": "module",
-      "label": "executor",
-      "drawer_count": 11,
+      "label": "verifier",
+      "drawer_count": 12,
       "drawer_ids": [
+        "expansion-epistemic-reminder-hook",
+        "tier7-postwave-reviewer",
+        "superpowers-architecture-escalation",
         "superpowers-connector-skepticism",
-        "l8-evolution-chain-20260525",
+        "claude-ads-main-evidence-hierarchy-20260531",
+        "verifier-check-types-20260520",
         "executor-wave-protocol-20260525",
         "autopilot-orchestration-20260525",
         "archive-module-behavior-20260525",
-        "apply-delta-classification-20260525",
         "module-order-rationale-20260520",
-        "error-taxonomy-key-types-20260525",
-        "receipt-gating-rationale-20260525",
-        "spec-single-source-of-truth-20260525",
+        "receipt-chain-phases-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -64,21 +106,36 @@
       ]
     },
     {
-      "id": "module::verifier",
+      "id": "module::specify",
       "type": "module",
-      "label": "verifier",
-      "drawer_count": 11,
+      "label": "specify",
+      "drawer_count": 10,
       "drawer_ids": [
-        "expansion-epistemic-reminder-hook",
-        "tier7-postwave-reviewer",
-        "superpowers-architecture-escalation",
-        "superpowers-connector-skepticism",
-        "verifier-check-types-20260520",
-        "executor-wave-protocol-20260525",
-        "autopilot-orchestration-20260525",
-        "archive-module-behavior-20260525",
+        "expansion-candidate-structured-l8-20260531",
+        "open-thread-tier-7-expansion-multi-20260531",
+        "open-thread-tier-7-expansion-prd-20260531",
+        "entity-graph-behavior-20260525",
+        "apply-delta-classification-20260525",
         "module-order-rationale-20260520",
-        "receipt-chain-phases-20260525",
+        "error-taxonomy-key-types-20260525",
+        "gateway-pattern-routing-20260525",
+        "spec-single-source-of-truth-20260525",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::benchmark",
+      "type": "module",
+      "label": "benchmark",
+      "drawer_count": 8,
+      "drawer_ids": [
+        "superpowers-tier7-skill-tdd-harness",
+        "expansion-candidate-structured-l8-20260531",
+        "open-thread-tier-7-memory-framework-20260531",
+        "working-solution-memory-framework-20260531",
+        "l8-evolution-chain-20260525",
+        "benchmark-axis-decomposition-20260525",
+        "l8-corpus-gate-criteria-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -94,36 +151,6 @@
         "document-cross-link-enforcement-20260525",
         "version-progression-20260525",
         "wave5-param-learner-gating-20260525",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
-      "id": "module::document",
-      "type": "module",
-      "label": "document",
-      "drawer_count": 7,
-      "drawer_ids": [
-        "superpowers-tier7-skill-tdd-harness",
-        "l8-evolution-chain-20260525",
-        "document-cross-link-enforcement-20260525",
-        "benchmark-axis-decomposition-20260525",
-        "error-taxonomy-key-types-20260525",
-        "layer-architecture-overview-20260525",
-        "capability-routing-design-20260525"
-      ]
-    },
-    {
-      "id": "module::specify",
-      "type": "module",
-      "label": "specify",
-      "drawer_count": 7,
-      "drawer_ids": [
-        "entity-graph-behavior-20260525",
-        "apply-delta-classification-20260525",
-        "module-order-rationale-20260520",
-        "error-taxonomy-key-types-20260525",
-        "gateway-pattern-routing-20260525",
-        "spec-single-source-of-truth-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -156,6 +183,20 @@
       ]
     },
     {
+      "id": "module::memory",
+      "type": "module",
+      "label": "memory",
+      "drawer_count": 6,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531",
+        "working-solution-memory-framework-20260531",
+        "guard-mempalace-invariants-20260524",
+        "framework-product-separation-20260525",
+        "memory-drawer-structure-20260521",
+        "layer-architecture-overview-20260525"
+      ]
+    },
+    {
       "id": "module::recipe",
       "type": "module",
       "label": "recipe",
@@ -183,15 +224,15 @@
       ]
     },
     {
-      "id": "module::benchmark",
+      "id": "module::gateway-security",
       "type": "module",
-      "label": "benchmark",
+      "label": "gateway-security",
       "drawer_count": 5,
       "drawer_ids": [
-        "superpowers-tier7-skill-tdd-harness",
-        "l8-evolution-chain-20260525",
-        "benchmark-axis-decomposition-20260525",
-        "l8-corpus-gate-criteria-20260525",
+        "working-solution-win-defense-in-depth-3-20260531",
+        "inference-guard-activation-20260525",
+        "parseltongue-framing-decision-20260525",
+        "gateway-pattern-routing-20260525",
         "layer-architecture-overview-20260525"
       ]
     },
@@ -208,30 +249,6 @@
       ]
     },
     {
-      "id": "module::gateway-security",
-      "type": "module",
-      "label": "gateway-security",
-      "drawer_count": 4,
-      "drawer_ids": [
-        "inference-guard-activation-20260525",
-        "parseltongue-framing-decision-20260525",
-        "gateway-pattern-routing-20260525",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
-      "id": "module::memory",
-      "type": "module",
-      "label": "memory",
-      "drawer_count": 4,
-      "drawer_ids": [
-        "guard-mempalace-invariants-20260524",
-        "framework-product-separation-20260525",
-        "memory-drawer-structure-20260521",
-        "layer-architecture-overview-20260525"
-      ]
-    },
-    {
       "id": "module::polish",
       "type": "module",
       "label": "polish",
@@ -241,6 +258,18 @@
         "entity-graph-behavior-20260525",
         "autopilot-orchestration-20260525",
         "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "module::reviewer",
+      "type": "module",
+      "label": "reviewer",
+      "drawer_count": 4,
+      "drawer_ids": [
+        "working-solution-10-persona-reviewer-20260531",
+        "working-solution-anti-laziness-press-20260531",
+        "autopilot-orchestration-20260525",
+        "module-order-rationale-20260520"
       ]
     },
     {
@@ -279,6 +308,17 @@
       ]
     },
     {
+      "id": "module::apply",
+      "type": "module",
+      "label": "apply",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "working-solution-four-bucket-context-20260531",
+        "apply-delta-classification-20260525",
+        "framework-product-separation-20260525"
+      ]
+    },
+    {
       "id": "module::decompose",
       "type": "module",
       "label": "decompose",
@@ -287,6 +327,17 @@
         "autopilot-orchestration-20260525",
         "phase-1-completion-20260519",
         "module-order-rationale-20260520"
+      ]
+    },
+    {
+      "id": "module::factory",
+      "type": "module",
+      "label": "factory",
+      "drawer_count": 3,
+      "drawer_ids": [
+        "working-solution-anchored-iterative-20260531",
+        "working-solution-receipt-chain-is-the-20260531",
+        "skill-factory-gaps-20260520"
       ]
     },
     {
@@ -334,6 +385,16 @@
       ]
     },
     {
+      "id": "file::5/5",
+      "type": "file",
+      "label": "5/5",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "working-solution-anchored-iterative-20260531",
+        "working-solution-receipt-chain-is-the-20260531"
+      ]
+    },
+    {
       "id": "file::PASS/FAIL/PARTIAL",
       "type": "file",
       "label": "PASS/FAIL/PARTIAL",
@@ -341,6 +402,16 @@
       "drawer_ids": [
         "verifier-check-types-20260520",
         "receipt-schema-design-20260521"
+      ]
+    },
+    {
+      "id": "file::Problem/Why/Fix",
+      "type": "file",
+      "label": "Problem/Why/Fix",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "working-solution-win-pitfalls-format-20260531",
+        "format-pattern-problem-why-fix-pitfall-20260531"
       ]
     },
     {
@@ -364,13 +435,13 @@
       ]
     },
     {
-      "id": "module::apply",
-      "type": "module",
-      "label": "apply",
+      "id": "file::adversary/SKILL.md",
+      "type": "file",
+      "label": "adversary/SKILL.md",
       "drawer_count": 2,
       "drawer_ids": [
-        "apply-delta-classification-20260525",
-        "framework-product-separation-20260525"
+        "working-solution-win-preserve-intent-20260531",
+        "working-solution-win-shallow-analysis-20260531"
       ]
     },
     {
@@ -381,6 +452,36 @@
       "drawer_ids": [
         "l8-evolution-chain-20260525",
         "layer-architecture-overview-20260525"
+      ]
+    },
+    {
+      "id": "file::camera/lens",
+      "type": "file",
+      "label": "camera/lens",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "working-solution-win-photography-prompt-20260531",
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::context-compression/SKILL.md",
+      "type": "file",
+      "label": "context-compression/SKILL.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "open-thread-tier-7-compaction-quality-20260531",
+        "working-solution-anchored-iterative-20260531"
+      ]
+    },
+    {
+      "id": "file::docs/compression.md",
+      "type": "file",
+      "label": "docs/compression.md",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "open-thread-tier-7-compaction-quality-20260531",
+        "working-solution-receipt-chain-is-the-20260531"
       ]
     },
     {
@@ -444,13 +545,23 @@
       ]
     },
     {
-      "id": "module::reviewer",
-      "type": "module",
-      "label": "reviewer",
+      "id": "file::postgres/mysql/mssql",
+      "type": "file",
+      "label": "postgres/mysql/mssql",
       "drawer_count": 2,
       "drawer_ids": [
-        "autopilot-orchestration-20260525",
-        "module-order-rationale-20260520"
+        "expansion-candidate-database-connector-20260531",
+        "working-solution-defense-in-depth-3-20260531"
+      ]
+    },
+    {
+      "id": "module::rollback",
+      "type": "module",
+      "label": "rollback",
+      "drawer_count": 2,
+      "drawer_ids": [
+        "working-solution-10-persona-reviewer-20260531",
+        "error-taxonomy-key-types-20260525"
       ]
     },
     {
@@ -534,12 +645,111 @@
       ]
     },
     {
+      "id": "concept::3-tier evidence hierarchy for conflict resolution in verifier",
+      "type": "concept",
+      "label": "3-tier evidence hierarchy for conflict resolution in verifier",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-evidence-hierarchy-20260531"
+      ]
+    },
+    {
+      "id": "file::3/4",
+      "type": "file",
+      "label": "3/4",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::4-5/6",
+      "type": "file",
+      "label": "4-5/6",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::4/6",
+      "type": "file",
+      "label": "4/6",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::6/6",
+      "type": "file",
+      "label": "6/6",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
       "id": "file::ADDITIVE/COSMETIC",
       "type": "file",
       "label": "ADDITIVE/COSMETIC",
       "drawer_count": 1,
       "drawer_ids": [
         "apply-delta-classification-20260525"
+      ]
+    },
+    {
+      "id": "file::Accuracy/Context",
+      "type": "file",
+      "label": "Accuracy/Context",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::Actionable/Specific/Tested/Complete/Current/Linked",
+      "type": "file",
+      "label": "Actionable/Specific/Tested/Complete/Current/Linked",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-four-skill-20260531"
+      ]
+    },
+    {
+      "id": "file::Awareness/Artifact",
+      "type": "file",
+      "label": "Awareness/Artifact",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::Bronze/Silver/Gold/Platinum",
+      "type": "file",
+      "label": "Bronze/Silver/Gold/Platinum",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::Confirmed/Refuted/Inconclusive",
+      "type": "file",
+      "label": "Confirmed/Refuted/Inconclusive",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-benchmark-loop-20260531"
+      ]
+    },
+    {
+      "id": "file::ERROR/RISK/PREFERENCE",
+      "type": "file",
+      "label": "ERROR/RISK/PREFERENCE",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-preserve-intent-20260531"
       ]
     },
     {
@@ -558,6 +768,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "capability-routing-design-20260525"
+      ]
+    },
+    {
+      "id": "file::Glob/Read",
+      "type": "file",
+      "label": "Glob/Read",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-c4-20260531"
+      ]
+    },
+    {
+      "id": "file::In-Out/Dependencies/Risks",
+      "type": "file",
+      "label": "In-Out/Dependencies/Risks",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
       ]
     },
     {
@@ -597,12 +825,57 @@
       ]
     },
     {
+      "id": "file::Letta/Cognee",
+      "type": "file",
+      "label": "Letta/Cognee",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
+      ]
+    },
+    {
       "id": "file::Low/Medium/High",
       "type": "file",
       "label": "Low/Medium/High",
       "drawer_count": 1,
       "drawer_ids": [
         "recipe-module-behavior-20260525"
+      ]
+    },
+    {
+      "id": "file::MUST/ALWAYS",
+      "type": "file",
+      "label": "MUST/ALWAYS",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-problem-why-fix-pitfall-20260531"
+      ]
+    },
+    {
+      "id": "file::MUST/ALWAYS/NEVER",
+      "type": "file",
+      "label": "MUST/ALWAYS/NEVER",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anti-pattern-taxonomy-20260531"
+      ]
+    },
+    {
+      "id": "file::Mem0/vector",
+      "type": "file",
+      "label": "Mem0/vector",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
+      ]
+    },
+    {
+      "id": "file::Metrics/Scope",
+      "type": "file",
+      "label": "Metrics/Scope",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
       ]
     },
     {
@@ -642,12 +915,129 @@
       ]
     },
     {
+      "id": "file::Problem/Why",
+      "type": "file",
+      "label": "Problem/Why",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-problem-why-fix-pitfall-20260531"
+      ]
+    },
+    {
+      "id": "file::React/Next.js",
+      "type": "file",
+      "label": "React/Next.js",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-web-tier-3-reference-20260531"
+      ]
+    },
+    {
+      "id": "file::Recall/Artifact/Continuation/Decision",
+      "type": "file",
+      "label": "Recall/Artifact/Continuation/Decision",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::Requirements/Non-Functional",
+      "type": "file",
+      "label": "Requirements/Non-Functional",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "file::Requirements/Success",
+      "type": "file",
+      "label": "Requirements/Success",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "file::SELECT/SHOW/EXPLAIN/WITH",
+      "type": "file",
+      "label": "SELECT/SHOW/EXPLAIN/WITH",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-defense-in-depth-3-20260531"
+      ]
+    },
+    {
+      "id": "file::Statement/Target",
+      "type": "file",
+      "label": "Statement/Target",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "file::Stories/Functional",
+      "type": "file",
+      "label": "Stories/Functional",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "file::Summary/Problem",
+      "type": "file",
+      "label": "Summary/Problem",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "file::TTS/podcast",
+      "type": "file",
+      "label": "TTS/podcast",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::Trail/Completeness/Continuity/Instruction",
+      "type": "file",
+      "label": "Trail/Completeness/Continuity/Instruction",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "file::Users/Personas/User",
+      "type": "file",
+      "label": "Users/Personas/User",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
       "id": "file::Write/Edit",
       "type": "file",
       "label": "Write/Edit",
       "drawer_count": 1,
       "drawer_ids": [
         "framework-product-separation-20260525"
+      ]
+    },
+    {
+      "id": "file::Zep/Graphiti",
+      "type": "file",
+      "label": "Zep/Graphiti",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
       ]
     },
     {
@@ -738,6 +1128,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "erotetic-check"
+      ]
+    },
+    {
+      "id": "file::ai-skills-main/skills/imagen/reference.md",
+      "type": "file",
+      "label": "ai-skills-main/skills/imagen/reference.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "concept::andrej-karpathy-skills-main — four llm coding behavior principles for claude.md behavioral guidance",
+      "type": "concept",
+      "label": "andrej-karpathy-skills-main — four llm coding behavior principles for claude.md behavioral guidance",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "andrej-karpathy-skills-main-overview-20260531"
       ]
     },
     {
@@ -858,6 +1266,15 @@
       ]
     },
     {
+      "id": "file::candidates/blueprints/augments/fixtures",
+      "type": "file",
+      "label": "candidates/blueprints/augments/fixtures",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-structured-l8-20260531"
+      ]
+    },
+    {
       "id": "concept::capability routing and contexttuner design",
       "type": "concept",
       "label": "capability routing and contexttuner design",
@@ -873,6 +1290,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "superpowers-task-complexity-signals"
+      ]
+    },
+    {
+      "id": "file::class/function",
+      "type": "file",
+      "label": "class/function",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-c4-20260531"
+      ]
+    },
+    {
+      "id": "concept::claude-ads-main — production skill framework for paid advertising audit and optimization",
+      "type": "concept",
+      "label": "claude-ads-main — production skill framework for paid advertising audit and optimization",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-overview-20260531"
       ]
     },
     {
@@ -921,6 +1356,60 @@
       ]
     },
     {
+      "id": "file::claude/skills",
+      "type": "file",
+      "label": "claude/skills",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-a1-llm-optimized-20260531"
+      ]
+    },
+    {
+      "id": "file::claude/skills/benchmark-loop/SKILL.md",
+      "type": "file",
+      "label": "claude/skills/benchmark-loop/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-benchmark-loop-20260531"
+      ]
+    },
+    {
+      "id": "file::claude/skills/gateway-aesthetic/SKILL.md",
+      "type": "file",
+      "label": "claude/skills/gateway-aesthetic/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::confusion/clash",
+      "type": "file",
+      "label": "confusion/clash",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-bucket-context-20260531"
+      ]
+    },
+    {
+      "id": "file::context-degradation/SKILL.md",
+      "type": "file",
+      "label": "context-degradation/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-bucket-context-20260531"
+      ]
+    },
+    {
+      "id": "file::context-optimization/SKILL.md",
+      "type": "file",
+      "label": "context-optimization/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "observation-type-kv-cache-invalidation-20260531"
+      ]
+    },
+    {
       "id": "file::delete/break",
       "type": "file",
       "label": "delete/break",
@@ -930,12 +1419,39 @@
       ]
     },
     {
+      "id": "file::docs/filename.md",
+      "type": "file",
+      "label": "docs/filename.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-llm-optimized-20260531"
+      ]
+    },
+    {
+      "id": "file::docs/plugin-eval.md",
+      "type": "file",
+      "label": "docs/plugin-eval.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anti-pattern-taxonomy-20260531"
+      ]
+    },
+    {
       "id": "concept::document module cross-link enforcement",
       "type": "concept",
       "label": "document module cross-link enforcement",
       "drawer_count": 1,
       "drawer_ids": [
         "document-cross-link-enforcement-20260525"
+      ]
+    },
+    {
+      "id": "file::draft/running/concluded",
+      "type": "file",
+      "label": "draft/running/concluded",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-structured-l8-20260531"
       ]
     },
     {
@@ -963,6 +1479,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "ears-syntax-requirements-20260525"
+      ]
+    },
+    {
+      "id": "file::elevenlabs/google-tts",
+      "type": "file",
+      "label": "elevenlabs/google-tts",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::engine/modules/l6/document/SKILL.md",
+      "type": "file",
+      "label": "engine/modules/l6/document/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-a1-llm-optimized-20260531"
       ]
     },
     {
@@ -1002,12 +1536,111 @@
       ]
     },
     {
-      "id": "module::factory",
-      "type": "module",
-      "label": "factory",
+      "id": "file::executor/references/compaction-quality-gate.md",
+      "type": "file",
+      "label": "executor/references/compaction-quality-gate.md",
       "drawer_count": 1,
       "drawer_ids": [
-        "skill-factory-gaps-20260520"
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion: gateway-aesthetic tier 3 reference for react view transitions",
+      "type": "concept",
+      "label": "expansion: gateway-aesthetic tier 3 reference for react view transitions",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-gateway-aesthetic-tier-3-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion: platform-mobile tier 3 reference for react native best practices",
+      "type": "concept",
+      "label": "expansion: platform-mobile tier 3 reference for react native best practices",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-mobile-tier-3-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "type": "concept",
+      "label": "expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-web-tier-3-reference-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "type": "concept",
+      "label": "expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-database-connector-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion_candidate: native image generation skill (imagen pattern)",
+      "type": "concept",
+      "label": "expansion_candidate: native image generation skill (imagen pattern)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-native-image-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "type": "concept",
+      "label": "expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-structured-l8-20260531"
+      ]
+    },
+    {
+      "id": "concept::expansion_candidate: tts and podcast generation skill",
+      "type": "concept",
+      "label": "expansion_candidate: tts and podcast generation skill",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::f/1",
+      "type": "file",
+      "label": "f/1",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::f/2",
+      "type": "file",
+      "label": "f/2",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "concept::format_pattern: hypothesis template 'we believe [change] will [impact metric] because [reasoning]'",
+      "type": "concept",
+      "label": "format_pattern: hypothesis template 'we believe [change] will [impact metric] because [reasoning]'",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-hypothesis-template-we-20260531"
+      ]
+    },
+    {
+      "id": "concept::format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "type": "concept",
+      "label": "format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-problem-why-fix-pitfall-20260531"
       ]
     },
     {
@@ -1164,6 +1797,33 @@
       ]
     },
     {
+      "id": "file::hypothesis/variants/status/winner/learnings",
+      "type": "file",
+      "label": "hypothesis/variants/status/winner/learnings",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-structured-l8-20260531"
+      ]
+    },
+    {
+      "id": "file::imagen/examples.md",
+      "type": "file",
+      "label": "imagen/examples.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::imagen/reference.md",
+      "type": "file",
+      "label": "imagen/reference.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
       "id": "concept::inferenceguard activation and tier system",
       "type": "concept",
       "label": "inferenceguard activation and tier system",
@@ -1200,6 +1860,24 @@
       ]
     },
     {
+      "id": "file::leads/Host",
+      "type": "file",
+      "label": "leads/Host",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::lite/standard/max",
+      "type": "file",
+      "label": "lite/standard/max",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-agent-capability-tier-20260531"
+      ]
+    },
+    {
       "id": "file::malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
       "type": "file",
       "label": "malware/virus/trojan/payload/shellcode/rootkit/keylogger/backdoor/vulnerability/CVE/XSS/CSRF/SSRF/IDOR/RCE/LFI/SQLi/buffer",
@@ -1209,12 +1887,39 @@
       ]
     },
     {
+      "id": "file::manus/SKILL.md",
+      "type": "file",
+      "label": "manus/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-agent-capability-tier-20260531"
+      ]
+    },
+    {
       "id": "concept::memory drawer storage structure",
       "type": "concept",
       "label": "memory drawer storage structure",
       "drawer_count": 1,
       "drawer_ids": [
         "memory-drawer-structure-20260521"
+      ]
+    },
+    {
+      "id": "file::memory-systems/SKILL.md",
+      "type": "file",
+      "label": "memory-systems/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
+      ]
+    },
+    {
+      "id": "file::memory/references/memory-framework-selection.md",
+      "type": "file",
+      "label": "memory/references/memory-framework-selection.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-memory-framework-20260531"
       ]
     },
     {
@@ -1254,6 +1959,24 @@
       ]
     },
     {
+      "id": "concept::negative routing eval cases — skill mis-routing prevention pattern",
+      "type": "concept",
+      "label": "negative routing eval cases — skill mis-routing prevention pattern",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-negative-routing-evals-20260531"
+      ]
+    },
+    {
+      "id": "concept::negative_example: description fields containing workflow steps (all 3 skill.md files violate wabblespec claude.md rule)",
+      "type": "concept",
+      "label": "negative_example: description fields containing workflow steps (all 3 skill.md files violate wabblespec claude.md rule)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "negative-example-description-fields-20260531"
+      ]
+    },
+    {
       "id": "file::nodes/edges",
       "type": "file",
       "label": "nodes/edges",
@@ -1278,6 +2001,69 @@
       "drawer_count": 1,
       "drawer_ids": [
         "inference-guard-activation-20260525"
+      ]
+    },
+    {
+      "id": "concept::observation_type: kv-cache invalidation: timestamps and dynamic metadata in system prompt destroy cache hit rate",
+      "type": "concept",
+      "label": "observation_type: kv-cache invalidation: timestamps and dynamic metadata in system prompt destroy cache hit rate",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "observation-type-kv-cache-invalidation-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "type": "concept",
+      "label": "open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-c4-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier 7 expansion: multi-persona task card review before locking",
+      "type": "concept",
+      "label": "open_thread: tier 7 expansion: multi-persona task card review before locking",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-multi-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "type": "concept",
+      "label": "open_thread: tier 7 expansion: prd document type generation workflow",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-prd-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier 7 expansion: quality-suite (quality-score.py + quality-rank.py + quality-judge.py)",
+      "type": "concept",
+      "label": "open_thread: tier 7 expansion: quality-suite (quality-score.py + quality-rank.py + quality-judge.py)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier-7: compaction quality evaluator — probe-based verification after executor compaction",
+      "type": "concept",
+      "label": "open_thread: tier-7: compaction quality evaluator — probe-based verification after executor compaction",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "type": "concept",
+      "label": "open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
       ]
     },
     {
@@ -1317,12 +2103,39 @@
       ]
     },
     {
+      "id": "file::packages/react-best-practices-build",
+      "type": "file",
+      "label": "packages/react-best-practices-build",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "pattern-rule-compiler-build-system-for-20260531"
+      ]
+    },
+    {
       "id": "concept::parseltongue framing as false-refusal prevention (not jailbreak)",
       "type": "concept",
       "label": "parseltongue framing as false-refusal prevention (not jailbreak)",
       "drawer_count": 1,
       "drawer_ids": [
         "parseltongue-framing-decision-20260525"
+      ]
+    },
+    {
+      "id": "file::pass/fail",
+      "type": "file",
+      "label": "pass/fail",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::pattern: rule compiler build system for structured skill documentation",
+      "type": "concept",
+      "label": "pattern: rule compiler build system for structured skill documentation",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "pattern-rule-compiler-build-system-for-20260531"
       ]
     },
     {
@@ -1344,6 +2157,24 @@
       ]
     },
     {
+      "id": "module::platform-web",
+      "type": "module",
+      "label": "platform-web",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-web-tier-3-reference-20260531"
+      ]
+    },
+    {
+      "id": "file::plugins/c4-architecture",
+      "type": "file",
+      "label": "plugins/c4-architecture",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-c4-20260531"
+      ]
+    },
+    {
       "id": "file::priority/status",
       "type": "file",
       "label": "priority/status",
@@ -1353,12 +2184,30 @@
       ]
     },
     {
+      "id": "file::processes/datastores",
+      "type": "file",
+      "label": "processes/datastores",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-expansion-c4-20260531"
+      ]
+    },
+    {
       "id": "concept::provenance module and contradiction tracking",
       "type": "concept",
       "label": "provenance module and contradiction tracking",
       "drawer_count": 1,
       "drawer_ids": [
         "provenance-contradiction-tracking-20260525"
+      ]
+    },
+    {
+      "id": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "type": "file",
+      "label": "psycopg2-binary/mysql-connector-python/pymssql",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-database-connector-20260531"
       ]
     },
     {
@@ -1377,6 +2226,24 @@
       "drawer_count": 1,
       "drawer_ids": [
         "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "concept::quick wins algorithmic filter — severity + fixability triage",
+      "type": "concept",
+      "label": "quick wins algorithmic filter — severity + fixability triage",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-quick-wins-filter-20260531"
+      ]
+    },
+    {
+      "id": "file::reasoning/rationale",
+      "type": "file",
+      "label": "reasoning/rationale",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-hypothesis-template-we-20260531"
       ]
     },
     {
@@ -1425,21 +2292,39 @@
       ]
     },
     {
+      "id": "concept::reference_card: agents-main plugin marketplace + plugin-eval quality framework",
+      "type": "concept",
+      "label": "reference_card: agents-main plugin marketplace + plugin-eval quality framework",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "reference-card-agents-main-plugin-20260531"
+      ]
+    },
+    {
+      "id": "file::researcher/llm-as-a-judge.md",
+      "type": "file",
+      "label": "researcher/llm-as-a-judge.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-gate-research-20260531"
+      ]
+    },
+    {
+      "id": "file::retrieval/filtering",
+      "type": "file",
+      "label": "retrieval/filtering",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-bucket-context-20260531"
+      ]
+    },
+    {
       "id": "module::retro",
       "type": "module",
       "label": "retro",
       "drawer_count": 1,
       "drawer_ids": [
         "layer-architecture-overview-20260525"
-      ]
-    },
-    {
-      "id": "module::rollback",
-      "type": "module",
-      "label": "rollback",
-      "drawer_count": 1,
-      "drawer_ids": [
-        "error-taxonomy-key-types-20260525"
       ]
     },
     {
@@ -1458,6 +2343,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "expansion-pattern-inference-module"
+      ]
+    },
+    {
+      "id": "file::scripts/generate_image.py",
+      "type": "file",
+      "label": "scripts/generate_image.py",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-native-image-20260531"
       ]
     },
     {
@@ -1542,12 +2436,102 @@
       ]
     },
     {
+      "id": "file::skill/agent",
+      "type": "file",
+      "label": "skill/agent",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anti-pattern-taxonomy-20260531"
+      ]
+    },
+    {
       "id": "file::skills/brainstorming/visual-companion.md",
       "type": "file",
       "label": "skills/brainstorming/visual-companion.md",
       "drawer_count": 1,
       "drawer_ids": [
         "superpowers-tier7-visual-companion"
+      ]
+    },
+    {
+      "id": "file::skills/elevenlabs/SKILL.md",
+      "type": "file",
+      "label": "skills/elevenlabs/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/google-tts/SKILL.md",
+      "type": "file",
+      "label": "skills/google-tts/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/imagen/SKILL.md",
+      "type": "file",
+      "label": "skills/imagen/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-native-image-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/mssql/SKILL.md",
+      "type": "file",
+      "label": "skills/mssql/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-database-connector-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/mysql/SKILL.md",
+      "type": "file",
+      "label": "skills/mysql/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-database-connector-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/postgres/SKILL.md",
+      "type": "file",
+      "label": "skills/postgres/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-database-connector-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/react-best-practices/SKILL.md",
+      "type": "file",
+      "label": "skills/react-best-practices/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-web-tier-3-reference-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/react-native-skills/SKILL.md",
+      "type": "file",
+      "label": "skills/react-native-skills/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-mobile-tier-3-20260531"
+      ]
+    },
+    {
+      "id": "file::skills/react-view-transitions/references/implementation.md",
+      "type": "file",
+      "label": "skills/react-view-transitions/references/implementation.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-gateway-aesthetic-tier-3-20260531"
       ]
     },
     {
@@ -1569,12 +2553,39 @@
       ]
     },
     {
+      "id": "file::stack/tabs",
+      "type": "file",
+      "label": "stack/tabs",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-mobile-tier-3-20260531"
+      ]
+    },
+    {
       "id": "concept::stm pipeline transform configuration",
       "type": "concept",
       "label": "stm pipeline transform configuration",
       "drawer_count": 1,
       "drawer_ids": [
         "stm-pipeline-transforms-20260525"
+      ]
+    },
+    {
+      "id": "file::stocks/era",
+      "type": "file",
+      "label": "stocks/era",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "concept::structured experiment hypothesis with quality checklist for benchmark-loop and skill-tdd",
+      "type": "concept",
+      "label": "structured experiment hypothesis with quality checklist for benchmark-loop and skill-tdd",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-hypothesis-framework-20260531"
       ]
     },
     {
@@ -1650,6 +2661,42 @@
       ]
     },
     {
+      "id": "concept::tier 7: deliverable quality score — graduated 0-100 wave output health score",
+      "type": "concept",
+      "label": "tier 7: deliverable quality score — graduated 0-100 wave output health score",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-tier7-deliverable-quality-score-20260531"
+      ]
+    },
+    {
+      "id": "concept::tier 7: skill eval runner — automated prompt-based skill routing validator",
+      "type": "concept",
+      "label": "tier 7: skill eval runner — automated prompt-based skill routing validator",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "claude-ads-main-tier7-skill-eval-runner-20260531"
+      ]
+    },
+    {
+      "id": "file::title/impact/impactDescription/tags",
+      "type": "file",
+      "label": "title/impact/impactDescription/tags",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "pattern-rule-compiler-build-system-for-20260531"
+      ]
+    },
+    {
+      "id": "file::tmp/podcast_script.json",
+      "type": "file",
+      "label": "tmp/podcast_script.json",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-candidate-tts-and-podcast-20260531"
+      ]
+    },
+    {
       "id": "concept::tool call batching discipline for parallel execution",
       "type": "concept",
       "label": "tool call batching discipline for parallel execution",
@@ -1668,6 +2715,15 @@
       ]
     },
     {
+      "id": "file::vector/graph",
+      "type": "file",
+      "label": "vector/graph",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
+      ]
+    },
+    {
       "id": "concept::vendor neutrality enforcement (i6)",
       "type": "concept",
       "label": "vendor neutrality enforcement (i6)",
@@ -1683,6 +2739,15 @@
       "drawer_count": 1,
       "drawer_ids": [
         "verifier-check-types-20260520"
+      ]
+    },
+    {
+      "id": "file::version/org",
+      "type": "file",
+      "label": "version/org",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "pattern-rule-compiler-build-system-for-20260531"
       ]
     },
     {
@@ -1737,6 +2802,60 @@
       "drawer_count": 1,
       "drawer_ids": [
         "executor-wave-protocol-20260525"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l4/aesthetic/references/react-view-transitions.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l4/aesthetic/references/react-view-transitions.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-gateway-aesthetic-tier-3-20260531"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l4/security/SKILL.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l4/security/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-defense-in-depth-3-20260531"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l6/platform-mobile/references/react-native-best-practices.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l6/platform-mobile/references/react-native-best-practices.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-mobile-tier-3-20260531"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "expansion-platform-web-tier-3-reference-20260531"
+      ]
+    },
+    {
+      "id": "file::wabblespec/engine/modules/l8/benchmark-loop/SKILL.md",
+      "type": "file",
+      "label": "wabblespec/engine/modules/l8/benchmark-loop/SKILL.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-benchmark-loop-20260531"
       ]
     },
     {
@@ -1848,12 +2967,255 @@
       ]
     },
     {
+      "id": "file::wing/room",
+      "type": "file",
+      "label": "wing/room",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "open-thread-tier-7-memory-framework-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: 10-dimension quality scoring formula with badge thresholds",
+      "type": "concept",
+      "label": "working_solution: 10-dimension quality scoring formula with badge thresholds",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-10-dimension-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: 10-persona reviewer system with production-hardened role descriptions",
+      "type": "concept",
+      "label": "working_solution: 10-persona reviewer system with production-hardened role descriptions",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-10-persona-reviewer-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: 3-plus-files rule creation threshold",
+      "type": "concept",
+      "label": "working_solution: 3-plus-files rule creation threshold",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-3-plus-files-rule-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: agent capability tier taxonomy (lite/standard/max)",
+      "type": "concept",
+      "label": "working_solution: agent capability tier taxonomy (lite/standard/max)",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-agent-capability-tier-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: anchored iterative summarization with mandatory sections beats freeform compression",
+      "type": "concept",
+      "label": "working_solution: anchored iterative summarization with mandatory sections beats freeform compression",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anchored-iterative-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: anti-laziness press protocol: 4-question early-agreement verification",
+      "type": "concept",
+      "label": "working_solution: anti-laziness press protocol: 4-question early-agreement verification",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anti-laziness-press-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: anti-pattern taxonomy with exact thresholds from plugin-eval",
+      "type": "concept",
+      "label": "working_solution: anti-pattern taxonomy with exact thresholds from plugin-eval",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-anti-pattern-taxonomy-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "type": "concept",
+      "label": "working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-compaction-quality-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: defense-in-depth 3-layer query safety pattern",
+      "type": "concept",
+      "label": "working_solution: defense-in-depth 3-layer query safety pattern",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-defense-in-depth-3-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "type": "concept",
+      "label": "working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-bucket-context-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: four-gate research curation rubric with weighted dimensions and decision thresholds",
+      "type": "concept",
+      "label": "working_solution: four-gate research curation rubric with weighted dimensions and decision thresholds",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-four-gate-research-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: llm-optimized documentation format constraints",
+      "type": "concept",
+      "label": "working_solution: llm-optimized documentation format constraints",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-llm-optimized-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: memory framework selection guide with escalation path integrated into memory module",
+      "type": "concept",
+      "label": "working_solution: memory framework selection guide with escalation path integrated into memory module",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-memory-framework-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "type": "concept",
+      "label": "working_solution: photography prompt vocabulary for photorealistic image generation",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: preserve-intent taxonomy: error vs risk vs preference challenge tiers",
+      "type": "concept",
+      "label": "working_solution: preserve-intent taxonomy: error vs risk vs preference challenge tiers",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-preserve-intent-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: receipt chain is the architectural solution to the universally-weak artifact trail compression problem",
+      "type": "concept",
+      "label": "working_solution: receipt chain is the architectural solution to the universally-weak artifact trail compression problem",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-receipt-chain-is-the-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: rule quality checklist six criteria",
+      "type": "concept",
+      "label": "working_solution: rule quality checklist six criteria",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-rule-quality-checklist-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: a1 llm-optimized doc format in document skill.md",
+      "type": "concept",
+      "label": "working_solution: win: a1 llm-optimized doc format in document skill.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-a1-llm-optimized-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: benchmark-loop step 4 pre-verdict checklist guards early declaration",
+      "type": "concept",
+      "label": "working_solution: win: benchmark-loop step 4 pre-verdict checklist guards early declaration",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-benchmark-loop-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: defense-in-depth 3-layer pattern in gateway-security",
+      "type": "concept",
+      "label": "working_solution: win: defense-in-depth 3-layer pattern in gateway-security",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-defense-in-depth-3-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: four skill authoring rules added to claude.md",
+      "type": "concept",
+      "label": "working_solution: win: four skill authoring rules added to claude.md",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-four-skill-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "type": "concept",
+      "label": "working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-photography-prompt-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: pitfalls format spec added to claude.md with problem/why/fix structure",
+      "type": "concept",
+      "label": "working_solution: win: pitfalls format spec added to claude.md with problem/why/fix structure",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-pitfalls-format-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: preserve-intent activation scoped to spec-bound mode only",
+      "type": "concept",
+      "label": "working_solution: win: preserve-intent activation scoped to spec-bound mode only",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-preserve-intent-20260531"
+      ]
+    },
+    {
+      "id": "concept::working_solution: win: shallow-analysis detection uses domain-count not round-count trigger",
+      "type": "concept",
+      "label": "working_solution: win: shallow-analysis detection uses domain-count not round-count trigger",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "working-solution-win-shallow-analysis-20260531"
+      ]
+    },
+    {
       "id": "file::writes/edits",
       "type": "file",
       "label": "writes/edits",
       "drawer_count": 1,
       "drawer_ids": [
         "tool-call-batching-discipline-20260525"
+      ]
+    },
+    {
+      "id": "file::wrong/Fix",
+      "type": "file",
+      "label": "wrong/Fix",
+      "drawer_count": 1,
+      "drawer_ids": [
+        "format-pattern-problem-why-fix-pitfall-20260531"
       ]
     }
   ],
@@ -1872,6 +3234,11 @@
       "source": "module::executor",
       "target": "module::guard",
       "weight": 6
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::document",
+      "weight": 5
     },
     {
       "source": "module::archive",
@@ -1894,8 +3261,8 @@
       "weight": 5
     },
     {
-      "source": "module::benchmark",
-      "target": "module::document",
+      "source": "module::document",
+      "target": "module::specify",
       "weight": 4
     },
     {
@@ -1917,6 +3284,11 @@
       "source": "module::executor",
       "target": "module::recipe",
       "weight": 4
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::memory",
+      "weight": 3
     },
     {
       "source": "module::augment",
@@ -2001,6 +3373,16 @@
     {
       "source": "file::continuous-claude-v3/.claude",
       "target": "file::rules/claim-verification.md",
+      "weight": 2
+    },
+    {
+      "source": "module::benchmark",
+      "target": "module::specify",
+      "weight": 2
+    },
+    {
+      "source": "file::5/5",
+      "target": "module::factory",
       "weight": 2
     },
     {
@@ -2326,11 +3708,6 @@
     {
       "source": "module::augment",
       "target": "module::feedback",
-      "weight": 2
-    },
-    {
-      "source": "module::document",
-      "target": "module::specify",
       "weight": 2
     },
     {
@@ -2696,6 +4073,1846 @@
     {
       "source": "file::scripts/server.cjs",
       "target": "file::skills/brainstorming/visual-companion.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::3-tier evidence hierarchy for conflict resolution in verifier",
+      "target": "module::verifier",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: defense-in-depth 3-layer pattern in gateway-security",
+      "target": "file::wabblespec/engine/modules/l4/security/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: defense-in-depth 3-layer pattern in gateway-security",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/engine/modules/l4/security/SKILL.md",
+      "target": "module::gateway-security",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "target": "file::ai-skills-main/skills/imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "target": "file::camera/lens",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "target": "file::claude/skills/gateway-aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: photography prompt vocabulary in gateway-aesthetic",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::ai-skills-main/skills/imagen/reference.md",
+      "target": "file::camera/lens",
+      "weight": 1
+    },
+    {
+      "source": "file::ai-skills-main/skills/imagen/reference.md",
+      "target": "file::claude/skills/gateway-aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::ai-skills-main/skills/imagen/reference.md",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::claude/skills/gateway-aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/skills/gateway-aesthetic/SKILL.md",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "target": "file::postgres/mysql/mssql",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "target": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "target": "file::skills/mssql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "target": "file::skills/mysql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: database connector skills (postgres/mysql/mssql)",
+      "target": "file::skills/postgres/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::postgres/mysql/mssql",
+      "target": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "weight": 1
+    },
+    {
+      "source": "file::postgres/mysql/mssql",
+      "target": "file::skills/mssql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::postgres/mysql/mssql",
+      "target": "file::skills/mysql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::postgres/mysql/mssql",
+      "target": "file::skills/postgres/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "target": "file::skills/mssql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "target": "file::skills/mysql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::psycopg2-binary/mysql-connector-python/pymssql",
+      "target": "file::skills/postgres/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/mssql/SKILL.md",
+      "target": "file::skills/mysql/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/mssql/SKILL.md",
+      "target": "file::skills/postgres/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/mysql/SKILL.md",
+      "target": "file::skills/postgres/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: native image generation skill (imagen pattern)",
+      "target": "file::scripts/generate_image.py",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: native image generation skill (imagen pattern)",
+      "target": "file::skills/imagen/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::scripts/generate_image.py",
+      "target": "file::skills/imagen/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::TTS/podcast",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::elevenlabs/google-tts",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::leads/Host",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::skills/elevenlabs/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::skills/google-tts/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: tts and podcast generation skill",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "file::elevenlabs/google-tts",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "file::leads/Host",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "file::skills/elevenlabs/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "file::skills/google-tts/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "file::TTS/podcast",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::elevenlabs/google-tts",
+      "target": "file::leads/Host",
+      "weight": 1
+    },
+    {
+      "source": "file::elevenlabs/google-tts",
+      "target": "file::skills/elevenlabs/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::elevenlabs/google-tts",
+      "target": "file::skills/google-tts/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::elevenlabs/google-tts",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "file::elevenlabs/google-tts",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::leads/Host",
+      "target": "file::skills/elevenlabs/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::leads/Host",
+      "target": "file::skills/google-tts/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::leads/Host",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "file::leads/Host",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/elevenlabs/SKILL.md",
+      "target": "file::skills/google-tts/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/elevenlabs/SKILL.md",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/elevenlabs/SKILL.md",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/google-tts/SKILL.md",
+      "target": "file::tmp/podcast_script.json",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/google-tts/SKILL.md",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::tmp/podcast_script.json",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: agent capability tier taxonomy (lite/standard/max)",
+      "target": "file::lite/standard/max",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: agent capability tier taxonomy (lite/standard/max)",
+      "target": "file::manus/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::lite/standard/max",
+      "target": "file::manus/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: defense-in-depth 3-layer query safety pattern",
+      "target": "file::SELECT/SHOW/EXPLAIN/WITH",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: defense-in-depth 3-layer query safety pattern",
+      "target": "file::postgres/mysql/mssql",
+      "weight": 1
+    },
+    {
+      "source": "file::SELECT/SHOW/EXPLAIN/WITH",
+      "target": "file::postgres/mysql/mssql",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::3/4",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::camera/lens",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::f/1",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::f/2",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::imagen/examples.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: photography prompt vocabulary for photorealistic image generation",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::camera/lens",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::f/1",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::f/2",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::imagen/examples.md",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "file::3/4",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::f/1",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::f/2",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::imagen/examples.md",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "file::camera/lens",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::f/1",
+      "target": "file::f/2",
+      "weight": 1
+    },
+    {
+      "source": "file::f/1",
+      "target": "file::imagen/examples.md",
+      "weight": 1
+    },
+    {
+      "source": "file::f/1",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "file::f/1",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::f/2",
+      "target": "file::imagen/examples.md",
+      "weight": 1
+    },
+    {
+      "source": "file::f/2",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "file::f/2",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::imagen/examples.md",
+      "target": "file::imagen/reference.md",
+      "weight": 1
+    },
+    {
+      "source": "file::imagen/examples.md",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "file::imagen/reference.md",
+      "target": "file::stocks/era",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "target": "file::Glob/Read",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "target": "file::class/function",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "target": "file::plugins/c4-architecture",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: c4 architecture diagram generation",
+      "target": "file::processes/datastores",
+      "weight": 1
+    },
+    {
+      "source": "file::Glob/Read",
+      "target": "file::class/function",
+      "weight": 1
+    },
+    {
+      "source": "file::Glob/Read",
+      "target": "file::plugins/c4-architecture",
+      "weight": 1
+    },
+    {
+      "source": "file::Glob/Read",
+      "target": "file::processes/datastores",
+      "weight": 1
+    },
+    {
+      "source": "file::class/function",
+      "target": "file::plugins/c4-architecture",
+      "weight": 1
+    },
+    {
+      "source": "file::class/function",
+      "target": "file::processes/datastores",
+      "weight": 1
+    },
+    {
+      "source": "file::plugins/c4-architecture",
+      "target": "file::processes/datastores",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: quality-suite (quality-score.py + quality-rank.py + quality-judge.py)",
+      "target": "file::Bronze/Silver/Gold/Platinum",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anti-pattern taxonomy with exact thresholds from plugin-eval",
+      "target": "file::MUST/ALWAYS/NEVER",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anti-pattern taxonomy with exact thresholds from plugin-eval",
+      "target": "file::docs/plugin-eval.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anti-pattern taxonomy with exact thresholds from plugin-eval",
+      "target": "file::skill/agent",
+      "weight": 1
+    },
+    {
+      "source": "file::MUST/ALWAYS/NEVER",
+      "target": "file::docs/plugin-eval.md",
+      "weight": 1
+    },
+    {
+      "source": "file::MUST/ALWAYS/NEVER",
+      "target": "file::skill/agent",
+      "weight": 1
+    },
+    {
+      "source": "file::docs/plugin-eval.md",
+      "target": "file::skill/agent",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: benchmark-loop step 4 pre-verdict checklist guards early declaration",
+      "target": "file::Confirmed/Refuted/Inconclusive",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: benchmark-loop step 4 pre-verdict checklist guards early declaration",
+      "target": "file::claude/skills/benchmark-loop/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: benchmark-loop step 4 pre-verdict checklist guards early declaration",
+      "target": "file::wabblespec/engine/modules/l8/benchmark-loop/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Confirmed/Refuted/Inconclusive",
+      "target": "file::claude/skills/benchmark-loop/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Confirmed/Refuted/Inconclusive",
+      "target": "file::wabblespec/engine/modules/l8/benchmark-loop/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/skills/benchmark-loop/SKILL.md",
+      "target": "file::wabblespec/engine/modules/l8/benchmark-loop/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: pitfalls format spec added to claude.md with problem/why/fix structure",
+      "target": "file::Problem/Why/Fix",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "file::candidates/blueprints/augments/fixtures",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "file::draft/running/concluded",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "file::hypothesis/variants/status/winner/learnings",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion_candidate: structured l8 experiment document format (hypothesis/variants/status/winner/learnings)",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::candidates/blueprints/augments/fixtures",
+      "target": "file::draft/running/concluded",
+      "weight": 1
+    },
+    {
+      "source": "file::candidates/blueprints/augments/fixtures",
+      "target": "file::hypothesis/variants/status/winner/learnings",
+      "weight": 1
+    },
+    {
+      "source": "file::candidates/blueprints/augments/fixtures",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::candidates/blueprints/augments/fixtures",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::candidates/blueprints/augments/fixtures",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::draft/running/concluded",
+      "target": "file::hypothesis/variants/status/winner/learnings",
+      "weight": 1
+    },
+    {
+      "source": "file::draft/running/concluded",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::draft/running/concluded",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::draft/running/concluded",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::hypothesis/variants/status/winner/learnings",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::hypothesis/variants/status/winner/learnings",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::hypothesis/variants/status/winner/learnings",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::format_pattern: hypothesis template 'we believe [change] will [impact metric] because [reasoning]'",
+      "target": "file::reasoning/rationale",
+      "weight": 1
+    },
+    {
+      "source": "concept::format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "target": "file::MUST/ALWAYS",
+      "weight": 1
+    },
+    {
+      "source": "concept::format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "target": "file::Problem/Why",
+      "weight": 1
+    },
+    {
+      "source": "concept::format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "target": "file::Problem/Why/Fix",
+      "weight": 1
+    },
+    {
+      "source": "concept::format_pattern: problem/why/fix pitfall structure from common-pitfalls.md",
+      "target": "file::wrong/Fix",
+      "weight": 1
+    },
+    {
+      "source": "file::MUST/ALWAYS",
+      "target": "file::Problem/Why",
+      "weight": 1
+    },
+    {
+      "source": "file::MUST/ALWAYS",
+      "target": "file::Problem/Why/Fix",
+      "weight": 1
+    },
+    {
+      "source": "file::MUST/ALWAYS",
+      "target": "file::wrong/Fix",
+      "weight": 1
+    },
+    {
+      "source": "file::Problem/Why",
+      "target": "file::Problem/Why/Fix",
+      "weight": 1
+    },
+    {
+      "source": "file::Problem/Why",
+      "target": "file::wrong/Fix",
+      "weight": 1
+    },
+    {
+      "source": "file::Problem/Why/Fix",
+      "target": "file::wrong/Fix",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: gateway-aesthetic tier 3 reference for react view transitions",
+      "target": "file::skills/react-view-transitions/references/implementation.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: gateway-aesthetic tier 3 reference for react view transitions",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/references/react-view-transitions.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/react-view-transitions/references/implementation.md",
+      "target": "file::wabblespec/engine/modules/l4/aesthetic/references/react-view-transitions.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-mobile tier 3 reference for react native best practices",
+      "target": "file::skills/react-native-skills/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-mobile tier 3 reference for react native best practices",
+      "target": "file::stack/tabs",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-mobile tier 3 reference for react native best practices",
+      "target": "file::wabblespec/engine/modules/l6/platform-mobile/references/react-native-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/react-native-skills/SKILL.md",
+      "target": "file::stack/tabs",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/react-native-skills/SKILL.md",
+      "target": "file::wabblespec/engine/modules/l6/platform-mobile/references/react-native-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "file::stack/tabs",
+      "target": "file::wabblespec/engine/modules/l6/platform-mobile/references/react-native-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "target": "file::React/Next.js",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "target": "file::skills/react-best-practices/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "target": "file::wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::expansion: platform-web tier 3 reference for react/next.js performance rules",
+      "target": "module::platform-web",
+      "weight": 1
+    },
+    {
+      "source": "file::React/Next.js",
+      "target": "file::skills/react-best-practices/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::React/Next.js",
+      "target": "file::wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "file::React/Next.js",
+      "target": "module::platform-web",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/react-best-practices/SKILL.md",
+      "target": "file::wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "weight": 1
+    },
+    {
+      "source": "file::skills/react-best-practices/SKILL.md",
+      "target": "module::platform-web",
+      "weight": 1
+    },
+    {
+      "source": "file::wabblespec/engine/modules/l6/platform-web/references/react-best-practices.md",
+      "target": "module::platform-web",
+      "weight": 1
+    },
+    {
+      "source": "concept::pattern: rule compiler build system for structured skill documentation",
+      "target": "file::packages/react-best-practices-build",
+      "weight": 1
+    },
+    {
+      "source": "concept::pattern: rule compiler build system for structured skill documentation",
+      "target": "file::title/impact/impactDescription/tags",
+      "weight": 1
+    },
+    {
+      "source": "concept::pattern: rule compiler build system for structured skill documentation",
+      "target": "file::version/org",
+      "weight": 1
+    },
+    {
+      "source": "file::packages/react-best-practices-build",
+      "target": "file::title/impact/impactDescription/tags",
+      "weight": 1
+    },
+    {
+      "source": "file::packages/react-best-practices-build",
+      "target": "file::version/org",
+      "weight": 1
+    },
+    {
+      "source": "file::title/impact/impactDescription/tags",
+      "target": "file::version/org",
+      "weight": 1
+    },
+    {
+      "source": "concept::observation_type: kv-cache invalidation: timestamps and dynamic metadata in system prompt destroy cache hit rate",
+      "target": "file::context-optimization/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: compaction quality evaluator — probe-based verification after executor compaction",
+      "target": "file::context-compression/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: compaction quality evaluator — probe-based verification after executor compaction",
+      "target": "file::docs/compression.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: compaction quality evaluator — probe-based verification after executor compaction",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::context-compression/SKILL.md",
+      "target": "file::docs/compression.md",
+      "weight": 1
+    },
+    {
+      "source": "file::context-compression/SKILL.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::docs/compression.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::Letta/Cognee",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::Mem0/vector",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::Zep/Graphiti",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::memory-systems/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::vector/graph",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier-7: memory framework selection guide for scaling beyond proprietary drawer system",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "file::Mem0/vector",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "file::Zep/Graphiti",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "file::memory-systems/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "file::vector/graph",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::Letta/Cognee",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "file::Zep/Graphiti",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "file::memory-systems/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "file::vector/graph",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::Mem0/vector",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::Zep/Graphiti",
+      "target": "file::memory-systems/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Zep/Graphiti",
+      "target": "file::vector/graph",
+      "weight": 1
+    },
+    {
+      "source": "file::Zep/Graphiti",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "file::Zep/Graphiti",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::Zep/Graphiti",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::memory-systems/SKILL.md",
+      "target": "file::vector/graph",
+      "weight": 1
+    },
+    {
+      "source": "file::memory-systems/SKILL.md",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "file::memory-systems/SKILL.md",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::memory-systems/SKILL.md",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::vector/graph",
+      "target": "file::wing/room",
+      "weight": 1
+    },
+    {
+      "source": "file::vector/graph",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::vector/graph",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::wing/room",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::wing/room",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anchored iterative summarization with mandatory sections beats freeform compression",
+      "target": "file::5/5",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anchored iterative summarization with mandatory sections beats freeform compression",
+      "target": "file::context-compression/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anchored iterative summarization with mandatory sections beats freeform compression",
+      "target": "module::factory",
+      "weight": 1
+    },
+    {
+      "source": "file::5/5",
+      "target": "file::context-compression/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::context-compression/SKILL.md",
+      "target": "module::factory",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::4-5/6",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::4/6",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::6/6",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::Accuracy/Context",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::Awareness/Artifact",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: compaction quality gate with probe-based verification integrated into executor",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::4/6",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::6/6",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::Accuracy/Context",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::Awareness/Artifact",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::4-5/6",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::6/6",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::Accuracy/Context",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::Awareness/Artifact",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::4/6",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::Accuracy/Context",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::Awareness/Artifact",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::6/6",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "file::Awareness/Artifact",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::Accuracy/Context",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::Awareness/Artifact",
+      "target": "file::Recall/Artifact/Continuation/Decision",
+      "weight": 1
+    },
+    {
+      "source": "file::Awareness/Artifact",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::Awareness/Artifact",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Awareness/Artifact",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::Awareness/Artifact",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::Recall/Artifact/Continuation/Decision",
+      "target": "file::Trail/Completeness/Continuity/Instruction",
+      "weight": 1
+    },
+    {
+      "source": "file::Recall/Artifact/Continuation/Decision",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Recall/Artifact/Continuation/Decision",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::Recall/Artifact/Continuation/Decision",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::Trail/Completeness/Continuity/Instruction",
+      "target": "file::executor/references/compaction-quality-gate.md",
+      "weight": 1
+    },
+    {
+      "source": "file::Trail/Completeness/Continuity/Instruction",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::Trail/Completeness/Continuity/Instruction",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::executor/references/compaction-quality-gate.md",
+      "target": "file::pass/fail",
+      "weight": 1
+    },
+    {
+      "source": "file::executor/references/compaction-quality-gate.md",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "file::pass/fail",
+      "target": "module::executor",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "target": "file::confusion/clash",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "target": "file::context-degradation/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "target": "file::retrieval/filtering",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: four-bucket context management framework with named strategies and trigger conditions",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::confusion/clash",
+      "target": "file::context-degradation/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::confusion/clash",
+      "target": "file::retrieval/filtering",
+      "weight": 1
+    },
+    {
+      "source": "file::confusion/clash",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::context-degradation/SKILL.md",
+      "target": "file::retrieval/filtering",
+      "weight": 1
+    },
+    {
+      "source": "file::context-degradation/SKILL.md",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "file::retrieval/filtering",
+      "target": "module::apply",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: four-gate research curation rubric with weighted dimensions and decision thresholds",
+      "target": "file::researcher/llm-as-a-judge.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: memory framework selection guide with escalation path integrated into memory module",
+      "target": "file::memory/references/memory-framework-selection.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: memory framework selection guide with escalation path integrated into memory module",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: memory framework selection guide with escalation path integrated into memory module",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "file::memory/references/memory-framework-selection.md",
+      "target": "module::benchmark",
+      "weight": 1
+    },
+    {
+      "source": "file::memory/references/memory-framework-selection.md",
+      "target": "module::memory",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: receipt chain is the architectural solution to the universally-weak artifact trail compression problem",
+      "target": "file::5/5",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: receipt chain is the architectural solution to the universally-weak artifact trail compression problem",
+      "target": "file::docs/compression.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: receipt chain is the architectural solution to the universally-weak artifact trail compression problem",
+      "target": "module::factory",
+      "weight": 1
+    },
+    {
+      "source": "file::5/5",
+      "target": "file::docs/compression.md",
+      "weight": 1
+    },
+    {
+      "source": "file::docs/compression.md",
+      "target": "module::factory",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: a1 llm-optimized doc format in document skill.md",
+      "target": "file::claude/skills",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: a1 llm-optimized doc format in document skill.md",
+      "target": "file::engine/modules/l6/document/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: a1 llm-optimized doc format in document skill.md",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/skills",
+      "target": "file::engine/modules/l6/document/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::claude/skills",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::engine/modules/l6/document/SKILL.md",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: four skill authoring rules added to claude.md",
+      "target": "file::Actionable/Specific/Tested/Complete/Current/Linked",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: llm-optimized documentation format constraints",
+      "target": "file::docs/filename.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: preserve-intent activation scoped to spec-bound mode only",
+      "target": "file::ERROR/RISK/PREFERENCE",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: preserve-intent activation scoped to spec-bound mode only",
+      "target": "file::adversary/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "file::ERROR/RISK/PREFERENCE",
+      "target": "file::adversary/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: win: shallow-analysis detection uses domain-count not round-count trigger",
+      "target": "file::adversary/SKILL.md",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: multi-persona task card review before locking",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::In-Out/Dependencies/Risks",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Metrics/Scope",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Requirements/Non-Functional",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Requirements/Success",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Statement/Target",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::open_thread: tier 7 expansion: prd document type generation workflow",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Metrics/Scope",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Requirements/Non-Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Requirements/Success",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Statement/Target",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::In-Out/Dependencies/Risks",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Requirements/Non-Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Requirements/Success",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Statement/Target",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Metrics/Scope",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "file::Requirements/Success",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "file::Statement/Target",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Non-Functional",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "file::Statement/Target",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Requirements/Success",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Statement/Target",
+      "target": "file::Stories/Functional",
+      "weight": 1
+    },
+    {
+      "source": "file::Statement/Target",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::Statement/Target",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Statement/Target",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Statement/Target",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Stories/Functional",
+      "target": "file::Summary/Problem",
+      "weight": 1
+    },
+    {
+      "source": "file::Stories/Functional",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Stories/Functional",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Stories/Functional",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Summary/Problem",
+      "target": "file::Users/Personas/User",
+      "weight": 1
+    },
+    {
+      "source": "file::Summary/Problem",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Summary/Problem",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "file::Users/Personas/User",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "file::Users/Personas/User",
+      "target": "module::specify",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: 10-persona reviewer system with production-hardened role descriptions",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: 10-persona reviewer system with production-hardened role descriptions",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "module::reviewer",
+      "target": "module::rollback",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anti-laziness press protocol: 4-question early-agreement verification",
+      "target": "module::document",
+      "weight": 1
+    },
+    {
+      "source": "concept::working_solution: anti-laziness press protocol: 4-question early-agreement verification",
+      "target": "module::reviewer",
+      "weight": 1
+    },
+    {
+      "source": "module::document",
+      "target": "module::reviewer",
       "weight": 1
     },
     {
@@ -5650,11 +8867,6 @@
     },
     {
       "source": "module::benchmark",
-      "target": "module::memory",
-      "weight": 1
-    },
-    {
-      "source": "module::benchmark",
       "target": "module::polish",
       "weight": 1
     },
@@ -5666,11 +8878,6 @@
     {
       "source": "module::benchmark",
       "target": "module::retro",
-      "weight": 1
-    },
-    {
-      "source": "module::benchmark",
-      "target": "module::specify",
       "weight": 1
     },
     {

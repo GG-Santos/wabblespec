@@ -67,12 +67,12 @@ Changelog activates:
 ## Steps
 
 **Step 1 — Parse commit range.**
-Run `git log {from_ref}..{to_ref} --format="%H %s %b"`. For each commit, parse against the conventional commit pattern: `type(scope)!: subject`. See `rules/git-parsing.md` for parsing rules and edge cases.
+Run `git log {from_ref}..{to_ref} --format="%H %s %b"`. For each commit, parse against the conventional commit pattern — `type`, optional `scope`, colon, subject (exclamation before the colon signals a breaking change). See `rules/git-parsing.md` for parsing rules and edge cases.
 
 **Step 2 — Filter.**
 Exclude commits that are not user-relevant: `chore`, `ci`, `build`, `test`, `style` type commits are excluded by default unless `audience: developer` or `mixed` is declared. `docs` commits are included only if they affect user-facing documentation.
 
-BREAKING CHANGE footer and `!` in the type are always promoted to the `Changed` section regardless of type.
+BREAKING CHANGE footer and the exclamation suffix in the type are always promoted to the `Changed` section regardless of type.
 
 **Step 3 — Translate to user language.**
 For each included commit: rewrite the subject line from developer language to user language. See `rules/user-language.md`. The scope becomes a product area label where meaningful.

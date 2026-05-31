@@ -1,6 +1,6 @@
 ---
 name: grader
-description: Standalone grader. Evaluates primary output against Adversary counter-analysis and spec artifact. Issues ACCEPT / REVISE / ESCALATE verdict with score and revision guidance. Invokable directly by any caller — not only Reviewer.
+description: Standalone grader. Evaluates primary output against Adversary counter-analysis and spec artifact. Issues ACCEPT / REVISE / ESCALATE verdict with score and revision guidance. Invokable directly by any caller — not only Reviewer. Do NOT invoke to generate the counter-case against an artifact — that is Adversary's job. Do NOT invoke when no Adversary output exists to grade against.
 ---
 
 # Grader
@@ -20,6 +20,12 @@ Receives primary output, Adversary counter-analysis, and a spec artifact. Evalua
 ## When to use / when not to use
 
 Grader is always invoked after Adversary. Do not invoke Grader without an Adversary receipt — the counter-analysis is required input. If Adversary receipt is missing or status = FAIL, halt and surface to caller.
+
+## When NOT to use
+
+- Adversary receipt is absent or status = FAIL — halt; do not substitute your own counter-analysis for the missing receipt
+- The primary output has changed since the Adversary receipt was written — re-run Adversary first; Grader evaluates against a specific counter-analysis, not a stale one
+- A grader-receipt already exists for this exact (primary output, adversary receipt) pair and neither has changed — re-grading without new Adversary input adds noise, not signal
 
 ## Inputs
 

@@ -118,6 +118,12 @@ qr = col.query(query_texts=[content[:200]], n_results=4)
 - `modules/l5/memory/rules/staleness-thresholds.md` — threshold definitions
 - `modules/l5/memory/rules/schema-version.md` — current schema version
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| MemoryMine receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type memory-mine` |
+
 ## Outputs
 
 All five files written to `.wabblespec/state/memory/mine/`:

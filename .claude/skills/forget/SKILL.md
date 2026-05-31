@@ -103,6 +103,12 @@ Send deletion event to EntityGraph with drawer_id and topic. EntityGraph removes
 - Does not delete FRESH or AGING drawers without explicit `force: true` + compliance_reference.
 - Does not cascade-delete linked drawers automatically — EntityGraph handles reference cleanup.
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Forget receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type forget` |
+
 ## Output contract
 
 **forget-receipt** (`.wabblespec/state/receipts/forget-receipt-{timestamp}.json`):

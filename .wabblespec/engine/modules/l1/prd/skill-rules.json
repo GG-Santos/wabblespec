@@ -1,0 +1,52 @@
+{
+  "module": "prd",
+  "layer": "L1",
+  "tier": 1,
+  "activators": [
+    "write a prd",
+    "product requirements document",
+    "stakeholder spec",
+    "requirements document",
+    "/prd",
+    "write requirements",
+    "product spec for stakeholders"
+  ],
+  "anti_activators": [
+    "task card already exists and scope is defined",
+    "user wants an engineering spec or API design — use specify or decompose",
+    "reviewing or critiquing an existing prd without producing a new one — use adversary"
+  ],
+  "phases": [
+    "Research",
+    "Spec"
+  ],
+  "stages": [
+    "P1"
+  ],
+  "authority": {
+    "owns": [
+      ".wabblespec/state/plans/prd.md",
+      "prd-output.md"
+    ],
+    "reads": [
+      ".wabblespec/state/plans/intent.md",
+      ".wabblespec/state/receipts/recipe-receipt.json",
+      ".wabblespec/state/plans/scope.md"
+    ]
+  },
+  "verification_mode": "Observation",
+  "receipt_required": true,
+  "collapse_eligible": false,
+  "invariants": [
+    "PRD contains no technical implementation details",
+    "All 7 quality criteria checked before presenting draft",
+    "Success metrics must be measurable with specific numeric targets",
+    "Scope section must list what is OUT as well as IN",
+    "User stories follow As a / I want / so that format"
+  ],
+  "loading_gate": "stage",
+  "commands": [
+    "/prd"
+  ],
+  "file_path_patterns": []
+}

@@ -28,6 +28,12 @@ Markdown is invoked:
 - **Link targets** — list of note titles or paths that this note should wikilink to (optional)
 - **Vault root** — root path for resolving wikilink targets (optional; default: `.wabblespec/`)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Markdown receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/markdown/schemas/markdown-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/markdown-{timestamp}.json`
@@ -66,7 +72,12 @@ For each declared link target: scan the document for the first mention of that t
 For agentskills format: convert wikilinks to markdown hyperlinks with relative paths.
 
 **Step 5 — Apply callouts.**
-Identify content blocks that match callout patterns (notes, warnings, tips, examples). Format using Obsidian callout syntax: `> [!TYPE]`. See `rules/obsidian-format.md` for type mapping.
+Identify content blocks that match callout patterns (notes, warnings, tips, examples). Format using Obsidian callout syntax (see `rules/obsidian-format.md` for type mapping):
+
+```
+> [!NOTE]
+> Content here.
+```
 
 **Step 6 — Write output.**
 Save formatted file. Write receipt.

@@ -32,6 +32,12 @@ Market activates when:
 - **Timeline** — launch timeline in weeks (optional; informs execution plan)
 - **Competitive alternatives** — what the ICP uses today instead (required for positioning)
 
+## Reference Routing
+
+| Situation | Reference |
+|---|---|
+| Market receipt write | `engine/shared/references/script-delegation-contract.md` → `receipt-writer.py --type generic` for the base, then `--extra-json` for the module-specific fields defined in `modules/l6/market/schemas/market-receipt.schema.json` |
+
 ## Output contract
 
 **Receipt:** `.wabblespec/state/receipts/market-{timestamp}.json`

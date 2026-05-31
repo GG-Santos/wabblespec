@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "_purpose": "Live library/framework documentation lookup. Used by executor (Step 2b), specify, gateway-engineering. No auth required.",
+      "_status": "active"
+    },
+    "serena": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"],
+      "_purpose": "Semantic code navigation via LSP. Used by explore (traversal), analyze, decompose (architecture discovery). Requires uvx (pip install uv).",
+      "_status": "opt-in — install uvx and uncomment to activate"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "_purpose": "Browser automation and E2E testing. Used by test, verifier (Demonstration mode), platform-web, gateway-experience.",
+      "_status": "opt-in — uncomment to activate"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "_purpose": "GitHub PR/issue management. Used by wave-review (post inline comments), commit, archive (embed PR URL in receipts). Requires GITHUB_PERSONAL_ACCESS_TOKEN env var.",
+      "_status": "opt-in — set GITHUB_PERSONAL_ACCESS_TOKEN and uncomment to activate"
+    },
+    "linear": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp",
+      "_purpose": "Linear issue tracking. Used by recipe (populate task card from ticket), specify, archive (sync completion status). Requires Linear OAuth setup.",
+      "_status": "opt-in — complete Linear OAuth and uncomment to activate"
+    }
+  }
+}
